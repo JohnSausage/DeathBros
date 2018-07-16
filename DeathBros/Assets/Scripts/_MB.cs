@@ -6,13 +6,14 @@ public class _MB : MonoBehaviour
 {
     protected bool initialized;
 
-    void Start()
+    void Awake()
     {
-        Init();
+        if (!initialized)
+            Init();
     }
 
     public virtual void Init()
     {
-            initialized = true;
+        initialized = true;
     }
 }
