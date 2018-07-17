@@ -6,6 +6,8 @@ public class HurtboxManager : _MB
 {
     public List<CircleCollider2D> hurtboxes;
 
+    private Frame previousFrame;
+
     public override void Init()
     {
         base.Init();
@@ -15,12 +17,17 @@ public class HurtboxManager : _MB
 
     public void SetHurtboxes(Frame frame)
     {
-        ClearHurtboxes();
-
-        for (int i = 0; i < frame.hurtBoxes.Count; i++)
+        if (previousFrame != frame) //only change hurtboxes when frame has changed
         {
-            AddHurtboxColllider(frame.hurtBoxes[i]);
+            ClearHurtboxes();
+
+            for (int i = 0; i < frame.hurtBoxes.Count; i++)
+            {
+                AddHurtboxColllider(frame.hurtBoxes[i]);
+            }
         }
+
+        previousFrame = frame;
     }
 
     private void AddHurtboxColllider(Hurtbox hurtbox)
@@ -49,5 +56,14 @@ public class HurtboxManager : _MB
 public class Hurtbox
 {
     public Vector2 position;
-    public float radius;
+    public float radius = 0.5f;
+
+    public Hurtbox Clone()
+    {
+        return new Hurtbox
+        {
+            radius = radius,
+            position = position
+        };
+    }
 }

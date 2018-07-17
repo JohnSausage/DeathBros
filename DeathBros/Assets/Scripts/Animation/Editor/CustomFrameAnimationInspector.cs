@@ -12,6 +12,7 @@ public class CustomFrameAnimationInspector : Editor
     bool playing = false;
     bool showHurtboxes = false;
     int currentDisplay = 0;
+    Hurtbox settingHurtbox, copyHurtbox;
 
     Vector2 zero = new Vector2(150, 200);
     float scale = 4f;
@@ -20,6 +21,15 @@ public class CustomFrameAnimationInspector : Editor
 
     void OnEnable() { EditorApplication.update += Update; }
     void OnDisable() { EditorApplication.update -= Update; }
+
+    private void Reset()
+    {
+        frameCounter = 0;
+        timer = 0;
+        playing = false;
+        showHurtboxes = false;
+        currentDisplay = 0;
+    }
 
     void Update()
     {
@@ -49,10 +59,21 @@ public class CustomFrameAnimationInspector : Editor
         anim.animationName = EditorGUILayout.TextField("Name:", anim.animationName);
 
 
-        //mouse test
-        Event e = Event.current;
-        //Debug.Log(e.mousePosition - zero);
+        if (settingHurtbox != null)
+        {
+            settingHurtbox.position.x = ((Event.current.mousePosition - zero) / pixelPerUnit / scale).x;
+            settingHurtbox.position.y = -((Event.current.mousePosition - zero) / pixelPerUnit / scale).y;
+        }
 
+        if (settingHurtbox != null && Event.current.type == EventType.ScrollWheel)
+        {
+            settingHurtbox.radius += Event.current.delta.y * 0.01f;
+        }
+
+        if (settingHurtbox != null && Event.current.type == EventType.MouseUp && Event.current.button == 0)
+        {
+            settingHurtbox = null;
+        }
 
         EditorGUILayout.BeginVertical("box");
         {
@@ -85,6 +106,11 @@ public class CustomFrameAnimationInspector : Editor
         {
             for (int i = 0; i < anim.frames.Count; i++)
             {
+                if (frameCounter == i)
+                {
+                    GUI.color = Color.grey;
+                }
+
                 if (GUILayout.Button((i + 1).ToString()))
                 {
                     playing = false;
@@ -92,6 +118,8 @@ public class CustomFrameAnimationInspector : Editor
                     frameCounter = i;
                     currentDisplay = i;
                 }
+
+                GUI.color = Color.white;
             }
 
             if (GUILayout.Button("+"))
@@ -101,33 +129,21 @@ public class CustomFrameAnimationInspector : Editor
         }
         EditorGUILayout.EndHorizontal();
 
-
         DisplayFrame(anim.frames[currentDisplay]);
 
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
+        GUI.color = new Color32(200, 180, 180, 255);
         if (GUILayout.Button("Delete Frame"))
         {
             anim.frames.Remove(anim.frames[currentDisplay]);
+            Reset();
         }
+        GUI.color = Color.white;
 
-        /*
-        //Display the Frames
-        for (int i = 0; i < anim.frames.Count; i++)
-        {
-            DisplayFrame(anim.frames[i]);
-
-            if (GUILayout.Button("Delete Frame"))
-            {
-                anim.frames.Remove(anim.frames[i]);
-                break;
-            }
-        }
-
-        if (GUILayout.Button("Add Frame"))
-        {
-            anim.frames.Add(new Frame());
-        }
-        */
         EditorGUILayout.Space();
+
         EditorUtility.SetDirty(target);
 
         base.OnInspectorGUI();
@@ -138,20 +154,17 @@ public class CustomFrameAnimationInspector : Editor
         if (frame != null && frame.sprite != null)
         {
             Repaint();
-            EditorGUILayout.BeginVertical();
+
+            DrawTexturePreview(position, Vector2.zero, frame.sprite, scale);
+
+            if (showHurtboxes)
             {
-                DrawTexturePreview(position, Vector2.zero, frame.sprite, scale);
-
-                if (showHurtboxes)
-                {
-                    foreach (Hurtbox h in frame.hurtBoxes)
-                        DrawTexturePreview(position, h.position, Resources.Load<Sprite>("hurtbox"), 2 * h.radius * scale);
-                }
-
-                GUILayout.Space(200);
+                foreach (Hurtbox h in frame.hurtBoxes)
+                    DrawTexturePreview(position, new Vector2(h.position.x, -h.position.y), Resources.Load<Sprite>("hurtbox"), 2 * h.radius * scale);
             }
-            EditorGUILayout.EndVertical();
         }
+
+        GUILayout.Space(200);
     }
 
     //Displaying a single Frame
@@ -159,29 +172,50 @@ public class CustomFrameAnimationInspector : Editor
     {
         EditorGUILayout.BeginVertical("box");
         {
-            frame.duration = EditorGUILayout.IntField("Duration:", frame.duration);
-
             frame.sprite = (Sprite)EditorGUILayout.ObjectField("Sprite:", frame.sprite, typeof(Sprite), false);
+
+            frame.duration = EditorGUILayout.IntField("Duration:", frame.duration);
 
             if (frame.hurtBoxes == null) frame.hurtBoxes = new List<Hurtbox>();
 
             for (int i = 0; i < frame.hurtBoxes.Count; i++)
             {
+                //GUI.color = Color.green;
+                GUI.color = new Color32(180, 200, 180, 255);
                 EditorGUILayout.BeginVertical("box");
                 {
                     frame.hurtBoxes[i].position = EditorGUILayout.Vector2Field("Position", frame.hurtBoxes[i].position);
                     frame.hurtBoxes[i].radius = EditorGUILayout.FloatField("Radius", frame.hurtBoxes[i].radius);
 
-                    //DrawTexturePreview(CircleToRect(new Vector2(80, 80) + frame.hurtBoxes[i].position * 100, frame.hurtBoxes[i].radius * 25), Resources.Load<Sprite>("hurtbox"));
+                    EditorGUILayout.Space();
 
-                    if (GUILayout.Button("Delete"))
+                    EditorGUILayout.BeginHorizontal();
                     {
-                        frame.hurtBoxes.Remove(frame.hurtBoxes[i]);
-                        break;
-                    }
+                        if (GUILayout.Button("Set"))
+                        {
+                            settingHurtbox = frame.hurtBoxes[i];
+                        }
 
+                        if (GUILayout.Button("Copy"))
+                        {
+                            copyHurtbox = frame.hurtBoxes[i];
+                        }
+
+                        if (GUILayout.Button("Paste") && copyHurtbox != null)
+                        {
+                            frame.hurtBoxes[i] = copyHurtbox.Clone();
+                        }
+
+                        if (GUILayout.Button("Delete"))
+                        {
+                            frame.hurtBoxes.Remove(frame.hurtBoxes[i]);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
                 }
                 EditorGUILayout.EndVertical();
+                GUI.color = Color.white;
             }
 
             if (GUILayout.Button("Add HurtBox"))
@@ -190,10 +224,6 @@ public class CustomFrameAnimationInspector : Editor
             }
         }
         EditorGUILayout.EndVertical();
-        //----------------------------------
-        //Debug.Log(GUILayoutUtility.GetLastRect());
-
-        //PreviewFrame(GUILayoutUtility.GetLastRect().position, frame);
     }
 
     private void DrawTexturePreview(Vector2 position, Vector2 offset, Sprite sprite, float scale)

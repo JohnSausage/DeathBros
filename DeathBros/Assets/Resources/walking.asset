@@ -16,20 +16,28 @@ MonoBehaviour:
   - duration: 30
     sprite: {fileID: 21300004, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
     hurtBoxes:
-    - position: {x: 0.08, y: -0.12}
-      radius: 0.4
+    - position: {x: 0.0625, y: -0.421875}
+      radius: 0.27999997
+    - position: {x: 0.0625, y: 0.515625}
+      radius: 0.37999997
   - duration: 30
     sprite: {fileID: 21300006, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
     hurtBoxes:
-    - position: {x: 0, y: 0}
-      radius: 0.42
+    - position: {x: 0.0625, y: -0.421875}
+      radius: 0.27999997
+    - position: {x: 0, y: 0.671875}
+      radius: 0.34999996
   - duration: 30
     sprite: {fileID: 21300008, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
     hurtBoxes:
-    - position: {x: 0, y: 0}
-      radius: 0.54
+    - position: {x: 0.0625, y: -0.421875}
+      radius: 0.27999997
+    - position: {x: 0.0625, y: 0.390625}
+      radius: 0.28999996
   - duration: 30
     sprite: {fileID: 21300010, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
     hurtBoxes:
-    - position: {x: 0, y: 0.12}
-      radius: 0.46
+    - position: {x: 0.0625, y: -0.421875}
+      radius: 0.27999997
+    - position: {x: 0.0625, y: 0.390625}
+      radius: 0.28999996
