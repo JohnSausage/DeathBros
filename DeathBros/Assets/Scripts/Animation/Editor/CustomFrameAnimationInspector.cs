@@ -10,9 +10,10 @@ public class CustomFrameAnimationInspector : Editor
     private int frameCounter = 0;
     private float timer = 0;
     bool playing = false;
+    bool showHurtboxes = false;
     int currentDisplay = 0;
 
-    Vector2 zero = new Vector2(200, 200);
+    Vector2 zero = new Vector2(150, 200);
     float scale = 4f;
 
     int pixelPerUnit = 16;
@@ -47,17 +48,30 @@ public class CustomFrameAnimationInspector : Editor
         anim = (FrameAnimation)target;
         anim.animationName = EditorGUILayout.TextField("Name:", anim.animationName);
 
-        //Stop/Play Buttons
-        if(playing)
+
+        //mouse test
+        Event e = Event.current;
+        //Debug.Log(e.mousePosition - zero);
+
+
+        EditorGUILayout.BeginVertical("box");
         {
-            if (GUILayout.Button("Stop"))
-                playing = false;
+            //Stop/Play Buttons
+            if (playing)
+            {
+                if (GUILayout.Button("Stop"))
+                    playing = false;
+            }
+            else
+            {
+                if (GUILayout.Button("Play"))
+                    playing = true;
+            }
+
         }
-        else
-        {
-            if (GUILayout.Button("Play"))
-                playing = true;
-        }
+        showHurtboxes = EditorGUILayout.Toggle("Hurtboxes", showHurtboxes);
+
+        EditorGUILayout.EndVertical();
 
         //Preview the Animation
         if (anim.frames.Count > 0)
@@ -128,8 +142,11 @@ public class CustomFrameAnimationInspector : Editor
             {
                 DrawTexturePreview(position, Vector2.zero, frame.sprite, scale);
 
-                foreach (Hurtbox h in frame.hurtBoxes)
-                    DrawTexturePreview(position, h.position, Resources.Load<Sprite>("hurtbox"), 2 * h.radius * scale);
+                if (showHurtboxes)
+                {
+                    foreach (Hurtbox h in frame.hurtBoxes)
+                        DrawTexturePreview(position, h.position, Resources.Load<Sprite>("hurtbox"), 2 * h.radius * scale);
+                }
 
                 GUILayout.Space(200);
             }
