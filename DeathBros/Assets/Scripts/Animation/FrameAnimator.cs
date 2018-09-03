@@ -70,16 +70,7 @@ public class FrameAnimator : _MB
     {
         FrameAnimation animation = GetAnimation(animationName);
 
-        if (animation != null)
-        {
-            currentAnimation = animation;
-            animTimer = 0;
-            frameTimer = 0;
-        }
-        else
-        {
-            Debug.Log(animationName + " not found.");
-        }
+        ChangeAnimation(animation);
     }
 
     public void ChangeAnimation(FrameAnimation animation)
@@ -87,6 +78,13 @@ public class FrameAnimator : _MB
         if (animation != null)
         {
             currentAnimation = animation;
+
+            animTimer = 0;
+            frameTimer = 0;
+        }
+        else
+        {
+            Debug.Log("Animation not found.");
         }
     }
 }

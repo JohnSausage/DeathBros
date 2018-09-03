@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 238434264}
   - component: {fileID: 238434263}
   - component: {fileID: 238434262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,11 +205,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 238434261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.241, y: -2.3161, z: -9.817871}
+  m_LocalPosition: {x: 0.241, y: -2.3161, z: 0}
   m_LocalScale: {x: 17.068523, y: 0.557899, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &967334111
 GameObject:
@@ -223,6 +223,8 @@ GameObject:
   - component: {fileID: 967334114}
   - component: {fileID: 967334115}
   - component: {fileID: 967334116}
+  - component: {fileID: 967334118}
+  - component: {fileID: 967334117}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Untagged
@@ -284,9 +286,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1798455331}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &967334114
 MonoBehaviour:
@@ -326,6 +329,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b914f9796309ad74c801eb75327cfd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CSMachine:
+    currentState: 
+  movementStates:
+    idle:
+      animationName: idle
+    walking:
+      animationName: walking
+    jumpsquat:
+      animationName: idle
+--- !u!61 &967334117
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967334111}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.011777371, y: -0.16954708}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.79871124, y: 1.4440165}
+  m_EdgeRadius: 0
+--- !u!114 &967334118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967334111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4408d94a1dbfcb7408118eb2e143f8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
+  angleX: 0
+  angleY: 0
+  oldAngleX: 0
+  grounded: 0
+  oldGrounded: 0
+  onWall: 0
+  jump: 0
+  hitDirection: {x: 0, y: 0}
+  gamma: 0
+  alpha: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  gravity: -1
+  movespeed: 10
+  jumpForce: 20
+  wallSlideSpeed: 3
+  maxSlopeDownAngle: 45
+  maxSlopeUpAngle: 45
 --- !u!1 &1798455326
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,11 +477,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1798455326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 967334113}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1912480387
@@ -483,9 +552,9 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1912480387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.35, y: -1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
