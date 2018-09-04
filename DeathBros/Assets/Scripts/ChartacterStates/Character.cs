@@ -9,8 +9,21 @@ public class Character : _MB
 
     public FrameAnimator Anim { get; protected set; }
     public StateMachine CSMachine;// { get; protected set; }
+    public SpriteRenderer Spr { get; protected set; }
 
     public CStates_Movement movementStates;
+
+    public bool IsFlipped
+    {
+        set
+        {
+            Spr.flipX = value;
+        }
+        get
+        {
+            return Spr.flipX;
+        }
+    }
 
     public override void Init()
     {
@@ -18,6 +31,9 @@ public class Character : _MB
 
         CSMachine = new StateMachine();
         Anim = GetComponent<FrameAnimator>();
+        Anim.Init();
+
+        Spr = GetComponent<SpriteRenderer>();
 
         movementStates.Init(this);
         CSMachine.ChangeState(movementStates.idle);

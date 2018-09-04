@@ -38,6 +38,9 @@ public class CS_Walking : CState
     {
         base.Execute();
 
+        if (chr.Movement.x < 0) chr.IsFlipped = true;
+        if (chr.Movement.x > 0) chr.IsFlipped = false;
+
         if (Mathf.Abs(chr.Movement.x) <= 0.1f)
         {
             ChangeState(chr.movementStates.idle);
