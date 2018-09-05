@@ -15,6 +15,7 @@ public class Controller2D : MonoBehaviour
     public bool oldGrounded;
     public bool fallThroughPlatform;
     public bool onWall;
+    public bool onPlatform;
 
     public bool jump;
 
@@ -24,6 +25,7 @@ public class Controller2D : MonoBehaviour
 
     public LayerMask collisionMask;
     public LayerMask platformMask;
+    public string movingPlatformTag = "MovingPlatform";
     public BoxCollider2D Col { get; protected set; }
 
     public float gravity = -1f;
@@ -76,11 +78,12 @@ public class Controller2D : MonoBehaviour
 
         Move();
 
+
         //Cutoff velocity
-        if (Mathf.Abs(velocity.x) < skin)
+        if (Mathf.Abs(velocity.x) < skin / 60)
             velocity.x = 0;
 
-        if (Mathf.Abs(velocity.y) < skin)
+        if (Mathf.Abs(velocity.y) < skin / 60)
             velocity.y = 0;
 
 
@@ -121,10 +124,16 @@ public class Controller2D : MonoBehaviour
 
         grounded = false;
         onWall = false;
+        onPlatform = false;
+
+        //moving platform vector
+        Vector2 movingPlatform = Vector2.zero;
 
         //update bounds
         bounds = fullBounds = Col.bounds;
         bounds.Expand(-2 * skin);
+
+        velocity.x = input.x / 60 * movespeed;
 
         //manage velocity.y
         if (oldGrounded)
@@ -137,66 +146,83 @@ public class Controller2D : MonoBehaviour
         {
             if (oldGrounded)
                 velocity.y = jumpForce / 60;
+
+            if(onWall)
+            {
+                velocity.y = jumpForce / 60;
+                velocity.x = -input.x / 60;
+            }
+
             jump = false;
         }
 
-        velocity.x = input.x / 60 * movespeed;
+
 
         //check movement on y axis only
-        //RaycastHit2D groundCheckY = RCXY(new Vector2(0, velocity.y), Mathf.Abs(velocity.y));
-
-
         RaycastHit2D groundCheckY;
+        LayerMask groundMask = collisionMask;
 
-        if (velocity.y <= 0 && !fallThroughPlatform)
+        //check if falling through platforms
+        if (!fallThroughPlatform)
+            groundMask += platformMask;
+
+        //only groundcheck when falling down
+        if (velocity.y <= 0)
         {
             groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
-            new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), collisionMask + platformMask);
-        }
-        else
-        {
-            groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
-            new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), collisionMask);
-        }
+            new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), groundMask);
 
-        if (groundCheckY)
-        {
-            velocity.y = Mathf.Sign(velocity.y) * (groundCheckY.distance - skin);
 
-            if (Mathf.Abs(velocity.y) < skin)
+            if (groundCheckY)
             {
-                velocity.y = 0;
+                velocity.y = Mathf.Sign(velocity.y) * (groundCheckY.distance - skin);
+
+                if (Mathf.Abs(velocity.y) < skin)
+                {
+                    velocity.y = 0;
+                }
+
+                if (groundCheckY.transform.tag == movingPlatformTag)
+                {
+                    movingPlatform = groundCheckY.transform.GetComponent<PlatformController>().Movement;
+                    velocity += movingPlatform;
+
+                    onPlatform = true;
+                }
+
+                grounded = true;
+
             }
-
-            grounded = true;
-
         }
-
         //check movement on x axis only
         if (!grounded || !oldGrounded)
         {
-            RaycastHit2D wallCheck = RCXY(new Vector2(velocity.x, 0), Mathf.Abs(velocity.x));
-
-            if (wallCheck)
+            if (!onPlatform)
             {
+                RaycastHit2D wallCheck = RCXY(new Vector2(velocity.x, 0), Mathf.Abs(velocity.x));
 
-                velocity.x = Mathf.Sign(velocity.x) * (wallCheck.distance - skin);
-
-                if (Mathf.Abs(velocity.x) < skin)
+                if (wallCheck)
                 {
-                    velocity.x = 0;
+
+                    velocity.x = Mathf.Sign(velocity.x) * (wallCheck.distance - skin);
+
+                    if (Mathf.Abs(velocity.x) < skin)
+                    {
+                        velocity.x = 0;
+                    }
+
+                    onWall = true;
+                    grounded = false;
+
+                    if (velocity.y < 0)
+                        velocity.y = -wallSlideSpeed / 60;
+
                 }
-
-                onWall = true;
-                grounded = false;
-
-                if (velocity.y < 0)
-                    velocity.y = -wallSlideSpeed / 60;
-
             }
         }
 
         //check if falling onto slope
+
         RaycastHit2D groundCheck = RCXY();
 
         if (groundCheck)
@@ -226,26 +252,33 @@ public class Controller2D : MonoBehaviour
             velocity.Normalize();
             velocity *= (moveDistance);
 
+            //velocity += movingPlatform;
+
             //don't stick on roof
             if (!grounded)
             {
                 velocity.y += gravity / 60;
                 //velocity.x = 0;
-            }
 
+            }
         }
+
 
         //movement when grounded
         if (oldGrounded) //oldGrounded to wait for being grounded in last frame
         {
+
             //don't stick on walls
             if (!onWall)
+            {
                 velocity.x = input.x / 60 * movespeed;
+                velocity.x += movingPlatform.x;
+            }
 
             //check for descending slope
             gizmoSlopeDown = velocity + (Vector2)bounds.center - new Vector2(bounds.extents.x * Mathf.Sign(input.x), bounds.extents.y);
 
-            RaycastHit2D slopeDown = Physics2D.Raycast(gizmoSlopeDown, Vector2.down, Mathf.Infinity, collisionMask);
+            RaycastHit2D slopeDown = Physics2D.Raycast(gizmoSlopeDown, Vector2.down, 1, collisionMask);
 
             angleY = Vector2.Angle(Vector2.up, slopeDown.normal);
 
@@ -262,6 +295,7 @@ public class Controller2D : MonoBehaviour
                 velocity.y = -(slopeDown.distance - diag * (Mathf.Sin(Mathf.Deg2Rad * gamma) / Mathf.Sin(Mathf.Deg2Rad * alpha)));
             }
 
+
             //check for ascending slope
             if (velocity.x != 0)
             {
@@ -269,8 +303,8 @@ public class Controller2D : MonoBehaviour
 
                 angleX = Vector2.Angle(Vector2.up, hitXY.normal);
 
-                //move up slope only when at the slope
-                if (angleX <= maxSlopeUpAngle && angleX == oldAngleX)
+                //move up slope only when at the slope; don't check when there is no wall (90)
+                if (angleX <= maxSlopeUpAngle && angleX == oldAngleX && angleX != 90)
                 {
                     velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * oldAngleX), Mathf.Sin(Mathf.Deg2Rad * oldAngleX)).normalized / 60 * movespeed;
 
@@ -296,11 +330,16 @@ public class Controller2D : MonoBehaviour
 
                     float moveDistance = (hitXY.distance - distance);
 
-
                     velocity.Normalize();
                     velocity *= (moveDistance);
 
+                    //to not fall through platforms when on walls
+                    if (onPlatform)
+                    {
+                        velocity.y = movingPlatform.y;
+                    }
                 }
+
             }
         }
     }

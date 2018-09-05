@@ -2,41 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class PlatformController : MonoBehaviour
 {
-    public Vector2 moveTo;
-    public float speed;
+    public Vector2 Movement;// { get; private set; }
 
-    private Vector2 start, end;
-    private bool forward;
+    [SerializeField] float speed;
+    [SerializeField] Transform start,end;
+
+    private Vector3 startPoint, endPoint;
+
+    private Vector3 goal;
 
     void Start()
     {
-        start = transform.position;
-        end = start + moveTo;
+        start = transform.Find("Start");
+        end = transform.Find("End");
 
-        forward = true;
+        startPoint = start.position;
+        endPoint = end.position;
+
+        goal = endPoint;
     }
+
 
     void FixedUpdate()
     {
-        if (forward)
-        {
-            transform.Translate(moveTo.normalized * speed / 60);
+        Movement = (goal - transform.position).normalized * speed / 60;
 
-            if(((Vector2)transform.position - end).sqrMagnitude < 0.1f)
-            {
-                forward = false;
-            }
+        if ((transform.localPosition - goal).sqrMagnitude < 0.1f)
+        {
+            ChangeGoal();
         }
+
+        transform.Translate(Movement);
+
+    }
+
+    private void ChangeGoal()
+    {
+        if (goal == endPoint)
+            goal = startPoint;
         else
-        {
-            transform.Translate(-moveTo.normalized * speed / 60);
-
-            if (((Vector2)transform.position - start).sqrMagnitude < 0.1f)
-            {
-                forward = true;
-            }
-        }
+            goal = endPoint;
     }
 }

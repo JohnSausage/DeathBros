@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 05.09.2018 20:43:19-->
+<!--Last exported: 05.09.2018 21:26:14-->
 <Tiled2Unity version="1.0.13.2">
   <AssignMaterial mesh="Black_test_2_mesh_0001" material="castle_black_tiles" />
   <AssignMaterial mesh="Black_test_2_mesh_0002" material="castle_black_tiles" />
@@ -33,8 +33,7 @@
       </GameObject>
       <GameObject name="Collision">
         <PolygonCollider2D>
-          <Path>0,-2 21,-2 21,-1 0,-1</Path>
-          <Path>1,-13 1,-14 14,-14 17,-11 22,-11 24,-13 29,-13 29,-12 24,-12 22,-10 17,-10 14,-13</Path>
+          <Path>0,-14 14,-14 17,-11 22,-11 24,-13 29,-13 29,-12 24,-12 22,-10 17,-10 14,-13 1,-13 1,-2 21,-2 21,-1 0,-1</Path>
         </PolygonCollider2D>
       </GameObject>
     </GameObject>
