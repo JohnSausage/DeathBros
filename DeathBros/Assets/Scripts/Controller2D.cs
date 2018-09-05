@@ -4,8 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class Controller2D : _MB
+public class Controller2D : MonoBehaviour
 {
     public Vector2 input;
 
@@ -14,7 +13,7 @@ public class Controller2D : _MB
     public float oldAngleX;
     public bool grounded;
     public bool oldGrounded;
-
+    public bool fallThroughPlatform;
     public bool onWall;
 
     public bool jump;
@@ -24,6 +23,7 @@ public class Controller2D : _MB
     public float alpha;
 
     public LayerMask collisionMask;
+    public LayerMask platformMask;
     public BoxCollider2D Col { get; protected set; }
 
     public float gravity = -1f;
@@ -55,18 +55,25 @@ public class Controller2D : _MB
 
     private void Update()
     {
-        /*
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        if (Input.GetButtonDown("Jump")) //jump
-        {
-            jump = true;
-        }
-        */
     }
 
     void FixedUpdate()
     {
+        if (Input.GetButtonDown("Jump")) //jump
+        {
+            jump = true;
+        }
+
+        if (input.y < 0)
+        {
+            fallThroughPlatform = true;
+        }
+        else
+        {
+            fallThroughPlatform = false;
+        }
+
         Move();
 
         //Cutoff velocity
@@ -97,7 +104,6 @@ public class Controller2D : _MB
         float cos = Mathf.Cos(moveAngle * Mathf.Deg2Rad);
         if (cos > skin)
             skinDistance = skin / cos;
-
 
         return Physics2D.BoxCast(b.center, b.size, 0, direction, distance + skinDistance, collisionMask);
     }
@@ -137,7 +143,21 @@ public class Controller2D : _MB
         velocity.x = input.x / 60 * movespeed;
 
         //check movement on y axis only
-        RaycastHit2D groundCheckY = RCXY(new Vector2(0, velocity.y), Mathf.Abs(velocity.y));
+        //RaycastHit2D groundCheckY = RCXY(new Vector2(0, velocity.y), Mathf.Abs(velocity.y));
+
+
+        RaycastHit2D groundCheckY;
+
+        if (velocity.y <= 0 && !fallThroughPlatform)
+        {
+            groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
+            new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), collisionMask + platformMask);
+        }
+        else
+        {
+            groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
+            new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), collisionMask);
+        }
 
         if (groundCheckY)
         {
@@ -149,6 +169,7 @@ public class Controller2D : _MB
             }
 
             grounded = true;
+
         }
 
         //check movement on x axis only
@@ -158,6 +179,7 @@ public class Controller2D : _MB
 
             if (wallCheck)
             {
+
                 velocity.x = Mathf.Sign(velocity.x) * (wallCheck.distance - skin);
 
                 if (Mathf.Abs(velocity.x) < skin)
@@ -170,6 +192,7 @@ public class Controller2D : _MB
 
                 if (velocity.y < 0)
                     velocity.y = -wallSlideSpeed / 60;
+
             }
         }
 
@@ -229,7 +252,7 @@ public class Controller2D : _MB
             float angleD = Vector2.Angle(slopeDown.normal, new Vector2(input.x, 0));
 
             //push player down to slope
-            if (velocity.y < 0 && input.x != 0 && slopeDown && angleY > 0 && angleY < maxSlopeDownAngle && angleD < 90)
+            if (velocity.y < 0 && input.x != 0 && slopeDown && angleY > 0 && angleY <= maxSlopeDownAngle && angleD < 90)
             {
                 grounded = true;
 
@@ -247,7 +270,7 @@ public class Controller2D : _MB
                 angleX = Vector2.Angle(Vector2.up, hitXY.normal);
 
                 //move up slope only when at the slope
-                if (angleX < maxSlopeUpAngle && angleX == oldAngleX)
+                if (angleX <= maxSlopeUpAngle && angleX == oldAngleX)
                 {
                     velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * oldAngleX), Mathf.Sin(Mathf.Deg2Rad * oldAngleX)).normalized / 60 * movespeed;
 
@@ -258,6 +281,7 @@ public class Controller2D : _MB
                 //check for collision when moving
                 if (hitXY)
                 {
+
                     angleX = Vector2.Angle(Vector2.up, hitXY.normal);
 
                     hitDirection = (Vector2)bounds.center - hitXY.point;
@@ -275,6 +299,7 @@ public class Controller2D : _MB
 
                     velocity.Normalize();
                     velocity *= (moveDistance);
+
                 }
             }
         }
@@ -294,4 +319,5 @@ public class Controller2D : _MB
         Gizmos.DrawRay(Vector3.zero, Vector2.down);
     }
 }
+
 
