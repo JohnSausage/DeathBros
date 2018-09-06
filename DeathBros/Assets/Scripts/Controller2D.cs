@@ -15,6 +15,7 @@ public class Controller2D : MonoBehaviour
     public bool oldGrounded;
     public bool fallThroughPlatform;
     public bool onWall;
+    public bool oldOnWall;
     public bool onPlatform;
 
     public bool jump;
@@ -31,12 +32,13 @@ public class Controller2D : MonoBehaviour
     public float gravity = -1f;
     public float movespeed = 10f;
     public float jumpForce = 20f;
-
     public float wallSlideSpeed = 3f;
+    public float accelerationTimeAerial = 0.1f;
 
     public float maxSlopeDownAngle = 45;
     public float maxSlopeUpAngle = 45;
 
+    public float velocityXSmoothingAerial = 0f;
     protected float moveAngle;
 
     protected Bounds bounds;
@@ -58,14 +60,6 @@ public class Controller2D : MonoBehaviour
     private void Update()
     {
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
-
-    void FixedUpdate()
-    {
-        if (Input.GetButtonDown("Jump")) //jump
-        {
-            jump = true;
-        }
 
         if (input.y < 0)
         {
@@ -76,16 +70,24 @@ public class Controller2D : MonoBehaviour
             fallThroughPlatform = false;
         }
 
+        if (Input.GetButtonDown("Jump")) //jump
+        {
+            jump = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
         Move();
 
-
+        /*
         //Cutoff velocity
         if (Mathf.Abs(velocity.x) < skin / 60)
             velocity.x = 0;
 
         if (Mathf.Abs(velocity.y) < skin / 60)
             velocity.y = 0;
-
+            */
 
         transform.Translate(velocity);
     }
@@ -121,6 +123,7 @@ public class Controller2D : MonoBehaviour
         oldGrounded = grounded;
         oldAngleX = angleX;
         angleX = angleY = 0;
+        oldOnWall = onWall;
 
         grounded = false;
         onWall = false;
@@ -133,7 +136,15 @@ public class Controller2D : MonoBehaviour
         bounds = fullBounds = Col.bounds;
         bounds.Expand(-2 * skin);
 
-        velocity.x = input.x / 60 * movespeed;
+        if (oldGrounded)
+            velocity.x = input.x / 60 * movespeed;
+        else
+        {
+            float targetVelocityX = input.x / 60 * movespeed;
+
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial/60);
+        }
+        
 
         //manage velocity.y
         if (oldGrounded)
@@ -147,10 +158,10 @@ public class Controller2D : MonoBehaviour
             if (oldGrounded)
                 velocity.y = jumpForce / 60;
 
-            if(onWall)
+            if (oldOnWall)
             {
                 velocity.y = jumpForce / 60;
-                velocity.x = -input.x / 60;
+                velocity.x = -input.x / 60 * movespeed;
             }
 
             jump = false;
@@ -167,6 +178,7 @@ public class Controller2D : MonoBehaviour
             groundMask += platformMask;
 
         //only groundcheck when falling down
+
         if (velocity.y <= 0)
         {
             groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
@@ -184,7 +196,7 @@ public class Controller2D : MonoBehaviour
 
                 if (groundCheckY.transform.tag == movingPlatformTag)
                 {
-                    movingPlatform = groundCheckY.transform.GetComponent<PlatformController>().Movement;
+                    movingPlatform = groundCheckY.transform.GetComponentInParent<PlatformController>().Movement;
                     velocity += movingPlatform;
 
                     onPlatform = true;
@@ -194,6 +206,7 @@ public class Controller2D : MonoBehaviour
 
             }
         }
+
         //check movement on x axis only
         if (!grounded || !oldGrounded)
         {
@@ -222,7 +235,6 @@ public class Controller2D : MonoBehaviour
         }
 
         //check if falling onto slope
-
         RaycastHit2D groundCheck = RCXY();
 
         if (groundCheck)
@@ -336,12 +348,13 @@ public class Controller2D : MonoBehaviour
                     //to not fall through platforms when on walls
                     if (onPlatform)
                     {
-                        velocity.y = movingPlatform.y;
+                        velocity.y += movingPlatform.y;
                     }
                 }
 
             }
         }
+
     }
 
     private void OnDrawGizmos()

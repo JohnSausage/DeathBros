@@ -7,43 +7,38 @@ public class PlatformController : MonoBehaviour
 {
     public Vector2 Movement;// { get; private set; }
 
-    [SerializeField] float speed;
-    [SerializeField] Transform start,end;
+    [SerializeField] float movespeed = 1;
+    [Space]
+    [SerializeField] GameObject platform;
+    [SerializeField] Transform[] points;
 
-    private Vector3 startPoint, endPoint;
+    Transform currentPoint;
+    int pointSelection;
 
-    private Vector3 goal;
-
-    void Start()
+    private void Start()
     {
-        start = transform.Find("Start");
-        end = transform.Find("End");
-
-        startPoint = start.position;
-        endPoint = end.position;
-
-        goal = endPoint;
+        currentPoint = points[pointSelection];
     }
 
-
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Movement = (goal - transform.position).normalized * speed / 60;
+        Movement = (currentPoint.position - platform.transform.position).normalized * movespeed / 60f;
 
-        if ((transform.localPosition - goal).sqrMagnitude < 0.1f)
+        platform.transform.Translate(Movement);
+
+        if ((platform.transform.position - currentPoint.position).sqrMagnitude <= 0.1f)
         {
-            ChangeGoal();
+            Movement = Vector2.zero;
+
+            pointSelection++;
+
+            if (pointSelection >= points.Length)
+            {
+                pointSelection = 0;
+            }
+
+
+            currentPoint = points[pointSelection];
         }
-
-        transform.Translate(Movement);
-
-    }
-
-    private void ChangeGoal()
-    {
-        if (goal == endPoint)
-            goal = startPoint;
-        else
-            goal = endPoint;
     }
 }
