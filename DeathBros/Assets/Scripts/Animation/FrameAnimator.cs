@@ -85,10 +85,12 @@ public class FrameAnimator : _MB
         else
         {
             Debug.Log("Animation not found.");
+            /*
             for (int i = 0; i < animations.Count; i++)
             {
                 Debug.Log(animations[i].name);
             }
+            */
         }
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class Controller2D : MonoBehaviour
 {
     public Vector2 input;
+    public float jumpVelocity;
 
     public Vector2 velocity;
     public float angleX, angleY;
@@ -59,21 +60,9 @@ public class Controller2D : MonoBehaviour
 
     private void Update()
     {
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (input.y < 0)
-        {
-            fallThroughPlatform = true;
-        }
-        else
-        {
-            fallThroughPlatform = false;
-        }
-
-        if (Input.GetButtonDown("Jump")) //jump
-        {
-            jump = true;
-        }
+        
     }
 
     void FixedUpdate()
@@ -132,6 +121,15 @@ public class Controller2D : MonoBehaviour
         //moving platform vector
         Vector2 movingPlatform = Vector2.zero;
 
+        if (input.y < 0)
+        {
+            fallThroughPlatform = true;
+        }
+        else
+        {
+            fallThroughPlatform = false;
+        }
+
         //update bounds
         bounds = fullBounds = Col.bounds;
         bounds.Expand(-2 * skin);
@@ -153,11 +151,13 @@ public class Controller2D : MonoBehaviour
         else
             velocity.y += gravity / 60;
 
+        /*
         if (jump)
         {
             if (oldGrounded)
+            {
                 velocity.y = jumpForce / 60;
-
+            }
             if (oldOnWall)
             {
                 velocity.y = jumpForce / 60;
@@ -166,8 +166,13 @@ public class Controller2D : MonoBehaviour
 
             jump = false;
         }
+        */
 
-
+        if(jumpVelocity != 0)
+        {
+            velocity.y = jumpVelocity / 60;
+            jumpVelocity = 0;
+        }
 
         //check movement on y axis only
         RaycastHit2D groundCheckY;

@@ -365,6 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b914f9796309ad74c801eb75327cfd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpStrength: 20
+  jumps: 2
+  jumpsUsed: 0
   CSMachine:
     currentState: 
   movementStates:
@@ -374,6 +377,12 @@ MonoBehaviour:
       animationName: run
     jumpsquat:
       animationName: idle
+      duration: 3
+    jumping:
+      animationName: idle
+    doubleJumpsquat:
+      animationName: run
+      duration: 3
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -411,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {x: 0, y: 0}
+  jumpVelocity: 0
   velocity: {x: 0, y: 0}
   angleX: 0
   angleY: 0

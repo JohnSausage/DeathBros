@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public Controller2D Ctr { get; protected set; }
+    //public Controller2D Ctr { get; protected set; }
 
     public override void Init()
     {
         base.Init();
 
-        Ctr = GetComponent<Controller2D>();
+        //Ctr = GetComponent<Controller2D>();
     }
 
     void Update()
     {
-        Movement = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        Movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
 
         Ctr.input = Movement;
-        if (Input.GetButtonDown("Jump"))
-            Ctr.jump = true;
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            Ctr.jump = true;
+            Jump = true;
+        }
+        else
+        {
+            Jump = false;
+        }
         /*
         if (Input.GetButtonDown("Jump"))
         {

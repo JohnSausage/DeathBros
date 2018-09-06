@@ -6,11 +6,20 @@ using UnityEngine;
 public class Character : _MB
 {
     public Vector2 Movement { get; protected set; }
+    public bool Jump { get; protected set; }
 
-    public FrameAnimator Anim { get; protected set; }
+    [Space]
+
+    public float jumpStrength = 20;
+    public int jumps = 2;
+    public int jumpsUsed = 0;
+
+    [Space]
+
     public StateMachine CSMachine;// { get; protected set; }
+    public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
-
+    public Controller2D Ctr { get; protected set; }
     public CStates_Movement movementStates;
 
     public bool IsFlipped
@@ -34,6 +43,7 @@ public class Character : _MB
         Anim.Init();
 
         Spr = GetComponent<SpriteRenderer>();
+        Ctr = GetComponent<Controller2D>();
 
         movementStates.Init(this);
         CSMachine.ChangeState(movementStates.idle);
