@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4df0ca3209b93cf41b6e37e366840ccd, type: 2}
   - {fileID: 11400000, guid: d4f589ffbfdf8ba4882ff4615452e6a8, type: 2}
   - {fileID: 11400000, guid: df4b1cfc6025fba4bb7c6979ec80e272, type: 2}
+  animationSpeed: 1
 --- !u!114 &967334115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b914f9796309ad74c801eb75327cfd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StrongInputs: {x: 0, y: 0}
   jumpStrength: 20
   jumps: 2
   jumpsUsed: 0
@@ -375,6 +377,7 @@ MonoBehaviour:
       animationName: idle
     walking:
       animationName: run
+      direction: 0
     jumpsquat:
       animationName: idle
       duration: 3
@@ -382,6 +385,21 @@ MonoBehaviour:
       animationName: idle
     doubleJumpsquat:
       animationName: run
+      duration: 3
+    landing:
+      animationName: idle
+      duration: 3
+    wallsliding:
+      animationName: idle
+    walljumpStart:
+      animationName: run
+      jumpHeightReductionFactor: 0.75
+      duration: 3
+    walljumping:
+      animationName: run
+      duration: 12
+    turnaround:
+      animationName: idle
       duration: 3
 --- !u!61 &967334117
 BoxCollider2D:
@@ -431,6 +449,7 @@ MonoBehaviour:
   onWall: 0
   oldOnWall: 0
   onPlatform: 0
+  wallDirection: 0
   jump: 0
   hitDirection: {x: 0, y: 0}
   gamma: 0
@@ -444,7 +463,6 @@ MonoBehaviour:
   movingPlatformTag: MovingPlatform
   gravity: -1
   movespeed: 10
-  jumpForce: 20
   wallSlideSpeed: 3
   accelerationTimeAerial: 3
   maxSlopeDownAngle: 45

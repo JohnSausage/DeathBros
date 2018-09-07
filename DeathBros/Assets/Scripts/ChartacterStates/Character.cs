@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(FrameAnimator))]
 public class Character : _MB
 {
-    public Vector2 Movement { get; protected set; }
+    public Vector2 DirectionalInput { get; protected set; }
+    public Vector2 StrongInputs;// { get; protected set; }
+
     public bool Jump { get; protected set; }
 
     [Space]
@@ -49,9 +51,17 @@ public class Character : _MB
         CSMachine.ChangeState(movementStates.idle);
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
+        StrongInputs = Vector2.zero;
+        if(Mathf.Abs(Ctr.input.x - DirectionalInput.x) > 0.1f && Mathf.Abs(DirectionalInput.x) > 0.8f)
+        {
+            StrongInputs = new Vector2(DirectionalInput.x - Ctr.input.x, 0);
+        }
+
         CSMachine.Update();
+
+        Ctr.ManualFixedUpdate();
     }
 
     public void Spawn(Vector2 position)
@@ -67,5 +77,56 @@ public class Character : _MB
     public virtual void Die()
     {
 
+    }
+
+    public virtual void SetInputs()
+    {
+        Ctr.input = DirectionalInput;
+    }
+
+    public virtual void SetInputs(Vector2 inputs)
+    {
+        DirectionalInput = inputs;
+        SetInputs();
+    }
+
+    public virtual void SetInputs(float reduceControl)
+    {
+        DirectionalInput *= reduceControl;
+        SetInputs();
+    }
+
+    public virtual void CS_CheckForJump()
+    {
+        if (jumpsUsed < jumps)
+        {
+            if (Ctr.grounded)
+                CSMachine.ChangeState(movementStates.jumpsquat);
+            else
+                CSMachine.ChangeState(movementStates.doubleJumpsquat);
+        }
+    }
+
+    public virtual void CS_StartJump()
+    {
+        Ctr.jumpVelocity = jumpStrength;
+        CSMachine.ChangeState(movementStates.jumping);
+    }
+
+    public virtual void CS_CheckLanding()
+    {
+        if (Ctr.grounded)
+            CSMachine.ChangeState(movementStates.landing);
+    }
+
+    public virtual void CS_CheckIfStillGrounded()
+    {
+        if (!Ctr.grounded)
+            CSMachine.ChangeState(movementStates.jumping);
+    }
+
+    public virtual void CS_SetIdle()
+    {
+        CSMachine.ChangeState(movementStates.idle);
     }
 }

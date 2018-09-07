@@ -8,10 +8,12 @@ public class FrameAnimator : _MB
 
     public List<FrameAnimation> animations;
 
+    public float animationSpeed = 1;
+
     private SpriteRenderer spr;
     private HurtboxManager hubM;
 
-    private int frameTimer;
+    private float frameTimer;
     private int animTimer;
 
     public override void Init()
@@ -42,7 +44,7 @@ public class FrameAnimator : _MB
             spr.sprite = currentFrame.sprite;
             hubM.SetHurtboxes(currentFrame);
 
-            frameTimer++;
+            frameTimer += animationSpeed;
 
             if (frameTimer >= currentAnimation.frames[animTimer].duration)
             {
