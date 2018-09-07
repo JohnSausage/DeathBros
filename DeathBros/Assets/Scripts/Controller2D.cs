@@ -63,7 +63,7 @@ public class Controller2D : MonoBehaviour
     {
         //input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        
+
     }
 
     public void ManualFixedUpdate()
@@ -150,18 +150,18 @@ public class Controller2D : MonoBehaviour
         {
             float targetVelocityX = input.x / 60 * movespeed;
 
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial/60);
+            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial / 60);
         }
-        
+
 
         //manage velocity.y
         if (oldGrounded)
-            velocity.y = gravity / 60;
-
+            velocity.y = gravity / 60 * 10; //higher gravity to stay grounded when running across edges at slopes
+                                            //gets reduced to normal gravity if not grounded anymore
         else
             velocity.y += gravity / 60;
 
-        if(jumpVelocity != 0)
+        if (jumpVelocity != 0)
         {
             velocity.y = jumpVelocity / 60;
             jumpVelocity = 0;
@@ -176,15 +176,15 @@ public class Controller2D : MonoBehaviour
             groundMask += platformMask;
 
         //only groundcheck when falling down
-
         if (velocity.y <= 0)
         {
             groundCheckY = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y),
             new Vector2(bounds.size.x, skin), 0, new Vector2(0, velocity.y), Mathf.Abs(velocity.y), groundMask);
 
-
-            if (groundCheckY)
+            if (groundCheckY && groundCheckY.distance > 0)
             {
+                grounded = true;
+
                 velocity.y = Mathf.Sign(velocity.y) * (groundCheckY.distance - skin);
 
                 if (Mathf.Abs(velocity.y) < skin)
@@ -199,11 +199,15 @@ public class Controller2D : MonoBehaviour
 
                     onPlatform = true;
                 }
+            }
 
-                grounded = true;
-
+            if (oldGrounded && !grounded)
+            {
+                velocity.y = gravity / 60; //normal gravity when running off of platforms etc
             }
         }
+
+
 
         //check movement on x axis only
         if (!grounded || !oldGrounded)
@@ -235,7 +239,13 @@ public class Controller2D : MonoBehaviour
         }
 
         //check if falling onto slope
-        RaycastHit2D groundCheck = RCXY();
+
+        bool checkForPlatforms = false;
+
+        if (!grounded && !fallThroughPlatform)
+            checkForPlatforms = true;
+
+        RaycastHit2D groundCheck = RCXY(checkForPlatforms);
 
         if (groundCheck)
         {
@@ -311,18 +321,21 @@ public class Controller2D : MonoBehaviour
             //check for ascending slope
             if (velocity.x != 0)
             {
-                RaycastHit2D hitXY = RCXY(true);
+                RaycastHit2D hitXY = RCXY(true); //raycast only to determine angle
 
                 angleX = Vector2.Angle(Vector2.up, hitXY.normal);
 
                 //move up slope only when at the slope; don't check when there is no wall (90)
                 if (angleX <= maxSlopeUpAngle && angleX == oldAngleX && angleX != 90)
                 {
-                    velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * oldAngleX), Mathf.Sin(Mathf.Deg2Rad * oldAngleX)).normalized / 60 * movespeed;
+                    velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * oldAngleX),
+                        Mathf.Sin(Mathf.Deg2Rad * oldAngleX)).normalized / 60 * movespeed * Mathf.Abs(input.x);
 
-                    //raycast again
-                    hitXY = RCXY(true);
+                    Debug.Log(velocity);
                 }
+
+                //raycast again for collisions
+                hitXY = RCXY(true);
 
                 //check for collision when moving
                 if (hitXY)
@@ -340,8 +353,8 @@ public class Controller2D : MonoBehaviour
 
                     float sin = Mathf.Sin(alpha * Mathf.Deg2Rad);
 
-                    if(sin != 0)
-                    distance = diag * Mathf.Sin(gamma * Mathf.Deg2Rad) / sin;
+                    if (sin != 0)
+                        distance = diag * Mathf.Sin(gamma * Mathf.Deg2Rad) / sin;
 
                     float moveDistance = (hitXY.distance - distance);
 
@@ -357,7 +370,6 @@ public class Controller2D : MonoBehaviour
 
             }
         }
-
     }
 
     private void OnDrawGizmos()
