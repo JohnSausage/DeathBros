@@ -8,7 +8,9 @@ public class PlatformController : MonoBehaviour
     public Vector2 Movement;// { get; private set; }
 
     [SerializeField] float movespeed = 1;
+
     [Space]
+
     [SerializeField] GameObject platform;
     [SerializeField] Transform[] points;
 
@@ -24,7 +26,8 @@ public class PlatformController : MonoBehaviour
     {
         Movement = (currentPoint.position - platform.transform.position).normalized * movespeed / 60f;
 
-        platform.transform.Translate(Movement);
+        platform.transform.Translate(Movement, Space.World);
+
 
         if ((platform.transform.position - currentPoint.position).sqrMagnitude <= 0.1f)
         {
@@ -36,7 +39,6 @@ public class PlatformController : MonoBehaviour
             {
                 pointSelection = 0;
             }
-
 
             currentPoint = points[pointSelection];
         }
