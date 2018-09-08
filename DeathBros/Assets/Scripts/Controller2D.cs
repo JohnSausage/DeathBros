@@ -18,6 +18,7 @@ public class Controller2D : MonoBehaviour
     public bool onWall;
     public bool oldOnWall;
     public bool onPlatform;
+    public bool oldOnPlatform;
     public int wallDirection;
 
     public bool jump;
@@ -117,8 +118,10 @@ public class Controller2D : MonoBehaviour
     {
         oldGrounded = grounded;
         oldAngleX = angleX;
-        angleX = angleY = 0;
         oldOnWall = onWall;
+        oldOnPlatform = onPlatform;
+
+        angleX = angleY = 0;
         wallDirection = 0;
 
         grounded = false;
@@ -156,8 +159,14 @@ public class Controller2D : MonoBehaviour
 
         //manage velocity.y
         if (oldGrounded)
+        {
             velocity.y = gravity / 60 * 10; //higher gravity to stay grounded when running across edges at slopes
                                             //gets reduced to normal gravity if not grounded anymore
+            if (oldOnPlatform)
+            {
+                velocity.y = gravity / 60;
+            }
+        }
         else
             velocity.y += gravity / 60;
 
@@ -240,15 +249,28 @@ public class Controller2D : MonoBehaviour
 
         //check if falling onto slope
 
+
         bool checkForPlatforms = false;
 
-        if (!grounded && !fallThroughPlatform)
+        if (!grounded && !fallThroughPlatform && velocity.y < 0)
             checkForPlatforms = true;
 
         RaycastHit2D groundCheck = RCXY(checkForPlatforms);
 
         if (groundCheck)
         {
+            hitDirection = (Vector2)bounds.center - groundCheck.point;
+            hitDirection = new Vector2(Mathf.Sign(hitDirection.x), Mathf.Sign(hitDirection.y));
+
+            if (groundCheck.distance < skin || hitDirection.y > 0)
+            {
+                groundCheck = RCXY();
+            }
+        }
+
+        if (groundCheck)
+        {
+
             //triangle calculations
             hitDirection = (Vector2)bounds.center - groundCheck.point;
             hitDirection = new Vector2(Mathf.Sign(hitDirection.x), Mathf.Sign(hitDirection.y));
@@ -289,7 +311,6 @@ public class Controller2D : MonoBehaviour
         //movement when grounded
         if (oldGrounded) //oldGrounded to wait for being grounded in last frame
         {
-
             //don't stick on walls
             if (!onWall)
             {
@@ -330,8 +351,6 @@ public class Controller2D : MonoBehaviour
                 {
                     velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * oldAngleX),
                         Mathf.Sin(Mathf.Deg2Rad * oldAngleX)).normalized / 60 * movespeed * Mathf.Abs(input.x);
-
-                    Debug.Log(velocity);
                 }
 
                 //raycast again for collisions
@@ -340,7 +359,6 @@ public class Controller2D : MonoBehaviour
                 //check for collision when moving
                 if (hitXY)
                 {
-
                     angleX = Vector2.Angle(Vector2.up, hitXY.normal);
 
                     hitDirection = (Vector2)bounds.center - hitXY.point;
