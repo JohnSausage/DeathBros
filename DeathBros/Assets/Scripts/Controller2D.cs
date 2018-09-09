@@ -233,7 +233,7 @@ public class Controller2D : MonoBehaviour
                 new Vector2(bounds.size.x, skin), 0, velocity, velocity.magnitude + skinDistance, groundMask);
 
 
-            if (groundCheck && groundCheck.distance != 0) //not grounded ig inside the collider (duteance == 0) for example in platforms
+            if (groundCheck && groundCheck.distance != 0)// && wallAngle != 90) //not grounded ig inside the collider (duteance == 0) for example in platforms
             {
                 grounded = true;
 
@@ -275,7 +275,8 @@ public class Controller2D : MonoBehaviour
 
                     onPlatform = true;
                 }
-
+                //wallcheck was here, but you stop being on the wall when your bottom doesn't touch it anymore -> move to collisionchecks
+                /*
                 //wallcheck
                 float wallAngle = Vector2.Angle(groundCheck.normal, Vector2.up);
 
@@ -286,6 +287,7 @@ public class Controller2D : MonoBehaviour
                     velocity.x = 0;
                     velocity.y = -wallSlideSpeed / 60;
                 }
+                */
             }
         }
 
@@ -388,13 +390,16 @@ public class Controller2D : MonoBehaviour
         //CHECK FOR COLLISIONS//////////////////////////////////////////////////////////
         RaycastHit2D collisonCheck = RCXY();
 
+        
         //try to stop collision by just moving on x axis
         if (onPlatform && collisonCheck)
+        //if (collisonCheck)
         {
             
             velocity.x = 0;
             collisonCheck = RCXY();
         }
+        
 
         if (collisonCheck)
         {
@@ -418,10 +423,21 @@ public class Controller2D : MonoBehaviour
             velocity *= (moveDistance);
 
 
-            //don't stick on roof
-            if (!grounded)
+            //wallcheck
+            float wallAngle = Vector2.Angle(collisonCheck.normal, Vector2.up);
+
+            if (wallAngle == 90 && !onPlatform && velocity.y <= 0)
             {
-                velocity.y += gravity / 60;
+                onWall = true;
+                grounded = false;
+                velocity.x = 0;
+                velocity.y = -wallSlideSpeed / 60;
+            }
+
+            //don't stick on roof
+            if (!grounded) //!!!!!!!!! causes slipping through ground
+            {
+                //velocity.y += gravity / 60;
             }
 
             //if collision and movement only on y axis doesn't prevent the collision, then fall doen from platform
