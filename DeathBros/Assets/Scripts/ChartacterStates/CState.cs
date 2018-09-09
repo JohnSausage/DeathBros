@@ -18,6 +18,7 @@ public class CState : IState
 
     public virtual void Enter()
     {
+        //start animation
         chr.Anim.ChangeAnimation(animation);
     }
 
@@ -27,6 +28,8 @@ public class CState : IState
 
     public virtual void Exit()
     {
+        //reset animation speed
+        chr.Anim.animationSpeed = 1;
     }
 
     protected void ChangeState(CState newState)

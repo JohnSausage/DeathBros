@@ -625,9 +625,9 @@ MonoBehaviour:
     walljumping:
       animationName: run
       duration: 15
-    turnaround:
+    skid:
       animationName: idle
-      duration: 3
+      duration: 5
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0

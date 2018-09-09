@@ -18,9 +18,11 @@ public class Player : Character
         {
             Jump = true;
         }
+
         else
         {
-            Jump = false;
+            //reset at the end of FixedUpdate to not miss any inputs
+            //Jump = false;
         }
 
 

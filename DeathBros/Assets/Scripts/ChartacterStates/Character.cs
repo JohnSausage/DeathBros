@@ -63,6 +63,8 @@ public class Character : _MB
         CSMachine.Update();
 
         Ctr.ManualFixedUpdate();
+
+        Jump = false;
     }
 
     public void Spawn(Vector2 position)

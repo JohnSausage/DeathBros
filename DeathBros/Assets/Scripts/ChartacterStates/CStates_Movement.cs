@@ -16,7 +16,7 @@ public class CStates_Movement
     public CS_Wallsliding wallsliding;
     public CS_WalljumpStart walljumpStart;
     public CS_Walljumping walljumping;
-    public CS_Turnaround turnaround;
+    public CS_Skid skid;
 
     public void Init(Character chr)
     {
@@ -29,7 +29,7 @@ public class CStates_Movement
         wallsliding.Init(chr);
         walljumpStart.Init(chr);
         walljumping.Init(chr);
-        turnaround.Init(chr);
+        skid.Init(chr);
     }
 }
 
@@ -77,6 +77,7 @@ public class CS_Walking : CState
     {
         base.Execute();
 
+        chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
         chr.SetInputs();
 
@@ -86,8 +87,8 @@ public class CS_Walking : CState
 
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
         {
-            chr.movementStates.turnaround.direction = direction;
-            ChangeState(chr.movementStates.turnaround);
+            chr.movementStates.skid.direction = direction;
+            ChangeState(chr.movementStates.skid);
         }
 
         if (chr.Jump)
@@ -100,17 +101,21 @@ public class CS_Walking : CState
 }
 
 [System.Serializable]
-public class CS_Turnaround : CState
+public class CS_Skid : CState
 {
     public float direction { get; set; }
 
     [SerializeField] int duration;
     private int timer;
 
+    private bool changedDirection;
+
     public override void Enter()
     {
         base.Enter();
         timer = 0;
+
+        changedDirection = false;
     }
 
     public override void Execute()
@@ -121,19 +126,30 @@ public class CS_Turnaround : CState
 
         chr.SetInputs();
 
+        /*
         if (chr.DirectionalInput.x < 0) chr.IsFlipped = true;
         if (chr.DirectionalInput.x > 0) chr.IsFlipped = false;
+        */
+
+        if(!changedDirection)
+        {
+            if(Mathf.Sign(chr.DirectionalInput.x) != direction)
+            {
+                chr.IsFlipped = !chr.IsFlipped;
+                changedDirection = true;
+            }
+        }
 
         chr.SetInputs(new Vector2(direction, 0));
-
-        if (chr.Jump)
-        {
-            ChangeState(chr.movementStates.jumpsquat);
-        }
 
         if (timer >= duration)
         {
             ChangeState(chr.movementStates.idle);
+        }
+
+        if (chr.Jump)
+        {
+            ChangeState(chr.movementStates.jumpsquat);
         }
     }
 }
