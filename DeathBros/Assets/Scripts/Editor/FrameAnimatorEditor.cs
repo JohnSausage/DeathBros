@@ -6,12 +6,35 @@ public class FrameAnimatorEditor : EditorWindow
 {
     private FrameAnimator anim;
     private FrameAnimation currentAnimation;
+    private int currentAnimationNr;
+    private FrameAnimation addFrameAnimation;
+    private Frame currentFrame;
+    private int currentFrameNr;
 
     private Vector2 zero = Vector2.zero;
     private float pixelPerUnit = 16;
 
+    private int frameCounter = 0;
+    private float timer = 0;
+    private bool playing = false;
+    private bool showHurtboxes = false;
+
+    private Vector2 animationListScrollVector;
+    private Vector2 frameListSrollVector;
+
+    void OnEnable() { EditorApplication.update += Update; }
+    void OnDisable() { EditorApplication.update -= Update; }
+
+    void Update()
+    {
+
+    }
+
     private void OnGUI()
     {
+        GameObject activeGO = Selection.activeGameObject;
+
+        if (activeGO != null)
             anim = Selection.activeGameObject.GetComponent<FrameAnimator>();
 
 
@@ -21,25 +44,25 @@ public class FrameAnimatorEditor : EditorWindow
         }
         else
         {
-            GUILayout.BeginHorizontal();
+            GUILayout.BeginHorizontal(GUILayout.MinWidth(180));
             {
+
+                ShowFrameAnimationList();
+
+                ShowFramesList();
+
+
                 GUILayout.BeginVertical();
                 {
-                    GUILayout.Label("Found animations:");
 
-                    ShowFrameAnimationList();
+                    var rect = GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none,
+                        GUILayout.MinWidth(148), GUILayout.MinHeight(148));
+
+                    GUI.DrawTexture(rect, EditorGUIUtility.whiteTexture);
+
+                    PreviewCurrentAnimation();
                 }
                 GUILayout.EndVertical();
-            }
-
-            {
-                var rect = GUILayoutUtility.GetRect(100, 100, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
-                GUI.DrawTexture(rect, EditorGUIUtility.whiteTexture);
-
-                if(currentAnimation != null)
-                {
-                    DrawTexturePreview(new Vector2(rect.x + 10, rect.y +10), currentAnimation.frames[0].sprite, 4);
-                }
             }
             GUILayout.EndHorizontal();
         }
@@ -47,12 +70,102 @@ public class FrameAnimatorEditor : EditorWindow
 
     private void ShowFrameAnimationList()
     {
-        foreach (FrameAnimation animation in anim.animations)
+        animationListScrollVector = GUILayout.BeginScrollView(animationListScrollVector, GUILayout.MinWidth(200));
         {
-            if(GUILayout.Button(animation.animationName))
+            GUILayout.Label("Found animations:");
+
+            for (int i = 0; i < anim.animations.Count; i++)
             {
-                currentAnimation = animation;
+                if (i == currentAnimationNr)
+                {
+                    GUI.color = Color.grey;
+                }
+
+                if (GUILayout.Button(anim.animations[i].animationName, GUILayout.MaxWidth(160)))
+                {
+                    currentAnimation = anim.animations[i];
+                    currentAnimationNr = i;
+                }
+
+                GUI.color = Color.white;
             }
+
+            GUILayout.Label("Add Animation:");
+            addFrameAnimation = (FrameAnimation)EditorGUILayout.ObjectField(addFrameAnimation, typeof(FrameAnimation), false);
+
+            if (addFrameAnimation != null)
+            {
+                anim.animations.Add(addFrameAnimation);
+                addFrameAnimation = null;
+            }
+
+        }
+        GUILayout.EndScrollView();
+    }
+
+    private void ShowFramesList()
+    {
+        GUILayout.BeginVertical(GUILayout.MinWidth(160));
+        {
+            EditorGUILayout.Space();
+
+            if (currentAnimation != null)
+            {
+                if (currentAnimation.animationName == "")
+                    currentAnimation.animationName = currentAnimation.name;
+
+                currentAnimation.animationName = EditorGUILayout.TextField("Animation:", currentAnimation.animationName);
+                //GUILayout.Label(currentAnimation.animationName);
+            }
+
+            if (playing)
+                GUI.color = Color.green;
+
+            if (GUILayout.Button("Play Animation"))
+            {
+                playing = !playing;
+            }
+            GUI.color = Color.white;
+
+            EditorGUILayout.Space();
+
+            GUI.color = Color.red;
+            if (GUILayout.Button("Remove Animation"))
+            {
+                anim.animations.Remove(anim.animations[currentAnimationNr]);
+            }
+            GUI.color = Color.white;
+
+            EditorGUILayout.Space();
+
+
+            if (currentAnimation != null)
+            {
+                for (int i = 0; i < currentAnimation.frames.Count; i++)
+                {
+                    if (currentFrameNr == i)
+                        GUI.color = Color.gray;
+
+                    if (GUILayout.Button("Frame " + i))
+                    {
+                        currentFrame = currentAnimation.frames[i];
+                        currentFrameNr = i;
+                    }
+
+                    GUI.color = Color.white;
+                }
+            }
+        }
+        GUILayout.EndVertical();
+    }
+
+    private void PreviewCurrentAnimation()
+    {
+        Rect rect = GUILayoutUtility.GetLastRect();
+
+        if (currentFrame != null)
+        {
+            //DrawTexturePreview(new Vector2(rect.x + 10, rect.y + 10), currentFrame.sprite, 4);
         }
     }
 
