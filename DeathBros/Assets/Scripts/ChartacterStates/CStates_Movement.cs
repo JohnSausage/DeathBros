@@ -160,7 +160,15 @@ public class CS_Jumpsquat : CState
         if (timer >= duration)
         {
             ChangeState(chr.movementStates.jumping);
-            chr.Ctr.jumpVelocity = chr.jumpStrength;
+
+            if (chr.HoldJump)
+            {
+                chr.Ctr.jumpVelocity = chr.jumpStrength;
+            }
+            else
+            {
+                chr.Ctr.jumpVelocity = chr.jumpStrength * 0.75f;
+            }
         }
     }
 
@@ -260,12 +268,15 @@ public class CS_Wallsliding : CState
     {
         base.Enter();
 
-        chr.Spr.flipX = chr.Ctr.wallDirection == 1;
+
     }
 
     public override void Execute()
     {
         base.Execute();
+
+        if (chr.Ctr.velocity.y <= 0)
+            chr.Spr.flipX = chr.Ctr.wallDirection == 1;
 
         chr.SetInputs(0.1f);
 
@@ -294,6 +305,7 @@ public class CS_WalljumpStart : CState
     public override void Enter()
     {
         base.Enter();
+        chr.Spr.flipX = chr.Ctr.wallDirection == 1;
         timer = 0;
         chr.SetInputs(Vector2.zero);
     }

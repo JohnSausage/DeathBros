@@ -22,5 +22,14 @@ public class Player : Character
         {
             Jump = false;
         }
+
+        if (Input.GetButton("Jump"))
+        {
+            HoldJump = true;
+        }
+        else
+        {
+            HoldJump = false;
+        }
     }
 }

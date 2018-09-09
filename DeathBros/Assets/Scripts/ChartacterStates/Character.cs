@@ -9,6 +9,7 @@ public class Character : _MB
     public Vector2 StrongInputs;// { get; protected set; }
 
     public bool Jump { get; protected set; }
+    public bool HoldJump { get; protected set; }
 
     [Space]
 
