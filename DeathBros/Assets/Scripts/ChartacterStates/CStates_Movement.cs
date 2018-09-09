@@ -243,9 +243,26 @@ public class CS_Landing : CState
 [System.Serializable]
 public class CS_Jumping : CState
 {
+    [SerializeField] int allowWallJumpAfterWallSlidingDuration = 5;
+    int allowWallJumpAfterWallSlidingTimer;
+
+    public bool AllowWallJump
+    {
+        set
+        {
+            allowWallJumpAfterWallSlidingTimer = allowWallJumpAfterWallSlidingDuration;
+        }
+        get
+        {
+            return allowWallJumpAfterWallSlidingTimer > 0;
+        }
+    }
+
     public override void Execute()
     {
         base.Execute();
+
+        allowWallJumpAfterWallSlidingTimer--;
 
         chr.SetInputs();
 
@@ -253,7 +270,14 @@ public class CS_Jumping : CState
 
         if (chr.Jump)
         {
-            chr.CS_CheckForJump();
+            if (AllowWallJump)
+            {
+                ChangeState(chr.movementStates.walljumpStart);
+            }
+            else
+            {
+                chr.CS_CheckForJump();
+            }
         }
 
         if (chr.Ctr.onWall)
@@ -267,8 +291,6 @@ public class CS_Wallsliding : CState
     public override void Enter()
     {
         base.Enter();
-
-
     }
 
     public override void Execute()
@@ -290,6 +312,13 @@ public class CS_Wallsliding : CState
             chr.movementStates.walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
             ChangeState(chr.movementStates.walljumpStart);
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.movementStates.jumping.AllowWallJump = true;
     }
 }
 
@@ -353,6 +382,11 @@ public class CS_Walljumping : CState
 
         if (chr.Ctr.onWall)
             ChangeState(chr.movementStates.wallsliding);
+
+        if(chr.Jump && chr.jumpsUsed < chr.jumps)
+        {
+            ChangeState(chr.movementStates.doubleJumpsquat);
+        }
 
         if (timer >= duration)
             ChangeState(chr.movementStates.jumping);

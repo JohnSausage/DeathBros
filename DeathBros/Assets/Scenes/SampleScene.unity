@@ -609,6 +609,7 @@ MonoBehaviour:
       duration: 3
     jumping:
       animationName: idle
+      allowWallJumpAfterWallSlidingDuration: 3
     doubleJumpsquat:
       animationName: run
       duration: 3
@@ -619,11 +620,11 @@ MonoBehaviour:
       animationName: idle
     walljumpStart:
       animationName: run
-      jumpHeightReductionFactor: 0.75
-      duration: 3
+      jumpHeightReductionFactor: 0.9
+      duration: 1
     walljumping:
       animationName: run
-      duration: 12
+      duration: 15
     turnaround:
       animationName: idle
       duration: 3
@@ -692,7 +693,7 @@ MonoBehaviour:
   currentPlatform: {fileID: 0}
   gravity: -1
   movespeed: 10
-  wallSlideSpeed: 3
+  wallSlideSpeed: 5
   accelerationTimeAerial: 3
   maxSlopeDownAngle: 45
   maxSlopeUpAngle: 45
