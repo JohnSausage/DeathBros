@@ -24,10 +24,10 @@ public class FrameAnimatorEditor : EditorWindow
 
     private float timer = 0;
 
-    private Texture2D animationListTexture;
-    private Texture2D previewAnimationTexture;
+    private Texture2D grayTexture;
+    private Texture2D blackTexture;
     private Texture2D frameButtonsTexture;
-    private Texture2D generalFrameInfoTexture;
+    private Texture2D whiteTexture;
     private Texture2D specialFrameInfoTexture;
 
     private Rect animationListRect = Rect.zero;
@@ -39,8 +39,9 @@ public class FrameAnimatorEditor : EditorWindow
 
     void OnEnable()
     {
-        //EditorApplication.update += Update;
         InitTextures();
+        //EditorApplication.update += Update;
+
         Repaint();
     }
 
@@ -49,38 +50,55 @@ public class FrameAnimatorEditor : EditorWindow
         //EditorApplication.update -= Update;
     }
 
+    private void OnLostFocus()
+    {
+    }
+
     private void Update()
     {
-
-
-        currentFrame = animSO.frameAnimations[currentAnimationNr].frames[currentFrameNr];
-
-
-        if (animationIsPlaying)
+        if (animSO != null)
         {
-            timer += Time.deltaTime * 6 / 100; //Editor Updates Faster
-            float duration = (currentFrame.duration);
+            currentFrame = animSO.frameAnimations[currentAnimationNr].frames[currentFrameNr];
 
-            if (timer > duration / 60)
+
+            if (animationIsPlaying)
             {
-                currentFrameNr++;
-                timer = 0;
+                timer += Time.deltaTime * 6 / 100; //Editor Updates Faster
+                float duration = (currentFrame.duration);
+
+                if (timer > duration / 60)
+                {
+                    currentFrameNr++;
+                    timer = 0;
+                }
+
+
+                if (currentFrameNr >= animSO.frameAnimations[currentAnimationNr].frames.Count)
+                    currentFrameNr = 0;
+
+                Repaint();
             }
-
-
-            if (currentFrameNr >= animSO.frameAnimations[currentAnimationNr].frames.Count)
-                currentFrameNr = 0;
-
-            Repaint();
         }
     }
 
     private void OnGUI()
     {
+        if (grayTexture == null)
+        {
+            InitTextures();
+        }
+
+
         GameObject activeGO = Selection.activeGameObject;
 
-        if (activeGO != null)
+        if (activeGO == null)
+        {
+            EditorGUILayout.HelpBox("No GameObject selected!", MessageType.Warning);
+        }
+        else
+        {
             anim = Selection.activeGameObject.GetComponent<FrameAnimator>();
+        }
 
         if (anim == null)
         {
@@ -92,6 +110,8 @@ public class FrameAnimatorEditor : EditorWindow
         }
         else
         {
+            EditorGUI.BeginChangeCheck();
+
             animSO = anim.frameAnimationsSO;
 
             DrawLayouts();
@@ -101,26 +121,39 @@ public class FrameAnimatorEditor : EditorWindow
             DrawFrameButtons();
             DrawGeneralFrameInfo();
             DrawSpecialFrameInfo();
+
+            if (currentAnimation != null)
+                Undo.RecordObject(currentAnimation, "Changed Animation");
+
+
+        }
+    }
+
+    private void SaveChanges()
+    {
+        foreach (FrameAnimation animation in animSO.frameAnimations)
+        {
+            EditorUtility.SetDirty(animation);
         }
     }
 
     private void InitTextures()
     {
-        animationListTexture = new Texture2D(1, 1);
-        animationListTexture.SetPixel(0, 0, Color.gray);
-        animationListTexture.Apply();
+        grayTexture = new Texture2D(1, 1);
+        grayTexture.SetPixel(0, 0, Color.gray);
+        grayTexture.Apply();
 
-        previewAnimationTexture = new Texture2D(1, 1);
-        previewAnimationTexture.SetPixel(0, 0, Color.black);
-        previewAnimationTexture.Apply();
+        blackTexture = new Texture2D(1, 1);
+        blackTexture.SetPixel(0, 0, Color.black);
+        blackTexture.Apply();
 
         frameButtonsTexture = new Texture2D(1, 1);
         frameButtonsTexture.SetPixel(0, 0, Color.gray);
         frameButtonsTexture.Apply();
 
-        generalFrameInfoTexture = new Texture2D(1, 1);
-        generalFrameInfoTexture.SetPixel(0, 0, Color.white);
-        generalFrameInfoTexture.Apply();
+        whiteTexture = new Texture2D(1, 1);
+        whiteTexture.SetPixel(0, 0, Color.white);
+        whiteTexture.Apply();
 
         specialFrameInfoTexture = new Texture2D(1, 1);
         specialFrameInfoTexture.SetPixel(0, 0, Color.black);
@@ -155,10 +188,10 @@ public class FrameAnimatorEditor : EditorWindow
         specialFrameInfoRect.width = Screen.width - animationListRect.width - generalFrameInfoRect.width;
         specialFrameInfoRect.height = Screen.height - frameButtonsRect.height;
 
-        GUI.DrawTexture(animationListRect, animationListTexture);
-        GUI.DrawTexture(previewAnimationRect, previewAnimationTexture);
+        GUI.DrawTexture(animationListRect, grayTexture);
+        GUI.DrawTexture(previewAnimationRect, grayTexture);
         GUI.DrawTexture(frameButtonsRect, frameButtonsTexture);
-        GUI.DrawTexture(generalFrameInfoRect, generalFrameInfoTexture);
+        GUI.DrawTexture(generalFrameInfoRect, whiteTexture);
         GUI.DrawTexture(specialFrameInfoRect, specialFrameInfoTexture);
     }
 
@@ -173,6 +206,8 @@ public class FrameAnimatorEditor : EditorWindow
         {
             animSO.frameAnimations.Add(addFrameAnimation);
             addFrameAnimation = null;
+
+            Undo.RecordObject(anim.frameAnimationsSO, "Added FrameAnimatorSO");
         }
 
         animationListScrollVector = GUILayout.BeginScrollView(animationListScrollVector);
@@ -223,18 +258,22 @@ public class FrameAnimatorEditor : EditorWindow
         GUI.color = Color.white;
 
 
-        EditorGUILayout.Space();
+        //EditorGUILayout.Space();
 
-        Rect previewRect = new Rect(10, 20, 128, 128);
 
+        Rect previewRect = Rect.zero;
 
         if (currentFrame != null)
         {
-            DrawTexturePreview(new Vector2(previewRect.x, previewRect.y), currentFrame.sprite, 4);
+            Vector2 position = new Vector2(20, 25);
+            previewRect = DrawTextureRect(position, currentFrame.sprite, 4, false);
+
+            GUI.DrawTexture(previewRect, blackTexture);
+            previewRect = DrawTextureRect(position, currentFrame.sprite, 4);
         }
 
 
-        GUILayout.Space(120);
+        GUILayout.Space(previewRect.height);
 
         //EditorGUILayout.Space();
 
@@ -283,7 +322,27 @@ public class FrameAnimatorEditor : EditorWindow
 
     private void DrawGeneralFrameInfo()
     {
+        GUILayout.BeginArea(generalFrameInfoRect);
 
+        if (currentFrame != null)
+        {
+            EditorGUILayout.LabelField("Sprite");
+
+            Rect previewRect = DrawTextureRect(new Vector2(30, 20), currentFrame.sprite, 4, false);
+
+            GUI.DrawTexture(previewRect, blackTexture);
+
+            previewRect = DrawTextureRect(new Vector2(30, 20), currentFrame.sprite, 4);
+
+            GUILayout.Space(previewRect.height + previewRect.y);
+
+
+            currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
+
+            currentFrame.duration = EditorGUILayout.IntField("Duration:", currentFrame.duration);
+        }
+
+        GUILayout.EndArea();
     }
 
     private void DrawSpecialFrameInfo()
@@ -452,6 +511,48 @@ public class FrameAnimatorEditor : EditorWindow
     }
 
     */
+
+    private Rect DrawTextureRect(Vector2 offset, Sprite sprite, float scale, bool drawTexture = true)
+    {
+        Rect posRect = Rect.zero;
+
+        if (sprite != null)
+        {
+            Vector2 fullSize = new Vector2(sprite.texture.width, sprite.texture.height);
+            Vector2 size = sprite.rect.size;
+
+            Rect coords = sprite.rect;
+
+            coords.x /= fullSize.x;
+            coords.width /= fullSize.x;
+            coords.y /= fullSize.y;
+            coords.height /= fullSize.y;
+
+            posRect = new Rect
+            {
+                size = size * scale,
+
+                //x = zero.x - size.x / 2 * scale,
+                //y = zero.y - size.y / 2 * scale
+
+                x = -size.x / 2 * scale,
+                y = -size.y / 2 * scale
+            };
+
+
+            //posRect.x += offset.x * pixelPerUnit * scale;
+            //posRect.y += offset.y * pixelPerUnit * scale;
+
+
+            posRect.x = offset.x;
+            posRect.y = offset.y;
+
+            if (drawTexture)
+                GUI.DrawTextureWithTexCoords(posRect, sprite.texture, coords);
+        }
+
+        return posRect;
+    }
 
     private void DrawTexturePreview(Vector2 offset, Sprite sprite, float scale)
     {
