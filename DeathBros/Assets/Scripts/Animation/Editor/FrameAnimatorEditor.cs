@@ -22,6 +22,7 @@ public class FrameAnimatorEditor : EditorWindow
     private bool animationIsPlaying;
     private Vector2 animationListScrollVector;
 
+    private float timer = 0;
 
     private Texture2D animationListTexture;
     private Texture2D previewAnimationTexture;
@@ -29,24 +30,49 @@ public class FrameAnimatorEditor : EditorWindow
     private Texture2D generalFrameInfoTexture;
     private Texture2D specialFrameInfoTexture;
 
-    private Rect animationListRect;
-    private Rect previewAnimationRect;
-    private Rect frameButtonsRect;
-    private Rect generalFrameInfoRect;
-    private Rect specialFrameInfoRect;
+    private Rect animationListRect = Rect.zero;
+    private Rect previewAnimationRect = Rect.zero;
+    private Rect frameButtonsRect = Rect.zero;
+    private Rect generalFrameInfoRect = Rect.zero;
+    private Rect specialFrameInfoRect = Rect.zero;
 
 
     void OnEnable()
     {
-        EditorApplication.update += Update;
+        //EditorApplication.update += Update;
         InitTextures();
+        Repaint();
     }
 
-    void OnDisable() { EditorApplication.update -= Update; }
+    void OnDisable()
+    {
+        //EditorApplication.update -= Update;
+    }
 
     private void Update()
     {
 
+
+        currentFrame = animSO.frameAnimations[currentAnimationNr].frames[currentFrameNr];
+
+
+        if (animationIsPlaying)
+        {
+            timer += Time.deltaTime * 6 / 100; //Editor Updates Faster
+            float duration = (currentFrame.duration);
+
+            if (timer > duration / 60)
+            {
+                currentFrameNr++;
+                timer = 0;
+            }
+
+
+            if (currentFrameNr >= animSO.frameAnimations[currentAnimationNr].frames.Count)
+                currentFrameNr = 0;
+
+            Repaint();
+        }
     }
 
     private void OnGUI()
@@ -81,7 +107,7 @@ public class FrameAnimatorEditor : EditorWindow
     private void InitTextures()
     {
         animationListTexture = new Texture2D(1, 1);
-        animationListTexture.SetPixel(0, 0, Color.white);
+        animationListTexture.SetPixel(0, 0, Color.gray);
         animationListTexture.Apply();
 
         previewAnimationTexture = new Texture2D(1, 1);
@@ -106,22 +132,22 @@ public class FrameAnimatorEditor : EditorWindow
     {
         animationListRect.x = 0;
         animationListRect.y = 0;
-        animationListRect.width = 300;
-        animationListRect.height = Screen.height / 2f;
+        animationListRect.width = 160;
+        animationListRect.height = Screen.height - previewAnimationRect.height;
 
         previewAnimationRect.x = 0;
-        previewAnimationRect.y = Screen.height / 2f;
+        previewAnimationRect.y = animationListRect.height;
         previewAnimationRect.width = animationListRect.width;
-        previewAnimationRect.height = Screen.height / 2f;
+        previewAnimationRect.height = 200;
 
         frameButtonsRect.x = animationListRect.width;
         frameButtonsRect.y = 0;
         frameButtonsRect.width = Screen.width - animationListRect.width;
-        frameButtonsRect.height = 50;
+        frameButtonsRect.height = 30;
 
         generalFrameInfoRect.x = animationListRect.width;
         generalFrameInfoRect.y = frameButtonsRect.height;
-        generalFrameInfoRect.width = 300;
+        generalFrameInfoRect.width = 200;
         generalFrameInfoRect.height = Screen.height - frameButtonsRect.height;
 
         specialFrameInfoRect.x = generalFrameInfoRect.x + generalFrameInfoRect.width;
@@ -163,16 +189,16 @@ public class FrameAnimatorEditor : EditorWindow
                 {
                     currentAnimation = animSO.frameAnimations[i];
                     currentAnimationNr = i;
+                    currentFrameNr = 0;
+
+                    if (currentAnimation.frames.Count > 0)
+                    {
+                        currentFrame = currentAnimation.frames[currentFrameNr];
+                    }
                 }
 
                 GUI.color = Color.white;
             }
-
-            for (int i = 0; i < 50; i++)
-            {
-                GUILayout.Button("test " + i);
-            }
-
         }
         GUILayout.EndScrollView();
 
@@ -184,7 +210,7 @@ public class FrameAnimatorEditor : EditorWindow
         GUILayout.BeginArea(previewAnimationRect);
 
 
-        EditorGUILayout.Space();
+        GUILayout.Space(5);
 
 
         if (animationIsPlaying)
@@ -199,17 +225,18 @@ public class FrameAnimatorEditor : EditorWindow
 
         EditorGUILayout.Space();
 
-        Rect previewRect = new Rect(0, 0, 128, 128);
+        Rect previewRect = new Rect(10, 20, 128, 128);
 
 
         if (currentFrame != null)
         {
-            //DrawTexturePreview(new Vector2(previewRect.x + 10, previewRect.y + 10), currentFrame.sprite, 4);
+            DrawTexturePreview(new Vector2(previewRect.x, previewRect.y), currentFrame.sprite, 4);
         }
 
 
-        EditorGUILayout.Space();
+        GUILayout.Space(120);
 
+        //EditorGUILayout.Space();
 
         GUI.color = Color.red;
         if (GUILayout.Button("Remove Animation"))
@@ -223,7 +250,35 @@ public class FrameAnimatorEditor : EditorWindow
 
     private void DrawFrameButtons()
     {
+        GUILayout.BeginArea(frameButtonsRect);
 
+        GUILayout.Space(5);
+
+        GUILayout.BeginHorizontal();
+
+        if (currentAnimation != null)
+        {
+            EditorGUILayout.LabelField("Frames:", GUILayout.MaxWidth(50));
+
+            for (int i = 0; i < currentAnimation.frames.Count; i++)
+            {
+
+                if (currentFrameNr == i)
+                    GUI.color = Color.gray;
+
+                if (GUILayout.Button((i + 1).ToString(), GUILayout.MaxWidth(20)))
+                {
+                    currentFrameNr = i;
+                    currentFrame = currentAnimation.frames[i];
+                }
+
+                GUI.color = Color.white;
+            }
+        }
+
+        GUILayout.EndHorizontal();
+
+        GUILayout.EndArea();
     }
 
     private void DrawGeneralFrameInfo()

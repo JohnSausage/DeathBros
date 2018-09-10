@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(FrameAnimation))]
 public class CustomFrameAnimationInspector : Editor
 {
+    /*
     private FrameAnimation anim;
     private int frameCounter = 0;
     private float timer = 0;
