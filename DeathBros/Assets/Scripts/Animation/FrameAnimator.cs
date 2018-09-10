@@ -6,7 +6,8 @@ public class FrameAnimator : _MB
 {
     public FrameAnimation currentAnimation;
 
-    public List<FrameAnimation> animations;
+    public List<FrameAnimation> animations { get; protected set; }
+    public FrameAnimationsSO frameAnimationsSO;
 
     public float animationSpeed = 1;
 
@@ -26,8 +27,14 @@ public class FrameAnimator : _MB
         frameTimer = 0;
         animTimer = 0;
 
-        if (animations[0] != null)
+        //if (animations[0] != null)
+        //    ChangeAnimation(animations[0]);
+
+        if (frameAnimationsSO != null)
+        {
+            animations = frameAnimationsSO.frameAnimations;
             ChangeAnimation(animations[0]);
+        }
     }
 
     void FixedUpdate()

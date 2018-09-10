@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FrameAnimation")]
+[CreateAssetMenu(menuName = "FrameAnimation/FrameAnimation")]
 public class FrameAnimation : ScriptableObject
 {
     public string animationName;
