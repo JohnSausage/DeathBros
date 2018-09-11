@@ -7,17 +7,31 @@ public class HurtboxManager : _MB
     public List<CircleCollider2D> hurtboxes;
 
     private Frame previousFrame;
-
+    private SpriteRenderer spr;
+    private bool flipped;
     public override void Init()
     {
         base.Init();
 
         hurtboxes = new List<CircleCollider2D>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     public void SetHurtboxes(Frame frame)
     {
-        if (previousFrame != frame) //only change hurtboxes when frame has changed
+        bool changedFlip = false;
+
+        if (spr != null)
+        {
+            if (flipped != spr.flipX)
+
+            {
+                flipped = spr.flipX;
+                changedFlip = true;
+            }
+        }
+
+        if (previousFrame != frame || changedFlip) //only change hurtboxes when frame has changed
         {
             ClearHurtboxes();
 
@@ -34,7 +48,15 @@ public class HurtboxManager : _MB
     {
         CircleCollider2D newCollider = gameObject.AddComponent<CircleCollider2D>();
 
-        newCollider.offset = hurtbox.position;
+        if (!flipped)
+        {
+            newCollider.offset = hurtbox.position;
+        }
+        else
+        {
+            newCollider.offset = new Vector2(-hurtbox.position.x, hurtbox.position.y);
+        }
+
         newCollider.radius = hurtbox.radius;
 
         hurtboxes.Add(newCollider);

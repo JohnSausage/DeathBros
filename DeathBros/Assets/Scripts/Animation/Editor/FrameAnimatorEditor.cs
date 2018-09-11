@@ -20,6 +20,9 @@ public class FrameAnimatorEditor : EditorWindow
     private Hurtbox settingHurtbox, copyHurtbox;
     private FrameAnimation addFrameAnimation;
 
+    private List<Hurtbox> copyHurtboxes = new List<Hurtbox>();
+    private int copyFromFrameNr;
+
     private bool animationIsPlaying;
     private Vector2 animationListScrollVector;
     private int specialInfoTabNr = 0;
@@ -29,17 +32,26 @@ public class FrameAnimatorEditor : EditorWindow
     private float scale = 4f;
     private Vector2 zero = Vector2.zero;
 
+
     private Texture2D grayTexture;
     private Texture2D blackTexture;
-    private Texture2D frameButtonsTexture;
     private Texture2D whiteTexture;
+    private Texture2D frameButtonsTexture;
     private Texture2D specialFrameInfoTexture;
+
+    private Texture2D hurtboxTexture;
+    private Texture2D hitboxTexture;
+
+    private Vector2 hurtboxSettingPosition;
+    private bool settingHurtboxWithMouse = false;
 
     private Rect animationListRect = Rect.zero;
     private Rect previewAnimationRect = Rect.zero;
     private Rect frameButtonsRect = Rect.zero;
     private Rect generalFrameInfoRect = Rect.zero;
     private Rect specialFrameInfoRect = Rect.zero;
+
+    private Rect previewRect = Rect.zero;
 
 
     void OnEnable()
@@ -52,11 +64,13 @@ public class FrameAnimatorEditor : EditorWindow
 
     void OnDisable()
     {
+        SaveChanges();
         //EditorApplication.update -= Update;
     }
 
     private void OnLostFocus()
     {
+        SaveChanges();
     }
 
     private void Update()
@@ -126,15 +140,6 @@ public class FrameAnimatorEditor : EditorWindow
             DrawFrameButtons();
             DrawGeneralFrameInfo();
             DrawSpecialFrameInfo();
-
-            //if (currentAnimation != null)
-            //    Undo.RecordObject(currentAnimation, "Changed Animation");
-
-            //if (currentAnimation != null)
-            //    EditorUtility.SetDirty(currentAnimation);
-
-            //if (animSO != null)
-            //    EditorUtility.SetDirty(animSO);
         }
     }
 
@@ -173,6 +178,8 @@ public class FrameAnimatorEditor : EditorWindow
         specialFrameInfoTexture.SetPixel(0, 0, Color.black);
         specialFrameInfoTexture.Apply();
 
+        hurtboxTexture = Resources.Load<Texture2D>("Editor/green_circle");
+        hitboxTexture = Resources.Load<Texture2D>("Editor/red_circle");
     }
 
     private void DrawLayouts()
@@ -294,10 +301,10 @@ public class FrameAnimatorEditor : EditorWindow
         if (currentFrame != null)
         {
             Vector2 position = new Vector2(20, 25);
-            previewRect = DrawTextureRect(position, currentFrame.sprite, 4, false);
+            previewRect = DrawSpriteRect(position, currentFrame.sprite, 4, blackTexture);
 
-            GUI.DrawTexture(previewRect, blackTexture);
-            previewRect = DrawTextureRect(position, currentFrame.sprite, 4);
+            //GUI.DrawTexture(previewRect, blackTexture);
+            //previewRect = DrawSpriteRect(position, currentFrame.sprite, 4);
         }
 
         GUILayout.Space(previewRect.height);
@@ -385,14 +392,52 @@ public class FrameAnimatorEditor : EditorWindow
         {
             EditorGUILayout.LabelField("Sprite:");
 
-            Rect previewRect = DrawTextureRect(new Vector2(35, 90), currentFrame.sprite, 4, false);
+            Vector2 previewPosition = new Vector2(35, 90);
 
-            GUI.DrawTexture(previewRect, blackTexture);
-
-            previewRect = DrawTextureRect(new Vector2(35, 90), currentFrame.sprite, 4);
+            previewRect = DrawSpriteRect(previewPosition, currentFrame.sprite, 4, blackTexture);
 
             GUILayout.Space(previewRect.height + 10);
 
+            if (settingHurtbox != null)
+            {
+                Repaint();
+
+                hurtboxSettingPosition = Event.current.mousePosition - previewPosition;
+
+                if (previewRect.Contains(Event.current.mousePosition))
+                {
+                    settingHurtbox.position.x = ((hurtboxSettingPosition.x - previewRect.width / 2) / pixelPerUnit / scale);
+                    settingHurtbox.position.y = -((hurtboxSettingPosition.y - previewRect.height / 2) / pixelPerUnit / scale);
+
+                    if (Event.current.type == EventType.ScrollWheel)
+                    {
+                        settingHurtbox.radius += Event.current.delta.y * 0.01f;
+                    }
+
+                    if (Event.current.type == EventType.MouseUp && Event.current.button == 0)
+                    {
+                        settingHurtbox = null;
+                        settingHurtboxWithMouse = false;
+                    }
+                }
+            }
+
+
+            bool showHurtboxes = true;
+
+            Rect hurtboxRect = new Rect();
+
+            if (showHurtboxes)
+            {
+                foreach (Hurtbox h in currentFrame.hurtBoxes)
+                {
+                    hurtboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
+                    hurtboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
+
+                    GUI.DrawTexture(hurtboxRect, Resources.Load<Texture2D>("Editor/green_circle"));
+
+                }
+            }
 
             currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
 
@@ -453,10 +498,10 @@ public class FrameAnimatorEditor : EditorWindow
 
         if (currentFrame != null)
         {
-            if(specialInfoTabNr == 0)
+            if (specialInfoTabNr == 0)
             {
                 DisplayHurtboxTab();
-                SetHurtboxWithMouse();
+
             }
         }
 
@@ -482,6 +527,7 @@ public class FrameAnimatorEditor : EditorWindow
                     if (GUILayout.Button("Set"))
                     {
                         settingHurtbox = currentFrame.hurtBoxes[i];
+                        settingHurtboxWithMouse = true;
                     }
 
                     if (GUILayout.Button("Copy"))
@@ -501,6 +547,7 @@ public class FrameAnimatorEditor : EditorWindow
                     }
                 }
                 EditorGUILayout.EndHorizontal();
+
             }
             EditorGUILayout.EndVertical();
         }
@@ -510,187 +557,43 @@ public class FrameAnimatorEditor : EditorWindow
         {
             currentFrame.hurtBoxes.Add(new Hurtbox());
         }
+
+        if (GUILayout.Button("Copy All"))
+        {
+            copyFromFrameNr = currentFrameNr;
+        }
+
+        if (GUILayout.Button("Paste All"))
+        {
+
+        }
     }
 
+    /*
     private void SetHurtboxWithMouse()
     {
         if (settingHurtbox != null)
         {
-            settingHurtbox.position.x = ((Event.current.mousePosition - zero) / pixelPerUnit / scale).x;
-            settingHurtbox.position.y = -((Event.current.mousePosition - zero) / pixelPerUnit / scale).y;
+            //settingHurtbox.position = hurtboxSetingPosition / pixelPerUnit / scale;
+            settingHurtbox.position.x = ((hurtboxSettingPosition) / pixelPerUnit / scale).x;
+            settingHurtbox.position.y = -((hurtboxSettingPosition) / pixelPerUnit / scale).y;
         }
 
         if (settingHurtbox != null && Event.current.type == EventType.ScrollWheel)
         {
-            settingHurtbox.radius += Event.current.delta.y * 0.01f;
+            settingHurtbox.radius += Event.current.delta.y * 0.005f;
         }
 
-        if (settingHurtbox != null && Event.current.type == EventType.MouseUp && Event.current.button == 0)
+
+        if (settingHurtbox != null && Event.current.type == EventType.MouseDown && Event.current.button == 0)
         {
             settingHurtbox = null;
+            Debug.Log("here");
         }
     }
-    /*
-
-    private Vector2 zero = Vector2.zero;
-    private float pixelPerUnit = 16;
-
-    private int frameCounter = 0;
-    private float timer = 0;
-    private bool playing = false;
-    private bool showHurtboxes = false;
-
-    private Vector2 animationListScrollVector;
-    private Vector2 frameListSrollVector;
-
-
-    void Update()
-    {
-
-    }
-
-    private void OnGUI()
-    {
-        GameObject activeGO = Selection.activeGameObject;
-
-        if (activeGO != null)
-            anim = Selection.activeGameObject.GetComponent<FrameAnimator>();
-
-
-        if (anim == null)
-        {
-            GUILayout.Label("No Frame Animator selected");
-        }
-        else
-        {
-            GUILayout.BeginHorizontal(GUILayout.MinWidth(180));
-            {
-
-                ShowFrameAnimationList();
-
-                ShowFramesList();
-
-
-                GUILayout.BeginVertical();
-                {
-
-                    var rect = GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none,
-                        GUILayout.MinWidth(148), GUILayout.MinHeight(148));
-
-                    GUI.DrawTexture(rect, EditorGUIUtility.whiteTexture);
-
-                    PreviewCurrentAnimation();
-                }
-                GUILayout.EndVertical();
-            }
-            GUILayout.EndHorizontal();
-        }
-    }
-
-    private void ShowFrameAnimationList()
-    {
-        animationListScrollVector = GUILayout.BeginScrollView(animationListScrollVector, GUILayout.MinWidth(200));
-        {
-            GUILayout.Label("Found animations:");
-
-            for (int i = 0; i < anim.animations.Count; i++)
-            {
-                if (i == currentAnimationNr)
-                {
-                    GUI.color = Color.grey;
-                }
-
-                if (GUILayout.Button(anim.animations[i].animationName, GUILayout.MaxWidth(160)))
-                {
-                    currentAnimation = anim.animations[i];
-                    currentAnimationNr = i;
-                }
-
-                GUI.color = Color.white;
-            }
-
-            GUILayout.Label("Add Animation:");
-            addFrameAnimation = (FrameAnimation)EditorGUILayout.ObjectField(addFrameAnimation, typeof(FrameAnimation), false);
-
-            if (addFrameAnimation != null)
-            {
-                anim.animations.Add(addFrameAnimation);
-                addFrameAnimation = null;
-            }
-
-        }
-        GUILayout.EndScrollView();
-    }
-
-    private void ShowFramesList()
-    {
-        GUILayout.BeginVertical(GUILayout.MinWidth(160));
-        {
-            EditorGUILayout.Space();
-
-            if (currentAnimation != null)
-            {
-                if (currentAnimation.animationName == "")
-                    currentAnimation.animationName = currentAnimation.name;
-
-                currentAnimation.animationName = EditorGUILayout.TextField("Animation:", currentAnimation.animationName);
-                //GUILayout.Label(currentAnimation.animationName);
-            }
-
-            if (playing)
-                GUI.color = Color.green;
-
-            if (GUILayout.Button("Play Animation"))
-            {
-                playing = !playing;
-            }
-            GUI.color = Color.white;
-
-            EditorGUILayout.Space();
-
-            GUI.color = Color.red;
-            if (GUILayout.Button("Remove Animation"))
-            {
-                anim.animations.Remove(anim.animations[currentAnimationNr]);
-            }
-            GUI.color = Color.white;
-
-            EditorGUILayout.Space();
-
-
-            if (currentAnimation != null)
-            {
-                for (int i = 0; i < currentAnimation.frames.Count; i++)
-                {
-                    if (currentFrameNr == i)
-                        GUI.color = Color.gray;
-
-                    if (GUILayout.Button("Frame " + i))
-                    {
-                        currentFrame = currentAnimation.frames[i];
-                        currentFrameNr = i;
-                    }
-
-                    GUI.color = Color.white;
-                }
-            }
-        }
-        GUILayout.EndVertical();
-    }
-
-    private void PreviewCurrentAnimation()
-    {
-        Rect rect = GUILayoutUtility.GetLastRect();
-
-        if (currentFrame != null)
-        {
-            //DrawTexturePreview(new Vector2(rect.x + 10, rect.y + 10), currentFrame.sprite, 4);
-        }
-    }
-
     */
 
-    private Rect DrawTextureRect(Vector2 offset, Sprite sprite, float scale, bool drawTexture = true)
+    private Rect DrawSpriteRect(Vector2 position, Sprite sprite, float scale, Texture2D background = null)
     {
         Rect posRect = Rect.zero;
 
@@ -710,23 +613,19 @@ public class FrameAnimatorEditor : EditorWindow
             {
                 size = size * scale,
 
-                //x = zero.x - size.x / 2 * scale,
-                //y = zero.y - size.y / 2 * scale
-
                 x = -size.x / 2 * scale,
                 y = -size.y / 2 * scale
             };
 
+            posRect.x = position.x;
+            posRect.y = position.y;
 
-            //posRect.x += offset.x * pixelPerUnit * scale;
-            //posRect.y += offset.y * pixelPerUnit * scale;
+            if (background != null)
+            {
+                GUI.DrawTexture(posRect, background);
+            }
 
-
-            posRect.x = offset.x;
-            posRect.y = offset.y;
-
-            if (drawTexture)
-                GUI.DrawTextureWithTexCoords(posRect, sprite.texture, coords);
+            GUI.DrawTextureWithTexCoords(posRect, sprite.texture, coords);
         }
 
         return posRect;

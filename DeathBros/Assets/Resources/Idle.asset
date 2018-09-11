@@ -16,14 +16,14 @@ MonoBehaviour:
   - duration: 20
     sprite: {fileID: 21300012, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtBoxes:
-    - position: {x: 0.125, y: 0.421875}
-      radius: 0.31999996
-    - position: {x: 0.15625, y: -0.359375}
-      radius: 0.5
+    - position: {x: -0.05, y: 0.421875}
+      radius: 0.26
+    - position: {x: -0.08, y: -0.1}
+      radius: 0.32
   - duration: 20
     sprite: {fileID: 21300014, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtBoxes:
-    - position: {x: 0.09375, y: 0.328125}
-      radius: 0.31999996
-    - position: {x: -0.125, y: -0.421875}
-      radius: 0.5
+    - position: {x: 0.01, y: 0.421875}
+      radius: 0.26
+    - position: {x: -0.02, y: -0.1}
+      radius: 0.32
