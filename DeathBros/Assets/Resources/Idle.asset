@@ -14,7 +14,7 @@ MonoBehaviour:
   animationName: idle
   frames:
   - duration: 20
-    sprite: {fileID: 21300004, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
+    sprite: {fileID: 21300012, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtBoxes:
     - position: {x: 0.125, y: 0.421875}
       radius: 0.31999996
