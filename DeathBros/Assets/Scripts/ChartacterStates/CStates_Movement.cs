@@ -64,8 +64,20 @@ public class CS_Idle : CState
 [System.Serializable]
 public class CS_Walking : CState
 {
+    [SerializeField] string animationSlow;
     [SerializeField] float direction = 0;
 
+    protected FrameAnimation fAnimSlow;
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        if(animationSlow != "")
+        {
+            fAnimSlow = chr.Anim.GetAnimation(animationSlow);
+        }
+    }
     public override void Enter()
     {
         base.Enter();
@@ -78,6 +90,16 @@ public class CS_Walking : CState
         base.Execute();
 
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
+
+        if(Mathf.Abs(chr.DirectionalInput.x) < 0.5f && fAnimSlow != null)
+        {
+            chr.Anim.ChangeAnimation(fAnimSlow);
+        }
+
+        if (Mathf.Abs(chr.DirectionalInput.x) >= 0.5f)
+        {
+            chr.Anim.ChangeAnimation(animation);
+        }
 
         chr.SetInputs();
 
@@ -133,7 +155,7 @@ public class CS_Skid : CState
 
         if(!changedDirection)
         {
-            if(Mathf.Sign(chr.DirectionalInput.x) != direction)
+            if(Mathf.Sign(chr.DirectionalInput.x) != direction && chr.DirectionalInput.x != 0) //don't change direction if there is no input
             {
                 chr.IsFlipped = !chr.IsFlipped;
                 changedDirection = true;

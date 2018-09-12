@@ -75,31 +75,28 @@ public class FrameAnimator : _MB
         return animations.Find(x => x.animationName == animationName);
     }
 
-    public void ChangeAnimation(string animationName)
+    public void ChangeAnimation(string animationName, bool restartIfAlreadyPlaying = false)
     {
         FrameAnimation animation = GetAnimation(animationName);
         Debug.Log(animationName);
-        ChangeAnimation(animation);
+        ChangeAnimation(animation, restartIfAlreadyPlaying);
     }
 
-    public void ChangeAnimation(FrameAnimation animation)
+    public void ChangeAnimation(FrameAnimation animation, bool restartIfAlreadyPlaying = false)
     {
         if (animation != null)
         {
-            currentAnimation = animation;
+            if (currentAnimation != animation || restartIfAlreadyPlaying)
+            {
+                currentAnimation = animation;
 
-            animTimer = 0;
-            frameTimer = 0;
+                animTimer = 0;
+                frameTimer = 0;
+            }
         }
         else
         {
             Debug.Log("Animation not found.");
-            /*
-            for (int i = 0; i < animations.Count; i++)
-            {
-                Debug.Log(animations[i].name);
-            }
-            */
         }
     }
 }

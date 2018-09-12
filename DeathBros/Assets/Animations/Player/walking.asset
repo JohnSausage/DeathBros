@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: walking
+  m_EditorClassIdentifier: 
+  animationName: walking
+  frames:
+  - duration: 2
+    sprite: {fileID: 21300004, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: -0.036458332, y: 0.41145834}
+      radius: 0.19999996
+    - position: {x: -0.052083332, y: -0.052083332}
+      radius: 0.3
+  - duration: 2
+    sprite: {fileID: 21300006, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: 0.020833334, y: 0.421875}
+      radius: 0.19999996
+    - position: {x: 0.0052083335, y: -0.010416667}
+      radius: 0.3
+  - duration: 2
+    sprite: {fileID: 21300008, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: -0.041666668, y: 0.35416666}
+      radius: 0.19999996
+    - position: {x: -0.036458332, y: -0.09375}
+      radius: 0.3
+  - duration: 2
+    sprite: {fileID: 21300010, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: -0.03125, y: 0.41145834}
+      radius: 0.19999996
+    - position: {x: -0.067708336, y: -0.041666668}
+      radius: 0.3
+  - duration: 2
+    sprite: {fileID: 21300012, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: 0.010416667, y: 0.40625}
+      radius: 0.19999996
+    - position: {x: 0.010416667, y: -0.041666668}
+      radius: 0.3
+  - duration: 2
+    sprite: {fileID: 21300014, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    hurtBoxes:
+    - position: {x: -0.052083332, y: 0.35416666}
+      radius: 0.19999996
+    - position: {x: -0.072916664, y: -0.098958336}
+      radius: 0.3
