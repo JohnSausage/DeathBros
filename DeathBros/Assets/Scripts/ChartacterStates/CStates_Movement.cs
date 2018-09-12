@@ -73,7 +73,7 @@ public class CS_Walking : CState
     {
         base.Init(chr);
 
-        if(animationSlow != "")
+        if (animationSlow != "")
         {
             fAnimSlow = chr.Anim.GetAnimation(animationSlow);
         }
@@ -91,12 +91,12 @@ public class CS_Walking : CState
 
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
-        if(Mathf.Abs(chr.DirectionalInput.x) < 0.5f && fAnimSlow != null)
+        if (Mathf.Abs(chr.DirectionalInput.x) < 0.5f && fAnimSlow != null)
         {
             chr.Anim.ChangeAnimation(fAnimSlow);
         }
 
-        if (Mathf.Abs(chr.DirectionalInput.x) >= 0.5f)
+        if (Mathf.Abs(chr.DirectionalInput.x) >= 0.7f)
         {
             chr.Anim.ChangeAnimation(animation);
         }
@@ -153,9 +153,9 @@ public class CS_Skid : CState
         if (chr.DirectionalInput.x > 0) chr.IsFlipped = false;
         */
 
-        if(!changedDirection)
+        if (!changedDirection)
         {
-            if(Mathf.Sign(chr.DirectionalInput.x) != direction && chr.DirectionalInput.x != 0) //don't change direction if there is no input
+            if (Mathf.Sign(chr.DirectionalInput.x) != direction && chr.DirectionalInput.x != 0) //don't change direction if there is no input
             {
                 chr.IsFlipped = !chr.IsFlipped;
                 changedDirection = true;
@@ -335,15 +335,18 @@ public class CS_Wallsliding : CState
     {
         base.Execute();
 
-        if (chr.Ctr.velocity.y <= 0)
-            chr.Spr.flipX = chr.Ctr.wallDirection == 1;
+        //if (chr.Ctr.velocity.y <= 0)
 
-        chr.SetInputs(0.1f);
+        chr.Spr.flipX = chr.Ctr.wallDirection == -1;
+
+        chr.SetInputs();
 
         chr.CS_CheckLanding();
 
-        if (!chr.Ctr.onWall)
+        if (!chr.Ctr.oldOnWall)
+        {
             ChangeState(chr.movementStates.jumping);
+        }
 
         if (chr.Jump)
         {
@@ -421,7 +424,7 @@ public class CS_Walljumping : CState
         if (chr.Ctr.onWall)
             ChangeState(chr.movementStates.wallsliding);
 
-        if(chr.Jump && chr.jumpsUsed < chr.jumps)
+        if (chr.Jump && chr.jumpsUsed < chr.jumps)
         {
             ChangeState(chr.movementStates.doubleJumpsquat);
         }
