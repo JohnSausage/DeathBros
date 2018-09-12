@@ -51,7 +51,7 @@ MonoBehaviour:
   - duration: 5
     sprite: {fileID: 21300010, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtBoxes:
-    - position: {x: 0.265625, y: 0.40625}
+    - position: {x: 0.265625, y: 0.390625}
       radius: 0.25999996
-    - position: {x: 0.140625, y: -0.15625}
+    - position: {x: 0.15625, y: -0.109375}
       radius: 0.34999996
