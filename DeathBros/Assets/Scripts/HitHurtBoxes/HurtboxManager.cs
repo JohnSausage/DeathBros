@@ -9,6 +9,7 @@ public class HurtboxManager : _MB
     private Frame previousFrame;
     private SpriteRenderer spr;
     private bool flipped;
+
     public override void Init()
     {
         base.Init();
@@ -35,9 +36,9 @@ public class HurtboxManager : _MB
         {
             ClearHurtboxes();
 
-            for (int i = 0; i < frame.hurtBoxes.Count; i++)
+            for (int i = 0; i < frame.hurtboxes.Count; i++)
             {
-                AddHurtboxColllider(frame.hurtBoxes[i]);
+                AddHurtboxColllider(frame.hurtboxes[i]);
             }
         }
 
@@ -89,3 +90,4 @@ public class Hurtbox
         };
     }
 }
+

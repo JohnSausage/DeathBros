@@ -395,21 +395,23 @@ public class Controller2D : MonoBehaviour
 
 
         //CHECK FOR COLLISIONS//////////////////////////////////////////////////////////
-        RaycastHit2D collisonCheck = RCXY();
 
-        if( oldOnWall && !grounded)
+        if(oldOnWall)
         {
-            velocity.x = input.x;
+            velocity.x = input.x * movespeed / 60;
         }
+
+        RaycastHit2D collisionCheck = RCXY();
+
         //try to stop collision by just moving on x axis
-        if (collisonCheck)
+        if (collisionCheck)
         //if (collisonCheck)
         {
-
             velocity.x = 0;
-            collisonCheck = RCXY();
+            collisionCheck = RCXY();
 
-            if (!collisonCheck && !grounded)
+
+            if (!collisionCheck && !grounded)
             {
                 onWall = true;
                 wallDirection = (int)Mathf.Sign(input.x);
@@ -419,17 +421,17 @@ public class Controller2D : MonoBehaviour
                     velocity.y = -wallSlideSpeed / 60;
                 }
             }
+
         }
 
-
-        if (collisonCheck)
+        if (collisionCheck)
         {
             //triangle calculations
-            hitDirection = (Vector2)bounds.center - collisonCheck.point;
+            hitDirection = (Vector2)bounds.center - collisionCheck.point;
             hitDirection = new Vector2(Mathf.Sign(hitDirection.x), Mathf.Sign(hitDirection.y));
 
-            gamma = Mathf.Abs(90 - Vector2.Angle(collisonCheck.normal, hitDirection));
-            alpha = Mathf.Abs(90 - Vector2.Angle(collisonCheck.normal, velocity));
+            gamma = Mathf.Abs(90 - Vector2.Angle(collisionCheck.normal, hitDirection));
+            alpha = Mathf.Abs(90 - Vector2.Angle(collisionCheck.normal, velocity));
 
             float distance = skin;
 
@@ -437,7 +439,7 @@ public class Controller2D : MonoBehaviour
             if (sin != 0)
                 distance = diag * Mathf.Sin(gamma * Mathf.Deg2Rad) / sin;
 
-            float moveDistance = (collisonCheck.distance - distance);
+            float moveDistance = (collisionCheck.distance - distance);
 
             //reduce velocity
             velocity.Normalize();
@@ -459,11 +461,8 @@ public class Controller2D : MonoBehaviour
         {
             currentPlatform = null;
         }
+
         
-        if(!onWall && oldOnWall)
-        {
-            Debug.Log("here");
-        }
 
     }
 

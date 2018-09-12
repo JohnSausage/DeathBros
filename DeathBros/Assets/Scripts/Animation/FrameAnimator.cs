@@ -72,7 +72,7 @@ public class FrameAnimator : _MB
 
     public FrameAnimation GetAnimation(string animationName)
     {
-        return animations.Find(x => x.animationName == animationName);
+        return animations.Find(x => x.name == animationName);
     }
 
     public void ChangeAnimation(string animationName, bool restartIfAlreadyPlaying = false)

@@ -15,15 +15,17 @@ MonoBehaviour:
   frames:
   - duration: 2
     sprite: {fileID: 21300018, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.052083332, y: -0.125}
-      radius: 0.19999996
-    - position: {x: -0.041666668, y: -0.546875}
+    hurtboxes:
+    - position: {x: -0.046336237, y: -0.14762928}
+      radius: 0.2
+    - position: {x: -0.024784515, y: -0.5355603}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300016, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.03125, y: 0.104166664}
-      radius: 0.19999996
-    - position: {x: -0.078125, y: -0.296875}
+    hurtboxes:
+    - position: {x: -0.035560377, y: 0.16487072}
+      radius: 0.2
+    - position: {x: -0.06788796, y: -0.2553879}
       radius: 0.3
+    hitboxes: []

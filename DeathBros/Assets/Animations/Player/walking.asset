@@ -15,43 +15,49 @@ MonoBehaviour:
   frames:
   - duration: 2
     sprite: {fileID: 21300004, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.036458332, y: 0.41145834}
-      radius: 0.19999996
-    - position: {x: -0.052083332, y: -0.052083332}
+    hurtboxes:
+    - position: {x: -0.033018846, y: 0.41823897}
+      radius: 0.2
+    - position: {x: -0.06788796, y: -0.0075430702}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300006, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: 0.020833334, y: 0.421875}
-      radius: 0.19999996
-    - position: {x: 0.0052083335, y: -0.010416667}
+    hurtboxes:
+    - position: {x: 0.029094793, y: 0.4234914}
+      radius: 0.2
+    - position: {x: -0.014008653, y: -0.018318933}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300008, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.041666668, y: 0.35416666}
-      radius: 0.19999996
-    - position: {x: -0.036458332, y: -0.09375}
+    hurtboxes:
+    - position: {x: -0.035560377, y: 0.3372845}
+      radius: 0.2
+    - position: {x: -0.0571121, y: -0.07219824}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300010, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.03125, y: 0.41145834}
-      radius: 0.19999996
-    - position: {x: -0.067708336, y: -0.041666668}
+    hurtboxes:
+    - position: {x: -0.033018846, y: 0.41823897}
+      radius: 0.2
+    - position: {x: -0.06446539, y: -0.037735876}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300012, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: 0.010416667, y: 0.40625}
-      radius: 0.19999996
-    - position: {x: 0.010416667, y: -0.041666668}
+    hurtboxes:
+    - position: {x: 0.029094793, y: 0.39116383}
+      radius: 0.2
+    - position: {x: -0.0032327913, y: -0.039870657}
       radius: 0.3
+    hitboxes: []
   - duration: 2
     sprite: {fileID: 21300014, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
-    hurtBoxes:
-    - position: {x: -0.052083332, y: 0.35416666}
-      radius: 0.19999996
-    - position: {x: -0.072916664, y: -0.098958336}
+    hurtboxes:
+    - position: {x: -0.024784515, y: 0.3372845}
+      radius: 0.2
+    - position: {x: -0.06788796, y: -0.0829741}
       radius: 0.3
+    hitboxes: []

@@ -138,6 +138,8 @@ public class CS_Skid : CState
         timer = 0;
 
         changedDirection = false;
+
+        chr.Anim.animationSpeed = 0.5f;
     }
 
     public override void Execute()
@@ -162,7 +164,7 @@ public class CS_Skid : CState
             }
         }
 
-        chr.SetInputs(new Vector2(direction, 0));
+        chr.SetInputs(new Vector2(direction * 0.2f, 0));
 
         if (timer >= duration)
         {
@@ -281,14 +283,31 @@ public class CS_Landing : CState
 [System.Serializable]
 public class CS_Jumping : CState
 {
+    [SerializeField] string jumpRisingAnimation;
+    FrameAnimation jumpRisingFA;
+
     [SerializeField] int allowWallJumpAfterWallSlidingDuration = 5;
     int allowWallJumpAfterWallSlidingTimer;
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        jumpRisingFA = chr.Anim.GetAnimation(jumpRisingAnimation);
+    }
 
     public bool AllowWallJump
     {
         set
         {
-            allowWallJumpAfterWallSlidingTimer = allowWallJumpAfterWallSlidingDuration;
+            if (value == true)
+            {
+                allowWallJumpAfterWallSlidingTimer = allowWallJumpAfterWallSlidingDuration;
+            }
+            if (value == false)
+            {
+                allowWallJumpAfterWallSlidingTimer = 0;
+            }
         }
         get
         {
@@ -299,6 +318,11 @@ public class CS_Jumping : CState
     public override void Execute()
     {
         base.Execute();
+
+        if (chr.Ctr.velocity.y > 0)
+            chr.Anim.ChangeAnimation(jumpRisingFA);
+        else
+            chr.Anim.ChangeAnimation(animation);
 
         allowWallJumpAfterWallSlidingTimer--;
 
@@ -409,6 +433,8 @@ public class CS_Walljumping : CState
     {
         base.Enter();
         timer = 0;
+        chr.movementStates.jumping.AllowWallJump = false;
+
     }
 
     public override void Execute()
@@ -424,10 +450,12 @@ public class CS_Walljumping : CState
         if (chr.Ctr.onWall)
             ChangeState(chr.movementStates.wallsliding);
 
+        /*
         if (chr.Jump && chr.jumpsUsed < chr.jumps)
         {
             ChangeState(chr.movementStates.doubleJumpsquat);
         }
+        */
 
         if (timer >= duration)
             ChangeState(chr.movementStates.jumping);

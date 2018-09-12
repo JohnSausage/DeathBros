@@ -545,7 +545,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967334111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.15, y: -6.27, z: 0}
+  m_LocalPosition: {x: 100.67, y: -3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1798455331}
@@ -606,10 +606,11 @@ MonoBehaviour:
       animationName: jumpsquat
       duration: 3
     jumping:
-      animationName: idle
+      animationName: jumpFalling
+      jumpRisingAnimation: jumpRising
       allowWallJumpAfterWallSlidingDuration: 3
     doubleJumpsquat:
-      animationName: run
+      animationName: jumpsquat
       duration: 3
     landing:
       animationName: idle
@@ -617,14 +618,14 @@ MonoBehaviour:
     wallsliding:
       animationName: wallsliding
     walljumpStart:
-      animationName: run
+      animationName: wallJumping
       jumpHeightReductionFactor: 0.9
-      duration: 1
+      duration: 4
     walljumping:
-      animationName: run
+      animationName: wallJumping
       duration: 15
     skid:
-      animationName: idle
+      animationName: walking
       duration: 5
 --- !u!61 &967334117
 BoxCollider2D:
@@ -1036,7 +1037,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

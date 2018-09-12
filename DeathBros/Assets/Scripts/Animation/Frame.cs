@@ -8,10 +8,11 @@ public class Frame
     public int duration = 1;
     public Sprite sprite;
 
-    public List<Hurtbox> hurtBoxes;
+    public List<Hurtbox> hurtboxes;
+    public List<Hitbox> hitboxes;
 
     public Frame()
     {
-        hurtBoxes = new List<Hurtbox>();
+        hurtboxes = new List<Hurtbox>();
     }
 }

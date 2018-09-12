@@ -9,15 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: wallsliding
+  m_Name: jumpFalling
   m_EditorClassIdentifier: 
-  animationName: wallsliding
+  animationName: jumpFalling
   frames:
   - duration: 3
-    sprite: {fileID: 21300034, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300032, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     hurtboxes:
-    - position: {x: -0.014008653, y: 0.32650864}
+    - position: {x: 0.10452583, y: 0.3696121}
       radius: 0.2
-    - position: {x: 0.11530169, y: -0.061422378}
+    - position: {x: -0.024784515, y: -0.039870657}
       radius: 0.3
     hitboxes: []
