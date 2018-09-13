@@ -11,21 +11,34 @@ public class CStates_Movement
     public CS_Walking walking;
     public CS_Jumpsquat jumpsquat;
     public CS_Jumping jumping;
-    public CS_DoubleJumpsquat doubleJumpsquat;
     public CS_Landing landing;
-    public CS_Wallsliding wallsliding;
-    public CS_WalljumpStart walljumpStart;
-    public CS_Walljumping walljumping;
-    public CS_Skid skid;
 
-    public void Init(Character chr)
+    public virtual void Init(Character chr)
     {
         idle.Init(chr);
         walking.Init(chr);
         jumpsquat.Init(chr);
         jumping.Init(chr);
-        doubleJumpsquat.Init(chr);
         landing.Init(chr);
+    }
+}
+
+[System.Serializable]
+public class CStates_AdvancedMovement : CStates_Movement
+{
+    [Space]
+
+    public CS_DoubleJumpsquat doubleJumpsquat;
+    public CS_Wallsliding wallsliding;
+    public CS_WalljumpStart walljumpStart;
+    public CS_Walljumping walljumping;
+    public CS_Skid skid;
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        doubleJumpsquat.Init(chr);
         wallsliding.Init(chr);
         walljumpStart.Init(chr);
         walljumping.Init(chr);
@@ -36,6 +49,12 @@ public class CStates_Movement
 [System.Serializable]
 public class CS_Idle : CState
 {
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+        if (animationName == "") animationName = "idle";
+    }
+
     public override void Enter()
     {
         base.Enter();
@@ -49,12 +68,12 @@ public class CS_Idle : CState
 
         if (Mathf.Abs(chr.DirectionalInput.x) != 0)
         {
-            ChangeState(chr.movementStates.walking);
+            ChangeState(chr.advancedMovementStates.walking);
         }
 
         if (chr.Jump)
         {
-            ChangeState(chr.movementStates.jumpsquat);
+            ChangeState(chr.advancedMovementStates.jumpsquat);
         }
 
         chr.CS_CheckIfStillGrounded();
@@ -109,13 +128,13 @@ public class CS_Walking : CState
 
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
         {
-            chr.movementStates.skid.direction = direction;
-            ChangeState(chr.movementStates.skid);
+            chr.advancedMovementStates.skid.direction = direction;
+            ChangeState(chr.advancedMovementStates.skid);
         }
 
         if (chr.Jump)
         {
-            ChangeState(chr.movementStates.jumpsquat);
+            ChangeState(chr.advancedMovementStates.jumpsquat);
         }
 
         chr.CS_CheckIfStillGrounded();
@@ -168,12 +187,12 @@ public class CS_Skid : CState
 
         if (timer >= duration)
         {
-            ChangeState(chr.movementStates.idle);
+            ChangeState(chr.advancedMovementStates.idle);
         }
 
         if (chr.Jump)
         {
-            ChangeState(chr.movementStates.jumpsquat);
+            ChangeState(chr.advancedMovementStates.jumpsquat);
         }
     }
 }
@@ -199,7 +218,7 @@ public class CS_Jumpsquat : CState
 
         if (timer >= duration)
         {
-            ChangeState(chr.movementStates.jumping);
+            ChangeState(chr.advancedMovementStates.jumping);
 
             if (chr.HoldJump)
             {
@@ -240,7 +259,7 @@ public class CS_DoubleJumpsquat : CState
 
         if (timer >= duration)
         {
-            ChangeState(chr.movementStates.jumping);
+            ChangeState(chr.advancedMovementStates.jumping);
             chr.Ctr.jumpVelocity = chr.jumpStrength;
         }
     }
@@ -334,16 +353,16 @@ public class CS_Jumping : CState
         {
             if (AllowWallJump)
             {
-                ChangeState(chr.movementStates.walljumpStart);
+                ChangeState(chr.advancedMovementStates.walljumpStart);
             }
             else
             {
-                chr.CS_CheckForJump();
+                ChangeState(chr.advancedMovementStates.doubleJumpsquat);
             }
         }
 
         if (chr.Ctr.onWall)
-            ChangeState(chr.movementStates.wallsliding);
+            ChangeState(chr.advancedMovementStates.wallsliding);
     }
 }
 
@@ -386,13 +405,13 @@ public class CS_Wallsliding : CState
 
         if (!chr.Ctr.oldOnWall)
         {
-            ChangeState(chr.movementStates.jumping);
+            ChangeState(chr.advancedMovementStates.jumping);
         }
 
         if (chr.Jump)
         {
-            chr.movementStates.walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
-            ChangeState(chr.movementStates.walljumpStart);
+            chr.advancedMovementStates.walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
+            ChangeState(chr.advancedMovementStates.walljumpStart);
         }
     }
 
@@ -400,7 +419,7 @@ public class CS_Wallsliding : CState
     {
         base.Exit();
 
-        chr.movementStates.jumping.AllowWallJump = true;
+        chr.advancedMovementStates.jumping.AllowWallJump = true;
     }
 }
 
@@ -432,8 +451,8 @@ public class CS_WalljumpStart : CState
             chr.SetInputs(new Vector2(walljumpDirection, 0));
             chr.Ctr.jumpVelocity = chr.jumpStrength * jumpHeightReductionFactor;
 
-            chr.movementStates.walljumping.walljumpDirection = walljumpDirection;
-            ChangeState(chr.movementStates.walljumping);
+            chr.advancedMovementStates.walljumping.walljumpDirection = walljumpDirection;
+            ChangeState(chr.advancedMovementStates.walljumping);
         }
     }
 }
@@ -450,7 +469,7 @@ public class CS_Walljumping : CState
     {
         base.Enter();
         timer = 0;
-        chr.movementStates.jumping.AllowWallJump = false;
+        chr.advancedMovementStates.jumping.AllowWallJump = false;
 
     }
 
@@ -465,7 +484,7 @@ public class CS_Walljumping : CState
         chr.CS_CheckLanding();
 
         if (chr.Ctr.onWall)
-            ChangeState(chr.movementStates.wallsliding);
+            ChangeState(chr.advancedMovementStates.wallsliding);
 
         /*
         if (chr.Jump && chr.jumpsUsed < chr.jumps)
@@ -475,6 +494,6 @@ public class CS_Walljumping : CState
         */
 
         if (timer >= duration)
-            ChangeState(chr.movementStates.jumping);
+            ChangeState(chr.advancedMovementStates.jumping);
     }
 }

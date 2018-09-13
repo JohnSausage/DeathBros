@@ -500,7 +500,7 @@ public class FrameAnimatorEditor : EditorWindow
                     }
                 }
 
-                if(settingHitbox != null)
+                if (settingHitbox != null)
                 {
                     Repaint();
 
@@ -530,34 +530,40 @@ public class FrameAnimatorEditor : EditorWindow
 
                 if (showHurtboxes)
                 {
-                    foreach (Hurtbox h in currentFrame.hurtboxes)
+                    if (currentFrame.hurtboxes != null)
                     {
-                        hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
-                        hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
-
-                        GUI.DrawTexture(hboxRect, hurtboxTexture);
-
-                        //Check if hurtbox is clicked
-                        if (hboxRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+                        foreach (Hurtbox h in currentFrame.hurtboxes)
                         {
-                            settingHurtbox = h;
-                        }
+                            hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
+                            hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
 
+                            GUI.DrawTexture(hboxRect, hurtboxTexture);
+
+                            //Check if hurtbox is clicked
+                            if (hboxRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+                            {
+                                settingHurtbox = h;
+                            }
+
+                        }
                     }
 
-                    foreach (Hitbox h in currentFrame.hitboxes)
+                    if (currentFrame.hitboxes != null)
                     {
-                        hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
-                        hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
-
-                        GUI.DrawTexture(hboxRect, hitboxTexture);
-
-                        //Check if hurtbox is clicked
-                        if (hboxRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+                        foreach (Hitbox h in currentFrame.hitboxes)
                         {
-                            settingHitbox = h;
-                        }
+                            hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
+                            hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
 
+                            GUI.DrawTexture(hboxRect, hitboxTexture);
+
+                            //Check if hurtbox is clicked
+                            if (hboxRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+                            {
+                                settingHitbox = h;
+                            }
+
+                        }
                     }
                 }
 
@@ -633,7 +639,7 @@ public class FrameAnimatorEditor : EditorWindow
             {
                 DisplayHurtboxTab();
             }
-            else if(specialInfoTabNr == 1)
+            else if (specialInfoTabNr == 1)
             {
                 DisplayHitboxTab();
             }

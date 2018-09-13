@@ -23,7 +23,9 @@ public class Character : _MB
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
     public Controller2D Ctr { get; protected set; }
+
     public CStates_Movement movementStates;
+    public CStates_AdvancedMovement advancedMovementStates;
 
     public bool IsFlipped
     {
@@ -49,7 +51,8 @@ public class Character : _MB
         Ctr = GetComponent<Controller2D>();
 
         movementStates.Init(this);
-        CSMachine.ChangeState(movementStates.idle);
+        advancedMovementStates.Init(this);
+        CSMachine.ChangeState(advancedMovementStates.idle);
     }
 
     protected virtual void FixedUpdate()
@@ -99,37 +102,40 @@ public class Character : _MB
         SetInputs();
     }
 
+    /*
     public virtual void CS_CheckForJump()
     {
         if (jumpsUsed < jumps)
         {
             if (Ctr.grounded)
-                CSMachine.ChangeState(movementStates.jumpsquat);
+                CSMachine.ChangeState(advancedMovementStates.jumpsquat);
             else
-                CSMachine.ChangeState(movementStates.doubleJumpsquat);
+                CSMachine.ChangeState(advancedMovementStates.doubleJumpsquat);
         }
     }
 
     public virtual void CS_StartJump()
     {
         Ctr.jumpVelocity = jumpStrength;
-        CSMachine.ChangeState(movementStates.jumping);
+        CSMachine.ChangeState(advancedMovementStates.jumping);
     }
+     */
 
     public virtual void CS_CheckLanding()
     {
         if (Ctr.grounded)
-            CSMachine.ChangeState(movementStates.landing);
+            CSMachine.ChangeState(advancedMovementStates.landing);
     }
 
     public virtual void CS_CheckIfStillGrounded()
     {
         if (!Ctr.grounded)
-            CSMachine.ChangeState(movementStates.jumping);
+            CSMachine.ChangeState(advancedMovementStates.jumping);
     }
 
     public virtual void CS_SetIdle()
     {
-        CSMachine.ChangeState(movementStates.idle);
+        CSMachine.ChangeState(advancedMovementStates.idle);
     }
+   
 }
