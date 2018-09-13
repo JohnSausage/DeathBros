@@ -407,7 +407,9 @@ public class Controller2D : MonoBehaviour
         if (collisionCheck)
         //if (collisonCheck)
         {
-            velocity.x = 0;
+            velocity.x = 0; //should do triangle calculations
+            //velocity.x = collisionCheck.distance-skin * Mathf.Sign(input.x);
+
             collisionCheck = RCXY();
 
 

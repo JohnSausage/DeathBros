@@ -350,6 +350,16 @@ public class CS_Jumping : CState
 [System.Serializable]
 public class CS_Wallsliding : CState
 {
+    [SerializeField] string wallUpAnimation;
+    private FrameAnimation wallUpFA;
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        wallUpFA = chr.Anim.GetAnimation(wallUpAnimation);
+    }
+
     public override void Enter()
     {
         base.Enter();
@@ -359,7 +369,14 @@ public class CS_Wallsliding : CState
     {
         base.Execute();
 
-        //if (chr.Ctr.velocity.y <= 0)
+        if (chr.Ctr.velocity.y > 0)
+        {
+            chr.Anim.ChangeAnimation(wallUpFA);
+        }
+        else
+        {
+            chr.Anim.ChangeAnimation(animation);
+        }
 
         chr.Spr.flipX = chr.Ctr.wallDirection == -1;
 
