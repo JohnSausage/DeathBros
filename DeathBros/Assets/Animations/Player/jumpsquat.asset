@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: jumpsquat
   m_EditorClassIdentifier: 
-  animationName: jumpsquat
   frames:
   - duration: 2
     sprite: {fileID: 21300018, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
@@ -26,6 +25,16 @@ MonoBehaviour:
     hurtboxes:
     - position: {x: -0.035560377, y: 0.16487072}
       radius: 0.2
-    - position: {x: -0.06788796, y: -0.2553879}
+    - position: {x: -0.046875, y: -0.28125}
       radius: 0.3
-    hitboxes: []
+    hitboxes:
+    - position: {x: 0.015625, y: -0.03125}
+      radius: 0.8899996
+      damage:
+        damageNumber: 2
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 10
+        KnockbackGrowth: 1
+        damageType: 0
+      ID: 0
+      getNewID: 0

@@ -5,6 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class Stats
 {
+    public Stat maxHealth = new Stat("MaxHealth", 100);
+    public float currentHealth = 0;
+    [Space]
+    public Stat weight = new Stat("Weight", 100);
     public Stat movespeed = new Stat("Movespeed", 3);
     public Stat jumpStrength = new Stat("JumpStrength", 20);
     public Stat gravity = new Stat("Gravity", -1);
@@ -24,6 +28,8 @@ public class Stats
         stats.Add(jumpStrength);
         stats.Add(gravity);
         stats.Add(jumps);
+
+        currentHealth = maxHealth.baseValue;
     }
 
     public void AddStat(Stat stat)

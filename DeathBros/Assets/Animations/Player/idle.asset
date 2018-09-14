@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: idle
   m_EditorClassIdentifier: 
-  animationName: idle
   frames:
   - duration: 20
     sprite: {fileID: 21300012, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
@@ -20,9 +19,7 @@ MonoBehaviour:
       radius: 0.2
     - position: {x: -0.06446539, y: -0.037735876}
       radius: 0.3
-    hitboxes:
-    - position: {x: 0.55711204, y: 0.078663826}
-      radius: 0.34999996
+    hitboxes: []
   - duration: 20
     sprite: {fileID: 21300014, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtboxes:

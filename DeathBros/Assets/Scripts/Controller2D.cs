@@ -7,6 +7,9 @@ using UnityEngine;
 public class Controller2D : MonoBehaviour
 {
     public Vector2 input;
+    public Vector2 knockback;
+    public bool slowDown;
+
     public float jumpVelocity;
 
     public Vector2 velocity;
@@ -392,10 +395,23 @@ public class Controller2D : MonoBehaviour
 
         }
 
+        //APPLY KNOCKBACK ??????????????????????????????????????????????????????????????
+        if (knockback != Vector2.zero)
+        {
+            velocity.x += knockback.x / 60;
+            velocity.y = knockback.y / 60;
 
+            grounded = false;
+
+        }
+        knockback = Vector2.zero;
+
+        if(slowDown)
+        {
+            velocity *= 0.1f;
+        }
 
         //CHECK FOR COLLISIONS//////////////////////////////////////////////////////////
-
         if(oldOnWall)
         {
             velocity.x = input.x * movespeed / 60;

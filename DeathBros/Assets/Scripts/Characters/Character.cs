@@ -13,7 +13,7 @@ public class Character : _MB
 
     //public float jumpStrength = 20;
     //public int jumps = 2;
-    public int jumpsUsed = 0;   
+    public int jumpsUsed { get; set; } 
 
     [Space]
 
@@ -31,6 +31,7 @@ public class Character : _MB
 
     public Stats stats;
 
+    public Damage currentDamae { get; protected set; }
 
     public bool IsFlipped
     {
@@ -84,6 +85,7 @@ public class Character : _MB
         UpdatesStatsForCtr();
         Ctr.ManualFixedUpdate();
 
+        currentDamae = null;
         Jump = false;
     }
 
@@ -98,14 +100,30 @@ public class Character : _MB
 
     }
 
-    public virtual void ModHealth(float value)
+    public virtual void TakeDamage(Damage damage)
     {
+        currentDamae = damage;
 
+        CState currentState = (CState)CSMachine.CurrentState;
+        currentState.TakeDamage(damage);
+
+        stats.currentHealth -= damage.damageNumber;
+
+        Vector2 knockback = damage.knockBackDirection * damage.baseKnockback;
+
+        Ctr.knockback = knockback;
+
+        if(stats.currentHealth < 0)
+        {
+            Die();
+        }
     }
 
     public virtual void Die()
     {
+        Debug.Log(this.name + " died");
 
+        Destroy(gameObject);
     }
 
     public virtual void SetInputs()

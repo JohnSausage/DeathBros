@@ -731,6 +731,19 @@ public class FrameAnimatorEditor : EditorWindow
                 currentFrame.hitboxes[i].position = EditorGUILayout.Vector2Field("Position", currentFrame.hitboxes[i].position);
                 currentFrame.hitboxes[i].radius = EditorGUILayout.FloatField("Radius", currentFrame.hitboxes[i].radius);
 
+                EditorGUILayout.BeginVertical("box");
+                {
+                    EditorGUILayout.LabelField("Damage Options:");
+
+                    currentFrame.hitboxes[i].damage.damageNumber = EditorGUILayout.FloatField("Damage", currentFrame.hitboxes[i].damage.damageNumber);
+                    currentFrame.hitboxes[i].damage.knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentFrame.hitboxes[i].damage.knockBackDirection);
+
+                    currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
+                    currentFrame.hitboxes[i].damage.KnockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.KnockbackGrowth);
+                    currentFrame.hitboxes[i].damage.damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentFrame.hitboxes[i].damage.damageType);
+                }
+                EditorGUILayout.EndVertical();
+
                 EditorGUILayout.Space();
 
                 EditorGUILayout.BeginHorizontal();

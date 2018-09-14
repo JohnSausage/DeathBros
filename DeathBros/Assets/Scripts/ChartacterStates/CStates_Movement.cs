@@ -12,6 +12,7 @@ public class CStates_Movement
     public CS_Jumpsquat jumpsquat;
     public CS_Jumping jumping;
     public CS_Landing landing;
+    public CS_Hitstun hitstun;
 
     public virtual void Init(Character chr)
     {
@@ -20,6 +21,7 @@ public class CStates_Movement
         jumpsquat.Init(chr);
         jumping.Init(chr);
         landing.Init(chr);
+        hitstun.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }
@@ -92,6 +94,11 @@ public class CS_Idle : CState
         }
 
         chr.CS_CheckIfStillGrounded();
+
+        //if(damage != null)
+        {
+            //ChangeState(hitstun);
+        }
     }
 }
 
@@ -569,6 +576,28 @@ public class CS_Walljumping : CState
         {
             //ChangeState(chr.advancedMovementStates.jumping);
             ChangeState(jumping);
+        }
+    }
+}
+
+[System.Serializable]
+public class CS_Hitstun : CState
+{
+    private CS_Landing landing;
+
+    public override void InitExitStates()
+    {
+        //base.InitExitStates();
+
+        landing = (CS_Landing)chr.GetState(typeof(CS_Landing));
+    }
+    public override void Execute()
+    {
+        base.Execute();
+
+        if(chr.Ctr.grounded)
+        {
+            ChangeState(landing);
         }
     }
 }

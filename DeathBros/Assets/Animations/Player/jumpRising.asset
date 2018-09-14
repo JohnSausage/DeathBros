@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: jumpRising
   m_EditorClassIdentifier: 
-  animationName: jumping
   frames:
   - duration: 3
     sprite: {fileID: 21300038, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}

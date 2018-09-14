@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(HurtboxManager))]
+[RequireComponent(typeof(HitboxManager))]
 public class FrameAnimator : _MB
 {
     public FrameAnimation currentAnimation;
@@ -13,6 +16,7 @@ public class FrameAnimator : _MB
 
     private SpriteRenderer spr;
     private HurtboxManager hubM;
+    private HitboxManager hibM;
 
     private float frameTimer;
     private int animTimer;
@@ -23,6 +27,7 @@ public class FrameAnimator : _MB
 
         spr = GetComponent<SpriteRenderer>();
         hubM = GetComponent<HurtboxManager>();
+        hibM = GetComponent<HitboxManager>();
 
         frameTimer = 0;
         animTimer = 0;
@@ -50,6 +55,7 @@ public class FrameAnimator : _MB
 
             spr.sprite = currentFrame.sprite;
             hubM.SetHurtboxes(currentFrame);
+            hibM.DrawHitboxes(currentFrame);
 
             frameTimer += animationSpeed;
 

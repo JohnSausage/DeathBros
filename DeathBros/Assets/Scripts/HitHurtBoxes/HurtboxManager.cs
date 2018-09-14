@@ -9,13 +9,17 @@ public class HurtboxManager : _MB
     private Frame previousFrame;
     private SpriteRenderer spr;
     private bool flipped;
+    private Transform parent;
 
+    public Queue<int> hitIDs = new Queue<int>();
     public override void Init()
     {
         base.Init();
 
         hurtboxes = new List<CircleCollider2D>();
         spr = GetComponent<SpriteRenderer>();
+
+        parent = transform.Find("Hurtboxes");
     }
 
     public void SetHurtboxes(Frame frame)
@@ -47,8 +51,7 @@ public class HurtboxManager : _MB
 
     private void AddHurtboxColllider(Hurtbox hurtbox)
     {
-        CircleCollider2D newCollider = gameObject.AddComponent<CircleCollider2D>();
-
+        CircleCollider2D newCollider = parent.gameObject.AddComponent<CircleCollider2D>();
         if (!flipped)
         {
             newCollider.offset = hurtbox.position;

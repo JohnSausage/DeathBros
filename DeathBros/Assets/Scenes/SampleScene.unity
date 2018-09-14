@@ -265,6 +265,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a96eff652ef8acd44a2a3491e876039c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &185316093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 185316094}
+  m_Layer: 11
+  m_Name: Hurtboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &185316094
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185316093}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 193215731}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &193215727
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +303,7 @@ GameObject:
   - component: {fileID: 193215731}
   - component: {fileID: 193215730}
   - component: {fileID: 193215734}
+  - component: {fileID: 193215735}
   - component: {fileID: 193215729}
   - component: {fileID: 193215728}
   - component: {fileID: 193215732}
@@ -312,20 +341,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrongInputs: {x: 0, y: 0}
-  jumpsUsed: 0
   CSMachine:
     currentState: 
   cStates: []
   stats:
+    maxHealth:
+      statName: MaxHealth
+      baseValue: 100
+    currentHealth: 0
+    weight:
+      statName: Weight
+      baseValue: 100
     movespeed:
       statName: Movespeed
-      baseValue: 0
+      baseValue: 2
     jumpStrength:
-      statName: 
-      baseValue: 0
+      statName: JumpStrength
+      baseValue: 10
     gravity:
-      statName: 
-      baseValue: 0
+      statName: Gravity
+      baseValue: -1
     jumps:
       statName: Jumps
       baseValue: 2
@@ -404,7 +439,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.74, y: -6.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 185316094}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -490,6 +526,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxes: []
+--- !u!114 &193215735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 193215727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce20147491b8224f9e36b3d2082c3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  currentID: 0
 --- !u!1 &291233833
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +759,7 @@ GameObject:
   - component: {fileID: 967334112}
   - component: {fileID: 967334114}
   - component: {fileID: 967334115}
+  - component: {fileID: 967334119}
   - component: {fileID: 967334116}
   - component: {fileID: 967334118}
   - component: {fileID: 967334117}
@@ -773,6 +825,7 @@ Transform:
   m_LocalPosition: {x: 29.8, y: -5.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1502034169}
   - {fileID: 1798455331}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -815,16 +868,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrongInputs: {x: 0, y: 0}
-  jumpsUsed: 0
   CSMachine:
     currentState: 
   cStates: []
   stats:
+    maxHealth:
+      statName: MaxHealth
+      baseValue: 100
+    currentHealth: 0
+    weight:
+      statName: Weight
+      baseValue: 100
     movespeed:
       statName: Movespeed
       baseValue: 10
     jumpStrength:
-      statName: Jump Strength
+      statName: JumpStrength
       baseValue: 20
     gravity:
       statName: Gravity
@@ -942,6 +1001,21 @@ MonoBehaviour:
   maxSlopeDownAngle: 45
   maxSlopeUpAngle: 45
   velocityXSmoothingAerial: 0
+--- !u!114 &967334119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967334111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce20147491b8224f9e36b3d2082c3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  currentID: 0
 --- !u!4 &1089103414 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4617106639234704, guid: a96eff652ef8acd44a2a3491e876039c,
@@ -952,6 +1026,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4617106639234704, guid: a96eff652ef8acd44a2a3491e876039c,
     type: 2}
   m_PrefabInternal: {fileID: 121436117}
+--- !u!1 &1502034168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1502034169}
+  m_Layer: 10
+  m_Name: Hurtboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1502034169
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502034168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 967334113}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539086763
 Prefab:
   m_ObjectHideFlags: 0
@@ -1309,7 +1411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 967334113}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1912480387
 GameObject:

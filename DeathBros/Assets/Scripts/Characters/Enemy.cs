@@ -18,6 +18,6 @@ public class Enemy : Character
 
     private void Update()
     {
-        DirectionalInput = new Vector2(1, 0);
+        //DirectionalInput = new Vector2(1, 0);
     }
 }

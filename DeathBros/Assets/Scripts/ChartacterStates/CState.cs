@@ -7,6 +7,8 @@ public class CState : IState
 
     protected Character chr;
     protected FrameAnimation animation;
+    protected Damage damage;
+    //protected CS_Hitstun hitstun;
 
     public virtual void Init(Character chr)
     {
@@ -18,7 +20,7 @@ public class CState : IState
 
     public virtual void InitExitStates()
     {
-
+        //hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
     }
 
     public virtual void Enter()
@@ -35,21 +37,27 @@ public class CState : IState
     {
         //reset animation speed
         chr.Anim.animationSpeed = 1;
+        damage = null;
     }
 
-    
+
     protected void ChangeState(CState newState)
     {
         chr.CSMachine.ChangeState(newState);
     }
-    
+
     protected void ChangeState(Type type)
     {
         CState newState = chr.GetState(type);
 
-        if(newState != null)
+        if (newState != null)
         {
             chr.CSMachine.ChangeState(newState);
         }
+    }
+
+    public void TakeDamage(Damage damage)
+    {
+        this.damage = damage;
     }
 }
