@@ -28,6 +28,8 @@ public class Stats
         stats.Add(jumpStrength);
         stats.Add(gravity);
         stats.Add(jumps);
+        stats.Add(maxHealth);
+        stats.Add(weight);
 
         currentHealth = maxHealth.baseValue;
     }

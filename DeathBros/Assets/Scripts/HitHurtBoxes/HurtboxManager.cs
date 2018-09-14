@@ -26,6 +26,7 @@ public class HurtboxManager : _MB
     {
         bool changedFlip = false;
 
+        
         if (spr != null)
         {
             if (flipped != spr.flipX)
@@ -35,7 +36,7 @@ public class HurtboxManager : _MB
                 changedFlip = true;
             }
         }
-
+        
         if (previousFrame != frame || changedFlip) //only change hurtboxes when frame has changed
         {
             ClearHurtboxes();

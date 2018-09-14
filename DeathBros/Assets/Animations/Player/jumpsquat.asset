@@ -28,13 +28,13 @@ MonoBehaviour:
     - position: {x: -0.046875, y: -0.28125}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.015625, y: -0.03125}
-      radius: 0.8899996
+    - position: {x: 0.703125, y: -0.140625}
+      radius: 0.55999994
       damage:
-        damageNumber: 2
-        knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 10
-        KnockbackGrowth: 1
+        damageNumber: 10
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 15
+        knockbackGrowth: 5
         damageType: 0
       ID: 0
       getNewID: 0

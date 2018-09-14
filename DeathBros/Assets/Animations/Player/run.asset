@@ -27,17 +27,7 @@ MonoBehaviour:
       radius: 0.2
     - position: {x: 0.07219824, y: -0.120689616}
       radius: 0.3
-    hitboxes:
-    - position: {x: 0, y: 0}
-      radius: 0
-      damage:
-        damageNumber: 0
-        knockBackDirection: {x: 0, y: 0}
-        baseKnockback: 0
-        KnockbackGrowth: 0
-        damageType: 0
-      ID: 0
-      getNewID: 0
+    hitboxes: []
   - duration: 5
     sprite: {fileID: 21300004, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     hurtboxes:

@@ -398,12 +398,13 @@ public class Controller2D : MonoBehaviour
         //APPLY KNOCKBACK ??????????????????????????????????????????????????????????????
         if (knockback != Vector2.zero)
         {
-            velocity.x += knockback.x / 60;
-            velocity.y = knockback.y / 60;
+            //velocity.x += knockback.x / 60;
+            //velocity.y = knockback.y / 60;
+            velocity = knockback / 60;
 
             grounded = false;
-
         }
+
         knockback = Vector2.zero;
 
         if(slowDown)
@@ -479,9 +480,6 @@ public class Controller2D : MonoBehaviour
         {
             currentPlatform = null;
         }
-
-        
-
     }
 
     private void OnDrawGizmos()

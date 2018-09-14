@@ -144,8 +144,8 @@ public class CS_Walking : CState
 
         chr.SetInputs();
 
-        if (chr.DirectionalInput.x < 0) chr.IsFlipped = true;
-        if (chr.DirectionalInput.x > 0) chr.IsFlipped = false;
+        if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
+        if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
 
 
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
@@ -205,7 +205,7 @@ public class CS_Skid : CState
         {
             if (Mathf.Sign(chr.DirectionalInput.x) != direction && chr.DirectionalInput.x != 0) //don't change direction if there is no input
             {
-                chr.IsFlipped = !chr.IsFlipped;
+                chr.Spr.flipX = !chr.Spr.flipX;
                 changedDirection = true;
             }
         }
@@ -583,18 +583,21 @@ public class CS_Walljumping : CState
 [System.Serializable]
 public class CS_Hitstun : CState
 {
+    public float knockbackX { get; set; }
     private CS_Landing landing;
 
     public override void InitExitStates()
     {
-        //base.InitExitStates();
+        base.InitExitStates();
 
         landing = (CS_Landing)chr.GetState(typeof(CS_Landing));
     }
+
     public override void Execute()
     {
         base.Execute();
 
+        chr.SetInputs(new Vector2(knockbackX, 0));
         if(chr.Ctr.grounded)
         {
             ChangeState(landing);

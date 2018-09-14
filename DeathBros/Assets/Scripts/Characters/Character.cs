@@ -13,7 +13,7 @@ public class Character : _MB
 
     //public float jumpStrength = 20;
     //public int jumps = 2;
-    public int jumpsUsed { get; set; } 
+    public int jumpsUsed { get; set; }
 
     [Space]
 
@@ -33,6 +33,7 @@ public class Character : _MB
 
     public Damage currentDamae { get; protected set; }
 
+    /*
     public bool IsFlipped
     {
         set
@@ -44,7 +45,7 @@ public class Character : _MB
             return Spr.flipX;
         }
     }
-
+    */
     public override void Init()
     {
         base.Init();
@@ -87,6 +88,8 @@ public class Character : _MB
 
         currentDamae = null;
         Jump = false;
+
+        Debug.Log(Spr.flipX == true ? -1 : 1);
     }
 
     protected virtual void UpdatesStatsForCtr()
@@ -104,16 +107,34 @@ public class Character : _MB
     {
         currentDamae = damage;
 
+        if (Spr.flipX == true)
+        {
+            Debug.Log("true");
+        }
+        else
+        {
+            Debug.Log("false");
+        }
+
+        float dirX = 1;
+        /*
+        if (Spr.flipX == true)
+            dirX = 1;
+        else
+            dirX = -1;
+            */
+
         CState currentState = (CState)CSMachine.CurrentState;
         currentState.TakeDamage(damage);
 
+        float knockbackGrowth = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * damage.knockbackGrowth;
+
         stats.currentHealth -= damage.damageNumber;
 
-        Vector2 knockback = damage.knockBackDirection * damage.baseKnockback;
-
+        Vector2 knockback = new Vector2(dirX * damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth);
         Ctr.knockback = knockback;
 
-        if(stats.currentHealth < 0)
+        if (stats.currentHealth < 0)
         {
             Die();
         }

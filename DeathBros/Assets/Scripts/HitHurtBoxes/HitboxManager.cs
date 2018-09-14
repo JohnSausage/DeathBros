@@ -19,6 +19,9 @@ public class HitboxManager : _MB
 
     public void DrawHitboxes(Frame currentFrame)
     {
+        float dirX = 1;
+        if (spr.flipX == true) dirX = -1;
+
         Collider2D[] hit = new Collider2D[5];
         Vector2 position = transform.position;
 
@@ -29,13 +32,15 @@ public class HitboxManager : _MB
 
             currentFrame.hitboxes[i].ID = currentID;
 
-            int number = Physics2D.OverlapCircleNonAlloc(position + currentFrame.hitboxes[i].position, currentFrame.hitboxes[i].radius, hit, hitLayer);
+            int number = Physics2D.OverlapCircleNonAlloc(position + new Vector2(currentFrame.hitboxes[i].position.x * dirX, 
+                currentFrame.hitboxes[i].position.y), 
+                currentFrame.hitboxes[i].radius, hit, hitLayer);
 
             if (number > 0)
             {
                 Character enemy = hit[0].GetComponentInParent<Character>();
 
-                if(enemy != null)
+                if (enemy != null)
                 {
                     enemy.TakeDamage(currentFrame.hitboxes[i].damage);
                 }
@@ -78,6 +83,6 @@ public class Damage
     public float damageNumber;
     public Vector2 knockBackDirection;
     public float baseKnockback;
-    public float KnockbackGrowth;
+    public float knockbackGrowth;
     public EDamageType damageType;
 }
