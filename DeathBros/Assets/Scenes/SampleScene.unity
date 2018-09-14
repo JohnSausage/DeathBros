@@ -312,11 +312,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrongInputs: {x: 0, y: 0}
-  jumpStrength: 20
-  jumps: 2
   jumpsUsed: 0
   CSMachine:
     currentState: 
+  cStates: []
+  stats:
+    movespeed:
+      statName: Movespeed
+      baseValue: 0
+    jumpStrength:
+      statName: 
+      baseValue: 0
+    gravity:
+      statName: 
+      baseValue: 0
+    jumps:
+      statName: Jumps
+      baseValue: 2
+    velocityXSmoothing: 3
+    maxSlopeUpAngle: 45
+    maxSlopeDownAngle: 45
+    stats: []
   movementStates:
     idle:
       animationName: idle
@@ -334,39 +350,6 @@ MonoBehaviour:
     landing:
       animationName: idle
       duration: 3
-  advancedMovementStates:
-    idle:
-      animationName: idle
-    walking:
-      animationName: walking
-      animationSlow: walking
-      direction: 0
-    jumpsquat:
-      animationName: idle
-      duration: 0
-    jumping:
-      animationName: idle
-      jumpRisingAnimation: idle
-      allowWallJumpAfterWallSlidingDuration: 5
-    landing:
-      animationName: idle
-      duration: 3
-    doubleJumpsquat:
-      animationName: idle
-      duration: 3
-    wallsliding:
-      animationName: idle
-      wallUpAnimation: idle
-    walljumpStart:
-      animationName: idle
-      jumpHeightReductionFactor: 0.75
-      duration: 3
-    walljumping:
-      animationName: idle
-      duration: 20
-    skid:
-      animationName: idle
-      duration: 0
 --- !u!212 &193215730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -460,11 +443,11 @@ MonoBehaviour:
     m_Bits: 256
   platformMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
   movingPlatformTag: MovingPlatform
   currentPlatform: {fileID: 0}
   gravity: -1
-  movespeed: 10
+  movespeed: 2
   wallSlideSpeed: 3
   accelerationTimeAerial: 0.1
   maxSlopeDownAngle: 45
@@ -832,28 +815,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrongInputs: {x: 0, y: 0}
-  jumpStrength: 20
-  jumps: 2
   jumpsUsed: 0
   CSMachine:
     currentState: 
-  movementStates:
-    idle:
-      animationName: idle
-    walking:
-      animationName: run
-      animationSlow: walking
-      direction: 0
-    jumpsquat:
-      animationName: jumpsquat
-      duration: 3
-    jumping:
-      animationName: jumpFalling
-      jumpRisingAnimation: jumpRising
-      allowWallJumpAfterWallSlidingDuration: 3
-    landing:
-      animationName: crouch
-      duration: 3
+  cStates: []
+  stats:
+    movespeed:
+      statName: Movespeed
+      baseValue: 10
+    jumpStrength:
+      statName: Jump Strength
+      baseValue: 20
+    gravity:
+      statName: Gravity
+      baseValue: -1
+    jumps:
+      statName: Jumps
+      baseValue: 2
+    velocityXSmoothing: 3
+    maxSlopeUpAngle: 45
+    maxSlopeDownAngle: 45
+    stats: []
+  wallSlideSpeed:
+    statName: WallslideSpeed
+    baseValue: 5
   advancedMovementStates:
     idle:
       animationName: idle

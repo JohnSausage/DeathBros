@@ -39,7 +39,7 @@ public class Controller2D : MonoBehaviour
 
     public float gravity = -1f;
     public float movespeed = 10f;
-    //public float jumpForce = 20f;
+    //public float jumpStrength = 20f;
     public float wallSlideSpeed = 3f;
     public float accelerationTimeAerial = 0.1f;
 

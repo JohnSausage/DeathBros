@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class FrameAnimation : ScriptableObject
 {
-    public string animationName;
+    //public string animationName;
 
     public List<Frame> frames;
 

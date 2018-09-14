@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,11 +11,9 @@ public class Character : _MB
     public bool Jump { get; protected set; }
     public bool HoldJump { get; protected set; }
 
-    [Space]
-
-    public float jumpStrength = 20;
-    public int jumps = 2;
-    public int jumpsUsed = 0;
+    //public float jumpStrength = 20;
+    //public int jumps = 2;
+    public int jumpsUsed = 0;   
 
     [Space]
 
@@ -24,8 +22,15 @@ public class Character : _MB
     public SpriteRenderer Spr { get; protected set; }
     public Controller2D Ctr { get; protected set; }
 
-    public CStates_Movement movementStates;
-    public CStates_AdvancedMovement advancedMovementStates;
+    //public CStates_Movement movementStates;
+    //public CStates_AdvancedMovement advancedMovementStates;
+
+    public List<CState> cStates;
+
+    [Space]
+
+    public Stats stats;
+
 
     public bool IsFlipped
     {
@@ -50,24 +55,42 @@ public class Character : _MB
         Spr = GetComponent<SpriteRenderer>();
         Ctr = GetComponent<Controller2D>();
 
-        movementStates.Init(this);
-        advancedMovementStates.Init(this);
-        CSMachine.ChangeState(advancedMovementStates.idle);
+        stats.Init();
+        //movementStates.Init(this);
+        //advancedMovementStates.Init(this);
+        //CSMachine.ChangeState(advancedMovementStates.idle);
+    }
+
+    public virtual void CStates_InitExitStates()
+    {
+        foreach (CState cs in cStates)
+        {
+            cs.InitExitStates();
+        }
     }
 
     protected virtual void FixedUpdate()
     {
         StrongInputs = Vector2.zero;
-        if(Mathf.Abs(Ctr.input.x - DirectionalInput.x) > 0.1f && Mathf.Abs(DirectionalInput.x) > 0.8f)
+        if (Mathf.Abs(Ctr.input.x - DirectionalInput.x) > 0.1f && Mathf.Abs(DirectionalInput.x) > 0.8f)
         {
             StrongInputs = new Vector2(DirectionalInput.x - Ctr.input.x, 0);
         }
 
         CSMachine.Update();
 
+        stats.FixedUpdate();
+
+        UpdatesStatsForCtr();
         Ctr.ManualFixedUpdate();
 
         Jump = false;
+    }
+
+    protected virtual void UpdatesStatsForCtr()
+    {
+        Ctr.movespeed = stats.movespeed.CurrentValue;
+        Ctr.gravity = stats.gravity.CurrentValue;
     }
 
     public void Spawn(Vector2 position)
@@ -121,21 +144,40 @@ public class Character : _MB
     }
      */
 
+    public CState GetState(Type type)
+    {
+        CState returnState = null;
+
+        for (int i = 0; i < cStates.Count; i++)
+        {
+            if (cStates[i].GetType() == type)
+                returnState = cStates[i];
+        }
+        return returnState;
+    }
+
     public virtual void CS_CheckLanding()
     {
         if (Ctr.grounded)
-            CSMachine.ChangeState(advancedMovementStates.landing);
+        {
+            //CSMachine.ChangeState(advancedMovementStates.landing);
+            CSMachine.ChangeState(GetState(typeof(CS_Landing)));
+        }
     }
 
     public virtual void CS_CheckIfStillGrounded()
     {
         if (!Ctr.grounded)
-            CSMachine.ChangeState(advancedMovementStates.jumping);
+        {
+            //CSMachine.ChangeState(advancedMovementStates.jumping);
+            CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
+        }
     }
 
     public virtual void CS_SetIdle()
     {
-        CSMachine.ChangeState(advancedMovementStates.idle);
+        //CSMachine.ChangeState(advancedMovementStates.idle);
+        CSMachine.ChangeState(GetState(typeof(CS_Idle)));
     }
-   
+
 }

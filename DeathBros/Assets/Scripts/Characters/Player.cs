@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
+
+    public CStates_AdvancedMovement advancedMovementStates;
+
     public override void Init()
     {
         base.Init();
+
+        advancedMovementStates.Init(this);
+
+        stats.AddStat(wallSlideSpeed);
+
+        CStates_InitExitStates();
     }
 
     void Update()

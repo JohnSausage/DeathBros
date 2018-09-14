@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
 [System.Serializable]
 public class CState : IState
 {
-    public string animationName;
+    public string animationName = "idle";
 
     protected Character chr;
     protected FrameAnimation animation;
@@ -14,6 +12,13 @@ public class CState : IState
     {
         this.chr = chr;
         animation = chr.Anim.GetAnimation(animationName);
+
+        chr.cStates.Add(this);
+    }
+
+    public virtual void InitExitStates()
+    {
+
     }
 
     public virtual void Enter()
@@ -32,8 +37,19 @@ public class CState : IState
         chr.Anim.animationSpeed = 1;
     }
 
+    
     protected void ChangeState(CState newState)
     {
         chr.CSMachine.ChangeState(newState);
+    }
+    
+    protected void ChangeState(Type type)
+    {
+        CState newState = chr.GetState(type);
+
+        if(newState != null)
+        {
+            chr.CSMachine.ChangeState(newState);
+        }
     }
 }
