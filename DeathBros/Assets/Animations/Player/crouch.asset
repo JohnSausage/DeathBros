@@ -14,6 +14,7 @@ MonoBehaviour:
   frames:
   - duration: 1
     sprite: {fileID: 21300018, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: -0.046336237, y: -0.14762928}
       radius: 0.2

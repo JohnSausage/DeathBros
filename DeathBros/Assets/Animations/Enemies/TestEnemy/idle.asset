@@ -14,17 +14,19 @@ MonoBehaviour:
   frames:
   - duration: 10
     sprite: {fileID: 21300000, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
-    - position: {x: 0.029798437, y: 0.32624888}
-      radius: 0.22999996
     - position: {x: 0.029798437, y: -0.1338738}
       radius: 0.31999996
+    - position: {x: 0.0390625, y: 0.3671875}
+      radius: 0.22999996
     hitboxes: []
   - duration: 10
     sprite: {fileID: 21300002, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
-    - position: {x: 0.05170904, y: 0.2714724}
-      radius: 0.22999996
     - position: {x: 0.029798437, y: -0.19412798}
       radius: 0.31999996
+    - position: {x: 0.03125, y: 0.28125}
+      radius: 0.22999996
     hitboxes: []

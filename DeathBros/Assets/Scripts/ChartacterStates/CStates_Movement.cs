@@ -105,8 +105,10 @@ public class CS_Idle : CState
 [System.Serializable]
 public class CS_Walking : CState
 {
-    [SerializeField] string animationSlow;
-    [SerializeField] float direction = 0;
+    [SerializeField]
+    string animationSlow;
+    [SerializeField]
+    float direction = 0;
 
     protected FrameAnimation fAnimSlow;
 
@@ -173,7 +175,8 @@ public class CS_Skid : CState
 {
     public float direction { get; set; }
 
-    [SerializeField] int duration;
+    [SerializeField]
+    int duration;
     private int timer;
 
     private bool changedDirection;
@@ -228,7 +231,8 @@ public class CS_Skid : CState
 [System.Serializable]
 public class CS_Jumpsquat : CState
 {
-    [SerializeField] int duration;
+    [SerializeField]
+    int duration;
     private int timer;
 
     public override void Enter()
@@ -271,7 +275,8 @@ public class CS_Jumpsquat : CState
 [System.Serializable]
 public class CS_DoubleJumpsquat : CState
 {
-    [SerializeField] int duration = 3;
+    [SerializeField]
+    int duration = 3;
     private int timer;
 
     public override void Enter()
@@ -305,7 +310,8 @@ public class CS_DoubleJumpsquat : CState
 [System.Serializable]
 public class CS_Landing : CState
 {
-    [SerializeField] int duration = 3;
+    [SerializeField]
+    int duration = 3;
     private int timer;
 
     public override void Enter()
@@ -333,10 +339,12 @@ public class CS_Landing : CState
 [System.Serializable]
 public class CS_Jumping : CState
 {
-    [SerializeField] string jumpRisingAnimation;
+    [SerializeField]
+    string jumpRisingAnimation;
     FrameAnimation jumpRisingFA;
 
-    [SerializeField] int allowWallJumpAfterWallSlidingDuration = 5;
+    [SerializeField]
+    int allowWallJumpAfterWallSlidingDuration = 5;
     int allowWallJumpAfterWallSlidingTimer;
 
     public override void Init(Character chr)
@@ -387,7 +395,7 @@ public class CS_Jumping : CState
                 //ChangeState(chr.advancedMovementStates.walljumpStart);
                 ChangeState(typeof(CS_WalljumpStart));
             }
-            else if(chr.jumpsUsed < chr.stats.jumps.CurrentValue)
+            else if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
             {
                 //ChangeState(chr.advancedMovementStates.doubleJumpsquat);
                 ChangeState(typeof(CS_DoubleJumpsquat));
@@ -405,7 +413,8 @@ public class CS_Jumping : CState
 [System.Serializable]
 public class CS_Wallsliding : CState
 {
-    [SerializeField] string wallUpAnimation;
+    [SerializeField]
+    string wallUpAnimation;
 
     private FrameAnimation wallUpFA;
     private CS_WalljumpStart walljumpStart;
@@ -413,7 +422,7 @@ public class CS_Wallsliding : CState
 
     public override void Init(Character chr)
     {
-        base.Init(chr); 
+        base.Init(chr);
 
         wallUpFA = chr.Anim.GetAnimation(wallUpAnimation);
 
@@ -486,8 +495,10 @@ public class CS_WalljumpStart : CState
 {
     public int walljumpDirection { get; set; }
 
-    [SerializeField] float jumpHeightReductionFactor = 0.75f;
-    [SerializeField] int duration = 3;
+    [SerializeField]
+    float jumpHeightReductionFactor = 0.75f;
+    [SerializeField]
+    int duration = 3;
 
     private CS_Walljumping walljumping;
     private int timer;
@@ -529,7 +540,8 @@ public class CS_Walljumping : CState
 {
     public int walljumpDirection { get; set; }
 
-    [SerializeField] int duration = 20;
+    [SerializeField]
+    int duration = 20;
     private int timer;
 
     private CS_Jumping jumping;
@@ -585,6 +597,8 @@ public class CS_Hitstun : CState
 {
     public float knockbackX { get; set; }
     private CS_Landing landing;
+    public int minDuration = 3;
+    private int timer;
 
     public override void InitExitStates()
     {
@@ -593,12 +607,22 @@ public class CS_Hitstun : CState
         landing = (CS_Landing)chr.GetState(typeof(CS_Landing));
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = minDuration;
+    }
+
     public override void Execute()
     {
         base.Execute();
 
+        timer--;
+
         chr.SetInputs(new Vector2(knockbackX, 0));
-        if(chr.Ctr.grounded)
+
+        if (chr.Ctr.grounded && timer < 0)
         {
             ChangeState(landing);
         }

@@ -577,6 +577,8 @@ public class FrameAnimatorEditor : EditorWindow
                         f.duration = currentFrame.duration;
                     }
                 }
+
+                currentFrame.newHitID = EditorGUILayout.Toggle("New Hit ID:", currentFrame.newHitID);
             }
             EditorGUILayout.EndScrollView();
 

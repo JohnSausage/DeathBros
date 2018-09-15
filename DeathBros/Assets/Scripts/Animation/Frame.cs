@@ -7,6 +7,7 @@ public class Frame
 {
     public int duration = 1;
     public Sprite sprite;
+    public bool newHitID;
 
     public List<Hurtbox> hurtboxes;
     public List<Hitbox> hitboxes;

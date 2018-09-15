@@ -14,21 +14,23 @@ MonoBehaviour:
   frames:
   - duration: 2
     sprite: {fileID: 21300018, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: -0.046336237, y: -0.14762928}
       radius: 0.2
     - position: {x: -0.024784515, y: -0.5355603}
       radius: 0.3
     hitboxes: []
-  - duration: 2
+  - duration: 5
     sprite: {fileID: 21300016, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    newHitID: 1
     hurtboxes:
     - position: {x: -0.035560377, y: 0.16487072}
       radius: 0.2
     - position: {x: -0.046875, y: -0.28125}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.703125, y: -0.140625}
+    - position: {x: 0.46875, y: 0.640625}
       radius: 0.55999994
       damage:
         damageNumber: 10
@@ -36,5 +38,5 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 20
         damageType: 0
-      ID: 0
+      ID: 57618
       getNewID: 0

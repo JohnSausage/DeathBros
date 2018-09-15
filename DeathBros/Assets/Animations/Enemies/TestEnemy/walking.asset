@@ -14,6 +14,7 @@ MonoBehaviour:
   frames:
   - duration: 4
     sprite: {fileID: 21300004, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: 0.029798437, y: 0.32624888}
       radius: 0.22999996
@@ -22,6 +23,7 @@ MonoBehaviour:
     hitboxes: []
   - duration: 4
     sprite: {fileID: 21300006, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: 0.029798437, y: 0.32624888}
       radius: 0.22999996
@@ -30,6 +32,7 @@ MonoBehaviour:
     hitboxes: []
   - duration: 4
     sprite: {fileID: 21300008, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: 0.029798437, y: 0.32624888}
       radius: 0.22999996
@@ -38,6 +41,7 @@ MonoBehaviour:
     hitboxes: []
   - duration: 4
     sprite: {fileID: 21300010, guid: 2a98d54a0ed09704bbe3ea5f3f90b311, type: 3}
+    newHitID: 0
     hurtboxes:
     - position: {x: 0.029798437, y: 0.32624888}
       radius: 0.22999996

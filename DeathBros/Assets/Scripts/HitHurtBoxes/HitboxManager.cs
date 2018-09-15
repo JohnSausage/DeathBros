@@ -25,11 +25,11 @@ public class HitboxManager : _MB
         Collider2D[] hit = new Collider2D[5];
         Vector2 position = transform.position;
 
+        if (previousFrame != currentFrame && currentFrame.newHitID)
+            GenerateID();
+
         for (int i = 0; i < currentFrame.hitboxes.Count; i++)
         {
-            if (currentFrame.hitboxes[i].getNewID)
-                GenerateID();
-
             currentFrame.hitboxes[i].ID = currentID;
 
             int number = Physics2D.OverlapCircleNonAlloc(position + new Vector2(currentFrame.hitboxes[i].position.x * dirX, 
@@ -42,15 +42,16 @@ public class HitboxManager : _MB
 
                 if (enemy != null)
                 {
-                    if (!enemy.CheckHitID(currentFrame.hitboxes[i].ID))
+                    if (!enemy.ContainsHidID(currentFrame.hitboxes[i].ID))
                     {
                         enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
                         enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
                     }
                 }
-
             }
         }
+
+        previousFrame = currentFrame;
     }
 
     public void GenerateID()

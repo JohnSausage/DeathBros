@@ -114,7 +114,7 @@ public class Character : _MB
         }
     }
 
-    public bool CheckHitID(int id)
+    public bool ContainsHidID(int id)
     {
         return hitIDs.Contains(id);
     }
