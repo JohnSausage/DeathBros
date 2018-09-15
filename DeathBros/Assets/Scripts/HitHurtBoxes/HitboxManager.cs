@@ -42,7 +42,11 @@ public class HitboxManager : _MB
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(currentFrame.hitboxes[i].damage);
+                    if (!enemy.CheckHitID(currentFrame.hitboxes[i].ID))
+                    {
+                        enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
+                        enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
+                    }
                 }
 
             }
@@ -73,6 +77,14 @@ public class Hitbox
             damage = damage
         };
     }
+
+    public Damage GetDamage(bool flipX)
+    {
+        Damage rDamage = damage.Clone();
+        rDamage.knockBackDirection.x *= flipX ? -1 : 1;
+
+        return rDamage;
+    }
 }
 
 public enum EDamageType { Normal }
@@ -85,4 +97,16 @@ public class Damage
     public float baseKnockback;
     public float knockbackGrowth;
     public EDamageType damageType;
+
+    public Damage Clone()
+    {
+        return new Damage
+        {
+            damageNumber = damageNumber,
+            knockBackDirection = knockBackDirection,
+            baseKnockback = baseKnockback,
+            knockbackGrowth = knockbackGrowth,
+            damageType = damageType
+        };
+    }
 }

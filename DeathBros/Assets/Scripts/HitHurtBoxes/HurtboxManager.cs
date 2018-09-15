@@ -11,7 +11,6 @@ public class HurtboxManager : _MB
     private bool flipped;
     private Transform parent;
 
-    public Queue<int> hitIDs = new Queue<int>();
     public override void Init()
     {
         base.Init();

@@ -33,6 +33,8 @@ public class Character : _MB
 
     public Damage currentDamae { get; protected set; }
 
+    public Queue<int> hitIDs = new Queue<int>();
+
     /*
     public bool IsFlipped
     {
@@ -89,7 +91,6 @@ public class Character : _MB
         currentDamae = null;
         Jump = false;
 
-        Debug.Log(Spr.flipX == true ? -1 : 1);
     }
 
     protected virtual void UpdatesStatsForCtr()
@@ -103,26 +104,24 @@ public class Character : _MB
 
     }
 
+    public void AddHitIDToQueue(int id)
+    {
+        hitIDs.Enqueue(id);
+
+        if(hitIDs.Count> 10)
+        {
+            hitIDs.Dequeue();
+        }
+    }
+
+    public bool CheckHitID(int id)
+    {
+        return hitIDs.Contains(id);
+    }
+
     public virtual void TakeDamage(Damage damage)
     {
         currentDamae = damage;
-
-        if (Spr.flipX == true)
-        {
-            Debug.Log("true");
-        }
-        else
-        {
-            Debug.Log("false");
-        }
-
-        float dirX = 1;
-        /*
-        if (Spr.flipX == true)
-            dirX = 1;
-        else
-            dirX = -1;
-            */
 
         CState currentState = (CState)CSMachine.CurrentState;
         currentState.TakeDamage(damage);
@@ -131,7 +130,7 @@ public class Character : _MB
 
         stats.currentHealth -= damage.damageNumber;
 
-        Vector2 knockback = new Vector2(dirX * damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth);
+        Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth);
         Ctr.knockback = knockback;
 
         if (stats.currentHealth < 0)

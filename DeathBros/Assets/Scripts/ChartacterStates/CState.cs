@@ -61,7 +61,7 @@ public class CState : IState
         this.damage = damage;
 
         CS_Hitstun hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
-        hitstun.knockbackX = damage.knockBackDirection.normalized.x * (chr.Spr.flipX == true ? 1 : -1);
+        hitstun.knockbackX = damage.knockBackDirection.normalized.x;
         ChangeState(chr.GetState(typeof(CS_Hitstun)));
     }
 }
