@@ -407,13 +407,13 @@ public class Controller2D : MonoBehaviour
 
         knockback = Vector2.zero;
 
-        if(slowDown)
+        if (slowDown)
         {
             velocity *= 0.1f;
         }
 
         //CHECK FOR COLLISIONS//////////////////////////////////////////////////////////
-        if(oldOnWall)
+        if (oldOnWall)
         {
             velocity.x = input.x * movespeed / 60;
         }
@@ -424,7 +424,14 @@ public class Controller2D : MonoBehaviour
         if (collisionCheck)
         //if (collisonCheck)
         {
-            velocity.x = 0; //should do triangle calculations
+            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(input.x), -bounds.extents.y);
+
+            RaycastHit2D wallDistanceCheck = Physics2D.Raycast(raycastXOrigin, Vector2.right * Mathf.Sign(velocity.x), Mathf.Abs(velocity.x)
+                , collisionMask);
+
+            velocity.x = wallDistanceCheck.distance;// - Mathf.Sign(velocity.x) * skin;
+            Debug.Log(velocity.x);
+            //velocity.x = 0; //should do triangle calculations
             //velocity.x = collisionCheck.distance-skin * Mathf.Sign(input.x);
 
             collisionCheck = RCXY();
