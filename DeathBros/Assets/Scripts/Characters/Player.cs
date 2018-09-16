@@ -7,12 +7,14 @@ public class Player : Character
     public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
+    public CStates_Attack attackStates;
 
     public override void Init()
     {
         base.Init();
 
         advancedMovementStates.Init(this);
+        attackStates.Init(this);
 
         stats.AddStat(wallSlideSpeed);
 
@@ -23,6 +25,15 @@ public class Player : Character
     {
         DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Attack = true;
+        }
+        else
+        {
+            Attack = false;
+        }
 
         if (Input.GetButtonDown("Jump"))
         {

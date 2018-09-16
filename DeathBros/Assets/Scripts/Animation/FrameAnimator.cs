@@ -21,6 +21,8 @@ public class FrameAnimator : _MB
     private float frameTimer;
     private int animTimer;
 
+    public bool animationOver { get; protected set; }
+
     public override void Init()
     {
         base.Init();
@@ -49,6 +51,8 @@ public class FrameAnimator : _MB
 
     private void PlayCurrentAnimation()
     {
+        animationOver = false;
+
         if (currentAnimation != null)
         {
             Frame currentFrame = currentAnimation.frames[animTimer];
@@ -68,6 +72,7 @@ public class FrameAnimator : _MB
             if (animTimer >= currentAnimation.frames.Count)
             {
                 animTimer = 0;
+                animationOver = true;
             }
         }
         else

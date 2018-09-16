@@ -30,6 +30,7 @@ public class FrameAnimatorEditor : EditorWindow
     private bool animationIsPlaying;
     private Vector2 animationListScrollVector;
     private Vector2 generalFrameInfoScrollVector;
+    private Vector2 specialFrameInfoScrollVector;
     private int specialInfoTabNr = 0;
     private float timer = 0;
 
@@ -723,6 +724,7 @@ public class FrameAnimatorEditor : EditorWindow
 
     private void DisplayHitboxTab()
     {
+            specialFrameInfoScrollVector = EditorGUILayout.BeginScrollView(specialFrameInfoScrollVector);
         if (currentFrame.hitboxes == null) currentFrame.hitboxes = new List<Hitbox>();
 
         GUI.color = new Color32(200, 180, 180, 255);
@@ -735,6 +737,10 @@ public class FrameAnimatorEditor : EditorWindow
 
                 EditorGUILayout.BeginVertical("box");
                 {
+                    if(currentFrame.hitboxes[i].damage == null)
+                    {
+                        currentFrame.hitboxes[i].damage = new Damage();
+                    }
                     EditorGUILayout.LabelField("Damage Options:");
 
                     currentFrame.hitboxes[i].damage.damageNumber = EditorGUILayout.FloatField("Damage", currentFrame.hitboxes[i].damage.damageNumber);
@@ -779,6 +785,9 @@ public class FrameAnimatorEditor : EditorWindow
             EditorGUILayout.EndVertical();
         }
         GUI.color = Color.white;
+
+        EditorGUILayout.EndScrollView();
+
 
         if (GUILayout.Button("Add HitBox"))
         {

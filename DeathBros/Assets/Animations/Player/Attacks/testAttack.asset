@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: testAttack
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 5
+    sprite: {fileID: 21300000, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.09587811, y: 0.47670248}
+      radius: 0.2
+    - position: {x: -0.051075242, y: -0.038530495}
+      radius: 0.3
+    hitboxes: []
+  - duration: 5
+    sprite: {fileID: 21300002, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
+    newHitID: 1
+    hurtboxes:
+    - position: {x: 0.19534053, y: 0.18548384}
+      radius: 0.2
+    - position: {x: 0.26, y: -0.31}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.35215056, y: -0.12813623}
+      radius: 1.6599994
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 15
+        knockbackGrowth: 25
+        damageType: 0
+      ID: 52539
+      getNewID: 0
+  - duration: 5
+    sprite: {fileID: 21300004, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: 0.19534053, y: 0.18548384}
+      radius: 0.2
+    - position: {x: 0.26, y: -0.31}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.35215056, y: -0.12813623}
+      radius: 1.6599994
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 15
+        knockbackGrowth: 25
+        damageType: 0
+      ID: 52539
+      getNewID: 0
+  - duration: 5
+    sprite: {fileID: 21300006, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: 0.19534053, y: 0.18548384}
+      radius: 0.2
+    - position: {x: 0.26, y: -0.31}
+      radius: 0.3
+    hitboxes: []

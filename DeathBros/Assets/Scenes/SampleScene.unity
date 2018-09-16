@@ -382,6 +382,7 @@ MonoBehaviour:
       duration: 3
     hitstun:
       animationName: idle
+      minDuration: 3
 --- !u!212 &193215730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -903,6 +904,7 @@ MonoBehaviour:
       duration: 3
     hitstun:
       animationName: idle
+      minDuration: 3
     doubleJumpsquat:
       animationName: jumpsquat
       duration: 3
@@ -919,6 +921,10 @@ MonoBehaviour:
     skid:
       animationName: walking
       duration: 5
+  attackStates:
+    testAttack:
+      animationName: testAttack
+      attackType: 1
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0

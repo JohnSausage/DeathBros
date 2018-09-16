@@ -75,6 +75,7 @@ public class CS_Idle : CState
         base.Enter();
         chr.jumpsUsed = 0;
     }
+
     public override void Execute()
     {
         base.Execute();
@@ -98,6 +99,11 @@ public class CS_Idle : CState
         //if(damage != null)
         {
             //ChangeState(hitstun);
+        }
+
+        if(chr.Attack)
+        {
+            ChangeState(chr.GetState(typeof(CS_TestAttack)));
         }
     }
 }

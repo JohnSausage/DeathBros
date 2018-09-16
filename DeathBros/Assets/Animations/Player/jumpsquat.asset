@@ -38,5 +38,5 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 20
         damageType: 0
-      ID: 57618
+      ID: 5072
       getNewID: 0

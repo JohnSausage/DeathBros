@@ -424,15 +424,12 @@ public class Controller2D : MonoBehaviour
         if (collisionCheck)
         //if (collisonCheck)
         {
-            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(input.x), -bounds.extents.y);
+            RaycastHit2D wallDistanceCheck = RCXY(Vector2.right, velocity.x);
 
-            RaycastHit2D wallDistanceCheck = Physics2D.Raycast(raycastXOrigin, Vector2.right * Mathf.Sign(velocity.x), Mathf.Abs(velocity.x)
-                , collisionMask);
-
-            velocity.x = wallDistanceCheck.distance;// - Mathf.Sign(velocity.x) * skin;
-            Debug.Log(velocity.x);
-            //velocity.x = 0; //should do triangle calculations
-            //velocity.x = collisionCheck.distance-skin * Mathf.Sign(input.x);
+            if (wallDistanceCheck)
+            {
+                velocity.x = Mathf.Sign(velocity.x) * (wallDistanceCheck.distance * skin);
+            }
 
             collisionCheck = RCXY();
 

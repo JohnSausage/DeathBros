@@ -10,6 +10,7 @@ public class Character : _MB
 
     public bool Jump { get; protected set; }
     public bool HoldJump { get; protected set; }
+    public bool Attack { get; protected set; }
 
     //public float jumpStrength = 20;
     //public int jumps = 2;
