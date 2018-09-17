@@ -79,15 +79,6 @@ public class Controller2D : MonoBehaviour
     {
         Move();
 
-        /*
-        //Cutoff velocity
-        if (Mathf.Abs(velocity.x) < skin / 60)
-            velocity.x = 0;
-
-        if (Mathf.Abs(velocity.y) < skin / 60)
-            velocity.y = 0;
-            */
-
         transform.Translate(velocity);
     }
 
@@ -135,6 +126,10 @@ public class Controller2D : MonoBehaviour
         bounds = fullBounds = Col.bounds;
         bounds.Expand(-2 * skin);
 
+        //set often used variables
+        float dirX = Mathf.Sign(input.x);
+
+
 
         //reset moving platform vector
         Vector2 movingPlatform = Vector2.zero;
@@ -178,7 +173,6 @@ public class Controller2D : MonoBehaviour
         if (!fallThroughPlatform && !jump)
         {
             RaycastHit2D platformCheck = Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0, velocity, velocity.magnitude, platformMask);
-            //RaycastHit2D platformCheck = Physics2D.BoxCast(bounds.center, bounds.size, 0, new Vector2(velocity.x,0), Mathf.Abs(velocity.x) + skin, platformMask);
 
             if (platformCheck)
             {
@@ -233,7 +227,7 @@ public class Controller2D : MonoBehaviour
 
             RaycastHit2D groundCheck;
 
-            moveAngle = Vector2.Angle(velocity, Vector2.right * Mathf.Sign(velocity.x));
+            moveAngle = Vector2.Angle(velocity, Vector2.right * dirX);
 
             float skinDistance = skin;
             float cos = Mathf.Cos(moveAngle * Mathf.Deg2Rad);
@@ -324,9 +318,9 @@ public class Controller2D : MonoBehaviour
             }
 
             //ASCEND SLOPES////////////////////////////////////////////////////////////////////////////
-            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(input.x), -bounds.extents.y);
+            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * dirX, -bounds.extents.y);
 
-            RaycastHit2D hitX = Physics2D.Raycast(raycastXOrigin, Vector2.right * Mathf.Sign(velocity.x), Mathf.Abs(velocity.x) + skin, slopeMask);
+            RaycastHit2D hitX = Physics2D.Raycast(raycastXOrigin, Vector2.right * dirX, Mathf.Abs(velocity.x) + skin, slopeMask);
 
             if (hitX)
             {
@@ -341,7 +335,7 @@ public class Controller2D : MonoBehaviour
                     //always move up  when on platforms, otherwise you can't climb them when running on the ground, since you're insidePlatform
                     if (angleX == oldAngleX || hitX.collider.gameObject.layer == 9)
                     {
-                        velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * angleX),
+                        velocity = new Vector2(dirX * Mathf.Cos(Mathf.Deg2Rad * angleX),
                             Mathf.Sin(Mathf.Deg2Rad * angleX)).normalized / 60 * movespeed * Mathf.Abs(input.x);
                     }
 
@@ -359,7 +353,7 @@ public class Controller2D : MonoBehaviour
 
 
             //DESCEND SLOPES////////////////////////////////////////////////////////////////////////////
-            gizmoSlopeDown = new Vector2(velocity.x, 0) + (Vector2)bounds.center - new Vector2(bounds.extents.x * Mathf.Sign(input.x), bounds.extents.y);
+            gizmoSlopeDown = new Vector2(velocity.x, 0) + (Vector2)bounds.center - new Vector2(bounds.extents.x * dirX, bounds.extents.y);
 
             RaycastHit2D slopeDown = Physics2D.Raycast(gizmoSlopeDown, Vector2.down, 1, slopeMask);
 
@@ -378,7 +372,7 @@ public class Controller2D : MonoBehaviour
                     float skinDistance = diag;
 
                     alpha = angleY;
-                    gamma = 90 + Vector2.Angle(slopeDown.normal, new Vector2(Mathf.Sign(input.x), 1));
+                    gamma = 90 + Vector2.Angle(slopeDown.normal, new Vector2(dirX, 1));
 
                     float sin = Mathf.Sin(Mathf.Deg2Rad * alpha);
 
@@ -428,7 +422,7 @@ public class Controller2D : MonoBehaviour
 
             if (wallDistanceCheck)
             {
-                velocity.x = Mathf.Sign(velocity.x) * (wallDistanceCheck.distance * skin);
+                velocity.x = dirX * (wallDistanceCheck.distance * skin);
             }
 
             collisionCheck = RCXY();
@@ -437,7 +431,7 @@ public class Controller2D : MonoBehaviour
             if (!collisionCheck && !grounded)
             {
                 onWall = true;
-                wallDirection = (int)Mathf.Sign(input.x);
+                wallDirection = (int)dirX;
 
                 if (velocity.y <= 0)
                 {

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(FrameAnimator))]
 public class Character : _MB
 {
+    public string charName;
+
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs;// { get; protected set; }
 

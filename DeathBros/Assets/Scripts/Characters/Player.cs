@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public string soundFolderName = "Sounds/Player/";
+
     public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
@@ -12,6 +14,8 @@ public class Player : Character
     public override void Init()
     {
         base.Init();
+
+        LoadSoundFiles();
 
         advancedMovementStates.Init(this);
         attackStates.Init(this);
@@ -54,6 +58,19 @@ public class Player : Character
         else
         {
             HoldJump = false;
+        }
+    }
+
+    private void LoadSoundFiles()
+    {
+        Object[] objects = Resources.LoadAll(soundFolderName);
+
+        foreach (var o in objects)
+        {
+            Sound s = new Sound();
+            s.clip = (AudioClip)o;
+            s.name = o.name;
+            AudioManager.AddSound((s));
         }
     }
 }
