@@ -36,7 +36,7 @@ public class FrameAnimatorEditor : EditorWindow
     private float timer = 0;
 
     private string[] soundNames;
-
+    private int selectSound = 0;
     private int pixelPerUnit = 16;
     private float scale = 4f;
 
@@ -845,13 +845,12 @@ public class FrameAnimatorEditor : EditorWindow
         }
 
         if (soundNames != null)
-        {
-            int i = 0;
-            i = EditorGUILayout.Popup(i, soundNames);
+        {          
+            selectSound = EditorGUILayout.Popup(selectSound, soundNames);
 
             if (GUILayout.Button("Use Sound"))
             {
-                currentFrame.soundName = soundNames[i];
+                currentFrame.soundName = soundNames[selectSound];
             }
         }
 
