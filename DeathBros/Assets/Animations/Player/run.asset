@@ -21,7 +21,7 @@ MonoBehaviour:
     - position: {x: 0.07219824, y: -0.120689616}
       radius: 0.3
     hitboxes: []
-    soundName: G
+    soundName: Step
   - duration: 5
     sprite: {fileID: 21300002, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     newHitID: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     - position: {x: 0.09374996, y: -0.11530169}
       radius: 0.3
     hitboxes: []
-    soundName: G
+    soundName: Step
   - duration: 5
     sprite: {fileID: 21300008, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     newHitID: 0
