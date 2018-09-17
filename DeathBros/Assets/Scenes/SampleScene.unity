@@ -924,7 +924,7 @@ MonoBehaviour:
       jumpRisingAnimation: jumpRising
       allowWallJumpAfterWallSlidingDuration: 5
     landing:
-      animationName: crouch
+      animationName: landing
       duration: 3
     hitstun:
       animationName: idle
@@ -1336,6 +1336,10 @@ MonoBehaviour:
   - name: G
     clip: {fileID: 8300000, guid: dc5909d2e65846c438daad7cdc254c81, type: 3}
     volume: 1
+    loop: 0
+  - name: Step
+    clip: {fileID: 8300000, guid: 6a57199b3fa0b3b4bb47316fb62a1e7c, type: 3}
+    volume: 0.2
     loop: 0
 --- !u!1 &1797050001
 GameObject:
