@@ -7,11 +7,19 @@ public class Enemy : Character
     [SerializeField]
     protected CStates_Movement movementStates;
 
+    [SerializeField]
+    protected CS_TestAttack attackState;
+
+    public EnemyAI AI { get; protected set; }
+
     public override void Init()
     {
         base.Init();
 
+        AI = GetComponent<EnemyAI>();
+
         movementStates.Init(this);
+        attackState.Init(this);
 
         CStates_InitExitStates();
     }
@@ -19,5 +27,15 @@ public class Enemy : Character
     private void Update()
     {
         //DirectionalInput = new Vector2(1, 0);
+        DirectionalInput = AI.TargetDirection;
+
+        if(AI.InAttackRange)
+        {
+            Attack = true;
+        }
+        else
+        {
+            Attack = false;
+        }
     }
 }

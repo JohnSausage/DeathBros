@@ -43,7 +43,8 @@ public class CState : IState
 
     protected void ChangeState(CState newState)
     {
-        chr.CSMachine.ChangeState(newState);
+        if (newState != null)
+            chr.CSMachine.ChangeState(newState);
     }
 
     protected void ChangeState(Type type)

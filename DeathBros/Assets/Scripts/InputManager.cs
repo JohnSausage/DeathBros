@@ -65,6 +65,14 @@ public class InputManager : MonoBehaviour
 
         Pause = new DualInput("Pause");
 
+        Up.SetDefault(KeyCode.W);
+        Down.SetDefault(KeyCode.S);
+        Right.SetDefault(KeyCode.D);
+        Left.SetDefault(KeyCode.A);
+
+        Attack.SetDefault(KeyCode.LeftControl);
+        Jump.SetDefault(KeyCode.Space);
+
         Inputs = new List<DualInput>();
         Inputs.Add(Left);
         Inputs.Add(Right);
@@ -150,8 +158,11 @@ public class InputManager : MonoBehaviour
         if(Mathf.Abs(oldDirection.x - Direction.x) > 0.4f && Mathf.Abs(Direction.x) > 0.9f)
         {
             Smash.x = Mathf.Sign(Direction.x);
+        }
 
-            Debug.Log(Smash.x);
+        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.4f && Mathf.Abs(Direction.y) > 0.9f)
+        {
+            Smash.y = Mathf.Sign(Direction.y);
         }
 
         if (BufferedInput != null)
@@ -242,6 +253,8 @@ public class DualInput
     public bool isButton;
     public float axisDirection;
 
+    public KeyCode defaultButton;
+
     private bool axisButtonDown;
 
     public DualInput(string inputName)
@@ -278,6 +291,11 @@ public class DualInput
         this.IsSet = true;
 
         Save();
+    }
+
+    public void SetDefault(KeyCode keyCode)
+    {
+        defaultButton = keyCode;
     }
 
     public void Save()
@@ -326,6 +344,11 @@ public class DualInput
             }
         }
 
+        if (Input.GetKey(defaultButton))
+        {
+            returnValue = true;
+        }
+
         return returnValue;
     }
 
@@ -355,6 +378,11 @@ public class DualInput
             }
         }
 
+        if (Input.GetKeyDown(defaultButton))
+        {
+            returnValue = true;
+        }
+
         return returnValue;
     }
 
@@ -376,6 +404,11 @@ public class DualInput
                 if (Mathf.Sign(Input.GetAxisRaw(axisName)) == Mathf.Sign(axisDirection)) //only count if the direction that is set up is pushed
                     returnValue = Mathf.Abs(Input.GetAxisRaw(axisName));
             }
+        }
+
+        if (Input.GetKey(defaultButton))
+        {
+            returnValue = 1;
         }
 
         return returnValue;

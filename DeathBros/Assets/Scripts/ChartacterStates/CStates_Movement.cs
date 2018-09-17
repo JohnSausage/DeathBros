@@ -101,7 +101,7 @@ public class CS_Idle : CState
             //ChangeState(hitstun);
         }
 
-        if(chr.Attack)
+        if (chr.Attack)
         {
             ChangeState(chr.GetState(typeof(CS_TestAttack)));
         }
@@ -159,11 +159,20 @@ public class CS_Walking : CState
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
         {
             //chr.advancedMovementStates.skid.direction = direction;
-            CS_Skid skid = (CS_Skid)chr.GetState(typeof(CS_Skid));
-            skid.direction = direction;
+            CState exit = (CS_Skid)chr.GetState(typeof(CS_Skid));
 
+            if (exit != null)
+            {
+                CS_Skid skid = (CS_Skid)exit;
+                skid.direction = direction;
+            }
+            else
+            {
+                exit = (CS_Idle)chr.GetState(typeof(CS_Idle));
+            }
             //ChangeState(chr.advancedMovementStates.skid);
-            ChangeState(typeof(CS_Skid));
+            ChangeState(exit);
+
         }
 
         if (chr.Jump)
