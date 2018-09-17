@@ -40,8 +40,9 @@ public class GameManager : _MB
     {
         LevelSM.Update();
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) || InputManager.Pause.GetButtonDown())
         {
+
             if (!IsPaused)
                 Pause();
             else
@@ -53,11 +54,15 @@ public class GameManager : _MB
     {
         Time.timeScale = 0;
         IsPaused = true;
+
+        PauseMenu.Instance.gameObject.SetActive(true);
     }
 
     public void Resume()
     {
         Time.timeScale = 1;
         IsPaused = false;
+
+        PauseMenu.Instance.gameObject.SetActive(false);
     }
 }

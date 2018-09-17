@@ -24,6 +24,13 @@ public class InputManager : MonoBehaviour
     public static bool disableNavigation { get; private set; }
     public float waitForInputTimer;
 
+    public static DualInput BufferedInput;
+    public int bufferFrames = 5;
+    private int bufferTimer = 0;
+
+    public static Vector2 Smash;
+    private Vector2 oldDirection;
+
     #region Singelton
     private static InputManager instance;
     public static InputManager Instance { get { return instance; } }
@@ -102,8 +109,8 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
-        CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
+
+
 
         //Checking Inputs
         /*
@@ -115,6 +122,58 @@ public class InputManager : MonoBehaviour
             }
         }
         */
+
+        CheckIfBuffered(Shield);
+        CheckIfBuffered(Grab);
+        CheckIfBuffered(Jump);
+        CheckIfBuffered(Attack);
+        CheckIfBuffered(Special);
+    }
+
+    private void CheckIfBuffered(DualInput di)
+    {
+        if(di.GetButtonDown())
+        {
+            BufferedInput = di;
+            bufferTimer = bufferFrames;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        oldDirection = Direction;
+        Smash = Vector2.zero;
+
+        Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
+        CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
+
+        if(Mathf.Abs(oldDirection.x - Direction.x) > 0.4f && Mathf.Abs(Direction.x) > 0.9f)
+        {
+            Smash.x = Mathf.Sign(Direction.x);
+
+            Debug.Log(Smash.x);
+        }
+
+        if (BufferedInput != null)
+        {
+            bufferTimer--;
+        }
+
+        if (bufferTimer <= 0)
+        {
+            BufferedInput = null;
+        }
+
+
+    }
+
+    public static bool BufferdDown(string inputName)
+    {
+        if (BufferedInput != null)
+        {
+            return BufferedInput.InputName == inputName;
+        }
+        else return false;
     }
 
     public static bool GetButton(string inputName)

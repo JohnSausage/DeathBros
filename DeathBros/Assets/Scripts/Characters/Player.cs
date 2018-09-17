@@ -25,10 +25,11 @@ public class Player : Character
 
     void Update()
     {
-        DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
+        //DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
+        DirectionalInput = InputManager.Direction;
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
-        if (Input.GetButtonDown("Fire1"))
+        if (InputManager.BufferdDown("Attack"))
         {
             Attack = true;
         }
@@ -37,7 +38,7 @@ public class Player : Character
             Attack = false;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (InputManager.BufferdDown("Jump"))
         {
             Jump = true;
         }
@@ -49,7 +50,7 @@ public class Player : Character
         }
 
 
-        if (Input.GetButton("Jump"))
+        if (InputManager.Jump.GetButton())
         {
             HoldJump = true;
         }
