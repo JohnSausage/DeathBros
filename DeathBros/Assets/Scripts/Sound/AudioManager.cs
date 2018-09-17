@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             //DontDestroyOnLoad(gameObject);
@@ -28,14 +28,17 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             InitSound(s);
-            /*
-            s.Source = gameObject.AddComponent<AudioSource>();
-
-            s.Source.clip = s.clip;
-            s.Source.volume = s.volume;
-            s.Source.loop = s.loop;
-            */
         }
+
+        SoundContainer[] soundContainers = (SoundContainer[])Resources.FindObjectsOfTypeAll(typeof(SoundContainer));
+        foreach (var sc in soundContainers)
+        {
+            foreach (var s in sc.sounds)
+            {
+                AddSound(s);
+            }
+        }
+
     }
 
     private void InitSound(Sound sound)
@@ -55,7 +58,7 @@ public class AudioManager : MonoBehaviour
 
     public static void AddSound(Sound sound)
     {
-        Instance.sounds.Add(sound);
         Instance.InitSound(sound);
+        Instance.sounds.Add(sound);
     }
 }

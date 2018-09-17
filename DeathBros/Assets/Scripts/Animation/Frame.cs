@@ -12,6 +12,8 @@ public class Frame
     public List<Hurtbox> hurtboxes;
     public List<Hitbox> hitboxes;
 
+    public string soundName;
+
     public Frame()
     {
         hurtboxes = new List<Hurtbox>();

@@ -21,6 +21,7 @@ MonoBehaviour:
     - position: {x: -0.06788796, y: -0.0075430702}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 2
     sprite: {fileID: 21300006, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
     - position: {x: -0.014008653, y: -0.018318933}
       radius: 0.3
     hitboxes: []
+    soundName: G
   - duration: 2
     sprite: {fileID: 21300008, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
@@ -39,6 +41,7 @@ MonoBehaviour:
     - position: {x: -0.0571121, y: -0.07219824}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 2
     sprite: {fileID: 21300010, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
@@ -48,6 +51,7 @@ MonoBehaviour:
     - position: {x: -0.06446539, y: -0.037735876}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 2
     sprite: {fileID: 21300012, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
@@ -57,6 +61,7 @@ MonoBehaviour:
     - position: {x: -0.0032327913, y: -0.039870657}
       radius: 0.3
     hitboxes: []
+    soundName: G
   - duration: 2
     sprite: {fileID: 21300014, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
@@ -66,3 +71,4 @@ MonoBehaviour:
     - position: {x: -0.06788796, y: -0.0829741}
       radius: 0.3
     hitboxes: []
+    soundName: 

@@ -21,6 +21,7 @@ MonoBehaviour:
     - position: {x: -0.024784515, y: -0.5355603}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300016, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 1
@@ -38,5 +39,6 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 20
         damageType: 0
-      ID: 5072
+      ID: 41229
       getNewID: 0
+    soundName: 

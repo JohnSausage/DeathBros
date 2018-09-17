@@ -21,6 +21,7 @@ MonoBehaviour:
     - position: {x: -0.06446539, y: -0.037735876}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 20
     sprite: {fileID: 21300014, guid: e7dd02b3d5b78a94db72d9134e81b6c5, type: 3}
     newHitID: 0
@@ -30,3 +31,4 @@ MonoBehaviour:
     - position: {x: -0.014008653, y: -0.06681031}
       radius: 0.3
     hitboxes: []
+    soundName: 

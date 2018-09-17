@@ -21,3 +21,4 @@ MonoBehaviour:
     - position: {x: -0.035560377, y: 0.035560377}
       radius: 0.3
     hitboxes: []
+    soundName: 

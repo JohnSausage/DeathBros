@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 
 public class FrameAnimatorEditor : EditorWindow
 {
@@ -34,6 +35,8 @@ public class FrameAnimatorEditor : EditorWindow
     private int specialInfoTabNr = 0;
     private float timer = 0;
 
+    private string[] soundNames;
+
     private int pixelPerUnit = 16;
     private float scale = 4f;
 
@@ -64,8 +67,17 @@ public class FrameAnimatorEditor : EditorWindow
     {
         InitTextures();
         //EditorApplication.update += Update;
-
         Repaint();
+    }
+
+    private void LoadSoundNames()
+    {
+        if (anim != null)
+        {
+            SoundContainer sc = anim.gameObject.GetComponentInChildren<SoundContainer>();
+
+            soundNames = sc.sounds.Select(x => x.name).ToArray();
+        }
     }
 
     void OnDisable()
@@ -627,7 +639,7 @@ public class FrameAnimatorEditor : EditorWindow
 
         if (specialInfoTabNr == 2)
             GUI.color = Color.gray;
-        if (GUILayout.Button("Projectiles"))
+        if (GUILayout.Button("Sounds"))
         {
             specialInfoTabNr = 2;
         }
@@ -646,10 +658,15 @@ public class FrameAnimatorEditor : EditorWindow
             {
                 DisplayHitboxTab();
             }
+            else if (specialInfoTabNr == 2)
+            {
+                DisplaySoundTab();
+            }
         }
 
         GUILayout.EndArea();
     }
+
 
     private void DisplayHurtboxTab()
     {
@@ -724,7 +741,7 @@ public class FrameAnimatorEditor : EditorWindow
 
     private void DisplayHitboxTab()
     {
-            specialFrameInfoScrollVector = EditorGUILayout.BeginScrollView(specialFrameInfoScrollVector);
+        specialFrameInfoScrollVector = EditorGUILayout.BeginScrollView(specialFrameInfoScrollVector);
         if (currentFrame.hitboxes == null) currentFrame.hitboxes = new List<Hitbox>();
 
         GUI.color = new Color32(200, 180, 180, 255);
@@ -737,7 +754,7 @@ public class FrameAnimatorEditor : EditorWindow
 
                 EditorGUILayout.BeginVertical("box");
                 {
-                    if(currentFrame.hitboxes[i].damage == null)
+                    if (currentFrame.hitboxes[i].damage == null)
                     {
                         currentFrame.hitboxes[i].damage = new Damage();
                     }
@@ -786,7 +803,7 @@ public class FrameAnimatorEditor : EditorWindow
         }
         GUI.color = Color.white;
 
-        EditorGUILayout.EndScrollView();
+
 
 
         if (GUILayout.Button("Add HitBox"))
@@ -812,6 +829,35 @@ public class FrameAnimatorEditor : EditorWindow
                 currentFrame.hitboxes.Add(copyHitboxes[i].Clone());
             }
         }
+
+        EditorGUILayout.EndScrollView();
+    }
+
+
+
+    private void DisplaySoundTab()
+    {
+        EditorGUILayout.BeginVertical("box");
+
+        if (GUILayout.Button("Load Sound Names"))
+        {
+            LoadSoundNames();
+        }
+
+        if (soundNames != null)
+        {
+            int i = 0;
+            i = EditorGUILayout.Popup(i, soundNames);
+
+            if (GUILayout.Button("Use Sound"))
+            {
+                currentFrame.soundName = soundNames[i];
+            }
+        }
+
+        currentFrame.soundName = EditorGUILayout.TextField("Sound", currentFrame.soundName);
+
+        EditorGUILayout.EndVertical();
     }
 
     private Rect DrawSpriteRect(Vector2 position, Sprite sprite, float scale, Texture2D background = null)

@@ -21,6 +21,7 @@ MonoBehaviour:
     - position: {x: -0.051075242, y: -0.038530495}
       radius: 0.3
     hitboxes: []
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300002, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 1
@@ -38,8 +39,9 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 25
         damageType: 0
-      ID: 52539
+      ID: 56827
       getNewID: 0
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300004, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 0
@@ -57,8 +59,9 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 25
         damageType: 0
-      ID: 52539
+      ID: 56827
       getNewID: 0
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300006, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 0
@@ -68,3 +71,4 @@ MonoBehaviour:
     - position: {x: 0.26, y: -0.31}
       radius: 0.3
     hitboxes: []
+    soundName: 

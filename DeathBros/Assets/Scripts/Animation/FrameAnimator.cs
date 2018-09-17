@@ -61,6 +61,11 @@ public class FrameAnimator : _MB
             hubM.SetHurtboxes(currentFrame);
             hibM.DrawHitboxes(currentFrame);
 
+            if(frameTimer == 0 && currentFrame.soundName != "")
+            {
+                AudioManager.PlaySound(currentFrame.soundName);
+            }
+
             frameTimer += animationSpeed;
 
             if (frameTimer >= currentAnimation.frames[animTimer].duration)

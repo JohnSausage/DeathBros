@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public string soundFolderName = "Sounds/Player/";
 
     public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
@@ -14,8 +13,7 @@ public class Player : Character
     public override void Init()
     {
         base.Init();
-
-        LoadSoundFiles();
+        soundFolderName = "Sounds/Player/";
 
         advancedMovementStates.Init(this);
         attackStates.Init(this);
@@ -30,7 +28,7 @@ public class Player : Character
         DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Attack = true;
         }
@@ -61,16 +59,5 @@ public class Player : Character
         }
     }
 
-    private void LoadSoundFiles()
-    {
-        Object[] objects = Resources.LoadAll(soundFolderName);
 
-        foreach (var o in objects)
-        {
-            Sound s = new Sound();
-            s.clip = (AudioClip)o;
-            s.name = o.name;
-            AudioManager.AddSound((s));
-        }
-    }
 }

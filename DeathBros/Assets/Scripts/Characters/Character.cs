@@ -7,6 +7,8 @@ public class Character : _MB
 {
     public string charName;
 
+    public string soundFolderName;
+
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs;// { get; protected set; }
 
@@ -221,4 +223,19 @@ public class Character : _MB
         CSMachine.ChangeState(GetState(typeof(CS_Idle)));
     }
 
+    public void LoadSoundFiles()
+    {
+        if (soundFolderName != "")
+        {
+            UnityEngine.Object[] objects = Resources.LoadAll(soundFolderName);
+
+            foreach (var o in objects)
+            {
+                Sound s = new Sound();
+                s.clip = (AudioClip)o;
+                s.name = o.name;
+                AudioManager.AddSound((s));
+            }
+        }
+    }
 }
