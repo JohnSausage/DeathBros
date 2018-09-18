@@ -10,6 +10,8 @@ public class Player : Character
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
 
+    public float soulCharge = 0;
+
     public override void Init()
     {
         base.Init();
@@ -58,7 +60,6 @@ public class Player : Character
             //Jump = false;
         }
 
-
         if (InputManager.Jump.GetButton())
         {
             HoldJump = true;
@@ -69,6 +70,26 @@ public class Player : Character
         }
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if(soulMeter > 50)
+        {
+            soulMeter -= soulMeterBalanceRate;
+
+            if (soulMeter < 50) soulMeter = 50;
+        }
+        else
+        {
+            soulMeter += soulMeterBalanceRate;
+
+            if (soulMeter > 50) soulMeter = 50;
+        }
+
+        soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+    }
+
     public override bool CheckForTiltAttacks()
     {
         if (Attack)
@@ -76,23 +97,19 @@ public class Player : Character
             if (DirectionalInput == Vector2.zero)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.Jab));
-                Debug.Log("Jab");
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
-                Debug.Log("FTilt");
             }
             else if (DirectionalInput.y > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-                Debug.Log("UTilt");
 
             }
             else if (DirectionalInput.y < -0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-                Debug.Log("DTilt");
             }
 
             return true;
@@ -109,17 +126,14 @@ public class Player : Character
             if (Mathf.Abs(smash.x) > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.FSoul));
-                Debug.Log("FSmash");
             }
             else if (smash.y > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.USoul));
-                Debug.Log("USmash");
             }
             else if (smash.y < -0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.DSoul));
-                Debug.Log("DSmash");
             }
 
             return true;

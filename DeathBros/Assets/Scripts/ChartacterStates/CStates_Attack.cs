@@ -15,7 +15,7 @@ public class CStates_Attack
     }
 }
 
-public enum EAttackType { Jab, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul}
+public enum EAttackType { Jab, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul }
 
 [System.Serializable]
 public class CS_Attack : CState
@@ -43,6 +43,10 @@ public class CS_SoulAttack : CS_Attack
     [SerializeField]
     private string chargeAnimationName = "idle";
 
+
+    [SerializeField]
+    private float chargeRate = 1f;
+
     private FrameAnimation chargeAnimation;
     private bool charging = true;
 
@@ -64,14 +68,26 @@ public class CS_SoulAttack : CS_Attack
     {
         base.Execute();
 
-        if(!chr.HoldAttack)
+        if (chr.HoldAttack)
+        {
+            chr.ModSoulMeter(-chargeRate);
+
+            if (chr is Player)
+            {
+                Player player = (Player)chr;
+
+                player.soulCharge += chargeRate;
+            }
+        }
+
+        if (!chr.HoldAttack || chr.soulMeter <= 1f)
         {
             chr.Anim.ChangeAnimation(animation);
             charging = false;
             chr.Spr.color = Color.white;
         }
 
-        if(!charging && chr.Anim.animationOver)
+        if (!charging && chr.Anim.animationOver)
         {
             chr.CS_SetIdle();
         }
@@ -80,6 +96,14 @@ public class CS_SoulAttack : CS_Attack
     public override void Exit()
     {
         base.Exit();
+
         chr.Spr.color = Color.white;
+
+        if (chr is Player)
+        {
+            Player player = (Player)chr;
+
+            player.soulCharge = 0f;
+        }
     }
 }

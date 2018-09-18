@@ -37,6 +37,10 @@ public class Character : _MB
 
     public Stats stats;
 
+    public float soulMeter = 50;
+    public float soulMeterMax = 100;
+    public float soulMeterBalanceRate = 0.25f;
+
     public Damage currentDamae { get; protected set; }
 
     public Queue<int> hitIDs = new Queue<int>();
@@ -272,5 +276,12 @@ public class Character : _MB
     public virtual bool CheckForSpecialAttacks()
     {
         return false;
+    }
+
+    public virtual void ModSoulMeter(float value)
+    {
+        soulMeter += value;
+
+        soulMeter = Mathf.Clamp(soulMeter, 0, 100);
     }
 }

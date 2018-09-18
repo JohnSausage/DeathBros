@@ -615,6 +615,9 @@ MonoBehaviour:
     maxSlopeUpAngle: 45
     maxSlopeDownAngle: 45
     stats: []
+  soulMeter: 50
+  soulMeterMax: 100
+  soulMeterBalanceRate: 0.25
   movementStates:
     idle:
       animationName: idle
@@ -2153,6 +2156,9 @@ MonoBehaviour:
     maxSlopeUpAngle: 45
     maxSlopeDownAngle: 45
     stats: []
+  soulMeter: 50
+  soulMeterMax: 100
+  soulMeterBalanceRate: 0.25
   wallSlideSpeed:
     statName: WallslideSpeed
     baseValue: 5
@@ -2199,7 +2205,7 @@ MonoBehaviour:
     uSoul:
       animationName: testAttack
       attackType: 12
-      chargeAnimationName: idle
+      chargeAnimationName: testCharge
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0

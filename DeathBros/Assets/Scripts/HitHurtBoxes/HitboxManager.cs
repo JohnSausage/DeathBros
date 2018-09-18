@@ -10,11 +10,14 @@ public class HitboxManager : _MB
     private bool flipped;
     public int currentID;
 
+    public Character chr { get; protected set; }
+
     public override void Init()
     {
         base.Init();
 
         spr = GetComponent<SpriteRenderer>();
+        chr = GetComponent<Character>();
     }
 
     public void DrawHitboxes(Frame currentFrame)
@@ -44,7 +47,15 @@ public class HitboxManager : _MB
                 {
                     if (!enemy.ContainsHidID(currentFrame.hitboxes[i].ID))
                     {
-                        enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
+                        if (chr is Player)
+                        {
+                            Player player = (Player)chr;
+                            enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge));
+                        }
+                        else
+                        {
+                            enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
+                        }
                         enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
                     }
                 }
@@ -109,5 +120,13 @@ public class Damage
             knockbackGrowth = knockbackGrowth,
             damageType = damageType
         };
+    }
+
+    public Damage AddDamage(float damage)
+    {
+        Damage rDamage = this.Clone();
+        rDamage.damageNumber += damage;
+
+        return rDamage;
     }
 }
