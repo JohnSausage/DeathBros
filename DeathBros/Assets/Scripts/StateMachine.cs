@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class StateMachine
 {
     public string currentState;
@@ -21,10 +23,17 @@ public class StateMachine
 
     public void ChangeState(IState newState)
     {
-        CurrentState.Exit();
-        previousState = CurrentState;
-        CurrentState = newState;
-        newState.Enter();
+        if (newState != null)
+        {
+            CurrentState.Exit();
+            previousState = CurrentState;
+            CurrentState = newState;
+            newState.Enter();
+        }
+        else
+        {
+            Debug.Log("StateMachine - New State not found!");
+        }
     }
 
     public void GoToPreviousState()

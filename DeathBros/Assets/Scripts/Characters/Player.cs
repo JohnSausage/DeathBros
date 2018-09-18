@@ -38,6 +38,15 @@ public class Player : Character
             Attack = false;
         }
 
+        if (InputManager.Attack.GetButton())
+        {
+            HoldAttack = true;
+        }
+        else
+        {
+            HoldAttack = false;
+        }
+
         if (InputManager.BufferdDown("Jump"))
         {
             Jump = true;
@@ -60,5 +69,61 @@ public class Player : Character
         }
     }
 
+    public override bool CheckForTiltAttacks()
+    {
+        if (Attack)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.Jab));
+                Debug.Log("Jab");
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                Debug.Log("FTilt");
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                Debug.Log("UTilt");
 
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+                Debug.Log("DTilt");
+            }
+
+            return true;
+        }
+        else return false;
+    }
+
+    public override bool CheckForSoulAttacks()
+    {
+        Vector2 smash = InputManager.Smash;
+
+        if (Attack && smash != Vector2.zero)
+        {
+            if (Mathf.Abs(smash.x) > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FSoul));
+                Debug.Log("FSmash");
+            }
+            else if (smash.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.USoul));
+                Debug.Log("USmash");
+            }
+            else if (smash.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DSoul));
+                Debug.Log("DSmash");
+            }
+
+            return true;
+        }
+        else return false;
+    }
 }

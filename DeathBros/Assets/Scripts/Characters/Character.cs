@@ -15,6 +15,7 @@ public class Character : _MB
     public bool Jump { get; protected set; }
     public bool HoldJump { get; protected set; }
     public bool Attack { get; protected set; }
+    public bool HoldAttack { get; protected set; }
 
     //public float jumpStrength = 20;
     //public int jumps = 2;
@@ -113,7 +114,7 @@ public class Character : _MB
     {
         hitIDs.Enqueue(id);
 
-        if(hitIDs.Count> 10)
+        if (hitIDs.Count > 10)
         {
             hitIDs.Dequeue();
         }
@@ -199,6 +200,25 @@ public class Character : _MB
         return returnState;
     }
 
+    public CS_Attack GetAttackState(EAttackType attackType)
+    {
+        CS_Attack returnState = null;
+
+        for (int i = 0; i < cStates.Count; i++)
+        {
+            if(cStates[i] is CS_Attack)
+            {
+                CS_Attack checkAttackType = (CS_Attack)cStates[i];
+
+                if (checkAttackType.attackType == attackType)
+                {
+                    returnState = (CS_Attack)cStates[i];
+                }
+            }
+        }
+        return returnState;
+    }
+
     public virtual void CS_CheckLanding()
     {
         if (Ctr.grounded)
@@ -237,5 +257,20 @@ public class Character : _MB
                 AudioManager.AddSound((s));
             }
         }
+    }
+
+    public virtual bool CheckForTiltAttacks()
+    {
+        return false;
+    }
+
+    public virtual bool CheckForSoulAttacks()
+    {
+        return false;
+    }
+
+    public virtual bool CheckForSpecialAttacks()
+    {
+        return false;
     }
 }

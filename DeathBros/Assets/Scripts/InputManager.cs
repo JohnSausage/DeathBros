@@ -28,6 +28,9 @@ public class InputManager : MonoBehaviour
     public int bufferFrames = 5;
     private int bufferTimer = 0;
 
+    public int smashBufferFrames = 5;
+    private int smashBufferTimer = 0;
+
     public static Vector2 Smash;
     private Vector2 oldDirection;
 
@@ -150,7 +153,15 @@ public class InputManager : MonoBehaviour
     private void FixedUpdate()
     {
         oldDirection = Direction;
-        Smash = Vector2.zero;
+        if(Smash != Vector2.zero)
+        {
+            smashBufferTimer--;
+        }
+
+        if (smashBufferTimer <= 0)
+        {
+            Smash = Vector2.zero;
+        }
 
         Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
         CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
@@ -158,11 +169,13 @@ public class InputManager : MonoBehaviour
         if(Mathf.Abs(oldDirection.x - Direction.x) > 0.4f && Mathf.Abs(Direction.x) > 0.9f)
         {
             Smash.x = Mathf.Sign(Direction.x);
+            smashBufferTimer = smashBufferFrames;
         }
 
         if (Mathf.Abs(oldDirection.y - Direction.y) > 0.4f && Mathf.Abs(Direction.y) > 0.9f)
         {
             Smash.y = Mathf.Sign(Direction.y);
+            smashBufferTimer = smashBufferFrames;
         }
 
         if (BufferedInput != null)

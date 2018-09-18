@@ -8,7 +8,7 @@ public class Enemy : Character
     protected CStates_Movement movementStates;
 
     [SerializeField]
-    protected CS_TestAttack attackState;
+    protected CS_Attack attackState;
 
     public EnemyAI AI { get; protected set; }
 

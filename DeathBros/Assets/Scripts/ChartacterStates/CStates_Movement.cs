@@ -101,10 +101,23 @@ public class CS_Idle : CState
             //ChangeState(hitstun);
         }
 
+        if(chr.CheckForSpecialAttacks() == false)
+        {
+            if(chr.CheckForSoulAttacks() == false)
+            {
+                chr.CheckForTiltAttacks();
+            }
+        }
+
+        //if (!chr.CheckForSpecialAttacks()) { }
+        //else if (!chr.CheckForSoulAttacks())
+        //    chr.CheckForTiltAttacks();
+        /*
         if (chr.Attack)
         {
-            ChangeState(chr.GetState(typeof(CS_TestAttack)));
+            ChangeState(chr.GetState(typeof(CS_Attack)));
         }
+        */
     }
 }
 
@@ -179,6 +192,14 @@ public class CS_Walking : CState
         {
             //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(typeof(CS_Jumpsquat));
+        }
+
+        if (chr.CheckForSpecialAttacks() == false)
+        {
+            if (chr.CheckForSoulAttacks() == false)
+            {
+                chr.CheckForTiltAttacks();
+            }
         }
 
         chr.CS_CheckIfStillGrounded();
