@@ -744,6 +744,9 @@ MonoBehaviour:
   movespeed: 2
   wallSlideSpeed: 3
   accelerationTimeAerial: 0.1
+  maxNormalFallSpeed: -20
+  maxFastFallSpeed: -30
+  fastFall: 0
   maxSlopeDownAngle: 45
   maxSlopeUpAngle: 45
   velocityXSmoothingAerial: 0
@@ -982,6 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingLevel: {fileID: 2033300827}
+  knTestFactor: 1
 --- !u!4 &291233835
 Transform:
   m_ObjectHideFlags: 0
@@ -2292,6 +2296,9 @@ MonoBehaviour:
   movespeed: 10
   wallSlideSpeed: 5
   accelerationTimeAerial: 3
+  maxNormalFallSpeed: -16
+  maxFastFallSpeed: -25
+  fastFall: 0
   maxSlopeDownAngle: 45
   maxSlopeUpAngle: 45
   velocityXSmoothingAerial: 0

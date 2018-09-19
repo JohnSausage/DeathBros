@@ -46,6 +46,10 @@ public class Controller2D : MonoBehaviour
     public float wallSlideSpeed = 3f;
     public float accelerationTimeAerial = 0.1f;
 
+    public float maxNormalFallSpeed = -20f;
+    public float maxFastFallSpeed = -30f;
+    public bool fastFall = false;
+
     public float maxSlopeDownAngle = 45;
     public float maxSlopeUpAngle = 45;
 
@@ -158,6 +162,22 @@ public class Controller2D : MonoBehaviour
             velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial / 60);
 
             velocity.y += gravity / 60;
+
+            if (!fastFall)
+            {
+                if (velocity.y < maxNormalFallSpeed / 60)
+                {
+                    velocity.y = maxNormalFallSpeed / 60;
+                }
+            }
+            else if (velocity.y < 0)
+            {
+                velocity.y = maxFastFallSpeed / 60;
+            }
+            else
+            {
+                fastFall = false;
+            }
         }
 
         bool jump = false;
@@ -477,6 +497,10 @@ public class Controller2D : MonoBehaviour
         if (!grounded)
         {
             currentPlatform = null;
+        }
+        else
+        {
+            fastFall = false;
         }
     }
 

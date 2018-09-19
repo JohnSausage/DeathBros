@@ -87,12 +87,19 @@ public class Character : _MB
 
     protected virtual void FixedUpdate()
     {
+        /*
         StrongInputs = Vector2.zero;
+
         if (Mathf.Abs(Ctr.input.x - DirectionalInput.x) > 0.1f && Mathf.Abs(DirectionalInput.x) > 0.8f)
         {
             StrongInputs = new Vector2(DirectionalInput.x - Ctr.input.x, 0);
         }
 
+        if (Mathf.Abs(Ctr.input.y - DirectionalInput.y) > 0.1f && Mathf.Abs(DirectionalInput.y) > 0.8f)
+        {
+            StrongInputs = new Vector2(DirectionalInput.y - Ctr.input.y, 0);
+        }
+        */
         CSMachine.Update();
 
         stats.FixedUpdate();

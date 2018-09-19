@@ -29,6 +29,8 @@ public class Player : Character
     {
         //DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
         DirectionalInput = InputManager.Direction;
+        StrongInputs = InputManager.Smash;
+
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
         if (InputManager.BufferdDown("Attack"))

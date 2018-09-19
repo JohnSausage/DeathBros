@@ -166,13 +166,13 @@ public class InputManager : MonoBehaviour
         Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
         CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
 
-        if(Mathf.Abs(oldDirection.x - Direction.x) > 0.4f && Mathf.Abs(Direction.x) > 0.9f)
+        if(Mathf.Abs(oldDirection.x - Direction.x) > 0.3f && Mathf.Abs(Direction.x) > 0.9f)
         {
             Smash.x = Mathf.Sign(Direction.x);
             smashBufferTimer = smashBufferFrames;
         }
 
-        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.4f && Mathf.Abs(Direction.y) > 0.9f)
+        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.3f && Mathf.Abs(Direction.y) > 0.9f)
         {
             Smash.y = Mathf.Sign(Direction.y);
             smashBufferTimer = smashBufferFrames;

@@ -101,9 +101,9 @@ public class CS_Idle : CState
             //ChangeState(hitstun);
         }
 
-        if(chr.CheckForSpecialAttacks() == false)
+        if (chr.CheckForSpecialAttacks() == false)
         {
-            if(chr.CheckForSoulAttacks() == false)
+            if (chr.CheckForSoulAttacks() == false)
             {
                 chr.CheckForTiltAttacks();
             }
@@ -340,6 +340,8 @@ public class CS_DoubleJumpsquat : CState
     {
         base.Exit();
         chr.jumpsUsed++;
+
+        chr.Ctr.fastFall = false;
     }
 }
 
@@ -412,6 +414,11 @@ public class CS_Jumping : CState
     public override void Execute()
     {
         base.Execute();
+
+        if (chr.Ctr.velocity.y < 0 && chr.StrongInputs.y < 0)
+        {
+            chr.Ctr.fastFall = true;
+        }
 
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(jumpRisingFA);
