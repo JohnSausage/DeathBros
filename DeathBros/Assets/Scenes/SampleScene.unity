@@ -2206,6 +2206,23 @@ MonoBehaviour:
       animationName: testAttack
       attackType: 12
       chargeAnimationName: testCharge
+      chargeRate: 1
+    nAir:
+      animationName: NAir
+      attackType: 5
+    uAir:
+      animationName: UAir
+      attackType: 8
+    dAir:
+      animationName: DAir
+      attackType: 7
+    fAir:
+      animationName: FAir
+      attackType: 6
+    bAir:
+      animationName: BAir
+      attackType: 9
+  soulCharge: 0
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -8,10 +8,24 @@ public class CStates_Attack
     public CS_TiltAttack testAttack;
     public CS_SoulAttack uSoul;
 
+    [Space]
+
+    public CS_Aerial nAir;
+    public CS_Aerial uAir;
+    public CS_Aerial dAir;
+    public CS_Aerial fAir;
+    public CS_Aerial bAir;
+
     public virtual void Init(Character chr)
     {
         testAttack.Init(chr);
         uSoul.Init(chr);
+
+        nAir.Init(chr);
+        uAir.Init(chr);
+        dAir.Init(chr);
+        fAir.Init(chr);
+        bAir.Init(chr);
     }
 }
 
@@ -104,6 +118,29 @@ public class CS_SoulAttack : CS_Attack
             Player player = (Player)chr;
 
             player.soulCharge = 0f;
+        }
+    }
+}
+
+[System.Serializable]
+public class CS_Aerial : CS_Attack
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs();
+
+        if (chr.Anim.animationOver)
+        {
+            chr.CS_SetIdle();
+
+            ChangeState(typeof(CS_Jumping));
+        }
+
+        if (chr.Ctr.grounded)
+        {
+            ChangeState(typeof(CS_Landing));
         }
     }
 }

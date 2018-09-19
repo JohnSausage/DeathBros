@@ -6,6 +6,7 @@ public class GameManager : _MB
 {
     public Level startingLevel;
 
+    public float knTestFactor = 1;
     public static bool IsPaused { get; private set; }
 
     public static Player Player { get; private set; }

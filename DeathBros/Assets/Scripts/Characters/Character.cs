@@ -28,6 +28,8 @@ public class Character : _MB
     public SpriteRenderer Spr { get; protected set; }
     public Controller2D Ctr { get; protected set; }
 
+    public float Direction { get { return Spr.flipX ? -1 : 1; } }
+
     //public CStates_Movement movementStates;
     //public CStates_AdvancedMovement advancedMovementStates;
 
@@ -136,11 +138,21 @@ public class Character : _MB
         CState currentState = (CState)CSMachine.CurrentState;
         currentState.TakeDamage(damage);
 
-        float knockbackGrowth = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * damage.knockbackGrowth;
+        Vector2 knockback;
+
+        float healthF = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * 100; //0-100
+        float dmg = damage.damageNumber;
+        float bKb = damage.baseKnockback;
+        float kbG = damage.knockbackGrowth;
+
+        Vector2 direction = damage.knockBackDirection.normalized;
+
+        knockback = direction * ((((healthF / 10 + healthF * dmg / 20) + 10) * kbG) + bKb) * GameManager.Instance.knTestFactor; //copied somewaht from smash
+        //float knockbackGrowth = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * damage.knockbackGrowth;
+
 
         stats.currentHealth -= damage.damageNumber;
-
-        Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth);
+        //Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth) * damage.damageNumber;
         Ctr.knockback = knockback;
 
         if (stats.currentHealth < 0)
@@ -210,7 +222,7 @@ public class Character : _MB
 
         for (int i = 0; i < cStates.Count; i++)
         {
-            if(cStates[i] is CS_Attack)
+            if (cStates[i] is CS_Attack)
             {
                 CS_Attack checkAttackType = (CS_Attack)cStates[i];
 
@@ -274,6 +286,11 @@ public class Character : _MB
     }
 
     public virtual bool CheckForSpecialAttacks()
+    {
+        return false;
+    }
+
+    public virtual bool CheckForAerialAttacks()
     {
         return false;
     }

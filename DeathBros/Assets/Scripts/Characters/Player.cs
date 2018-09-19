@@ -105,7 +105,6 @@ public class Player : Character
             else if (DirectionalInput.y > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-
             }
             else if (DirectionalInput.y < -0.5f)
             {
@@ -134,6 +133,36 @@ public class Player : Character
             else if (smash.y < -0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.DSoul));
+            }
+
+            return true;
+        }
+        else return false;
+    }
+
+    public override bool CheckForAerialAttacks()
+    {
+        if (Attack)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.NAir));
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) == Direction)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FAir));
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) != Direction)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.BAir));
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.UAir));
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DAir));
             }
 
             return true;

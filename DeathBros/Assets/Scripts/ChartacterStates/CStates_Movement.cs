@@ -438,6 +438,8 @@ public class CS_Jumping : CState
             }
         }
 
+        chr.CheckForAerialAttacks();
+
         if (chr.Ctr.onWall)
         {
             //ChangeState(chr.advancedMovementStates.wallsliding);

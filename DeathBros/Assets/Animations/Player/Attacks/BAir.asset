@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: BAir
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 2
+    sprite: {fileID: 21300036, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.06144071, y: 0.49576274}
+      radius: 0.2
+    - position: {x: -0.06144071, y: 0.029661048}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 2
+    sprite: {fileID: 21300038, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.013316209, y: 0.30326465}
+      radius: 0.2
+    - position: {x: 0.044491492, y: -0.13983047}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 1
+    sprite: {fileID: 21300040, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.013316209, y: 0.30326465}
+      radius: 0.2
+    - position: {x: 0.12923725, y: -0.16101691}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 2
+    sprite: {fileID: 21300042, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 1
+    hurtboxes:
+    - position: {x: -0.013316209, y: 0.30326465}
+      radius: 0.2
+    - position: {x: 0.108050816, y: -0.16101691}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.6122882, y: -0.5211864}
+      radius: 0.82
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 5
+        knockbackGrowth: 0
+        damageType: 0
+      ID: 8251
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300044, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.08262715, y: 0.28389832}
+      radius: 0.2
+    - position: {x: 0.06567793, y: -0.16101691}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.7817797, y: -0.49999997}
+      radius: 0.82
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 5
+        knockbackGrowth: 0
+        damageType: 0
+      ID: 8251
+      getNewID: 0
+    soundName: 
+  - duration: 2
+    sprite: {fileID: 21300046, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: -0.14618647, y: 0.30508476}
+      radius: 0.2
+    - position: {x: -0.04025427, y: -0.16101691}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300048, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 1
+    hurtboxes:
+    - position: {x: 0.044491492, y: 0.30508476}
+      radius: 0.2
+    - position: {x: 0.044491492, y: -0.097457595}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.5699153, y: 0.17796613}
+      radius: 0.82
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 20
+        knockbackGrowth: 1
+        damageType: 0
+      ID: 31653
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300050, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: 0.086864375, y: 0.30508476}
+      radius: 0.2
+    - position: {x: 0.15042369, y: -0.13983047}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -1.0783899, y: -0.2033898}
+      radius: 0.82
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 20
+        knockbackGrowth: 1
+        damageType: 0
+      ID: 31653
+      getNewID: 0
+    - position: {x: -0.50635594, y: 0.26271188}
+      radius: 0.82
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 20
+        knockbackGrowth: 1
+        damageType: 0
+      ID: 31653
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300052, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: 0.086864375, y: 0.09322037}
+      radius: 0.2
+    - position: {x: 0.023305053, y: -0.4152542}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.8241526, y: -0.75423723}
+      radius: 0.82
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: -1, y: 0.2}
+        baseKnockback: 20
+        knockbackGrowth: 1
+        damageType: 0
+      ID: 31653
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300054, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    newHitID: 0
+    hurtboxes:
+    - position: {x: 0.086864375, y: 0.09322037}
+      radius: 0.2
+    - position: {x: 0.044491492, y: -0.37288132}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
