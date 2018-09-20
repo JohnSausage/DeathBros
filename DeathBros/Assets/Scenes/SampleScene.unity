@@ -714,21 +714,22 @@ MonoBehaviour:
   input: {x: 0, y: 0}
   knockback: {x: 0, y: 0}
   slowDown: 0
-  jumpVelocity: 0
   velocity: {x: 0, y: 0}
+  jumpVelocity: 0
+  jump: 0
   angleX: 0
   angleY: 0
   oldAngleX: 0
   grounded: 0
   oldGrounded: 0
-  fallThroughPlatform: 0
   onWall: 0
   oldOnWall: 0
   onPlatform: 0
   oldOnPlatform: 0
   insidePlatform: 0
   wallDirection: 0
-  jump: 0
+  fallThroughPlatform: 0
+  fallThroughPlatformDuration: 0
   hitDirection: {x: 0, y: 0}
   gamma: 0
   alpha: 0
@@ -743,7 +744,6 @@ MonoBehaviour:
   gravity: -1
   movespeed: 2
   wallSlideSpeed: 3
-  accelerationTimeAerial: 0.1
   maxNormalFallSpeed: -20
   maxFastFallSpeed: -30
   fastFall: 0
@@ -2266,21 +2266,22 @@ MonoBehaviour:
   input: {x: 0, y: 0}
   knockback: {x: 0, y: 0}
   slowDown: 0
-  jumpVelocity: 0
   velocity: {x: 0, y: 0}
+  jumpVelocity: 0
+  jump: 0
   angleX: 0
   angleY: 0
   oldAngleX: 0
   grounded: 0
   oldGrounded: 0
-  fallThroughPlatform: 0
   onWall: 0
   oldOnWall: 0
   onPlatform: 0
   oldOnPlatform: 0
   insidePlatform: 0
   wallDirection: 0
-  jump: 0
+  fallThroughPlatform: 0
+  fallThroughPlatformDuration: 5
   hitDirection: {x: 0, y: 0}
   gamma: 0
   alpha: 0
@@ -2295,13 +2296,12 @@ MonoBehaviour:
   gravity: -1
   movespeed: 10
   wallSlideSpeed: 5
-  accelerationTimeAerial: 3
   maxNormalFallSpeed: -16
   maxFastFallSpeed: -25
   fastFall: 0
   maxSlopeDownAngle: 45
   maxSlopeUpAngle: 45
-  velocityXSmoothingAerial: 0
+  velocityXSmoothingAerial: 0.5
 --- !u!114 &967334119
 MonoBehaviour:
   m_ObjectHideFlags: 0

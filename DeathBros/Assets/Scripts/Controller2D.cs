@@ -9,51 +9,50 @@ public class Controller2D : MonoBehaviour
     public Vector2 input;
     public Vector2 knockback;
     public bool slowDown;
-
-    public float jumpVelocity;
-
+    [Space]
     public Vector2 velocity;
+    public float jumpVelocity;
+    public bool jump;
+    [Space]
     public float angleX, angleY;
     public float oldAngleX;
-
+    [Space]
     public bool grounded;
     public bool oldGrounded;
-    public bool fallThroughPlatform;
     public bool onWall;
     public bool oldOnWall;
     public bool onPlatform;
     public bool oldOnPlatform;
     public bool insidePlatform;
-
     public int wallDirection;
-
-
-    public bool jump;
-
+    [Space]
+    public bool fallThroughPlatform;
+    public int fallThroughPlatformDuration = 5;
+    private int fallThroughPlatformTimer = 0;
+    [Space]
     public Vector2 hitDirection;
     public float gamma;
     public float alpha;
-
+    [Space]
     public LayerMask collisionMask;
     public LayerMask platformMask;
     public string movingPlatformTag = "MovingPlatform";
     public BoxCollider2D Col { get; protected set; }
     public PlatformController currentPlatform;
-
+    [Space]
     public float gravity = -1f;
     public float movespeed = 10f;
-    //public float jumpStrength = 20f;
     public float wallSlideSpeed = 3f;
-    public float accelerationTimeAerial = 0.1f;
-
+    //public float accelerationTimeAerial = 0.1f;
+    [Space]
     public float maxNormalFallSpeed = -20f;
     public float maxFastFallSpeed = -30f;
     public bool fastFall = false;
-
+    [Space]
     public float maxSlopeDownAngle = 45;
     public float maxSlopeUpAngle = 45;
-
-    public float velocityXSmoothingAerial = 0f;
+    [Space]
+    public float velocityXSmoothingAerial = 0.5f;
     protected float moveAngle;
 
     protected Bounds bounds;
@@ -141,8 +140,15 @@ public class Controller2D : MonoBehaviour
         if (input.y < 0)
         {
             fallThroughPlatform = true;
+            fallThroughPlatformTimer = fallThroughPlatformDuration;
         }
-        else
+
+        if(fallThroughPlatform)
+        {
+            fallThroughPlatformTimer--;
+        }
+        
+        if(fallThroughPlatformTimer <= 0)
         {
             fallThroughPlatform = false;
         }
@@ -159,8 +165,20 @@ public class Controller2D : MonoBehaviour
         {
             float targetVelocityX = input.x / 60 * movespeed;
 
-            velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial / 60);
+            //float smoothedVelocityX = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothingAerial, accelerationTimeAerial / 60);
 
+            //velocity.x += smoothedVelocityX;
+            float oldVel = velocity.x;
+            velocity.x -= Mathf.Sign(velocity.x) * velocityXSmoothingAerial / 60;
+
+            if (Mathf.Sign(oldVel) != Mathf.Sign(velocity.x))
+            {
+                velocity.x = 0;
+            }
+
+            velocity.x += targetVelocityX;
+
+            velocity.x = Mathf.Clamp(velocity.x, -movespeed / 60, movespeed / 60);
             velocity.y += gravity / 60;
 
             if (!fastFall)
@@ -296,6 +314,11 @@ public class Controller2D : MonoBehaviour
                     velocity.Normalize();
                     velocity *= (moveDistance);
 
+                    if(velocity.y > 0) //prevent the player from moving up platforms when standing inside of them
+                    {
+                        velocity.y = 0;
+                    }
+
                     //add platform velocity if on platform
                     if (groundCheck.transform.tag == movingPlatformTag)
                     {
@@ -338,7 +361,7 @@ public class Controller2D : MonoBehaviour
             }
 
             //ASCEND SLOPES////////////////////////////////////////////////////////////////////////////
-            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * dirX, -bounds.extents.y);
+            Vector2 raycastXOrigin = (Vector2)bounds.center + new Vector2(bounds.extents.x * dirX, -bounds.extents.y - skin); // added skin here to prevent getting stuck on ending slopes
 
             RaycastHit2D hitX = Physics2D.Raycast(raycastXOrigin, Vector2.right * dirX, Mathf.Abs(velocity.x) + skin, slopeMask);
 
