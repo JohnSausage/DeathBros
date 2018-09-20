@@ -37,6 +37,7 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_WalljumpStart walljumpStart;
     public CS_Walljumping walljumping;
     public CS_Skid skid;
+    public CS_Crouch crouch;
 
     public override void Init(Character chr)
     {
@@ -47,6 +48,7 @@ public class CStates_AdvancedMovement : CStates_Movement
         walljumpStart.Init(chr);
         walljumping.Init(chr);
         skid.Init(chr);
+        crouch.Init(chr);
     }
 }
 
@@ -81,6 +83,11 @@ public class CS_Idle : CState
         base.Execute();
 
         chr.SetInputs();
+
+        if (chr.DirectionalInput.y < 0f)
+        {
+            ChangeState(typeof(CS_Crouch));
+        }
 
         if (Mathf.Abs(chr.DirectionalInput.x) != 0)
         {
@@ -202,6 +209,12 @@ public class CS_Walking : CState
             }
         }
 
+
+        if (chr.DirectionalInput.y < 0f)
+        {
+            ChangeState(typeof(CS_Crouch));
+        }
+
         chr.CS_CheckIfStillGrounded();
     }
 }
@@ -264,6 +277,40 @@ public class CS_Skid : CState
         }
     }
 }
+
+[System.Serializable]
+public class CS_Crouch : CState
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs();
+        chr.SetInputs(new Vector2(0, chr.DirectionalInput.y));
+
+        if (chr.DirectionalInput.y >= -0.1f)
+        {
+            chr.CS_SetIdle();
+        }
+
+        if (chr.Jump)
+        {
+            //ChangeState(chr.advancedMovementStates.jumpsquat);
+            ChangeState(typeof(CS_Jumpsquat));
+        }
+
+        chr.CS_CheckIfStillGrounded();
+
+        if (chr.CheckForSpecialAttacks() == false)
+        {
+            if (chr.CheckForSoulAttacks() == false)
+            {
+                chr.CheckForTiltAttacks();
+            }
+        }
+    }
+}
+
 [System.Serializable]
 public class CS_Jumpsquat : CState
 {
@@ -369,7 +416,15 @@ public class CS_Landing : CState
 
         if (timer >= duration)
         {
-            chr.CS_SetIdle();
+            chr.SetInputs();
+            if (chr.DirectionalInput.y < 0)
+            {
+                ChangeState(typeof(CS_Crouch));
+            }
+            else
+            {
+                chr.CS_SetIdle();
+            }
         }
     }
 }
