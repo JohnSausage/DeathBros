@@ -15,6 +15,10 @@ MonoBehaviour:
   - duration: 5
     sprite: {fileID: 21300000, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.09587811, y: 0.47670248}
       radius: 0.2
@@ -25,6 +29,10 @@ MonoBehaviour:
   - duration: 5
     sprite: {fileID: 21300002, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.19534053, y: 0.18548384}
       radius: 0.2
@@ -39,12 +47,16 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 1
         damageType: 0
-      ID: 26377
+      ID: 37601
       getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300004, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.19534053, y: 0.18548384}
       radius: 0.2
@@ -59,12 +71,16 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 1
         damageType: 0
-      ID: 26377
+      ID: 37601
       getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300006, guid: 09b0cfa408969f44d82a9edba2dd8734, type: 3}
     newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.19534053, y: 0.18548384}
       radius: 0.2

@@ -15,6 +15,10 @@ MonoBehaviour:
   - duration: 3
     sprite: {fileID: 21300038, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
     newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.035560377, y: 0.4773707}
       radius: 0.2

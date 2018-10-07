@@ -645,6 +645,13 @@ public class FrameAnimatorEditor : EditorWindow
         }
         GUI.color = Color.white;
 
+        if (specialInfoTabNr == 3)
+            GUI.color = Color.gray;
+        if (GUILayout.Button("Movement"))
+        {
+            specialInfoTabNr = 3;
+        }
+        GUI.color = Color.white;
         EditorGUILayout.EndHorizontal();
 
 
@@ -661,6 +668,10 @@ public class FrameAnimatorEditor : EditorWindow
             else if (specialInfoTabNr == 2)
             {
                 DisplaySoundTab();
+            }
+            else if (specialInfoTabNr == 3)
+            {
+                DisplayMovementTab();
             }
         }
 
@@ -845,7 +856,7 @@ public class FrameAnimatorEditor : EditorWindow
         }
 
         if (soundNames != null)
-        {          
+        {
             selectSound = EditorGUILayout.Popup(selectSound, soundNames);
 
             if (GUILayout.Button("Use Sound"))
@@ -858,6 +869,19 @@ public class FrameAnimatorEditor : EditorWindow
 
         EditorGUILayout.EndVertical();
     }
+
+    private void DisplayMovementTab()
+    {
+        EditorGUILayout.BeginVertical("box");
+
+        currentFrame.forceMovement = EditorGUILayout.Vector2Field("Force Movement", currentFrame.forceMovement);
+        currentFrame.addMovment = EditorGUILayout.Vector2Field("Add Movement", currentFrame.addMovment);
+
+        currentFrame.resetVelocity = EditorGUILayout.Toggle("Reset Veloctiy", currentFrame.resetVelocity);
+
+        EditorGUILayout.EndVertical();
+    }
+
 
     private Rect DrawSpriteRect(Vector2 position, Sprite sprite, float scale, Texture2D background = null)
     {

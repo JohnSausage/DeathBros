@@ -14,6 +14,11 @@ public class Controller2D : MonoBehaviour
     public float jumpVelocity;
     public bool jump;
     [Space]
+    public bool applyGravity = true;
+    public bool resetVelocity = false;
+    public Vector2 forceMovement = Vector2.zero;
+    public Vector2 addMovement = Vector2.zero;
+    [Space]
     public float angleX, angleY;
     public float oldAngleX;
     [Space]
@@ -143,18 +148,24 @@ public class Controller2D : MonoBehaviour
             fallThroughPlatformTimer = fallThroughPlatformDuration;
         }
 
-        if(fallThroughPlatform)
+        if (fallThroughPlatform)
         {
             fallThroughPlatformTimer--;
         }
-        
-        if(fallThroughPlatformTimer <= 0)
+
+        if (fallThroughPlatformTimer <= 0)
         {
             fallThroughPlatform = false;
         }
 
+        bool jump = false;
 
-        //manage velocity.x
+        //set velocity
+        if (resetVelocity)
+        {
+            velocity = Vector2.zero;
+        }
+
         if (oldGrounded)
         {
             velocity.x = input.x / 60 * movespeed;
@@ -198,7 +209,6 @@ public class Controller2D : MonoBehaviour
             }
         }
 
-        bool jump = false;
 
         if (jumpVelocity != 0)
         {
@@ -206,6 +216,11 @@ public class Controller2D : MonoBehaviour
             jumpVelocity = 0;
             jump = true;
         }
+
+        velocity += addMovement;
+
+        if (forceMovement.x != 0) velocity.x = forceMovement.x;
+        if (forceMovement.y != 0) velocity.y = forceMovement.y;
 
         //check if inside platform
         if (!fallThroughPlatform && !jump)
@@ -314,7 +329,7 @@ public class Controller2D : MonoBehaviour
                     velocity.Normalize();
                     velocity *= (moveDistance);
 
-                    if(velocity.y > 0) //prevent the player from moving up platforms when standing inside of them
+                    if (velocity.y > 0) //prevent the player from moving up platforms when standing inside of them
                     {
                         velocity.y = 0;
                     }
@@ -525,6 +540,11 @@ public class Controller2D : MonoBehaviour
         {
             fastFall = false;
         }
+
+        forceMovement = Vector2.zero;
+        addMovement = Vector2.zero;
+        applyGravity = true;
+        resetVelocity = false;
     }
 
     private void OnDrawGizmos()

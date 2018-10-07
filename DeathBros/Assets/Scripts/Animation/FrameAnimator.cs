@@ -17,6 +17,7 @@ public class FrameAnimator : _MB
     private SpriteRenderer spr;
     private HurtboxManager hubM;
     private HitboxManager hibM;
+    private Controller2D ctr;
 
     private float frameTimer;
     private int animTimer;
@@ -30,6 +31,7 @@ public class FrameAnimator : _MB
         spr = GetComponent<SpriteRenderer>();
         hubM = GetComponent<HurtboxManager>();
         hibM = GetComponent<HitboxManager>();
+        ctr = GetComponent<Controller2D>();
 
         frameTimer = 0;
         animTimer = 0;
@@ -60,6 +62,19 @@ public class FrameAnimator : _MB
             spr.sprite = currentFrame.sprite;
             hubM.SetHurtboxes(currentFrame);
             hibM.DrawHitboxes(currentFrame);
+
+            Vector2 forceMovement = currentFrame.forceMovement;
+            Vector2 addMovement = currentFrame.addMovment;
+
+            if (spr.flipX)
+            {
+                forceMovement.x *= -1;
+                addMovement.x *= -1;
+            }
+            ctr.forceMovement = forceMovement;
+            ctr.addMovement = addMovement;
+
+            ctr.resetVelocity = currentFrame.resetVelocity;
 
             if(frameTimer == 0 && currentFrame.soundName != "")
             {

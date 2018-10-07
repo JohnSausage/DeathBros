@@ -9,6 +9,11 @@ public class Frame
     public Sprite sprite;
     public bool newHitID;
 
+    public bool applyGravity = true;
+    public bool resetVelocity = false;
+    public Vector2 forceMovement;
+    public Vector2 addMovment;
+
     public List<Hurtbox> hurtboxes;
     public List<Hitbox> hitboxes;
 
