@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: attack
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 10
+    sprite: {fileID: 21300014, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.0022816067, y: -0.56453717}
+      radius: 0.43999997
+    hitboxes: []
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300016, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.018578868, y: -0.38526726}
+      radius: 0.46999997
+    hitboxes: []
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300018, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.018578868, y: -0.23859191}
+      radius: 0.49999997
+    hitboxes: []
+    soundName: 
+  - duration: 6
+    sprite: {fileID: 21300020, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.0022816067, y: -0.22229464}
+      radius: 0.43999997
+    hitboxes: []
+    soundName: 
+  - duration: 20
+    sprite: {fileID: 21300022, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.0022816067, y: -0.56453717}
+      radius: 0.43999997
+    hitboxes: []
+    soundName: 

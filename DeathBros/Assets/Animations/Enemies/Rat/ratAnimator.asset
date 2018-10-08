@@ -9,7 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 122d3b7926ad24f4ab1beb873bd8bdac, type: 3}
-  m_Name: TestEnemyFAnim
+  m_Name: ratAnimator
   m_EditorClassIdentifier: 
   frameAnimations:
   - {fileID: 11400000, guid: 50d5b419f242d144ea1db47152dd4aa8, type: 2}
+  - {fileID: 11400000, guid: a50790d70b3a1bc48a0d114368354256, type: 2}
+  - {fileID: 11400000, guid: ad552f972741d7e44af0e695d6c41883, type: 2}

@@ -717,6 +717,10 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   jumpVelocity: 0
   jump: 0
+  applyGravity: 1
+  resetVelocity: 0
+  forceMovement: {x: 0, y: 0}
+  addMovement: {x: 0, y: 0}
   angleX: 0
   angleY: 0
   oldAngleX: 0
@@ -1564,6 +1568,291 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 635178309}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &754927379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 754927388}
+  - component: {fileID: 754927387}
+  - component: {fileID: 754927386}
+  - component: {fileID: 754927385}
+  - component: {fileID: 754927384}
+  - component: {fileID: 754927383}
+  - component: {fileID: 754927382}
+  - component: {fileID: 754927381}
+  - component: {fileID: 754927380}
+  m_Layer: 0
+  m_Name: Enemy_Rat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &754927380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20714bb02c6e6ac4fa4daa6b04300f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTag: Player
+  attackRange: 1
+  target: {fileID: 0}
+  TargetDirection: {x: 0, y: 0}
+  TargetVector: {x: 0, y: 0}
+--- !u!61 &754927381
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.035713196, y: -0.5877249}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.81124496, y: 0.5696378}
+  m_EdgeRadius: 0
+--- !u!114 &754927382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4408d94a1dbfcb7408118eb2e143f8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {x: 0, y: 0}
+  knockback: {x: 0, y: 0}
+  slowDown: 0
+  velocity: {x: 0, y: 0}
+  jumpVelocity: 0
+  jump: 0
+  applyGravity: 1
+  resetVelocity: 0
+  forceMovement: {x: 0, y: 0}
+  addMovement: {x: 0, y: 0}
+  angleX: 0
+  angleY: 0
+  oldAngleX: 0
+  grounded: 0
+  oldGrounded: 0
+  onWall: 0
+  oldOnWall: 0
+  onPlatform: 0
+  oldOnPlatform: 0
+  insidePlatform: 0
+  wallDirection: 0
+  fallThroughPlatform: 0
+  fallThroughPlatformDuration: 0
+  hitDirection: {x: 0, y: 0}
+  gamma: 0
+  alpha: 0
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  platformMask:
+    serializedVersion: 2
+    m_Bits: 512
+  movingPlatformTag: MovingPlatform
+  currentPlatform: {fileID: 0}
+  gravity: -1
+  movespeed: 2
+  wallSlideSpeed: 3
+  maxNormalFallSpeed: -20
+  maxFastFallSpeed: -30
+  fastFall: 0
+  maxSlopeDownAngle: 45
+  maxSlopeUpAngle: 45
+  velocityXSmoothingAerial: 0
+--- !u!114 &754927383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAnimation: {fileID: 0}
+  frameAnimationsSO: {fileID: 11400000, guid: 13e538e11cca5ce4c876fdfea5f779be, type: 2}
+  animationSpeed: 1
+--- !u!114 &754927384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826aa1a2d6416654d8b58b69fc702025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charName: 
+  soundFolderName: 
+  StrongInputs: {x: 0, y: 0}
+  CSMachine:
+    currentState: 
+  cStates: []
+  stats:
+    maxHealth:
+      statName: MaxHealth
+      baseValue: 100
+    currentHealth: 0
+    weight:
+      statName: Weight
+      baseValue: 100
+    movespeed:
+      statName: Movespeed
+      baseValue: 6
+    jumpStrength:
+      statName: JumpStrength
+      baseValue: 2
+    gravity:
+      statName: Gravity
+      baseValue: -1
+    jumps:
+      statName: Jumps
+      baseValue: 1
+    velocityXSmoothing: 3
+    maxSlopeUpAngle: 45
+    maxSlopeDownAngle: 45
+    stats: []
+  soulMeter: 50
+  soulMeterMax: 100
+  soulMeterBalanceRate: 0.25
+  movementStates:
+    idle:
+      animationName: idle
+    walking:
+      animationName: run
+      animationSlow: run
+      direction: 0
+    jumpsquat:
+      animationName: idle
+      duration: 0
+    jumping:
+      animationName: idle
+      jumpRisingAnimation: idle
+      allowWallJumpAfterWallSlidingDuration: 5
+    landing:
+      animationName: idle
+      duration: 3
+    hitstun:
+      animationName: idle
+      minDuration: 3
+  attackState:
+    animationName: attack
+    attackType: 0
+--- !u!114 &754927385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce20147491b8224f9e36b3d2082c3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  currentID: 0
+--- !u!114 &754927386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d41dc96215044e45aabd32c02ba9e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtboxes: []
+--- !u!212 &754927387
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 184962683
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &754927388
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754927379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.64, y: -6.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1548137513}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761100467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2560,10 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   jumpVelocity: 0
   jump: 0
+  applyGravity: 1
+  resetVelocity: 0
+  forceMovement: {x: 0, y: 0}
+  addMovement: {x: 0, y: 0}
   angleX: 0
   angleY: 0
   oldAngleX: 0
@@ -2842,6 +3135,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c690f147ab7e8c48a674abc6a6f24e0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1548137512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1548137513}
+  m_Layer: 11
+  m_Name: Hurtboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1548137513
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1548137512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 754927388}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1550617395
 Prefab:
   m_ObjectHideFlags: 0
