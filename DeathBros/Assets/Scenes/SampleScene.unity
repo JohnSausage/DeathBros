@@ -2496,12 +2496,21 @@ MonoBehaviour:
   attackStates:
     testAttack:
       animationName: testAttack
-      attackType: 3
+      attackType: 0
     uSoul:
       animationName: testAttack
-      attackType: 12
+      attackType: 10
       chargeAnimationName: testCharge
       chargeRate: 1
+    uTilt:
+      animationName: UTilt
+      attackType: 3
+    dTilt:
+      animationName: DTilt
+      attackType: 2
+    fTilt:
+      animationName: testAttack
+      attackType: 1
     nAir:
       animationName: NAir
       attackType: 5

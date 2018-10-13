@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: TestEnemyFAnim
   m_EditorClassIdentifier: 
   frameAnimations:
-  - {fileID: 11400000, guid: 50d5b419f242d144ea1db47152dd4aa8, type: 2}
+  - {fileID: 11400000, guid: 89ab99a809bfbb04ca80e92899e65396, type: 2}
+  - {fileID: 11400000, guid: 346c0814b2503a2469546d659fc5e454, type: 2}

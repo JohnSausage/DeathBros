@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 1
         damageType: 0
-      ID: 37601
+      ID: 68232
       getNewID: 0
     soundName: 
   - duration: 5
@@ -71,7 +71,7 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 1
         damageType: 0
-      ID: 37601
+      ID: 68232
       getNewID: 0
     soundName: 
   - duration: 5

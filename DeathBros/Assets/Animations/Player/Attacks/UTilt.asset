@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: UTilt
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 3
+    sprite: {fileID: 21300000, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: -0.03305396, y: 0.48696458}
+      radius: 0.2
+    - position: {x: 0.013500974, y: 0.021415228}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300002, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.10661084, y: 0.51024204}
+      radius: 0.2
+    - position: {x: 0.08333338, y: 0.067970164}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.8810976, y: 0.3841463}
+      radius: 0.7600002
+      damage:
+        damageNumber: 4
+        knockBackDirection: {x: 0.2, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0.4
+        damageType: 0
+      ID: 39628
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300004, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: -0.009776494, y: 0.44040966}
+      radius: 0.2
+    - position: {x: 0.06005591, y: 0.021415228}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.48475614, y: 0.99390244}
+      radius: 0.7600002
+      damage:
+        damageNumber: 4
+        knockBackDirection: {x: 0.2, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0.4
+        damageType: 0
+      ID: 39628
+      getNewID: 0
+    - position: {x: -0.52134144, y: 1.1768292}
+      radius: 0.7600002
+      damage:
+        damageNumber: 4
+        knockBackDirection: {x: 0.2, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0.4
+        damageType: 0
+      ID: 39628
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300006, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: -0.009776494, y: 0.41713217}
+      radius: 0.2
+    - position: {x: 0.036778443, y: 0.021415228}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.9786585, y: 0.75}
+      radius: 0.7600002
+      damage:
+        damageNumber: 4
+        knockBackDirection: {x: 0.2, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0.4
+        damageType: 0
+      ID: 39628
+      getNewID: 0
+    - position: {x: -1.1615853, y: -0.195122}
+      radius: 0.7600002
+      damage:
+        damageNumber: 4
+        knockBackDirection: {x: 0.2, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0.4
+        damageType: 0
+      ID: 39628
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300008, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: -0.009776494, y: 0.44040966}
+      radius: 0.2
+    - position: {x: 0.08333338, y: -0.00186224}
+      radius: 0.3
+    hitboxes: []
+    soundName: 

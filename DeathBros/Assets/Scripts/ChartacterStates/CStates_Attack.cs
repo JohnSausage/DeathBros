@@ -10,6 +10,12 @@ public class CStates_Attack
 
     [Space]
 
+    public CS_TiltAttack uTilt;
+    public CS_TiltAttack dTilt;
+    public CS_TiltAttack fTilt;
+
+    [Space]
+
     public CS_Aerial nAir;
     public CS_Aerial uAir;
     public CS_Aerial dAir;
@@ -20,6 +26,10 @@ public class CStates_Attack
     {
         testAttack.Init(chr);
         uSoul.Init(chr);
+
+        uTilt.Init(chr);
+        dTilt.Init(chr);
+        fTilt.Init(chr);
 
         nAir.Init(chr);
         uAir.Init(chr);
