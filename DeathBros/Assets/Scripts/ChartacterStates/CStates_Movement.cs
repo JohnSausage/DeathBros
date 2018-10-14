@@ -568,7 +568,7 @@ public class CS_Wallsliding : CState
 
         chr.CS_CheckLanding();
 
-        if (!chr.Ctr.oldOnWall)
+        if (!chr.Ctr.onWall)
         {
             //ChangeState(chr.advancedMovementStates.jumping);
             ChangeState(typeof(CS_Jumping));

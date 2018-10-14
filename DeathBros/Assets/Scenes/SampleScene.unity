@@ -712,48 +712,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
-  slowDown: 0
-  velocity: {x: 0, y: 0}
   jumpVelocity: 0
-  jump: 0
-  applyGravity: 1
-  resetVelocity: 0
+  fallThroughPlatform: 0
+  fastFall: 0
   forceMovement: {x: 0, y: 0}
   addMovement: {x: 0, y: 0}
-  angleX: 0
-  angleY: 0
-  oldAngleX: 0
-  grounded: 0
-  oldGrounded: 0
-  onWall: 0
-  oldOnWall: 0
-  onPlatform: 0
-  oldOnPlatform: 0
-  insidePlatform: 0
-  wallDirection: 0
-  fallThroughPlatform: 0
-  fallThroughPlatformDuration: 0
-  hitDirection: {x: 0, y: 0}
-  gamma: 0
-  alpha: 0
+  resetVelocity: 0
+  allowDI: 1
+  inControl: 1
+  testKnockback: {x: 15, y: 20}
+  movespeed: 2
+  jumpForce: 15
+  gravity: -1
+  maxFallSpeed: -15
+  fastFallSpeed: -20
+  maxAirSpeed: 20
+  aerialAcceleration: 0.2
+  aerialDeceleration: 0.05
+  airFrames: 15
+  maxSlopeAngle: 45
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
   platformMask:
     serializedVersion: 2
     m_Bits: 512
-  movingPlatformTag: MovingPlatform
-  currentPlatform: {fileID: 0}
-  gravity: -1
-  movespeed: 2
-  wallSlideSpeed: 3
-  maxNormalFallSpeed: -20
-  maxFastFallSpeed: -30
-  fastFall: 0
-  maxSlopeDownAngle: 45
-  maxSlopeUpAngle: 45
-  velocityXSmoothingAerial: 0
+  transporterMask:
+    serializedVersion: 2
+    m_Bits: 0
+  velocity: {x: 0, y: 0}
+  velocitybfCol: {x: 0, y: 0}
+  moveAngle: 0
+  grounded: 0
+  onWall: 0
+  wallDirection: 0
+  onCeiling: 0
+  slopeDown: 0
+  slopeUpAngle: 0
+  oldSlopeUpAngle: 0
+  slopeDownAngle: 0
+  lastCollisionCheck: 0
+  skin: 0.01
+  skinDistance: 0
+  triangleDistance: 0
 --- !u!61 &193215733
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1644,48 +1645,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
-  slowDown: 0
-  velocity: {x: 0, y: 0}
   jumpVelocity: 0
-  jump: 0
-  applyGravity: 1
-  resetVelocity: 0
+  fallThroughPlatform: 0
+  fastFall: 0
   forceMovement: {x: 0, y: 0}
   addMovement: {x: 0, y: 0}
-  angleX: 0
-  angleY: 0
-  oldAngleX: 0
-  grounded: 0
-  oldGrounded: 0
-  onWall: 0
-  oldOnWall: 0
-  onPlatform: 0
-  oldOnPlatform: 0
-  insidePlatform: 0
-  wallDirection: 0
-  fallThroughPlatform: 0
-  fallThroughPlatformDuration: 0
-  hitDirection: {x: 0, y: 0}
-  gamma: 0
-  alpha: 0
+  resetVelocity: 0
+  allowDI: 1
+  inControl: 1
+  testKnockback: {x: 15, y: 20}
+  movespeed: 2
+  jumpForce: 15
+  gravity: -1
+  maxFallSpeed: -15
+  fastFallSpeed: -20
+  maxAirSpeed: 20
+  aerialAcceleration: 0.2
+  aerialDeceleration: 0.05
+  airFrames: 15
+  maxSlopeAngle: 45
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
   platformMask:
     serializedVersion: 2
     m_Bits: 512
-  movingPlatformTag: MovingPlatform
-  currentPlatform: {fileID: 0}
-  gravity: -1
-  movespeed: 2
-  wallSlideSpeed: 3
-  maxNormalFallSpeed: -20
-  maxFastFallSpeed: -30
-  fastFall: 0
-  maxSlopeDownAngle: 45
-  maxSlopeUpAngle: 45
-  velocityXSmoothingAerial: 0
+  transporterMask:
+    serializedVersion: 2
+    m_Bits: 0
+  velocity: {x: 0, y: 0}
+  velocitybfCol: {x: 0, y: 0}
+  moveAngle: 0
+  grounded: 0
+  onWall: 0
+  wallDirection: 0
+  onCeiling: 0
+  slopeDown: 0
+  slopeUpAngle: 0
+  oldSlopeUpAngle: 0
+  slopeDownAngle: 0
+  lastCollisionCheck: 0
+  skin: 0.01
+  skinDistance: 0
+  triangleDistance: 0
 --- !u!114 &754927383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2564,48 +2566,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {x: 0, y: 0}
-  knockback: {x: 0, y: 0}
-  slowDown: 0
-  velocity: {x: 0, y: 0}
   jumpVelocity: 0
-  jump: 0
-  applyGravity: 1
-  resetVelocity: 0
+  fallThroughPlatform: 0
+  fastFall: 0
   forceMovement: {x: 0, y: 0}
   addMovement: {x: 0, y: 0}
-  angleX: 0
-  angleY: 0
-  oldAngleX: 0
-  grounded: 0
-  oldGrounded: 0
-  onWall: 0
-  oldOnWall: 0
-  onPlatform: 0
-  oldOnPlatform: 0
-  insidePlatform: 0
-  wallDirection: 0
-  fallThroughPlatform: 0
-  fallThroughPlatformDuration: 5
-  hitDirection: {x: 0, y: 0}
-  gamma: 0
-  alpha: 0
+  resetVelocity: 0
+  allowDI: 1
+  inControl: 1
+  testKnockback: {x: 15, y: 20}
+  movespeed: 10
+  jumpForce: 15
+  gravity: -1
+  maxFallSpeed: -15
+  fastFallSpeed: -20
+  maxAirSpeed: 20
+  aerialAcceleration: 0.2
+  aerialDeceleration: 0.05
+  airFrames: 15
+  maxSlopeAngle: 45
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
   platformMask:
     serializedVersion: 2
     m_Bits: 512
-  movingPlatformTag: MovingPlatform
-  currentPlatform: {fileID: 0}
-  gravity: -1
-  movespeed: 10
-  wallSlideSpeed: 5
-  maxNormalFallSpeed: -16
-  maxFastFallSpeed: -25
-  fastFall: 0
-  maxSlopeDownAngle: 45
-  maxSlopeUpAngle: 45
-  velocityXSmoothingAerial: 0.5
+  transporterMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  velocity: {x: 0, y: 0}
+  velocitybfCol: {x: 0, y: 0}
+  moveAngle: 0
+  grounded: 0
+  onWall: 0
+  wallDirection: 0
+  onCeiling: 0
+  slopeDown: 0
+  slopeUpAngle: 0
+  oldSlopeUpAngle: 0
+  slopeDownAngle: 0
+  lastCollisionCheck: 0
+  skin: 0.01
+  skinDistance: 0
+  triangleDistance: 0
 --- !u!114 &967334119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3139,6 +3142,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4743313943521310, guid: 7c690f147ab7e8c48a674abc6a6f24e0, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 68280774727508192, guid: 7c690f147ab7e8c48a674abc6a6f24e0,
+        type: 2}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
