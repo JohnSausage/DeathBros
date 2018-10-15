@@ -76,7 +76,7 @@
   <tile id="82">
    <objectgroup draworder="index">
     <object id="1" x="0" y="0">
-     <polyline points="0,0 16,16 15,16 0,1 0,0"/>
+     <polygon points="0,0 0,16 16,16"/>
     </object>
    </objectgroup>
   </tile>
@@ -85,8 +85,8 @@
     <property name="unity:layer" value="Collision"/>
    </properties>
    <objectgroup draworder="index">
-    <object id="3" x="0" y="16">
-     <polyline points="0,0 16,-16 16,-15 1,0 0,0"/>
+    <object id="1" x="16" y="0">
+     <polygon points="0,0 -16,16 0,16"/>
     </object>
    </objectgroup>
   </tile>
@@ -106,15 +106,15 @@
   </tile>
   <tile id="98">
    <objectgroup draworder="index">
-    <object id="1" x="15" y="0">
-     <polyline points="0,0 1,1 1,0 0,0"/>
+    <object id="1" x="0" y="0">
+     <polygon points="0,0 16,0 16,16"/>
     </object>
    </objectgroup>
   </tile>
   <tile id="99">
    <objectgroup draworder="index">
-    <object id="1" x="0" y="1">
-     <polyline points="0,0 1,-1 0,-1 0,0"/>
+    <object id="1" x="16" y="0">
+     <polygon points="0,0 -16,0 -16,16"/>
     </object>
    </objectgroup>
   </tile>

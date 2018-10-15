@@ -208,6 +208,8 @@ public class Controller2D : MonoBehaviour
                     slopeDownAngle = Vector2.Angle(Vector2.up, groundCheck.normal);
 
                     groundPoint = groundCheck.point - (Vector2)bounds.center;
+
+                    Debug.Log(slopeDownAngle);
                 }
 
 
@@ -226,8 +228,6 @@ public class Controller2D : MonoBehaviour
                                 grounded = true;
 
                                 slopeDownAngle = Vector2.Angle(Vector2.up, platforms[i].normal);
-
-                                Debug.Log("Nr " + i + ": " + platforms[i].distance);
                             }
                         }
                     }
@@ -275,6 +275,8 @@ public class Controller2D : MonoBehaviour
                     {
                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                     }
+
+                    //Debug.Log(slopeDownAngle);
                 }
                 else // try movement on ground
                 {
