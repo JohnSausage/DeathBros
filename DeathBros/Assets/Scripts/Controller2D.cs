@@ -17,6 +17,7 @@ public class Controller2D : MonoBehaviour
 
     public Vector2 testKnockback = new Vector2(15, 20);
 
+    public bool IsGrounded { get { return (grounded || oldGrounded); } }
     [Space]
 
     public float movespeed = 10;
@@ -53,9 +54,11 @@ public class Controller2D : MonoBehaviour
     public bool onWall;
     public int wallDirection;
     public bool onCeiling;
+    public bool slidingDownSlope;
 
     public bool slopeDown;
     private bool oldSlopeDown;
+    public bool slopeUp;
 
     public float slopeUpAngle, oldSlopeUpAngle;
     public float slopeDownAngle;
@@ -70,12 +73,12 @@ public class Controller2D : MonoBehaviour
     public float skinDistance;
     public float triangleDistance;
 
-    protected RaycastHit2D[] platforms;
+    protected RaycastHit2D[] platformCasts;
 
     private void Start()
     {
         Col = GetComponent<BoxCollider2D>();
-        platforms = new RaycastHit2D[3];
+        platformCasts = new RaycastHit2D[3];
     }
 
     public void ManualFixedUpdate()
@@ -91,6 +94,8 @@ public class Controller2D : MonoBehaviour
         onWall = false;
         lastCollisionCheck = false;
         slopeDown = false;
+        slopeUp = false;
+        slidingDownSlope = false;
 
         oldSlopeUpAngle = slopeUpAngle;
         slopeUpAngle = 0;
@@ -199,7 +204,7 @@ public class Controller2D : MonoBehaviour
             if (velocity.y <= 0)
             {
                 groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2),
-            new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 2, collisionMask);
+            new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 3, collisionMask);
 
                 if (groundCheck)
                 {
@@ -209,25 +214,25 @@ public class Controller2D : MonoBehaviour
 
                     groundPoint = groundCheck.point - (Vector2)bounds.center;
 
-                    Debug.Log(slopeDownAngle);
+                    //Debug.Log(slopeDownAngle);
                 }
 
 
                 if (!fallThroughPlatform)
                 {
-                    platforms = new RaycastHit2D[10];
+                    platformCasts = new RaycastHit2D[10];
 
                     RCXY_noAl(Vector2.down, skin * 2, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2), new Vector2(bounds.size.x, skin), platformMask);
 
-                    for (int i = 0; i < platforms.Length; i++)
+                    for (int i = 0; i < platformCasts.Length; i++)
                     {
-                        if (platforms[i])
+                        if (platformCasts[i])
                         {
-                            if (platforms[i].distance > 0) //ignore a platform when inside of the platform
+                            if (platformCasts[i].distance > 0) //ignore a platform when inside of the platform
                             {
                                 grounded = true;
 
-                                slopeDownAngle = Vector2.Angle(Vector2.up, platforms[i].normal);
+                                slopeDownAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
                             }
                         }
                     }
@@ -257,7 +262,8 @@ public class Controller2D : MonoBehaviour
                     transform.SetParent(transporterCheck.transform);
                 }
 
-                if (slopeDownAngle > maxSlopeAngle) //slide down slope
+
+                if (slopeDownAngle > maxSlopeAngle && slopeDownAngle < 90) //slide down slope
                 {
                     float moveDirX = -Mathf.Sign(groundPoint.x);
 
@@ -276,10 +282,153 @@ public class Controller2D : MonoBehaviour
                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                     }
 
-                    //Debug.Log(slopeDownAngle);
+                    slidingDownSlope = true;
+                }
+
+                if (velocity.x != 0)
+                {
+                    //RaycastHit2D slopeDownCast = RCL(Vector2.down, 2 * skin, (Vector2)bounds.center + new Vector2(-bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
+                    //if (slopeDownCast)
+                    //{
+                    //    slopeDownAngle = Vector2.Angle(Vector2.up, slopeDownCast.normal);
+                    //
+                    //    Debug.Log(slopeDownCast.distance);
+                    //}
+
+                    //RaycastHit2D slopeUpCast = RCL(Vector2.down, 2 * skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
+                    //if (slopeUpCast)
+                    //{
+                    //    slopeUpAngle = Vector2.Angle(Vector2.up, slopeUpCast.normal);
+                    //}
+
+                    //cast a ray down on each side of the collider to determine ground angles
+                    bool slopeDownFound = false;
+                    platformCasts = new RaycastHit2D[3];
+
+                    Physics2D.RaycastNonAlloc((Vector2)bounds.center + new Vector2(-bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y),
+                        Vector2.down, platformCasts, 3 * skin, groundMask);
+
+                    for (int i = 0; i < platformCasts.Length; i++)
+                    {
+                        if (platformCasts[i])
+                        {
+                            if (platformCasts[i].distance > 0)
+                            {
+                                slopeDownAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
+                                slopeDownFound = true;
+                            }
+                        }
+                    }
+
+                    bool slopeUpFound = false;
+                    platformCasts = new RaycastHit2D[3];
+
+                    Physics2D.RaycastNonAlloc((Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y),
+                        Vector2.down, platformCasts, 3 * skin, groundMask);
+
+                    for (int i = 0; i < platformCasts.Length; i++)
+                    {
+                        if (platformCasts[i])
+                        {
+                            if (platformCasts[i].distance > 0)
+                            {
+                                slopeUpAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
+                                slopeUpFound = true;
+                            }
+                        }
+                    }
+
+                    //try slope down first
+                    if (!slopeUpFound && slopeDownAngle > 0 && slopeDownAngle <= maxSlopeAngle) // !slopeUpCast, because you're not on a slope when both rays hit
+                    {
+                        velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * slopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * slopeDownAngle)).normalized / 60 * movespeed;
+                        velocity *= Mathf.Abs(input.x);
+
+                        slopeDown = true;
+                    }
+
+                    //slope up
+                    if (!slopeDownFound && slopeUpAngle > 0 && slopeUpAngle <= maxSlopeAngle) //!slopeDownCast, because you're not on a slope when both rays hit
+                    {
+                        velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * slopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * slopeUpAngle)).normalized / 60 * movespeed;
+                        velocity *= Mathf.Abs(input.x);
+
+                        slopeUp = true;
+                    }
+
+                    //check for a new slope up while moving
+                    RaycastHit2D slopeUpCast = RCL(velocity, velocity.magnitude * 2, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
+                    
+                    if (slopeUpCast)
+                    {
+                        float newSlopeUpAngle = Vector2.Angle(Vector2.up, slopeUpCast.normal);
+                    
+                        if (newSlopeUpAngle < 90  && slopeUpCast.distance > 0) //ignore the slope if inside of it, or no slope at all
+                        {
+                            velocity = Vector2.ClampMagnitude(velocity, HitDistance(slopeUpCast));
+                    
+                            onWall = true;
+                        }
+                    
+                    
+                        //new slope up
+                        if (newSlopeUpAngle > 0 && newSlopeUpAngle <= maxSlopeAngle && HitDistance(slopeUpCast) <= triangleDistance)
+                        {
+                            velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * newSlopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * newSlopeUpAngle)).normalized / 60 * movespeed;
+                            velocity *= Mathf.Abs(input.x);
+                    
+                            slopeUp = true;
+                        }
+                    }
+
+                    //collisionCheck when moving
+                    collisionCheck = RCXY(velocity, velocity.magnitude, collisionMask);
+
+                    if (collisionCheck)
+                    {
+                        velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+                    }
+
+                    //check for new slope down
+                    RaycastHit2D newSlopeDownCast = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y + skin / 2) + velocity,
+                        new Vector2(bounds.size.x, skin), 0, Vector2.down, 1, groundMask);
+
+                    if (newSlopeDownCast)
+                    {
+                        float newSlopeDownAngle = Vector2.Angle(Vector2.up, newSlopeDownCast.normal);
+
+                        if (newSlopeDownCast.distance > skin && newSlopeDownCast.distance < Mathf.Abs(velocity.x) + skin)
+                        {
+                            velocity.y += -(newSlopeDownCast.distance - skin);
+                        }
+                    }
+                }
+
+                /*
+                if (slopeDownAngle > maxSlopeAngle && slopeDownAngle < 90) //slide down slope
+                {
+                    float moveDirX = -Mathf.Sign(groundPoint.x);
+
+                    float inputDir = 0;
+                    if (input.x > 0) inputDir = Mathf.Sign(input.x);
+
+                    if (moveDirX != inputDir)
+                    {
+                        velocity = new Vector2(moveDirX * Mathf.Cos(Mathf.Deg2Rad * slopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * slopeDownAngle)).normalized / 60 * movespeed;
+                    }
+
+                    collisionCheck = RCXY(velocity, velocity.magnitude, groundMask);
+
+                    if (collisionCheck)
+                    {
+                        velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+                    }
+
                 }
                 else // try movement on ground
                 {
+                    //Debug.Log("0: " + slopeUpAngle);
+
                     if (velocity.x != 0)
                     {
                         collisionCheck = RCL(Vector2.down, 2 * skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
@@ -287,6 +436,8 @@ public class Controller2D : MonoBehaviour
                         if (collisionCheck) //not going down slope
                         {
                             slopeUpAngle = Vector2.Angle(Vector2.up, collisionCheck.normal);
+
+                            //Debug.Log("1: " + slopeUpAngle);
                         }
 
                         collisionCheck = RCL(velocity, velocity.magnitude * 2, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
@@ -298,6 +449,8 @@ public class Controller2D : MonoBehaviour
                                 onWall = true;
 
                                 slopeUpAngle = Vector2.Angle(Vector2.up, collisionCheck.normal); //set new angle if directly on wall
+
+                                //Debug.Log("2: " + slopeUpAngle);
                             }
                         }
 
@@ -307,7 +460,7 @@ public class Controller2D : MonoBehaviour
                             velocity *= Mathf.Abs(input.x);
                         }
 
-                        if (slopeUpAngle <= 90) //otherwise gets stuck on pltform when moving up
+                        if (slopeUpAngle <= 90 && collisionCheck.distance > 0) //otherwise gets stuck on pltform when moving up
                         {
                             velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                         }
@@ -321,40 +474,76 @@ public class Controller2D : MonoBehaviour
                         }
                         else //don't check for slopedown if already collided with something
                         {
-                            //slopedown
-                            collisionCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y + skin / 2) + velocity,
-                                new Vector2(bounds.size.x, skin), 0, Vector2.down, Mathf.Abs(velocity.x) + skin * 2, groundMask);
-
-                            if (collisionCheck)
+                            if (velocity.x != 0)
                             {
-                                if (collisionCheck.distance >= Mathf.Abs(gravity / 60) + skin && velocity.y <= 0)
+                                collisionCheck = RCL(Vector2.down, 2 * skin, (Vector2)bounds.center + new Vector2(-bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
+
+                                if (collisionCheck) //not going down slope
                                 {
-                                    float angle = Vector2.Angle(Vector2.up, collisionCheck.normal);
+                                    slopeDownAngle = Vector2.Angle(Vector2.up, collisionCheck.normal);
 
-                                    if (angle <= maxSlopeAngle && angle > 0)
+                                    //Debug.Log("1: " + slopeUpAngle);
+                                }
+
+                                if(slopeDownAngle <= maxSlopeAngle && slopeDownAngle > 0)
+                                {
+                                    velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * slopeUpAngle), -Mathf.Sin(Mathf.Deg2Rad * slopeUpAngle)).normalized / 60 * movespeed;
+                                    velocity *= Mathf.Abs(input.x);
+
+                                    collisionCheck = RCXY(velocity, velocity.magnitude, collisionMask);
+
+                                    if (collisionCheck)
                                     {
-                                        slopeDown = true;
-
-                                        velocity.y = -(collisionCheck.distance - skin);
-
-                                        if (oldSlopeDown) // when already on slope -> reduce velocity to normal movespeed
-                                        {
-                                            velocity = Vector2.ClampMagnitude(velocity, Mathf.Abs(input.x) * movespeed / 60);
-                                        }
+                                        velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                                     }
                                 }
+
+
                             }
+
+                            
+                            ////slopedown
+                            //collisionCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y + skin / 2) + velocity,
+                            //    new Vector2(bounds.size.x, skin), 0, Vector2.down, Mathf.Abs(velocity.x) + skin * 2, groundMask);
+                            //
+                            //if (collisionCheck)
+                            //{
+                            //    //if (collisionCheck.distance >= Mathf.Abs(gravity / 60) + skin && velocity.y <= 0)
+                            //    if (velocity.y <= 0)
+                            //    {
+                            //        float angle = Vector2.Angle(Vector2.up, collisionCheck.normal);
+                            //
+                            //        if (angle <= maxSlopeAngle && angle > 0)
+                            //        {
+                            //            slopeDown = true;
+                            //
+                            //            velocity.y = -(collisionCheck.distance - skin);
+                            //
+                            //            if (oldSlopeDown) // when already on slope -> reduce velocity to normal movespeed
+                            //            {
+                            //                velocity = Vector2.ClampMagnitude(velocity, Mathf.Abs(input.x) * movespeed / 60);
+                            //            }
+                            //        }
+                            //    }
+                            //}
+                            
                         }
 
-
+    
                     }
                 }
+                */
             }
 
 
 
             if (!grounded)
             {
+                if (oldGrounded)
+                {
+                    //Debug.Log("not grounded anymore");
+                }
+
                 if (velocity.y >= 0)
                 {
                     fastFall = false;
@@ -370,7 +559,7 @@ public class Controller2D : MonoBehaviour
                 {
                     airTimer--;
 
-                    velocity.y -= gravity / 60 / 2;
+                    velocity.y -= gravity / 60 /  (2 - airTimer/airFrames);
                 }
 
 
@@ -439,21 +628,21 @@ public class Controller2D : MonoBehaviour
                     //reduce velocity when hitting platforms, ignore platforms inside you
                     if (!fallThroughPlatform)
                     {
-                        platforms = new RaycastHit2D[3];
+                        platformCasts = new RaycastHit2D[3];
 
                         RCXY_noAl(velocity, velocity.magnitude, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2), new Vector2(bounds.size.x, skin), platformMask);
 
-                        for (int i = 0; i < platforms.Length; i++)
+                        for (int i = 0; i < platformCasts.Length; i++)
                         {
-                            if (platforms[i])
+                            if (platformCasts[i])
                             {
-                                if (platforms[i].distance > 0)
+                                if (platformCasts[i].distance > 0)
                                 {
-                                    float groundAngle = Vector2.Angle(Vector2.up, platforms[i].normal);
+                                    float groundAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
 
                                     if (groundAngle <= maxSlopeAngle) //ohterwise gets stuck on walls
                                     {
-                                        velocity = Vector2.ClampMagnitude(velocity, HitDistance(platforms[i]));
+                                        velocity = Vector2.ClampMagnitude(velocity, HitDistance(platformCasts[i]));
                                     }
                                 }
                             }
@@ -596,7 +785,7 @@ public class Controller2D : MonoBehaviour
         if (cos > skin)
             skinDistance = skin / cos;
 
-        Physics2D.BoxCastNonAlloc(center, size, 0, direction, platforms, distance + skinDistance, layerMask);
+        Physics2D.BoxCastNonAlloc(center, size, 0, direction, platformCasts, distance + skinDistance, layerMask);
     }
 
     protected RaycastHit2D RCL(Vector2 direction, float distance, Vector2 center, LayerMask layerMask)

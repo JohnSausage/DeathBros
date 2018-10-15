@@ -148,7 +148,7 @@ public class CS_Aerial : CS_Attack
             ChangeState(typeof(CS_Jumping));
         }
 
-        if (chr.Ctr.grounded)
+        if (chr.Ctr.IsGrounded)
         {
             ChangeState(typeof(CS_Landing));
         }

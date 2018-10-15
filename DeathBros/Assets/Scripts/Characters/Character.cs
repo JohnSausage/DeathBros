@@ -244,7 +244,7 @@ public class Character : _MB
 
     public virtual void CS_CheckLanding()
     {
-        if (Ctr.grounded)
+        if (Ctr.IsGrounded)
         {
             //CSMachine.ChangeState(advancedMovementStates.landing);
             CSMachine.ChangeState(GetState(typeof(CS_Landing)));
@@ -253,7 +253,7 @@ public class Character : _MB
 
     public virtual void CS_CheckIfStillGrounded()
     {
-        if (!Ctr.grounded)
+        if (!Ctr.IsGrounded)
         {
             //CSMachine.ChangeState(advancedMovementStates.jumping);
             CSMachine.ChangeState(GetState(typeof(CS_Jumping)));

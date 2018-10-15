@@ -722,7 +722,7 @@ public class CS_Hitstun : CState
 
         chr.SetInputs(new Vector2(knockbackX, 0));
 
-        if (chr.Ctr.grounded && timer < 0)
+        if (chr.Ctr.IsGrounded && timer < 0)
         {
             ChangeState(landing);
         }
