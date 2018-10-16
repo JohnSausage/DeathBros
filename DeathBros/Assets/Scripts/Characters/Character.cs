@@ -44,6 +44,7 @@ public class Character : _MB
     public float soulMeterBalanceRate = 0.25f;
 
     public Damage currentDamae { get; protected set; }
+    public Vector2 currentKnockback { get; protected set; }
 
     public Queue<int> hitIDs = new Queue<int>();
 
@@ -109,7 +110,7 @@ public class Character : _MB
 
         currentDamae = null;
         Jump = false;
-
+        Attack = false;
     }
 
     protected virtual void UpdatesStatsForCtr()
@@ -160,8 +161,9 @@ public class Character : _MB
 
         stats.currentHealth -= damage.damageNumber;
         //Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth) * damage.damageNumber;
-        Ctr.forceMovement = knockback;
-        Debug.Log(Ctr.forceMovement);
+        //Ctr.forceMovement = knockback;
+
+        currentKnockback = knockback;
 
         if (stats.currentHealth < 0)
         {
@@ -193,6 +195,10 @@ public class Character : _MB
         SetInputs();
     }
 
+    public virtual void SetAttack()
+    {
+        Attack = true;
+    }
     /*
     public virtual void CS_CheckForJump()
     {

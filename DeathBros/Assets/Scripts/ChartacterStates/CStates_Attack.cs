@@ -143,8 +143,6 @@ public class CS_Aerial : CS_Attack
 
         if (chr.Anim.animationOver)
         {
-            chr.CS_SetIdle();
-
             ChangeState(typeof(CS_Jumping));
         }
 

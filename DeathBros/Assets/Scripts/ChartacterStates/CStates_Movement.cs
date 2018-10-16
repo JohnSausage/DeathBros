@@ -13,6 +13,7 @@ public class CStates_Movement
     public CS_Jumping jumping;
     public CS_Landing landing;
     public CS_Hitstun hitstun;
+    public CS_Hitfreeze hitfreeze;
 
     public virtual void Init(Character chr)
     {
@@ -22,6 +23,7 @@ public class CStates_Movement
         jumping.Init(chr);
         landing.Init(chr);
         hitstun.Init(chr);
+        hitfreeze.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }
@@ -153,8 +155,6 @@ public class CS_Walking : CState
 
         direction = Mathf.Sign(chr.DirectionalInput.x);
 
-        Debug.Log("entered walk" + direction);
-
         if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
         if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
     }
@@ -245,8 +245,6 @@ public class CS_Skid : CState
         changedDirection = false;
 
         chr.Anim.animationSpeed = 0.5f;
-
-        Debug.Log("enterd skid, " + direction);
     }
 
     public override void Execute()
@@ -264,8 +262,6 @@ public class CS_Skid : CState
             {
                 chr.Spr.flipX = !chr.Spr.flipX;
                 changedDirection = true;
-
-                Debug.Log("changed direction, " + timer + "/" + duration);
             }
         }
 
@@ -283,20 +279,17 @@ public class CS_Skid : CState
             ChangeState(typeof(CS_Idle));
 
             chr.SetInputs();
-            Debug.Log("idle");
         }
         else if (idleTimer >= idleOutDuration)
         {
             ChangeState(typeof(CS_Idle));
 
             chr.SetInputs();
-            Debug.Log("idleout");
         }
         else if (chr.Jump)
         {
             //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(typeof(CS_Jumpsquat));
-            Debug.Log("jump");
         }
     }
 }
@@ -743,6 +736,8 @@ public class CS_Hitstun : CState
     {
         base.Execute();
 
+        chr.SetInputs();
+
         timer++;
 
         //chr.SetInputs(new Vector2(knockbackX, 0));
@@ -769,5 +764,46 @@ public class CS_Hitstun : CState
         base.Exit();
 
         chr.Ctr.freeze = false;
+    }
+}
+
+[System.Serializable]
+public class CS_Hitfreeze : CState
+{
+    [SerializeField]
+    private int duration = 5;
+    private int timer;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        chr.Ctr.inControl = false;
+        chr.Ctr.freeze = true;
+
+
+        timer = 0;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        if(timer > duration)
+        {
+            ChangeState(typeof(CS_Hitstun));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Ctr.inControl = true;
+        chr.Ctr.freeze = false;
+
+        chr.Ctr.forceMovement = chr.currentKnockback;
     }
 }
