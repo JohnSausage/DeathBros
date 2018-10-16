@@ -184,7 +184,7 @@ public class Controller2D : MonoBehaviour
 
             if (jumpVelocity != 0)
             {
-                velocity.y = jumpForce / 60;
+                velocity.y = jumpVelocity / 60;
             }
 
             if (addMovement != Vector2.zero)

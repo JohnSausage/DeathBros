@@ -410,7 +410,8 @@ public class CS_Landing : CState
     {
         base.Execute();
 
-        chr.SetInputs(0.2f);
+        //chr.SetInputs(0.2f);
+        chr.SetInputs();
 
         timer++;
 
