@@ -28,7 +28,7 @@ MonoBehaviour:
     soundName: 
   - duration: 3
     sprite: {fileID: 21300002, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -44,10 +44,10 @@ MonoBehaviour:
       damage:
         damageNumber: 4
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 3
+        baseKnockback: 12
         knockbackGrowth: 0.4
         damageType: 0
-      ID: 80643
+      ID: 38664
       getNewID: 0
     soundName: 
   - duration: 3
@@ -68,20 +68,20 @@ MonoBehaviour:
       damage:
         damageNumber: 4
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 3
+        baseKnockback: 12
         knockbackGrowth: 0.4
         damageType: 0
-      ID: 80643
+      ID: 38664
       getNewID: 0
     - position: {x: -0.52134144, y: 1.1768292}
       radius: 0.7600002
       damage:
         damageNumber: 4
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 3
+        baseKnockback: 12
         knockbackGrowth: 0.4
         damageType: 0
-      ID: 80643
+      ID: 38664
       getNewID: 0
     soundName: 
   - duration: 3
@@ -102,20 +102,20 @@ MonoBehaviour:
       damage:
         damageNumber: 4
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 3
+        baseKnockback: 12
         knockbackGrowth: 0.4
         damageType: 0
-      ID: 80643
+      ID: 38664
       getNewID: 0
     - position: {x: -1.1615853, y: -0.195122}
       radius: 0.7600002
       damage:
         damageNumber: 4
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 3
+        baseKnockback: 12
         knockbackGrowth: 0.4
         damageType: 0
-      ID: 80643
+      ID: 38664
       getNewID: 0
     soundName: 
   - duration: 5

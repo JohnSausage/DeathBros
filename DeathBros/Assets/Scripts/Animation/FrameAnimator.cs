@@ -71,7 +71,7 @@ public class FrameAnimator : _MB
                 forceMovement.x *= -1;
                 addMovement.x *= -1;
             }
-            ctr.forceMovement = forceMovement;
+            ctr.forceMovement += forceMovement;
             ctr.addMovement = addMovement;
 
             ctr.resetVelocity = currentFrame.resetVelocity;

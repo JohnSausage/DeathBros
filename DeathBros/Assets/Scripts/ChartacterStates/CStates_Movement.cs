@@ -152,6 +152,11 @@ public class CS_Walking : CState
         base.Enter();
 
         direction = Mathf.Sign(chr.DirectionalInput.x);
+
+        Debug.Log("entered walk" + direction);
+
+        if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
+        if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
     }
 
     public override void Execute()
@@ -171,10 +176,6 @@ public class CS_Walking : CState
         }
 
         chr.SetInputs();
-
-        if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
-        if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
-
 
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
         {
@@ -225,8 +226,13 @@ public class CS_Skid : CState
     public float direction { get; set; }
 
     [SerializeField]
-    int duration;
+    int duration = 6;
+
+    [SerializeField]
+    int idleOutDuration = 3;
     private int timer;
+
+    private int idleTimer;
 
     private bool changedDirection;
 
@@ -234,10 +240,13 @@ public class CS_Skid : CState
     {
         base.Enter();
         timer = 0;
+        idleTimer = 0;
 
         changedDirection = false;
 
         chr.Anim.animationSpeed = 0.5f;
+
+        Debug.Log("enterd skid, " + direction);
     }
 
     public override void Execute()
@@ -248,10 +257,6 @@ public class CS_Skid : CState
 
         chr.SetInputs();
 
-        /*
-        if (chr.DirectionalInput.x < 0) chr.IsFlipped = true;
-        if (chr.DirectionalInput.x > 0) chr.IsFlipped = false;
-        */
 
         if (!changedDirection)
         {
@@ -259,21 +264,39 @@ public class CS_Skid : CState
             {
                 chr.Spr.flipX = !chr.Spr.flipX;
                 changedDirection = true;
+
+                Debug.Log("changed direction, " + timer + "/" + duration);
             }
         }
 
-        chr.SetInputs(new Vector2(direction * 0.2f, 0));
+
+        if (chr.DirectionalInput.x == 0)
+        {
+            idleTimer++;
+        }
+
+        chr.SetInputs(new Vector2(direction * 0.5f, 0));
 
         if (timer >= duration)
         {
             //ChangeState(chr.advancedMovementStates.idle);
             ChangeState(typeof(CS_Idle));
-        }
 
-        if (chr.Jump)
+            chr.SetInputs();
+            Debug.Log("idle");
+        }
+        else if (idleTimer >= idleOutDuration)
+        {
+            ChangeState(typeof(CS_Idle));
+
+            chr.SetInputs();
+            Debug.Log("idleout");
+        }
+        else if (chr.Jump)
         {
             //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(typeof(CS_Jumpsquat));
+            Debug.Log("jump");
         }
     }
 }
@@ -712,20 +735,39 @@ public class CS_Hitstun : CState
     {
         base.Enter();
 
-        timer = minDuration;
+        timer = 0;
+        chr.Ctr.inControl = false;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        timer--;
+        timer++;
 
-        chr.SetInputs(new Vector2(knockbackX, 0));
+        //chr.SetInputs(new Vector2(knockbackX, 0));
 
-        if (chr.Ctr.IsGrounded && timer < 0)
+        if(timer == 15)
         {
+            chr.Ctr.freeze = true;
+        }
+
+        if(timer == 45)
+        {
+            chr.Ctr.freeze = false;
+        }
+
+        if (chr.Ctr.IsGrounded && timer > minDuration)
+        {
+            chr.Ctr.inControl = true;
             ChangeState(landing);
         }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Ctr.freeze = false;
     }
 }

@@ -161,6 +161,7 @@ public class Character : _MB
         stats.currentHealth -= damage.damageNumber;
         //Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth) * damage.damageNumber;
         Ctr.forceMovement = knockback;
+        Debug.Log(Ctr.forceMovement);
 
         if (stats.currentHealth < 0)
         {
