@@ -30,6 +30,7 @@ public class Player : Character
         //DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
         DirectionalInput = InputManager.Direction;
         StrongInputs = InputManager.Smash;
+        TiltInput = InputManager.CStick;
 
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
@@ -76,7 +77,7 @@ public class Player : Character
     {
         base.FixedUpdate();
 
-        if(soulMeter > 50)
+        if (soulMeter > 50)
         {
             soulMeter -= soulMeterBalanceRate;
 
@@ -115,7 +116,27 @@ public class Player : Character
 
             return true;
         }
-        else return false;
+
+        if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+            }
+
+            return true;
+        }
+
+
+        return false;
     }
 
     public override bool CheckForSoulAttacks()
@@ -169,6 +190,29 @@ public class Player : Character
 
             return true;
         }
-        else return false;
+
+        if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) == Direction)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FAir));
+            }
+            else if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) != Direction)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.BAir));
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.UAir));
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DAir));
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

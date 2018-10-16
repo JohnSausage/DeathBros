@@ -712,9 +712,12 @@ public class CS_Walljumping : CState
 [System.Serializable]
 public class CS_Hitstun : CState
 {
+    public int freezeStart = 15;
+    public int freezeEnd = 45;
+    public int minDuration = 3;
+
     public float knockbackX { get; set; }
     private CS_Landing landing;
-    public int minDuration = 3;
     private int timer;
 
     public override void InitExitStates()
@@ -742,12 +745,12 @@ public class CS_Hitstun : CState
 
         //chr.SetInputs(new Vector2(knockbackX, 0));
 
-        if(timer == 15)
+        if (timer == freezeStart)
         {
             chr.Ctr.freeze = true;
         }
 
-        if(timer == 45)
+        if (timer == freezeEnd)
         {
             chr.Ctr.freeze = false;
         }
@@ -791,7 +794,7 @@ public class CS_Hitfreeze : CState
 
         timer++;
 
-        if(timer > duration)
+        if (timer > duration)
         {
             ChangeState(typeof(CS_Hitstun));
         }

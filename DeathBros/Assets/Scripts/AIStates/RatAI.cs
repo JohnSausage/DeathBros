@@ -14,7 +14,7 @@ public class RatAI : MonoBehaviour
     private int randomizedTime;
     private int timer = 0;
 
-    public StateMachine aiMachine { get; protected set; }
+    public StateMachine aiMachine;// { get; protected set; }
 
     public Vector2 TargetDirection;// { get; protected set; }
     public Vector2 TargetVector;// { get; protected set; }
@@ -71,7 +71,7 @@ public class RatAI : MonoBehaviour
             timer = 0;
             randomizedTime = randomChangeStateTime + Random.Range(-30, 30);
 
-            if (Random.Range(0, 100) > 20)
+            if (Random.Range(0, 100) > 30)
             {
                 aiMachine.ChangeState(aiFollowPlayer);
             }

@@ -8,7 +8,7 @@ public class Enemy : Character
     protected CStates_Movement movementStates;
 
     [SerializeField]
-    protected CS_Attack attackState;
+    protected CS_TiltAttack attackState;
 
     //public EnemyAI AI { get; protected set; }
 
@@ -40,5 +40,16 @@ public class Enemy : Character
             Attack = false;
         }
         */
+    }
+
+    public override bool CheckForTiltAttacks()
+    {
+        if (Attack)
+        {
+            CSMachine.ChangeState(GetAttackState(EAttackType.Jab));
+
+            return true;
+        }
+        else return false;
     }
 }

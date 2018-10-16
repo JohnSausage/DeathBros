@@ -58,16 +58,39 @@ public class AI_Flee : AIState
 [System.Serializable]
 public class AI_Attack : AIState
 {
+    protected int duration = 30;
+    protected int timer = 0;
+
     public AI_Attack(RatAI ai) : base(ai)
     {
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = 0;
     }
 
     public override void Execute()
     {
         base.Execute();
 
+        timer++;
+
         ai.enemy.SetInputs(Vector2.zero);
 
-        ai.enemy.SetAttack();
+        ai.enemy.SetAttack(true);
+
+        if(timer > duration)
+        {
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        ai.enemy.SetAttack(false);
     }
 }

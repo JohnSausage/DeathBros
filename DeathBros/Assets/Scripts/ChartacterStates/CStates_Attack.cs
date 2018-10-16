@@ -54,6 +54,8 @@ public class CS_TiltAttack : CS_Attack
     {
         base.Execute();
 
+        chr.SetInputs(Vector2.zero);
+
         if (chr.Anim.animationOver)
         {
             chr.CS_SetIdle();

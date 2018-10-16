@@ -11,6 +11,7 @@ public class Character : _MB
 
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs;// { get; protected set; }
+    public Vector2 TiltInput { get; protected set; }
 
     public bool Jump { get; protected set; }
     public bool HoldJump { get; protected set; }
@@ -195,9 +196,9 @@ public class Character : _MB
         SetInputs();
     }
 
-    public virtual void SetAttack()
+    public virtual void SetAttack(bool value)
     {
-        Attack = true;
+        Attack = value;
     }
     /*
     public virtual void CS_CheckForJump()

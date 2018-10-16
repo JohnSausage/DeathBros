@@ -43,21 +43,21 @@ MonoBehaviour:
       radius: 0.52000046
       damage:
         damageNumber: 3
-        knockBackDirection: {x: -0.2, y: 1}
+        knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 3077
+      ID: 57581
       getNewID: 0
     - position: {x: 0.2713415, y: -0.71341467}
       radius: 0.52000046
       damage:
         damageNumber: 3
-        knockBackDirection: {x: -0.2, y: 1}
+        knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 3077
+      ID: 57581
       getNewID: 0
     soundName: 
   - duration: 3
@@ -77,21 +77,21 @@ MonoBehaviour:
       radius: 0.52000046
       damage:
         damageNumber: 3
-        knockBackDirection: {x: -0.2, y: 1}
+        knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 3077
+      ID: 57581
       getNewID: 0
     - position: {x: 0.42378053, y: -0.7743903}
       radius: 0.52000046
       damage:
         damageNumber: 3
-        knockBackDirection: {x: -0.2, y: 1}
+        knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 3077
+      ID: 57581
       getNewID: 0
     soundName: 
   - duration: 6
