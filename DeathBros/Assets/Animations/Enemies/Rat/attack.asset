@@ -38,15 +38,25 @@ MonoBehaviour:
     soundName: 
   - duration: 3
     sprite: {fileID: 21300018, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.018578868, y: -0.23859191}
+    - position: {x: 0.34375, y: 0.078125}
       radius: 0.49999997
-    hitboxes: []
+    hitboxes:
+    - position: {x: 0.34375, y: 0.078125}
+      radius: 0.5
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 15
+        knockbackGrowth: 0.3
+        damageType: 0
+      ID: 23344
+      getNewID: 0
     soundName: 
   - duration: 6
     sprite: {fileID: 21300020, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}
@@ -58,7 +68,17 @@ MonoBehaviour:
     hurtboxes:
     - position: {x: 0.0022816067, y: -0.22229464}
       radius: 0.43999997
-    hitboxes: []
+    hitboxes:
+    - position: {x: 0.34375, y: -0.046875}
+      radius: 0.5
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 15
+        knockbackGrowth: 0.3
+        damageType: 0
+      ID: 23344
+      getNewID: 0
     soundName: 
   - duration: 20
     sprite: {fileID: 21300022, guid: 21328170e4ddead49b66a2cc40c085b4, type: 3}

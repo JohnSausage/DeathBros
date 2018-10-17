@@ -59,7 +59,7 @@ public class Controller2D : MonoBehaviour
     public bool slidingDownSlope;
 
     public bool slopeDown;
-    private bool oldSlopeDown;
+    //private bool oldSlopeDown;
     public bool slopeUp;
 
     public float slopeUpAngle, oldSlopeUpAngle;
@@ -89,7 +89,7 @@ public class Controller2D : MonoBehaviour
 
         oldVelocity = velocity;
         oldGrounded = grounded;
-        oldSlopeDown = slopeDown;
+        //oldSlopeDown = slopeDown;
 
         grounded = false;
         onCeiling = false;
@@ -398,7 +398,7 @@ public class Controller2D : MonoBehaviour
 
                     if (newSlopeDownCast)
                     {
-                        float newSlopeDownAngle = Vector2.Angle(Vector2.up, newSlopeDownCast.normal);
+                        //float newSlopeDownAngle = Vector2.Angle(Vector2.up, newSlopeDownCast.normal);
 
                         if (newSlopeDownCast.distance > skin && newSlopeDownCast.distance < Mathf.Abs(velocity.x) + skin)
                         {
@@ -554,8 +554,6 @@ public class Controller2D : MonoBehaviour
             }
 
             forceMovement = Vector2.zero;
-
-            Debug.Log("forceMovement: " + forceMovement);
         }
 
         //lost control -> character just falls down

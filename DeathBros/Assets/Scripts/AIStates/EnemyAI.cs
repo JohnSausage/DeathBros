@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 
     public Vector2 TargetDirection;// { get; protected set; }
     public Vector2 TargetVector;// { get; protected set; }
+
     public float DistanceToTarget
     {
         get
