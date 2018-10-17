@@ -14,6 +14,8 @@ public class GameManager : _MB
 
     public static GameManager Instance { get; private set; }
 
+    private bool levelStarted = false;
+
     public override void Init()
     {
         base.Init();
@@ -34,11 +36,17 @@ public class GameManager : _MB
             Debug.Log("Player not found");
 
         LevelSM = new StateMachine();
-        LevelSM.ChangeState(startingLevel);
+        
     }
 
     void Update()
     {
+        if(levelStarted == false)
+        {
+            LevelSM.ChangeState(startingLevel);
+            levelStarted = true;
+        }
+
         LevelSM.Update();
 
         if(Input.GetKeyDown(KeyCode.Escape) || InputManager.Pause.GetButtonDown())

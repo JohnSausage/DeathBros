@@ -7,9 +7,18 @@ public class Level : MonoBehaviour, IState
 {
     public GameObject levelTransforms;
 
+    public string backgroundMusic;
+
+    void Start()
+    {
+        Exit();
+    }
+
     public void Enter()
     {
         levelTransforms.SetActive(true);
+
+        AudioManager.PlaySound(backgroundMusic);
     }
 
     public void Execute()
@@ -18,11 +27,6 @@ public class Level : MonoBehaviour, IState
 
     public void Exit()
     {
-    }
-
-    void Start()
-    {
-        Exit();
     }
 
     void Update()

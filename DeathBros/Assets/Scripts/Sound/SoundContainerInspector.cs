@@ -55,6 +55,11 @@ public class SoundContainerInspector : Editor
 
         EditorGUILayout.BeginVertical("box");
 
+        if(sc.sounds == null)
+        {
+            sc.sounds = new List<Sound>();
+        }
+
         for (int i = 0; i < sc.sounds.Count; i++)
         {
             EditorGUILayout.BeginVertical("box");

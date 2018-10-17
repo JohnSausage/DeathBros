@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : _MB
 {
     [SerializeField]
     private List<Sound> sounds;
@@ -10,6 +10,11 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; protected set; }
 
     private void Awake()
+    {
+        Init();
+    }
+
+    public override void Init()
     {
         if (Instance == null)
         {
@@ -21,10 +26,10 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-    }
 
-    private void Start()
-    {
+        base.Init();
+
+
         foreach (Sound s in sounds)
         {
             InitSound(s);
@@ -53,7 +58,15 @@ public class AudioManager : MonoBehaviour
     public static void PlaySound(string name)
     {
         Sound s = Instance.sounds.Find(x => x.name == name);
-        s.Source.Play();
+
+        if (s == null)
+        {
+            Debug.Log(name + " sound not found!");
+        }
+        else
+        {
+            s.Source.Play();
+        }
     }
 
     public static void AddSound(Sound sound)
