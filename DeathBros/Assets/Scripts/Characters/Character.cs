@@ -29,7 +29,7 @@ public class Character : _MB
     public SpriteRenderer Spr { get; protected set; }
     public Controller2D Ctr { get; protected set; }
 
-    public float Direction { get { return Spr.flipX ? -1 : 1; } }
+    public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (value == -1); } }
 
     //public CStates_Movement movementStates;
     //public CStates_AdvancedMovement advancedMovementStates;

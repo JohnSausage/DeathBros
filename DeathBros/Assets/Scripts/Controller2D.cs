@@ -140,12 +140,13 @@ public class Controller2D : MonoBehaviour
         {
             forceMovement = Vector2.zero;
         }
-        */
+        
 
         if (input.y <= -0.25)
         {
             fallThroughPlatform = true;
         }
+        */
 
         RaycastHit2D collisionCheck;
         RaycastHit2D groundCheck;

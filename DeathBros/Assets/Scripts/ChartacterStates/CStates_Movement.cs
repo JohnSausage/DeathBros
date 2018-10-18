@@ -86,7 +86,7 @@ public class CS_Idle : CState
 
         chr.SetInputs();
 
-        if (chr.DirectionalInput.y < 0f)
+        if (chr.DirectionalInput.y < -0.5f)
         {
             ChangeState(typeof(CS_Crouch));
         }
@@ -211,7 +211,7 @@ public class CS_Walking : CState
         }
 
 
-        if (chr.DirectionalInput.y < 0f)
+        if (chr.DirectionalInput.y < -0.5f)
         {
             ChangeState(typeof(CS_Crouch));
         }
@@ -304,7 +304,12 @@ public class CS_Crouch : CState
         chr.SetInputs();
         chr.SetInputs(new Vector2(0, chr.DirectionalInput.y));
 
-        if (chr.DirectionalInput.y >= -0.1f)
+        if (chr.StrongInputs.y < 0)
+        {
+            chr.Ctr.fallThroughPlatform = true;
+        }
+
+        if (chr.DirectionalInput.y >= -0.25f)
         {
             chr.CS_SetIdle();
         }
@@ -464,6 +469,7 @@ public class CS_Jumping : CState
         jumpRisingFA = chr.Anim.GetAnimation(jumpRisingAnimation);
     }
 
+    /*
     public bool AllowWallJump
     {
         set
@@ -479,10 +485,12 @@ public class CS_Jumping : CState
         }
         get
         {
-            return allowWallJumpAfterWallSlidingTimer > 0;
+            Debug.Log(chr.Ctr.wallDirection + ", " + Mathf.Sign(chr.DirectionalInput.x));
+
+            return (allowWallJumpAfterWallSlidingTimer > 0 && chr.Ctr.wallDirection != Mathf.Sign(chr.DirectionalInput.x));
         }
     }
-
+    */
     public override void Execute()
     {
         base.Execute();
@@ -505,12 +513,15 @@ public class CS_Jumping : CState
 
         if (chr.Jump)
         {
-            if (AllowWallJump)
+            /*
+            if (AllowWallJump == true)
             {
                 //ChangeState(chr.advancedMovementStates.walljumpStart);
                 ChangeState(typeof(CS_WalljumpStart));
             }
-            else if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
+            else 
+            */
+            if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
             {
                 //ChangeState(chr.advancedMovementStates.doubleJumpsquat);
                 ChangeState(typeof(CS_DoubleJumpsquat));
@@ -536,6 +547,8 @@ public class CS_Wallsliding : CState
     private FrameAnimation wallUpFA;
     private CS_WalljumpStart walljumpStart;
     private CS_Jumping jumping;
+
+    private float dirBeforeWallslide;
 
     public override void Init(Character chr)
     {
@@ -564,6 +577,8 @@ public class CS_Wallsliding : CState
     public override void Enter()
     {
         //base.Enter(); //Dont automatically change animation to slideDwon, check vel.y first!
+
+        dirBeforeWallslide = chr.Direction;
     }
 
     public override void Execute()
@@ -593,9 +608,17 @@ public class CS_Wallsliding : CState
 
         if (chr.Jump)
         {
-            walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
-            //ChangeState(chr.advancedMovementStates.walljumpStart);
-            ChangeState(typeof(CS_WalljumpStart));
+            if (chr.Ctr.wallDirection != Mathf.Sign(chr.DirectionalInput.x))
+            {
+                walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
+                //ChangeState(chr.advancedMovementStates.walljumpStart);
+                ChangeState(typeof(CS_WalljumpStart));
+            }
+            else if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
+            {
+                //ChangeState(chr.advancedMovementStates.doubleJumpsquat);
+                ChangeState(typeof(CS_DoubleJumpsquat));
+            }
         }
     }
 
@@ -603,7 +626,8 @@ public class CS_Wallsliding : CState
     {
         base.Exit();
 
-        jumping.AllowWallJump = true;
+        //jumping.AllowWallJump = true;
+        chr.Direction = dirBeforeWallslide;
     }
 }
 
@@ -674,7 +698,7 @@ public class CS_Walljumping : CState
     {
         base.Enter();
         timer = 0;
-        jumping.AllowWallJump = false;
+        //jumping.AllowWallJump = false;
 
     }
 

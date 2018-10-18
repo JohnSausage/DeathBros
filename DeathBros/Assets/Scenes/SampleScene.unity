@@ -2252,6 +2252,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 540065326}
+--- !u!4 &544026127 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4949227196385530, guid: b59ede67b50384e4aa382b3df353f9cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 2122217910}
 --- !u!1 &572704981
 GameObject:
   m_ObjectHideFlags: 0
@@ -4060,11 +4065,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4136827316432892, guid: 46d8939640091eb49afe1cc1a79484dc,
     type: 2}
   m_PrefabInternal: {fileID: 1234433170}
---- !u!4 &1337703457 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4073558193038324, guid: b59ede67b50384e4aa382b3df353f9cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 2122217910}
 --- !u!4 &1371088085 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4617106639234704, guid: a96eff652ef8acd44a2a3491e876039c,
@@ -5005,7 +5005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 967334113}
-  levelBoundsTransform: {fileID: 1337703457}
+  levelBoundsTransform: {fileID: 544026127}
   smoothSpeed: 0.1
 --- !u!61 &1798455333
 BoxCollider2D:
