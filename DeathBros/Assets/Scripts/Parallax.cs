@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public Transform parallaxCamera;
     public float parallaxScale = 0.1f;
 
-    public Vector2 start;
-    public Vector2 currentCameraPosition;
+    private Transform parallaxCamera;
+    private Vector2 start;
+    private Vector2 currentCameraPosition;
+
     void Start()
     {
+        parallaxCamera = Camera.main.transform;
         start = parallaxCamera.position;
     }
 
@@ -18,6 +20,6 @@ public class Parallax : MonoBehaviour
     {
         currentCameraPosition = (Vector2)parallaxCamera.position - start;
 
-        transform.localPosition = -currentCameraPosition * parallaxScale;
+        transform.localPosition = currentCameraPosition * parallaxScale;
     }
 }
