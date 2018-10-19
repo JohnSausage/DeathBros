@@ -59,6 +59,7 @@ public class CS_Idle : CState
 {
     CS_Walking walking;
     CS_Jumpsquat jumpsquat;
+    CS_Crouch crouch;
 
     public override void Init(Character chr)
     {
@@ -72,6 +73,7 @@ public class CS_Idle : CState
 
         walking = (CS_Walking)chr.GetState(typeof(CS_Walking));
         jumpsquat = (CS_Jumpsquat)chr.GetState(typeof(CS_Jumpsquat));
+        crouch = (CS_Crouch)chr.GetState(typeof(CS_Crouch));
     }
 
     public override void Enter()
@@ -84,31 +86,24 @@ public class CS_Idle : CState
     {
         base.Execute();
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         if (chr.DirectionalInput.y < -0.5f)
         {
-            ChangeState(typeof(CS_Crouch));
+            ChangeState(crouch);
         }
 
         if (Mathf.Abs(chr.DirectionalInput.x) != 0)
         {
-            //ChangeState(chr.advancedMovementStates.walking);
             ChangeState(walking);
         }
 
         if (chr.Jump)
         {
-            //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(jumpsquat);
         }
 
         chr.CS_CheckIfStillGrounded();
-
-        //if(damage != null)
-        {
-            //ChangeState(hitstun);
-        }
 
         if (chr.CheckForSpecialAttacks() == false)
         {
@@ -117,16 +112,6 @@ public class CS_Idle : CState
                 chr.CheckForTiltAttacks();
             }
         }
-
-        //if (!chr.CheckForSpecialAttacks()) { }
-        //else if (!chr.CheckForSoulAttacks())
-        //    chr.CheckForTiltAttacks();
-        /*
-        if (chr.Attack)
-        {
-            ChangeState(chr.GetState(typeof(CS_Attack)));
-        }
-        */
     }
 }
 
@@ -175,11 +160,10 @@ public class CS_Walking : CState
             chr.Anim.ChangeAnimation(animation);
         }
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != direction)
         {
-            //chr.advancedMovementStates.skid.direction = direction;
             CState exit = (CS_Skid)chr.GetState(typeof(CS_Skid));
 
             if (exit != null)
@@ -191,15 +175,18 @@ public class CS_Walking : CState
             {
                 exit = (CS_Idle)chr.GetState(typeof(CS_Idle));
             }
-            //ChangeState(chr.advancedMovementStates.skid);
             ChangeState(exit);
 
         }
 
         if (chr.Jump)
         {
-            //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(typeof(CS_Jumpsquat));
+        }
+
+        if (chr.DirectionalInput.y < -0.5f)
+        {
+            ChangeState(typeof(CS_Crouch));
         }
 
         if (chr.CheckForSpecialAttacks() == false)
@@ -208,12 +195,6 @@ public class CS_Walking : CState
             {
                 chr.CheckForTiltAttacks();
             }
-        }
-
-
-        if (chr.DirectionalInput.y < -0.5f)
-        {
-            ChangeState(typeof(CS_Crouch));
         }
 
         chr.CS_CheckIfStillGrounded();
@@ -253,7 +234,7 @@ public class CS_Skid : CState
 
         timer++;
 
-        chr.SetInputs();
+        chr.GetInputs();
 
 
         if (!changedDirection)
@@ -278,13 +259,13 @@ public class CS_Skid : CState
             //ChangeState(chr.advancedMovementStates.idle);
             ChangeState(typeof(CS_Idle));
 
-            chr.SetInputs();
+            chr.GetInputs();
         }
         else if (idleTimer >= idleOutDuration)
         {
             ChangeState(typeof(CS_Idle));
 
-            chr.SetInputs();
+            chr.GetInputs();
         }
         else if (chr.Jump)
         {
@@ -301,7 +282,7 @@ public class CS_Crouch : CState
     {
         base.Execute();
 
-        chr.SetInputs();
+        chr.GetInputs();
         chr.SetInputs(new Vector2(0, chr.DirectionalInput.y));
 
         if (chr.StrongInputs.y < 0)
@@ -316,7 +297,6 @@ public class CS_Crouch : CState
 
         if (chr.Jump)
         {
-            //ChangeState(chr.advancedMovementStates.jumpsquat);
             ChangeState(typeof(CS_Jumpsquat));
         }
 
@@ -349,7 +329,7 @@ public class CS_Jumpsquat : CState
     {
         base.Execute();
 
-        chr.SetInputs(0.5f);
+        chr.ModInputs(0.5f);
 
         timer++;
 
@@ -432,13 +412,13 @@ public class CS_Landing : CState
         base.Execute();
 
         //chr.SetInputs(0.2f);
-        chr.SetInputs();
+        chr.GetInputs();
 
         timer++;
 
         if (timer >= duration)
         {
-            chr.SetInputs();
+            chr.GetInputs();
             if (chr.DirectionalInput.y < 0)
             {
                 ChangeState(typeof(CS_Crouch));
@@ -507,7 +487,7 @@ public class CS_Jumping : CState
 
         allowWallJumpAfterWallSlidingTimer--;
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         chr.CS_CheckLanding();
 
@@ -596,7 +576,7 @@ public class CS_Wallsliding : CState
 
         chr.Spr.flipX = chr.Ctr.wallDirection == -1;
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         chr.CS_CheckLanding();
 
@@ -606,7 +586,7 @@ public class CS_Wallsliding : CState
             ChangeState(typeof(CS_Jumping));
         }
 
-        if (chr.Jump)
+        if (chr.Jump || (chr.StrongInputs.x != 0 && Mathf.Sign(chr.StrongInputs.x) != chr.Ctr.wallDirection))
         {
             if (chr.Ctr.wallDirection != Mathf.Sign(chr.DirectionalInput.x))
             {
@@ -763,7 +743,7 @@ public class CS_Hitstun : CState
     {
         base.Execute();
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         timer++;
 

@@ -10,7 +10,7 @@ public class Character : _MB
     public string soundFolderName;
 
     public Vector2 DirectionalInput { get; protected set; }
-    public Vector2 StrongInputs;// { get; protected set; }
+    public Vector2 StrongInputs { get; protected set; }
     public Vector2 TiltInput { get; protected set; }
 
     public bool Jump { get; protected set; }
@@ -31,9 +31,6 @@ public class Character : _MB
 
     public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (value == -1); } }
 
-    //public CStates_Movement movementStates;
-    //public CStates_AdvancedMovement advancedMovementStates;
-
     public List<CState> cStates;
 
     [Space]
@@ -49,19 +46,6 @@ public class Character : _MB
 
     public Queue<int> hitIDs = new Queue<int>();
 
-    /*
-    public bool IsFlipped
-    {
-        set
-        {
-            Spr.flipX = value;
-        }
-        get
-        {
-            return Spr.flipX;
-        }
-    }
-    */
     public override void Init()
     {
         base.Init();
@@ -74,9 +58,6 @@ public class Character : _MB
         Ctr = GetComponent<Controller2D>();
 
         stats.Init();
-        //movementStates.Init(this);
-        //advancedMovementStates.Init(this);
-        //CSMachine.ChangeState(advancedMovementStates.idle);
     }
 
     public virtual void CStates_InitExitStates()
@@ -89,19 +70,6 @@ public class Character : _MB
 
     protected virtual void FixedUpdate()
     {
-        /*
-        StrongInputs = Vector2.zero;
-
-        if (Mathf.Abs(Ctr.input.x - DirectionalInput.x) > 0.1f && Mathf.Abs(DirectionalInput.x) > 0.8f)
-        {
-            StrongInputs = new Vector2(DirectionalInput.x - Ctr.input.x, 0);
-        }
-
-        if (Mathf.Abs(Ctr.input.y - DirectionalInput.y) > 0.1f && Mathf.Abs(DirectionalInput.y) > 0.8f)
-        {
-            StrongInputs = new Vector2(DirectionalInput.y - Ctr.input.y, 0);
-        }
-        */
         CSMachine.Update();
 
         stats.FixedUpdate();
@@ -179,7 +147,7 @@ public class Character : _MB
         Destroy(gameObject);
     }
 
-    public virtual void SetInputs()
+    public virtual void GetInputs()
     {
         Ctr.input = DirectionalInput;
     }
@@ -187,37 +155,19 @@ public class Character : _MB
     public virtual void SetInputs(Vector2 inputs)
     {
         DirectionalInput = inputs;
-        SetInputs();
+        GetInputs();
     }
 
-    public virtual void SetInputs(float reduceControl)
+    public virtual void ModInputs(float multiply)
     {
-        DirectionalInput *= reduceControl;
-        SetInputs();
+        DirectionalInput *= multiply;
+        GetInputs();
     }
 
     public virtual void SetAttack(bool value)
     {
         Attack = value;
     }
-    /*
-    public virtual void CS_CheckForJump()
-    {
-        if (jumpsUsed < jumps)
-        {
-            if (Ctr.grounded)
-                CSMachine.ChangeState(advancedMovementStates.jumpsquat);
-            else
-                CSMachine.ChangeState(advancedMovementStates.doubleJumpsquat);
-        }
-    }
-
-    public virtual void CS_StartJump()
-    {
-        Ctr.jumpVelocity = jumpStrength;
-        CSMachine.ChangeState(advancedMovementStates.jumping);
-    }
-     */
 
     public CState GetState(Type type)
     {
@@ -254,7 +204,6 @@ public class Character : _MB
     {
         if (Ctr.IsGrounded)
         {
-            //CSMachine.ChangeState(advancedMovementStates.landing);
             CSMachine.ChangeState(GetState(typeof(CS_Landing)));
         }
     }
@@ -263,14 +212,12 @@ public class Character : _MB
     {
         if (!Ctr.IsGrounded)
         {
-            //CSMachine.ChangeState(advancedMovementStates.jumping);
             CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
         }
     }
 
     public virtual void CS_SetIdle()
     {
-        //CSMachine.ChangeState(advancedMovementStates.idle);
         CSMachine.ChangeState(GetState(typeof(CS_Idle)));
     }
 

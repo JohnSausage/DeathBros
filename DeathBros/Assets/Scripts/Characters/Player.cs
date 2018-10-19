@@ -27,7 +27,6 @@ public class Player : Character
 
     void Update()
     {
-        //DirectionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
         DirectionalInput = InputManager.Direction;
         StrongInputs = InputManager.Smash;
         TiltInput = InputManager.CStick;

@@ -13,7 +13,9 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         parallaxCamera = Camera.main.transform;
-        start = parallaxCamera.position;
+        //start = parallaxCamera.position;
+
+        start = GetComponentInChildren<Renderer>().bounds.center;
     }
 
     void FixedUpdate()

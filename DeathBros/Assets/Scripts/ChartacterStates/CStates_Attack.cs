@@ -141,7 +141,7 @@ public class CS_Aerial : CS_Attack
     {
         base.Execute();
 
-        chr.SetInputs();
+        chr.GetInputs();
 
         if (chr.Anim.animationOver)
         {
