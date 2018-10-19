@@ -13,86 +13,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 2
-    sprite: {fileID: 21300004, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300004, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.033018846, y: 0.41823897}
+    - position: {x: 0.13715808, y: 0.38525835}
       radius: 0.2
-    - position: {x: -0.06788796, y: -0.0075430702}
+    - position: {x: 0.175152, y: -0.1276596}
       radius: 0.3
     hitboxes: []
     soundName: 
   - duration: 2
-    sprite: {fileID: 21300006, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300006, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.029094793, y: 0.4234914}
+    - position: {x: 0.21314593, y: 0.32826746}
       radius: 0.2
-    - position: {x: -0.014008653, y: -0.018318933}
+    - position: {x: 0.23214288, y: -0.2226444}
       radius: 0.3
     hitboxes: []
     soundName: Step
   - duration: 2
-    sprite: {fileID: 21300008, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300008, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.035560377, y: 0.3372845}
+    - position: {x: 0.21314593, y: 0.27127656}
       radius: 0.2
-    - position: {x: -0.0571121, y: -0.07219824}
+    - position: {x: 0.23214288, y: -0.31762922}
       radius: 0.3
     hitboxes: []
     soundName: 
   - duration: 2
-    sprite: {fileID: 21300010, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300010, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.033018846, y: 0.41823897}
+    - position: {x: 0.15615503, y: 0.3472644}
       radius: 0.2
-    - position: {x: -0.06446539, y: -0.037735876}
+    - position: {x: 0.175152, y: -0.27963528}
       radius: 0.3
     hitboxes: []
     soundName: 
   - duration: 2
-    sprite: {fileID: 21300012, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300012, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.029094793, y: 0.39116383}
+    - position: {x: 0.23214288, y: 0.3472644}
       radius: 0.2
-    - position: {x: -0.0032327913, y: -0.039870657}
+    - position: {x: 0.23214288, y: -0.2226444}
       radius: 0.3
     hitboxes: []
     soundName: Step
   - duration: 2
-    sprite: {fileID: 21300014, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300014, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.024784515, y: 0.3372845}
+    - position: {x: 0.15615503, y: 0.2522796}
       radius: 0.2
-    - position: {x: -0.06788796, y: -0.0829741}
+    - position: {x: 0.15615503, y: -0.31762922}
       radius: 0.3
     hitboxes: []
     soundName: 

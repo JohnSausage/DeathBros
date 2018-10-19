@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 2
-    sprite: {fileID: 21300018, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300018, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     hitboxes: []
     soundName: 
   - duration: 5
-    sprite: {fileID: 21300016, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300016, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 3
-    sprite: {fileID: 21300032, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300032, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
     hurtboxes:
     - position: {x: 0.10452583, y: 0.3696121}
       radius: 0.2
-    - position: {x: -0.024784515, y: -0.039870657}
+    - position: {x: 0.13715808, y: -0.15615503}
       radius: 0.3
     hitboxes: []
     soundName: 

@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 53871
+      ID: 72227
       getNewID: 0
     soundName: 
   - duration: 2
@@ -71,7 +71,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 53871
+      ID: 72227
       getNewID: 0
     - position: {x: -0.50635594, y: 0.940678}
       radius: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 53871
+      ID: 72227
       getNewID: 0
     soundName: 
   - duration: 3
@@ -105,7 +105,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 53871
+      ID: 72227
       getNewID: 0
     - position: {x: -0.37923732, y: 0.9618644}
       radius: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 0.2
         damageType: 0
-      ID: 53871
+      ID: 72227
       getNewID: 0
     soundName: 
   - duration: 8
