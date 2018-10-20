@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: e222a3cf619bf6c48b0ad546d8f6a4bd
+guid: 9ffb057d41294dc4baa3706b3bd6eb6c
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: blue_castle_test_mesh_0007
+    100000: blue_castle_test_mesh_0018
     100002: //RootNode
-    400000: blue_castle_test_mesh_0007
+    400000: blue_castle_test_mesh_0018
     400002: //RootNode
-    2300000: blue_castle_test_mesh_0007
-    3300000: blue_castle_test_mesh_0007
-    4300000: blue_castle_test_mesh_0007
+    2300000: blue_castle_test_mesh_0018
+    3300000: blue_castle_test_mesh_0018
+    4300000: blue_castle_test_mesh_0018
   externalObjects: {}
   materials:
     importMaterials: 0

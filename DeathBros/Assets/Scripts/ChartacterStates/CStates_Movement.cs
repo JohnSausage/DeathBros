@@ -344,7 +344,7 @@ public class CS_Jumpsquat : CState
             }
             else
             {
-                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.75f;
+                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
             }
         }
     }
@@ -438,10 +438,6 @@ public class CS_Jumping : CState
     string jumpRisingAnimation;
     FrameAnimation jumpRisingFA;
 
-    [SerializeField]
-    int allowWallJumpAfterWallSlidingDuration = 5;
-    int allowWallJumpAfterWallSlidingTimer;
-
     public override void Init(Character chr)
     {
         base.Init(chr);
@@ -485,7 +481,6 @@ public class CS_Jumping : CState
         else
             chr.Anim.ChangeAnimation(animation);
 
-        allowWallJumpAfterWallSlidingTimer--;
 
         chr.GetInputs();
 
@@ -583,7 +578,7 @@ public class CS_Wallsliding : CState
         if (!chr.Ctr.onWall)
         {
             //ChangeState(chr.advancedMovementStates.jumping);
-            ChangeState(typeof(CS_Jumping));
+            ChangeState(jumping);
         }
 
         if (chr.Jump || (chr.StrongInputs.x != 0 && Mathf.Sign(chr.StrongInputs.x) != chr.Ctr.wallDirection))
@@ -592,7 +587,7 @@ public class CS_Wallsliding : CState
             {
                 walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
                 //ChangeState(chr.advancedMovementStates.walljumpStart);
-                ChangeState(typeof(CS_WalljumpStart));
+                ChangeState(walljumpStart);
             }
             else if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
             {

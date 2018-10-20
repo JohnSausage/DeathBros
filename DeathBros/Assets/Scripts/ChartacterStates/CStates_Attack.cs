@@ -143,6 +143,11 @@ public class CS_Aerial : CS_Attack
 
         chr.GetInputs();
 
+        if (chr.Ctr.velocity.y < 0 && chr.StrongInputs.y < 0)
+        {
+            chr.Ctr.fastFall = true;
+        }
+
         if (chr.Anim.animationOver)
         {
             ChangeState(typeof(CS_Jumping));

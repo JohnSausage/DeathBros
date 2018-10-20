@@ -6,7 +6,7 @@
  </terraintypes>
  <tile id="0" terrain=",,,0">
   <objectgroup draworder="index">
-   <object id="1" x="-38" y="-7" width="16" height="16"/>
+   <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="1" terrain=",,0,0">
@@ -329,6 +329,69 @@
    <frame tileid="128" duration="100"/>
    <frame tileid="129" duration="100"/>
    <frame tileid="130" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="144">
+  <animation>
+   <frame tileid="144" duration="100"/>
+   <frame tileid="145" duration="100"/>
+   <frame tileid="146" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="160">
+  <animation>
+   <frame tileid="160" duration="100"/>
+   <frame tileid="163" duration="100"/>
+   <frame tileid="166" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="161">
+  <animation>
+   <frame tileid="161" duration="100"/>
+   <frame tileid="164" duration="100"/>
+   <frame tileid="167" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="162">
+  <animation>
+   <frame tileid="162" duration="100"/>
+   <frame tileid="165" duration="100"/>
+   <frame tileid="168" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="176">
+  <animation>
+   <frame tileid="176" duration="100"/>
+   <frame tileid="179" duration="100"/>
+   <frame tileid="182" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="178">
+  <animation>
+   <frame tileid="178" duration="100"/>
+   <frame tileid="181" duration="100"/>
+   <frame tileid="184" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="192">
+  <animation>
+   <frame tileid="192" duration="100"/>
+   <frame tileid="195" duration="100"/>
+   <frame tileid="198" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="193">
+  <animation>
+   <frame tileid="193" duration="100"/>
+   <frame tileid="196" duration="100"/>
+   <frame tileid="199" duration="100"/>
+  </animation>
+ </tile>
+ <tile id="194">
+  <animation>
+   <frame tileid="194" duration="100"/>
+   <frame tileid="197" duration="100"/>
+   <frame tileid="200" duration="100"/>
   </animation>
  </tile>
 </tileset>

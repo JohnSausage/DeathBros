@@ -10,74 +10,93 @@ public class CameraController : MonoBehaviour
     public float smoothSpeed = 0.125f;
 
     protected Bounds levelBounds;
-    protected Bounds cameraBounds;
+    protected Bounds cameraSizeBounds;
+    protected Bounds movementBounds;
     protected Camera cam;
+
+    protected BoxCollider2D movementBoundsCollider;
 
     void Start()
     {
         cam = Camera.main;
 
-        levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
+        movementBoundsCollider = GetComponent<BoxCollider2D>();
+
+        //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
+    }
+
+    public void SetLevel(Transform levelTransform)
+    {
+        levelBoundsTransform = levelTransform;
+        levelBounds = levelBoundsTransform.GetComponentInChildren<Renderer>().bounds;
     }
 
     void LateUpdate()
     {
-        Vector2 newPosition;
+        Vector2 newPosition = transform.position;
 
-        cameraBounds = cam.OrthographicBounds();
+        cameraSizeBounds = cam.OrthographicBounds();
+
+        movementBounds = movementBoundsCollider.bounds;
+        movementBounds.center = new Vector3(movementBounds.center.x, movementBounds.center.y, 0);
+
+
 
         //smooth movement
         newPosition = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
-
-        //transform.position = new Vector3(target.position.x, target.position.y, -10);
-
-        //newPosition = new Vector3(target.position.x, target.position.y, -10);
-
         /*
-        if (target.position.x < movementBounds.PositionRect().xMin)
+        if (movementBounds.Contains(target.position))
         {
-            transform.position = new Vector3(target.position.x + movementBounds.extents.x, transform.position.y, transform.position.z);
+            newPosition = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
         }
 
-        if (target.position.x > movementBounds.PositionRect().xMax)
+
+
+        if (target.position.x < movementBounds.Rect().xMin)
         {
-            transform.position = new Vector3(target.position.x - movementBounds.extents.x, transform.position.y, transform.position.z);
+            newPosition.x = target.position.x;// + cameraSizeBounds.extents.x;
         }
 
-        if (target.position.y < movementBounds.PositionRect().yMin)
+        if (target.position.x > movementBounds.Rect().xMax)
         {
-            transform.position = new Vector3(transform.position.x, target.position.y + movementBounds.extents.y, transform.position.z);
+            newPosition.x = target.position.x;// - cameraSizeBounds.extents.x;
         }
 
-        if (target.position.y > movementBounds.PositionRect().yMax)
+        if (target.position.y < movementBounds.Rect().yMin)
         {
-            transform.position = new Vector3(transform.position.x, target.position.y - movementBounds.extents.y, transform.position.z);
+            newPosition.y = target.position.y;
+        }
+
+        if (target.position.y > movementBounds.Rect().yMax)
+        {
+            newPosition.y = target.position.y;
         }
         */
 
         //contstrain camera bounds to level bounds
-        if (newPosition.x - cameraBounds.extents.x < levelBounds.Rect().xMin)
+        if (newPosition.x - cameraSizeBounds.extents.x < levelBounds.Rect().xMin)
         {
-            newPosition.x = levelBounds.Rect().xMin + cameraBounds.extents.x;
+            newPosition.x = levelBounds.Rect().xMin + cameraSizeBounds.extents.x;
         }
 
-        if (newPosition.x + cameraBounds.extents.x > levelBounds.Rect().xMax)
+        if (newPosition.x + cameraSizeBounds.extents.x > levelBounds.Rect().xMax)
         {
-            newPosition.x = levelBounds.Rect().xMax - cameraBounds.extents.x;
+            newPosition.x = levelBounds.Rect().xMax - cameraSizeBounds.extents.x;
         }
 
-        if (newPosition.y - cameraBounds.extents.y < levelBounds.Rect().yMin)
+        if (newPosition.y - cameraSizeBounds.extents.y < levelBounds.Rect().yMin)
         {
-            newPosition.y = levelBounds.Rect().yMin + cameraBounds.extents.y;
+            newPosition.y = levelBounds.Rect().yMin + cameraSizeBounds.extents.y;
         }
-        
-        if (newPosition.y + cameraBounds.extents.y > levelBounds.Rect().yMax)
+
+        if (newPosition.y + cameraSizeBounds.extents.y > levelBounds.Rect().yMax)
         {
-            newPosition.y = levelBounds.Rect().yMax - cameraBounds.extents.y;
+            newPosition.y = levelBounds.Rect().yMax - cameraSizeBounds.extents.y;
         }
-        
+
         //move camera
         transform.position = new Vector3(newPosition.x, newPosition.y, -10);
+        //transform.position = Vector3.Lerp(transform.position, new Vector3(newPosition.x, newPosition.y, -10), 0.05f);
     }
 }
 

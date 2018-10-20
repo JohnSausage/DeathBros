@@ -6,6 +6,7 @@ using UnityEngine;
 public class Level : MonoBehaviour, IState
 {
     public GameObject levelTransforms;
+    public Transform backgroundForCamera;
 
     public string backgroundMusic;
 
@@ -19,6 +20,10 @@ public class Level : MonoBehaviour, IState
         levelTransforms.SetActive(true);
 
         AudioManager.PlaySound(backgroundMusic);
+
+        backgroundForCamera = levelTransforms.transform.Find("Background");
+
+        Camera.main.GetComponent<CameraController>().SetLevel(backgroundForCamera);
     }
 
     public void Execute()
@@ -27,6 +32,7 @@ public class Level : MonoBehaviour, IState
 
     public void Exit()
     {
+        levelTransforms.SetActive(false);
     }
 
     void Update()
