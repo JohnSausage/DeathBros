@@ -6,7 +6,7 @@
  </terraintypes>
  <tile id="0" terrain=",,,0">
   <objectgroup draworder="index">
-   <object id="1" x="0" y="0" width="16" height="16"/>
+   <object id="1" x="-38" y="-7" width="16" height="16"/>
   </objectgroup>
  </tile>
  <tile id="1" terrain=",,0,0">
@@ -78,7 +78,11 @@
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
  </tile>
- <tile id="17" terrain="0,0,0,0"/>
+ <tile id="17" terrain="0,0,0,0">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="18" terrain="0,,0,">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -174,6 +178,16 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="40">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="41">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="48">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="16"/>
@@ -210,6 +224,26 @@
   </objectgroup>
  </tile>
  <tile id="55">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="56">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="57">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="72">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="73">
   <objectgroup draworder="index">
    <object id="1" x="0" y="0" width="16" height="16"/>
   </objectgroup>
@@ -289,5 +323,12 @@
     <polygon points="0,0 16,16 16,0"/>
    </object>
   </objectgroup>
+ </tile>
+ <tile id="128">
+  <animation>
+   <frame tileid="128" duration="100"/>
+   <frame tileid="129" duration="100"/>
+   <frame tileid="130" duration="100"/>
+  </animation>
  </tile>
 </tileset>
