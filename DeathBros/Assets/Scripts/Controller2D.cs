@@ -447,6 +447,7 @@ public class Controller2D : MonoBehaviour
                 {
                     airTimer = 0;
 
+                    /*
                     velocity.y += gravity / 60 * 2;
 
                     if (velocity.y < fastFallSpeed / 60)
@@ -454,6 +455,8 @@ public class Controller2D : MonoBehaviour
                         velocity.y = fastFallSpeed / 60;
 
                     }
+                    */
+                    velocity.y = fastFallSpeed / 60;
                 }
                 else
                 {

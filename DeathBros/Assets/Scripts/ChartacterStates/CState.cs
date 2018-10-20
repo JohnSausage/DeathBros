@@ -27,6 +27,8 @@ public class CState : IState
     {
         //start animation
         chr.Anim.ChangeAnimation(animation);
+
+        chr.TakesDamage += TakeDamage;
     }
 
     public virtual void Execute()
@@ -35,6 +37,7 @@ public class CState : IState
 
     public virtual void Exit()
     {
+        chr.TakesDamage -= TakeDamage;
         //reset animation speed
         chr.Anim.animationSpeed = 1;
         damage = null;
@@ -57,7 +60,7 @@ public class CState : IState
         }
     }
 
-    public void TakeDamage(Damage damage)
+    protected void TakeDamage(Damage damage)
     {
         this.damage = damage;
 

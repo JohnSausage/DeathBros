@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: attack
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 15
+    sprite: {fileID: 21300008, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: -0.078125, y: -0.5625}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300010, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.046875, y: -0.4375}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 2
+    sprite: {fileID: 21300012, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.421875, y: -0.40625}
+      radius: 0.6
+    hitboxes:
+    - position: {x: 0.578125, y: -0.15625}
+      radius: 0.8
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 12
+        knockbackGrowth: 0
+        damageType: 0
+      ID: 19316
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300014, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.328125, y: -0.3125}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300016, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.078125, y: -0.46875}
+      radius: 0.6
+    hitboxes: []
+    soundName: 

@@ -277,6 +277,10 @@ public class FrameAnimatorEditor : EditorWindow
 
         animationListScrollVector = EditorGUILayout.BeginScrollView(animationListScrollVector, "box");
 
+        if(animSO.frameAnimations == null)
+        {
+            animSO.frameAnimations = new List<FrameAnimation>();
+        }
         for (int i = 0; i < animSO.frameAnimations.Count; i++)
         {
             if (i == currentAnimationNr)

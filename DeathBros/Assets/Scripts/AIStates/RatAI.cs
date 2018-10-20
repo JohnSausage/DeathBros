@@ -46,6 +46,8 @@ public class RatAI : MonoBehaviour
         enemy = GetComponent<Enemy>();
         target = GameObject.FindGameObjectWithTag(followTag).transform;
 
+        enemy.HitM.EnemyHit += EnemyHit;
+
         aiFollowPlayer = new AI_Follow(this);
         aiFlee = new AI_Flee(this);
         aiAttack = new AI_Attack(this);
@@ -87,5 +89,10 @@ public class RatAI : MonoBehaviour
         }
 
         aiMachine.Update();
+    }
+
+    private void EnemyHit(Character hitChr)
+    {
+        Debug.Log(hitChr.name + " was hit by " + enemy.name);
     }
 }

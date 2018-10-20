@@ -28,6 +28,8 @@ public class Character : _MB
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
     public Controller2D Ctr { get; protected set; }
+    public HitboxManager HitM { get; protected set; }
+    public HurtboxManager HurtM { get; protected set; }
 
     public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (value == -1); } }
 
@@ -46,6 +48,9 @@ public class Character : _MB
 
     public Queue<int> hitIDs = new Queue<int>();
 
+    public event Action<Damage> TakesDamage;
+    public static event Action<Damage> TakesDamageAll;
+
     public override void Init()
     {
         base.Init();
@@ -56,6 +61,9 @@ public class Character : _MB
 
         Spr = GetComponent<SpriteRenderer>();
         Ctr = GetComponent<Controller2D>();
+
+        HitM = GetComponent<HitboxManager>();
+        HurtM = GetComponent<HurtboxManager>();
 
         stats.Init();
     }
@@ -110,10 +118,10 @@ public class Character : _MB
 
     public virtual void TakeDamage(Damage damage)
     {
-        currentDamae = damage;
+        if (TakesDamage != null) TakesDamage(damage);
+        if (TakesDamageAll != null) TakesDamageAll(damage);
 
-        CState currentState = (CState)CSMachine.CurrentState;
-        currentState.TakeDamage(damage);
+        currentDamae = damage;
 
         Vector2 knockback;
 

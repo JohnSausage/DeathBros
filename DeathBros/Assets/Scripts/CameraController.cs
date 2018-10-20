@@ -9,6 +9,11 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
+    public float shakeSpeed = 1;
+    public float shakeStrength = 1;
+
+    public int shakeTimer;
+
     protected Bounds levelBounds;
     protected Bounds cameraSizeBounds;
     protected Bounds movementBounds;
@@ -23,6 +28,44 @@ public class CameraController : MonoBehaviour
         movementBoundsCollider = GetComponent<BoxCollider2D>();
 
         //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
+
+        Character.TakesDamageAll += ShakeCameraOnDamage;
+    }
+
+    void LateUpdate()
+    {
+        MoveCameraToPlayer();
+
+        if (shakeTimer > 0)
+        {
+            ShakeCamera();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (shakeTimer > 0)
+        {
+            shakeTimer--;
+
+            ShakeCamera();
+        }
+    }
+
+    private void ShakeCamera()
+    {
+        Vector3 newPos = Vector3.zero;
+
+        newPos.x = (Mathf.PerlinNoise(Time.time * shakeSpeed * 60, 0) - 0.5f) * shakeStrength / 60;
+        newPos.y = (Mathf.PerlinNoise(0, Time.time * shakeSpeed * 60) - 0.5f) * shakeStrength / 60;
+
+        transform.position += newPos;
+    }
+
+    private void ShakeCameraOnDamage(Damage damage)
+    {
+        shakeStrength = damage.damageNumber * 2;
+        shakeTimer = (int)damage.damageNumber;
     }
 
     public void SetLevel(Transform levelTransform)
@@ -31,7 +74,7 @@ public class CameraController : MonoBehaviour
         levelBounds = levelBoundsTransform.GetComponentInChildren<Renderer>().bounds;
     }
 
-    void LateUpdate()
+    private void MoveCameraToPlayer()
     {
         Vector2 newPosition = transform.position;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class HitboxManager : _MB
@@ -11,6 +10,8 @@ public class HitboxManager : _MB
     public int currentID;
 
     public Character chr { get; protected set; }
+
+    public event Action<Character> EnemyHit;
 
     public override void Init()
     {
@@ -56,7 +57,10 @@ public class HitboxManager : _MB
                         {
                             enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
                         }
+
                         enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
+
+                        if (EnemyHit != null) EnemyHit(enemy);
                     }
                 }
             }
@@ -67,7 +71,7 @@ public class HitboxManager : _MB
 
     public void GenerateID()
     {
-        currentID = Random.Range(0, 99999);
+        currentID = UnityEngine.Random.Range(0, 99999);
     }
 }
 

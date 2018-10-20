@@ -9,20 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: wallsliding
+  m_Name: idle
   m_EditorClassIdentifier: 
   frames:
-  - duration: 3
-    sprite: {fileID: 21300038, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+  - duration: 1
+    sprite: {fileID: 21300000, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.046875, y: 0.25}
-      radius: 0.2
-    - position: {x: 0.015625, y: -0.25}
-      radius: 0.3
+    - position: {x: -0.078125, y: -0.5625}
+      radius: 0.6
     hitboxes: []
     soundName: 

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 6
-    sprite: {fileID: 21300036, guid: 3db4fe771e287c04a9e64be7c54e24a3, type: 3}
+    sprite: {fileID: 21300036, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.07219824, y: 0.43426725}
+    - position: {x: 0.2532626, y: 0.26672107}
       radius: 0.2
-    - position: {x: -0.035560377, y: 0.035560377}
+    - position: {x: 0.17169653, y: -0.22267532}
       radius: 0.3
     hitboxes: []
     soundName: 

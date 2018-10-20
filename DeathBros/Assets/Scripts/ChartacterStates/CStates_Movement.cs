@@ -470,12 +470,7 @@ public class CS_Jumping : CState
     public override void Execute()
     {
         base.Execute();
-
-        if (chr.Ctr.velocity.y < 0 && chr.StrongInputs.y < 0)
-        {
-            chr.Ctr.fastFall = true;
-        }
-
+        
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(jumpRisingFA);
         else
@@ -483,6 +478,12 @@ public class CS_Jumping : CState
 
 
         chr.GetInputs();
+
+        if (chr.Ctr.velocity.y < 0 && chr.DirectionalInput.y < -0.5f)
+        {
+            chr.Ctr.fastFall = true;
+        }
+
 
         chr.CS_CheckLanding();
 
@@ -551,9 +552,18 @@ public class CS_Wallsliding : CState
 
     public override void Enter()
     {
-        //base.Enter(); //Dont automatically change animation to slideDwon, check vel.y first!
+        base.Enter(); //Dont automatically change animation to slideDwon, check vel.y first!
 
         dirBeforeWallslide = chr.Direction;
+
+        if (chr.Ctr.velocity.y > 0)
+        {
+            chr.Anim.ChangeAnimation(wallUpFA);
+        }
+        else
+        {
+            chr.Anim.ChangeAnimation(animation);
+        }
     }
 
     public override void Execute()
