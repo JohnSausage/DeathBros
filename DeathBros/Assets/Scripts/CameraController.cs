@@ -30,6 +30,7 @@ public class CameraController : MonoBehaviour
         //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
 
         Character.TakesDamageAll += ShakeCameraOnDamage;
+        Character.TakesDamageAll += FreezeCameraOnDamage;
     }
 
     void LateUpdate()
@@ -66,6 +67,18 @@ public class CameraController : MonoBehaviour
     {
         shakeStrength = damage.damageNumber * 2;
         shakeTimer = (int)damage.damageNumber;
+    }
+
+    private void FreezeCameraOnDamage(Damage damage)
+    {
+        StartCoroutine(HitFreeze(damage));
+    }
+
+    private IEnumerator HitFreeze(Damage damage)
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(damage.damageNumber / 100);
+        Time.timeScale = 1f;
     }
 
     public void SetLevel(Transform levelTransform)

@@ -4234,7 +4234,7 @@ MonoBehaviour:
   - name: mystical_1
     clip: {fileID: 8300000, guid: ed3dcb1f5ef1f4d438ce3571bf463a89, type: 3}
     volume: 0.1
-    loop: 0
+    loop: 1
 --- !u!1001 &1211474551
 Prefab:
   m_ObjectHideFlags: 0
@@ -4376,9 +4376,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 8300000, guid: dc5909d2e65846c438daad7cdc254c81, type: 3}
-    volume: 0
+  - name: hit1
+    clip: {fileID: 8300000, guid: ee7b3170f5418224bb5730b7ef2d8de7, type: 3}
+    volume: 1
     loop: 0
 --- !u!4 &1306970919 stripped
 Transform:
@@ -5127,6 +5127,18 @@ MonoBehaviour:
   - name: Step
     clip: {fileID: 8300000, guid: 6a57199b3fa0b3b4bb47316fb62a1e7c, type: 3}
     volume: 0.2
+    loop: 0
+  - name: hah1
+    clip: {fileID: 8300000, guid: dac718f5be036d6448802a5d6439338c, type: 3}
+    volume: 1
+    loop: 0
+  - name: sweep1
+    clip: {fileID: 8300000, guid: 79fef7160020d6e4e8f441ea2323639f, type: 3}
+    volume: 1
+    loop: 0
+  - name: mpf1
+    clip: {fileID: 8300000, guid: d0e1352dcf216ee48955ee3a4158e0f8, type: 3}
+    volume: 1
     loop: 0
 --- !u!1 &1797050001
 GameObject:

@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 69482
+      ID: 94652
       getNewID: 0
     - position: {x: 0.87076265, y: -0.16101691}
       radius: 1
@@ -57,9 +57,9 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 69482
+      ID: 94652
       getNewID: 0
-    soundName: 
+    soundName: sweep1
   - duration: 3
     sprite: {fileID: 21300032, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
     newHitID: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 69482
+      ID: 87844
       getNewID: 0
     - position: {x: -0.14618647, y: -0.8813559}
       radius: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 69482
+      ID: 87844
       getNewID: 0
     soundName: 
   - duration: 8

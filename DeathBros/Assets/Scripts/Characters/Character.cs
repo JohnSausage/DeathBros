@@ -121,6 +121,8 @@ public class Character : _MB
         if (TakesDamage != null) TakesDamage(damage);
         if (TakesDamageAll != null) TakesDamageAll(damage);
 
+        AudioManager.PlaySound("hit1");
+
         currentDamae = damage;
 
         Vector2 knockback;
