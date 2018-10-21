@@ -13,6 +13,7 @@ public class RatAI : MonoBehaviour
     public int randomChangeStateTime = 60;
     private int randomizedTime;
     private int timer = 0;
+    protected bool attacking = false;
 
     public StateMachine aiMachine;// { get; protected set; }
 
@@ -47,6 +48,7 @@ public class RatAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag(followTag).transform;
 
         enemy.HitM.EnemyHit += EnemyHit;
+        enemy.currentAttack.AttackOver += AttackOver;
 
         aiFollowPlayer = new AI_Follow(this);
         aiFlee = new AI_Flee(this);
@@ -67,25 +69,29 @@ public class RatAI : MonoBehaviour
 
         TargetVector = target.position - transform.position;
 
-        timer++;
-        if (timer > randomizedTime)
+        if (!attacking)
         {
-            timer = 0;
-            randomizedTime = randomChangeStateTime + Random.Range(-30, 30);
+            timer++;
+            if (timer > randomizedTime)
+            {
+                timer = 0;
+                randomizedTime = randomChangeStateTime + Random.Range(-30, 30);
 
-            if (Random.Range(0, 100) > 30)
-            {
-                aiMachine.ChangeState(aiFollowPlayer);
-            }
-            else
-            {
-                aiMachine.ChangeState(aiFlee);
+                if (Random.Range(0, 100) > 30)
+                {
+                    aiMachine.ChangeState(aiFollowPlayer);
+                }
+                else
+                {
+                    aiMachine.ChangeState(aiFlee);
+                }
             }
         }
 
-        if(TargetVector.magnitude <= 1)
+        if (TargetVector.magnitude <= 1)
         {
             aiMachine.ChangeState(aiAttack);
+            attacking = true;
         }
 
         aiMachine.Update();
@@ -93,6 +99,12 @@ public class RatAI : MonoBehaviour
 
     private void EnemyHit(Character hitChr)
     {
-        Debug.Log(hitChr.name + " was hit by " + enemy.name);
+        //Debug.Log(hitChr.name + " was hit by " + enemy.name);
+    }
+
+    private void AttackOver(CS_Attack cs_attack)
+    {
+        attacking = false;
+        aiMachine.ChangeState(aiFollowPlayer);
     }
 }

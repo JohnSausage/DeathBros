@@ -10,6 +10,7 @@ public class Enemy : Character
     [SerializeField]
     protected CS_TiltAttack attackState;
 
+    public CS_Attack currentAttack { get { return attackState; } }
     //public EnemyAI AI { get; protected set; }
 
     public override void Init()

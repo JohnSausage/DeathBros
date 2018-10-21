@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -45,6 +44,15 @@ public enum EAttackType { Jab, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, U
 public class CS_Attack : CState
 {
     public EAttackType attackType;
+
+    public event Action<CS_Attack> AttackOver;
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        if (AttackOver != null) AttackOver(this);
+    }
 }
 
 [System.Serializable]
