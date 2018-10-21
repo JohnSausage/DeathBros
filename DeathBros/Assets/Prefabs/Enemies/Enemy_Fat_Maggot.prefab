@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 61189036597972946}
   - component: {fileID: 114405352300330562}
   m_Layer: 0
-  m_Name: Enemy_Maggot
+  m_Name: Enemy_Fat_Maggot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -39.028305, y: 16.357494, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4741648372137012}
   m_Father: {fileID: 0}
@@ -211,14 +211,14 @@ MonoBehaviour:
   stats:
     maxHealth:
       statName: MaxHealth
-      baseValue: 10
+      baseValue: 50
     currentHealth: 0
     weight:
       statName: Weight
-      baseValue: 20
+      baseValue: 200
     movespeed:
       statName: Movespeed
-      baseValue: 1
+      baseValue: 2
     jumpStrength:
       statName: JumpStrength
       baseValue: 2

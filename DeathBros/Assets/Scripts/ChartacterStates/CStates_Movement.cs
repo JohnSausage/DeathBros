@@ -470,7 +470,7 @@ public class CS_Jumping : CState
     public override void Execute()
     {
         base.Execute();
-        
+
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(jumpRisingFA);
         else
@@ -786,13 +786,24 @@ public class CS_Hitfreeze : CState
     private int duration = 5;
     private int timer;
 
+    private void SetDuration(Damage damage)
+    {
+        duration = (int)damage.damageNumber;
+        duration = Mathf.Clamp(duration, 4, 10);
+    }
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        chr.TakesDamage += SetDuration;
+    }
     public override void Enter()
     {
         base.Enter();
 
         chr.Ctr.inControl = false;
         chr.Ctr.freeze = true;
-
 
         timer = 0;
     }

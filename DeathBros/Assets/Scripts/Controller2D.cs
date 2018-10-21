@@ -537,6 +537,21 @@ public class Controller2D : MonoBehaviour
         }
 
 
+        //manage freezing
+        if (freeze)
+        {
+            if (velocityAfterFreeze == Vector2.zero)
+            {
+                velocityAfterFreeze = velocity;
+            }
+
+            velocity = velocityAfterFreeze * 0.05f;
+        }
+        else
+        {
+            velocity += velocityAfterFreeze;
+            velocityAfterFreeze = Vector2.zero;
+        }
 
         //forceMovement
         if (forceMovement != Vector2.zero)
@@ -556,60 +571,44 @@ public class Controller2D : MonoBehaviour
             {
                 velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
             }
-
-            forceMovement = Vector2.zero;
         }
 
         //lost control -> character just falls down
         if (!inControl)
         {
-
-            velocity.y += gravity / 60;
-
-            groundMask = collisionMask;
-
-            if (velocity.y <= 0)
+            if (!freeze)
             {
-                groundMask += platformMask;
+                velocity.y += gravity / 60;
 
-                if (velocity.y < maxFallSpeed / 60)
+                groundMask = collisionMask;
+
+                if (velocity.y <= 0)
                 {
-                    velocity.y = maxFallSpeed / 60;
-                }
-            }
+                    groundMask += platformMask;
 
-            float dirX = Mathf.Sign(velocity.x);
-            velocity.x -= movespeed / 60 * aerialDeceleration / 5 * Mathf.Sign(velocity.x); // (/ 5) for less deceleration when not in control for better knockback feeling
-
-
-
-            if (dirX != Mathf.Sign(velocity.x))
-            {
-                velocity.x = 0;
-            }
-
-            if (allowDI)
-            {
-                velocity += movespeed * input / 60 * aerialAcceleration / 5; // (/ 5) like for the deceleration
-            }
-
-            velocity.x = Mathf.Clamp(velocity.x, -maxAirSpeed / 60, maxAirSpeed / 60);
-
-           
-            //manage freezing
-            if(freeze)
-            {
-                if(velocityAfterFreeze == Vector2.zero)
-                {
-                    velocityAfterFreeze = velocity;
+                    if (velocity.y < maxFallSpeed / 60)
+                    {
+                        velocity.y = maxFallSpeed / 60;
+                    }
                 }
 
-                velocity = velocityAfterFreeze *  0.05f;
-            }
-            else
-            {
-                velocity += velocityAfterFreeze;
-                velocityAfterFreeze = Vector2.zero;
+                float dirX = Mathf.Sign(velocity.x);
+                velocity.x -= movespeed / 60 * aerialDeceleration / 5 * Mathf.Sign(velocity.x); // (/ 5) for less deceleration when not in control for better knockback feeling
+
+
+
+                if (dirX != Mathf.Sign(velocity.x))
+                {
+                    velocity.x = 0;
+                }
+
+                if (allowDI)
+                {
+                    velocity += movespeed * input / 60 * aerialAcceleration / 5; // (/ 5) like for the deceleration
+                }
+
+                velocity.x = Mathf.Clamp(velocity.x, -maxAirSpeed / 60, maxAirSpeed / 60);
+
             }
 
             //check for collisions
@@ -631,6 +630,8 @@ public class Controller2D : MonoBehaviour
             }
         }
 
+
+
         //last collisioncheck only in case of errors
         velocitybfCol = velocity;
 
@@ -644,10 +645,12 @@ public class Controller2D : MonoBehaviour
 
         moveAngle = Vector2.Angle(velocity, Vector2.right * Mathf.Sign(velocity.x));
 
+
+
         //actually move the transform
         transform.Translate(velocity);
 
-
+        forceMovement = Vector2.zero;
         resetVelocity = false;
         addMovement = Vector2.zero;
         fallThroughPlatform = false;

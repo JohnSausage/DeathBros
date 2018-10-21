@@ -120,6 +120,8 @@ public class Player : Character
         {
             if (Mathf.Abs(TiltInput.x) > 0.5f)
             {
+                Direction = TiltInput.x;
+
                 CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
             }
             else if (TiltInput.y > 0.5f)

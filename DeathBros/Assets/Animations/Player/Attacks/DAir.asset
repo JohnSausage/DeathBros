@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 94652
+      ID: 42365
       getNewID: 0
     - position: {x: 0.87076265, y: -0.16101691}
       radius: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 94652
+      ID: 42365
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -81,7 +81,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 87844
+      ID: 42365
       getNewID: 0
     - position: {x: -0.14618647, y: -0.8813559}
       radius: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 87844
+      ID: 42365
       getNewID: 0
     soundName: 
   - duration: 8
@@ -108,3 +108,4 @@ MonoBehaviour:
       radius: 0.3
     hitboxes: []
     soundName: 
+  damages: []

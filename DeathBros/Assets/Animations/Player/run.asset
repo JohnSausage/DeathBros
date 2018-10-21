@@ -96,3 +96,4 @@ MonoBehaviour:
       radius: 0.3
     hitboxes: []
     soundName: Step
+  damages: []

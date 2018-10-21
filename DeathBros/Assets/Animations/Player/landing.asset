@@ -40,3 +40,4 @@ MonoBehaviour:
       radius: 0.3
     hitboxes: []
     soundName: 
+  damages: []

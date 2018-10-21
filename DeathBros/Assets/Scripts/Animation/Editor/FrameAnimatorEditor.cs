@@ -34,6 +34,7 @@ public class FrameAnimatorEditor : EditorWindow
     private Vector2 specialFrameInfoScrollVector;
     private int specialInfoTabNr = 0;
     private float timer = 0;
+    private bool showDamageDetails = false;
 
     private string[] soundNames;
     private int selectSound = 0;
@@ -277,7 +278,7 @@ public class FrameAnimatorEditor : EditorWindow
 
         animationListScrollVector = EditorGUILayout.BeginScrollView(animationListScrollVector, "box");
 
-        if(animSO.frameAnimations == null)
+        if (animSO.frameAnimations == null)
         {
             animSO.frameAnimations = new List<FrameAnimation>();
         }
@@ -760,6 +761,36 @@ public class FrameAnimatorEditor : EditorWindow
         if (currentFrame.hitboxes == null) currentFrame.hitboxes = new List<Hitbox>();
 
         GUI.color = new Color32(200, 180, 180, 255);
+
+        if (GUILayout.Button("Add Damage Type"))
+        {
+            if (currentAnimation.damages == null) currentAnimation.damages = new List<Damage>();
+
+            currentAnimation.damages.Add(new Damage());
+        }
+
+        if (currentAnimation.damages != null)
+        {
+            for (int i = 0; i < currentAnimation.damages.Count; i++)
+            {
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.LabelField("Nr " + (i + 1));
+                currentAnimation.damages[i].damageNumber = EditorGUILayout.FloatField("Damage", currentAnimation.damages[i].damageNumber);
+                currentAnimation.damages[i].knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentAnimation.damages[i].knockBackDirection);
+                currentAnimation.damages[i].baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentAnimation.damages[i].baseKnockback);
+                currentAnimation.damages[i].knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentAnimation.damages[i].knockbackGrowth);
+                currentAnimation.damages[i].damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentAnimation.damages[i].damageType);
+
+                if (GUILayout.Button("Remove")) currentAnimation.damages.Remove(currentAnimation.damages[i]);
+
+                EditorGUILayout.EndVertical();
+            }
+
+            if (currentAnimation.damages.Count == 0) currentAnimation.damages = null;
+        }
+
+        showDamageDetails = EditorGUILayout.Toggle("Show Damage Details", showDamageDetails);
+
         for (int i = 0; i < currentFrame.hitboxes.Count; i++)
         {
             EditorGUILayout.BeginVertical("box");
@@ -767,52 +798,66 @@ public class FrameAnimatorEditor : EditorWindow
                 currentFrame.hitboxes[i].position = EditorGUILayout.Vector2Field("Position", currentFrame.hitboxes[i].position);
                 currentFrame.hitboxes[i].radius = EditorGUILayout.FloatField("Radius", currentFrame.hitboxes[i].radius);
 
-                EditorGUILayout.BeginVertical("box");
-                {
-                    if (currentFrame.hitboxes[i].damage == null)
-                    {
-                        currentFrame.hitboxes[i].damage = new Damage();
-                    }
-                    EditorGUILayout.LabelField("Damage Options:");
-
-                    currentFrame.hitboxes[i].damage.damageNumber = EditorGUILayout.FloatField("Damage", currentFrame.hitboxes[i].damage.damageNumber);
-                    currentFrame.hitboxes[i].damage.knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentFrame.hitboxes[i].damage.knockBackDirection);
-
-                    currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
-                    currentFrame.hitboxes[i].damage.knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.knockbackGrowth);
-                    currentFrame.hitboxes[i].damage.damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentFrame.hitboxes[i].damage.damageType);
-                }
-                EditorGUILayout.EndVertical();
-
-                EditorGUILayout.Space();
-
                 EditorGUILayout.BeginHorizontal();
+                if (currentAnimation.damages != null)
                 {
-                    if (GUILayout.Button("Set"))
+                    for (int j = 0; j < currentAnimation.damages.Count; j++)
                     {
-                        settingHitbox = currentFrame.hitboxes[i];
-                    }
-
-                    if (GUILayout.Button("Copy"))
-                    {
-                        copyHitboxes.Clear();
-                        copyHitboxes.Add(currentFrame.hitboxes[i].Clone());
-                    }
-
-                    if (GUILayout.Button("Paste"))
-                    {
-                        if (copyHitboxes.Count > 0)
-                            currentFrame.hitboxes[i] = copyHitboxes[0].Clone();
-                    }
-
-                    if (GUILayout.Button("Delete"))
-                    {
-                        currentFrame.hitboxes.Remove(currentFrame.hitboxes[i]);
-                        break;
+                        if (GUILayout.Button((j + 1).ToString()))
+                        {
+                            currentFrame.hitboxes[i].damage = currentAnimation.damages[j];
+                        }
                     }
                 }
                 EditorGUILayout.EndHorizontal();
 
+                if (showDamageDetails)
+                {
+                    EditorGUILayout.BeginVertical("box");
+                    {
+                        if (currentFrame.hitboxes[i].damage == null)
+                        {
+                            currentFrame.hitboxes[i].damage = new Damage();
+                        }
+                        EditorGUILayout.LabelField("Damage Options:");
+
+                        currentFrame.hitboxes[i].damage.damageNumber = EditorGUILayout.FloatField("Damage", currentFrame.hitboxes[i].damage.damageNumber);
+                        currentFrame.hitboxes[i].damage.knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentFrame.hitboxes[i].damage.knockBackDirection);
+                        currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
+                        currentFrame.hitboxes[i].damage.knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.knockbackGrowth);
+                        currentFrame.hitboxes[i].damage.damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentFrame.hitboxes[i].damage.damageType);
+                    }
+                    EditorGUILayout.EndVertical();
+
+                    EditorGUILayout.Space();
+
+                    EditorGUILayout.BeginHorizontal();
+                    {
+                        if (GUILayout.Button("Set"))
+                        {
+                            settingHitbox = currentFrame.hitboxes[i];
+                        }
+
+                        if (GUILayout.Button("Copy"))
+                        {
+                            copyHitboxes.Clear();
+                            copyHitboxes.Add(currentFrame.hitboxes[i].Clone());
+                        }
+
+                        if (GUILayout.Button("Paste"))
+                        {
+                            if (copyHitboxes.Count > 0)
+                                currentFrame.hitboxes[i] = copyHitboxes[0].Clone();
+                        }
+
+                        if (GUILayout.Button("Delete"))
+                        {
+                            currentFrame.hitboxes.Remove(currentFrame.hitboxes[i]);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndHorizontal();
+                }
             }
             EditorGUILayout.EndVertical();
         }

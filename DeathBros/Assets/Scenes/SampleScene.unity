@@ -425,8 +425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTransforms: {fileID: 1895817883}
-  backgroundForCamera: {fileID: 0}
   backgroundMusic: ruins_theme_1
+  enemyList: []
 --- !u!4 &65152151
 Transform:
   m_ObjectHideFlags: 0
@@ -4233,7 +4233,7 @@ MonoBehaviour:
   sounds:
   - name: mystical_1
     clip: {fileID: 8300000, guid: ed3dcb1f5ef1f4d438ce3571bf463a89, type: 3}
-    volume: 0.1
+    volume: 0.05
     loop: 1
 --- !u!1001 &1211474551
 Prefab:
@@ -5996,8 +5996,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTransforms: {fileID: 5413853}
-  backgroundForCamera: {fileID: 0}
   backgroundMusic: 
+  enemyList: []
 --- !u!4 &2033300828
 Transform:
   m_ObjectHideFlags: 0
@@ -6278,8 +6278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelTransforms: {fileID: 1328784691}
-  backgroundForCamera: {fileID: 0}
   backgroundMusic: mystical_1
+  enemyList:
+  - {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+  - {fileID: 1196939669774506, guid: b64a4d0bac18a6b48a144ff9f02917c8, type: 2}
 --- !u!1001 &2122217910
 Prefab:
   m_ObjectHideFlags: 0

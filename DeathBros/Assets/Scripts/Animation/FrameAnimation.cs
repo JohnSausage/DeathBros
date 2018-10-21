@@ -10,6 +10,8 @@ public class FrameAnimation : ScriptableObject
 
     public List<Frame> frames;
 
+    public List<Damage> damages;
+
     void Start()
     {
         frames = new List<Frame>();

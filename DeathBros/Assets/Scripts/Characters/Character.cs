@@ -31,7 +31,7 @@ public class Character : _MB
     public HitboxManager HitM { get; protected set; }
     public HurtboxManager HurtM { get; protected set; }
 
-    public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (value == -1); } }
+    public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (Mathf.Sign(value) == -1); } }
 
     public List<CState> cStates;
 
@@ -43,7 +43,7 @@ public class Character : _MB
     public float soulMeterMax = 100;
     public float soulMeterBalanceRate = 0.25f;
 
-    public Damage currentDamae { get; protected set; }
+    public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
 
     public Queue<int> hitIDs = new Queue<int>();
@@ -85,7 +85,7 @@ public class Character : _MB
         UpdatesStatsForCtr();
         Ctr.ManualFixedUpdate();
 
-        currentDamae = null;
+        currentDamage = null;
         Jump = false;
         Attack = false;
     }
@@ -123,31 +123,26 @@ public class Character : _MB
 
         AudioManager.PlaySound("hit1");
 
-        currentDamae = damage;
+        currentDamage = damage;
 
-        Vector2 knockback;
-
-        float healthF = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * 100; //0-100
-        float dmg = damage.damageNumber;
-        float bKb = damage.baseKnockback;
-        float kbG = damage.knockbackGrowth;
-
-        Vector2 direction = damage.knockBackDirection.normalized;
-
-        knockback = direction * ((((healthF / 10 + healthF * dmg / 20) + 10) * kbG) + bKb) * GameManager.Instance.knTestFactor; //copied somewaht from smash
-        //float knockbackGrowth = (1 - stats.currentHealth / stats.maxHealth.CurrentValue) * damage.knockbackGrowth;
-
+        currentKnockback = Knockback(damage);
 
         stats.currentHealth -= damage.damageNumber;
-        //Vector2 knockback = new Vector2(damage.knockBackDirection.normalized.x, damage.knockBackDirection.normalized.y) * (damage.baseKnockback + knockbackGrowth) * damage.damageNumber;
-        //Ctr.forceMovement = knockback;
-
-        currentKnockback = knockback;
 
         if (stats.currentHealth < 0)
         {
             Die();
         }
+    }
+
+    private Vector2 Knockback(Damage damage)
+    {
+        Vector2 knockback;
+
+        knockback = damage.knockBackDirection.normalized * (damage.baseKnockback + damage.knockbackGrowth * (1 - stats.currentHealth / stats.maxHealth.CurrentValue));
+        knockback *= (0.5f + (200 - stats.weight.CurrentValue) / 200);
+
+        return knockback;
     }
 
     public virtual void Die()
