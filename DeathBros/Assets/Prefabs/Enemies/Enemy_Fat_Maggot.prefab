@@ -215,7 +215,7 @@ MonoBehaviour:
     currentHealth: 0
     weight:
       statName: Weight
-      baseValue: 200
+      baseValue: 120
     movespeed:
       statName: Movespeed
       baseValue: 2

@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.028305, y: 16.357494, z: 0}
+  m_LocalPosition: {x: 39.56, y: -28.97, z: 0.15726958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4741648372137012}
@@ -246,18 +246,18 @@ MonoBehaviour:
       animationName: idle
       duration: 0
     jumping:
-      animationName: idle
-      jumpRisingAnimation: idle
+      animationName: jumpDown
+      jumpRisingAnimation: jumpUp
     landing:
       animationName: idle
       duration: 3
     hitstun:
-      animationName: idle
+      animationName: jumpUp
       freezeStart: 0
       freezeEnd: 0
       minDuration: 3
     hitfreeze:
-      animationName: idle
+      animationName: hit
       duration: 10
   attackState:
     animationName: attack
