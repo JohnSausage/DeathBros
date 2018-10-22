@@ -22,6 +22,6 @@ public class EffectManager : MonoBehaviour
     {
         GameObject effect = Instantiate(hitEffect1, position, Quaternion.identity);
 
-        effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+        //effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
     }
 }

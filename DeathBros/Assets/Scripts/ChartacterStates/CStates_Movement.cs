@@ -39,6 +39,7 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_WalljumpStart walljumpStart;
     public CS_Walljumping walljumping;
     public CS_Skid skid;
+    public CS_Dash dash;
     public CS_Crouch crouch;
 
     public override void Init(Character chr)
@@ -50,6 +51,7 @@ public class CStates_AdvancedMovement : CStates_Movement
         walljumpStart.Init(chr);
         walljumping.Init(chr);
         skid.Init(chr);
+        dash.Init(chr);
         crouch.Init(chr);
     }
 }
@@ -80,6 +82,8 @@ public class CS_Idle : CState
     {
         base.Enter();
         chr.jumpsUsed = 0;
+
+        chr.Anim.animationSpeed = 1.5f;
     }
 
     public override void Execute()
@@ -96,6 +100,11 @@ public class CS_Idle : CState
         if (Mathf.Abs(chr.DirectionalInput.x) != 0)
         {
             ChangeState(walking);
+        }
+
+        if (chr.StrongInputs.x != 0)
+        {
+            ChangeState(typeof(CS_Dash));
         }
 
         if (chr.Jump)
@@ -198,6 +207,59 @@ public class CS_Walking : CState
         }
 
         chr.CS_CheckIfStillGrounded();
+    }
+}
+
+[System.Serializable]
+public class CS_Dash : CState
+{
+    [SerializeField]
+    private int duration = 10;
+    private int timer = 0;
+
+    private float dirX;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = 0;
+        dirX = Mathf.Sign(chr.DirectionalInput.x);
+
+        chr.Direction = dirX;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        chr.GetInputs();
+
+        if (Mathf.Sign(chr.DirectionalInput.x) != dirX && chr.DirectionalInput.x != 0)
+        {
+            ChangeState(typeof(CS_Dash));
+        }
+
+        if (timer >= duration)
+        {
+            if (chr.DirectionalInput.x == 0)
+            {
+                ChangeState(typeof(CS_Idle));
+            }
+            else
+            {
+                ChangeState(typeof(CS_Walking));
+            }
+        }
+
+        chr.SetInputs(new Vector2(dirX, 0));
+
+        if (chr.Jump)
+        {
+            ChangeState(typeof(CS_Jumpsquat));
+        }
     }
 }
 
@@ -329,22 +391,30 @@ public class CS_Jumpsquat : CState
     {
         base.Execute();
 
-        chr.ModInputs(0.5f);
+        //chr.ModInputs(0.5f);
 
         timer++;
 
         if (timer >= duration)
         {
-            //ChangeState(chr.advancedMovementStates.jumping);
-            ChangeState(typeof(CS_Jumping));
-
-            if (chr.HoldJump)
+            if (chr.TiltInput != Vector2.zero)
             {
-                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue;
+                chr.CheckForAerialAttacks();
+                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
             }
             else
             {
-                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
+                ChangeState(typeof(CS_Jumping));
+
+                chr.GetInputs();
+                if (chr.HoldJump || chr.DirectionalInput.y > 0.75f)
+                {
+                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue;
+                }
+                else
+                {
+                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
+                }
             }
         }
     }

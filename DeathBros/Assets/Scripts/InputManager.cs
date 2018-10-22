@@ -6,6 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static Vector2 Direction;
     public static Vector2 CStick;
+    public static Vector2 Smash;
 
     public static DualInput Up, Down, Left, Right;
     public static DualInput CUp, CDown, CLeft, CRight;
@@ -31,7 +32,6 @@ public class InputManager : MonoBehaviour
     public int smashBufferFrames = 5;
     private int smashBufferTimer = 0;
 
-    public static Vector2 Smash;
     private Vector2 oldDirection;
 
     #region Singelton
@@ -143,7 +143,7 @@ public class InputManager : MonoBehaviour
 
     private void CheckIfBuffered(DualInput di)
     {
-        if(di.GetButtonDown())
+        if (di.GetButtonDown())
         {
             BufferedInput = di;
             bufferTimer = bufferFrames;
@@ -153,7 +153,8 @@ public class InputManager : MonoBehaviour
     private void FixedUpdate()
     {
         oldDirection = Direction;
-        if(Smash != Vector2.zero)
+
+        if (Smash != Vector2.zero)
         {
             smashBufferTimer--;
         }
@@ -166,13 +167,13 @@ public class InputManager : MonoBehaviour
         Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
         CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
 
-        if(Mathf.Abs(oldDirection.x - Direction.x) > 0.3f && Mathf.Abs(Direction.x) > 0.9f)
+        if (Mathf.Abs(oldDirection.x - Direction.x) > 0.25f && Mathf.Abs(Direction.x) > 0.75f)
         {
             Smash.x = Mathf.Sign(Direction.x);
             smashBufferTimer = smashBufferFrames;
         }
 
-        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.3f && Mathf.Abs(Direction.y) > 0.9f)
+        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.25f && Mathf.Abs(Direction.y) > 0.75f)
         {
             Smash.y = Mathf.Sign(Direction.y);
             smashBufferTimer = smashBufferFrames;
@@ -189,6 +190,16 @@ public class InputManager : MonoBehaviour
         }
 
 
+    }
+
+    public static bool CheckForSmash(Vector2 direction)
+    {
+        if (Smash == direction)
+        {
+            Smash = Vector2.zero;
+            return true;
+        }
+        return false;
     }
 
     public static bool BufferdDown(string inputName)

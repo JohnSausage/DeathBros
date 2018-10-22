@@ -3793,9 +3793,12 @@ MonoBehaviour:
       animationName: wallJumping
       duration: 15
     skid:
-      animationName: idle
+      animationName: run
       duration: 6
       idleOutDuration: 3
+    dash:
+      animationName: run
+      duration: 8
     crouch:
       animationName: crouch
   attackStates:
@@ -3886,7 +3889,7 @@ MonoBehaviour:
   fastFallSpeed: -25
   maxAirSpeed: 20
   aerialAcceleration: 0.2
-  aerialDeceleration: 0.05
+  aerialDeceleration: 0.03
   airFrames: 0
   maxSlopeAngle: 45
   collisionMask:

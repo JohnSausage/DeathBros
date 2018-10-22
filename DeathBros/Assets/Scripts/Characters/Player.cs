@@ -51,7 +51,7 @@ public class Player : Character
             HoldAttack = false;
         }
 
-        if (InputManager.BufferdDown("Jump"))
+        if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0)
         {
             Jump = true;
         }
