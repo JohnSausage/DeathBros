@@ -11,7 +11,7 @@ public class HitboxManager : _MB
 
     public Character chr { get; protected set; }
 
-    public event Action<Character> EnemyHit;
+    public static event Action<Vector2> EnemyHit;
 
     public override void Init()
     {
@@ -60,7 +60,7 @@ public class HitboxManager : _MB
 
                         enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
 
-                        if (EnemyHit != null) EnemyHit(enemy);
+                        if (EnemyHit != null) EnemyHit(enemy.transform.position);
                     }
                 }
             }

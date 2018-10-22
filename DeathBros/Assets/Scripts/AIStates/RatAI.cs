@@ -47,7 +47,7 @@ public class RatAI : MonoBehaviour
         enemy = GetComponent<Enemy>();
         target = GameObject.FindGameObjectWithTag(followTag).transform;
 
-        enemy.HitM.EnemyHit += EnemyHit;
+        //enemy.HitM.EnemyHit += EnemyHit;
         enemy.currentAttack.AttackOver += AttackOver;
 
         aiFollowPlayer = new AI_Follow(this);
