@@ -9,6 +9,9 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
+    [SerializeField]
+    private int pixelsPerUnit = 16;
+
     public float shakeSpeed = 1;
     public float shakeStrength = 1;
 
@@ -41,6 +44,14 @@ public class CameraController : MonoBehaviour
         {
             ShakeCamera();
         }
+
+        Vector3 newLocalPosition = Vector3.zero;
+
+        newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
+        newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
+        newLocalPosition.z = transform.position.z;
+
+        transform.position = newLocalPosition;
     }
 
     private void FixedUpdate()
@@ -63,13 +74,13 @@ public class CameraController : MonoBehaviour
         transform.position += newPos;
     }
 
-    private void ShakeCameraOnDamage(Damage damage)
+    private void ShakeCameraOnDamage(Damage damage, Vector2 position)
     {
         shakeStrength = damage.damageNumber * 2;
         shakeTimer = (int)damage.damageNumber;
     }
 
-    private void FreezeCameraOnDamage(Damage damage)
+    private void FreezeCameraOnDamage(Damage damage, Vector2 position)
     {
         StartCoroutine(HitFreeze(damage));
     }

@@ -50,12 +50,12 @@ MonoBehaviour:
     - position: {x: 0.578125, y: -0.15625}
       radius: 0.8
       damage:
-        damageNumber: 5
+        damageNumber: 10
         knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 12
-        knockbackGrowth: 0
+        baseKnockback: 15
+        knockbackGrowth: 5
         damageType: 0
-      ID: 33411
+      ID: 99380
       getNewID: 0
     soundName: 
   - duration: 5

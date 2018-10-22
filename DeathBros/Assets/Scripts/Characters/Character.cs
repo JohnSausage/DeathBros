@@ -49,7 +49,7 @@ public class Character : _MB
     public Queue<int> hitIDs = new Queue<int>();
 
     public event Action<Damage> TakesDamage;
-    public static event Action<Damage> TakesDamageAll;
+    public static event Action<Damage, Vector2> TakesDamageAll;
 
     public override void Init()
     {
@@ -119,7 +119,7 @@ public class Character : _MB
     public virtual void TakeDamage(Damage damage)
     {
         if (TakesDamage != null) TakesDamage(damage);
-        if (TakesDamageAll != null) TakesDamageAll(damage);
+        if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
 
         AudioManager.PlaySound("hit1");
 
@@ -129,7 +129,7 @@ public class Character : _MB
 
         stats.currentHealth -= damage.damageNumber;
 
-        if (stats.currentHealth < 0)
+        if (stats.currentHealth <= 0)
         {
             Die();
         }

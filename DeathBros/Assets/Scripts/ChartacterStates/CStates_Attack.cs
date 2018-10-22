@@ -58,11 +58,22 @@ public class CS_Attack : CState
 [System.Serializable]
 public class CS_TiltAttack : CS_Attack
 {
+    private float dirX;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0)
+            dirX = chr.DirectionalInput.x;
+    }
     public override void Execute()
     {
         base.Execute();
 
-        chr.SetInputs(Vector2.zero);
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
 
         if (chr.Anim.animationOver)
         {

@@ -1,16 +1,17 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character
 {
-
     public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
 
     public float soulCharge = 0;
+
+    public static event Action<float> PlayerHealthChanged;
 
     public override void Init()
     {
@@ -90,6 +91,13 @@ public class Player : Character
         }
 
         soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+    }
+
+    public override void TakeDamage(Damage damage)
+    {
+        base.TakeDamage(damage);
+
+        if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
     }
 
     public override bool CheckForTiltAttacks()

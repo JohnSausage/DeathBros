@@ -167,17 +167,35 @@ public class InputManager : MonoBehaviour
         Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
         CStick = new Vector2(-CLeft.GetAxis() + CRight.GetAxis(), CUp.GetAxis() - CDown.GetAxis());
 
-        if (Mathf.Abs(oldDirection.x - Direction.x) > 0.25f && Mathf.Abs(Direction.x) > 0.75f)
+        /*
+        if (Mathf.Abs((Direction - oldDirection).magnitude) > 0.25f)
+        {
+            if (Mathf.Abs(Direction.x) > 0.75f)
+            {
+                smashBufferTimer = smashBufferFrames;
+                Smash.x = Mathf.Sign(Direction.x);
+            }
+
+            if (Mathf.Abs(Direction.y) > 0.75f)
+            {
+                Smash.y = Mathf.Sign(Direction.y);
+                smashBufferTimer = smashBufferFrames;
+            }
+        }
+        */
+
+        if (Mathf.Abs(oldDirection.x - Direction.x) > 0.25f && Mathf.Abs(Direction.x) > 0.5f)
         {
             Smash.x = Mathf.Sign(Direction.x);
             smashBufferTimer = smashBufferFrames;
         }
 
-        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.25f && Mathf.Abs(Direction.y) > 0.75f)
+        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.25f && Mathf.Abs(Direction.y) > 0.5f)
         {
             Smash.y = Mathf.Sign(Direction.y);
             smashBufferTimer = smashBufferFrames;
         }
+
 
         if (BufferedInput != null)
         {

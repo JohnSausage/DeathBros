@@ -211,7 +211,7 @@ MonoBehaviour:
   stats:
     maxHealth:
       statName: MaxHealth
-      baseValue: 10
+      baseValue: 20
     currentHealth: 0
     weight:
       statName: Weight
