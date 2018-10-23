@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 3
-    sprite: {fileID: 21300010, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    sprite: {fileID: 21300044, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     hitboxes: []
     soundName: 
   - duration: 3
-    sprite: {fileID: 21300012, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    sprite: {fileID: 21300046, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -39,17 +39,17 @@ MonoBehaviour:
     - position: {x: 0.11890249, y: -0.5609757}
       radius: 0.3
     hitboxes:
-    - position: {x: 1.1554879, y: -0.71341467}
-      radius: 0.52000046
+    - position: {x: 1.3103815, y: -0.68802977}
+      radius: 0.64000034
       damage:
         damageNumber: 4
         knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 20766
+      ID: 73374
       getNewID: 0
-    - position: {x: 0.2713415, y: -0.71341467}
+    - position: {x: 0.3967162, y: -0.8336866}
       radius: 0.52000046
       damage:
         damageNumber: 4
@@ -57,11 +57,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 20766
+      ID: 73374
       getNewID: 0
     soundName: sweep1
   - duration: 3
-    sprite: {fileID: 21300014, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    sprite: {fileID: 21300048, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -73,17 +73,17 @@ MonoBehaviour:
     - position: {x: 0.088414684, y: -0.50000006}
       radius: 0.3
     hitboxes:
-    - position: {x: 1.2164634, y: -0.6219513}
-      radius: 0.52000046
+    - position: {x: 1.0190679, y: -0.5026484}
+      radius: 0.7600002
       damage:
         damageNumber: 4
         knockBackDirection: {x: -0.1, y: 1}
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 20766
+      ID: 73374
       getNewID: 0
-    - position: {x: 0.42378053, y: -0.7743903}
+    - position: {x: 0.21133484, y: -0.82044506}
       radius: 0.52000046
       damage:
         damageNumber: 4
@@ -91,11 +91,35 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 20766
+      ID: 73374
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300050, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.05792688, y: -0.07317078}
+      radius: 0.2
+    - position: {x: 0.088414684, y: -0.50000006}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 1.045551, y: -0.51588994}
+      radius: 0.7000003
+      damage:
+        damageNumber: 0
+        knockBackDirection: {x: 0, y: 0}
+        baseKnockback: 0
+        knockbackGrowth: 0
+        damageType: 0
+      ID: 73374
       getNewID: 0
     soundName: 
   - duration: 6
-    sprite: {fileID: 21300016, guid: 1f9c1c45c32fc81479ce8c49b4e925c9, type: 3}
+    sprite: {fileID: 21300052, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0

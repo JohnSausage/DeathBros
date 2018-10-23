@@ -17,6 +17,8 @@ public class Character : _MB
     public bool HoldJump { get; protected set; }
     public bool Attack { get; protected set; }
     public bool HoldAttack { get; protected set; }
+    public bool Shield { get; protected set; }
+    public bool HoldShield { get; protected set; }
 
     //public float jumpStrength = 20;
     //public int jumps = 2;
@@ -45,6 +47,8 @@ public class Character : _MB
 
     public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
+
+    public bool shielding = false;
 
     public Queue<int> hitIDs = new Queue<int>();
 
@@ -118,17 +122,20 @@ public class Character : _MB
 
     public virtual void TakeDamage(Damage damage)
     {
-        if (TakesDamage != null) TakesDamage(damage);
-        if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
+        if (!shielding)
+        {
+            if (TakesDamage != null) TakesDamage(damage);
+            if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
 
-        AudioManager.PlaySound("hit1");
+            AudioManager.PlaySound("hit1");
 
-        currentDamage = damage;
+            currentDamage = damage;
 
-        currentKnockback = Knockback(damage);
+            currentKnockback = Knockback(damage);
 
-        stats.currentHealth -= damage.damageNumber;
+            stats.currentHealth -= damage.damageNumber;
 
+        }
         if (stats.currentHealth <= 0)
         {
             Die();

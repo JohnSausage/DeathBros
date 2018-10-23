@@ -55,7 +55,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 92760
+      ID: 64143
       getNewID: 0
     soundName: 
   - duration: 5

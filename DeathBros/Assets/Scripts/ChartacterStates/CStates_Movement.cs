@@ -14,6 +14,7 @@ public class CStates_Movement
     public CS_Landing landing;
     public CS_Hitstun hitstun;
     public CS_Hitfreeze hitfreeze;
+    public CS_Shield shield;
 
     public virtual void Init(Character chr)
     {
@@ -24,6 +25,7 @@ public class CStates_Movement
         landing.Init(chr);
         hitstun.Init(chr);
         hitfreeze.Init(chr);
+        shield.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }
@@ -93,24 +95,19 @@ public class CS_Idle : CState
         chr.GetInputs();
 
         if (chr.DirectionalInput.y < -0.5f)
-        {
             ChangeState(crouch);
-        }
 
         if (Mathf.Abs(chr.DirectionalInput.x) != 0)
-        {
             ChangeState(walking);
-        }
 
         if (chr.StrongInputs.x != 0)
-        {
             ChangeState(typeof(CS_Dash));
-        }
+
+        if (chr.HoldShield)
+            ChangeState(typeof(CS_Shield));
 
         if (chr.Jump)
-        {
             ChangeState(jumpsquat);
-        }
 
         chr.CS_CheckIfStillGrounded();
 
@@ -160,14 +157,12 @@ public class CS_Walking : CState
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
         if (Mathf.Abs(chr.DirectionalInput.x) < 0.5f && fAnimSlow != null)
-        {
             chr.Anim.ChangeAnimation(fAnimSlow);
-        }
+
 
         if (Mathf.Abs(chr.DirectionalInput.x) >= 0.7f)
-        {
             chr.Anim.ChangeAnimation(animation);
-        }
+
 
         chr.GetInputs();
 
@@ -188,15 +183,16 @@ public class CS_Walking : CState
 
         }
 
+        if (chr.HoldShield)
+            ChangeState(typeof(CS_Shield));
+
         if (chr.Jump)
-        {
             ChangeState(typeof(CS_Jumpsquat));
-        }
+
 
         if (chr.DirectionalInput.y < -0.5f)
-        {
             ChangeState(typeof(CS_Crouch));
-        }
+
 
         if (chr.CheckForSpecialAttacks() == false)
         {
@@ -898,5 +894,32 @@ public class CS_Hitfreeze : CState
         chr.Ctr.freeze = false;
 
         chr.Ctr.forceMovement = chr.currentKnockback;
+    }
+}
+
+[System.Serializable]
+public class CS_Shield : CState
+{
+    public override void Enter()
+    {
+        base.Enter();
+        chr.shielding = true;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs(Vector2.zero);
+
+        if (!chr.HoldShield) ChangeState(typeof(CS_Idle));
+
+        if (chr.Jump) ChangeState(typeof(CS_Jumpsquat));
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        chr.shielding = false;
     }
 }

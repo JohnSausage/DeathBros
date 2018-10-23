@@ -14,6 +14,7 @@ TextureImporter:
     21300018: maggot_spritesheet_9
     21300020: maggot_spritesheet_10
     21300022: maggot_spritesheet_11
+    21300024: maggot_spritesheet_12
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -98,7 +99,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -108,7 +109,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 682e90536b6d1964e9de82ff009bbc32
+      spriteID: f54cc6b141686c848a373dc625a07319
       vertices: []
       indices: 
       edges: []
@@ -118,7 +119,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -128,7 +129,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 923635a0e0329ee49a74a4c16d1360df
+      spriteID: ded61abf6435acc47a0e69f472e54da2
       vertices: []
       indices: 
       edges: []
@@ -138,7 +139,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -148,7 +149,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f52c789300bf2504ea5177ed9970f961
+      spriteID: db09df6d6b99cad41b2b78e7568f9e17
       vertices: []
       indices: 
       edges: []
@@ -158,6 +159,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13012be3066741e43a629d465d5b59d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maggot_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -168,27 +189,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c2141972f4319847930d06ce9b1d74b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: maggot_spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87a4371816804e14bac489bb144c8e3b
+      spriteID: 6c8be18d43753fd42ac124695ea3c49b
       vertices: []
       indices: 
       edges: []
@@ -198,6 +199,66 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc63423190c3ce4c94523ed11877b20
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maggot_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0d756ec3ac95cb41a90c5e20c304683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maggot_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1880f5b14366a1f42bfbb476c209b818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maggot_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -208,13 +269,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f940e108e03c73248b234890fed52277
+      spriteID: 7e4e21dd6b179e64a9595124245ab2f0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: maggot_spritesheet_6
+      name: maggot_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc0ab23d18e8b4e40b2838cec4a5917c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: maggot_spritesheet_10
       rect:
         serializedVersion: 2
         x: 64
@@ -228,13 +309,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f905315af4469f4ea19c6479ab3b560
+      spriteID: b5aa5d67784a6ea42b667284708b3cc6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: maggot_spritesheet_7
+      name: maggot_spritesheet_11
       rect:
         serializedVersion: 2
         x: 96
@@ -248,13 +329,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66fddd6000d48b547a38090902eb24b0
+      spriteID: d04f4d89861bea442bbe42a47bae879e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: maggot_spritesheet_8
+      name: maggot_spritesheet_12
       rect:
         serializedVersion: 2
         x: 0
@@ -268,67 +349,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3154cb59a82be044b0e9557893e197f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: maggot_spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b534c0988740acf4fa0fc0d1eceda78c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: maggot_spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 331f1514318263043a5404818b5f0ac7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: maggot_spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44c10c6fa434c464db68c7ad15411457
+      spriteID: 123209e33f140d44a80e8cdb92567124
       vertices: []
       indices: 
       edges: []

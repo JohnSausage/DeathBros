@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
 
         Attack.SetDefault(KeyCode.LeftControl);
         Jump.SetDefault(KeyCode.Space);
+        Shield.SetDefault(KeyCode.LeftShift);
 
         Inputs = new List<DualInput>();
         Inputs.Add(Left);

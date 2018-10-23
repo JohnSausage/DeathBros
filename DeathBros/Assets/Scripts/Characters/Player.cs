@@ -34,43 +34,30 @@ public class Player : Character
 
         if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
-        if (InputManager.BufferdDown("Attack"))
-        {
-            Attack = true;
-        }
-        else
-        {
-            Attack = false;
-        }
+        if (InputManager.BufferdDown("Attack")) Attack = true;
+        else Attack = false;
 
-        if (InputManager.Attack.GetButton())
-        {
-            HoldAttack = true;
-        }
-        else
-        {
-            HoldAttack = false;
-        }
 
-        if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0)
-        {
-            Jump = true;
-        }
+        if (InputManager.Attack.GetButton()) HoldAttack = true;
+        else HoldAttack = false;
 
+
+        if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0) Jump = true;
         else
         {
             //reset at the end of FixedUpdate to not miss any inputs
             //Jump = false;
         }
 
-        if (InputManager.Jump.GetButton())
-        {
-            HoldJump = true;
-        }
-        else
-        {
-            HoldJump = false;
-        }
+        if (InputManager.Jump.GetButton()) HoldJump = true;
+        else HoldJump = false;
+
+
+        if ((InputManager.BufferdDown("Shield"))) Shield = true;
+        else Shield = false;
+
+        if (InputManager.Shield.GetButton()) HoldShield = true;
+        else HoldShield = false;
     }
 
     protected override void FixedUpdate()
