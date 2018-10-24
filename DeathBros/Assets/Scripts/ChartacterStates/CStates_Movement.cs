@@ -14,6 +14,7 @@ public class CStates_Movement
     public CS_Landing landing;
     public CS_Hitstun hitstun;
     public CS_Hitfreeze hitfreeze;
+    public CS_HitLand hitLand;
     public CS_Shield shield;
 
     public virtual void Init(Character chr)
@@ -25,6 +26,7 @@ public class CStates_Movement
         landing.Init(chr);
         hitstun.Init(chr);
         hitfreeze.Init(chr);
+        hitLand.Init(chr);
         shield.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
@@ -43,6 +45,7 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_Skid skid;
     public CS_Dash dash;
     public CS_Crouch crouch;
+    public CS_Roll roll;
 
     public override void Init(Character chr)
     {
@@ -55,6 +58,7 @@ public class CStates_AdvancedMovement : CStates_Movement
         skid.Init(chr);
         dash.Init(chr);
         crouch.Init(chr);
+        roll.Init(chr);
     }
 }
 
@@ -511,28 +515,6 @@ public class CS_Jumping : CState
         jumpRisingFA = chr.Anim.GetAnimation(jumpRisingAnimation);
     }
 
-    /*
-    public bool AllowWallJump
-    {
-        set
-        {
-            if (value == true)
-            {
-                allowWallJumpAfterWallSlidingTimer = allowWallJumpAfterWallSlidingDuration;
-            }
-            if (value == false)
-            {
-                allowWallJumpAfterWallSlidingTimer = 0;
-            }
-        }
-        get
-        {
-            Debug.Log(chr.Ctr.wallDirection + ", " + Mathf.Sign(chr.DirectionalInput.x));
-
-            return (allowWallJumpAfterWallSlidingTimer > 0 && chr.Ctr.wallDirection != Mathf.Sign(chr.DirectionalInput.x));
-        }
-    }
-    */
     public override void Execute()
     {
         base.Execute();
@@ -555,17 +537,9 @@ public class CS_Jumping : CState
 
         if (chr.Jump)
         {
-            /*
-            if (AllowWallJump == true)
-            {
-                //ChangeState(chr.advancedMovementStates.walljumpStart);
-                ChangeState(typeof(CS_WalljumpStart));
-            }
-            else 
-            */
+
             if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
             {
-                //ChangeState(chr.advancedMovementStates.doubleJumpsquat);
                 ChangeState(typeof(CS_DoubleJumpsquat));
             }
         }
@@ -574,7 +548,6 @@ public class CS_Jumping : CState
 
         if (chr.Ctr.onWall)
         {
-            //ChangeState(chr.advancedMovementStates.wallsliding);
             ChangeState(typeof(CS_Wallsliding));
         }
     }
@@ -787,19 +760,23 @@ public class CS_Walljumping : CState
 [System.Serializable]
 public class CS_Hitstun : CState
 {
-    public int freezeStart = 15;
-    public int freezeEnd = 45;
+    [SerializeField]
+    string hitstunFallAnimation;
+    FrameAnimation hitstunFallFA;
+
+    //public int freezeStart = 15;
+    //public int freezeEnd = 45;
     public int minDuration = 3;
 
-    public float knockbackX { get; set; }
-    private CS_Landing landing;
+    //public float knockbackX { get; set; }
     private int timer;
 
-    public override void InitExitStates()
-    {
-        base.InitExitStates();
 
-        landing = (CS_Landing)chr.GetState(typeof(CS_Landing));
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+
+        hitstunFallFA = chr.Anim.GetAnimation(hitstunFallAnimation);
     }
 
     public override void Enter()
@@ -814,12 +791,18 @@ public class CS_Hitstun : CState
     {
         base.Execute();
 
+        if (chr.Ctr.velocity.y > 0)
+            chr.Anim.ChangeAnimation(animation);
+        else
+            chr.Anim.ChangeAnimation(hitstunFallFA);
+
+
         chr.GetInputs();
 
         timer++;
 
         //chr.SetInputs(new Vector2(knockbackX, 0));
-
+        /*
         if (timer == freezeStart)
         {
             chr.Ctr.freeze = true;
@@ -830,10 +813,17 @@ public class CS_Hitstun : CState
             chr.Ctr.freeze = false;
         }
 
+    
         if (chr.Ctr.IsGrounded && timer > minDuration)
         {
             chr.Ctr.inControl = true;
             ChangeState(landing);
+        }
+        */
+
+        if (chr.Ctr.collision)
+        {
+            ChangeState(typeof(CS_HitLand));
         }
     }
 
@@ -890,7 +880,7 @@ public class CS_Hitfreeze : CState
     {
         base.Exit();
 
-        chr.Ctr.inControl = true;
+        chr.Ctr.inControl = false;
         chr.Ctr.freeze = false;
 
         chr.Ctr.forceMovement = chr.currentKnockback;
@@ -910,9 +900,15 @@ public class CS_Shield : CState
     {
         base.Execute();
 
+        chr.GetInputs();
+
+        if (chr.DirectionalInput.x != 0)
+            ChangeState(typeof(CS_Roll));
+
         chr.SetInputs(Vector2.zero);
 
         if (!chr.HoldShield) ChangeState(typeof(CS_Idle));
+
 
         if (chr.Jump) ChangeState(typeof(CS_Jumpsquat));
     }
@@ -921,5 +917,95 @@ public class CS_Shield : CState
     {
         base.Exit();
         chr.shielding = false;
+    }
+}
+
+[System.Serializable]
+public class CS_Roll : CState
+{
+    private float dirX;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0) dirX = Mathf.Sign(chr.DirectionalInput.x);
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs(new Vector2(dirX, 0));
+
+        if (chr.Anim.animationOver)
+            ChangeState(typeof(CS_Idle));
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Direction = -dirX;
+    }
+}
+
+[System.Serializable]
+public class CS_HitLand : CState
+{
+    [SerializeField]
+    private int duration = 10;
+    private int timer;
+
+    private Vector2 collisionReflect;
+
+    public override void Enter()
+    {
+        base.Enter();
+        timer = 0;
+        chr.Ctr.freeze = true;
+        chr.Ctr.inControl = false;
+        collisionReflect = chr.Ctr.collisionReflect;
+
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        chr.GetInputs();
+
+        if (chr.Shield)
+        {
+            ChangeState(typeof(CS_Idle));
+            chr.Ctr.inControl = true;
+            collisionReflect = Vector2.zero;
+        }
+
+        if (timer > duration)
+        {
+            Debug.Log("magnitude: " + collisionReflect.magnitude * 60);
+            if (collisionReflect.magnitude > 0.3f)
+            {
+                chr.Ctr.forceMovement = collisionReflect * 60 * 0.8f; //80% reduction
+
+                ChangeState(typeof(CS_Hitstun));
+            }
+            else
+            {
+                ChangeState(typeof(CS_Idle));
+                chr.Ctr.inControl = true;
+            }
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        chr.Ctr.freeze = false;
+
     }
 }

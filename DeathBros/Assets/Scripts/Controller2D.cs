@@ -57,6 +57,8 @@ public class Controller2D : MonoBehaviour
     public int wallDirection;
     public bool onCeiling;
     public bool slidingDownSlope;
+    public bool collision;
+    public Vector2 collisionReflect;
 
     public bool slopeDown;
     //private bool oldSlopeDown;
@@ -98,6 +100,8 @@ public class Controller2D : MonoBehaviour
         slopeDown = false;
         slopeUp = false;
         slidingDownSlope = false;
+        collision = false;
+        collisionReflect = Vector2.zero;
 
         oldSlopeUpAngle = slopeUpAngle;
         slopeUpAngle = 0;
@@ -621,12 +625,16 @@ public class Controller2D : MonoBehaviour
                 // REMOVE THIS LATER //////////////////////////////////////////////////////////////
                 //inControl = true;
 
-                velocity = 0.2f * Vector2.Reflect(velocity, collisionCheck.normal);
+                //velocity = 0.2f * Vector2.Reflect(velocity, collisionCheck.normal);
 
+                collision = true;
+                collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
+                /*
                 if (velocity.magnitude <= 0.1f)
                 {
                     inControl = true;
                 }
+                */
             }
         }
 
