@@ -987,7 +987,6 @@ public class CS_HitLand : CState
 
         if (timer > duration)
         {
-            Debug.Log("magnitude: " + collisionReflect.magnitude * 60);
             if (collisionReflect.magnitude > 0.3f)
             {
                 chr.Ctr.forceMovement = collisionReflect * 60 * 0.8f; //80% reduction

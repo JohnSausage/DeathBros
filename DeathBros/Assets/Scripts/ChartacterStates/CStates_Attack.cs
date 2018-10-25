@@ -4,10 +4,13 @@ using UnityEngine;
 [System.Serializable]
 public class CStates_Attack
 {
-    public CS_TiltAttack testAttack;
+    //public CS_TiltAttack testAttack;
     public CS_SoulAttack uSoul;
 
     [Space]
+
+    public CS_JabAttack jab1;
+    public CS_JabAttack jab2;
 
     public CS_TiltAttack uTilt;
     public CS_TiltAttack dTilt;
@@ -23,8 +26,11 @@ public class CStates_Attack
 
     public virtual void Init(Character chr)
     {
-        testAttack.Init(chr);
+        //testAttack.Init(chr);
         uSoul.Init(chr);
+
+        jab1.Init(chr);
+        jab2.Init(chr);
 
         uTilt.Init(chr);
         dTilt.Init(chr);
@@ -38,7 +44,7 @@ public class CStates_Attack
     }
 }
 
-public enum EAttackType { Jab, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul }
+public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2 }
 
 [System.Serializable]
 public class CS_Attack : CState
@@ -52,6 +58,36 @@ public class CS_Attack : CState
         base.Exit();
 
         if (AttackOver != null) AttackOver(this);
+    }
+}
+
+[System.Serializable]
+public class CS_JabAttack : CS_TiltAttack
+{
+    [SerializeField]
+    private int jabNr;
+
+    [SerializeField]
+    private int cancelTime = 15;
+    private int timer;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = 0;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        if (jabNr == 1 && chr.Attack && timer > cancelTime)
+        {
+            ChangeState(chr.GetAttackState(EAttackType.Jab2));
+        }
     }
 }
 

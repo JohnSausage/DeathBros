@@ -47,7 +47,7 @@ public class Enemy : Character
     {
         if (Attack)
         {
-            CSMachine.ChangeState(GetAttackState(EAttackType.Jab));
+            CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
 
             return true;
         }

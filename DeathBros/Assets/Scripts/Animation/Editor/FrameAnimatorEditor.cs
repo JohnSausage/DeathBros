@@ -348,6 +348,7 @@ public class FrameAnimatorEditor : EditorWindow
         GUI.color = Color.white;
 
 
+        /*
         Rect previewRect = Rect.zero;
 
         if (currentFrame != null)
@@ -357,7 +358,7 @@ public class FrameAnimatorEditor : EditorWindow
         }
 
         GUILayout.Space(previewRect.height);
-
+        */
 
         GUI.color = Color.red;
         if (GUILayout.Button("Remove Animation"))

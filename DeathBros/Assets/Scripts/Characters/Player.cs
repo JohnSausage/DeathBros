@@ -93,7 +93,7 @@ public class Player : Character
         {
             if (DirectionalInput == Vector2.zero)
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.Jab));
+                CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {

@@ -382,7 +382,7 @@ MonoBehaviour:
       duration: 10
     hitLand:
       animationName: hit
-      duration: 10
+      duration: 5
     shield:
       animationName: idle
   attackState:

@@ -111,47 +111,6 @@ public class Controller2D : MonoBehaviour
         bounds = Col.bounds;
         bounds.Expand(-2 * skin);
 
-
-
-        //set inputs
-        /*
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-
-        if (Mathf.Abs(input.x) < 0.15f)
-        {
-            input.x = 0;
-        }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpVelocity = jumpForce / 60;
-        }
-
-        if (input.y <= -0.75)
-        {
-            fastFall = true;
-        }
-
-        
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            forceMovement = testKnockback;
-            inControl = false;
-        }
-        else
-        {
-            forceMovement = Vector2.zero;
-        }
-        
-
-        if (input.y <= -0.25)
-        {
-            fallThroughPlatform = true;
-        }
-        */
-
         RaycastHit2D collisionCheck;
         RaycastHit2D groundCheck;
 
@@ -549,7 +508,7 @@ public class Controller2D : MonoBehaviour
                 velocityAfterFreeze = velocity;
             }
 
-            velocity = velocityAfterFreeze * 0.05f;
+            velocity = velocityAfterFreeze * -0.01f;
         }
         else
         {
@@ -571,10 +530,11 @@ public class Controller2D : MonoBehaviour
 
             collisionCheck = RCXY(velocity, velocity.magnitude, groundMask); //check for all collisions and stop velocity
 
-            if (collisionCheck)
+            if (collisionCheck && inControl) // checks again in !inControl
             {
                 velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
             }
+
         }
 
         //lost control -> character just falls down
@@ -592,7 +552,7 @@ public class Controller2D : MonoBehaviour
 
                     if (velocity.y < maxFallSpeed / 60)
                     {
-                        velocity.y = maxFallSpeed / 60;
+                        velocity.y -= gravity / 60 * 2; //if too slow, slowly decrease fallspeed
                     }
                 }
 

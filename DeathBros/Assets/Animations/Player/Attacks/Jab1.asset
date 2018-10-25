@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: Jab1
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 3
+    sprite: {fileID: 21300084, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.086794026, y: 0.08970099}
+      radius: 0.2
+    - position: {x: 0.024501668, y: -0.40863788}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300086, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.14908639, y: 0.06893687}
+      radius: 0.2
+    - position: {x: 0.024501668, y: -0.40863788}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.7927741, y: -0.47093025}
+      radius: 0.5
+      damage:
+        damageNumber: 2
+        knockBackDirection: {x: 0.1, y: 1}
+        baseKnockback: 5
+        knockbackGrowth: 2
+        damageType: 0
+      ID: 57500
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300088, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.21137874, y: 0.08970099}
+      radius: 0.2
+    - position: {x: 0.14908639, y: -0.429402}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.7927741, y: -0.47093025}
+      radius: 0.5
+      damage:
+        damageNumber: 2
+        knockBackDirection: {x: 0.1, y: 1}
+        baseKnockback: 5
+        knockbackGrowth: 2
+        damageType: 0
+      ID: 57500
+      getNewID: 0
+    soundName: 
+  - duration: 10
+    sprite: {fileID: 21300090, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.21137874, y: 0.08970099}
+      radius: 0.2
+    - position: {x: 0.14908639, y: -0.429402}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  damages:
+  - damageNumber: 2
+    knockBackDirection: {x: 0.1, y: 1}
+    baseKnockback: 5
+    knockbackGrowth: 2
+    damageType: 0

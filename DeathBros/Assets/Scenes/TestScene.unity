@@ -4397,14 +4397,21 @@ MonoBehaviour:
     roll:
       animationName: roll
   attackStates:
-    testAttack:
-      animationName: testAttack
-      attackType: 0
     uSoul:
       animationName: testAttack
       attackType: 10
       chargeAnimationName: testCharge
       chargeRate: 1
+    jab1:
+      animationName: Jab1
+      attackType: 0
+      jabNr: 1
+      cancelTime: 15
+    jab2:
+      animationName: Jab2
+      attackType: 13
+      jabNr: 2
+      cancelTime: 15
     uTilt:
       animationName: UTilt
       attackType: 3
@@ -4412,7 +4419,7 @@ MonoBehaviour:
       animationName: DTilt
       attackType: 2
     fTilt:
-      animationName: testAttack
+      animationName: FTilt
       attackType: 1
     nAir:
       animationName: NAir
@@ -5917,8 +5924,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114609069300868980, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
         type: 2}
-      propertyPath: movementStates.hitLand.duration
-      value: 5
+      propertyPath: stats.maxHealth.baseValue
+      value: 100000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}

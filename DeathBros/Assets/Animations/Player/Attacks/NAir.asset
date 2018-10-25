@@ -42,22 +42,22 @@ MonoBehaviour:
     - position: {x: -0.23093224, y: 1.0042373}
       radius: 1
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     - position: {x: -1.036017, y: 0.45338985}
       radius: 0.6799998
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     soundName: sweep1
   - duration: 2
@@ -76,22 +76,22 @@ MonoBehaviour:
     - position: {x: 0.76483047, y: -0.37288132}
       radius: 1
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     - position: {x: 0.743644, y: 0.7076271}
       radius: 0.6799998
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     soundName: 
   - duration: 3
@@ -110,22 +110,22 @@ MonoBehaviour:
     - position: {x: -0.69703394, y: -0.16101691}
       radius: 1
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     - position: {x: 0.17161013, y: -0.69067794}
       radius: 0.6799998
       damage:
-        damageNumber: 8
-        knockBackDirection: {x: 0.5, y: 1}
-        baseKnockback: 16
+        damageNumber: 10
+        knockBackDirection: {x: 0.3, y: 1}
+        baseKnockback: 14
         knockbackGrowth: 8
         damageType: 0
-      ID: 68247
+      ID: 32608
       getNewID: 0
     soundName: 
   - duration: 5
@@ -144,7 +144,7 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 10
-    knockBackDirection: {x: 0.5, y: 1}
+    knockBackDirection: {x: 0.3, y: 1}
     baseKnockback: 14
     knockbackGrowth: 8
     damageType: 0
