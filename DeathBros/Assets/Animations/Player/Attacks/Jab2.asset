@@ -44,10 +44,10 @@ MonoBehaviour:
       damage:
         damageNumber: 3
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
+        baseKnockback: 15
         knockbackGrowth: 2
         damageType: 0
-      ID: 78152
+      ID: 3812
       getNewID: 0
     soundName: 
   - duration: 5
@@ -68,10 +68,10 @@ MonoBehaviour:
       damage:
         damageNumber: 3
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
+        baseKnockback: 15
         knockbackGrowth: 2
         damageType: 0
-      ID: 78152
+      ID: 3812
       getNewID: 0
     soundName: 
   - duration: 10
@@ -91,6 +91,6 @@ MonoBehaviour:
   damages:
   - damageNumber: 3
     knockBackDirection: {x: 1, y: 1}
-    baseKnockback: 10
+    baseKnockback: 15
     knockbackGrowth: 2
     damageType: 0
