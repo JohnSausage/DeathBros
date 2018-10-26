@@ -49,6 +49,7 @@ public class Character : _MB
     public Vector2 currentKnockback { get; protected set; }
 
     public bool shielding = false;
+    public bool IsDead { get { return (stats.currentHealth <= 0); } }
 
     public Queue<int> hitIDs = new Queue<int>();
 
@@ -122,23 +123,26 @@ public class Character : _MB
 
     public virtual void TakeDamage(Damage damage)
     {
-        if (!shielding)
+        if (!IsDead)
         {
-            if (TakesDamage != null) TakesDamage(damage);
-            if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
+            if (!shielding)
+            {
+                if (TakesDamage != null) TakesDamage(damage);
+                if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
 
-            AudioManager.PlaySound("hit1");
+                AudioManager.PlaySound("hit1");
 
-            currentDamage = damage;
+                currentDamage = damage;
 
-            currentKnockback = Knockback(damage);
+                currentKnockback = Knockback(damage);
 
-            stats.currentHealth -= damage.damageNumber;
+                stats.currentHealth -= damage.damageNumber;
 
-        }
-        if (stats.currentHealth <= 0)
-        {
-            Die();
+            }
+            if (stats.currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
@@ -156,7 +160,12 @@ public class Character : _MB
     {
         Debug.Log(this.name + " died");
 
-        Destroy(gameObject);
+        CSMachine.ChangeState(GetState(typeof(CS_Die)));
+    }
+
+    public virtual void Dead()
+    {
+
     }
 
     public virtual void GetInputs()

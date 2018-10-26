@@ -50,12 +50,14 @@ public class Controller2D : MonoBehaviour
     public Vector2 velocity;
     private Vector2 oldVelocity;
     public Vector2 velocitybfCol;
+    public bool oldInControl;
 
     public float moveAngle;
     public bool grounded;
     public bool onWall;
     public int wallDirection;
     public bool onCeiling;
+    public bool onLedge;
     public bool slidingDownSlope;
     public bool collision;
     public Vector2 collisionReflect;
@@ -91,11 +93,11 @@ public class Controller2D : MonoBehaviour
 
         oldVelocity = velocity;
         oldGrounded = grounded;
-        //oldSlopeDown = slopeDown;
 
         grounded = false;
         onCeiling = false;
         onWall = false;
+        onLedge = false;
         lastCollisionCheck = false;
         slopeDown = false;
         slopeUp = false;
@@ -270,6 +272,7 @@ public class Controller2D : MonoBehaviour
 
                     //cast a ray down on each side of the collider to determine ground angles
                     bool slopeDownFound = false;
+
                     platformCasts = new RaycastHit2D[3];
 
                     Physics2D.RaycastNonAlloc((Vector2)bounds.center + new Vector2(-bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y),
@@ -279,6 +282,7 @@ public class Controller2D : MonoBehaviour
                     {
                         if (platformCasts[i])
                         {
+
                             if (platformCasts[i].distance > 0)
                             {
                                 slopeDownAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
@@ -286,6 +290,7 @@ public class Controller2D : MonoBehaviour
                             }
                         }
                     }
+
 
                     bool slopeUpFound = false;
                     platformCasts = new RaycastHit2D[3];
@@ -304,6 +309,7 @@ public class Controller2D : MonoBehaviour
                             }
                         }
                     }
+
 
                     //try slope down first
                     if (!slopeUpFound && slopeDownAngle > 0 && slopeDownAngle <= maxSlopeAngle) // !slopeUpFound, because you're not on a slope when both rays hit
@@ -348,6 +354,7 @@ public class Controller2D : MonoBehaviour
                         }
                     }
 
+
                     //collisionCheck when moving
                     collisionCheck = RCXY(velocity, velocity.magnitude, collisionMask);
 
@@ -367,7 +374,15 @@ public class Controller2D : MonoBehaviour
                         if (newSlopeDownCast.distance > skin && newSlopeDownCast.distance < Mathf.Abs(velocity.x) + skin)
                         {
                             velocity.y += -(newSlopeDownCast.distance - skin);
+                            slopeDown = true;
                         }
+                    }
+
+
+
+                    if (slopeDownFound && !slopeUpFound && !slopeDown)
+                    {
+                        onLedge = true;
                     }
                 }
             }
@@ -508,7 +523,7 @@ public class Controller2D : MonoBehaviour
                 velocityAfterFreeze = velocity;
             }
 
-            velocity = velocityAfterFreeze * -0.01f;
+            velocity = velocityAfterFreeze * -0.001f;
         }
         else
         {
@@ -580,24 +595,34 @@ public class Controller2D : MonoBehaviour
 
             if (collisionCheck)
             {
-                //velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
-
-                // REMOVE THIS LATER //////////////////////////////////////////////////////////////
-                //inControl = true;
-
-                //velocity = 0.2f * Vector2.Reflect(velocity, collisionCheck.normal);
 
                 collision = true;
+
                 collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
-                /*
-                if (velocity.magnitude <= 0.1f)
-                {
-                    inControl = true;
-                }
-                */
+
+                velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
             }
+
         }
 
+
+        if (oldInControl == false && inControl == true) //otherwise falls through platform after hitLand
+        {
+            groundMask = collisionMask;
+
+            if (velocity.y <= 0)
+            {
+                groundMask += platformMask;
+            }
+
+            //check for collisions
+            collisionCheck = RCXY(velocity, velocity.magnitude, groundMask); //check for all collisions and stop velocity
+
+            if (collisionCheck)
+            {
+                velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+            }
+        }
 
 
         //last collisioncheck only in case of errors
@@ -618,6 +643,7 @@ public class Controller2D : MonoBehaviour
         //actually move the transform
         transform.Translate(velocity);
 
+        oldInControl = inControl;
         forceMovement = Vector2.zero;
         resetVelocity = false;
         addMovement = Vector2.zero;

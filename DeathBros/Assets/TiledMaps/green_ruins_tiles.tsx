@@ -286,11 +286,41 @@
  <tile id="82" terrain=",,1,"/>
  <tile id="84" terrain="1,1,1,"/>
  <tile id="85" terrain="1,1,,1"/>
+ <tile id="88">
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="3" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="89">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="3" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="90">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="91">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
  <tile id="96" terrain=",1,,1"/>
  <tile id="97" terrain="1,1,1,1"/>
  <tile id="98" terrain="1,,1,"/>
  <tile id="100" terrain="1,,1,1"/>
  <tile id="101" terrain=",1,1,1"/>
+ <tile id="104">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
+ <tile id="105">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="16" height="13"/>
+  </objectgroup>
+ </tile>
  <tile id="112" terrain=",1,,"/>
  <tile id="113" terrain="1,1,,"/>
  <tile id="114" terrain="1,,,"/>

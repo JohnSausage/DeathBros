@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.707, y: -28.751, z: 0}
+  m_LocalPosition: {x: 35.71, y: -28.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4380378512753930}
@@ -277,11 +277,13 @@ MonoBehaviour:
     m_Bits: 0
   velocity: {x: 0, y: 0}
   velocitybfCol: {x: 0, y: 0}
+  oldInControl: 0
   moveAngle: 0
   grounded: 0
   onWall: 0
   wallDirection: 0
   onCeiling: 0
+  onLedge: 0
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
@@ -307,12 +309,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTag: Player
   attackRange: 1
+  aggroRange: 5
+  aggroed: 0
   target: {fileID: 0}
-  randomChangeStateTime: 60
+  aiFollowPlayer:
+    randomEnterChance: 70
+    duration: 60
+    randomPlusMinusDuration: 30
   aiMachine:
     currentState: 
   TargetDirection: {x: 0, y: 0}
   TargetVector: {x: 0, y: 0}
+  aiFlee:
+    randomEnterChance: 30
+    duration: 60
+    randomPlusMinusDuration: 30
+  aiAttack:
+    randomEnterChance: 0
+  aiWalk:
+    randomEnterChance: 50
+    duration: 60
+    randomPlusMinusDuration: 30
 --- !u!114 &114609069300868980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -385,6 +402,10 @@ MonoBehaviour:
       duration: 5
     shield:
       animationName: shield
+    die:
+      animationName: hit
+    dead:
+      animationName: hit
   attackState:
     animationName: attack
     attackType: 0

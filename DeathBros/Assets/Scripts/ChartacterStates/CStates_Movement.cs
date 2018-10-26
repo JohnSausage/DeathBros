@@ -16,6 +16,8 @@ public class CStates_Movement
     public CS_Hitfreeze hitfreeze;
     public CS_HitLand hitLand;
     public CS_Shield shield;
+    public CS_Die die;
+    public CS_Dead dead;
 
     public virtual void Init(Character chr)
     {
@@ -28,6 +30,8 @@ public class CStates_Movement
         hitfreeze.Init(chr);
         hitLand.Init(chr);
         shield.Init(chr);
+        die.Init(chr);
+        dead.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }
@@ -902,7 +906,8 @@ public class CS_Shield : CState
 
         chr.GetInputs();
 
-        if (chr.DirectionalInput.x != 0)
+        //if (chr.DirectionalInput.x != 0)
+        if (chr.StrongInputs.x != 0)
             ChangeState(typeof(CS_Roll));
 
         chr.SetInputs(Vector2.zero);
@@ -983,6 +988,8 @@ public class CS_HitLand : CState
             ChangeState(typeof(CS_Idle));
             chr.Ctr.inControl = true;
             collisionReflect = Vector2.zero;
+
+            Debug.Log("tech");
         }
 
         if (timer > duration)
@@ -1006,5 +1013,28 @@ public class CS_HitLand : CState
         base.Exit();
         chr.Ctr.freeze = false;
 
+    }
+}
+
+[System.Serializable]
+public class CS_Dead : CState
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.Dead();
+    }
+}
+
+[System.Serializable]
+public class CS_Die : CState
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        if (chr.Anim.animationOver)
+            ChangeState(typeof(CS_Dead));
     }
 }

@@ -207,7 +207,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035713196, y: -0.5877249}
+  m_Offset: {x: 0.037677765, y: -0.09613609}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -218,7 +218,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.81124496, y: 0.5696378}
+  m_Size: {x: 1.0588913, y: 1.3239365}
   m_EdgeRadius: 0
 --- !u!114 &114198905926881744
 MonoBehaviour:
@@ -268,11 +268,11 @@ MonoBehaviour:
   stats:
     maxHealth:
       statName: MaxHealth
-      baseValue: 80
+      baseValue: 40
     currentHealth: 0
     weight:
       statName: Weight
-      baseValue: 150
+      baseValue: 120
     movespeed:
       statName: Movespeed
       baseValue: 2
@@ -321,6 +321,10 @@ MonoBehaviour:
       duration: 5
     shield:
       animationName: shield
+    die:
+      animationName: hitLand
+    dead:
+      animationName: hitLand
   attackState:
     animationName: attack
     attackType: 0
@@ -379,11 +383,13 @@ MonoBehaviour:
     m_Bits: 0
   velocity: {x: 0, y: 0}
   velocitybfCol: {x: 0, y: 0}
+  oldInControl: 0
   moveAngle: 0
   grounded: 0
   onWall: 0
   wallDirection: 0
   onCeiling: 0
+  onLedge: 0
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
@@ -409,12 +415,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTag: Player
   attackRange: 1
+  aggroRange: 6
+  aggroed: 0
   target: {fileID: 0}
-  randomChangeStateTime: 60
+  aiFollowPlayer:
+    randomEnterChance: 70
+    duration: 60
+    randomPlusMinusDuration: 30
   aiMachine:
     currentState: 
   TargetDirection: {x: 0, y: 0}
   TargetVector: {x: 0, y: 0}
+  aiFlee:
+    randomEnterChance: 30
+    duration: 60
+    randomPlusMinusDuration: 30
+  aiAttack:
+    randomEnterChance: 0
+  aiWalk:
+    randomEnterChance: 50
+    duration: 60
+    randomPlusMinusDuration: 30
 --- !u!212 &212849175576237076
 SpriteRenderer:
   m_ObjectHideFlags: 1

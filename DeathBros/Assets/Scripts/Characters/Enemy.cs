@@ -53,4 +53,11 @@ public class Enemy : Character
         }
         else return false;
     }
+
+    public override void Dead()
+    {
+        base.Dead();
+
+        Destroy(gameObject);
+    }
 }
