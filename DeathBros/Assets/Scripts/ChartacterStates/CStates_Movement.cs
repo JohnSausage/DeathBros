@@ -944,6 +944,9 @@ public class CS_Roll : CState
 
         chr.SetInputs(new Vector2(dirX, 0));
 
+        if(chr.Ctr.onLedge)
+            chr.SetInputs(Vector2.zero);
+
         if (chr.Anim.animationOver)
             ChangeState(typeof(CS_Idle));
     }

@@ -72,6 +72,7 @@ public class Controller2D : MonoBehaviour
     public bool lastCollisionCheck;
 
     private bool oldGrounded;
+    private float faceDirection;
 
     public BoxCollider2D Col { get; protected set; }
     protected Bounds bounds;
@@ -217,6 +218,8 @@ public class Controller2D : MonoBehaviour
             }
             */
 
+            if (input.x != 0) faceDirection = Mathf.Sign(input.x);
+
             if (grounded)
             {
                 airTimer = 0;
@@ -229,6 +232,14 @@ public class Controller2D : MonoBehaviour
                 if (transporterCheck)
                 {
                     transform.SetParent(transporterCheck.transform);
+                }
+
+                //check if on ledge
+                RaycastHit2D ledgeCheck = RCL(Vector2.down, 1f, (Vector2)bounds.center + new Vector2(bounds.extents.x * faceDirection, -bounds.extents.y), groundMask);
+
+                if (!ledgeCheck)
+                {
+                    onLedge = true;
                 }
 
                 //slide down slope if the angle is too high
@@ -376,13 +387,6 @@ public class Controller2D : MonoBehaviour
                             velocity.y += -(newSlopeDownCast.distance - skin);
                             slopeDown = true;
                         }
-                    }
-
-
-
-                    if (slopeDownFound && !slopeUpFound && !slopeDown)
-                    {
-                        onLedge = true;
                     }
                 }
             }
