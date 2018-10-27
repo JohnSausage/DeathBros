@@ -33,7 +33,15 @@ public class Character : _MB
     public HitboxManager HitM { get; protected set; }
     public HurtboxManager HurtM { get; protected set; }
 
-    public float Direction { get { return Spr.flipX ? -1 : 1; } set { Spr.flipX = (Mathf.Sign(value) == -1); } }
+    public float Direction
+    {
+        get { return Spr.flipX ? -1 : 1; }
+        set
+        {
+            Ctr.FaceDirection = Mathf.Sign(value);
+            Spr.flipX = (Mathf.Sign(value) == -1);
+        }
+    }
 
     public List<CState> cStates;
 

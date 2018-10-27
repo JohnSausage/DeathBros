@@ -24,6 +24,8 @@ public class Player : Character
         stats.AddStat(wallSlideSpeed);
 
         CStates_InitExitStates();
+
+        ComboCount.ComboIsOver += AddHealthAfterCombo;
     }
 
     void Update()
@@ -78,6 +80,16 @@ public class Player : Character
         }
 
         soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+    }
+
+    private void AddHealthAfterCombo(float damageNumber)
+    {
+        stats.currentHealth += damageNumber;
+
+        if (stats.currentHealth > stats.maxHealth.CurrentValue)
+            stats.currentHealth = stats.maxHealth.CurrentValue;
+
+        if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
     }
 
     public override void TakeDamage(Damage damage)

@@ -73,6 +73,7 @@ public class Controller2D : MonoBehaviour
 
     private bool oldGrounded;
     private float faceDirection;
+    public float FaceDirection { set { faceDirection = value; } }
 
     public BoxCollider2D Col { get; protected set; }
     protected Bounds bounds;

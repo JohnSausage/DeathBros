@@ -936,15 +936,17 @@ public class CS_Roll : CState
 
         dirX = 0;
         if (chr.DirectionalInput.x != 0) dirX = Mathf.Sign(chr.DirectionalInput.x);
+
+        chr.SetInputs(new Vector2(dirX, 0));
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        chr.SetInputs(new Vector2(dirX, 0));
+        chr.SetInputs(new Vector2(dirX * 0.8f, 0));
 
-        if(chr.Ctr.onLedge)
+        if (chr.Ctr.onLedge)
             chr.SetInputs(Vector2.zero);
 
         if (chr.Anim.animationOver)

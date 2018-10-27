@@ -12,6 +12,7 @@ public class HitboxManager : _MB
     public Character chr { get; protected set; }
 
     public static event Action<Vector2> EnemyHit;
+    public static event Action<Enemy, Damage> PlayerHitsEnenmy;
 
     public override void Init()
     {
@@ -36,8 +37,8 @@ public class HitboxManager : _MB
         {
             currentFrame.hitboxes[i].ID = currentID;
 
-            int number = Physics2D.OverlapCircleNonAlloc(position + new Vector2(currentFrame.hitboxes[i].position.x * dirX, 
-                currentFrame.hitboxes[i].position.y), 
+            int number = Physics2D.OverlapCircleNonAlloc(position + new Vector2(currentFrame.hitboxes[i].position.x * dirX,
+                currentFrame.hitboxes[i].position.y),
                 currentFrame.hitboxes[i].radius, hit, hitLayer);
 
             if (number > 0)
@@ -51,7 +52,12 @@ public class HitboxManager : _MB
                         if (chr is Player)
                         {
                             Player player = (Player)chr;
-                            enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge));
+                            Enemy ene = (Enemy)enemy;
+                            Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge);
+
+                            enemy.TakeDamage(damage);
+
+                            if (PlayerHitsEnenmy != null) PlayerHitsEnenmy(ene, damage);
                         }
                         else
                         {
