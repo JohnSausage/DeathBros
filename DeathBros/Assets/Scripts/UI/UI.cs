@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI messageText;
 
-    public List<ComboCount> comboCounters;
+    public List<ComboCounter> comboCounters;
     public List<UIMessage> uiMessages;
 
     void Start()
@@ -38,7 +38,7 @@ public class UI : MonoBehaviour
 
             if (comboCounters[i].ComboOver())
             {
-                uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboDamage, Color.green));
+                uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboDamage + "\n", Color.green));
 
                 comboCounters.Remove(comboCounters[i]);
             }
@@ -75,7 +75,7 @@ public class UI : MonoBehaviour
 
         if (!enemyFound)
         {
-            ComboCount newComboCount = new ComboCount(enemy);
+            ComboCounter newComboCount = new ComboCounter(enemy);
             newComboCount.AddDamage(damage.damageNumber);
 
             comboCounters.Add(newComboCount);
@@ -84,20 +84,22 @@ public class UI : MonoBehaviour
 }
 
 [System.Serializable]
-public class ComboCount
+public class ComboCounter
 {
     public string EnemyName { get; protected set; }
 
     public Enemy enemy;
 
     public float ComboDamage { get; protected set; }
+    public float HitCount { get; protected set; }
+
 
     private int comboResetDuration;
     private int timer;
 
     public static event Action<float> ComboIsOver;
 
-    public ComboCount(Enemy enemy)
+    public ComboCounter(Enemy enemy)
     {
         this.enemy = enemy;
         EnemyName = enemy.charName;
@@ -113,6 +115,8 @@ public class ComboCount
     public void AddDamage(float damageNumber)
     {
         ComboDamage += damageNumber;
+        HitCount++;
+
         timer = 0;
     }
 

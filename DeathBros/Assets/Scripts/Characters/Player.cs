@@ -25,7 +25,7 @@ public class Player : Character
 
         CStates_InitExitStates();
 
-        ComboCount.ComboIsOver += AddHealthAfterCombo;
+        ComboCounter.ComboIsOver += AddHealthAfterCombo;
     }
 
     void Update()
