@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FrameAnimator))]
-public class Character : _MB
+public class Character : _MB, ICanTakeDamage
 {
     public string charName;
 
@@ -128,6 +128,7 @@ public class Character : _MB
     {
         return hitIDs.Contains(id);
     }
+
 
     public virtual void TakeDamage(Damage damage)
     {
@@ -292,4 +293,9 @@ public class Character : _MB
 
         soulMeter = Mathf.Clamp(soulMeter, 0, 100);
     }
+}
+
+public interface ICanTakeDamage
+{
+    void TakeDamage(Damage damage);
 }

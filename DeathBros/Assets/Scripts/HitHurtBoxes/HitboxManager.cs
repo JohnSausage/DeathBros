@@ -43,6 +43,14 @@ public class HitboxManager : _MB
 
             if (number > 0)
             {
+                ICanTakeDamage hitObject = (ICanTakeDamage)hit[0].GetComponentInParent(typeof(ICanTakeDamage));
+
+                if (hitObject != null)
+                {
+                    Debug.Log("can take damage");
+                }
+
+
                 Character enemy = hit[0].GetComponentInParent<Character>();
 
                 if (enemy != null)
