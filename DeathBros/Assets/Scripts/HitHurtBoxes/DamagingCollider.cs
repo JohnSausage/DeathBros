@@ -34,7 +34,7 @@ public class DamagingCollider : MonoBehaviour
             {
                 Character chr = collisions[0].transform.GetComponentInParent<Character>();
 
-                chr.TakeDamage(damage);
+                chr.GetHit(damage);
             }
         }
     }

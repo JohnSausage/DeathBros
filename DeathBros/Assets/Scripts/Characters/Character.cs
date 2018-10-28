@@ -129,8 +129,23 @@ public class Character : _MB, ICanTakeDamage
         return hitIDs.Contains(id);
     }
 
+    protected virtual void HitEnemy(Character enemy, Damage damage)
+    {
 
-    public virtual void TakeDamage(Damage damage)
+    }
+
+    public virtual void GetHit(Damage damage)
+    {
+        if (!hitIDs.Contains(damage.hitID))
+        {
+            hitIDs.Enqueue(damage.hitID);
+            if (hitIDs.Count > 10) hitIDs.Dequeue();
+
+            TakeDamage(damage);
+        }
+    }
+
+    protected virtual void TakeDamage(Damage damage)
     {
         if (!IsDead)
         {
@@ -143,26 +158,20 @@ public class Character : _MB, ICanTakeDamage
 
                 currentDamage = damage;
 
-                currentKnockback = Knockback(damage);
+                currentKnockback = damage.Knockback(stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
 
                 stats.currentHealth -= damage.damageNumber;
 
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
             }
             if (stats.currentHealth <= 0)
             {
                 Die();
             }
         }
-    }
-
-    private Vector2 Knockback(Damage damage)
-    {
-        Vector2 knockback;
-
-        knockback = damage.knockBackDirection.normalized * (damage.baseKnockback + damage.knockbackGrowth * (1 - stats.currentHealth / stats.maxHealth.CurrentValue));
-        knockback *= (0.5f + (200 - stats.weight.CurrentValue) / 200);
-
-        return knockback;
     }
 
     public virtual void Die()
@@ -297,5 +306,5 @@ public class Character : _MB, ICanTakeDamage
 
 public interface ICanTakeDamage
 {
-    void TakeDamage(Damage damage);
+    void GetHit(Damage damage);
 }

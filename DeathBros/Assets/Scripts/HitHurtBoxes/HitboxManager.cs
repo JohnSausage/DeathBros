@@ -9,17 +9,17 @@ public class HitboxManager : _MB
     private bool flipped;
     public int currentID;
 
-    public Character chr { get; protected set; }
+    public Character Chr { get; protected set; }
 
-    public static event Action<Vector2> EnemyHit;
-    public static event Action<Enemy, Damage> PlayerHitsEnenmy;
+    //public static event Action<Vector2> EnemyHit;
+    //public static event Action<Enemy, Damage> PlayerHitsEnenmy;
 
     public override void Init()
     {
         base.Init();
 
         spr = GetComponent<SpriteRenderer>();
-        chr = GetComponent<Character>();
+        Chr = GetComponent<Character>();
     }
 
     public void DrawHitboxes(Frame currentFrame)
@@ -45,38 +45,92 @@ public class HitboxManager : _MB
             {
                 ICanTakeDamage hitObject = (ICanTakeDamage)hit[0].GetComponentInParent(typeof(ICanTakeDamage));
 
+                Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
+                damage.hitID = currentID;
+                damage.Owner = Chr;
+
+
                 if (hitObject != null)
                 {
-                    Debug.Log("can take damage");
+                    if (hitObject is Character)
+                    {
+                        Character hitChr = (Character)hitObject;
+
+                        //if (!hitChr.ContainsHidID(currentFrame.hitboxes[i].ID))
+                        //{
+                        //
+                        //    hitChr.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
+                        damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
+
+                        if (Chr is Player)
+                        {
+                            Player player = (Player)Chr;
+
+
+                            //if (!Chr.ContainsHidID(currentFrame.hitboxes[i].ID))
+                            //{
+                            //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge);
+
+                            damage.AddDamage(player.soulCharge);
+                            //if (PlayerHitsEnenmy != null) PlayerHitsEnenmy((Enemy)hitObject, damage);
+                            //}
+                        }
+                        else if (Chr is Enemy)
+                        {
+                            //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
+                            //hitChr.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
+                        }
+
+                        hitChr.GetHit(damage);
+
+                        //}
+
+
+                        //if (EnemyHit != null) EnemyHit(hitChr.transform.position);
+
+                    }
+                    else if (hitObject is Item)
+                    {
+                        //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
+                        //damage.hitID = currentID;
+                        Item hitItem = (Item)hitObject;
+
+                        hitItem.Owner = Chr;
+
+                        hitItem.GetHit(damage);
+                    }
                 }
 
 
-                Character enemy = hit[0].GetComponentInParent<Character>();
+                /*
+                Character hitCharacter = hit[0].GetComponentInParent<Character>();
 
-                if (enemy != null)
+                if (hitCharacter != null)
                 {
-                    if (!enemy.ContainsHidID(currentFrame.hitboxes[i].ID))
+                    if (!hitCharacter.ContainsHidID(currentFrame.hitboxes[i].ID))
                     {
-                        if (chr is Player)
+                        if (Chr is Player)
                         {
-                            Player player = (Player)chr;
-                            Enemy ene = (Enemy)enemy;
+                            Player player = (Player)Chr;
+                            Enemy ene = (Enemy)hitCharacter;
                             Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge);
 
-                            enemy.TakeDamage(damage);
+                            hitCharacter.TakeDamage(damage);
 
                             if (PlayerHitsEnenmy != null) PlayerHitsEnenmy(ene, damage);
                         }
                         else
                         {
-                            enemy.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
+                            hitCharacter.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
                         }
 
-                        enemy.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
+                        hitCharacter.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
 
-                        if (EnemyHit != null) EnemyHit(enemy.transform.position);
+                        if (EnemyHit != null) EnemyHit(hitCharacter.transform.position);
                     }
                 }
+                */
+
             }
         }
 
@@ -128,6 +182,10 @@ public class Damage
     public float knockbackGrowth;
     public EDamageType damageType;
 
+    public int hitID { get; set; }
+    public Character Owner { get; set; }
+    public Vector2 HitPosition { get; set; }
+
     public Damage Clone()
     {
         return new Damage
@@ -146,5 +204,21 @@ public class Damage
         rDamage.damageNumber += damage;
 
         return rDamage;
+    }
+
+    public Vector2 Knockback(float weight)
+    {
+        return Knockback(weight, 1);
+
+    }
+
+    public Vector2 Knockback(float weight, float percentHealth)
+    {
+        Vector2 knockback;
+
+        knockback = knockBackDirection.normalized * (baseKnockback + knockbackGrowth * (1 - percentHealth));
+        knockback *= (0.5f + (200 - weight) / 200);
+
+        return knockback;
     }
 }

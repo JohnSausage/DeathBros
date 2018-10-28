@@ -21,7 +21,8 @@ public class UI : MonoBehaviour
     void Start()
     {
         Player.PlayerHealthChanged += UpdatePlayerHealth;
-        HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
+        Player.EnemyHit += UpdateComboCounter;
+        //HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
     }
 
     void FixedUpdate()
@@ -60,7 +61,7 @@ public class UI : MonoBehaviour
         healthBar.value = newValue;
     }
 
-    private void UpdateComboCounter(Enemy enemy, Damage damage)
+    private void UpdateComboCounter(Character enemy, Damage damage)
     {
         bool enemyFound = false;
 
@@ -75,7 +76,7 @@ public class UI : MonoBehaviour
 
         if (!enemyFound)
         {
-            ComboCounter newComboCount = new ComboCounter(enemy);
+            ComboCounter newComboCount = new ComboCounter((Enemy)enemy);
             newComboCount.AddDamage(damage.damageNumber);
 
             comboCounters.Add(newComboCount);

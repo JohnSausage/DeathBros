@@ -12,8 +12,9 @@ public class EffectManager : MonoBehaviour
         hitEffect1 = (GameObject)Resources.Load("Effects/Hit1");
         damageNumber = (GameObject)Resources.Load("Effects/DamageNumber");
 
-        HitboxManager.EnemyHit += SpawnHitEffect;
+        //HitboxManager.EnemyHit += SpawnHitEffect;
         Character.TakesDamageAll += SpawnDamageNumber;
+        Character.TakesDamageAll += SpawnHitEffect;
     }
 
     void Update()
@@ -21,9 +22,9 @@ public class EffectManager : MonoBehaviour
 
     }
 
-    private void SpawnHitEffect(Vector2 position)
+    private void SpawnHitEffect(Damage damage, Vector2 position)
     {
-        Instantiate(hitEffect1, position, Quaternion.identity);
+        Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
 
         //GameObject effect = Instantiate(hitEffect1, position, Quaternion.identity);
         //effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);

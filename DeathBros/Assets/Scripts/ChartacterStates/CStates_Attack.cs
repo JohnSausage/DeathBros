@@ -104,6 +104,7 @@ public class CS_TiltAttack : CS_Attack
         if (chr.DirectionalInput.x != 0)
             dirX = chr.DirectionalInput.x;
     }
+
     public override void Execute()
     {
         base.Execute();
@@ -131,6 +132,8 @@ public class CS_SoulAttack : CS_Attack
     private FrameAnimation chargeAnimation;
     private bool charging = true;
 
+    protected float dirX;
+
     public override void Init(Character chr)
     {
         base.Init(chr);
@@ -142,12 +145,19 @@ public class CS_SoulAttack : CS_Attack
     {
         chr.Anim.ChangeAnimation(chargeAnimation);
         charging = true;
-        chr.Spr.color = Color.yellow;
+        chr.Spr.color = Color.red;
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0)
+            dirX = chr.DirectionalInput.x;
     }
 
     public override void Execute()
     {
         base.Execute();
+
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
 
         if (chr.HoldAttack)
         {

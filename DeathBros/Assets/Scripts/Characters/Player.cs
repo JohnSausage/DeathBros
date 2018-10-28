@@ -12,6 +12,7 @@ public class Player : Character
     public float soulCharge = 0;
 
     public static event Action<float> PlayerHealthChanged;
+    public static event Action<Character, Damage> EnemyHit;
 
     public override void Init()
     {
@@ -82,6 +83,13 @@ public class Player : Character
         soulMeter = Mathf.Clamp(soulMeter, 0, 100);
     }
 
+    protected override void HitEnemy(Character enemy, Damage damage)
+    {
+        base.HitEnemy(enemy, damage);
+
+        if (EnemyHit != null) EnemyHit(enemy, damage);
+    }
+
     private void AddHealthAfterCombo(float damageNumber)
     {
         stats.currentHealth += damageNumber;
@@ -92,9 +100,9 @@ public class Player : Character
         if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
     }
 
-    public override void TakeDamage(Damage damage)
+    public override void GetHit(Damage damage)
     {
-        base.TakeDamage(damage);
+        base.GetHit(damage);
 
         if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
     }
