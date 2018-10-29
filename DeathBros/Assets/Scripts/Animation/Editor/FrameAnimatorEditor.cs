@@ -417,18 +417,19 @@ public class FrameAnimatorEditor : EditorWindow
 
         EditorGUILayout.PropertyField(array);
         so.ApplyModifiedProperties();
-
-        foreach (Sprite s in addSpritesAsFrames)
+        if (addSpritesAsFrames != null)
         {
-            Frame spriteFrame = new Frame();
-            spriteFrame.sprite = s;
-            currentAnimation.frames.Add(spriteFrame);
+            foreach (Sprite s in addSpritesAsFrames)
+            {
+                Frame spriteFrame = new Frame();
+                spriteFrame.sprite = s;
+                currentAnimation.frames.Add(spriteFrame);
+            }
+
+            EditorGUILayout.Space();
+
+            addSpritesAsFrames.Clear();
         }
-
-        EditorGUILayout.Space();
-
-        addSpritesAsFrames.Clear();
-
         GUILayout.EndArea();
     }
 

@@ -36,6 +36,10 @@ public class DamagingCollider : MonoBehaviour
 
                 chr.GetHit(damage);
             }
+            else
+            {
+                damage.GenerateID();
+            }
         }
     }
 }

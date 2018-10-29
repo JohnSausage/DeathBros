@@ -600,12 +600,14 @@ public class Controller2D : MonoBehaviour
 
             if (collisionCheck)
             {
+                if (collisionCheck.distance > 0)
+                {
+                    collision = true;
 
-                collision = true;
+                    collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
 
-                collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
-
-                velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+                    velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+                }
             }
 
         }

@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 0
         damageType: 0
-      ID: 86202
+      ID: 71161
       getNewID: 0
     soundName: 
   - duration: 3
@@ -99,7 +99,7 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 0
         damageType: 0
-      ID: 86202
+      ID: 71161
       getNewID: 0
     soundName: 
   - duration: 2
@@ -137,7 +137,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 61895
+      ID: 54832
       getNewID: 0
     soundName: 
   - duration: 5
@@ -161,7 +161,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 61895
+      ID: 54832
       getNewID: 0
     - position: {x: -0.50635594, y: 0.26271188}
       radius: 0.82
@@ -171,7 +171,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 61895
+      ID: 54832
       getNewID: 0
     soundName: 
   - duration: 3
@@ -195,7 +195,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 1
         damageType: 0
-      ID: 61895
+      ID: 54832
       getNewID: 0
     soundName: 
   - duration: 5

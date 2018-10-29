@@ -221,4 +221,9 @@ public class Damage
 
         return knockback;
     }
+
+    public void GenerateID()
+    {
+        hitID = UnityEngine.Random.Range(0, 99999);
+    }
 }

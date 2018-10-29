@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1791703342140664}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1368973590504020
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4720589028125708}
   - component: {fileID: 58721208266405786}
@@ -30,14 +30,15 @@ GameObject:
 --- !u!1 &1791703342140664
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4628794393212388}
   - component: {fileID: 212623175313319126}
   - component: {fileID: 114463275754624242}
   - component: {fileID: 114354867745205752}
+  - component: {fileID: 50769509219596524}
   m_Layer: 0
   m_Name: Item_GreenStone
   m_TagString: Untagged
@@ -48,7 +49,7 @@ GameObject:
 --- !u!4 &4628794393212388
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791703342140664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -62,7 +63,7 @@ Transform:
 --- !u!4 &4720589028125708
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368973590504020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -72,10 +73,30 @@ Transform:
   m_Father: {fileID: 4628794393212388}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50769509219596524
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791703342140664}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58721208266405786
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368973590504020}
   m_Enabled: 1
@@ -90,7 +111,7 @@ CircleCollider2D:
 --- !u!114 &114354867745205752
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791703342140664}
   m_Enabled: 1
@@ -105,7 +126,7 @@ MonoBehaviour:
     baseKnockback: 10
     knockbackGrowth: 5
     damageType: 0
-  damageSpeed: 10
+  damagingSpeed: 10
   filter:
     useTriggers: 0
     useLayerMask: 1
@@ -123,7 +144,7 @@ MonoBehaviour:
 --- !u!114 &114463275754624242
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791703342140664}
   m_Enabled: 1
@@ -149,7 +170,7 @@ MonoBehaviour:
 --- !u!212 &212623175313319126
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791703342140664}
   m_Enabled: 1
@@ -191,3 +212,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
