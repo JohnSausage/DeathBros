@@ -789,6 +789,8 @@ public class CS_Hitstun : CState
 
         timer = 0;
         chr.Ctr.inControl = false;
+
+        chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
     }
 
     public override void Execute()

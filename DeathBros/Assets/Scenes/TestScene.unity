@@ -4850,21 +4850,21 @@ MonoBehaviour:
       animationName: landing
       duration: 5
     hitstun:
-      animationName: jumpRising
-      hitstunFallAnimation: jumpFalling
+      animationName: hitUp
+      hitstunFallAnimation: hitDown
       minDuration: 3
     hitfreeze:
-      animationName: idle
+      animationName: hitUp
       duration: 5
     hitLand:
-      animationName: idle
+      animationName: hitLanded
       duration: 10
     shield:
       animationName: shield
     die:
-      animationName: idle
+      animationName: hitLanded
     dead:
-      animationName: idle
+      animationName: hitLanded
     doubleJumpsquat:
       animationName: jumpsquat
       duration: 3
@@ -8873,63 +8873,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2109448318 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1793037605258070, guid: 2619708422edb5549aee23efb40cb8c5,
-    type: 2}
-  m_PrefabInternal: {fileID: 276231149}
---- !u!50 &2109448320
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2109448318}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &2109448321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2109448318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03fe77aefa05c4747bf90529d0794263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage:
-    damageNumber: 10
-    knockBackDirection: {x: 0, y: 1}
-    baseKnockback: 25
-    knockbackGrowth: 10
-    damageType: 0
-  filter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 3072
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  tickDelay: 10
 --- !u!1 &2116373737
 GameObject:
   m_ObjectHideFlags: 0
