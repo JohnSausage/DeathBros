@@ -1007,8 +1007,6 @@ public class CS_HitLand : CState
 
             chr.Ctr.inControl = true;
             collisionReflect = Vector2.zero;
-
-            Debug.Log("tech");
         }
 
         if (timer > duration)

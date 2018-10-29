@@ -11,6 +11,10 @@ public class Player : Character
 
     public float soulCharge = 0;
 
+    public float pickUpRadius = 1.5f;
+
+    public LayerMask enemyMask;
+
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
@@ -110,10 +114,61 @@ public class Player : Character
         if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
     }
 
+    protected bool CheckForItemPickUp()
+    {
+        if (holdItem == null)
+        {
+            RaycastHit2D itemCheck = Physics2D.CircleCast(transform.position, pickUpRadius, Vector2.zero, 0, enemyMask);
+
+            if (itemCheck)
+            {
+                Item pickedItem = itemCheck.transform.GetComponentInParent<Item>();
+                if (pickedItem != null)
+                {
+                    SetHoldItem(pickedItem);
+                    Debug.Log(pickedItem.name + " picked up");
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected bool ThrowItem(Vector2 throwVelocity)
+    {
+        if (holdItem != null)
+        {
+            holdItem.Velocity = throwVelocity;
+            ReleaseHoldItem();
+
+            Debug.Log("throw " + throwVelocity);
+            return true;
+        }
+        return false;
+    }
+
+    protected void SetHoldItem(Item item)
+    {
+        holdItem = item;
+        holdItem.IsSimulated = false;
+        holdItem.Owner = this;
+        holdItem.transform.SetParent(transform);
+        holdItem.transform.localPosition = Vector3.zero;
+    }
+
+    protected void ReleaseHoldItem()
+    {
+        holdItem.transform.SetParent(null);
+        holdItem.IsSimulated = true;
+        holdItem = null;
+    }
+
     public override bool CheckForTiltAttacks()
     {
         if (Attack)
         {
+            CheckForItemPickUp();
 
             if (DirectionalInput == Vector2.zero)
             {
@@ -132,26 +187,30 @@ public class Player : Character
                 CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
             }
 
+
+
             return true;
         }
 
         if (TiltInput != Vector2.zero)
         {
-            if (Mathf.Abs(TiltInput.x) > 0.5f)
+            if (!ThrowItem(TiltInput * 10))
             {
-                Direction = TiltInput.x;
+                if (Mathf.Abs(TiltInput.x) > 0.5f)
+                {
+                    Direction = TiltInput.x;
 
-                CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                    CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                }
+                else if (TiltInput.y > 0.5f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                }
+                else if (TiltInput.y < -0.5f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+                }
             }
-            else if (TiltInput.y > 0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-            }
-            else if (TiltInput.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-            }
-
             return true;
         }
 
@@ -187,6 +246,8 @@ public class Player : Character
     {
         if (Attack)
         {
+            CheckForItemPickUp();
+
             if (DirectionalInput == Vector2.zero)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.NAir));

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemController2D : MonoBehaviour
 {
+    public bool IsSimulated { get; set; }
     public Vector2 SetVelocity { get; set; }
     public bool grounded;
     public bool rolling;
@@ -26,9 +27,17 @@ public class ItemController2D : MonoBehaviour
         col = GetComponentInChildren<CircleCollider2D>();
 
         if (col == null) Debug.Log(name + " needs a collider");
+
+        IsSimulated = true;
     }
 
     private void FixedUpdate()
+    {
+        if (IsSimulated)
+            SimmulatePhysics();
+    }
+
+    private void SimmulatePhysics()
     {
         groundAngle = 0;
         rollDirection = 0;

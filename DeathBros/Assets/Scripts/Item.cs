@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ItemController2D))]
-public class Item : _MB, ICanTakeDamage
+public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 {
-    public Vector2 Velocity { get { return ctr.velocity; } }
+    public Vector2 Velocity { get { return ctr.velocity; } set { ctr.SetVelocity = value; } }
     public Character Owner { get; set; }
+    public bool IsSimulated { set { ctr.IsSimulated = value; } get { return ctr.IsSimulated; } }
 
     [SerializeField]
     protected float weight = 20;
@@ -69,4 +70,9 @@ public class Item : _MB, ICanTakeDamage
             }
         }
     }
+}
+
+public interface ICanBePickedUp
+{
+
 }

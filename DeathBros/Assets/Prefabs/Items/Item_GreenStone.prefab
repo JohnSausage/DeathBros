@@ -39,7 +39,8 @@ GameObject:
   - component: {fileID: 114463275754624242}
   - component: {fileID: 114354867745205752}
   - component: {fileID: 50769509219596524}
-  m_Layer: 0
+  - component: {fileID: 58391685551727952}
+  m_Layer: 13
   m_Name: Item_GreenStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +94,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58391685551727952
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791703342140664}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!58 &58721208266405786
 CircleCollider2D:
   m_ObjectHideFlags: 1

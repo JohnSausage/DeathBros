@@ -4941,6 +4941,10 @@ MonoBehaviour:
       animationName: BAir
       attackType: 9
   soulCharge: 0
+  pickUpRadius: 1.5
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &967334117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5052,11 +5056,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4628794393212388, guid: d9395764cd03f3d4db2042cec4aae125, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -36.27
+      value: -48.31
       objectReference: {fileID: 0}
     - target: {fileID: 4628794393212388, guid: d9395764cd03f3d4db2042cec4aae125, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14.16
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 4628794393212388, guid: d9395764cd03f3d4db2042cec4aae125, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5082,7 +5086,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 58391685551727952, guid: d9395764cd03f3d4db2042cec4aae125, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d9395764cd03f3d4db2042cec4aae125, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &992354466

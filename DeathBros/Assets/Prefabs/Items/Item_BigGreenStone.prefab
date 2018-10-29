@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 212936532156690204}
   - component: {fileID: 114173799294323190}
   - component: {fileID: 114739264125165934}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Item_BigGreenStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

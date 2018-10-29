@@ -149,7 +149,6 @@ namespace Tiled2Unity
 #if UNITY_5_6_OR_NEWER
             material.enableInstancing = true;
 #endif
-            material.SetFloat("PixelSnap", 1.0f);
 
             return material;
         }
