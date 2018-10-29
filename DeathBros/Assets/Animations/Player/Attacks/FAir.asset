@@ -43,11 +43,11 @@ MonoBehaviour:
       radius: 1
       damage:
         damageNumber: 12
-        knockBackDirection: {x: 1, y: -2}
+        knockBackDirection: {x: 1, y: 1}
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 93366
+      ID: 29032
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -67,11 +67,11 @@ MonoBehaviour:
       radius: 1
       damage:
         damageNumber: 12
-        knockBackDirection: {x: 1, y: -2}
+        knockBackDirection: {x: 1, y: 1}
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 93366
+      ID: 29032
       getNewID: 0
     - position: {x: 1.125, y: 0.83474576}
       radius: 0.7499999
@@ -81,7 +81,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 93366
+      ID: 29032
       getNewID: 0
     soundName: 
   - duration: 10
@@ -100,7 +100,7 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 12
-    knockBackDirection: {x: 1, y: -2}
+    knockBackDirection: {x: 1, y: 1}
     baseKnockback: 20
     knockbackGrowth: 10
     damageType: 0

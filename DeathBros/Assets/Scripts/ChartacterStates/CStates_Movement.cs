@@ -18,6 +18,8 @@ public class CStates_Movement
     public CS_Shield shield;
     public CS_Die die;
     public CS_Dead dead;
+    public CS_StandUp standUp;
+    public CS_HitLanded hitLanded;
 
     public virtual void Init(Character chr)
     {
@@ -32,6 +34,8 @@ public class CStates_Movement
         shield.Init(chr);
         die.Init(chr);
         dead.Init(chr);
+        standUp.Init(chr);
+        hitLanded.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }
@@ -979,7 +983,7 @@ public class CS_HitLand : CState
         chr.Ctr.freeze = true;
         chr.Ctr.inControl = false;
         collisionReflect = chr.Ctr.collisionReflect;
-
+        chr.Spr.color = Color.red;
     }
 
     public override void Execute()
@@ -992,7 +996,15 @@ public class CS_HitLand : CState
 
         if (chr.Shield)
         {
-            ChangeState(typeof(CS_Idle));
+            if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
+            {
+                if (!ChangeState(typeof(CS_Roll)))
+                {
+                    ChangeState(typeof(CS_StandUp));
+                }
+            }
+            else ChangeState(typeof(CS_StandUp));
+
             chr.Ctr.inControl = true;
             collisionReflect = Vector2.zero;
 
@@ -1001,7 +1013,7 @@ public class CS_HitLand : CState
 
         if (timer > duration)
         {
-            if (collisionReflect.magnitude > 0.3f)
+            if (collisionReflect.magnitude * 60 > 20f)
             {
                 chr.Ctr.forceMovement = collisionReflect * 60 * 0.8f; //80% reduction
 
@@ -1009,7 +1021,7 @@ public class CS_HitLand : CState
             }
             else
             {
-                ChangeState(typeof(CS_Idle));
+                ChangeState(typeof(CS_HitLanded));
                 chr.Ctr.inControl = true;
             }
         }
@@ -1019,7 +1031,63 @@ public class CS_HitLand : CState
     {
         base.Exit();
         chr.Ctr.freeze = false;
+        chr.Spr.color = Color.white;
+    }
+}
+[System.Serializable]
+public class CS_HitLanded : CState
+{
+    [SerializeField]
+    protected int minDuration = 20;
 
+    protected int timer;
+
+    public override void Enter()
+    {
+        base.Enter();
+        timer = 0;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        chr.GetInputs();
+        Vector2 input = chr.DirectionalInput;
+
+        if (timer > minDuration)
+        {
+            if (input.y > 0.5f)
+            {
+                ChangeState(typeof(CS_StandUp));
+
+            }
+            else if (Mathf.Abs(input.x) > 0.5f)
+            {
+                if (!ChangeState(typeof(CS_Roll)))
+                    ChangeState(typeof(CS_StandUp));
+            }
+        }
+
+        chr.SetInputs(Vector2.zero);
+    }
+}
+
+[System.Serializable]
+public class CS_StandUp : CState
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs(Vector2.zero);
+
+        if (chr.Anim.animationOver)
+        {
+            ChangeState(typeof(CS_Idle));
+        }
     }
 }
 

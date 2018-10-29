@@ -11,6 +11,9 @@ public class Player : Character
 
     public float soulCharge = 0;
 
+    public Item holdItem { get; protected set; }
+    public bool hasItem { get { return holdItem != null; } }
+
     public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
 
@@ -111,6 +114,7 @@ public class Player : Character
     {
         if (Attack)
         {
+
             if (DirectionalInput == Vector2.zero)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));

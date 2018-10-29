@@ -112,6 +112,9 @@ public class CS_TiltAttack : CS_Attack
         dirX *= 0.8f;
         chr.SetInputs(new Vector2(dirX, 0));
 
+        if (chr.Ctr.onLedge)
+            chr.SetInputs(Vector2.zero);
+
         if (chr.Anim.animationOver)
         {
             chr.CS_SetIdle();
@@ -158,6 +161,9 @@ public class CS_SoulAttack : CS_Attack
 
         dirX *= 0.8f;
         chr.SetInputs(new Vector2(dirX, 0));
+
+        if (chr.Ctr.onLedge)
+            chr.SetInputs(Vector2.zero);
 
         if (chr.HoldAttack)
         {

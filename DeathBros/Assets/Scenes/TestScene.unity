@@ -1289,6 +1289,11 @@ MonoBehaviour:
       animationName: idle
     dead:
       animationName: idle
+    standUp:
+      animationName: idle
+    hitLanded:
+      animationName: idle
+      minDuration: 20
   attackState:
     animationName: idle
     attackType: 0
@@ -4865,6 +4870,11 @@ MonoBehaviour:
       animationName: hitLanded
     dead:
       animationName: hitLanded
+    standUp:
+      animationName: standUp
+    hitLanded:
+      animationName: hitLanded
+      minDuration: 20
     doubleJumpsquat:
       animationName: jumpsquat
       duration: 3

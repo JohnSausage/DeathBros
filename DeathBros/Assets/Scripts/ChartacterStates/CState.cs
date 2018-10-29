@@ -44,20 +44,25 @@ public class CState : IState
     }
 
 
-    protected void ChangeState(CState newState)
+    protected bool ChangeState(CState newState)
     {
-        if (newState != null)
-            chr.CSMachine.ChangeState(newState);
-    }
-
-    protected void ChangeState(Type type)
-    {
-        CState newState = chr.GetState(type);
-
         if (newState != null)
         {
             chr.CSMachine.ChangeState(newState);
+            return true;
         }
+        return false;
+    }
+
+    protected bool ChangeState(Type type)
+    {
+        CState newState = chr.GetState(type);
+
+        return (ChangeState(newState));
+        //if (newState != null)
+        //{
+        //    chr.CSMachine.ChangeState(newState);
+        //}
     }
 
     protected void TakeDamage(Damage damage)

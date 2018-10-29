@@ -193,7 +193,7 @@ public class AI_Attack : AIState
 
         timer++;
 
-        ai.chr.SetInputs(Vector2.zero);
+        ai.chr.SetInputs(ai.TargetDirection);
 
         ai.chr.SetAttack(true);
 
