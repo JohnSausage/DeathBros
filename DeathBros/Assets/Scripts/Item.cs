@@ -17,6 +17,11 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
     [SerializeField]
     protected Damage damage;
 
+    public void GenerateID()
+    {
+        damage.GenerateID();
+    }
+
     [SerializeField]
     protected float damagingSpeed = 10;
 

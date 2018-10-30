@@ -54,6 +54,7 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_Dash dash;
     public CS_Crouch crouch;
     public CS_Roll roll;
+    public CS_ThrowItem throwItem;
 
     public override void Init(Character chr)
     {
@@ -67,6 +68,7 @@ public class CStates_AdvancedMovement : CStates_Movement
         dash.Init(chr);
         crouch.Init(chr);
         roll.Init(chr);
+        throwItem.Init(chr);
     }
 }
 
@@ -1109,5 +1111,57 @@ public class CS_Die : CState
 
         if (chr.Anim.animationOver)
             ChangeState(typeof(CS_Dead));
+    }
+}
+
+[System.Serializable]
+public class CS_ThrowItem : CState
+{
+    [SerializeField]
+    protected string aerialAnimationName;
+    protected FrameAnimation aerialANimation;
+
+    public override void Init(Character chr)
+    {
+        base.Init(chr);
+        aerialANimation = chr.Anim.GetAnimation(aerialAnimationName);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        if (!chr.Ctr.IsGrounded)
+        {
+            chr.Anim.ChangeAnimation(aerialANimation);
+        }
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.SetInputs(Vector2.zero);
+
+        if (chr.Anim.animationOver)
+        {
+            chr.GetInputs();
+
+            if (chr.Ctr.IsGrounded)
+                ChangeState(typeof(CS_Idle));
+            else ChangeState(typeof(CS_Jumping));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        if (chr is Player)
+        {
+            Player player = (Player)chr;
+
+            player.ThrowItem(chr.DirectionalInput);
+        }
     }
 }

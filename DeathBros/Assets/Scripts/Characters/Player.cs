@@ -126,7 +126,6 @@ public class Player : Character
                 if (pickedItem != null)
                 {
                     SetHoldItem(pickedItem);
-                    Debug.Log(pickedItem.name + " picked up");
                     return true;
                 }
             }
@@ -135,14 +134,13 @@ public class Player : Character
         return false;
     }
 
-    protected bool ThrowItem(Vector2 throwVelocity)
+    public bool ThrowItem(Vector2 throwVelocity)
     {
         if (holdItem != null)
         {
-            holdItem.Velocity = throwVelocity;
+            holdItem.Velocity = throwVelocity * 25f;
             ReleaseHoldItem();
 
-            Debug.Log("throw " + throwVelocity);
             return true;
         }
         return false;
@@ -161,6 +159,7 @@ public class Player : Character
     {
         holdItem.transform.SetParent(null);
         holdItem.IsSimulated = true;
+        holdItem.GenerateID();
         holdItem = null;
     }
 
@@ -194,7 +193,11 @@ public class Player : Character
 
         if (TiltInput != Vector2.zero)
         {
-            if (!ThrowItem(TiltInput * 10))
+            if (ThrowItem(TiltInput))
+            {
+                CSMachine.ChangeState(advancedMovementStates.throwItem);
+            }
+            else
             {
                 if (Mathf.Abs(TiltInput.x) > 0.5f)
                 {
