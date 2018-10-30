@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 57274
+      ID: 36245
       getNewID: 0
     soundName: 
   - duration: 5
@@ -71,7 +71,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 57274
+      ID: 36245
       getNewID: 0
     soundName: 
   - duration: 5
@@ -95,7 +95,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 10
         damageType: 0
-      ID: 57274
+      ID: 36245
       getNewID: 0
     soundName: 
   - duration: 10
