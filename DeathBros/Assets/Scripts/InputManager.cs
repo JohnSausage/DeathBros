@@ -229,9 +229,17 @@ public class InputManager : MonoBehaviour
     {
         if (BufferedInput != null)
         {
-            return BufferedInput.InputName == inputName;
+            if (BufferedInput.InputName == inputName)
+            {
+                return true;
+            }
         }
-        else return false;
+        return false;
+    }
+
+    public static void ClearBuffer()
+    {
+        BufferedInput = null;
     }
 
     public static bool GetButton(string inputName)

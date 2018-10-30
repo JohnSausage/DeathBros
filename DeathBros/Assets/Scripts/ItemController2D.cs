@@ -55,7 +55,7 @@ public class ItemController2D : MonoBehaviour
         velocity.y += gravity / 60;
 
         LayerMask groundMask = collisionMask;
-        if (velocity.y < 0) groundMask += platformMask;
+        if (velocity.y < gravity / 60) groundMask += platformMask;
 
         RaycastHit2D collisionCheck = Physics2D.CircleCast((Vector2)transform.position + col.offset, col.radius, velocity, velocity.magnitude, groundMask);
 

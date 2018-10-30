@@ -125,6 +125,7 @@ public class Player : Character
                 Item pickedItem = itemCheck.transform.GetComponentInParent<Item>();
                 if (pickedItem != null)
                 {
+                    InputManager.ClearBuffer();
                     SetHoldItem(pickedItem);
                     return true;
                 }
@@ -138,9 +139,11 @@ public class Player : Character
     {
         if (holdItem != null)
         {
-            holdItem.Velocity = throwVelocity * 25f;
+            holdItem.Velocity = throwVelocity.normalized * 25f;
             ReleaseHoldItem();
 
+            InputManager.ClearBuffer();
+            CSMachine.ChangeState(advancedMovementStates.throwItem);
             return true;
         }
         return false;
@@ -167,37 +170,40 @@ public class Player : Character
     {
         if (Attack)
         {
-            CheckForItemPickUp();
-
-            if (DirectionalInput == Vector2.zero)
+            if (ThrowItem(DirectionalInput))
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+                return true;
             }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            else if (CheckForItemPickUp())
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                return true;
             }
-            else if (DirectionalInput.y > 0.5f)
+            else
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                if (DirectionalInput == Vector2.zero)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+                }
+                else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                }
+                else if (DirectionalInput.y > 0.5f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                }
+                else if (DirectionalInput.y < -0.5f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+                }
             }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-            }
-
-
 
             return true;
         }
 
         if (TiltInput != Vector2.zero)
         {
-            if (ThrowItem(TiltInput))
-            {
-                CSMachine.ChangeState(advancedMovementStates.throwItem);
-            }
-            else
+            if (!ThrowItem(TiltInput))
             {
                 if (Mathf.Abs(TiltInput.x) > 0.5f)
                 {
@@ -227,6 +233,9 @@ public class Player : Character
 
         if (Attack && smash != Vector2.zero)
         {
+            if (ThrowItem(smash)) return true;
+
+
             if (Mathf.Abs(smash.x) > 0.5f)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.FSoul));
@@ -249,7 +258,8 @@ public class Player : Character
     {
         if (Attack)
         {
-            CheckForItemPickUp();
+            if (CheckForItemPickUp()) return true;
+            if (ThrowItem(DirectionalInput)) return true;
 
             if (DirectionalInput == Vector2.zero)
             {
@@ -277,6 +287,9 @@ public class Player : Character
 
         if (TiltInput != Vector2.zero)
         {
+            if (CheckForItemPickUp()) return true;
+            if (ThrowItem(TiltInput)) return true;
+
             if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) == Direction)
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.FAir));

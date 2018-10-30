@@ -15,6 +15,11 @@ public class UI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI messageText;
 
+    [SerializeField]
+    private GameObject ComboPanelPrefab;
+
+    public List<ComboPanel> comboPanels;
+
     public List<ComboCounter> comboCounters;
     public List<UIMessage> uiMessages;
 
@@ -23,6 +28,8 @@ public class UI : MonoBehaviour
         Player.PlayerHealthChanged += UpdatePlayerHealth;
         Player.EnemyHit += UpdateComboCounter;
         //HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
+
+        comboPanels = new List<ComboPanel>();
     }
 
     void FixedUpdate()
@@ -33,9 +40,9 @@ public class UI : MonoBehaviour
         {
             comboCounters[i].FixedUpdate();
 
-            comboCounterText.text += comboCounters[i].EnemyName + ": ";
-            comboCounterText.text += comboCounters[i].ComboDamage;
-            comboCounterText.text += "\n";
+            comboCounterText.text += comboCounters[i].EnemyName + ": \n";
+            comboCounterText.text += comboCounters[i].ComboDamage + " Damage / ";
+            comboCounterText.text += comboCounters[i].HitCount + " Hits \n";
 
             if (comboCounters[i].ComboOver())
             {
@@ -79,6 +86,8 @@ public class UI : MonoBehaviour
             ComboCounter newComboCount = new ComboCounter((Enemy)enemy);
             newComboCount.AddDamage(damage.damageNumber);
 
+            GameObject newPanel = Instantiate(ComboPanelPrefab);
+            newPanel.transform.SetParent(transform);
             comboCounters.Add(newComboCount);
         }
     }

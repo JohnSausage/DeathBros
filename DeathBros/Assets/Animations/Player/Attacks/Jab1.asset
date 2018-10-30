@@ -47,9 +47,9 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 2
         damageType: 0
-      ID: 43838
+      ID: 27098
       getNewID: 0
-    soundName: 
+    soundName: sweep1
   - duration: 5
     sprite: {fileID: 21300088, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
     newHitID: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 2
         damageType: 0
-      ID: 43838
+      ID: 27098
       getNewID: 0
     soundName: 
   - duration: 10
