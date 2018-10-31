@@ -26,6 +26,9 @@ public class FrameAnimatorEditor : EditorWindow
     private Vector2 hboxSettingPosition;
     private Vector2 hitboxSettingPosition;
 
+    private bool showHurtboxes = true;
+    private bool showHitboxes = true;
+
     private FrameAnimation addFrameAnimation;
 
     private bool animationIsPlaying;
@@ -489,6 +492,7 @@ public class FrameAnimatorEditor : EditorWindow
             {
                 scale = EditorGUILayout.Slider("Scale:", scale, 1f, 16f);
 
+
                 EditorGUILayout.LabelField("Sprite:");
 
                 Vector2 previewPosition = new Vector2(35, 40);
@@ -544,7 +548,7 @@ public class FrameAnimatorEditor : EditorWindow
                 }
 
 
-                bool showHurtboxes = true;
+
 
                 Rect hboxRect = new Rect();
 
@@ -554,6 +558,7 @@ public class FrameAnimatorEditor : EditorWindow
                     {
                         foreach (Hurtbox h in currentFrame.hurtboxes)
                         {
+
                             hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
                             hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
 
@@ -567,11 +572,29 @@ public class FrameAnimatorEditor : EditorWindow
 
                         }
                     }
+                }
 
+                if (showHitboxes)
+                {
                     if (currentFrame.hitboxes != null)
                     {
                         foreach (Hitbox h in currentFrame.hitboxes)
                         {
+
+                            var fillColorArray = hitboxTexture.GetPixels();
+                            Color color = h.damage.editorColor;
+                            if (color == new Color(0, 0, 0, 0) || color == null) color = Color.red;
+                            color.a = 0.25f;
+
+                            for (int i = 0; i < fillColorArray.Length; i++)
+                            {
+                                if (fillColorArray[i].a > 0f)
+                                    fillColorArray[i] = color;
+                            }
+
+                            hitboxTexture.SetPixels(fillColorArray);
+                            hitboxTexture.Apply();
+
                             hboxRect.size = new Vector2(h.radius * 2, h.radius * 2) * scale * pixelPerUnit;
                             hboxRect.center = previewRect.center + new Vector2(h.position.x, -h.position.y) * scale * pixelPerUnit;
 
@@ -586,6 +609,9 @@ public class FrameAnimatorEditor : EditorWindow
                         }
                     }
                 }
+
+                showHurtboxes = EditorGUILayout.Toggle("Show Hurtboxes", showHurtboxes);
+                showHitboxes = EditorGUILayout.Toggle("Show Hurtboxes", showHitboxes);
 
                 currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
 
@@ -782,8 +808,22 @@ public class FrameAnimatorEditor : EditorWindow
                 currentAnimation.damages[i].baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentAnimation.damages[i].baseKnockback);
                 currentAnimation.damages[i].knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentAnimation.damages[i].knockbackGrowth);
                 currentAnimation.damages[i].damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentAnimation.damages[i].damageType);
+                currentAnimation.damages[i].editorColor = EditorGUILayout.ColorField("Color", currentAnimation.damages[i].editorColor);
 
                 if (GUILayout.Button("Remove")) currentAnimation.damages.Remove(currentAnimation.damages[i]);
+                if (GUILayout.Button("Set Hitbox"))
+                {
+                    foreach (Frame frame in currentAnimation.frames)
+                    {
+                        foreach (Hitbox hitbox in frame.hitboxes)
+                        {
+                            if (hitbox.damage.damageType == currentAnimation.damages[i].damageType)
+                            {
+                                hitbox.damage = currentAnimation.damages[i].Clone();
+                            }
+                        }
+                    }
+                }
 
                 EditorGUILayout.EndVertical();
             }
@@ -799,6 +839,13 @@ public class FrameAnimatorEditor : EditorWindow
             {
                 currentFrame.hitboxes[i].position = EditorGUILayout.Vector2Field("Position", currentFrame.hitboxes[i].position);
                 currentFrame.hitboxes[i].radius = EditorGUILayout.FloatField("Radius", currentFrame.hitboxes[i].radius);
+
+                if (currentFrame.hitboxes[i].damage == null)
+                {
+                    currentFrame.hitboxes[i].damage = new Damage();
+                }
+
+                currentFrame.hitboxes[i].damage.damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentFrame.hitboxes[i].damage.damageType);
 
                 EditorGUILayout.BeginHorizontal();
                 if (currentAnimation.damages != null)
@@ -827,7 +874,7 @@ public class FrameAnimatorEditor : EditorWindow
                         currentFrame.hitboxes[i].damage.knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentFrame.hitboxes[i].damage.knockBackDirection);
                         currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
                         currentFrame.hitboxes[i].damage.knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.knockbackGrowth);
-                        currentFrame.hitboxes[i].damage.damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentFrame.hitboxes[i].damage.damageType);
+
                     }
                     EditorGUILayout.EndVertical();
 

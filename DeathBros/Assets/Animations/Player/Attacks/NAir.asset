@@ -44,10 +44,11 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0.3, y: 1}
-        baseKnockback: 14
-        knockbackGrowth: 8
+        baseKnockback: 10
+        knockbackGrowth: 15
         damageType: 0
-      ID: 47702
+        editorColor: {r: 1, g: 0, b: 0, a: 0}
+      ID: 26922
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -68,10 +69,11 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0.3, y: 1}
-        baseKnockback: 14
-        knockbackGrowth: 8
+        baseKnockback: 10
+        knockbackGrowth: 15
         damageType: 0
-      ID: 47702
+        editorColor: {r: 1, g: 0, b: 0, a: 0}
+      ID: 26922
       getNewID: 0
     soundName: 
   - duration: 3
@@ -92,10 +94,11 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0.3, y: 1}
-        baseKnockback: 14
-        knockbackGrowth: 8
+        baseKnockback: 10
+        knockbackGrowth: 15
         damageType: 0
-      ID: 47702
+        editorColor: {r: 1, g: 0, b: 0, a: 0}
+      ID: 46825
       getNewID: 0
     soundName: 
   - duration: 3
@@ -116,10 +119,11 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0.3, y: 1}
-        baseKnockback: 14
-        knockbackGrowth: 8
+        baseKnockback: 10
+        knockbackGrowth: 15
         damageType: 0
-      ID: 47702
+        editorColor: {r: 1, g: 0, b: 0, a: 0}
+      ID: 46825
       getNewID: 0
     soundName: 
   - duration: 6
@@ -139,6 +143,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 10
     knockBackDirection: {x: 0.3, y: 1}
-    baseKnockback: 14
-    knockbackGrowth: 8
+    baseKnockback: 10
+    knockbackGrowth: 15
     damageType: 0
+    editorColor: {r: 1, g: 0, b: 0, a: 0}

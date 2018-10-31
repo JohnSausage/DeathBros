@@ -171,7 +171,7 @@ public class Hitbox
     }
 }
 
-public enum EDamageType { Normal }
+public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit }
 
 [System.Serializable]
 public class Damage
@@ -181,6 +181,7 @@ public class Damage
     public float baseKnockback;
     public float knockbackGrowth;
     public EDamageType damageType;
+    public Color editorColor;
 
     public int hitID { get; set; }
     public Character Owner { get; set; }
@@ -194,7 +195,8 @@ public class Damage
             knockBackDirection = knockBackDirection,
             baseKnockback = baseKnockback,
             knockbackGrowth = knockbackGrowth,
-            damageType = damageType
+            damageType = damageType,
+            editorColor = editorColor
         };
     }
 

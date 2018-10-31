@@ -20,9 +20,9 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.14149743, y: 0.3899112}
+    - position: {x: 0.140625, y: 0.15625}
       radius: 0.2
-    - position: {x: 0.11864416, y: -0.17161027}
+    - position: {x: 0.078125, y: -0.40625}
       radius: 0.3
     hitboxes: []
     soundName: 

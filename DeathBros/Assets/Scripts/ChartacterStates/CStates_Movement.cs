@@ -410,7 +410,7 @@ public class CS_Jumpsquat : CState
             if (chr.TiltInput != Vector2.zero)
             {
                 chr.CheckForAerialAttacks();
-                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
+                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.75f;
             }
             else
             {
@@ -423,7 +423,7 @@ public class CS_Jumpsquat : CState
                 }
                 else
                 {
-                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.6f;
+                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.75f;
                 }
             }
         }
