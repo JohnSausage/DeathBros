@@ -47,7 +47,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 2
         damageType: 0
-      ID: 33463
+      ID: 83508
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -71,7 +71,7 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 2
         damageType: 0
-      ID: 33463
+      ID: 83508
       getNewID: 0
     soundName: 
   - duration: 10

@@ -13,33 +13,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 5
-    sprite: {fileID: 21300028, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    sprite: {fileID: 21300032, guid: 975c855e6dce88144bd1b398ee6dd513, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.013316209, y: 0.30326465}
+    - position: {x: 0.171875, y: 0.34375}
       radius: 0.2
-    - position: {x: 0.044491492, y: -0.13983047}
+    - position: {x: 0.078125, y: -0.21875}
       radius: 0.3
     hitboxes: []
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300030, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300034, guid: 975c855e6dce88144bd1b398ee6dd513, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: 0.0021186117, y: 0.38983053}
+    - position: {x: 0.17041808, y: 0.22146297}
       radius: 0.2
-    - position: {x: -0.06144071, y: -0.11864404}
+    - position: {x: 0.0498393, y: -0.33118978}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.27754232, y: -0.838983}
+    - position: {x: 0.55225086, y: -0.46181682}
       radius: 1
       damage:
         damageNumber: 15
@@ -47,33 +47,23 @@ MonoBehaviour:
         baseKnockback: 25
         knockbackGrowth: 15
         damageType: 0
-      ID: 14667
-      getNewID: 0
-    - position: {x: 0.87076265, y: -0.16101691}
-      radius: 1
-      damage:
-        damageNumber: 15
-        knockBackDirection: {x: 0.2, y: -1}
-        baseKnockback: 25
-        knockbackGrowth: 15
-        damageType: 0
-      ID: 14667
+      ID: 96590
       getNewID: 0
     soundName: sweep1
   - duration: 3
-    sprite: {fileID: 21300032, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+    sprite: {fileID: 21300036, guid: 975c855e6dce88144bd1b398ee6dd513, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.08262715, y: 0.4745763}
+    - position: {x: 0.20056278, y: 0.4224276}
       radius: 0.2
-    - position: {x: -0.04025427, y: 0.05084749}
+    - position: {x: 0.12017692, y: -0.09003223}
       radius: 0.3
     hitboxes:
-    - position: {x: -0.93008476, y: -0.13983047}
+    - position: {x: -0.43247584, y: -0.32114157}
       radius: 1
       damage:
         damageNumber: 15
@@ -81,9 +71,9 @@ MonoBehaviour:
         baseKnockback: 25
         knockbackGrowth: 15
         damageType: 0
-      ID: 14667
+      ID: 96590
       getNewID: 0
-    - position: {x: -0.14618647, y: -0.8813559}
+    - position: {x: 0.5823956, y: -0.3914792}
       radius: 1
       damage:
         damageNumber: 15
@@ -91,20 +81,54 @@ MonoBehaviour:
         baseKnockback: 25
         knockbackGrowth: 15
         damageType: 0
-      ID: 14667
+      ID: 96590
       getNewID: 0
     soundName: 
-  - duration: 8
-    sprite: {fileID: 21300034, guid: 4a289917470f33b4bbcfcf2440ef2f2a, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300038, guid: 975c855e6dce88144bd1b398ee6dd513, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     hurtboxes:
-    - position: {x: -0.08262715, y: 0.4745763}
+    - position: {x: 0.05988753, y: 0.52290994}
       radius: 0.2
-    - position: {x: -0.01906783, y: 0.029661048}
+    - position: {x: 0.079983994, y: 0.010450094}
+      radius: 0.3
+    hitboxes:
+    - position: {x: -0.43247584, y: -0.32114157}
+      radius: 1
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: 0.2, y: -1}
+        baseKnockback: 25
+        knockbackGrowth: 15
+        damageType: 0
+      ID: 96590
+      getNewID: 0
+    - position: {x: 0.5823956, y: -0.3914792}
+      radius: 1
+      damage:
+        damageNumber: 15
+        knockBackDirection: {x: 0.2, y: -1}
+        baseKnockback: 25
+        knockbackGrowth: 15
+        damageType: 0
+      ID: 96590
+      getNewID: 0
+    soundName: 
+  - duration: 10
+    sprite: {fileID: 21300040, guid: 975c855e6dce88144bd1b398ee6dd513, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.05988753, y: 0.52290994}
+      radius: 0.2
+    - position: {x: 0.079983994, y: 0.010450094}
       radius: 0.3
     hitboxes: []
     soundName: 
