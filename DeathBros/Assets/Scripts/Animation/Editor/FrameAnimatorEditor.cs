@@ -38,6 +38,7 @@ public class FrameAnimatorEditor : EditorWindow
     private int specialInfoTabNr = 0;
     private float timer = 0;
     private bool showDamageDetails = false;
+    private string searchString = "";
 
     private string[] soundNames;
     private int selectSound = 0;
@@ -231,7 +232,7 @@ public class FrameAnimatorEditor : EditorWindow
         previewAnimationRect.x = 0;
         previewAnimationRect.y = animationListRect.height;
         previewAnimationRect.width = animationListRect.width;
-        previewAnimationRect.height = 200;
+        previewAnimationRect.height = 80;
 
         frameButtonsRect.x = animationListRect.width;
         frameButtonsRect.y = 0;
@@ -277,6 +278,8 @@ public class FrameAnimatorEditor : EditorWindow
             addFrameAnimation = null;
         }
 
+        searchString = EditorGUILayout.TextField(searchString);
+
         GUILayout.Label("Found animations:");
 
         animationListScrollVector = EditorGUILayout.BeginScrollView(animationListScrollVector, "box");
@@ -285,6 +288,7 @@ public class FrameAnimatorEditor : EditorWindow
         {
             animSO.frameAnimations = new List<FrameAnimation>();
         }
+
         for (int i = 0; i < animSO.frameAnimations.Count; i++)
         {
             if (i == currentAnimationNr)
@@ -292,23 +296,26 @@ public class FrameAnimatorEditor : EditorWindow
                 GUI.color = Color.grey;
             }
 
-            if (GUILayout.Button(animSO.frameAnimations[i].name))
+            if (animSO.frameAnimations[i].name.Contains(searchString))
             {
-                currentAnimation = animSO.frameAnimations[i];
-                currentAnimationNr = i;
-                currentFrameNr = 0;
-                currentFrame = null;
-
-                if (currentAnimation.frames == null)
+                if (GUILayout.Button(animSO.frameAnimations[i].name))
                 {
-                    currentAnimation.frames = new List<Frame>();
-                }
+                    currentAnimation = animSO.frameAnimations[i];
+                    currentAnimationNr = i;
+                    currentFrameNr = 0;
+                    currentFrame = null;
 
-                if (currentAnimation.frames.Count > 0)
-                {
-                    currentFrame = currentAnimation.frames[currentFrameNr];
-                }
+                    if (currentAnimation.frames == null)
+                    {
+                        currentAnimation.frames = new List<Frame>();
+                    }
 
+                    if (currentAnimation.frames.Count > 0)
+                    {
+                        currentFrame = currentAnimation.frames[currentFrameNr];
+                    }
+
+                }
             }
 
             GUI.color = Color.white;
@@ -582,6 +589,7 @@ public class FrameAnimatorEditor : EditorWindow
                         {
 
                             var fillColorArray = hitboxTexture.GetPixels();
+                            if (h.damage == null) h.damage = new Damage();
                             Color color = h.damage.editorColor;
                             if (color == new Color(0, 0, 0, 0) || color == null) color = Color.red;
                             color.a = 0.25f;
@@ -615,6 +623,7 @@ public class FrameAnimatorEditor : EditorWindow
 
                 currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
 
+                currentFrame.spawnProjectile = EditorGUILayout.Vector2Field("Projectile", currentFrame.spawnProjectile);
                 currentFrame.duration = EditorGUILayout.IntField("Duration:", currentFrame.duration);
                 if (editAllFrames)
                 {

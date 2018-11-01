@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.086794026, y: 0.08970099}
       radius: 0.2
@@ -33,6 +34,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.14908639, y: 0.06893687}
       radius: 0.2
@@ -48,7 +50,7 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 76897
+      ID: 1078
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -58,6 +60,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.21137874, y: 0.08970099}
       radius: 0.2
@@ -73,7 +76,7 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 76897
+      ID: 1078
       getNewID: 0
     soundName: 
   - duration: 10
@@ -83,6 +86,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.21137874, y: 0.08970099}
       radius: 0.2

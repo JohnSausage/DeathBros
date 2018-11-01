@@ -275,11 +275,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -613,11 +613,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1302,6 +1302,7 @@ MonoBehaviour:
   attackState:
     animationName: idle
     attackType: 0
+  projectile: {fileID: 0}
 --- !u!212 &193215730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1623,6 +1624,54 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 195313680}
   m_CullTransparentMesh: 0
+--- !u!1001 &212535368
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1529663804}
+    m_Modifications:
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 40.26732
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.1196218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.5563182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114340152992809904, guid: 8cb183a184a37cd42940f9df91e0392f,
+        type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 1791703342140664, guid: d9395764cd03f3d4db2042cec4aae125,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &215014416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e,
@@ -2881,11 +2930,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3191,11 +3240,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3673,6 +3722,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxScale: 0.2
+--- !u!4 &688807337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f,
+    type: 2}
+  m_PrefabInternal: {fileID: 212535368}
 --- !u!1 &690945797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3803,11 +3857,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4254,11 +4308,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4409,11 +4463,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4678,7 +4732,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_Name
@@ -4767,7 +4821,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967334111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.2, y: -2.4, z: 0}
+  m_LocalPosition: {x: -58.39, y: 2.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1502034169}
@@ -5470,7 +5524,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 61443332215040052, guid: c4265fa076aaabd429c71b28e575eb4e,
         type: 2}
@@ -6597,11 +6651,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6752,11 +6806,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6907,6 +6961,7 @@ Transform:
   m_Children:
   - {fileID: 1617460207}
   - {fileID: 215014416}
+  - {fileID: 688807337}
   - {fileID: 1130503498}
   - {fileID: 478881503}
   - {fileID: 1863854225}
@@ -7357,7 +7412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1765989825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7604,7 +7659,7 @@ MonoBehaviour:
   backgroundMusic: mystical_1
   enemyList:
   - {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
-  - {fileID: 1196939669774506, guid: b64a4d0bac18a6b48a144ff9f02917c8, type: 2}
+  - {fileID: 1269022456329406, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
 --- !u!4 &1790835290
 Transform:
   m_ObjectHideFlags: 0
@@ -7979,11 +8034,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -8310,11 +8365,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -8609,11 +8664,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9013,7 +9068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_Name

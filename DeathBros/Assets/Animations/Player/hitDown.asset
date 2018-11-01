@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.2908022, y: -0.5414938}
       radius: 0.2

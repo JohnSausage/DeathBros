@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.29846016, y: 0.23369564}
       radius: 0.2
@@ -33,6 +34,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.3211051, y: 0.30163044}
       radius: 0.2
@@ -47,6 +49,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27581522, y: 0.1884058}
       radius: 0.2
@@ -61,6 +64,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27581522, y: 0.21105072}
       radius: 0.2
@@ -75,6 +79,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.34375, y: 0.25634056}
       radius: 0.2
@@ -89,6 +94,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27581522, y: 0.1884058}
       radius: 0.2

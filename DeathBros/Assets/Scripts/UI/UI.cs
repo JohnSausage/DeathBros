@@ -113,7 +113,7 @@ public class ComboCounter
     {
         this.enemy = enemy;
         EnemyName = enemy.charName;
-        comboResetDuration = 120;
+        comboResetDuration = 90;
         timer = 0;
     }
 

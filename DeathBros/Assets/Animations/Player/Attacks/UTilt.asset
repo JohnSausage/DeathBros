@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.15625, y: 0.15625}
       radius: 0.2
@@ -33,6 +34,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.0625, y: 0.15625}
       radius: 0.2
@@ -44,22 +46,22 @@ MonoBehaviour:
       damage:
         damageNumber: 6
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 12
+        baseKnockback: 15
+        knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 29081
+      ID: 77446
       getNewID: 0
     - position: {x: 1, y: -0.40625}
       radius: 0.6100004
       damage:
         damageNumber: 6
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 12
+        baseKnockback: 15
+        knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 29081
+      ID: 77446
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -69,6 +71,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.09375, y: 0.09375}
       radius: 0.2
@@ -80,22 +83,22 @@ MonoBehaviour:
       damage:
         damageNumber: 6
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 12
+        baseKnockback: 15
+        knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 29081
+      ID: 77446
       getNewID: 0
     - position: {x: -0.8125, y: -0.1875}
       radius: 1.2699997
       damage:
         damageNumber: 6
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 12
+        baseKnockback: 15
+        knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 29081
+      ID: 77446
       getNewID: 0
     soundName: 
   - duration: 5
@@ -105,6 +108,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.125, y: 0.15625}
       radius: 0.2
@@ -116,11 +120,11 @@ MonoBehaviour:
       damage:
         damageNumber: 6
         knockBackDirection: {x: 0.2, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 12
+        baseKnockback: 15
+        knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 29081
+      ID: 77446
       getNewID: 0
     soundName: 
   - duration: 5
@@ -130,6 +134,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.09375, y: 0.15625}
       radius: 0.2
@@ -140,7 +145,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 6
     knockBackDirection: {x: 0.2, y: 1}
-    baseKnockback: 10
-    knockbackGrowth: 12
+    baseKnockback: 15
+    knockbackGrowth: 20
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

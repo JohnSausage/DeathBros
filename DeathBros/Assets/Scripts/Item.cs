@@ -34,7 +34,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     protected Queue<int> hitIDs = new Queue<int>();
 
-    protected void Start()
+    protected void Awake()
     {
         ctr = GetComponent<ItemController2D>();
         col = GetComponentInChildren<Collider2D>();

@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.21137874, y: 0.08970099}
       radius: 0.2
@@ -33,6 +34,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.21137874, y: 0.08970099}
       radius: 0.2
@@ -43,12 +45,12 @@ MonoBehaviour:
       radius: 0.5
       damage:
         damageNumber: 3
-        knockBackDirection: {x: 1, y: 2}
+        knockBackDirection: {x: 1, y: 3}
         baseKnockback: 10
-        knockbackGrowth: 10
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 59247
+      ID: 91208
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -58,6 +60,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.107558146, y: 0.027408632}
       radius: 0.2
@@ -68,12 +71,12 @@ MonoBehaviour:
       radius: 0.5
       damage:
         damageNumber: 3
-        knockBackDirection: {x: 1, y: 2}
+        knockBackDirection: {x: 1, y: 3}
         baseKnockback: 10
-        knockbackGrowth: 10
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 59247
+      ID: 91208
       getNewID: 0
     soundName: 
   - duration: 10
@@ -83,6 +86,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.107558146, y: 0.027408632}
       radius: 0.2
@@ -92,8 +96,8 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 3
-    knockBackDirection: {x: 1, y: 2}
+    knockBackDirection: {x: 1, y: 3}
     baseKnockback: 10
-    knockbackGrowth: 10
+    knockbackGrowth: 15
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

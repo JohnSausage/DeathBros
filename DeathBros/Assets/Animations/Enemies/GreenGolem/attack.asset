@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: -0.0437771, y: 0.079956554}
       radius: 0.65
@@ -31,6 +32,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.010492074, y: 0.13422573}
       radius: 0.65
@@ -43,6 +45,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 1, y: 1}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65
@@ -55,7 +58,8 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 16254
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+      ID: 81298
       getNewID: 0
     soundName: 
   - duration: 5
@@ -65,6 +69,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65
@@ -77,7 +82,8 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
-      ID: 16254
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+      ID: 81298
       getNewID: 0
     soundName: 
   - duration: 5
@@ -87,6 +93,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65
@@ -99,6 +106,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65
@@ -110,3 +118,4 @@ MonoBehaviour:
     baseKnockback: 15
     knockbackGrowth: 5
     damageType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}

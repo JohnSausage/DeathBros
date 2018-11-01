@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ public class FrameAnimator : _MB
     private HurtboxManager hubM;
     private HitboxManager hibM;
     private Controller2D ctr;
+
+    public event Action<Vector2, Vector2> SpawnProjectile;
 
     private float frameTimer;
     private int animTimer;
@@ -74,9 +76,14 @@ public class FrameAnimator : _MB
             ctr.forceMovement += forceMovement;
             ctr.addMovement = addMovement;
 
+            if (currentFrame.spawnProjectile != Vector2.zero)
+            {
+                if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
+            }
+
             ctr.resetVelocity = currentFrame.resetVelocity;
 
-            if(frameTimer == 0 && currentFrame.soundName != "")
+            if (frameTimer == 0 && currentFrame.soundName != "")
             {
                 AudioManager.PlaySound(currentFrame.soundName);
             }

@@ -10,6 +10,9 @@ public class Enemy : Character
     [SerializeField]
     protected CS_TiltAttack attackState;
 
+    [SerializeField]
+    protected GameObject projectile;
+
     public CS_Attack currentAttack { get { return attackState; } }
     //public EnemyAI AI { get; protected set; }
 
@@ -23,6 +26,8 @@ public class Enemy : Character
         attackState.Init(this);
 
         CStates_InitExitStates();
+
+        Anim.SpawnProjectile += SpawnProjectile;
     }
 
     private void Update()
@@ -41,6 +46,14 @@ public class Enemy : Character
             Attack = false;
         }
         */
+    }
+
+    public void SpawnProjectile(Vector2 position, Vector2 direction)
+    {
+        GameObject spawnProjectile = Instantiate(projectile, position, Quaternion.identity);
+
+        Item item = spawnProjectile.GetComponent<Item>();
+        if (item != null) item.Velocity = direction;
     }
 
     public override bool CheckForTiltAttacks()

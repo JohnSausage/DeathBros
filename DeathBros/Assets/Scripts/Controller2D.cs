@@ -570,9 +570,9 @@ public class Controller2D : MonoBehaviour
                 {
                     groundMask += platformMask;
 
-                    if (velocity.y < maxFallSpeed / 60)
+                    if (velocity.y < maxFallSpeed / 60 / 1.2f) //reduce maxfallspeed for testing
                     {
-                        velocity.y -= gravity / 60 * 2; //if too slow, slowly decrease fallspeed
+                        velocity.y -= gravity / 60 * 1.1f; //if too fast, slowly decrease fallspeed
                     }
                 }
 

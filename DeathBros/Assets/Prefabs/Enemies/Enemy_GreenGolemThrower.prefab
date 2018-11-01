@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 61443332215040052}
   - component: {fileID: 114884629401223530}
   m_Layer: 0
-  m_Name: Enemy_GreenGolem
+  m_Name: Enemy_GreenGolemThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   attackState:
     animationName: attack
     attackType: 0
+  projectile: {fileID: 0}
 --- !u!114 &114483006981894648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTag: Player
-  attackRange: 1
+  attackRange: 4
   aggroRange: 6
   aggroed: 0
   target: {fileID: 0}

@@ -19,6 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.3376624, y: 0.31168827}
       radius: 0.2
@@ -33,6 +34,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.2808442, y: 0.20616879}
       radius: 0.2
@@ -48,7 +50,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 85642
+      ID: 35591
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -58,6 +60,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.17532472, y: 0.18181814}
       radius: 0.2
@@ -73,7 +76,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 85642
+      ID: 35591
       getNewID: 0
     soundName: 
   - duration: 3
@@ -83,6 +86,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.17532472, y: 0.18181814}
       radius: 0.2
@@ -98,7 +102,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 85642
+      ID: 35591
       getNewID: 0
     soundName: 
   - duration: 6
@@ -108,6 +112,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.17532472, y: 0.18181814}
       radius: 0.2
@@ -123,7 +128,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 85642
+      ID: 39678
       getNewID: 0
     soundName: 
   damages:
