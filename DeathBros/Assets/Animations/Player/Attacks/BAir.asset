@@ -50,7 +50,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 35591
+      ID: 67332
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -76,7 +76,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 35591
+      ID: 67332
       getNewID: 0
     soundName: 
   - duration: 3
@@ -102,7 +102,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 35591
+      ID: 67332
       getNewID: 0
     soundName: 
   - duration: 6
@@ -128,7 +128,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 39678
+      ID: 67332
       getNewID: 0
     soundName: 
   damages:

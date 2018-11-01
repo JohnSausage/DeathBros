@@ -154,6 +154,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4533943489300728}
   - component: {fileID: 60925988190743438}
+  - component: {fileID: 114153651275326982}
+  - component: {fileID: 50075732049698944}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
@@ -904,6 +906,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837006326306812}
   m_Mesh: {fileID: 4300000, guid: 70a812060eeee9d4183eb42dbf803da6, type: 3}
+--- !u!50 &50075732049698944
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372738497663146}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &60780812235592822
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -1155,6 +1177,39 @@ MonoBehaviour:
   MapWidthInPixels: 1024
   MapHeightInPixels: 512
   BackgroundColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+--- !u!114 &114153651275326982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372738497663146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fe77aefa05c4747bf90529d0794263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    damageNumber: 10
+    knockBackDirection: {x: 0, y: 1}
+    baseKnockback: 20
+    knockbackGrowth: 10
+    damageType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}
+  filter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 3072
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  tickDelay: 10
 --- !u!114 &114166357007880690
 MonoBehaviour:
   m_ObjectHideFlags: 1

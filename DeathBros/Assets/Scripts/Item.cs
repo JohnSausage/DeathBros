@@ -12,6 +12,8 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
     [SerializeField]
     protected float weight = 20;
 
+    [SerializeField]
+    protected bool destroyOnCollision = false;
     [Space]
 
     [SerializeField]
@@ -70,8 +72,18 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
                     {
                         damage.knockBackDirection = Velocity;
                         chr.GetHit(damage);
+
+                        if (destroyOnCollision) Destroy(gameObject);
                     }
                 }
+            }
+        }
+
+        if(destroyOnCollision)
+        {
+            if(ctr.grounded)
+            {
+                Destroy(gameObject);
             }
         }
     }

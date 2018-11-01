@@ -45,7 +45,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 1, y: 1}
+    spawnProjectile: {x: 0, y: 0}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65
@@ -59,7 +59,7 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 81298
+      ID: 53083
       getNewID: 0
     soundName: 
   - duration: 5
@@ -83,10 +83,10 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 81298
+      ID: 53083
       getNewID: 0
     soundName: 
-  - duration: 5
+  - duration: 4
     sprite: {fileID: 21300034, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -94,6 +94,19 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    hurtboxes:
+    - position: {x: 0.27279308, y: -0.23661365}
+      radius: 0.65
+    hitboxes: []
+    soundName: 
+  - duration: 1
+    sprite: {fileID: 21300034, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 5, y: 20}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
       radius: 0.65

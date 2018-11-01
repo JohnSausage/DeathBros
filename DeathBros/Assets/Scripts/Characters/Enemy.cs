@@ -50,10 +50,21 @@ public class Enemy : Character
 
     public void SpawnProjectile(Vector2 position, Vector2 direction)
     {
-        GameObject spawnProjectile = Instantiate(projectile, position, Quaternion.identity);
+        if (projectile != null)
+        {
+            GameObject spawnProjectile = Instantiate(projectile, position, Quaternion.identity);
 
-        Item item = spawnProjectile.GetComponent<Item>();
-        if (item != null) item.Velocity = direction;
+            Item item = spawnProjectile.GetComponent<Item>();
+            if (item != null)
+            {
+                Vector2 velocity = direction;
+                velocity.x *= Direction;
+
+                item.Velocity = velocity;
+                item.Owner = this;
+                item.GenerateID();
+            }
+        }
     }
 
     public override bool CheckForTiltAttacks()

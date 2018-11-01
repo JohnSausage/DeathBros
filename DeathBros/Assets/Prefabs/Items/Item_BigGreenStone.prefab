@@ -38,13 +38,14 @@ GameObject:
   - component: {fileID: 212936532156690204}
   - component: {fileID: 114173799294323190}
   - component: {fileID: 114739264125165934}
+  - component: {fileID: 50054443710205102}
   m_Layer: 13
   m_Name: Item_BigGreenStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4519635125014508
 Transform:
   m_ObjectHideFlags: 1
@@ -72,6 +73,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50054443710205102
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365562643926888}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58944930533593030
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -125,12 +146,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 150
+  destroyOnCollision: 1
   damage:
-    damageNumber: 0
-    knockBackDirection: {x: 0, y: 0}
-    baseKnockback: 0
-    knockbackGrowth: 0
+    damageNumber: 10
+    knockBackDirection: {x: 1, y: 3}
+    baseKnockback: 15
+    knockbackGrowth: 10
     damageType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}
   damagingSpeed: 10
   filter:
     useTriggers: 0
@@ -141,7 +164,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 768
+      m_Bits: 3072
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
