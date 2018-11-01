@@ -5,12 +5,15 @@ using UnityEngine;
 public class GameManager : _MB
 {
     public Level startingLevel;
+    public World startWorld;
 
     public float knTestFactor = 1;
     public static bool IsPaused { get; private set; }
 
     public static Player Player { get; private set; }
     public StateMachine LevelSM { get; private set; }
+    public static Level CurrentLevel { get { return (Level)Instance.LevelSM.CurrentState; } }
+    public static Vector2 PlayerLevelPosition {  get { return Player.transform.position - CurrentLevel.transform.position; } }
 
     public static GameManager Instance { get; private set; }
 
@@ -36,12 +39,12 @@ public class GameManager : _MB
             Debug.Log("Player not found");
 
         LevelSM = new StateMachine();
-        
+
     }
 
     void Update()
     {
-        if(levelStarted == false)
+        if (levelStarted == false)
         {
             LevelSM.ChangeState(startingLevel);
             levelStarted = true;
@@ -49,7 +52,7 @@ public class GameManager : _MB
 
         LevelSM.Update();
 
-        if(Input.GetKeyDown(KeyCode.Escape) || InputManager.Pause.GetButtonDown())
+        if (Input.GetKeyDown(KeyCode.Escape) || InputManager.Pause.GetButtonDown())
         {
 
             if (!IsPaused)
@@ -73,5 +76,11 @@ public class GameManager : _MB
         IsPaused = false;
 
         PauseMenu.Instance.gameObject.SetActive(false);
+    }
+
+    public static void ChangeLevel(Level newLevel)
+    {
+        if (newLevel != null)
+            Instance.LevelSM.ChangeState(newLevel);
     }
 }
