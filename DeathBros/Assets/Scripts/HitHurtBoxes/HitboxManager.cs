@@ -65,7 +65,7 @@ public class HitboxManager : _MB
                         damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
 
 
-                        hitChr.GetHit(damage);
+                        //hitChr.GetHit(damage);
 
                     }
                     else if (hitObject is Item)
@@ -74,8 +74,10 @@ public class HitboxManager : _MB
 
                         hitItem.Owner = Chr;
 
-                        hitItem.GetHit(damage);
+                        //hitItem.GetHit(damage);
                     }
+
+                    hitObject.GetHit(damage);
                 }
 
             }

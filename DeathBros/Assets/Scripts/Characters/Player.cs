@@ -139,7 +139,22 @@ public class Player : Character
     {
         if (holdItem != null)
         {
-            holdItem.Velocity = throwVelocity.normalized * 25f;
+            Vector2 itemVelocity;
+
+            if(throwVelocity == Vector2.zero)
+            {
+                itemVelocity = Vector2.zero;
+            }
+            else if(Mathf.Abs(throwVelocity.x) > Mathf.Abs(throwVelocity.y))
+            {
+                itemVelocity = new Vector2(Mathf.Sign(throwVelocity.x), 0.25f);
+            }
+            else
+            {
+                itemVelocity = new Vector2(0, Mathf.Sign(throwVelocity.y));
+            }
+
+            holdItem.Velocity = itemVelocity.normalized * 25f;
             ReleaseHoldItem();
 
             InputManager.ClearBuffer();
