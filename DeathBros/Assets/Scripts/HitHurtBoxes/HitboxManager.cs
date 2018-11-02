@@ -45,10 +45,16 @@ public class HitboxManager : _MB
             {
                 ICanTakeDamage hitObject = (ICanTakeDamage)hit[0].GetComponentInParent(typeof(ICanTakeDamage));
 
-                Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
+                Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
                 damage.hitID = currentID;
                 damage.Owner = Chr;
 
+                if (Chr is Player)
+                {
+                    Player player = (Player)Chr;
+
+                    damage.AddDamage(player.soulCharge);
+                }
 
                 if (hitObject != null)
                 {
@@ -56,43 +62,14 @@ public class HitboxManager : _MB
                     {
                         Character hitChr = (Character)hitObject;
 
-                        //if (!hitChr.ContainsHidID(currentFrame.hitboxes[i].ID))
-                        //{
-                        //
-                        //    hitChr.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
                         damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
 
-                        if (Chr is Player)
-                        {
-                            Player player = (Player)Chr;
-
-
-                            //if (!Chr.ContainsHidID(currentFrame.hitboxes[i].ID))
-                            //{
-                            //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge);
-
-                            damage.AddDamage(player.soulCharge);
-                            //if (PlayerHitsEnenmy != null) PlayerHitsEnenmy((Enemy)hitObject, damage);
-                            //}
-                        }
-                        else if (Chr is Enemy)
-                        {
-                            //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
-                            //hitChr.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
-                        }
 
                         hitChr.GetHit(damage);
-
-                        //}
-
-
-                        //if (EnemyHit != null) EnemyHit(hitChr.transform.position);
 
                     }
                     else if (hitObject is Item)
                     {
-                        //damage = currentFrame.hitboxes[i].GetDamage(spr.flipX);
-                        //damage.hitID = currentID;
                         Item hitItem = (Item)hitObject;
 
                         hitItem.Owner = Chr;
@@ -100,36 +77,6 @@ public class HitboxManager : _MB
                         hitItem.GetHit(damage);
                     }
                 }
-
-
-                /*
-                Character hitCharacter = hit[0].GetComponentInParent<Character>();
-
-                if (hitCharacter != null)
-                {
-                    if (!hitCharacter.ContainsHidID(currentFrame.hitboxes[i].ID))
-                    {
-                        if (Chr is Player)
-                        {
-                            Player player = (Player)Chr;
-                            Enemy ene = (Enemy)hitCharacter;
-                            Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).AddDamage(player.soulCharge);
-
-                            hitCharacter.TakeDamage(damage);
-
-                            if (PlayerHitsEnenmy != null) PlayerHitsEnenmy(ene, damage);
-                        }
-                        else
-                        {
-                            hitCharacter.TakeDamage(currentFrame.hitboxes[i].GetDamage(spr.flipX));
-                        }
-
-                        hitCharacter.AddHitIDToQueue(currentFrame.hitboxes[i].ID);
-
-                        if (EnemyHit != null) EnemyHit(hitCharacter.transform.position);
-                    }
-                }
-                */
 
             }
         }
@@ -200,6 +147,12 @@ public class Damage
         };
     }
 
+    public void AddDamage(float damage)
+    {
+        damageNumber += damage;
+    }
+
+    /*
     public Damage AddDamage(float damage)
     {
         Damage rDamage = this.Clone();
@@ -207,7 +160,7 @@ public class Damage
 
         return rDamage;
     }
-
+    */
     public Vector2 Knockback(float weight)
     {
         return Knockback(weight, 1);

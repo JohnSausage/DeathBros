@@ -97,6 +97,7 @@ public class CS_Idle : CState
     public override void Enter()
     {
         base.Enter();
+
         chr.jumpsUsed = 0;
 
         chr.Anim.animationSpeed = 1.5f;
@@ -270,6 +271,14 @@ public class CS_Dash : CState
         {
             ChangeState(typeof(CS_Jumpsquat));
         }
+
+        if(timer <= 5)
+        {
+            if(chr.Attack)
+            {
+                ChangeState(EAttackType.FSoul);
+            }
+        }
     }
 }
 
@@ -404,6 +413,11 @@ public class CS_Jumpsquat : CState
         //chr.ModInputs(0.5f);
 
         timer++;
+
+        if (chr.Attack)
+        {
+            ChangeState(EAttackType.USoul);
+        }
 
         if (timer >= duration)
         {

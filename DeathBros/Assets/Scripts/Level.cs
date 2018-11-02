@@ -6,10 +6,13 @@ using Tiled2Unity;
 
 public class Level : _MB, IState
 {
-    [SerializeField]
-    protected MapSquare mapSquare;
+    //[SerializeField]
+    //protected MapSquare mapSquare;
+    //public MapSquare MapSquare { get { return mapSquare; } }
 
-    public MapSquare MapSquare { get { return mapSquare; } }
+    [SerializeField]
+    protected Sprite mapSprite;
+    public Sprite MapSrite { get { return mapSprite; } }
 
     [SerializeField]
     protected Level levelLeft, levelRight, levelTop, levelBottom;
@@ -44,7 +47,7 @@ public class Level : _MB, IState
 
         world = GetComponentInParent<World>();
 
-        mapSquare.position = transform.localPosition / 64;
+        //mapSquare.position = transform.localPosition / 64;
 
         Exit();
     }
@@ -132,10 +135,11 @@ public class Level : _MB, IState
     }
 }
 
-
+/*
 [System.Serializable]
 public class MapSquare
 {
     public string name;
     public Vector2 position;
 }
+*/

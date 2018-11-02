@@ -59,10 +59,13 @@ public class CState : IState
         CState newState = chr.GetState(type);
 
         return (ChangeState(newState));
-        //if (newState != null)
-        //{
-        //    chr.CSMachine.ChangeState(newState);
-        //}
+    }
+
+    protected bool ChangeState(EAttackType attackType)
+    {
+        CS_Attack newState = chr.GetAttackState(attackType);
+
+        return (ChangeState(newState));
     }
 
     protected void TakeDamage(Damage damage)

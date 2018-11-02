@@ -50,7 +50,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 91208
+      ID: 26723
       getNewID: 0
     soundName: sweep1
   - duration: 5
@@ -76,7 +76,7 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 91208
+      ID: 26723
       getNewID: 0
     soundName: 
   - duration: 10

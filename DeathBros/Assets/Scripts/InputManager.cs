@@ -34,6 +34,8 @@ public class InputManager : MonoBehaviour
 
     private Vector2 oldDirection;
 
+    public static event Action<DualInput> InputSet;
+
     #region Singelton
     private static InputManager instance;
     public static InputManager Instance { get { return instance; } }
@@ -119,14 +121,13 @@ public class InputManager : MonoBehaviour
                         if (Inputs[i].IsSet)
                         {
                             Inputs[i].SettingButton = false;
+
+                            if (InputSet != null) InputSet(Inputs[i]);
                         }
                     }
                 }
             }
         }
-
-
-
 
         //Checking Inputs
         /*
@@ -257,7 +258,7 @@ public class InputManager : MonoBehaviour
         GetInput(inputName).SettingButton = true;
     }
 
-    private DualInput GetInput(string inputName)
+    public DualInput GetInput(string inputName)
     {
         return Inputs.Find(x => x.InputName == inputName);
     }
@@ -375,6 +376,12 @@ public class DualInput
             axisDirection = PlayerPrefs.GetFloat(InputName + " axisDrirection");
             IsSet = true;
         }
+    }
+
+    public string GetButtonName()
+    {
+        if (isButton) return buttonName.ToString();
+        else return axisName;
     }
 
     public bool GetButton()

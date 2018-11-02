@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class World : _MB
 {
-    public MiniMap miniMap { get; protected set; }
-
     [SerializeField]
-    protected List<Level> levels;
+    protected string worldName;
+    public string WorldName { get { return worldName; } }
+
+    public List<Level> Levels { get; protected set; }
 
     private void Start()
     {
-        miniMap = new MiniMap();
+        Levels = new List<Level>();
 
         foreach (Transform lvl in transform)
         {
@@ -19,20 +20,8 @@ public class World : _MB
 
             if (addLvl != null)
             {
-                levels.Add(addLvl);
-                miniMap.mapSquares.Add(addLvl.MapSquare);
+                Levels.Add(addLvl);
             }
         }
-    }
-}
-
-[System.Serializable]
-public class MiniMap
-{
-    public List<MapSquare> mapSquares;
-
-    public MiniMap()
-    {
-        mapSquares = new List<MapSquare>();
     }
 }

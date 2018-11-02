@@ -20,6 +20,7 @@ public class FrameAnimator : _MB
     private Controller2D ctr;
 
     public event Action<Vector2, Vector2> SpawnProjectile;
+    public event Action<FrameAnimation> AnimationOver;
 
     private float frameTimer;
     private int animTimer;
@@ -100,6 +101,7 @@ public class FrameAnimator : _MB
             {
                 animTimer = 0;
                 animationOver = true;
+                if (AnimationOver != null) AnimationOver(currentAnimation);
             }
         }
         else

@@ -67,7 +67,8 @@ public class GameManager : _MB
         Time.timeScale = 0;
         IsPaused = true;
 
-        PauseMenu.Instance.gameObject.SetActive(true);
+        //PauseMenu.Instance.gameObject.SetActive(true);
+        PauseMenu.Open();
     }
 
     public void Resume()

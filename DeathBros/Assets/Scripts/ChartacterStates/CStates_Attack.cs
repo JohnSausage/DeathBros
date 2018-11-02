@@ -6,6 +6,8 @@ public class CStates_Attack
 {
     //public CS_TiltAttack testAttack;
     public CS_SoulAttack uSoul;
+    public CS_SoulAttack dSoul;
+    public CS_SoulAttack fSoul;
 
     [Space]
 
@@ -26,8 +28,9 @@ public class CStates_Attack
 
     public virtual void Init(Character chr)
     {
-        //testAttack.Init(chr);
         uSoul.Init(chr);
+        dSoul.Init(chr);
+        fSoul.Init(chr);
 
         jab1.Init(chr);
         jab2.Init(chr);
@@ -128,12 +131,13 @@ public class CS_SoulAttack : CS_Attack
     [SerializeField]
     private string chargeAnimationName = "idle";
 
-
     [SerializeField]
     private float chargeRate = 1f;
 
     private FrameAnimation chargeAnimation;
     private bool charging = true;
+    private int minChargeTime = 10;
+    private int timer = 0;
 
     protected float dirX;
 
@@ -142,13 +146,18 @@ public class CS_SoulAttack : CS_Attack
         base.Init(chr);
 
         chargeAnimation = chr.Anim.GetAnimation(chargeAnimationName);
+
+        chr.Anim.AnimationOver += SetIdleAfterAttack;
     }
 
     public override void Enter()
     {
+        base.Enter();
+
         chr.Anim.ChangeAnimation(chargeAnimation);
         charging = true;
         chr.Spr.color = Color.red;
+        timer = 0;
 
         dirX = 0;
         if (chr.DirectionalInput.x != 0)
@@ -158,6 +167,8 @@ public class CS_SoulAttack : CS_Attack
     public override void Execute()
     {
         base.Execute();
+
+        timer++;
 
         dirX *= 0.8f;
         chr.SetInputs(new Vector2(dirX, 0));
@@ -176,18 +187,20 @@ public class CS_SoulAttack : CS_Attack
                 player.soulCharge += chargeRate;
             }
         }
-
-        if (!chr.HoldAttack || chr.soulMeter <= 1f)
+        else
         {
-            chr.Anim.ChangeAnimation(animation);
-            charging = false;
-            chr.Spr.color = Color.white;
+            if (timer > minChargeTime)
+            {
+                chr.Anim.ChangeAnimation(animation);
+                charging = false;
+                chr.Spr.color = Color.white;
+            }
         }
 
-        if (!charging && chr.Anim.animationOver)
-        {
-            chr.CS_SetIdle();
-        }
+        //if (!charging && chr.Anim.animationOver && timer > minChargeTime + 3)
+        //{
+        //    chr.CS_SetIdle();
+        //
     }
 
     public override void Exit()
@@ -201,6 +214,14 @@ public class CS_SoulAttack : CS_Attack
             Player player = (Player)chr;
 
             player.soulCharge = 0f;
+        }
+    }
+
+    private void SetIdleAfterAttack(FrameAnimation animation)
+    {
+        if(this.animation == animation)
+        {
+            chr.CS_SetIdle();
         }
     }
 }
