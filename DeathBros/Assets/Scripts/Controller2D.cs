@@ -450,15 +450,18 @@ public class Controller2D : MonoBehaviour
                 }
 
                 //only check walls and not platforms
-                collisionCheck = RCXY(Vector2.right * Mathf.Sign(velocity.x), skin * 2, collisionMask);
 
-                if (collisionCheck)
+                if (velocity.x != 0)
                 {
-                    wallDirection = (int)Mathf.Sign(velocity.x);
-                    velocity.x = 0;
-                    onWall = true;
-                }
+                    collisionCheck = RCXY(Vector2.right * Mathf.Sign(velocity.x), skin * 2, collisionMask);
 
+                    if (collisionCheck)
+                    {
+                        wallDirection = (int)Mathf.Sign(velocity.x);
+                        velocity.x = 0;
+                        onWall = true;
+                    }
+                }
                 collisionCheck = RCXY(velocity, velocity.magnitude, collisionMask); //check for other collisions and stop velocity
 
                 if (collisionCheck)

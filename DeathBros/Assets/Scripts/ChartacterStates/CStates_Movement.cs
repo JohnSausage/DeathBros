@@ -654,8 +654,11 @@ public class CS_Wallsliding : CState
             ChangeState(jumping);
         }
 
-        if (chr.Jump || (chr.StrongInputs.x != 0 && Mathf.Sign(chr.StrongInputs.x) != chr.Ctr.wallDirection))
+        if (chr.Jump)// || (chr.StrongInputs.x != 0 && Mathf.Sign(chr.StrongInputs.x) != chr.Ctr.wallDirection))
         {
+            walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
+            ChangeState(walljumpStart);
+            /*
             if (chr.Ctr.wallDirection != Mathf.Sign(chr.DirectionalInput.x))
             {
                 walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
@@ -667,6 +670,7 @@ public class CS_Wallsliding : CState
                 //ChangeState(chr.advancedMovementStates.doubleJumpsquat);
                 ChangeState(typeof(CS_DoubleJumpsquat));
             }
+            */
         }
     }
 
