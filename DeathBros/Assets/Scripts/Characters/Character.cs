@@ -129,7 +129,7 @@ public class Character : _MB, ICanTakeDamage
         return hitIDs.Contains(id);
     }
 
-    protected virtual void HitEnemy(Character enemy, Damage damage)
+    public virtual void HitEnemy(Character enemy, Damage damage)
     {
 
     }
@@ -151,8 +151,7 @@ public class Character : _MB, ICanTakeDamage
         {
             if (!shielding)
             {
-                if (TakesDamage != null) TakesDamage(damage);
-                if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
+                RaiseTakeDamageEvents(damage);
 
                 AudioManager.PlaySound("hit1");
 
@@ -172,6 +171,12 @@ public class Character : _MB, ICanTakeDamage
                 Die();
             }
         }
+    }
+
+    protected void RaiseTakeDamageEvents(Damage damage)
+    {
+        if (TakesDamage != null) TakesDamage(damage);
+        if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
     }
 
     public virtual void Die()

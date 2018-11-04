@@ -14,6 +14,14 @@ public class Player : Character
 
     public float soulCharge = 0;
 
+    protected int maxSouls = 3;
+    protected int currentSouls;
+    public int CurrentSouls { get { return currentSouls; } }
+
+    [SerializeField]
+    protected int soulBalanceDelayDuration = 60;
+    private int soulBalanceDelayTimer = 0;
+
     public float pickUpRadius = 1.5f;
 
     public LayerMask enemyMask;
@@ -21,8 +29,11 @@ public class Player : Character
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
+    public float SoulPercent { get { return soulMeter / soulMeterMax; } }
+
     public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
+    public event Action<int> ESoulsChanged;
 
     public override void Init()
     {
@@ -37,6 +48,8 @@ public class Player : Character
         CStates_InitExitStates();
 
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
+
+        currentSouls = maxSouls;
     }
 
     void Update()
@@ -83,23 +96,33 @@ public class Player : Character
     {
         base.FixedUpdate();
 
-        if (soulMeter > 50)
-        {
-            soulMeter -= soulMeterBalanceRate;
-
-            if (soulMeter < 50) soulMeter = 50;
-        }
-        else
-        {
-            soulMeter += soulMeterBalanceRate;
-
-            if (soulMeter > 50) soulMeter = 50;
-        }
-
-        soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+        BalanceSoulMeter();
     }
 
-    protected override void HitEnemy(Character enemy, Damage damage)
+    protected void BalanceSoulMeter()
+    {
+        if (soulBalanceDelayTimer > 0) soulBalanceDelayTimer--;
+
+        if (soulBalanceDelayTimer == 0)
+        {
+            if (soulMeter > 50)
+            {
+                soulMeter -= soulMeterBalanceRate;
+
+                if (soulMeter < 50) soulMeter = 50;
+            }
+            else
+            {
+                soulMeter += soulMeterBalanceRate;
+
+                if (soulMeter > 50) soulMeter = 50;
+            }
+
+            soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+        }
+    }
+
+    public override void HitEnemy(Character enemy, Damage damage)
     {
         base.HitEnemy(enemy, damage);
 
@@ -120,8 +143,59 @@ public class Player : Character
     {
         base.GetHit(damage);
 
-        if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
+        //if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
+        if (PlayerHealthChanged != null) PlayerHealthChanged(soulMeter / soulMeterMax);
     }
+
+    protected override void TakeDamage(Damage damage)
+    {
+        if (!IsDead)
+        {
+            if (!shielding)
+            {
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
+
+                //stats.currentHealth -= damage.damageNumber;
+                ModSoulMeter(-damage.damageNumber);
+            }
+            if (stats.currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    public override void ModSoulMeter(float value)
+    {
+        soulBalanceDelayTimer = soulBalanceDelayDuration;
+
+        soulMeter += value;
+
+        if (soulMeter <= 0)
+        {
+            currentSouls--;
+            soulMeter = soulMeterMax;
+
+            if (ESoulsChanged != null) ESoulsChanged(currentSouls);
+
+            if (currentSouls <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
 
     protected bool CheckForItemPickUp()
     {

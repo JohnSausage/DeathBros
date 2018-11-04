@@ -18,16 +18,27 @@ public class UI : MonoBehaviour
     [SerializeField]
     private GameObject ComboPanelPrefab;
 
+    [SerializeField]
+    private GameObject soulPanel;
+
+    [SerializeField]
+    private GameObject imageSoul;
+
     public List<ComboPanel> comboPanels;
 
     public List<ComboCounter> comboCounters;
     public List<UIMessage> uiMessages;
 
+
+
     void Start()
     {
-        Player.PlayerHealthChanged += UpdatePlayerHealth;
+        //Player.PlayerHealthChanged += UpdatePlayerHealth;
         Player.EnemyHit += UpdateComboCounter;
         //HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
+
+        GameManager.Player.ESoulsChanged += UpdateSouls;
+        UpdateSouls(GameManager.Player.CurrentSouls);
 
         comboPanels = new List<ComboPanel>();
     }
@@ -61,13 +72,32 @@ public class UI : MonoBehaviour
 
             if (uiMessages[i].Over()) uiMessages.Remove(uiMessages[i]);
         }
+
+        healthBar.value = GameManager.Player.SoulPercent;
+
     }
 
+    private void UpdateSouls(int souls)
+    {
+        for (int i = 0; i < soulPanel.transform.childCount; i++)
+        {
+            Destroy(soulPanel.transform.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < souls; i++)
+        {
+            GameObject newImageSoul = Instantiate(imageSoul, soulPanel.transform);
+            newImageSoul.GetComponent<RectTransform>().anchoredPosition = new Vector2(30 + i * 30, 0);
+            //newImageSoul.transform.localPosition = new Vector2(30 + i * 30, 0);
+        }
+    }
+
+    /*
     private void UpdatePlayerHealth(float newValue)
     {
         healthBar.value = newValue;
     }
-
+    */
     private void UpdateComboCounter(Character enemy, Damage damage)
     {
         bool enemyFound = false;

@@ -267,6 +267,16 @@ public class CS_Aerial : CS_Attack
 [System.Serializable]
 public class CS_SpecialAttack : CS_Attack
 {
+    [SerializeField]
+    protected float soulCost = 0;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        chr.ModSoulMeter(-soulCost);
+    }
+
     public override void Execute()
     {
         base.Execute();
