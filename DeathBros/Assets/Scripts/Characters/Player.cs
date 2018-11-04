@@ -427,6 +427,8 @@ public class Player : Character
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
+                Direction = DirectionalInput.x;
+
                 CSMachine.ChangeState(GetAttackState(EAttackType.FSpec));
             }
             else if (DirectionalInput.y > 0.5f)

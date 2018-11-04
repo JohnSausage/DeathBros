@@ -52,7 +52,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -79,7 +81,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     - position: {x: 0.5, y: 0.7708333}
       radius: 0.7499999
@@ -90,7 +94,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     - position: {x: 1, y: -1.15625}
       radius: 0.5
@@ -101,7 +107,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 1
         editorColor: {r: 0.017205715, g: 0, b: 1, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     soundName: 
   - duration: 3
@@ -128,7 +136,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     - position: {x: 0.5, y: 0.7708333}
       radius: 0.7499999
@@ -139,7 +149,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 1992
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 34751
       getNewID: 0
     soundName: 
   - duration: 5
@@ -165,9 +177,13 @@ MonoBehaviour:
     knockbackGrowth: 20
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
+    directionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}
   - damageNumber: 15
     knockBackDirection: {x: 1, y: -1}
     baseKnockback: 20
     knockbackGrowth: 20
     damageType: 1
     editorColor: {r: 0.017205715, g: 0, b: 1, a: 0}
+    directionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}

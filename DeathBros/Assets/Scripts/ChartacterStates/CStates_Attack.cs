@@ -283,7 +283,10 @@ public class CS_SpecialAttack : CS_Attack
 
         if (chr.Anim.animationOver)
         {
-            ChangeState(typeof(CS_Idle));
+            if (chr.Ctr.IsGrounded)
+                ChangeState(typeof(CS_Idle));
+            else
+                ChangeState(typeof(CS_Jumping));
         }
     }
 }

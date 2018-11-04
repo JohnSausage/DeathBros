@@ -52,7 +52,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-      ID: 96688
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 60156
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -79,7 +81,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-      ID: 96688
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 60156
       getNewID: 0
     soundName: 
   - duration: 3
@@ -106,7 +110,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-      ID: 96688
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 60156
       getNewID: 0
     soundName: 
   - duration: 3
@@ -133,7 +139,9 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-      ID: 96688
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 77734
       getNewID: 0
     soundName: 
   - duration: 6
@@ -159,3 +167,5 @@ MonoBehaviour:
     knockbackGrowth: 20
     damageType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}
+    directionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}
