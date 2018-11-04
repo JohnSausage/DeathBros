@@ -158,14 +158,14 @@ public class Character : _MB, ICanTakeDamage
 
                 currentDamage = damage;
 
-                currentKnockback = damage.Knockback(stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
-
-                stats.currentHealth -= damage.damageNumber;
-
                 if (damage.Owner != null)
                 {
                     damage.Owner.HitEnemy(this, damage);
                 }
+
+                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
+
+                stats.currentHealth -= damage.damageNumber;
             }
             if (stats.currentHealth <= 0)
             {

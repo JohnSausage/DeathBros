@@ -20,6 +20,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.13715808, y: 0.38525835}
       radius: 0.2
@@ -35,6 +36,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.21314593, y: 0.32826746}
       radius: 0.2
@@ -50,6 +52,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.21314593, y: 0.27127656}
       radius: 0.2
@@ -65,6 +68,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.15615503, y: 0.3472644}
       radius: 0.2
@@ -80,6 +84,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.23214288, y: 0.3472644}
       radius: 0.2
@@ -95,6 +100,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.15615503, y: 0.2522796}
       radius: 0.2

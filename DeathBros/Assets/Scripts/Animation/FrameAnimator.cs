@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(HurtboxManager))]
-[RequireComponent(typeof(HitboxManager))]
 public class FrameAnimator : _MB
 {
     public FrameAnimation currentAnimation;
@@ -63,26 +61,54 @@ public class FrameAnimator : _MB
             Frame currentFrame = currentAnimation.frames[animTimer];
 
             spr.sprite = currentFrame.sprite;
-            hubM.SetHurtboxes(currentFrame);
-            hibM.DrawHitboxes(currentFrame);
+            if (hubM != null)
+                hubM.SetHurtboxes(currentFrame);
+            if (hibM != null)
+                hibM.DrawHitboxes(currentFrame);
 
-            Vector2 forceMovement = currentFrame.forceMovement;
-            Vector2 addMovement = currentFrame.addMovment;
-
-            if (spr.flipX)
+            if (ctr != null)
             {
-                forceMovement.x *= -1;
-                addMovement.x *= -1;
-            }
-            ctr.forceMovement += forceMovement;
-            ctr.addMovement = addMovement;
+                Vector2 forceMovement = currentFrame.forceMovement;
+                Vector2 addMovement = currentFrame.addMovment;
 
-            if (currentFrame.spawnProjectile != Vector2.zero)
+                if (spr.flipX)
+                {
+                    forceMovement.x *= -1;
+                    addMovement.x *= -1;
+                }
+                ctr.forceMovement += forceMovement;
+                ctr.addMovement = addMovement;
+
+                if (currentFrame.spawnProjectile != Vector2.zero)
+                {
+                    if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
+                }
+
+                ctr.resetVelocity = currentFrame.resetVelocity;
+            }
+
+            if(currentFrame.spawnHoldItem != null)
             {
-                if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
+                Player player = GetComponent<Player>();
+                if(player != null)
+                {
+                    GameObject holdItem = Instantiate(currentFrame.spawnHoldItem, transform);
+                    Item pickUpItem = holdItem.GetComponent<Item>();
+
+                    if(pickUpItem is ICanBePickedUp)
+                    {
+
+                        player.ReleaseHoldItem();
+                        player.SetHoldItem(pickUpItem);
+                    }
+
+                }
+                else
+                {
+                    Instantiate(currentFrame.spawnHoldItem, transform.position, Quaternion.identity);
+                }
             }
 
-            ctr.resetVelocity = currentFrame.resetVelocity;
 
             if (frameTimer == 0 && currentFrame.soundName != "")
             {
@@ -118,7 +144,7 @@ public class FrameAnimator : _MB
     public void ChangeAnimation(string animationName, bool restartIfAlreadyPlaying = false)
     {
         FrameAnimation animation = GetAnimation(animationName);
-        Debug.Log(animationName);
+        //Debug.Log(animationName);
         ChangeAnimation(animation, restartIfAlreadyPlaying);
     }
 

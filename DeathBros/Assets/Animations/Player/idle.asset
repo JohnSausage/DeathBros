@@ -20,6 +20,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.015625, y: 0.40625}
       radius: 0.2
@@ -35,6 +36,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.029094793, y: 0.3534483}
       radius: 0.2

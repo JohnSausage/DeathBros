@@ -12,7 +12,7 @@ public class MenuPanel : MonoBehaviour, IState
         Exit();
     }
 
-    BaseEventData eventData;
+    BaseEventData eventData = null;
 
     public virtual void Enter()
     {

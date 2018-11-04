@@ -591,7 +591,7 @@ public class FrameAnimatorEditor : EditorWindow
                             var fillColorArray = hitboxTexture.GetPixels();
                             if (h.damage == null) h.damage = new Damage();
                             Color color = h.damage.editorColor;
-                            if (color == new Color(0, 0, 0, 0) || color == null) color = Color.red;
+                            if (color == new Color(0, 0, 0, 0)) color = Color.red;
                             color.a = 0.25f;
 
                             for (int i = 0; i < fillColorArray.Length; i++)
@@ -624,6 +624,8 @@ public class FrameAnimatorEditor : EditorWindow
                 currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
 
                 currentFrame.spawnProjectile = EditorGUILayout.Vector2Field("Projectile", currentFrame.spawnProjectile);
+                currentFrame.spawnHoldItem = (GameObject)EditorGUILayout.ObjectField("Hold Item", currentFrame.spawnHoldItem, typeof(GameObject), false);
+
                 currentFrame.duration = EditorGUILayout.IntField("Duration:", currentFrame.duration);
                 if (editAllFrames)
                 {

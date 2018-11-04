@@ -26,6 +26,13 @@ public class CStates_Attack
     public CS_Aerial fAir;
     public CS_Aerial bAir;
 
+    [Space]
+
+    public CS_SpecialAttack nSpec;
+    public CS_SpecialAttack uSpec;
+    public CS_SpecialAttack dSpec;
+    public CS_SpecialAttack fSpec;
+
     public virtual void Init(Character chr)
     {
         uSoul.Init(chr);
@@ -44,10 +51,15 @@ public class CStates_Attack
         dAir.Init(chr);
         fAir.Init(chr);
         bAir.Init(chr);
+
+        nSpec.Init(chr);
+        uSpec.Init(chr);
+        dSpec.Init(chr);
+        fSpec.Init(chr);
     }
 }
 
-public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2 }
+public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec }
 
 [System.Serializable]
 public class CS_Attack : CState
@@ -219,7 +231,7 @@ public class CS_SoulAttack : CS_Attack
 
     private void SetIdleAfterAttack(FrameAnimation animation)
     {
-        if(this.animation == animation)
+        if (this.animation == animation)
         {
             chr.CS_SetIdle();
         }
@@ -248,6 +260,20 @@ public class CS_Aerial : CS_Attack
         if (chr.Ctr.IsGrounded)
         {
             ChangeState(typeof(CS_Landing));
+        }
+    }
+}
+
+[System.Serializable]
+public class CS_SpecialAttack : CS_Attack
+{
+    public override void Execute()
+    {
+        base.Execute();
+
+        if (chr.Anim.animationOver)
+        {
+            ChangeState(typeof(CS_Idle));
         }
     }
 }

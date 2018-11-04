@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class ItemController2D : MonoBehaviour
 {
-    public bool IsSimulated { get; set; }
+    public bool IsSimulated;// { get; set; }
     public Vector2 SetVelocity { get; set; }
     public bool grounded;
+    public bool collision;
+    public bool characterHit;
     public bool rolling;
     public Vector2 velocity;
     public LayerMask collisionMask, platformMask;
+    public LayerMask charcaterMask;
     public float gravity = -1;
     public float reflectVelocity = 0.5f;
     public float stopToReflectVelocity = 10;
@@ -22,7 +25,7 @@ public class ItemController2D : MonoBehaviour
 
     private CircleCollider2D col;
 
-    private void Start()
+    private void Awake()
     {
         col = GetComponentInChildren<CircleCollider2D>();
 
@@ -44,6 +47,8 @@ public class ItemController2D : MonoBehaviour
 
         grounded = false;
         rolling = false;
+        collision = false;
+        characterHit = false;
 
         float magnitude = velocity.magnitude;
 
@@ -54,6 +59,13 @@ public class ItemController2D : MonoBehaviour
 
         velocity.y += gravity / 60;
 
+        RaycastHit2D characterHitCheck = Physics2D.CircleCast((Vector2)transform.position + col.offset, col.radius, velocity, velocity.magnitude, charcaterMask);
+
+        if (characterHitCheck)
+        {
+            characterHit = true;
+        }
+
         LayerMask groundMask = collisionMask;
         if (velocity.y < gravity / 60) groundMask += platformMask;
 
@@ -61,6 +73,8 @@ public class ItemController2D : MonoBehaviour
 
         if (collisionCheck)
         {
+            collision = true;
+
             if (velocity.magnitude * 60 <= stopToReflectVelocity)
             {
                 velocity = Vector2.ClampMagnitude(velocity, collisionCheck.distance - skin);

@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: SpecSpawnBomb
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 5
+    sprite: {fileID: 21300016, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.035560377, y: 0.16487072}
+      radius: 0.2
+    - position: {x: -0.046875, y: -0.28125}
+      radius: 0.3
+    hitboxes: []
+    soundName: Step
+  - duration: 5
+    sprite: {fileID: 21300018, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.046336237, y: -0.14762928}
+      radius: 0.2
+    - position: {x: -0.024784515, y: -0.5355603}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  - duration: 1
+    sprite: {fileID: 21300016, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 1791703342140664, guid: e8bf1bade33e967428aa3cb8e127ec78,
+      type: 2}
+    hurtboxes:
+    - position: {x: -0.035560377, y: 0.16487072}
+      radius: 0.2
+    - position: {x: -0.046875, y: -0.28125}
+      radius: 0.3
+    hitboxes: []
+    soundName: 
+  damages: []

@@ -9,6 +9,15 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
 
     protected Queue<int> hitIDs = new Queue<int>();
 
+    public FrameAnimator anim { get; protected set; }
+
+    private void Start()
+    {
+        anim = GetComponent<FrameAnimator>();
+
+        anim.AnimationOver += Remove;
+    }
+
     public void GetHit(Damage damage)
     {
         if (!hitIDs.Contains(damage.hitID))
@@ -17,12 +26,24 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
 
             hitPoints -= damage.damageNumber;
 
-            if(hitPoints <= 0)
+            if (hitPoints <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
         }
 
         if (hitIDs.Count > 10) hitIDs.Dequeue();
+    }
+
+    protected void Die()
+    {
+        anim.ChangeAnimation("die");
+    }
+
+
+    protected void Remove(FrameAnimation die)
+    {
+        if (die == anim.GetAnimation("die"))
+            Destroy(gameObject);
     }
 }

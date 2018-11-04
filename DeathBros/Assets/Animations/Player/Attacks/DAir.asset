@@ -20,6 +20,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.171875, y: 0.34375}
       radius: 0.2
@@ -35,6 +36,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.17041808, y: 0.22146297}
       radius: 0.2
@@ -50,7 +52,7 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 52528
+      ID: 86174
       getNewID: 0
     soundName: sweep1
   - duration: 3
@@ -61,6 +63,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.20056278, y: 0.4224276}
       radius: 0.2
@@ -76,7 +79,7 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 52528
+      ID: 86174
       getNewID: 0
     - position: {x: 0.5823956, y: -0.3914792}
       radius: 1
@@ -87,7 +90,7 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 52528
+      ID: 86174
       getNewID: 0
     soundName: 
   - duration: 3
@@ -98,6 +101,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.05988753, y: 0.52290994}
       radius: 0.2
@@ -113,7 +117,7 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 21522
+      ID: 86174
       getNewID: 0
     - position: {x: 0.5823956, y: -0.3914792}
       radius: 1
@@ -124,7 +128,7 @@ MonoBehaviour:
         knockbackGrowth: 20
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-      ID: 21522
+      ID: 86174
       getNewID: 0
     soundName: 
   - duration: 10
@@ -135,6 +139,7 @@ MonoBehaviour:
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.05988753, y: 0.52290994}
       radius: 0.2

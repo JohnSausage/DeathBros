@@ -9,6 +9,9 @@ public class Player : Character
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
 
+    public bool Special { get; protected set; }
+    public bool HoldSpecial { get; protected set; }
+
     public float soulCharge = 0;
 
     public float pickUpRadius = 1.5f;
@@ -51,6 +54,12 @@ public class Player : Character
         if (InputManager.Attack.GetButton()) HoldAttack = true;
         else HoldAttack = false;
 
+        if (InputManager.BufferdDown("Special")) Special = true;
+        else Special = false;
+
+
+        if (InputManager.Special.GetButton()) HoldSpecial = true;
+        else HoldSpecial = false;
 
         if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0) Jump = true;
         else
@@ -141,11 +150,11 @@ public class Player : Character
         {
             Vector2 itemVelocity;
 
-            if(throwVelocity == Vector2.zero)
+            if (throwVelocity == Vector2.zero)
             {
                 itemVelocity = Vector2.zero;
             }
-            else if(Mathf.Abs(throwVelocity.x) > Mathf.Abs(throwVelocity.y))
+            else if (Mathf.Abs(throwVelocity.x) > Mathf.Abs(throwVelocity.y))
             {
                 itemVelocity = new Vector2(Mathf.Sign(throwVelocity.x), 0.25f);
             }
@@ -164,7 +173,7 @@ public class Player : Character
         return false;
     }
 
-    protected void SetHoldItem(Item item)
+    public void SetHoldItem(Item item)
     {
         holdItem = item;
         holdItem.IsSimulated = false;
@@ -173,12 +182,15 @@ public class Player : Character
         holdItem.transform.localPosition = Vector3.zero;
     }
 
-    protected void ReleaseHoldItem()
+    public void ReleaseHoldItem()
     {
-        holdItem.transform.SetParent(null);
-        holdItem.IsSimulated = true;
-        holdItem.GenerateID();
-        holdItem = null;
+        if (hasItem)
+        {
+            holdItem.transform.SetParent(null);
+            holdItem.IsSimulated = true;
+            holdItem.GenerateID();
+            holdItem = null;
+        }
     }
 
     public override bool CheckForTiltAttacks()
@@ -266,6 +278,7 @@ public class Player : Character
 
             return true;
         }
+
         else return false;
     }
 
@@ -325,6 +338,33 @@ public class Player : Character
             return true;
         }
 
+        if (CheckForSpecialAttacks()) return true;
+
+        return false;
+    }
+
+    public override bool CheckForSpecialAttacks()
+    {
+        if (Special)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.NSpec));
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.FSpec));
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.USpec));
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DSpec));
+            }
+            return true;
+        }
         return false;
     }
 }

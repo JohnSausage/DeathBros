@@ -43,42 +43,47 @@ public class HitboxManager : _MB
 
             if (number > 0)
             {
-                ICanTakeDamage hitObject = (ICanTakeDamage)hit[0].GetComponentInParent(typeof(ICanTakeDamage));
-
-                Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
-                damage.hitID = currentID;
-                damage.Owner = Chr;
-
-                if (Chr is Player)
+                for (int j = 0; j < number; j++)
                 {
-                    Player player = (Player)Chr;
+                    ICanTakeDamage hitObject = (ICanTakeDamage)hit[j].GetComponentInParent(typeof(ICanTakeDamage));
 
-                    damage.AddDamage(player.soulCharge);
-                }
+                    Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
+                    damage.hitID = currentID;
+                    damage.Owner = Chr;
+                    damage.position = currentFrame.hitboxes[i].position;
 
-                if (hitObject != null)
-                {
-                    if (hitObject is Character)
+                    if (Chr is Player)
                     {
-                        Character hitChr = (Character)hitObject;
+                        Player player = (Player)Chr;
 
-                        damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
-
-
-                        //hitChr.GetHit(damage);
-
-                    }
-                    else if (hitObject is Item)
-                    {
-                        Item hitItem = (Item)hitObject;
-
-                        hitItem.Owner = Chr;
-
-                        //hitItem.GetHit(damage);
+                        damage.AddDamage(player.soulCharge);
                     }
 
-                    hitObject.GetHit(damage);
+                    if (hitObject != null)
+                    {
+                        if (hitObject is Character)
+                        {
+                            Character hitChr = (Character)hitObject;
+
+                            damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
+
+
+                            //hitChr.GetHit(damage);
+
+                        }
+                        else if (hitObject is Item)
+                        {
+                            Item hitItem = (Item)hitObject;
+
+                            hitItem.Owner = Chr;
+
+                            //hitItem.GetHit(damage);
+                        }
+
+                        hitObject.GetHit(damage);
+                    }
                 }
+
 
             }
         }
@@ -131,6 +136,8 @@ public class Damage
     public float knockbackGrowth;
     public EDamageType damageType;
     public Color editorColor;
+    public Vector2 directionalInfluence;
+    public Vector2 position;
 
     public int hitID { get; set; }
     public Character Owner { get; set; }
@@ -174,6 +181,26 @@ public class Damage
         Vector2 knockback;
 
         knockback = knockBackDirection.normalized * (baseKnockback + knockbackGrowth * (1 - percentHealth));
+        knockback *= (0.5f + (200 - weight) / 200);
+
+        return knockback;
+    }
+
+    public Vector2 Knockback(Vector2 hitPosition, float weight, float percentHealth)
+    {
+        Vector2 knockback = knockBackDirection.normalized;
+
+        if (position != Vector2.zero)
+        {
+            Vector2 hitDirection = (hitPosition - position).normalized;
+            hitDirection.x *= directionalInfluence.x;
+            hitDirection.y *= directionalInfluence.y;
+
+            knockback += hitDirection;
+        }
+
+
+        knockback *= ((baseKnockback + knockbackGrowth * (1 - percentHealth)));
         knockback *= (0.5f + (200 - weight) / 200);
 
         return knockback;

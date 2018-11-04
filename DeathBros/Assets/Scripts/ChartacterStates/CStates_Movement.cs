@@ -414,7 +414,7 @@ public class CS_Jumpsquat : CState
 
         timer++;
 
-        if (chr.Attack)
+        if (chr.Attack && chr.StrongInputs.y > 0)
         {
             ChangeState(EAttackType.USoul);
         }
@@ -650,9 +650,10 @@ public class CS_Wallsliding : CState
 
         if (!chr.Ctr.onWall)
         {
-            //ChangeState(chr.advancedMovementStates.jumping);
             ChangeState(jumping);
         }
+
+        chr.CheckForAerialAttacks();
 
         if (chr.Jump)// || (chr.StrongInputs.x != 0 && Mathf.Sign(chr.StrongInputs.x) != chr.Ctr.wallDirection))
         {
@@ -759,6 +760,10 @@ public class CS_Walljumping : CState
         base.Execute();
 
         timer++;
+
+        chr.GetInputs();
+
+        chr.CheckForAerialAttacks();
 
         chr.SetInputs(new Vector2(walljumpDirection, 0));
 

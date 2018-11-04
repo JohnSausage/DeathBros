@@ -13,7 +13,18 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
     protected float weight = 20;
 
     [SerializeField]
+    protected bool destroyIfGrounded = false;
+
+    [SerializeField]
     protected bool destroyOnCollision = false;
+
+    [SerializeField]
+    protected bool destroyOnCharacterHit = false;
+
+    [SerializeField]
+    protected int destroyAfterTime = 0;
+    private int timer = 0;
+
     [Space]
 
     [SerializeField]
@@ -41,6 +52,9 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
         ctr = GetComponent<ItemController2D>();
         col = GetComponentInChildren<Collider2D>();
         collisions = new RaycastHit2D[2];
+
+        FrameAnimator anim = GetComponent<FrameAnimator>();
+        if (anim != null) anim.AnimationOver += Remove;
     }
 
     public void GetHit(Damage damage)
@@ -57,6 +71,9 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     protected void FixedUpdate()
     {
+        if (destroyAfterTime != 0)
+            timer++;
+
         if (Velocity.magnitude * 60 >= damagingSpeed)
         {
             int colNr = col.Cast(Vector2.zero, filter, collisions);
@@ -73,15 +90,85 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
                         damage.knockBackDirection = Velocity;
                         chr.GetHit(damage);
 
-                        if (destroyOnCollision) Destroy(gameObject);
+                        if (destroyIfGrounded) Destroy(gameObject);
                     }
                 }
             }
         }
 
-        if(destroyOnCollision)
+        if (destroyIfGrounded)
         {
-            if(ctr.grounded)
+            if (ctr.grounded)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
+
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+        if (destroyOnCollision)
+        {
+            if (ctr.collision)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
+
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+        if (destroyOnCharacterHit)
+        {
+            if (ctr.characterHit)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
+
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+        if (timer > destroyAfterTime)
+        {
+            FrameAnimator anim = GetComponent<FrameAnimator>();
+
+            if (anim != null)
+            {
+                anim.ChangeAnimation("die");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    protected void Remove(FrameAnimation animation)
+    {
+        FrameAnimator anim = GetComponent<FrameAnimator>();
+
+        if (anim != null)
+        {
+            if (animation == anim.GetAnimation("die"))
             {
                 Destroy(gameObject);
             }
