@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: FTilt
+  m_Name: rolling
   m_EditorClassIdentifier: 
   frames:
-  - duration: 6
-    sprite: {fileID: 21300074, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+  - duration: 15
+    sprite: {fileID: 21300026, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -22,101 +22,120 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.17050521, y: 0.1333581}
-      radius: 0.2
-    - position: {x: -0.07763745, y: -0.42384842}
-      radius: 0.3
+    - position: {x: -0.046875, y: 0.15625}
+      radius: 0.65
     hitboxes: []
     soundName: 
   - duration: 5
-    sprite: {fileID: 21300076, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    sprite: {fileID: 21300040, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
+    forceMovement: {x: 10, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.033803858, y: 0.17050521}
-      radius: 0.2
-    - position: {x: 0.015230306, y: -0.3309807}
-      radius: 0.3
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.4
     hitboxes:
-    - position: {x: -0.20390365, y: 0.45307308}
-      radius: 1
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.8
       damage:
         damageNumber: 5
-        knockBackDirection: {x: 1.5, y: 1}
+        knockBackDirection: {x: 1, y: 1}
         baseKnockback: 10
-        knockbackGrowth: 20
+        knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 84932
-      getNewID: 0
-    soundName: sweep1
-  - duration: 5
-    sprite: {fileID: 21300078, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
-    newHitID: 0
-    applyGravity: 1
-    resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
-    addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 0, y: 0}
-    spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: 0.08952451, y: 0.040490348}
-      radius: 0.2
-    - position: {x: 0.033803858, y: -0.46099553}
-      radius: 0.3
-    hitboxes:
-    - position: {x: 0.97965115, y: -0.066029906}
-      radius: 1
-      damage:
-        damageNumber: 5
-        knockBackDirection: {x: 1.5, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 20
-        damageType: 0
-        editorColor: {r: 0, g: 0, b: 0, a: 0}
-        directionalInfluence: {x: 0, y: 0}
-        position: {x: 0, y: 0}
-      ID: 84932
+      ID: 39419
       getNewID: 0
     soundName: 
   - duration: 5
-    sprite: {fileID: 21300080, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+    sprite: {fileID: 21300042, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
+    forceMovement: {x: 10, y: 0}
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.16381872, y: 0.0590639}
-      radius: 0.2
-    - position: {x: 0.05237741, y: -0.46099553}
-      radius: 0.3
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.4
     hitboxes:
-    - position: {x: 0.97965115, y: -0.024501668}
-      radius: 1
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.8
       damage:
         damageNumber: 5
-        knockBackDirection: {x: 1.5, y: 1}
+        knockBackDirection: {x: 1, y: 1}
         baseKnockback: 10
-        knockbackGrowth: 20
+        knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 84932
+      ID: 39419
       getNewID: 0
     soundName: 
-  - duration: 10
-    sprite: {fileID: 21300082, guid: d4a32b8929e63e040ad652561c14b53a, type: 3}
+  - duration: 5
+    sprite: {fileID: 21300044, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 10, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.4
+    hitboxes:
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.8
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 10
+        knockbackGrowth: 5
+        damageType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 75493
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300046, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 10, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.4
+    hitboxes:
+    - position: {x: 0.03125, y: -0.25}
+      radius: 0.8
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 10
+        knockbackGrowth: 5
+        damageType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        directionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 75493
+      getNewID: 0
+    soundName: 
+  - duration: 20
+    sprite: {fileID: 21300024, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -125,17 +144,15 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.16381872, y: 0.0590639}
-      radius: 0.2
-    - position: {x: 0.05237741, y: -0.46099553}
-      radius: 0.3
+    - position: {x: 0.08285098, y: -0.12807529}
+      radius: 0.65
     hitboxes: []
     soundName: 
   damages:
   - damageNumber: 5
-    knockBackDirection: {x: 1.5, y: 1}
+    knockBackDirection: {x: 1, y: 1}
     baseKnockback: 10
-    knockbackGrowth: 20
+    knockbackGrowth: 5
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     directionalInfluence: {x: 0, y: 0}

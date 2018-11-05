@@ -17,6 +17,8 @@ public class Character : _MB, ICanTakeDamage
     public bool HoldJump { get; protected set; }
     public bool Attack { get; protected set; }
     public bool HoldAttack { get; protected set; }
+    public bool Special { get; protected set; }
+    public bool HoldSpecial { get; protected set; }
     public bool Shield { get; protected set; }
     public bool HoldShield { get; protected set; }
 

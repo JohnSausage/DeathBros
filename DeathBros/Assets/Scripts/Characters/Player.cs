@@ -9,9 +9,6 @@ public class Player : Character
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
 
-    public bool Special { get; protected set; }
-    public bool HoldSpecial { get; protected set; }
-
     public float soulCharge = 0;
 
     protected int maxSouls = 3;

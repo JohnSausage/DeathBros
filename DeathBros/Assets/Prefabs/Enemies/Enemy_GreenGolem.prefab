@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.95, y: -28, z: 0}
+  m_LocalPosition: {x: 10.19, y: -56.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4211354812878646}
@@ -322,7 +322,7 @@ MonoBehaviour:
     shield:
       animationName: shield
     die:
-      animationName: hitLand
+      animationName: die
     dead:
       animationName: hitLand
     standUp:
@@ -330,9 +330,16 @@ MonoBehaviour:
     hitLanded:
       animationName: idle
       minDuration: 20
-  attackState:
-    animationName: attack
+  normalAttack:
+    animationName: rolling
     attackType: 0
+  aerialAttack:
+    animationName: idle
+    attackType: 0
+  specialAttack:
+    animationName: idle
+    attackType: 0
+  projectile: {fileID: 0}
 --- !u!114 &114483006981894648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -419,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTag: Player
-  attackRange: 1
+  attackRange: 3
   aggroRange: 6
   aggroed: 0
   target: {fileID: 0}

@@ -8,12 +8,18 @@ public class Enemy : Character
     protected CStates_Movement movementStates;
 
     [SerializeField]
-    protected CS_TiltAttack attackState;
+    protected CS_TiltAttack normalAttack;
+
+    [SerializeField]
+    protected CS_Aerial aerialAttack;
+
+    [SerializeField]
+    protected CS_TiltAttack specialAttack;
 
     [SerializeField]
     protected GameObject projectile;
 
-    public CS_Attack currentAttack { get { return attackState; } }
+    public CS_Attack currentAttack { get { return normalAttack; } }
     //public EnemyAI AI { get; protected set; }
 
     public override void Init()
@@ -23,7 +29,7 @@ public class Enemy : Character
         //AI = GetComponent<EnemyAI>();
 
         movementStates.Init(this);
-        attackState.Init(this);
+        normalAttack.Init(this);
 
         CStates_InitExitStates();
 
@@ -75,7 +81,30 @@ public class Enemy : Character
 
             return true;
         }
-        else return false;
+        return false;
+    }
+
+    public override bool CheckForSpecialAttacks()
+    {
+        if (Special)
+        {
+            Direction = DirectionalInput.x;
+
+            CSMachine.ChangeState(GetAttackState(EAttackType.NSpec));
+            return true;
+        }
+        return false;
+    }
+
+    public override bool CheckForAerialAttacks()
+    {
+        if (Attack)
+        {
+            CSMachine.ChangeState(GetAttackState(EAttackType.NAir));
+
+            return true;
+        }
+        return false;
     }
 
     public override void Dead()

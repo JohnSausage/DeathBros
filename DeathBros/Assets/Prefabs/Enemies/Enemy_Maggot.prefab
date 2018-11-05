@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.71, y: -28.39, z: 0}
+  m_LocalPosition: {x: 29.01, y: -62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4380378512753930}
@@ -411,9 +411,16 @@ MonoBehaviour:
     hitLanded:
       animationName: idle
       minDuration: 20
-  attackState:
+  normalAttack:
     animationName: attack
     attackType: 0
+  aerialAttack:
+    animationName: idle
+    attackType: 0
+  specialAttack:
+    animationName: idle
+    attackType: 0
+  projectile: {fileID: 0}
 --- !u!114 &114829232162217112
 MonoBehaviour:
   m_ObjectHideFlags: 1

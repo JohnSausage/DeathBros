@@ -126,7 +126,7 @@ MonoBehaviour:
   destroyOnCharacterHit: 1
   destroyAfterTime: 180
   damage:
-    damageNumber: 2
+    damageNumber: 0
     knockBackDirection: {x: 1, y: 3}
     baseKnockback: 10
     knockbackGrowth: 5
