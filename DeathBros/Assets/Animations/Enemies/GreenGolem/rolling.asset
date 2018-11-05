@@ -44,13 +44,13 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 5
+        baseKnockback: 5
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 39419
+      ID: 47169
       getNewID: 0
     soundName: 
   - duration: 5
@@ -71,13 +71,13 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 5
+        baseKnockback: 5
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 39419
+      ID: 47169
       getNewID: 0
     soundName: 
   - duration: 5
@@ -98,13 +98,13 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 5
+        baseKnockback: 5
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 75493
+      ID: 77508
       getNewID: 0
     soundName: 
   - duration: 5
@@ -125,13 +125,13 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 10
-        knockbackGrowth: 5
+        baseKnockback: 5
+        knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 75493
+      ID: 77508
       getNewID: 0
     soundName: 
   - duration: 20
@@ -151,8 +151,8 @@ MonoBehaviour:
   damages:
   - damageNumber: 5
     knockBackDirection: {x: 1, y: 1}
-    baseKnockback: 10
-    knockbackGrowth: 5
+    baseKnockback: 5
+    knockbackGrowth: 15
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     directionalInfluence: {x: 0, y: 0}

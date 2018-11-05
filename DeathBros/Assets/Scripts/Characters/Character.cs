@@ -102,6 +102,7 @@ public class Character : _MB, ICanTakeDamage
 
         currentDamage = null;
         Jump = false;
+
         Attack = false;
     }
 

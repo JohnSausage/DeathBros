@@ -268,18 +268,51 @@ public class CS_Aerial : CS_Attack
 public class CS_SpecialAttack : CS_Attack
 {
     [SerializeField]
+    protected bool consumeSoulOverTime = false;
+
+    [SerializeField]
     protected float soulCost = 0;
+
+    [SerializeField]
+    protected StatChange changeStatOnExit;
+
+    protected bool soulCostMet = false;
 
     public override void Enter()
     {
         base.Enter();
 
-        chr.ModSoulMeter(-soulCost);
+
+
+        soulCostMet = false;
+
+        if (soulCost > chr.soulMeter)
+        {
+            if (chr.Ctr.IsGrounded)
+                ChangeState(typeof(CS_Idle));
+            else
+                ChangeState(typeof(CS_Jumping));
+        }
+        else
+        {
+            soulCostMet = true;
+
+            if (!consumeSoulOverTime)
+            {
+                chr.ModSoulMeter(-soulCost);
+            }
+
+        }
     }
 
     public override void Execute()
     {
         base.Execute();
+
+        if (consumeSoulOverTime)
+        {
+            chr.ModSoulMeter(-soulCost / chr.Anim.currentAnimation.Length());
+        }
 
         if (chr.Anim.animationOver)
         {
@@ -287,6 +320,17 @@ public class CS_SpecialAttack : CS_Attack
                 ChangeState(typeof(CS_Idle));
             else
                 ChangeState(typeof(CS_Jumping));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        if (soulCostMet)
+        {
+            if (changeStatOnExit.statName != "")
+                changeStatOnExit.ExecuteStatChange(chr.stats);
         }
     }
 }

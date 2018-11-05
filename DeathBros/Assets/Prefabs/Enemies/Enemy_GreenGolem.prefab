@@ -119,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.19, y: -56.81, z: 0}
+  m_LocalPosition: {x: 34.7, y: -61.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4211354812878646}
@@ -326,7 +326,7 @@ MonoBehaviour:
     dead:
       animationName: hitLand
     standUp:
-      animationName: idle
+      animationName: standUp
     hitLanded:
       animationName: idle
       minDuration: 20

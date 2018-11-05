@@ -2963,7 +2963,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
@@ -4069,8 +4069,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2109492319}
   - {fileID: 635965298}
+  - {fileID: 2109492319}
   - {fileID: 260017840}
   - {fileID: 87381069}
   m_Father: {fileID: 928376095}
@@ -5226,7 +5226,7 @@ MonoBehaviour:
     stats: []
   soulMeter: 50
   soulMeterMax: 100
-  soulMeterBalanceRate: 0.25
+  soulMeterBalanceRate: 0.025
   shielding: 0
   wallSlideSpeed:
     statName: WallslideSpeed
@@ -5346,23 +5346,45 @@ MonoBehaviour:
       animationName: BAir
       attackType: 9
     nSpec:
-      animationName: landing
+      animationName: SpecTPose
       attackType: 14
-      soulCost: 0
+      consumeSoulOverTime: 1
+      soulCost: 80
+      changeStatOnExit:
+        statName: currentSouls
+        addValue: 1
     uSpec:
       animationName: landing
       attackType: 16
+      consumeSoulOverTime: 0
       soulCost: 0
+      changeStatOnExit:
+        statName: 
+        addValue: 0
     dSpec:
       animationName: SpecSpawnBomb
       attackType: 15
+      consumeSoulOverTime: 0
       soulCost: 20
+      changeStatOnExit:
+        statName: 
+        addValue: 0
     fSpec:
       animationName: SpecDash
       attackType: 17
+      consumeSoulOverTime: 0
       soulCost: 25
+      changeStatOnExit:
+        statName: 
+        addValue: 0
   soulCharge: 0
-  soulBalanceDelayDuration: 60
+  maxSouls:
+    statName: maxSouls
+    baseValue: 3
+  currentSouls:
+    statName: currentSouls
+    baseValue: 0
+  soulBalanceDelayDuration: 120
   pickUpRadius: 1.5
   enemyMask:
     serializedVersion: 2
@@ -8037,7 +8059,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4033058782340414, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}

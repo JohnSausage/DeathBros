@@ -11,9 +11,11 @@ public class Player : Character
 
     public float soulCharge = 0;
 
-    protected int maxSouls = 3;
-    protected int currentSouls;
-    public int CurrentSouls { get { return currentSouls; } }
+    public Stat maxSouls;
+    public Stat currentSouls;
+    //protected int maxSouls = 3;
+    //protected int currentSouls;
+    public int CurrentSouls { get { return (int)stats.FindStat("currentSouls").CurrentValue; } }
 
     [SerializeField]
     protected int soulBalanceDelayDuration = 60;
@@ -30,7 +32,7 @@ public class Player : Character
 
     public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
-    public event Action<int> ESoulsChanged;
+    public event Action<float> ESoulsChanged;
 
     public override void Init()
     {
@@ -46,7 +48,10 @@ public class Player : Character
 
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
 
-        currentSouls = maxSouls;
+        stats.AddStat(maxSouls);
+        stats.AddStat(currentSouls);
+        stats.FindStat("currentSouls").baseValue = (int)maxSouls.baseValue;
+
     }
 
     void Update()
@@ -98,6 +103,8 @@ public class Player : Character
 
     protected void BalanceSoulMeter()
     {
+        if (currentSouls.baseValue > maxSouls.CurrentValue) currentSouls.AddToBaseValue(-1);
+
         if (soulBalanceDelayTimer > 0) soulBalanceDelayTimer--;
 
         if (soulBalanceDelayTimer == 0)
@@ -161,7 +168,7 @@ public class Player : Character
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
+                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (SoulPercent));
 
                 //stats.currentHealth -= damage.damageNumber;
                 ModSoulMeter(-damage.damageNumber);
@@ -181,12 +188,12 @@ public class Player : Character
 
         if (soulMeter <= 0)
         {
-            currentSouls--;
+            currentSouls.baseValue--;
             soulMeter = soulMeterMax;
 
-            if (ESoulsChanged != null) ESoulsChanged(currentSouls);
+            if (ESoulsChanged != null) ESoulsChanged((int)currentSouls.baseValue);
 
-            if (currentSouls <= 0)
+            if (currentSouls.CurrentValue <= 0)
             {
                 Die();
             }

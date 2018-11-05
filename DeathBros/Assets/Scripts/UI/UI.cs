@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI : MonoBehaviour
+public class UI : _MB
 {
     [SerializeField]
     private Slider healthBar;
@@ -38,9 +38,15 @@ public class UI : MonoBehaviour
         //HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
 
         GameManager.Player.ESoulsChanged += UpdateSouls;
-        UpdateSouls(GameManager.Player.CurrentSouls);
 
         comboPanels = new List<ComboPanel>();
+    }
+
+    public override void LateInit()
+    {
+        base.LateInit();
+        GameManager.Player.stats.FindStat("currentSouls").EStatBaseValueChanged += UpdateSouls;
+        UpdateSouls(GameManager.Player.CurrentSouls);
     }
 
     void FixedUpdate()
@@ -77,7 +83,7 @@ public class UI : MonoBehaviour
 
     }
 
-    private void UpdateSouls(int souls)
+    private void UpdateSouls(float souls)
     {
         for (int i = 0; i < soulPanel.transform.childCount; i++)
         {

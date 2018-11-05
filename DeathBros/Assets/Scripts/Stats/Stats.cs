@@ -62,6 +62,8 @@ public class Stat
 
     public float CurrentValue { get; private set; }
 
+    public event System.Action<float> EStatBaseValueChanged;
+
     public Stat() { }
 
     public Stat(string statName, float baseValue)
@@ -106,6 +108,13 @@ public class Stat
     {
         mods.Add(mod);
     }
+
+    public void AddToBaseValue(float value)
+    {
+        baseValue += value;
+
+        if (EStatBaseValueChanged != null) EStatBaseValueChanged(baseValue);
+    }
 }
 
 [System.Serializable]
@@ -127,5 +136,17 @@ public class StatMod
     public void FixedUpdate()
     {
         timer--;
+    }
+}
+
+[System.Serializable]
+public class StatChange
+{
+    public string statName;
+    public float addValue;
+
+    public void ExecuteStatChange(Stats stats)
+    {
+        stats.FindStat(statName).AddToBaseValue(addValue);
     }
 }
