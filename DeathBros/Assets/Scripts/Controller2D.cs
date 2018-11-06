@@ -161,7 +161,6 @@ public class Controller2D : MonoBehaviour
                 velocity += addMovement / 60;
             }
 
-
             //check if grounded
             groundMask = collisionMask + platformMask;
 
@@ -226,6 +225,7 @@ public class Controller2D : MonoBehaviour
                 airTimer = 0;
                 velocity.y = 0;
                 fastFall = false;
+
 
                 //check for moving platforms and other transporters
                 RaycastHit2D transporterCheck = RCXY(velocity, velocity.magnitude, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2), new Vector2(bounds.size.x, skin), transporterMask);
@@ -322,12 +322,13 @@ public class Controller2D : MonoBehaviour
                         }
                     }
 
-
                     //try slope down first
                     if (!slopeUpFound && slopeDownAngle > 0 && slopeDownAngle <= maxSlopeAngle) // !slopeUpFound, because you're not on a slope when both rays hit
                     {
-                        velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * slopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * slopeDownAngle)).normalized / 60 * movespeed;
-                        velocity *= Mathf.Abs(input.x);
+                        velocity = new Vector2(Mathf.Sign(velocity.x) * Mathf.Cos(Mathf.Deg2Rad * slopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * slopeDownAngle)).normalized / 60;
+
+                        if (addMovement.x == 0) velocity *= Mathf.Abs(input.x) * movespeed;
+                        else velocity *= Mathf.Abs(addMovement.x);
 
                         slopeDown = true;
                     }
@@ -335,11 +336,16 @@ public class Controller2D : MonoBehaviour
                     //slope up
                     if (!slopeDownFound && slopeUpAngle > 0 && slopeUpAngle <= maxSlopeAngle) //!slopeDownFound, because you're not on a slope when both rays hit
                     {
-                        velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * slopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * slopeUpAngle)).normalized / 60 * movespeed;
-                        velocity *= Mathf.Abs(input.x);
+
+                        velocity = new Vector2(Mathf.Sign(velocity.x) * Mathf.Cos(Mathf.Deg2Rad * slopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * slopeUpAngle)).normalized / 60;
+
+                        if (addMovement.x == 0) velocity *= Mathf.Abs(input.x) * movespeed;
+                        else velocity *= Mathf.Abs(addMovement.x);
 
                         slopeUp = true;
                     }
+
+
 
                     //check for a new slope up while moving
                     RaycastHit2D slopeUpCast = RCL(velocity, velocity.magnitude * 2, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(velocity.x), -bounds.extents.y), groundMask);
@@ -359,8 +365,10 @@ public class Controller2D : MonoBehaviour
                         //new slope up
                         if (newSlopeUpAngle > 0 && newSlopeUpAngle <= maxSlopeAngle && HitDistance(slopeUpCast) <= triangleDistance)
                         {
-                            velocity = new Vector2(Mathf.Sign(input.x) * Mathf.Cos(Mathf.Deg2Rad * newSlopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * newSlopeUpAngle)).normalized / 60 * movespeed;
-                            velocity *= Mathf.Abs(input.x);
+                            velocity = new Vector2(Mathf.Sign(velocity.x) * Mathf.Cos(Mathf.Deg2Rad * newSlopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * newSlopeUpAngle)).normalized / 60;
+
+                            if (addMovement.x == 0) velocity *= Mathf.Abs(input.x) * movespeed;
+                            else velocity *= Mathf.Abs(addMovement.x);
 
                             slopeUp = true;
                         }

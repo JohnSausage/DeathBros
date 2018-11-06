@@ -185,6 +185,8 @@ public class AI_Attack : AIState
         base.Enter();
 
         timer = 0;
+
+        ai.chr.SetInputs(ai.TargetDirection);
     }
 
     public override void Execute()

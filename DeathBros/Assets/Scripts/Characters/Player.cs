@@ -209,12 +209,23 @@ public class Player : Character
 
             if (itemCheck)
             {
+                Interactable interactable = itemCheck.transform.GetComponentInParent<Interactable>();
+                if(interactable != null)
+                {
+                    InputManager.ClearBuffer();
+                    interactable.StartInteraction(this);
+                    return true;
+                }
+
                 Item pickedItem = itemCheck.transform.GetComponentInParent<Item>();
                 if (pickedItem != null)
                 {
-                    InputManager.ClearBuffer();
-                    SetHoldItem(pickedItem);
-                    return true;
+                    if (pickedItem is ICanBePickedUp)
+                    {
+                        InputManager.ClearBuffer();
+                        SetHoldItem(pickedItem);
+                        return true;
+                    }
                 }
             }
         }
