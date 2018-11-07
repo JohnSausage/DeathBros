@@ -3,58 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Stats
-{
-    public Stat maxHealth = new Stat("MaxHealth", 100);
-    public float currentHealth = 0;
-    [Space]
-    public Stat weight = new Stat("Weight", 100);
-    public Stat movespeed = new Stat("Movespeed", 3);
-    public Stat jumpStrength = new Stat("JumpStrength", 20);
-    public Stat gravity = new Stat("Gravity", -1);
-    public Stat jumps = new Stat("Jumps", 2);
-
-    [Space]
-
-    public float velocityXSmoothing = 3;
-    public float maxSlopeUpAngle = 45;
-    public float maxSlopeDownAngle = 45;
-
-    public List<Stat> stats;
-
-    public void Init()
-    {
-        stats.Add(movespeed);
-        stats.Add(jumpStrength);
-        stats.Add(gravity);
-        stats.Add(jumps);
-        stats.Add(maxHealth);
-        stats.Add(weight);
-
-        currentHealth = maxHealth.baseValue;
-    }
-
-    public void AddStat(Stat stat)
-    {
-        stats.Add(stat);
-    }
-
-    public void FixedUpdate()
-    {
-        for (int i = 0; i < stats.Count; i++)
-        {
-            stats[i].FixedUpdate();
-        }
-    }
-
-    public Stat FindStat(string statName)
-    {
-        return stats.Find(x => x.statName == statName);
-    }
-}
-
-
-[System.Serializable]
 public class Stat
 {
     public string statName;
@@ -139,14 +87,16 @@ public class StatMod
     }
 }
 
+
 [System.Serializable]
 public class StatChange
 {
     public string statName;
     public float addValue;
 
-    public void ExecuteStatChange(Stats stats)
+    public void ExecuteStatChange(Character chr)
     {
-        stats.FindStat(statName).AddToBaseValue(addValue);
+        //stats.FindStat(statName).AddToBaseValue(addValue);
+        chr.GetStat(statName).AddToBaseValue(addValue);
     }
 }

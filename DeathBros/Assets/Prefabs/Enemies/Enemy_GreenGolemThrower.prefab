@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1403312322476802
 GameObject:
   m_ObjectHideFlags: 1
@@ -262,26 +262,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Green Golem
   soundFolderName: 
+  statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
   CSMachine:
     currentState: 
   cStates: []
   stats:
-    maxHealth:
-      statName: MaxHealth
-      baseValue: 40
     currentHealth: 0
-    weight:
-      statName: Weight
-      baseValue: 120
-    movespeed:
-      statName: Movespeed
-      baseValue: 2
     jumpStrength:
       statName: JumpStrength
       baseValue: 2
-    gravity:
-      statName: Gravity
-      baseValue: -1
     jumps:
       statName: Jumps
       baseValue: 1
@@ -431,7 +420,11 @@ MonoBehaviour:
   aggroed: 0
   target: {fileID: 0}
   aiFollowPlayer:
+    stateName: 
     randomEnterChance: 70
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
   aiMachine:
@@ -439,13 +432,25 @@ MonoBehaviour:
   TargetDirection: {x: 0, y: 0}
   TargetVector: {x: 0, y: 0}
   aiFlee:
+    stateName: 
     randomEnterChance: 30
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
   aiAttack:
+    stateName: 
     randomEnterChance: 0
+    transition:
+      exitStateName: 
+      transitionType: 0
   aiWalk:
+    stateName: 
     randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
 --- !u!212 &212849175576237076

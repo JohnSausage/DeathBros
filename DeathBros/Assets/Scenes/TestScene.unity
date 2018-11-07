@@ -1102,33 +1102,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: 
   soundFolderName: 
+  statsSO: {fileID: 0}
   CSMachine:
     currentState: 
-  cStates: []
   stats:
-    maxHealth:
-      statName: MaxHealth
-      baseValue: 100
-    currentHealth: 0
-    weight:
-      statName: Weight
-      baseValue: 100
-    movespeed:
-      statName: Movespeed
-      baseValue: 2
-    jumpStrength:
-      statName: JumpStrength
-      baseValue: 10
-    gravity:
-      statName: Gravity
-      baseValue: -1
-    jumps:
-      statName: Jumps
-      baseValue: 2
     velocityXSmoothing: 3
     maxSlopeUpAngle: 45
     maxSlopeDownAngle: 45
     stats: []
+  currentHealth: 0
+  currentSouls: 1
   soulMeter: 50
   soulMeterMax: 100
   soulMeterBalanceRate: 0.25
@@ -1371,7 +1354,11 @@ MonoBehaviour:
   aggroed: 0
   target: {fileID: 0}
   aiFollowPlayer:
+    stateName: 
     randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
   aiMachine:
@@ -4330,10 +4317,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1269022456329406, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb183a184a37cd42940f9df91e0392f, type: 2}
   m_IsPrefabAsset: 0
@@ -4641,35 +4624,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b914f9796309ad74c801eb75327cfd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: 
+  charName: Player
   soundFolderName: Sounds/Player/
+  statsSO: {fileID: 11400000, guid: 9cc35bdcf6fc10f4f92947daf29277c1, type: 2}
   CSMachine:
     currentState: 
-  cStates: []
   stats:
-    maxHealth:
-      statName: MaxHealth
-      baseValue: 100
-    currentHealth: 0
-    weight:
-      statName: Weight
-      baseValue: 100
-    movespeed:
-      statName: Movespeed
-      baseValue: 10
-    jumpStrength:
-      statName: JumpStrength
-      baseValue: 21
-    gravity:
-      statName: Gravity
-      baseValue: -1
-    jumps:
-      statName: Jumps
-      baseValue: 2
     velocityXSmoothing: 3
     maxSlopeUpAngle: 45
     maxSlopeDownAngle: 45
     stats: []
+  currentHealth: 0
+  currentSouls: 1
   soulMeter: 50
   soulMeterMax: 100
   soulMeterBalanceRate: 0.025
@@ -4692,7 +4658,7 @@ MonoBehaviour:
       jumpRisingAnimation: jumpRising
     landing:
       animationName: landing
-      duration: 5
+      duration: 4
     hitstun:
       animationName: hitUp
       hitstunFallAnimation: hitDown
@@ -4797,8 +4763,9 @@ MonoBehaviour:
       consumeSoulOverTime: 1
       soulCost: 80
       changeStatOnExit:
-        statName: currentSouls
-        addValue: 1
+        statName: 
+        addValue: 0
+      addSoulsOnExit: 1
     uSpec:
       animationName: landing
       attackType: 16
@@ -4807,6 +4774,7 @@ MonoBehaviour:
       changeStatOnExit:
         statName: 
         addValue: 0
+      addSoulsOnExit: 0
     dSpec:
       animationName: SpecSpawnBomb
       attackType: 15
@@ -4815,6 +4783,7 @@ MonoBehaviour:
       changeStatOnExit:
         statName: 
         addValue: 0
+      addSoulsOnExit: 0
     fSpec:
       animationName: SpecDash
       attackType: 17
@@ -4823,13 +4792,8 @@ MonoBehaviour:
       changeStatOnExit:
         statName: 
         addValue: 0
+      addSoulsOnExit: 0
   soulCharge: 0
-  maxSouls:
-    statName: maxSouls
-    baseValue: 3
-  currentSouls:
-    statName: currentSouls
-    baseValue: 0
   soulBalanceDelayDuration: 120
   pickUpRadius: 1.5
   enemyMask:

@@ -88,7 +88,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
                     if (chr != Owner)
                     {
                         damage.knockBackDirection = Velocity;
-                        chr.GetHit(damage);
+                        if (chr != null) chr.GetHit(damage);
 
                         if (destroyIfGrounded) Destroy(gameObject);
                     }

@@ -276,6 +276,9 @@ public class CS_SpecialAttack : CS_Attack
     [SerializeField]
     protected StatChange changeStatOnExit;
 
+    [SerializeField]
+    protected float addSoulsOnExit = 0;
+
     protected bool soulCostMet = false;
 
     public override void Enter()
@@ -330,7 +333,9 @@ public class CS_SpecialAttack : CS_Attack
         if (soulCostMet)
         {
             if (changeStatOnExit.statName != "")
-                changeStatOnExit.ExecuteStatChange(chr.stats);
+                changeStatOnExit.ExecuteStatChange(chr);
+
+            chr.ModSouls(addSoulsOnExit);
         }
     }
 }

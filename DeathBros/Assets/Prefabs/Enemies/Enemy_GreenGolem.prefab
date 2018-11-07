@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.630005, y: -24.25999, z: 0}
+  m_LocalPosition: {x: 27.35, y: -5.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4277157867034804}
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Green Golem
   soundFolderName: 
+  statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
   CSMachine:
     currentState: 
   cStates: []
@@ -431,7 +432,11 @@ MonoBehaviour:
   aggroed: 0
   target: {fileID: 0}
   aiFollowPlayer:
+    stateName: 
     randomEnterChance: 70
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
   aiMachine:
@@ -439,13 +444,25 @@ MonoBehaviour:
   TargetDirection: {x: 0, y: 0}
   TargetVector: {x: 0, y: 0}
   aiFlee:
+    stateName: 
     randomEnterChance: 30
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
   aiAttack:
+    stateName: 
     randomEnterChance: 0
+    transition:
+      exitStateName: 
+      transitionType: 0
   aiWalk:
+    stateName: 
     randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
     duration: 60
     randomPlusMinusDuration: 30
 --- !u!212 &212849175576237076

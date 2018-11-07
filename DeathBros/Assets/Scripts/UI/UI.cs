@@ -45,8 +45,9 @@ public class UI : _MB
     public override void LateInit()
     {
         base.LateInit();
-        GameManager.Player.stats.FindStat("currentSouls").EStatBaseValueChanged += UpdateSouls;
-        UpdateSouls(GameManager.Player.CurrentSouls);
+        //GameManager.Player.GetStat("currentSouls").EStatBaseValueChanged += UpdateSouls;
+        GameManager.Player.ESoulsChanged += UpdateSouls;
+        UpdateSouls(GameManager.Player.currentSouls);
     }
 
     void FixedUpdate()

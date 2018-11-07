@@ -424,7 +424,7 @@ public class CS_Jumpsquat : CState
             if (chr.TiltInput != Vector2.zero)
             {
                 chr.CheckForAerialAttacks();
-                chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.75f;
+                chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
             }
             else
             {
@@ -433,11 +433,11 @@ public class CS_Jumpsquat : CState
                 chr.GetInputs();
                 if (chr.HoldJump || chr.DirectionalInput.y > 0.75f)
                 {
-                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue;
+                    chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength");
                 }
                 else
                 {
-                    chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * 0.75f;
+                    chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
                 }
             }
         }
@@ -474,7 +474,7 @@ public class CS_DoubleJumpsquat : CState
         {
             //ChangeState(chr.advancedMovementStates.jumping);
             ChangeState(typeof(CS_Jumping));
-            chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue;
+            chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength");
         }
     }
 
@@ -562,7 +562,7 @@ public class CS_Jumping : CState
         if (chr.Jump)
         {
 
-            if (chr.jumpsUsed < chr.stats.jumps.CurrentValue)
+            if (chr.jumpsUsed < chr.GetCurrentStatValue("Jumps"))
             {
                 ChangeState(typeof(CS_DoubleJumpsquat));
             }
@@ -720,7 +720,7 @@ public class CS_WalljumpStart : CState
         if (timer >= duration)
         {
             chr.SetInputs(new Vector2(walljumpDirection, 0));
-            chr.Ctr.jumpVelocity = chr.stats.jumpStrength.CurrentValue * jumpHeightReductionFactor;
+            chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * jumpHeightReductionFactor;
 
             walljumping.walljumpDirection = walljumpDirection;
             //ChangeState(chr.advancedMovementStates.walljumping);

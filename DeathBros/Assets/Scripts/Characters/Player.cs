@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
+    //public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
 
     public float soulCharge = 0;
 
-    public Stat maxSouls;
-    public Stat currentSouls;
+    //public Stat maxSouls;
+    //public Stat currentSouls;
     //protected int maxSouls = 3;
     //protected int currentSouls;
-    public int CurrentSouls { get { return (int)stats.FindStat("currentSouls").CurrentValue; } }
+    //public int CurrentSouls { get { return (int)stats.FindStat("currentSouls").CurrentValue; } }
 
     [SerializeField]
     protected int soulBalanceDelayDuration = 60;
@@ -42,16 +42,15 @@ public class Player : Character
         advancedMovementStates.Init(this);
         attackStates.Init(this);
 
-        stats.AddStat(wallSlideSpeed);
+        //stats.AddStat(wallSlideSpeed);
 
         CStates_InitExitStates();
 
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
 
-        stats.AddStat(maxSouls);
-        stats.AddStat(currentSouls);
-        stats.FindStat("currentSouls").baseValue = (int)maxSouls.baseValue;
-
+        //stats.AddStat(maxSouls);
+        //stats.AddStat(currentSouls);
+        //stats.FindStat("currentSouls").baseValue = (int)maxSouls.baseValue;
     }
 
     void Update()
@@ -101,9 +100,19 @@ public class Player : Character
         BalanceSoulMeter();
     }
 
+    public override void ModSouls(float value)
+    {
+        base.ModSouls(value);
+
+        if (ESoulsChanged != null) ESoulsChanged((int)currentSouls);
+    }
+
     protected void BalanceSoulMeter()
     {
-        if (currentSouls.baseValue > maxSouls.CurrentValue) currentSouls.AddToBaseValue(-1);
+        if (currentSouls > GetCurrentStatValue("MaxSouls"))
+        {
+            ModSouls(-1);
+        }
 
         if (soulBalanceDelayTimer > 0) soulBalanceDelayTimer--;
 
@@ -135,12 +144,14 @@ public class Player : Character
 
     private void AddHealthAfterCombo(float damageNumber)
     {
+        /*
         stats.currentHealth += damageNumber;
 
         if (stats.currentHealth > stats.maxHealth.CurrentValue)
             stats.currentHealth = stats.maxHealth.CurrentValue;
 
         if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
+        */
     }
 
     public override void GetHit(Damage damage)
@@ -168,12 +179,12 @@ public class Player : Character
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (SoulPercent));
+                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (SoulPercent));
 
                 //stats.currentHealth -= damage.damageNumber;
                 ModSoulMeter(-damage.damageNumber);
             }
-            if (stats.currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 Die();
             }
@@ -188,12 +199,10 @@ public class Player : Character
 
         if (soulMeter <= 0)
         {
-            currentSouls.baseValue--;
+            ModSouls(-1);
             soulMeter = soulMeterMax;
 
-            if (ESoulsChanged != null) ESoulsChanged((int)currentSouls.baseValue);
-
-            if (currentSouls.CurrentValue <= 0)
+            if (currentSouls <= 0)
             {
                 Die();
             }

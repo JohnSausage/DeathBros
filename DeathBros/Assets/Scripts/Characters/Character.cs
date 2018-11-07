@@ -9,6 +9,12 @@ public class Character : _MB, ICanTakeDamage
 
     public string soundFolderName;
 
+    [Space]
+
+    [SerializeField]
+    protected StatsSO statsSO;
+    protected List<Stat> statList;// { get; protected set; }
+
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
     public Vector2 TiltInput { get; protected set; }
@@ -45,12 +51,14 @@ public class Character : _MB, ICanTakeDamage
         }
     }
 
-    public List<CState> cStates;
+    public List<CState> cStates { get; protected set; }
 
     [Space]
 
-    public Stats stats;
+    //public Stats stats;
 
+    public float currentHealth;
+    public float currentSouls = 1;
     public float soulMeter = 50;
     public float soulMeterMax = 100;
     public float soulMeterBalanceRate = 0.25f;
@@ -59,7 +67,7 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 currentKnockback { get; protected set; }
 
     public bool shielding = false;
-    public bool IsDead { get { return (stats.currentHealth <= 0); } }
+    public bool IsDead { get { return (currentHealth <= 0); } }
 
     public Queue<int> hitIDs = new Queue<int>();
 
@@ -69,6 +77,8 @@ public class Character : _MB, ICanTakeDamage
     public override void Init()
     {
         base.Init();
+
+        cStates = new List<CState>();
 
         CSMachine = new StateMachine();
         Anim = GetComponent<FrameAnimator>();
@@ -80,7 +90,9 @@ public class Character : _MB, ICanTakeDamage
         HitM = GetComponent<HitboxManager>();
         HurtM = GetComponent<HurtboxManager>();
 
-        stats.Init();
+        //stats.Init();
+
+        InitStats();
     }
 
     public virtual void CStates_InitExitStates()
@@ -95,7 +107,9 @@ public class Character : _MB, ICanTakeDamage
     {
         CSMachine.Update();
 
-        stats.FixedUpdate();
+        //stats.FixedUpdate();
+
+        UpdateStats();
 
         UpdatesStatsForCtr();
         Ctr.ManualFixedUpdate();
@@ -108,14 +122,73 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void UpdatesStatsForCtr()
     {
-        Ctr.movespeed = stats.movespeed.CurrentValue;
-        Ctr.gravity = stats.gravity.CurrentValue;
+        Ctr.movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
+        Ctr.gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
     }
 
     public void Spawn(Vector2 position)
     {
 
     }
+
+    #region stats
+
+    public virtual void ModSouls(float value)
+    {
+        currentSouls += value;
+
+        currentSouls = Mathf.Clamp(currentSouls, 0, GetCurrentStatValue("MaxSouls"));
+    }
+
+    protected void ModHealth(float value)
+    {
+        currentHealth += value;
+
+        currentHealth = Mathf.Clamp(currentHealth, 0, GetCurrentStatValue("MaxHealth"));
+    }
+
+    protected void InitStats()
+    {
+        statList = new List<Stat>();
+
+        statsSO.Init(statList);
+
+        currentHealth = GetCurrentStatValue("MaxHealth");
+
+        if(GetCurrentStatValue("MaxSouls") != 0)
+        {
+            currentSouls = 0;
+            ModSouls(GetCurrentStatValue("MaxSouls"));
+        }
+    }
+
+    protected void UpdateStats()
+    {
+        for (int i = 0; i < statList.Count; i++)
+        {
+            statList[i].FixedUpdate();
+        }
+    }
+
+    public Stat GetStat(string statName)
+    {
+        return statList.Find(x => x.statName == statName);
+    }
+
+    public float GetCurrentStatValue(string statName)
+    {
+        Stat stat = GetStat(statName);
+
+        if (stat != null) return stat.CurrentValue;
+
+        else
+        {
+            Debug.Log(statName + " not found");
+            return 0;
+        }
+    }
+
+    #endregion
 
     public void AddHitIDToQueue(int id)
     {
@@ -165,11 +238,11 @@ public class Character : _MB, ICanTakeDamage
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentKnockback = damage.Knockback(transform.position, stats.weight.CurrentValue, (stats.currentHealth / stats.maxHealth.CurrentValue));
+                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
 
-                stats.currentHealth -= damage.damageNumber;
+                currentHealth -= damage.damageNumber;
             }
-            if (stats.currentHealth <= 0)
+            if (currentHealth <= 0)
             {
                 Die();
             }
