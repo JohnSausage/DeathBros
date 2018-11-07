@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour
     public Vector2 TargetDirection;// { get; protected set; }
     public Vector2 TargetVector;// { get; protected set; }
 
+    public List<AIState> AIStates { get; protected set; }
+
     public float DistanceToTarget
     {
         get
@@ -59,6 +61,7 @@ public class EnemyAI : MonoBehaviour
         target = GameObject.FindGameObjectWithTag(followTag).transform;
 
         RandomStates = new List<AIState>();
+        AIStates = new List<AIState>();
     }
 
     protected void FixedUpdate()

@@ -5,15 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class AIState : IState
 {
+    public string stateName;
+
     protected EnemyAI ai;
 
     [SerializeField]
     protected float randomEnterChance = 50;
     public float RandomEnterChance { get { return randomEnterChance; } }
 
+    [SerializeField]
+    protected AIStateTransition transition;
+
     public void Init(EnemyAI ai)
     {
         this.ai = ai;
+
+        ai.AIStates.Add(this);
 
         if (randomEnterChance > 0)
             ai.RandomStates.Add(this);
@@ -26,6 +33,10 @@ public class AIState : IState
 
     public virtual void Execute()
     {
+        if(transition.ConditionMet())
+        {
+            ChangeState(transition.exitStateName);
+        }
     }
 
     public virtual void Exit()
@@ -39,7 +50,36 @@ public class AIState : IState
             ai.aiMachine.ChangeState(newState);
         }
     }
+
+    protected void ChangeState(string stateName)
+    {
+        ChangeState(ai.AIStates.Find(x => x.stateName == stateName));
+    }
 }
+
+public enum ETransitonType { Timer, AnimationOver, PlayerDistance, GetHit, HitPlayer}
+[System.Serializable]
+public class AIStateTransition
+{
+    public string exitStateName;
+
+    public ETransitonType transitionType;
+
+
+    public bool ConditionMet()
+    {
+        switch (transitionType)
+        {
+            case ETransitonType.Timer:
+                {
+                    return true; 
+                }
+        }
+
+        return false;
+    }
+}
+
 [System.Serializable]
 public class AI_Walk : AIState
 {
