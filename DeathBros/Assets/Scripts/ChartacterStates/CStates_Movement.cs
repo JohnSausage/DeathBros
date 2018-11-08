@@ -826,8 +826,6 @@ public class CS_Hitstun : CState
     {
         base.Execute();
 
-        chr.InKnockbackUpdate();
-
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(animation);
         else
@@ -837,6 +835,11 @@ public class CS_Hitstun : CState
         chr.GetInputs();
 
         timer++;
+
+        if(timer%3 == 0)
+        {
+            EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+        }
 
         //chr.SetInputs(new Vector2(knockbackX, 0));
         /*

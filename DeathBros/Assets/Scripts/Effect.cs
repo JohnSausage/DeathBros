@@ -17,6 +17,7 @@ public class Effect : MonoBehaviour
     private List<Sprite> sprites;
 
     private SpriteRenderer spr;
+    [SerializeField]
     private float timer = 0;
     private int counter = 0;
 
@@ -31,7 +32,7 @@ public class Effect : MonoBehaviour
     {
         timer += Time.unscaledDeltaTime;
 
-        if (timer >= frameDuration / 60)
+        if (timer * 60  >= frameDuration)
         {
             counter++;
 
