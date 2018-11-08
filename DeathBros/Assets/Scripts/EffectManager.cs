@@ -6,21 +6,20 @@ public class EffectManager : MonoBehaviour
 {
     private GameObject hitEffect1;
     private GameObject damageNumber;
+    private GameObject cloudEffect;
 
     void Start()
     {
         hitEffect1 = (GameObject)Resources.Load("Effects/Hit1");
         damageNumber = (GameObject)Resources.Load("Effects/DamageNumber");
+        cloudEffect = (GameObject)Resources.Load("Effects/Cloud1");
 
         //HitboxManager.EnemyHit += SpawnHitEffect;
         Character.TakesDamageAll += SpawnDamageNumber;
         Character.TakesDamageAll += SpawnHitEffect;
+        Character.InKnockback += SpawnCloudEffect;
     }
 
-    void Update()
-    {
-
-    }
 
     private void SpawnHitEffect(Damage damage, Vector2 position)
     {
@@ -35,5 +34,10 @@ public class EffectManager : MonoBehaviour
         GameObject dmgNr = Instantiate(damageNumber, position + Vector2.up, Quaternion.identity);
         dmgNr.GetComponent<DamageNumber>().damageNumber = damage.damageNumber.ToString();
 
+    }
+
+    private void SpawnCloudEffect(Character chr)
+    {
+        Instantiate(cloudEffect, (Vector2)chr.transform.position + Vector2.down, Quaternion.identity);
     }
 }

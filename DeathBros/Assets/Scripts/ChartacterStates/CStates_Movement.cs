@@ -826,6 +826,8 @@ public class CS_Hitstun : CState
     {
         base.Execute();
 
+        chr.InKnockbackUpdate();
+
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(animation);
         else

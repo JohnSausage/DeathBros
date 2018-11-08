@@ -73,6 +73,7 @@ public class Character : _MB, ICanTakeDamage
 
     public event Action<Damage> TakesDamage;
     public static event Action<Damage, Vector2> TakesDamageAll;
+    public static event Action<Character> InKnockback;
 
     public override void Init()
     {
@@ -129,6 +130,11 @@ public class Character : _MB, ICanTakeDamage
     public void Spawn(Vector2 position)
     {
 
+    }
+
+    public void InKnockbackUpdate() //updates every frame the player is in knockback
+    {
+        if (InKnockback != null) InKnockback(this);
     }
 
     #region stats
