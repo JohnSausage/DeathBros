@@ -261,35 +261,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Green Golem
-  soundFolderName: 
+  soundFolderName: Sounds/Player
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
   CSMachine:
     currentState: 
-  cStates: []
-  stats:
-    maxHealth:
-      statName: MaxHealth
-      baseValue: 40
-    currentHealth: 0
-    weight:
-      statName: Weight
-      baseValue: 120
-    movespeed:
-      statName: Movespeed
-      baseValue: 2
-    jumpStrength:
-      statName: JumpStrength
-      baseValue: 2
-    gravity:
-      statName: Gravity
-      baseValue: -1
-    jumps:
-      statName: Jumps
-      baseValue: 1
-    velocityXSmoothing: 3
-    maxSlopeUpAngle: 45
-    maxSlopeDownAngle: 45
-    stats: []
+  currentHealth: 0
+  currentSouls: 1
   soulMeter: 50
   soulMeterMax: 100
   soulMeterBalanceRate: 0.25

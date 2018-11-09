@@ -21,6 +21,8 @@ public class Player : Character
     protected int soulBalanceDelayDuration = 60;
     private int soulBalanceDelayTimer = 0;
 
+    public int soulBank = 0;
+
     public float pickUpRadius = 1.5f;
 
     public LayerMask enemyMask;
@@ -32,7 +34,8 @@ public class Player : Character
 
     public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
-    public event Action<float> ESoulsChanged;
+    public event Action<float> ASoulsChanged;
+    public event Action<int> ASoulBankPlus;
 
     public override void Init()
     {
@@ -100,11 +103,23 @@ public class Player : Character
         BalanceSoulMeter();
     }
 
+    protected override void InitStats()
+    {
+        base.InitStats();
+
+        if (GetCurrentStatValue("MaxSouls") != 0)
+        {
+            currentSouls = 0;
+            ModSouls(GetCurrentStatValue("MaxSouls"));
+        }
+    }
+
+
     public override void ModSouls(float value)
     {
         base.ModSouls(value);
 
-        if (ESoulsChanged != null) ESoulsChanged((int)currentSouls);
+        if (ASoulsChanged != null) ASoulsChanged((int)currentSouls);
     }
 
     protected void BalanceSoulMeter()
@@ -144,14 +159,8 @@ public class Player : Character
 
     private void AddHealthAfterCombo(float damageNumber)
     {
-        /*
-        stats.currentHealth += damageNumber;
-
-        if (stats.currentHealth > stats.maxHealth.CurrentValue)
-            stats.currentHealth = stats.maxHealth.CurrentValue;
-
-        if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
-        */
+        float soulMeterMultiplier = 1f; //to reduce soulMeterHeal
+        ModSoulMeter(damageNumber * soulMeterMultiplier);
     }
 
     public override void GetHit(Damage damage)
@@ -193,9 +202,23 @@ public class Player : Character
 
     public override void ModSoulMeter(float value)
     {
-        soulBalanceDelayTimer = soulBalanceDelayDuration;
+        if (soulMeter < soulMeterMax / 2) //only wait to fill up again, but drain soul immediately if more than half full
+        {
+            soulBalanceDelayTimer = soulBalanceDelayDuration;
+        }
+        else
+        {
+            soulBalanceDelayTimer = 0;
+        }
 
         soulMeter += value;
+
+        if(soulMeter > soulMeterMax)
+        {
+            soulBank += (int)(soulMeter - soulMeterMax);
+
+            if (ASoulBankPlus != null) ASoulBankPlus(soulBank);
+        }
 
         if (soulMeter <= 0)
         {
@@ -219,7 +242,7 @@ public class Player : Character
             if (itemCheck)
             {
                 Interactable interactable = itemCheck.transform.GetComponentInParent<Interactable>();
-                if(interactable != null)
+                if (interactable != null)
                 {
                     InputManager.ClearBuffer();
                     interactable.StartInteraction(this);

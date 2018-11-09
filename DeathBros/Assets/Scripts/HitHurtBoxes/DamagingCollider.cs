@@ -7,8 +7,8 @@ public class DamagingCollider : MonoBehaviour
     public Damage damage;
     public ContactFilter2D filter;
 
-    public int tickDelay = 10;
-    private int timer = 0;
+    //public int tickDelay = 10;
+    //private int timer = 0;
 
     public Collider2D Col { get; protected set; }
 
@@ -20,12 +20,30 @@ public class DamagingCollider : MonoBehaviour
         Col = GetComponent<Collider2D>();
         collisions = new RaycastHit2D[10];
         damage.position = transform.position;
+        damage.GenerateID();
     }
 
     private void FixedUpdate()
     {
-        timer++;
+        colNr = Col.Cast(Vector2.zero, filter, collisions);
 
+        if (colNr > 0)
+        {
+            for (int i = 0; i < colNr; i++)
+            {
+                ICanTakeDamage hitObject = collisions[i].transform.GetComponentInParent<ICanTakeDamage>();
+                if (hitObject != null)
+                    hitObject.GetHit(damage);
+            }
+        }
+        else
+        {
+            damage.GenerateID();
+        }
+
+        //timer++;
+
+        /*
         if (timer > tickDelay)
         {
             damage.GenerateID();
@@ -39,13 +57,14 @@ public class DamagingCollider : MonoBehaviour
                     ICanTakeDamage hitObject = collisions[i].transform.GetComponentInParent<ICanTakeDamage>();
                     hitObject.GetHit(damage);
                 }
-                /*
-                Character chr = collisions[0].transform.GetComponentInParent<Character>();
 
-                if (chr != null)
-                    chr.GetHit(damage);
-                    */
+                //Character chr = collisions[0].transform.GetComponentInParent<Character>();
+                //
+                //if (chr != null)
+                //    chr.GetHit(damage);
+                //    
             }
         }
+        */
     }
 }

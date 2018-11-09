@@ -22,6 +22,9 @@ public class UI : _MB
     private GameObject soulPanel;
 
     [SerializeField]
+    private TextMeshProUGUI soulBankText;
+
+    [SerializeField]
     private GameObject imageSoul;
 
     public List<ComboPanel> comboPanels;
@@ -33,11 +36,11 @@ public class UI : _MB
 
     void Start()
     {
-        //Player.PlayerHealthChanged += UpdatePlayerHealth;
         Player.EnemyHit += UpdateComboCounter;
-        //HitboxManager.PlayerHitsEnenmy += UpdateComboCounter;
 
-        GameManager.Player.ESoulsChanged += UpdateSouls;
+        GameManager.Player.ASoulsChanged += UpdateSouls;
+        GameManager.Player.ASoulBankPlus += UpdateSoulBank;
+        GameManager.Player.ASoulsChanged += UpdateSouls;
 
         comboPanels = new List<ComboPanel>();
     }
@@ -45,8 +48,7 @@ public class UI : _MB
     public override void LateInit()
     {
         base.LateInit();
-        //GameManager.Player.GetStat("currentSouls").EStatBaseValueChanged += UpdateSouls;
-        GameManager.Player.ESoulsChanged += UpdateSouls;
+
         UpdateSouls(GameManager.Player.currentSouls);
     }
 
@@ -97,6 +99,11 @@ public class UI : _MB
             newImageSoul.GetComponent<RectTransform>().anchoredPosition = new Vector2(30 + i * 30, 0);
             //newImageSoul.transform.localPosition = new Vector2(30 + i * 30, 0);
         }
+    }
+
+    private void UpdateSoulBank(int soulBank)
+    {
+        soulBankText.text = soulBank.ToString();
     }
 
     /*

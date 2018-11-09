@@ -18,12 +18,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: West_england
     PointSize: 32
-    Scale: 0
+    Scale: 1
     CharacterCount: 95
     LineHeight: 24
     Baseline: 0
     Ascender: 18
-    CapHeight: 0
+    CapHeight: 16
     Descender: -6
     CenterLine: 0
     SuperscriptOffset: 18
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 1.59375
     strikethrough: 4.3636365
     strikethroughThickness: 1.59375
-    TabWidth: 0
+    TabWidth: 80
     Padding: 5
     AtlasWidth: 256
     AtlasHeight: 256
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 251
-    width: 0
-    height: 0
+    width: 8
+    height: 24
     xOffset: 0
-    yOffset: 0
+    yOffset: 18
     xAdvance: 8
     scale: 1
   - id: 33
@@ -986,7 +986,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 43ebe1e106ceccf41ac8016cd3ec436e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:

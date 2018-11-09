@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfterAnimation: 1
-  frameDuration: 5
+  frameDuration: 2
   sprites:
   - {fileID: 21300000, guid: 7fedafb8b2a0a7141a185fdfd3c03a29, type: 3}
   - {fileID: 21300002, guid: 7fedafb8b2a0a7141a185fdfd3c03a29, type: 3}
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7fedafb8b2a0a7141a185fdfd3c03a29, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

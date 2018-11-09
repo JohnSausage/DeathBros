@@ -50,7 +50,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 23727
+      ID: 94079
       getNewID: 0
     soundName: 
   - duration: 5
@@ -77,9 +77,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 23727
+      ID: 94079
       getNewID: 0
-    soundName: 
+    soundName: mpf1
   - duration: 5
     sprite: {fileID: 21300044, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 95526
+      ID: 81479
       getNewID: 0
     soundName: 
   - duration: 5
@@ -131,9 +131,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 95526
+      ID: 81479
       getNewID: 0
-    soundName: 
+    soundName: mpf1
   - duration: 20
     sprite: {fileID: 21300024, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0

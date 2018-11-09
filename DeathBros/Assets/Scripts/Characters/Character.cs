@@ -147,7 +147,7 @@ public class Character : _MB, ICanTakeDamage
         currentHealth = Mathf.Clamp(currentHealth, 0, GetCurrentStatValue("MaxHealth"));
     }
 
-    protected void InitStats()
+    protected virtual void InitStats()
     {
         statList = new List<Stat>();
 
@@ -155,11 +155,7 @@ public class Character : _MB, ICanTakeDamage
 
         currentHealth = GetCurrentStatValue("MaxHealth");
 
-        if(GetCurrentStatValue("MaxSouls") != 0)
-        {
-            currentSouls = 0;
-            ModSouls(GetCurrentStatValue("MaxSouls"));
-        }
+        
     }
 
     protected void UpdateStats()

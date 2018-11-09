@@ -272,9 +272,9 @@ public class CS_Dash : CState
             ChangeState(typeof(CS_Jumpsquat));
         }
 
-        if(timer <= 5)
+        if (timer <= 5)
         {
-            if(chr.Attack)
+            if (chr.Attack)
             {
                 ChangeState(EAttackType.FSoul);
             }
@@ -804,6 +804,7 @@ public class CS_Hitstun : CState
     //public float knockbackX { get; set; }
     private int timer;
 
+    private float spawnCloudVelocity = 10;
 
     public override void Init(Character chr)
     {
@@ -820,6 +821,8 @@ public class CS_Hitstun : CState
         chr.Ctr.inControl = false;
 
         chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
+
+        EffectManager.SpawnEffect("Cloud1", chr.transform.position);
     }
 
     public override void Execute()
@@ -836,11 +839,20 @@ public class CS_Hitstun : CState
 
         timer++;
 
-        if(timer%3 == 0)
+        if (timer <= 60)
         {
-            EffectManager.SpawnEffect("Cloud1", chr.transform.position);
-        }
+            if (chr.Ctr.velocity.magnitude * 60 >= spawnCloudVelocity)
+            {
+                if (timer <= 30)
+                {
+                    if (timer % 4 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+                }
 
+                if (timer % 10 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+
+
+            }
+        }
         //chr.SetInputs(new Vector2(knockbackX, 0));
         /*
         if (timer == freezeStart)

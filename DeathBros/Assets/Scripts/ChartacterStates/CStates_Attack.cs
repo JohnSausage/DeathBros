@@ -147,7 +147,7 @@ public class CS_SoulAttack : CS_Attack
     private float chargeRate = 1f;
 
     private FrameAnimation chargeAnimation;
-    private bool charging = true;
+    //private bool charging = true;
     private int minChargeTime = 10;
     private int timer = 0;
 
@@ -167,7 +167,7 @@ public class CS_SoulAttack : CS_Attack
         base.Enter();
 
         chr.Anim.ChangeAnimation(chargeAnimation);
-        charging = true;
+        //charging = true;
         chr.Spr.color = Color.red;
         timer = 0;
 
@@ -204,7 +204,7 @@ public class CS_SoulAttack : CS_Attack
             if (timer > minChargeTime)
             {
                 chr.Anim.ChangeAnimation(animation);
-                charging = false;
+                //charging = false;
                 chr.Spr.color = Color.white;
             }
         }
