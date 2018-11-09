@@ -40,20 +40,15 @@ public class Player : Character
     public override void Init()
     {
         base.Init();
+
         soundFolderName = "Sounds/Player/";
 
         advancedMovementStates.Init(this);
         attackStates.Init(this);
 
-        //stats.AddStat(wallSlideSpeed);
-
         CStates_InitExitStates();
 
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
-
-        //stats.AddStat(maxSouls);
-        //stats.AddStat(currentSouls);
-        //stats.FindStat("currentSouls").baseValue = (int)maxSouls.baseValue;
     }
 
     void Update()
@@ -213,7 +208,7 @@ public class Player : Character
 
         soulMeter += value;
 
-        if(soulMeter > soulMeterMax)
+        if (soulMeter > soulMeterMax)
         {
             soulBank += (int)(soulMeter - soulMeterMax);
 

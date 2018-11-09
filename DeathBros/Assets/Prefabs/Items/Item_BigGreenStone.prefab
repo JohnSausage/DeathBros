@@ -119,7 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188caa415b9b1f04b8889b4182a5e757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSimulated: 0
   grounded: 0
+  collision: 0
+  characterHit: 0
   rolling: 0
   velocity: {x: 0, y: 0}
   collisionMask:
@@ -128,6 +131,9 @@ MonoBehaviour:
   platformMask:
     serializedVersion: 2
     m_Bits: 512
+  charcaterMask:
+    serializedVersion: 2
+    m_Bits: 0
   gravity: -1
   reflectVelocity: 0.5
   stopToReflectVelocity: 20
@@ -146,14 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 150
-  destroyOnCollision: 1
+  destroyIfGrounded: 1
+  destroyOnCollision: 0
+  destroyOnCharacterHit: 0
+  destroyAfterTime: 0
   damage:
-    damageNumber: 10
+    damageNumber: 20
     knockBackDirection: {x: 1, y: 3}
     baseKnockback: 15
     knockbackGrowth: 10
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
+    directionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}
   damagingSpeed: 10
   filter:
     useTriggers: 0

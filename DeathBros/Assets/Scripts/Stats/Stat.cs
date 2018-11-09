@@ -18,6 +18,13 @@ public class Stat
     {
         this.statName = statName;
         this.baseValue = baseValue;
+
+        CurrentValue = baseValue;
+    }
+
+    public Stat Clone()
+    {
+        return new Stat(statName, baseValue);
     }
 
     private List<StatMod> mods = new List<StatMod>();

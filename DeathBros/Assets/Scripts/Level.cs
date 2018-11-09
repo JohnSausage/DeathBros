@@ -31,8 +31,10 @@ public class Level : _MB, IState
 
     public static event Action<Level> Entered;
 
-    void Start()
+    public override void Init()
     {
+        base.Init();
+
         levelTransforms = GetComponentInChildren<TiledMap>().gameObject;
 
         enemiesTransform = transform.Find("Enemies");

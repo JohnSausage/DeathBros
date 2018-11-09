@@ -11,10 +11,8 @@ public class HurtboxManager : _MB
     private bool flipped;
     private Transform parent;
 
-    public override void Init()
+    protected override void Awake()
     {
-        base.Init();
-
         hurtboxes = new List<CircleCollider2D>();
         spr = GetComponent<SpriteRenderer>();
 

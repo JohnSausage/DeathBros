@@ -9,10 +9,6 @@ public class AudioManager : _MB
 
     public static AudioManager Instance { get; protected set; }
 
-    private void Awake()
-    {
-        Init();
-    }
 
     public override void Init()
     {

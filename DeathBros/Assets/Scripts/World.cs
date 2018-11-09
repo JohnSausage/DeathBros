@@ -10,8 +10,10 @@ public class World : _MB
 
     public List<Level> Levels { get; protected set; }
 
-    private void Start()
+    public override void Init()
     {
+        base.Init();
+    
         Levels = new List<Level>();
 
         foreach (Transform lvl in transform)

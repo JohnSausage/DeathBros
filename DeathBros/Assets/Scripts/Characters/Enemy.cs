@@ -5,6 +5,10 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField]
+    protected float comboMultiplier = 1;
+    public float ComboMultiplier { get { return comboMultiplier; } }
+
+    [SerializeField]
     protected CStates_Movement movementStates;
 
     [SerializeField]
@@ -20,13 +24,10 @@ public class Enemy : Character
     protected GameObject projectile;
 
     public CS_Attack currentAttack { get { return normalAttack; } }
-    //public EnemyAI AI { get; protected set; }
 
     public override void Init()
     {
         base.Init();
-
-        //AI = GetComponent<EnemyAI>();
 
         movementStates.Init(this);
         normalAttack.Init(this);
@@ -36,23 +37,6 @@ public class Enemy : Character
         Anim.SpawnProjectile += SpawnProjectile;
     }
 
-    private void Update()
-    {
-        //DirectionalInput = new Vector2(1, 0);
-
-        /*
-        DirectionalInput = AI.TargetDirection;
-
-        if(AI.InAttackRange)
-        {
-            Attack = true;
-        }
-        else
-        {
-            Attack = false;
-        }
-        */
-    }
 
     public void SpawnProjectile(Vector2 position, Vector2 direction)
     {

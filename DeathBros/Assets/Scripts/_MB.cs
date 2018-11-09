@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class _MB : MonoBehaviour
 {
-    protected bool initialized;
+    protected bool initialized = false;
 
-    void Awake()
+    protected virtual void Awake()
+    {
+        if (!initialized)
+            Init();
+    }
+
+    protected virtual void Start()
     {
         if (!initialized)
             Init();

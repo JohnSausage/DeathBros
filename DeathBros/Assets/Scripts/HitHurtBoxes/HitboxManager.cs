@@ -14,9 +14,9 @@ public class HitboxManager : _MB
     //public static event Action<Vector2> EnemyHit;
     //public static event Action<Enemy, Damage> PlayerHitsEnenmy;
 
-    public override void Init()
+    protected override void Awake()
     {
-        base.Init();
+        base.Awake();
 
         spr = GetComponent<SpriteRenderer>();
         Chr = GetComponent<Character>();
@@ -161,15 +161,6 @@ public class Damage
         damageNumber += damage;
     }
 
-    /*
-    public Damage AddDamage(float damage)
-    {
-        Damage rDamage = this.Clone();
-        rDamage.damageNumber += damage;
-
-        return rDamage;
-    }
-    */
     public Vector2 Knockback(float weight)
     {
         return Knockback(weight, 1);

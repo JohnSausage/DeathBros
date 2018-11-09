@@ -83,7 +83,7 @@ public class Controller2D : MonoBehaviour
 
     protected RaycastHit2D[] platformCasts;
 
-    private void Start()
+    private void Awake()
     {
         Col = GetComponent<BoxCollider2D>();
         platformCasts = new RaycastHit2D[3];
@@ -571,6 +571,43 @@ public class Controller2D : MonoBehaviour
         //lost control -> character just falls down
         if (!inControl)
         {
+            //perform a groundcheck
+
+            groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2),
+        new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 3, collisionMask);
+
+            if (groundCheck)
+            {
+                grounded = true;
+
+                slopeDownAngle = Vector2.Angle(Vector2.up, groundCheck.normal);
+
+                groundPoint = groundCheck.point - (Vector2)bounds.center;
+            }
+
+
+            if (!fallThroughPlatform)
+            {
+                platformCasts = new RaycastHit2D[10];
+
+                RCXY_noAl(Vector2.down, skin * 2, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2), new Vector2(bounds.size.x, skin), platformMask);
+
+                for (int i = 0; i < platformCasts.Length; i++)
+                {
+                    if (platformCasts[i])
+                    {
+                        if (platformCasts[i].distance > 0) //ignore a platform when inside of the platform
+                        {
+                            grounded = true;
+
+                            slopeDownAngle = Vector2.Angle(Vector2.up, platformCasts[i].normal);
+                        }
+                    }
+                }
+            }
+
+
+
             if (!freeze)
             {
                 velocity.y += gravity / 60;

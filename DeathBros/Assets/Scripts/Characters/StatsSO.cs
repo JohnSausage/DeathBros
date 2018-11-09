@@ -6,12 +6,4 @@ using UnityEngine;
 public class StatsSO : ScriptableObject
 {
     public List<Stat> stats;
-
-    public void Init(List<Stat> statList)
-    {
-        for (int i = 0; i < stats.Count; i++)
-        {
-            statList.Add(stats[i]);
-        }
-    }
 }

@@ -34,8 +34,10 @@ public class UI : _MB
 
 
 
-    void Start()
+    public override void Init()
     {
+        base.Init();
+
         Player.EnemyHit += UpdateComboCounter;
 
         GameManager.Player.ASoulsChanged += UpdateSouls;
@@ -66,7 +68,7 @@ public class UI : _MB
 
             if (comboCounters[i].ComboOver())
             {
-                uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboDamage + "\n", Color.green));
+                uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboScore() + "\n", Color.green));
 
                 comboCounters.Remove(comboCounters[i]);
             }
@@ -106,12 +108,6 @@ public class UI : _MB
         soulBankText.text = soulBank.ToString();
     }
 
-    /*
-    private void UpdatePlayerHealth(float newValue)
-    {
-        healthBar.value = newValue;
-    }
-    */
     private void UpdateComboCounter(Character enemy, Damage damage)
     {
         bool enemyFound = false;
@@ -147,9 +143,9 @@ public class ComboCounter
     public float ComboDamage { get; protected set; }
     public float HitCount { get; protected set; }
 
-
     private int comboResetDuration;
     private int timer;
+    private float comboMultiplier;
 
     public static event Action<float> ComboIsOver;
 
@@ -157,6 +153,7 @@ public class ComboCounter
     {
         this.enemy = enemy;
         EnemyName = enemy.charName;
+        comboMultiplier = enemy.ComboMultiplier;
         comboResetDuration = 90;
         timer = 0;
     }
@@ -164,6 +161,11 @@ public class ComboCounter
     public void FixedUpdate()
     {
         timer++;
+    }
+
+    public float ComboScore()
+    {
+        return ComboDamage * comboMultiplier;
     }
 
     public void AddDamage(float damageNumber)
@@ -178,7 +180,7 @@ public class ComboCounter
     {
         if (timer > comboResetDuration)
         {
-            if (ComboIsOver != null) ComboIsOver(ComboDamage);
+            if (ComboIsOver != null) ComboIsOver(ComboScore());
             return true;
         }
 

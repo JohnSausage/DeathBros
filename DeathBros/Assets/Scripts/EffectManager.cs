@@ -13,23 +13,20 @@ public class EffectManager : _MB
 
     public static EffectManager Instance { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
-        base.Init();
+        base.Awake();
 
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+
         }
         else
         {
             Destroy(this);
         }
-    }
 
-    void Start()
-    {
         Object[] goArray = Resources.LoadAll("Effects");
 
         effectGOs = new List<GameObject>();
@@ -42,7 +39,11 @@ public class EffectManager : _MB
 
         hitEffect1 = (GameObject)Resources.Load("Effects/Hit1");
         damageNumber = (GameObject)Resources.Load("Effects/DamageNumber");
+    }
 
+    protected override void Start()
+    {
+        base.Start();
         Character.TakesDamageAll += SpawnDamageNumber;
         Character.TakesDamageAll += SpawnHitEffect;
     }

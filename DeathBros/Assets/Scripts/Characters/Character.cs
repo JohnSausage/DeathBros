@@ -13,6 +13,8 @@ public class Character : _MB, ICanTakeDamage
 
     [SerializeField]
     protected StatsSO statsSO;
+
+    [SerializeField]
     protected List<Stat> statList;// { get; protected set; }
 
     public Vector2 DirectionalInput { get; protected set; }
@@ -78,6 +80,8 @@ public class Character : _MB, ICanTakeDamage
     {
         base.Init();
 
+        InitStats();
+
         cStates = new List<CState>();
 
         CSMachine = new StateMachine();
@@ -90,9 +94,13 @@ public class Character : _MB, ICanTakeDamage
         HitM = GetComponent<HitboxManager>();
         HurtM = GetComponent<HurtboxManager>();
 
-        //stats.Init();
+    }
 
-        InitStats();
+    public override void LateInit()
+    {
+        base.LateInit();
+
+        //InitStats();
     }
 
     public virtual void CStates_InitExitStates()
@@ -133,6 +141,20 @@ public class Character : _MB, ICanTakeDamage
 
     #region stats
 
+    protected virtual void InitStats()
+    {
+        statList = new List<Stat>();
+
+        //statsSO.Init(statList);
+
+        for (int i = 0; i < statsSO.stats.Count; i++)
+        {
+            statList.Add(statsSO.stats[i].Clone());
+        }
+
+        currentHealth = GetCurrentStatValue("MaxHealth");
+    }
+
     public virtual void ModSouls(float value)
     {
         currentSouls += value;
@@ -145,17 +167,6 @@ public class Character : _MB, ICanTakeDamage
         currentHealth += value;
 
         currentHealth = Mathf.Clamp(currentHealth, 0, GetCurrentStatValue("MaxHealth"));
-    }
-
-    protected virtual void InitStats()
-    {
-        statList = new List<Stat>();
-
-        statsSO.Init(statList);
-
-        currentHealth = GetCurrentStatValue("MaxHealth");
-
-        
     }
 
     protected void UpdateStats()

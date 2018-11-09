@@ -265,23 +265,13 @@ MonoBehaviour:
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
   CSMachine:
     currentState: 
-  cStates: []
-  stats:
-    currentHealth: 0
-    jumpStrength:
-      statName: JumpStrength
-      baseValue: 2
-    jumps:
-      statName: Jumps
-      baseValue: 1
-    velocityXSmoothing: 3
-    maxSlopeUpAngle: 45
-    maxSlopeDownAngle: 45
-    stats: []
+  currentHealth: 0
+  currentSouls: 1
   soulMeter: 50
   soulMeterMax: 100
   soulMeterBalanceRate: 0.25
   shielding: 0
+  comboMultiplier: 3
   movementStates:
     idle:
       animationName: idle

@@ -13,8 +13,10 @@ public class MiniMapPanel : _MB
 
     protected World world;
 
-    private void Start()
+    public override void Init()
     {
+        base.Init();
+
         world = GameManager.Instance.startWorld;
 
         Level.Entered += CreateNewMiniMap;

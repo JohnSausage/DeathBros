@@ -1061,8 +1061,17 @@ public class CS_HitLand : CState
             }
             else
             {
-                ChangeState(typeof(CS_HitLanded));
-                chr.Ctr.inControl = true;
+                if (chr.Ctr.grounded)
+                {
+                    ChangeState(typeof(CS_HitLanded));
+                    chr.Ctr.inControl = true;
+                }
+                else
+                {
+                    chr.Ctr.forceMovement = collisionReflect * 60 * 0.8f; //80% reduction
+
+                    ChangeState(typeof(CS_Hitstun));
+                }
             }
         }
     }

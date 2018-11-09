@@ -50,12 +50,12 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 94079
+      ID: 20741
       getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300042, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 94079
+      ID: 7021
       getNewID: 0
     soundName: mpf1
   - duration: 5
@@ -104,12 +104,12 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 81479
+      ID: 38630
       getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300046, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 81479
+      ID: 32563
       getNewID: 0
     soundName: mpf1
   - duration: 20

@@ -271,6 +271,7 @@ MonoBehaviour:
   soulMeterMax: 100
   soulMeterBalanceRate: 0.25
   shielding: 0
+  comboMultiplier: 2
   movementStates:
     idle:
       animationName: idle

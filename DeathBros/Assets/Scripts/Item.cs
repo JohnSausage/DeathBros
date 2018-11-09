@@ -47,8 +47,10 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     protected Queue<int> hitIDs = new Queue<int>();
 
-    protected void Awake()
+    public override void Init()
     {
+        base.Init();
+
         ctr = GetComponent<ItemController2D>();
         col = GetComponentInChildren<Collider2D>();
         collisions = new RaycastHit2D[2];
