@@ -81,6 +81,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1815376313024852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4662584824900850}
+  - component: {fileID: 114114540515400152}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1828734111954006
 GameObject:
   m_ObjectHideFlags: 1
@@ -132,9 +148,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.35, y: -5.97, z: 0}
+  m_LocalPosition: {x: 14.63, y: -24.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4662584824900850}
   - {fileID: 4277157867034804}
   - {fileID: 4416053389930634}
   m_Father: {fileID: 0}
@@ -154,7 +171,7 @@ Transform:
   - {fileID: 4418551817631082}
   - {fileID: 4930859424125228}
   m_Father: {fileID: 4033058782340414}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4416053389930634
 Transform:
@@ -167,7 +184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4033058782340414}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4418551817631082
 Transform:
@@ -181,6 +198,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4277157867034804}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4662584824900850
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815376313024852}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.9299994, y: 17.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4033058782340414}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930859424125228
 Transform:
@@ -220,6 +250,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0588913, y: 1.3239365}
   m_EdgeRadius: 0
+--- !u!114 &114114540515400152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815376313024852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cb8f19cc44d374d9a12aea3f6f5f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadSoundsFromFolder: Sounds/Enemies/
+  sounds:
+  - name: slime
+    clip: {fileID: 8300000, guid: 10bfac6b8fb3e294ca51b988f411deb0, type: 3}
+    volume: 0.1
+    loop: 0
+  - name: magHit
+    clip: {fileID: 8300000, guid: 71bf185baec7dc84d9f8aa2170c022db, type: 3}
+    volume: 0.5
+    loop: 0
+  - name: golemRoll
+    clip: {fileID: 8300000, guid: bfcbd66c545628945872189e47bb08f9, type: 3}
+    volume: 0.6
+    loop: 0
 --- !u!114 &114198905926881744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,8 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Green Golem
-  soundFolderName: Sounds/Player
+  soundFolderName: Sounds/Enemies/
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
+  statList: []
   CSMachine:
     currentState: 
   currentHealth: 0

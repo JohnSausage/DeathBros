@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: hit
+  m_Name: beforeSpawn
   m_EditorClassIdentifier: 
   frames:
-  - duration: 15
-    sprite: {fileID: 21300018, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  - duration: 115
+    sprite: {fileID: 21300026, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -21,9 +21,19 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: -0.078125, y: -0.40625}
-      radius: 0.6
+    hurtboxes: []
     hitboxes: []
-    soundName: magHit
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300028, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes: []
+    hitboxes: []
+    soundName: 
   damages: []

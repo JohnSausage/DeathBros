@@ -7,8 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     protected GameObject enemyGO;
 
-    [SerializeField]
-    protected Sprite spawnedSprite;
+    protected FrameAnimator anim;
 
     protected bool enemySpawned;
 
@@ -17,6 +16,12 @@ public class EnemySpawner : MonoBehaviour
     void Awake()
     {
         spawnTriggerCollider = GetComponent<Collider2D>();
+        anim = GetComponent<FrameAnimator>();
+        anim.Init();
+
+        anim.ChangeAnimation("beforeSpawn");
+
+        anim.AnimationOver += Remove;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -33,8 +38,17 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnEnemy()
     {
         enemySpawned = true;
-        Instantiate(enemyGO, transform.position, Quaternion.identity);
 
-        GetComponent<SpriteRenderer>().sprite = spawnedSprite;
+        anim.ChangeAnimation("spawn");
+    }
+
+    private void Remove(FrameAnimation animation)
+    {
+        if (animation == anim.GetAnimation("spawn"))
+        {
+            anim.ChangeAnimation("afterSpawn");
+
+            Instantiate(enemyGO, transform.position, Quaternion.identity);
+        }
     }
 }

@@ -50,9 +50,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 20741
+      ID: 53562
       getNewID: 0
-    soundName: 
+    soundName: golemRoll
   - duration: 5
     sprite: {fileID: 21300042, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 1
@@ -77,9 +77,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 7021
+      ID: 25831
       getNewID: 0
-    soundName: mpf1
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300044, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 38630
+      ID: 90979
       getNewID: 0
     soundName: 
   - duration: 5
@@ -131,9 +131,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         directionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 32563
+      ID: 37112
       getNewID: 0
-    soundName: mpf1
+    soundName: 
   - duration: 20
     sprite: {fileID: 21300024, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 0

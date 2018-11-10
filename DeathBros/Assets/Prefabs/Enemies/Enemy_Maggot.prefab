@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114216191892096462}
   - component: {fileID: 114253501170567500}
   - component: {fileID: 61189036597972946}
-  - component: {fileID: 114405352300330562}
+  - component: {fileID: 114643489935978160}
   m_Layer: 0
   m_Name: Enemy_Maggot
   m_TagString: Untagged
@@ -81,6 +81,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1487583320250274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4009468108302122}
+  - component: {fileID: 114587500772317278}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1829277702960764
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +128,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4009468108302122
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487583320250274}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.502941, y: -0.50374985, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4136827316432892}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4136827316432892
 Transform:
   m_ObjectHideFlags: 1
@@ -122,6 +151,7 @@ Transform:
   m_LocalPosition: {x: 18.202942, y: -6.99625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4009468108302122}
   - {fileID: 4773371738867816}
   - {fileID: 4741648372137012}
   m_Father: {fileID: 0}
@@ -151,7 +181,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4136827316432892}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4745175779577130
 Transform:
@@ -180,7 +210,7 @@ Transform:
   - {fileID: 4930808111624958}
   - {fileID: 4745175779577130}
   m_Father: {fileID: 4136827316432892}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930808111624958
 Transform:
@@ -296,56 +326,27 @@ MonoBehaviour:
   skin: 0.01
   skinDistance: 0
   triangleDistance: 0
---- !u!114 &114405352300330562
+--- !u!114 &114587500772317278
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196939669774506}
+  m_GameObject: {fileID: 1487583320250274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c22c654bae68248aa76d65868a4154, type: 3}
+  m_Script: {fileID: 11500000, guid: 07cb8f19cc44d374d9a12aea3f6f5f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTag: Player
-  attackRange: 1
-  aggroRange: 5
-  aggroed: 0
-  target: {fileID: 0}
-  aiFollowPlayer:
-    stateName: 
-    randomEnterChance: 70
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiMachine:
-    currentState: 
-  TargetDirection: {x: 0, y: 0}
-  TargetVector: {x: 0, y: 0}
-  aiFlee:
-    stateName: 
-    randomEnterChance: 30
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiAttack:
-    stateName: 
-    randomEnterChance: 0
-    transition:
-      exitStateName: 
-      transitionType: 0
-  aiWalk:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
+  loadSoundsFromFolder: Sounds/Enemies/
+  sounds:
+  - name: slime
+    clip: {fileID: 8300000, guid: 10bfac6b8fb3e294ca51b988f411deb0, type: 3}
+    volume: 0.1
+    loop: 0
+  - name: magHit
+    clip: {fileID: 8300000, guid: 71bf185baec7dc84d9f8aa2170c022db, type: 3}
+    volume: 0.5
+    loop: 0
 --- !u!114 &114609069300868980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Maggot
-  soundFolderName: 
+  soundFolderName: Sounds/Enemies/
   statsSO: {fileID: 11400000, guid: 1736366b60f86b24e9c2e37a6bd77a48, type: 2}
   statList: []
   CSMachine:
@@ -394,14 +395,14 @@ MonoBehaviour:
       animationName: hit
       duration: 10
     hitLand:
-      animationName: hit
+      animationName: jumpDown
       duration: 5
     shield:
       animationName: shield
     die:
-      animationName: hit
+      animationName: jumpDown
     dead:
-      animationName: hit
+      animationName: jumpDown
     standUp:
       animationName: idle
     hitLanded:
@@ -417,6 +418,56 @@ MonoBehaviour:
     animationName: idle
     attackType: 0
   projectile: {fileID: 0}
+--- !u!114 &114643489935978160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196939669774506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c22c654bae68248aa76d65868a4154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTag: Player
+  attackRange: 1
+  aggroRange: 5
+  aggroed: 0
+  target: {fileID: 0}
+  aiFollowPlayer:
+    stateName: 
+    randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
+    duration: 60
+    randomPlusMinusDuration: 30
+  aiMachine:
+    currentState: 
+  TargetDirection: {x: 0, y: 0}
+  TargetVector: {x: 0, y: 0}
+  aiFlee:
+    stateName: 
+    randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
+    duration: 60
+    randomPlusMinusDuration: 30
+  aiAttack:
+    stateName: 
+    randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
+  aiWalk:
+    stateName: 
+    randomEnterChance: 50
+    transition:
+      exitStateName: 
+      transitionType: 0
+    duration: 60
+    randomPlusMinusDuration: 30
 --- !u!114 &114829232162217112
 MonoBehaviour:
   m_ObjectHideFlags: 1
