@@ -65,7 +65,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
         {
             hitIDs.Enqueue(damage.hitID);
 
-            ctr.SetVelocity = damage.Knockback(weight);
+            ctr.SetVelocity = damage.Knockback(transform.position, weight, 1);
         }
 
         if (hitIDs.Count > 10) hitIDs.Dequeue();

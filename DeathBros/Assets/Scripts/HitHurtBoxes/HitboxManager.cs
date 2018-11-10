@@ -37,9 +37,10 @@ public class HitboxManager : _MB
         {
             currentFrame.hitboxes[i].ID = currentID;
 
-            int number = Physics2D.OverlapCircleNonAlloc(position + new Vector2(currentFrame.hitboxes[i].position.x * dirX,
-                currentFrame.hitboxes[i].position.y),
-                currentFrame.hitboxes[i].radius, hit, hitLayer);
+            Vector2 hitBoxPosition = position + new Vector2(currentFrame.hitboxes[i].position.x * dirX,
+                currentFrame.hitboxes[i].position.y);
+
+            int number = Physics2D.OverlapCircleNonAlloc(hitBoxPosition, currentFrame.hitboxes[i].radius, hit, hitLayer);
 
             if (number > 0)
             {
@@ -50,7 +51,7 @@ public class HitboxManager : _MB
                     Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
                     damage.hitID = currentID;
                     damage.Owner = Chr;
-                    damage.position = currentFrame.hitboxes[i].position;
+                    damage.position = hitBoxPosition;
 
                     if (Chr is Player)
                     {
@@ -136,7 +137,7 @@ public class Damage
     public float knockbackGrowth;
     public EDamageType damageType;
     public Color editorColor;
-    public Vector2 directionalInfluence;
+    public Vector2 positionalInfluence;
     public Vector2 position;
 
     public int hitID { get; set; }
@@ -152,7 +153,9 @@ public class Damage
             baseKnockback = baseKnockback,
             knockbackGrowth = knockbackGrowth,
             damageType = damageType,
-            editorColor = editorColor
+            editorColor = editorColor,
+            positionalInfluence = positionalInfluence,
+            position = position
         };
     }
 
@@ -184,10 +187,12 @@ public class Damage
         if (position != Vector2.zero)
         {
             Vector2 hitDirection = (hitPosition - position).normalized;
-            hitDirection.x *= directionalInfluence.x;
-            hitDirection.y *= directionalInfluence.y;
+            hitDirection.x *= positionalInfluence.x;
+            hitDirection.y *= positionalInfluence.y;
 
             knockback += hitDirection;
+
+            knockback.Normalize();
         }
 
 

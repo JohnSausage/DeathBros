@@ -816,6 +816,7 @@ public class FrameAnimatorEditor : EditorWindow
                 EditorGUILayout.LabelField("Nr " + (i + 1));
                 currentAnimation.damages[i].damageNumber = EditorGUILayout.FloatField("Damage", currentAnimation.damages[i].damageNumber);
                 currentAnimation.damages[i].knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentAnimation.damages[i].knockBackDirection);
+                currentAnimation.damages[i].positionalInfluence = EditorGUILayout.Vector2Field("Positional Influence", currentAnimation.damages[i].positionalInfluence);
                 currentAnimation.damages[i].baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentAnimation.damages[i].baseKnockback);
                 currentAnimation.damages[i].knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentAnimation.damages[i].knockbackGrowth);
                 currentAnimation.damages[i].damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentAnimation.damages[i].damageType);
@@ -883,6 +884,7 @@ public class FrameAnimatorEditor : EditorWindow
 
                         currentFrame.hitboxes[i].damage.damageNumber = EditorGUILayout.FloatField("Damage", currentFrame.hitboxes[i].damage.damageNumber);
                         currentFrame.hitboxes[i].damage.knockBackDirection = EditorGUILayout.Vector2Field("Knockback Direction", currentFrame.hitboxes[i].damage.knockBackDirection);
+                        currentFrame.hitboxes[i].damage.positionalInfluence = EditorGUILayout.Vector2Field("Positional Influence", currentFrame.hitboxes[i].damage.positionalInfluence);
                         currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
                         currentFrame.hitboxes[i].damage.knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.knockbackGrowth);
 

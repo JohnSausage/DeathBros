@@ -12,18 +12,24 @@ public class DamagingCollider : MonoBehaviour
 
     public Collider2D Col { get; protected set; }
 
-    private RaycastHit2D[] collisions;
-    private int colNr;
+    protected RaycastHit2D[] collisions;
+    protected int colNr;
 
-    void Start()
+    protected virtual void Start()
     {
-        Col = GetComponent<Collider2D>();
+        SetCollider();
+
         collisions = new RaycastHit2D[10];
         damage.position = transform.position;
         damage.GenerateID();
     }
 
-    private void FixedUpdate()
+    protected virtual void SetCollider()
+    {
+        Col = GetComponent<Collider2D>();
+    }
+
+    protected virtual void FixedUpdate()
     {
         colNr = Col.Cast(Vector2.zero, filter, collisions);
 
@@ -40,31 +46,5 @@ public class DamagingCollider : MonoBehaviour
         {
             damage.GenerateID();
         }
-
-        //timer++;
-
-        /*
-        if (timer > tickDelay)
-        {
-            damage.GenerateID();
-            timer = 0;
-            colNr = Col.Cast(Vector2.zero, filter, collisions);
-
-            if (colNr > 0)
-            {
-                for (int i = 0; i < colNr; i++)
-                {
-                    ICanTakeDamage hitObject = collisions[i].transform.GetComponentInParent<ICanTakeDamage>();
-                    hitObject.GetHit(damage);
-                }
-
-                //Character chr = collisions[0].transform.GetComponentInParent<Character>();
-                //
-                //if (chr != null)
-                //    chr.GetHit(damage);
-                //    
-            }
-        }
-        */
     }
 }

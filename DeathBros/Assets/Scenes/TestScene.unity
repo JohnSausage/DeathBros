@@ -361,7 +361,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4264116035548444, guid: b58302277ff314b40a7923f7b672f123, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
@@ -519,7 +519,7 @@ Transform:
   - {fileID: 1054883725}
   - {fileID: 1200087066}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &110268540 stripped
 Transform:
@@ -2062,7 +2062,7 @@ Transform:
   m_Children:
   - {fileID: 729831689}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324364442
 GameObject:
@@ -2975,7 +2975,7 @@ Transform:
   m_Children:
   - {fileID: 1221344130}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &635178309
 GameObject:
@@ -3876,7 +3876,7 @@ Transform:
   - {fileID: 721552999}
   - {fileID: 269610575}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761100467
 GameObject:
@@ -4607,6 +4607,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1773431503}
   - {fileID: 108437185}
   - {fileID: 67387214}
   - {fileID: 2126469046}
@@ -4633,7 +4634,7 @@ MonoBehaviour:
   levelRight: {fileID: 0}
   levelTop: {fileID: 0}
   levelBottom: {fileID: 0}
-  backgroundMusic: 
+  backgroundMusic: ambient3
   spawnEnemyList:
   - {fileID: 1269022456329406, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
   enemies: []
@@ -4763,7 +4764,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967334111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.3, y: -57.5, z: 0}
+  m_LocalPosition: {x: -44.27, y: -58.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1502034169}
@@ -7666,7 +7667,7 @@ Transform:
   - {fileID: 706408891}
   - {fileID: 1495508997}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1406650654
 Prefab:
@@ -7784,6 +7785,65 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1431209163}
   m_CullTransparentMesh: 0
+--- !u!1 &1479791435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1132779305797462, guid: b58302277ff314b40a7923f7b672f123,
+    type: 2}
+  m_PrefabInternal: {fileID: 67387213}
+--- !u!114 &1479791437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479791435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fe14995cd0e5f4399ef58a83e3e8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    damageNumber: 15
+    knockBackDirection: {x: 0, y: 1}
+    baseKnockback: 20
+    knockbackGrowth: 10
+    damageType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}
+    positionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+  filter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 3072
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+--- !u!50 &1479791438
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479791435}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1495508997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4698635939218164, guid: b60d1c04ed8711a4292272897bacd3cc,
@@ -9987,6 +10047,60 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a95effd95bb14e34387d7284ac95153e, type: 3}
     volume: 0.2
     loop: 0
+--- !u!1 &1773431502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773431503}
+  - component: {fileID: 1773431504}
+  m_Layer: 0
+  m_Name: Sounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773431503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773431502}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 928376095}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1773431504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773431502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07cb8f19cc44d374d9a12aea3f6f5f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadSoundsFromFolder: Sounds/BackgroundMusic
+  sounds:
+  - name: ruins_theme_1
+    clip: {fileID: 8300000, guid: 7bb41749924d7ed4aa47e8982c4ad70e, type: 3}
+    volume: 0.1
+    loop: 1
+  - name: ambient3
+    clip: {fileID: 8300000, guid: 141e4e19be3a6654a901f261129221b9, type: 3}
+    volume: 0.1
+    loop: 1
+  - name: mystical_1
+    clip: {fileID: 8300000, guid: ed3dcb1f5ef1f4d438ce3571bf463a89, type: 3}
+    volume: 1
+    loop: 1
 --- !u!1 &1790835288
 GameObject:
   m_ObjectHideFlags: 0
@@ -11464,7 +11578,7 @@ Transform:
   - {fileID: 2141280169}
   - {fileID: 1730634729}
   m_Father: {fileID: 928376095}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2130136059 stripped
 Transform:

@@ -52,9 +52,9 @@ MonoBehaviour:
         knockbackGrowth: 15
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        directionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 60251
+      ID: 53120
       getNewID: 0
     soundName: 
   damages:
@@ -64,5 +64,5 @@ MonoBehaviour:
     knockbackGrowth: 15
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    directionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
