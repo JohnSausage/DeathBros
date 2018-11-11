@@ -7,6 +7,9 @@ public class AIExitTargetInRange : AIExitConditionSO
 
     public override void CheckForExit(AIController aiCtr)
     {
-        if (aiCtr.DistanceToTarget <= targetRange) aiCtr.ChangeState(exitState);
+        if (aiCtr.DistanceToTarget <= targetRange)
+        {
+            aiCtr.ChangeState(exitState);
+        }
     }
 }

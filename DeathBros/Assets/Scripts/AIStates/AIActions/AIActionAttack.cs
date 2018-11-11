@@ -6,18 +6,17 @@ public class AIActionAttack : AIActionSO
     public bool normalAttack = true;
     public bool specialAttack = false;
 
-    public override void Enter(AIController aiCtr)
-    {
-        base.Enter(aiCtr);
-
-        aiCtr.inputDirection = aiCtr.TargetDirection;
-    }
-
     public override void Execute(AIController aiCtr)
     {
-        aiCtr.inputDirection = aiCtr.TargetDirection;
+        aiCtr.Enemy.SetInputs(aiCtr.TargetDirection);
 
         aiCtr.Enemy.Attack = normalAttack;
         aiCtr.Enemy.Special = specialAttack;
+    }
+
+    public override void Exit(AIController aiCtr)
+    {
+        aiCtr.Enemy.Attack = false;
+        aiCtr.Enemy.Special = false;
     }
 }

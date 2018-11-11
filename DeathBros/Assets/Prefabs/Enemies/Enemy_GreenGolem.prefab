@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114308537947969184}
   - component: {fileID: 114707881980988358}
   - component: {fileID: 61443332215040052}
-  - component: {fileID: 114884629401223530}
+  - component: {fileID: 114691200856972002}
   m_Layer: 0
   m_Name: Enemy_GreenGolem
   m_TagString: Untagged
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.63, y: -24.8, z: 0}
+  m_LocalPosition: {x: 41.72, y: -25.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4662584824900850}
@@ -369,12 +369,12 @@ MonoBehaviour:
     animationName: rolling
     attackType: 0
   aerialAttack:
-    animationName: idle
-    attackType: 0
+    animationName: rolling
+    attackType: 18
   specialAttack:
-    animationName: idle
-    attackType: 0
-  projectile: {fileID: 0}
+    animationName: attack
+    attackType: 14
+  projectile: {fileID: 1365562643926888, guid: b60d1c04ed8711a4292272897bacd3cc, type: 2}
 --- !u!114 &114483006981894648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,6 +387,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxes: []
+--- !u!114 &114691200856972002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269022456329406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eb1f64245501b4aabb13d5870e4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTag: Player
+  aiStates:
+  - aiAction: {fileID: 11400000, guid: 91545110a51f8e14e853547e7242eac8, type: 2}
+    aiExitConditions: []
+  - aiAction: {fileID: 11400000, guid: 0735ffced9b20904981c7b86c431a925, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 0d6920ad0d965424a83b0302550d5be6, type: 2}
+    - {fileID: 11400000, guid: 1c182a84fc2b96f4f8e264f948de0bbd, type: 2}
+  - aiAction: {fileID: 11400000, guid: 6fa6468b4094bb544a431b49710e04f4, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: c85b358ec7cacf74eb58b38c63c3fbdf, type: 2}
+  - aiAction: {fileID: 11400000, guid: b179dca482fbfeb41a1f5cb25c920beb, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: c85b358ec7cacf74eb58b38c63c3fbdf, type: 2}
+  inputDirection: {x: 0, y: 0}
 --- !u!114 &114707881980988358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,6 +466,7 @@ MonoBehaviour:
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
+  lastCollisionAngle: 0
   slopeDown: 0
   slopeUp: 0
   slopeUpAngle: 0
@@ -449,56 +476,6 @@ MonoBehaviour:
   skin: 0.01
   skinDistance: 0
   triangleDistance: 0
---- !u!114 &114884629401223530
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1269022456329406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c22c654bae68248aa76d65868a4154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTag: Player
-  attackRange: 3
-  aggroRange: 6
-  aggroed: 0
-  target: {fileID: 0}
-  aiFollowPlayer:
-    stateName: 
-    randomEnterChance: 70
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiMachine:
-    currentState: 
-  TargetDirection: {x: 0, y: 0}
-  TargetVector: {x: 0, y: 0}
-  aiFlee:
-    stateName: 
-    randomEnterChance: 30
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiAttack:
-    stateName: 
-    randomEnterChance: 0
-    transition:
-      exitStateName: 
-      transitionType: 0
-  aiWalk:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
 --- !u!212 &212849175576237076
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -440,10 +440,10 @@ MonoBehaviour:
     attackType: 0
   aerialAttack:
     animationName: idle
-    attackType: 0
+    attackType: 18
   specialAttack:
     animationName: idle
-    attackType: 0
+    attackType: 18
   projectile: {fileID: 0}
 --- !u!114 &114829232162217112
 MonoBehaviour:

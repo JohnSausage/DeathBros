@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127776a7379d6e40825f0574593279a, type: 3}
-  m_Name: GolemBackToWalk
+  m_Script: {fileID: 11500000, guid: f140eec21dbe84b4ba5172e82c9f9f7d, type: 3}
+  m_Name: GolemAfterAnimGoIdle
   m_EditorClassIdentifier: 
   exitState: idle
-  targetRange: 6
+  animationName: 

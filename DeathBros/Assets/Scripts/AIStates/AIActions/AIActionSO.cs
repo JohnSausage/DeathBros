@@ -14,4 +14,8 @@ public class AIActionSO : ScriptableObject
     {
 
     }
+
+    public virtual void Exit(AIController aiCtr)
+    {
+    }
 }

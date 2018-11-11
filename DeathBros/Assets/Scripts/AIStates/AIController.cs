@@ -6,11 +6,7 @@ public class AIController : MonoBehaviour
 {
     public string followTag = "Player";
 
-    //public float attackRange = 1f;
-    //public float aggroRange = 10f;
-    //public bool aggroed = false;
-
-    public StateMachine aiMachine;// { get; protected set; }
+    public StateMachine aiMachine { get; protected set; }
 
     public List<AI_State> aiStates;
 
@@ -19,11 +15,13 @@ public class AIController : MonoBehaviour
     public Vector2 TargetVector { get; protected set; }
 
     public float DistanceToTarget { get { return TargetVector.magnitude; } }
-    //public bool InAttackRange { get { return DistanceToTarget <= attackRange; } }
-    //public bool InAggroRange { get { if (DistanceToTarget <= aggroRange) { aggroed = true; return true; } return false; } }
+
 
     public Enemy Enemy { get; protected set; }
     public Vector2 inputDirection;
+
+    public int Timer { get; set; }
+    public float RandomTimerNumber { get; set; }
 
     private void Awake()
     {
@@ -92,5 +90,6 @@ public class AI_State : IState
 
     public void Exit()
     {
+        aiAction.Exit(aiCtr);
     }
 }

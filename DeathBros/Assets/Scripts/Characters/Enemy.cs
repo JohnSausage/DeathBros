@@ -31,6 +31,8 @@ public class Enemy : Character
 
         movementStates.Init(this);
         normalAttack.Init(this);
+        specialAttack.Init(this);
+        aerialAttack.Init(this);
 
         CStates_InitExitStates();
 
@@ -61,6 +63,8 @@ public class Enemy : Character
     {
         if (Attack)
         {
+            Direction = DirectionalInput.x;
+
             CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
 
             return true;
