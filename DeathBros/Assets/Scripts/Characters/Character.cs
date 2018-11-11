@@ -21,13 +21,13 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 StrongInputs { get; protected set; }
     public Vector2 TiltInput { get; protected set; }
 
-    public bool Jump { get; protected set; }
+    public bool Jump { get; set; }
     public bool HoldJump { get; protected set; }
-    public bool Attack { get; protected set; }
-    public bool HoldAttack { get; protected set; }
-    public bool Special { get; protected set; }
+    public bool Attack { get; set; }
+    public bool HoldAttack { get; set; }
+    public bool Special { get; set; }
     public bool HoldSpecial { get; protected set; }
-    public bool Shield { get; protected set; }
+    public bool Shield { get; set; }
     public bool HoldShield { get; protected set; }
 
     //public float jumpStrength = 20;

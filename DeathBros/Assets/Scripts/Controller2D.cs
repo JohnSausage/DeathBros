@@ -61,6 +61,7 @@ public class Controller2D : MonoBehaviour
     public bool slidingDownSlope;
     public bool collision;
     public Vector2 collisionReflect;
+    public float lastCollisionAngle;
 
     public bool slopeDown;
     //private bool oldSlopeDown;
@@ -381,6 +382,8 @@ public class Controller2D : MonoBehaviour
                     if (collisionCheck)
                     {
                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
+
+                        onWall = true;
                     }
 
                     //check for new slope down
@@ -653,6 +656,8 @@ public class Controller2D : MonoBehaviour
                     collision = true;
 
                     collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
+
+                    lastCollisionAngle = Vector2.Angle(Vector2.up, collisionCheck.normal);
 
                     velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                 }

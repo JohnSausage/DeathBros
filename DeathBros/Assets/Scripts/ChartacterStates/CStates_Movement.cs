@@ -1038,14 +1038,32 @@ public class CS_HitLand : CState
 
         if (chr.Shield)
         {
-            if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
+            if (chr.Ctr.lastCollisionAngle <= 45)
             {
-                if (!ChangeState(typeof(CS_Roll)))
+                if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
                 {
-                    ChangeState(typeof(CS_StandUp));
+                    if (!ChangeState(typeof(CS_Roll)))
+                    {
+                        ChangeState(typeof(CS_StandUp));
+                    }
+                }
+                else ChangeState(typeof(CS_StandUp));
+            }
+            else if(chr.Ctr.lastCollisionAngle == 90)
+            {
+                if(chr.HoldJump)
+                {
+                    ChangeState(typeof(CS_WalljumpStart));
+                }
+                else
+                {
+                    ChangeState(typeof(CS_Jumping));
                 }
             }
-            else ChangeState(typeof(CS_StandUp));
+            else
+            {
+                ChangeState(typeof(CS_Jumping));
+            }
 
             chr.Ctr.inControl = true;
             collisionReflect = Vector2.zero;

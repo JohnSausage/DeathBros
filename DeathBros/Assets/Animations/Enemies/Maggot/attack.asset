@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: attack
   m_EditorClassIdentifier: 
   frames:
-  - duration: 15
+  - duration: 20
     sprite: {fileID: 21300008, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 15
+  - duration: 5
     sprite: {fileID: 21300010, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 15
+  - duration: 5
     sprite: {fileID: 21300012, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -64,10 +64,10 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 60750
+      ID: 53399
       getNewID: 0
     soundName: 
-  - duration: 15
+  - duration: 5
     sprite: {fileID: 21300014, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 15
+  - duration: 5
     sprite: {fileID: 21300016, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
     newHitID: 0
     applyGravity: 1

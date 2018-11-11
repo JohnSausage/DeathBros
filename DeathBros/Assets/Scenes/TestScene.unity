@@ -190,11 +190,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.63
+      value: 58.31
       objectReference: {fileID: 0}
     - target: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -24.8
+      value: -24.7
       objectReference: {fileID: 0}
     - target: {fileID: 4033058782340414, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -220,7 +220,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114340152992809904, guid: c4265fa076aaabd429c71b28e575eb4e,
+        type: 2}
+      propertyPath: specialAttack.animationName
+      value: attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 114340152992809904, guid: c4265fa076aaabd429c71b28e575eb4e,
+        type: 2}
+      propertyPath: specialAttack.attackType
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114884629401223530, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &42648639 stripped
@@ -1316,6 +1327,7 @@ MonoBehaviour:
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
+  lastCollisionAngle: 0
   slopeDown: 0
   slopeUp: 0
   slopeUpAngle: 0
@@ -4494,18 +4506,13 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 759995296}
     m_Modifications:
-    - target: {fileID: 114587500772317278, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
-        type: 2}
-      propertyPath: sounds.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 18.202942
+      value: 51.92
       objectReference: {fileID: 0}
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.99625
+      value: -21.75
       objectReference: {fileID: 0}
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4530,21 +4537,6 @@ Prefab:
     - target: {fileID: 4136827316432892, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587500772317278, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
-        type: 2}
-      propertyPath: sounds.Array.data[2].name
-      value: golemRoll
-      objectReference: {fileID: 0}
-    - target: {fileID: 114587500772317278, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
-        type: 2}
-      propertyPath: sounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bfcbd66c545628945872189e47bb08f9, type: 3}
-    - target: {fileID: 114587500772317278, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
-        type: 2}
-      propertyPath: sounds.Array.data[2].volume
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
@@ -4764,7 +4756,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 967334111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.27, y: -58.57, z: 0}
+  m_LocalPosition: {x: -1.51, y: -74.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1502034169}
@@ -5057,6 +5049,7 @@ MonoBehaviour:
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
+  lastCollisionAngle: 0
   slopeDown: 0
   slopeUp: 0
   slopeUpAngle: 0
@@ -9614,6 +9607,33 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a96eff652ef8acd44a2a3491e876039c, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1730166390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269022456329406, guid: c4265fa076aaabd429c71b28e575eb4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 34752175}
+--- !u!114 &1730166391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1730166390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eb1f64245501b4aabb13d5870e4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTag: Player
+  aiMachine:
+    currentState: 
+  aiStates:
+  - aiAction: {fileID: 11400000, guid: 0735ffced9b20904981c7b86c431a925, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 1c182a84fc2b96f4f8e264f948de0bbd, type: 2}
+  - aiAction: {fileID: 11400000, guid: b179dca482fbfeb41a1f5cb25c920beb, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 4ff16d2fbae36164e814b84ebf88c108, type: 2}
+  inputDirection: {x: 0, y: 0}
 --- !u!1001 &1730634728
 Prefab:
   m_ObjectHideFlags: 0

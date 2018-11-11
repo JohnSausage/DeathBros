@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114216191892096462}
   - component: {fileID: 114253501170567500}
   - component: {fileID: 61189036597972946}
-  - component: {fileID: 114643489935978160}
+  - component: {fileID: 114593677525329788}
   m_Layer: 0
   m_Name: Enemy_Maggot
   m_TagString: Untagged
@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.202942, y: -6.99625, z: 0}
+  m_LocalPosition: {x: 51.92, y: -21.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4009468108302122}
@@ -317,6 +317,7 @@ MonoBehaviour:
   slidingDownSlope: 0
   collision: 0
   collisionReflect: {x: 0, y: 0}
+  lastCollisionAngle: 0
   slopeDown: 0
   slopeUp: 0
   slopeUpAngle: 0
@@ -347,6 +348,32 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 71bf185baec7dc84d9f8aa2170c022db, type: 3}
     volume: 0.5
     loop: 0
+  - name: golemRoll
+    clip: {fileID: 8300000, guid: bfcbd66c545628945872189e47bb08f9, type: 3}
+    volume: 0.3
+    loop: 0
+--- !u!114 &114593677525329788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196939669774506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03eb1f64245501b4aabb13d5870e4074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followTag: Player
+  aiMachine:
+    currentState: 
+  aiStates:
+  - aiAction: {fileID: 11400000, guid: 04099e11c8f33774e8c8cce92edccb5b, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 7dcf79eb65dbd0944aaedca3438ac40b, type: 2}
+  - aiAction: {fileID: 11400000, guid: c51fefe787efcc64fad0e5042d0947d0, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 5d8bf3890c0f2764696d2a2e4845547a, type: 2}
+  inputDirection: {x: 0, y: 0}
 --- !u!114 &114609069300868980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,56 +445,6 @@ MonoBehaviour:
     animationName: idle
     attackType: 0
   projectile: {fileID: 0}
---- !u!114 &114643489935978160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196939669774506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c22c654bae68248aa76d65868a4154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTag: Player
-  attackRange: 1
-  aggroRange: 5
-  aggroed: 0
-  target: {fileID: 0}
-  aiFollowPlayer:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiMachine:
-    currentState: 
-  TargetDirection: {x: 0, y: 0}
-  TargetVector: {x: 0, y: 0}
-  aiFlee:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
-  aiAttack:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-  aiWalk:
-    stateName: 
-    randomEnterChance: 50
-    transition:
-      exitStateName: 
-      transitionType: 0
-    duration: 60
-    randomPlusMinusDuration: 30
 --- !u!114 &114829232162217112
 MonoBehaviour:
   m_ObjectHideFlags: 1

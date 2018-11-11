@@ -62,7 +62,7 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        directionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
       ID: 6248
       getNewID: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
         knockbackGrowth: 5
         damageType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        directionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
       ID: 6248
       getNewID: 0
@@ -143,5 +143,5 @@ MonoBehaviour:
     knockbackGrowth: 5
     damageType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    directionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
