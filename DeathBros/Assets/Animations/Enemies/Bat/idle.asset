@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: attack
+  m_Name: idle
   m_EditorClassIdentifier: 
   frames:
-  - duration: 20
-    sprite: {fileID: 21300008, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  - duration: 8
+    sprite: {fileID: 21300000, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -22,12 +22,12 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.078125, y: -0.5625}
+    - position: {x: 0.015625, y: 0.015625}
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 5
-    sprite: {fileID: 21300010, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  - duration: 8
+    sprite: {fileID: 21300002, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -36,39 +36,12 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.046875, y: -0.4375}
+    - position: {x: -0.046875, y: 0.015625}
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 5
-    sprite: {fileID: 21300012, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
-    newHitID: 1
-    applyGravity: 1
-    resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
-    addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 0, y: 0}
-    spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: 0.421875, y: -0.40625}
-      radius: 0.6
-    hitboxes:
-    - position: {x: 0.578125, y: -0.15625}
-      radius: 0.8
-      damage:
-        damageNumber: 10
-        knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 15
-        knockbackGrowth: 5
-        damageType: 0
-        editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
-        position: {x: 0, y: 0}
-      ID: 7818
-      getNewID: 0
-    soundName: 
-  - duration: 5
-    sprite: {fileID: 21300014, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  - duration: 8
+    sprite: {fileID: 21300004, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -77,12 +50,12 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.328125, y: -0.3125}
+    - position: {x: -0.046875, y: -0.140625}
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 5
-    sprite: {fileID: 21300016, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  - duration: 8
+    sprite: {fileID: 21300006, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -91,7 +64,7 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.078125, y: -0.46875}
+    - position: {x: -0.078125, y: 0.046875}
       radius: 0.6
     hitboxes: []
     soundName: 

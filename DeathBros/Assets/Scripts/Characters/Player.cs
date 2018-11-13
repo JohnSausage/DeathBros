@@ -48,6 +48,8 @@ public class Player : Character
 
         CStates_InitExitStates();
 
+        Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
+
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
     }
 
@@ -240,7 +242,6 @@ public class Player : Character
             }
         }
     }
-
 
     protected bool CheckForItemPickUp()
     {

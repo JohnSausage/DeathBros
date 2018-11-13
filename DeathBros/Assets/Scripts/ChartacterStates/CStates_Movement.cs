@@ -547,6 +547,9 @@ public class CS_Jumping : CState
     {
         base.Execute();
 
+        if (chr.canChangeDirctionInAir)
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(jumpRisingFA);
         else
