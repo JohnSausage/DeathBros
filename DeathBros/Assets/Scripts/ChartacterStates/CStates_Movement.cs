@@ -55,6 +55,8 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_Crouch crouch;
     public CS_Roll roll;
     public CS_ThrowItem throwItem;
+    public CS_AirDodge airDodge;
+    public CS_ShieldHit shieldHit;
 
     public override void Init(Character chr)
     {
@@ -69,6 +71,8 @@ public class CStates_AdvancedMovement : CStates_Movement
         crouch.Init(chr);
         roll.Init(chr);
         throwItem.Init(chr);
+        airDodge.Init(chr);
+        shieldHit.Init(chr);
     }
 }
 
@@ -568,12 +572,17 @@ public class CS_Jumping : CState
             }
         }
 
-        chr.CheckForAerialAttacks();
-
         if (chr.Ctr.onWall)
         {
             ChangeState(typeof(CS_Wallsliding));
         }
+
+        if (chr.Shield)
+        {
+            ChangeState(typeof(CS_AirDodge));
+        }
+
+        chr.CheckForAerialAttacks();
     }
 }
 
@@ -1049,9 +1058,9 @@ public class CS_HitLand : CState
                 }
                 else ChangeState(typeof(CS_StandUp));
             }
-            else if(chr.Ctr.lastCollisionAngle == 90)
+            else if (chr.Ctr.lastCollisionAngle == 90)
             {
-                if(chr.HoldJump)
+                if (chr.HoldJump)
                 {
                     ChangeState(typeof(CS_WalljumpStart));
                 }
@@ -1230,5 +1239,74 @@ public class CS_ThrowItem : CState
 
             player.ThrowItem(chr.DirectionalInput);
         }
+    }
+}
+
+[System.Serializable]
+public class CS_AirDodge : CState
+{
+    [SerializeField]
+    protected int duration = 25;
+    protected int timer = 0;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = 0;
+
+        chr.Spr.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        chr.GetInputs();
+
+        if (timer > duration)
+        {
+            ChangeState(typeof(CS_Jumping));
+        }
+
+        chr.CS_CheckLanding();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Spr.color = Color.white;
+    }
+}
+
+[System.Serializable]
+public class CS_ShieldHit : CState
+{
+    public override void Enter()
+    {
+        base.Enter();
+
+        chr.shielding = true;
+    }
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.CS_CheckIfStillGrounded();
+
+        if (chr.Anim.animationOver)
+        {
+            ChangeState(typeof(CS_Idle));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.shielding = false;
     }
 }

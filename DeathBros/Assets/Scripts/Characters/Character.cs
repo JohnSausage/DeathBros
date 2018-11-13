@@ -232,7 +232,23 @@ public class Character : _MB, ICanTakeDamage
     {
         if (!IsDead)
         {
-            if (!shielding)
+
+            if (shielding)
+            {
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                currentHealth -= damage.damageNumber * 0.25f;
+            }
+            else
             {
                 RaiseTakeDamageEvents(damage);
 

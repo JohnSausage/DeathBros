@@ -72,10 +72,13 @@ public class CState : IState
     {
         this.damage = damage;
 
-        //CS_Hitfreeze cS_Hitfreeze = (CS_Hitfreeze)chr.GetState(typeof(CS_Hitfreeze));
-        //hitstun.knockbackX = damage.knockBackDirection.normalized.x;
-
-        ChangeState(chr.GetState(typeof(CS_Hitfreeze)));
-
+        if (chr.shielding)
+        {
+            ChangeState(typeof(CS_ShieldHit));
+        }
+        else
+        {
+            ChangeState(typeof(CS_Hitfreeze));
+        }
     }
 }
