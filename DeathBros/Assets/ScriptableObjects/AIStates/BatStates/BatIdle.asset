@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: idle
   nextState: fly
-  minTimeInSec: 1
-  maxTimeInSec: 2
+  minTimeInSec: 0.1
+  maxTimeInSec: 0.5

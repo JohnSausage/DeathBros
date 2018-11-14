@@ -8,8 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7eb5ba275983944f9c62de06c345949, type: 3}
-  m_Name: BatFlee
+  m_Script: {fileID: 11500000, guid: 1de3c8ea582f4024f97d84c25b4d6273, type: 3}
+  m_Name: BatChaseBeforeAttack
   m_EditorClassIdentifier: 
-  actionName: flee
-  targetOffset: {x: 0, y: 0}
+  actionName: chase
+  targetOffset: {x: 3, y: 3}

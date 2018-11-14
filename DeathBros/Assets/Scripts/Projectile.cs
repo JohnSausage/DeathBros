@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ItemController2D))]
-public class Item : _MB, ICanTakeDamage, ICanBePickedUp
+public class Projectile : _MB, ICanTakeDamage
 {
     public Vector2 Velocity { get { return ctr.velocity; } set { ctr.SetVelocity = value; } }
     public Character Owner { get; set; }
@@ -80,7 +80,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
             else spr.flipX = false;
         }
 
-        if(flipY)
+        if (flipY)
         {
             if (Velocity.y > 0) spr.flipY = true;
             else spr.flipY = false;
@@ -195,9 +195,4 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
             }
         }
     }
-}
-
-public interface ICanBePickedUp
-{
-
 }

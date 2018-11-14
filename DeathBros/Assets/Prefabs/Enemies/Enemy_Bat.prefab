@@ -366,17 +366,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTag: Player
   aiStates:
-  - aiAction: {fileID: 11400000, guid: 9b305d93fb69d02469ffd9b12a9fa65b, type: 2}
-    aiExitConditions: []
   - aiAction: {fileID: 11400000, guid: a936fce8cf6789141888f9d521589371, type: 2}
     aiExitConditions:
     - {fileID: 11400000, guid: 9cf8918d0fe3bd549bc443b1cf62e70b, type: 2}
+  - aiAction: {fileID: 11400000, guid: 788ca7d4c1691b14a8bcb06eda875868, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 24bd3bd87e162e342b22a39f4f1d28f9, type: 2}
   - aiAction: {fileID: 11400000, guid: c127cee140708d542b527fe1fe66a640, type: 2}
     aiExitConditions:
     - {fileID: 11400000, guid: dec69c52412ac724385288397f64c119, type: 2}
   - aiAction: {fileID: 11400000, guid: 1c07fcdab949387478173b4c3105ce43, type: 2}
     aiExitConditions:
     - {fileID: 11400000, guid: 233b4709012799c418251ea956c887d2, type: 2}
+  - aiAction: {fileID: 11400000, guid: 9b305d93fb69d02469ffd9b12a9fa65b, type: 2}
+    aiExitConditions: []
   inputDirection: {x: 0, y: 0}
 --- !u!114 &114609069300868980
 MonoBehaviour:
@@ -448,7 +451,7 @@ MonoBehaviour:
   specialAttack:
     animationName: idle
     attackType: 18
-  projectile: {fileID: 0}
+  projectile: {fileID: 1365562643926888, guid: 42eace4f54b249e4ca212c0c029dac86, type: 2}
 --- !u!114 &114829232162217112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -511,7 +514,7 @@ SpriteRenderer:
   m_SortingLayerID: 184962683
   m_SortingLayer: 1
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 16ec4b4736851b04799f124eb51f4589, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

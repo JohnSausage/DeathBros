@@ -498,19 +498,26 @@ public class CS_Landing : CState
     int duration = 3;
     private int timer;
 
+    private float dirX;
+
     public override void Enter()
     {
         base.Enter();
 
         timer = 0;
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0)
+            dirX = chr.DirectionalInput.x;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        //chr.SetInputs(0.2f);
-        chr.GetInputs();
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
+
 
         timer++;
 
@@ -818,6 +825,8 @@ public class CS_Hitstun : CState
 
     private float spawnCloudVelocity = 10;
 
+    public int HitStunDuration { get; set; }
+
     public override void Init(Character chr)
     {
         base.Init(chr);
@@ -865,25 +874,12 @@ public class CS_Hitstun : CState
 
             }
         }
-        //chr.SetInputs(new Vector2(knockbackX, 0));
-        /*
-        if (timer == freezeStart)
-        {
-            chr.Ctr.freeze = true;
-        }
 
-        if (timer == freezeEnd)
-        {
-            chr.Ctr.freeze = false;
-        }
-
-    
-        if (chr.Ctr.IsGrounded && timer > minDuration)
+        if (timer > HitStunDuration)
         {
             chr.Ctr.inControl = true;
-            ChangeState(landing);
+            ChangeState(typeof(CS_Jumping));
         }
-        */
 
         if (chr.Ctr.collision)
         {
@@ -896,6 +892,7 @@ public class CS_Hitstun : CState
         base.Exit();
 
         chr.Ctr.freeze = false;
+        HitStunDuration = 0;
     }
 }
 
@@ -910,6 +907,9 @@ public class CS_Hitfreeze : CState
     {
         duration = (int)damage.damageNumber;
         duration = Mathf.Clamp(duration, 4, 10);
+
+        CS_Hitstun hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
+        hitstun.HitStunDuration = (int)(damage.damageNumber * 2);
     }
 
     public override void Init(Character chr)

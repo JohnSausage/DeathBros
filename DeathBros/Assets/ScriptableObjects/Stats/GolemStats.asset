@@ -14,7 +14,7 @@ MonoBehaviour:
   charName: Golem
   stats:
   - statName: MaxHealth
-    baseValue: 40
+    baseValue: 60
   - statName: Weight
     baseValue: 120
   - statName: Movespeed

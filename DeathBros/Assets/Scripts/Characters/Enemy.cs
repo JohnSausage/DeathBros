@@ -56,6 +56,17 @@ public class Enemy : Character
                 item.Owner = this;
                 item.GenerateID();
             }
+
+            Projectile proj = spawnProjectile.GetComponent<Projectile>();
+            if (proj != null)
+            {
+                Vector2 velocity = direction;
+                velocity.x *= Direction;
+
+                proj.Velocity = velocity;
+                proj.Owner = this;
+                proj.GenerateID();
+            }
         }
     }
 
@@ -88,6 +99,8 @@ public class Enemy : Character
     {
         if (Attack)
         {
+            if (canChangeDirctionInAir) Direction = DirectionalInput.x;
+
             CSMachine.ChangeState(GetAttackState(EAttackType.NAir));
 
             return true;

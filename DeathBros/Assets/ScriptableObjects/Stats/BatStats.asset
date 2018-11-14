@@ -16,10 +16,10 @@ MonoBehaviour:
   - statName: MaxHealth
     baseValue: 30
   - statName: Weight
-    baseValue: 50
+    baseValue: 60
   - statName: Movespeed
     baseValue: 6
   - statName: Gravity
-    baseValue: -0.8
+    baseValue: -1.2
   - statName: CanChangeDirectionInAir
     baseValue: 1

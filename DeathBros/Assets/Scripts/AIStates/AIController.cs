@@ -59,7 +59,9 @@ public class AIController : MonoBehaviour
 
     public Vector2 TargetDirection(Vector2 offset = new Vector2())
     {
-        float targetX = Mathf.Clamp((Target.position.x + offset.x) - transform.position.x, -1f, 1f);
+        float dirX = Mathf.Sign(transform.position.x - Target.position.x);
+
+        float targetX = Mathf.Clamp((Target.position.x + dirX * offset.x) - transform.position.x, -1f, 1f);
         float targetY = Mathf.Clamp((Target.position.y + offset.y) - transform.position.y, -1f, 1f);
 
         return new Vector2(targetX, targetY);

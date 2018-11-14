@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: attack
   m_EditorClassIdentifier: 
   frames:
-  - duration: 20
+  - duration: 10
     sprite: {fileID: 21300000, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -26,9 +26,23 @@ MonoBehaviour:
       radius: 0.6
     hitboxes: []
     soundName: 
-  - duration: 5
+  - duration: 1
     sprite: {fileID: 21300004, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
     newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 5, y: -5}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.015625, y: -0.15625}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 4
+    sprite: {fileID: 21300004, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -38,11 +52,24 @@ MonoBehaviour:
     hurtboxes:
     - position: {x: 0.015625, y: -0.15625}
       radius: 0.6
-    hitboxes: []
+    hitboxes:
+    - position: {x: 0.015625, y: -0.25}
+      radius: 0.8
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 5
+        knockbackGrowth: 10
+        damageType: 0
+        editorColor: {r: 1, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0.2, y: 0.2}
+        position: {x: 0, y: 0}
+      ID: 5381
+      getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300006, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
-    newHitID: 1
+    newHitID: 0
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -53,8 +80,8 @@ MonoBehaviour:
     - position: {x: 0.015625, y: 0.015625}
       radius: 0.6
     hitboxes:
-    - position: {x: 0.078125, y: 0.03125}
-      radius: 0.7699998
+    - position: {x: 0.046875, y: -0.1875}
+      radius: 0.8
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: 1}
@@ -64,7 +91,7 @@ MonoBehaviour:
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 72923
+      ID: 5381
       getNewID: 0
     soundName: 
   damages:
