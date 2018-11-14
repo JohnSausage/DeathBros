@@ -373,7 +373,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9cf8918d0fe3bd549bc443b1cf62e70b, type: 2}
   - aiAction: {fileID: 11400000, guid: c127cee140708d542b527fe1fe66a640, type: 2}
     aiExitConditions:
-    - {fileID: 11400000, guid: 91234c7e1f0d687498fe667b52334be1, type: 2}
+    - {fileID: 11400000, guid: dec69c52412ac724385288397f64c119, type: 2}
+  - aiAction: {fileID: 11400000, guid: 1c07fcdab949387478173b4c3105ce43, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 233b4709012799c418251ea956c887d2, type: 2}
   inputDirection: {x: 0, y: 0}
 --- !u!114 &114609069300868980
 MonoBehaviour:
@@ -414,7 +417,7 @@ MonoBehaviour:
       jumpRisingAnimation: fly
     landing:
       animationName: idle
-      duration: 3
+      duration: 0
     hitstun:
       animationName: hitUp
       hitstunFallAnimation: hitDown
