@@ -12,7 +12,21 @@ MonoBehaviour:
   m_Name: stone
   m_EditorClassIdentifier: 
   frames:
-  - duration: 30
+  - duration: 15
+    sprite: {fileID: 21300038, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.03125, y: -0.078125}
+      radius: 0.4
+    hitboxes: []
+    soundName: 
+  - duration: 1024
     sprite: {fileID: 21300040, guid: 40e64c5b36246f64a8caa7d8c0a25a31, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -36,7 +50,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 1, y: 1}
         position: {x: 0, y: 0}
-      ID: 6845
+      ID: 71700
       getNewID: 0
     soundName: 
   damages:
