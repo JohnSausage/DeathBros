@@ -5,6 +5,7 @@
   <terrain name="gras_top" tile="0"/>
   <terrain name="no_gras" tile="0"/>
   <terrain name="green_temple" tile="177"/>
+  <terrain name="black" tile="120"/>
  </terraintypes>
  <tile id="0" terrain=",,,0"/>
  <tile id="1" terrain=",,0,0"/>
@@ -32,6 +33,19 @@
  <tile id="98" terrain=",1,,"/>
  <tile id="99" terrain="1,1,,"/>
  <tile id="100" terrain="1,,,"/>
+ <tile id="103" terrain=",,,3"/>
+ <tile id="104" terrain=",,3,3"/>
+ <tile id="105" terrain=",,3,"/>
+ <tile id="106" terrain="3,3,3,"/>
+ <tile id="107" terrain="3,3,,3"/>
+ <tile id="119" terrain=",3,,3"/>
+ <tile id="120" terrain="3,3,3,3"/>
+ <tile id="121" terrain="3,,3,"/>
+ <tile id="122" terrain="3,,3,3"/>
+ <tile id="123" terrain=",3,3,3"/>
+ <tile id="135" terrain=",3,,"/>
+ <tile id="136" terrain="3,3,,"/>
+ <tile id="137" terrain="3,,,"/>
  <tile id="160" terrain=",,,2"/>
  <tile id="161" terrain=",,2,2"/>
  <tile id="162" terrain=",,2,"/>

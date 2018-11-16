@@ -174,6 +174,9 @@ public class Player : Character
         {
             if (shielding)
             {
+                damage.damageNumber *= 0.25f;
+
+
                 RaiseTakeDamageEvents(damage);
 
                 AudioManager.PlaySound("hit1");
@@ -185,13 +188,14 @@ public class Player : Character
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                ModSoulMeter(-damage.damageNumber * 0.25f);
+                ModSoulMeter(-damage.damageNumber);
             }
             else
             {
                 RaiseTakeDamageEvents(damage);
 
                 AudioManager.PlaySound("hit1");
+                Flash(EffectManager.ColorHit, 3);
 
                 currentDamage = damage;
 

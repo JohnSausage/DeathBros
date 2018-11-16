@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -239,6 +240,8 @@ public class Character : _MB, ICanTakeDamage
 
             if (shielding)
             {
+                damage.damageNumber *= 0.25f;
+
                 RaiseTakeDamageEvents(damage);
 
                 AudioManager.PlaySound("hit1");
@@ -250,13 +253,14 @@ public class Character : _MB, ICanTakeDamage
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentHealth -= damage.damageNumber * 0.25f;
+                currentHealth -= damage.damageNumber;
             }
             else
             {
                 RaiseTakeDamageEvents(damage);
 
                 AudioManager.PlaySound("hit1");
+                Flash(EffectManager.ColorHit, 3);
 
                 currentDamage = damage;
 
@@ -284,7 +288,7 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void Die()
     {
-        Debug.Log(this.name + " died");
+        //Debug.Log(this.name + " died");
 
         CSMachine.ChangeState(GetState(typeof(CS_Die)));
     }
@@ -409,6 +413,23 @@ public class Character : _MB, ICanTakeDamage
         soulMeter += value;
 
         soulMeter = Mathf.Clamp(soulMeter, 0, 100);
+    }
+
+    public void Flash(Color color, int durationInFrames)
+    {
+        StartCoroutine(CFlash(color, durationInFrames));
+    }
+
+    private IEnumerator CFlash(Color color, int durationFrames)
+    {
+        Material oldMaterial = Spr.material;
+
+        Spr.material = EffectManager.ColorShaderMaterial;
+        Spr.material.color = color;
+
+        yield return new WaitForSeconds(durationFrames / 60f);
+
+        Spr.material = EffectManager.DefaultMaterial;
     }
 }
 

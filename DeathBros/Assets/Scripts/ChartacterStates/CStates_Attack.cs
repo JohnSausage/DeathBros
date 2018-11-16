@@ -74,6 +74,13 @@ public class CS_Attack : CState
 
         if (AttackOver != null) AttackOver(this);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        if (chr is Enemy) chr.Flash(EffectManager.ColorAttack, 2);
+    }
 }
 
 [System.Serializable]
@@ -147,7 +154,7 @@ public class CS_SoulAttack : CS_Attack
     private float chargeRate = 1f;
 
     private FrameAnimation chargeAnimation;
-    //private bool charging = true;
+    private bool charging = true;
     private int minChargeTime = 10;
     private int timer = 0;
 
@@ -167,7 +174,7 @@ public class CS_SoulAttack : CS_Attack
         base.Enter();
 
         chr.Anim.ChangeAnimation(chargeAnimation);
-        //charging = true;
+        charging = true;
         chr.Spr.color = Color.red;
         timer = 0;
 
@@ -179,6 +186,8 @@ public class CS_SoulAttack : CS_Attack
     public override void Execute()
     {
         base.Execute();
+
+        if (charging && timer % 10 == 0) chr.Flash(EffectManager.ColorAttack, 2);
 
         timer++;
 
@@ -206,15 +215,10 @@ public class CS_SoulAttack : CS_Attack
             if (timer > minChargeTime)
             {
                 chr.Anim.ChangeAnimation(animation);
-                //charging = false;
+                charging = false;
                 chr.Spr.color = Color.white;
             }
         }
-
-        //if (!charging && chr.Anim.animationOver && timer > minChargeTime + 3)
-        //{
-        //    chr.CS_SetIdle();
-        //
     }
 
     public override void Exit()

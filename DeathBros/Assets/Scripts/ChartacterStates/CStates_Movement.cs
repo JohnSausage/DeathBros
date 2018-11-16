@@ -958,6 +958,7 @@ public class CS_Shield : CState
     {
         base.Enter();
         chr.shielding = true;
+        //chr.Flash(Color.yellow, 5);
     }
 
     public override void Execute()
@@ -1037,7 +1038,7 @@ public class CS_HitLand : CState
         chr.Ctr.freeze = true;
         chr.Ctr.inControl = false;
         collisionReflect = chr.Ctr.collisionReflect;
-        chr.Spr.color = Color.red;
+        chr.Flash(Color.white, 5);
     }
 
     public override void Execute()
@@ -1110,7 +1111,6 @@ public class CS_HitLand : CState
     {
         base.Exit();
         chr.Ctr.freeze = false;
-        chr.Spr.color = Color.white;
     }
 }
 [System.Serializable]
@@ -1252,13 +1252,18 @@ public class CS_AirDodge : CState
     protected int duration = 25;
     protected int timer = 0;
 
+    //protected Vector2 direction;
+
     public override void Enter()
     {
         base.Enter();
 
         timer = 0;
 
-        chr.Spr.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+        chr.Flash(EffectManager.ColorDefend, duration);
+
+        //chr.GetInputs();
+        //direction = chr.DirectionalInput;
     }
 
     public override void Execute()
@@ -1267,6 +1272,8 @@ public class CS_AirDodge : CState
 
         timer++;
 
+        //chr.Ctr.forceMovement = direction * 15;
+        //direction *= 0.9f;
         chr.GetInputs();
 
         if (timer > duration)
@@ -1275,13 +1282,6 @@ public class CS_AirDodge : CState
         }
 
         chr.CS_CheckLanding();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        chr.Spr.color = Color.white;
     }
 }
 

@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class EffectManager : _MB
 {
+    [SerializeField]
+    private Color colorHit;
+    public static Color ColorHit { get { return Instance.colorHit; } }
+
+    [SerializeField]
+    private Color colorAttack;
+    public static Color ColorAttack { get { return Instance.colorAttack; } }
+
+    [SerializeField]
+    private Color colorDefend;
+    public static Color ColorDefend { get { return Instance.colorDefend; } }
+
+    [SerializeField]
+    private Material colorShaderMaterial;
+    public static Material ColorShaderMaterial { get { return Instance.colorShaderMaterial; } }
+
+    [SerializeField]
+    private Material defaultMaterial;
+    public static Material DefaultMaterial { get { return Instance.defaultMaterial; } }
+
     private GameObject hitEffect1;
     private GameObject damageNumber;
     private GameObject cloudEffect;
