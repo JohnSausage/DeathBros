@@ -892,7 +892,7 @@ public class CS_Hitstun : CState
         base.Exit();
 
         chr.Ctr.freeze = false;
-        HitStunDuration = 0;
+        //HitStunDuration = 0;
     }
 }
 
@@ -909,7 +909,7 @@ public class CS_Hitfreeze : CState
         duration = Mathf.Clamp(duration, 4, 10);
 
         CS_Hitstun hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
-        hitstun.HitStunDuration = (int)(damage.damageNumber * 2);
+        hitstun.HitStunDuration = (int)(5 + damage.damageNumber * 3);
     }
 
     public override void Init(Character chr)
