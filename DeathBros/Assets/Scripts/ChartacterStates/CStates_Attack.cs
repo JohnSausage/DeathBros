@@ -188,6 +188,8 @@ public class CS_SoulAttack : CS_Attack
         if (chr.Ctr.onLedge)
             chr.SetInputs(Vector2.zero);
 
+        chr.CS_CheckIfStillGrounded();
+
         if (chr.HoldAttack)
         {
             chr.ModSoulMeter(-chargeRate);

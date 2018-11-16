@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269022456329406}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 41.72, y: -25.49, z: 0}
+  m_LocalPosition: {x: 27.44, y: -55.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4662584824900850}
@@ -337,13 +337,13 @@ MonoBehaviour:
       direction: 0
     jumpsquat:
       animationName: idle
-      duration: 0
+      duration: 2
     jumping:
-      animationName: idle
-      jumpRisingAnimation: idle
+      animationName: stone
+      jumpRisingAnimation: stone
     landing:
-      animationName: idle
-      duration: 3
+      animationName: stone
+      duration: 20
     hitstun:
       animationName: hitUp
       hitstunFallAnimation: hitDown
@@ -369,8 +369,8 @@ MonoBehaviour:
     animationName: rolling
     attackType: 0
   aerialAttack:
-    animationName: rolling
-    attackType: 18
+    animationName: stone
+    attackType: 5
   specialAttack:
     animationName: attack
     attackType: 14
@@ -440,6 +440,7 @@ MonoBehaviour:
   gravity: -1
   maxFallSpeed: -15
   fastFallSpeed: -20
+  wallslideSpeed: 5
   maxAirSpeed: 20
   aerialAcceleration: 0.2
   aerialDeceleration: 0.05

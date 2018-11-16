@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
     public List<AI_State> aiStates;
 
     public Transform Target { get; protected set; }
-    public Vector2 TargetDirection { get; protected set; }
+    //public Vector2 TargetDirection { get; protected set; }
     public Vector2 TargetVector { get; protected set; }
 
     public float DistanceToTarget { get { return TargetVector.magnitude; } }
@@ -39,11 +39,12 @@ public class AIController : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        /*
         float targetX = Mathf.Clamp(Target.position.x - transform.position.x, -1f, 1f);
         float targetY = Mathf.Clamp(Target.position.y - transform.position.y, -1f, 1f);
 
         TargetDirection = new Vector2(targetX, targetY);
-
+        */
         TargetVector = Target.position - transform.position;
 
         aiMachine.Update();
@@ -54,6 +55,16 @@ public class AIController : MonoBehaviour
         AI_State changeState = aiStates.Find(x => x.aiAction.actionName == actionName);
 
         if (changeState != null) aiMachine.ChangeState(changeState);
+    }
+
+    public Vector2 TargetDirection(Vector2 offset = new Vector2())
+    {
+        float dirX = Mathf.Sign(transform.position.x - Target.position.x);
+
+        float targetX = Mathf.Clamp((Target.position.x + dirX * offset.x) - transform.position.x, -1f, 1f);
+        float targetY = Mathf.Clamp((Target.position.y + offset.y) - transform.position.y, -1f, 1f);
+
+        return new Vector2(targetX, targetY);
     }
 }
 

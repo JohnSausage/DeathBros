@@ -126,7 +126,7 @@ public class Hitbox
     }
 }
 
-public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit }
+public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion }
 
 [System.Serializable]
 public class Damage

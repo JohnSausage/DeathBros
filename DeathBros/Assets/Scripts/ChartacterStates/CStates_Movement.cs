@@ -55,6 +55,8 @@ public class CStates_AdvancedMovement : CStates_Movement
     public CS_Crouch crouch;
     public CS_Roll roll;
     public CS_ThrowItem throwItem;
+    public CS_AirDodge airDodge;
+    public CS_ShieldHit shieldHit;
 
     public override void Init(Character chr)
     {
@@ -69,6 +71,8 @@ public class CStates_AdvancedMovement : CStates_Movement
         crouch.Init(chr);
         roll.Init(chr);
         throwItem.Init(chr);
+        airDodge.Init(chr);
+        shieldHit.Init(chr);
     }
 }
 
@@ -494,19 +498,26 @@ public class CS_Landing : CState
     int duration = 3;
     private int timer;
 
+    private float dirX;
+
     public override void Enter()
     {
         base.Enter();
 
         timer = 0;
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0)
+            dirX = chr.DirectionalInput.x;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        //chr.SetInputs(0.2f);
-        chr.GetInputs();
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
+
 
         timer++;
 
@@ -543,6 +554,9 @@ public class CS_Jumping : CState
     {
         base.Execute();
 
+        if (chr.canChangeDirctionInAir)
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(jumpRisingFA);
         else
@@ -568,12 +582,17 @@ public class CS_Jumping : CState
             }
         }
 
-        chr.CheckForAerialAttacks();
-
         if (chr.Ctr.onWall)
         {
             ChangeState(typeof(CS_Wallsliding));
         }
+
+        if (chr.Shield)
+        {
+            ChangeState(typeof(CS_AirDodge));
+        }
+
+        chr.CheckForAerialAttacks();
     }
 }
 
@@ -806,6 +825,8 @@ public class CS_Hitstun : CState
 
     private float spawnCloudVelocity = 10;
 
+    public int HitStunDuration { get; set; }
+
     public override void Init(Character chr)
     {
         base.Init(chr);
@@ -853,25 +874,12 @@ public class CS_Hitstun : CState
 
             }
         }
-        //chr.SetInputs(new Vector2(knockbackX, 0));
-        /*
-        if (timer == freezeStart)
-        {
-            chr.Ctr.freeze = true;
-        }
 
-        if (timer == freezeEnd)
-        {
-            chr.Ctr.freeze = false;
-        }
-
-    
-        if (chr.Ctr.IsGrounded && timer > minDuration)
+        if (timer > HitStunDuration)
         {
             chr.Ctr.inControl = true;
-            ChangeState(landing);
+            ChangeState(typeof(CS_Jumping));
         }
-        */
 
         if (chr.Ctr.collision)
         {
@@ -884,6 +892,7 @@ public class CS_Hitstun : CState
         base.Exit();
 
         chr.Ctr.freeze = false;
+        //HitStunDuration = 0;
     }
 }
 
@@ -898,6 +907,9 @@ public class CS_Hitfreeze : CState
     {
         duration = (int)damage.damageNumber;
         duration = Mathf.Clamp(duration, 4, 10);
+
+        CS_Hitstun hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
+        hitstun.HitStunDuration = (int)(5 + damage.damageNumber * 3);
     }
 
     public override void Init(Character chr)
@@ -1049,9 +1061,9 @@ public class CS_HitLand : CState
                 }
                 else ChangeState(typeof(CS_StandUp));
             }
-            else if(chr.Ctr.lastCollisionAngle == 90)
+            else if (chr.Ctr.lastCollisionAngle == 90)
             {
-                if(chr.HoldJump)
+                if (chr.HoldJump)
                 {
                     ChangeState(typeof(CS_WalljumpStart));
                 }
@@ -1230,5 +1242,74 @@ public class CS_ThrowItem : CState
 
             player.ThrowItem(chr.DirectionalInput);
         }
+    }
+}
+
+[System.Serializable]
+public class CS_AirDodge : CState
+{
+    [SerializeField]
+    protected int duration = 25;
+    protected int timer = 0;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        timer = 0;
+
+        chr.Spr.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        chr.GetInputs();
+
+        if (timer > duration)
+        {
+            ChangeState(typeof(CS_Jumping));
+        }
+
+        chr.CS_CheckLanding();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Spr.color = Color.white;
+    }
+}
+
+[System.Serializable]
+public class CS_ShieldHit : CState
+{
+    public override void Enter()
+    {
+        base.Enter();
+
+        chr.shielding = true;
+    }
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.CS_CheckIfStillGrounded();
+
+        if (chr.Anim.animationOver)
+        {
+            ChangeState(typeof(CS_Idle));
+        }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.shielding = false;
     }
 }

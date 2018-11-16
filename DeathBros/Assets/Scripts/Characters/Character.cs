@@ -33,6 +33,7 @@ public class Character : _MB, ICanTakeDamage
     //public float jumpStrength = 20;
     //public int jumps = 2;
     public int jumpsUsed { get; set; }
+    public bool canChangeDirctionInAir { get; set; }
 
     [Space]
 
@@ -81,6 +82,8 @@ public class Character : _MB, ICanTakeDamage
         base.Init();
 
         InitStats();
+
+        if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
 
         cStates = new List<CState>();
 
@@ -182,7 +185,7 @@ public class Character : _MB, ICanTakeDamage
         return statList.Find(x => x.statName == statName);
     }
 
-    public float GetCurrentStatValue(string statName)
+    public float GetCurrentStatValue(string statName, bool getDebugMessage = true)
     {
         Stat stat = GetStat(statName);
 
@@ -190,7 +193,8 @@ public class Character : _MB, ICanTakeDamage
 
         else
         {
-            Debug.Log(statName + " not found");
+            if (getDebugMessage) Debug.Log(statName + " not found");
+
             return 0;
         }
     }
@@ -232,7 +236,23 @@ public class Character : _MB, ICanTakeDamage
     {
         if (!IsDead)
         {
-            if (!shielding)
+
+            if (shielding)
+            {
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                currentHealth -= damage.damageNumber * 0.25f;
+            }
+            else
             {
                 RaiseTakeDamageEvents(damage);
 

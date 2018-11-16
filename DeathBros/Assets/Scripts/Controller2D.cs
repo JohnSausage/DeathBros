@@ -15,7 +15,7 @@ public class Controller2D : MonoBehaviour
     public bool allowDI = true;
     public bool inControl = true;
     public bool freeze = false;
-    private Vector2 velocityAfterFreeze;
+    protected Vector2 velocityAfterFreeze;
 
     public Vector2 testKnockback = new Vector2(15, 20);
 
@@ -27,12 +27,13 @@ public class Controller2D : MonoBehaviour
     public float gravity = -1;
     public float maxFallSpeed = -15;
     public float fastFallSpeed = -20;
+    public float wallslideSpeed = 5;
     public float maxAirSpeed = 20;
     public float aerialAcceleration = 0.2f;
     public float aerialDeceleration = 0.05f;
 
     public int airFrames = 15;
-    private int airTimer;
+    protected int airTimer;
     [Space]
 
     public float maxSlopeAngle = 45;
@@ -43,12 +44,12 @@ public class Controller2D : MonoBehaviour
     public LayerMask platformMask;
     public LayerMask transporterMask;
 
-    private LayerMask groundMask;
+    protected LayerMask groundMask;
 
     [Space]
 
     public Vector2 velocity;
-    private Vector2 oldVelocity;
+    protected Vector2 oldVelocity;
     public Vector2 velocitybfCol;
     public bool oldInControl;
 
@@ -72,8 +73,8 @@ public class Controller2D : MonoBehaviour
 
     public bool lastCollisionCheck;
 
-    private bool oldGrounded;
-    private float faceDirection;
+    protected bool oldGrounded;
+    protected float faceDirection;
     public float FaceDirection { set { faceDirection = value; } }
 
     public BoxCollider2D Col { get; protected set; }
@@ -84,7 +85,7 @@ public class Controller2D : MonoBehaviour
 
     protected RaycastHit2D[] platformCasts;
 
-    private void Awake()
+    protected void Awake()
     {
         Col = GetComponent<BoxCollider2D>();
         platformCasts = new RaycastHit2D[3];
@@ -116,11 +117,15 @@ public class Controller2D : MonoBehaviour
         bounds = Col.bounds;
         bounds.Expand(-2 * skin);
 
-        RaycastHit2D collisionCheck;
-        RaycastHit2D groundCheck;
+        Move();
+    }
 
+    protected virtual void Move()
+    {
         Vector2 groundPoint = Vector2.zero;
 
+        RaycastHit2D collisionCheck;
+        RaycastHit2D groundCheck;
 
         if (forceMovement == Vector2.zero && inControl)
         {
@@ -384,6 +389,7 @@ public class Controller2D : MonoBehaviour
                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
 
                         onWall = true;
+                        onWall = true;
                     }
 
                     //check for new slope down
@@ -471,6 +477,8 @@ public class Controller2D : MonoBehaviour
                         wallDirection = (int)Mathf.Sign(velocity.x);
                         velocity.x = 0;
                         onWall = true;
+
+                        if (velocity.y < -wallslideSpeed / 60) velocity.y = -wallslideSpeed / 60;
                     }
                 }
                 collisionCheck = RCXY(velocity, velocity.magnitude, collisionMask); //check for other collisions and stop velocity

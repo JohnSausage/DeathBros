@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: idle
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 8
+    sprite: {fileID: 21300000, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.015625, y: 0.015625}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 8
+    sprite: {fileID: 21300002, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.046875, y: 0.015625}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 8
+    sprite: {fileID: 21300004, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.046875, y: -0.140625}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  - duration: 8
+    sprite: {fileID: 21300006, guid: c654b5b91c5aee144a50afb0a521e56c, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.078125, y: 0.046875}
+      radius: 0.6
+    hitboxes: []
+    soundName: 
+  damages: []

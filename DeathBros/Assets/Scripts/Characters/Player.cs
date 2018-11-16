@@ -48,6 +48,8 @@ public class Player : Character
 
         CStates_InitExitStates();
 
+        Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
+
         ComboCounter.ComboIsOver += AddHealthAfterCombo;
     }
 
@@ -170,7 +172,22 @@ public class Player : Character
     {
         if (!IsDead)
         {
-            if (!shielding)
+            if (shielding)
+            {
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                ModSoulMeter(-damage.damageNumber * 0.25f);
+            }
+            else
             {
                 RaiseTakeDamageEvents(damage);
 
@@ -185,7 +202,6 @@ public class Player : Character
 
                 currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (SoulPercent));
 
-                //stats.currentHealth -= damage.damageNumber;
                 ModSoulMeter(-damage.damageNumber);
             }
             if (currentHealth <= 0)
@@ -226,7 +242,6 @@ public class Player : Character
             }
         }
     }
-
 
     protected bool CheckForItemPickUp()
     {

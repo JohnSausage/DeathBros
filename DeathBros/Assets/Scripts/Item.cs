@@ -25,15 +25,13 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
     protected int destroyAfterTime = 0;
     private int timer = 0;
 
+    [SerializeField]
+    protected bool flipX, flipY;
+
     [Space]
 
     [SerializeField]
     protected Damage damage;
-
-    public void GenerateID()
-    {
-        damage.GenerateID();
-    }
 
     [SerializeField]
     protected float damagingSpeed = 10;
@@ -44,8 +42,10 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
     protected ItemController2D ctr;
     protected Collider2D col;
     protected RaycastHit2D[] collisions;
+    protected SpriteRenderer spr;
 
     protected Queue<int> hitIDs = new Queue<int>();
+
 
     public override void Init()
     {
@@ -53,6 +53,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
         ctr = GetComponent<ItemController2D>();
         col = GetComponentInChildren<Collider2D>();
+        spr = GetComponent<SpriteRenderer>();
         collisions = new RaycastHit2D[2];
 
         FrameAnimator anim = GetComponent<FrameAnimator>();
@@ -73,6 +74,18 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     protected void FixedUpdate()
     {
+        if (flipX)
+        {
+            if (Velocity.x < 0) spr.flipX = true;
+            else spr.flipX = false;
+        }
+
+        if(flipY)
+        {
+            if (Velocity.y > 0) spr.flipY = true;
+            else spr.flipY = false;
+        }
+
         if (destroyAfterTime != 0)
             timer++;
 
@@ -163,6 +176,12 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
             }
         }
     }
+
+    public void GenerateID()
+    {
+        damage.GenerateID();
+    }
+
 
     protected void Remove(FrameAnimation animation)
     {

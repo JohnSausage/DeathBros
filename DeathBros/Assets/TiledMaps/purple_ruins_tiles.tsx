@@ -4,6 +4,7 @@
  <terraintypes>
   <terrain name="gras_top" tile="0"/>
   <terrain name="no_gras" tile="0"/>
+  <terrain name="green_temple" tile="177"/>
  </terraintypes>
  <tile id="0" terrain=",,,0"/>
  <tile id="1" terrain=",,0,0"/>
@@ -31,4 +32,17 @@
  <tile id="98" terrain=",1,,"/>
  <tile id="99" terrain="1,1,,"/>
  <tile id="100" terrain="1,,,"/>
+ <tile id="160" terrain=",,,2"/>
+ <tile id="161" terrain=",,2,2"/>
+ <tile id="162" terrain=",,2,"/>
+ <tile id="164" terrain="2,2,2,"/>
+ <tile id="165" terrain="2,2,,2"/>
+ <tile id="176" terrain=",2,,2"/>
+ <tile id="177" terrain="2,2,2,2"/>
+ <tile id="178" terrain="2,,2,"/>
+ <tile id="180" terrain="2,,2,2"/>
+ <tile id="181" terrain=",2,2,2"/>
+ <tile id="192" terrain=",2,,"/>
+ <tile id="193" terrain="2,2,,"/>
+ <tile id="194" terrain="2,,,"/>
 </tileset>

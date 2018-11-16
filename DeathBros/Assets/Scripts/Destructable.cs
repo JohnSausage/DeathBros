@@ -7,6 +7,9 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
     [SerializeField]
     protected float hitPoints = 10;
 
+    [SerializeField]
+    protected bool takeOnlyDamageFromExplosions = false;
+
     protected Queue<int> hitIDs = new Queue<int>();
 
     public FrameAnimator anim { get; protected set; }
@@ -20,6 +23,13 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
 
     public void GetHit(Damage damage)
     {
+        if (takeOnlyDamageFromExplosions)
+        {
+            if (damage.damageType != EDamageType.Explosion)
+                return;
+        }
+
+
         if (!hitIDs.Contains(damage.hitID))
         {
             hitIDs.Enqueue(damage.hitID);
