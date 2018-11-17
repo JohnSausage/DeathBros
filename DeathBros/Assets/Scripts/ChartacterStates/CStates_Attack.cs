@@ -59,7 +59,7 @@ public class CStates_Attack
     }
 }
 
-public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None }
+public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard }
 
 [System.Serializable]
 public class CS_Attack : CState
@@ -80,6 +80,8 @@ public class CS_Attack : CState
         base.Enter();
 
         if (chr is Enemy) chr.Flash(EffectManager.ColorAttack, 2);
+
+        chr.currentAttackType = attackType;
     }
 }
 

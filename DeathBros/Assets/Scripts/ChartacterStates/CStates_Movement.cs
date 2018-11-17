@@ -879,6 +879,8 @@ public class CS_Hitstun : CState
         {
             chr.Ctr.inControl = true;
             ChangeState(typeof(CS_Jumping));
+
+            chr.RaiseComboOverEvent();
         }
 
         if (chr.Ctr.collision)
@@ -1051,6 +1053,8 @@ public class CS_HitLand : CState
 
         if (chr.Shield)
         {
+            chr.RaiseComboOverEvent();
+
             if (chr.Ctr.lastCollisionAngle <= 45)
             {
                 if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
@@ -1094,6 +1098,8 @@ public class CS_HitLand : CState
             {
                 if (chr.Ctr.grounded)
                 {
+                    chr.RaiseComboOverEvent();
+
                     ChangeState(typeof(CS_HitLanded));
                     chr.Ctr.inControl = true;
                 }

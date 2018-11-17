@@ -61,10 +61,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 58650
+      ID: 59812
       getNewID: 0
     soundName: 
   - duration: 3
@@ -88,10 +89,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 5
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 58650
+      ID: 59812
       getNewID: 0
     soundName: 
   - duration: 3
@@ -115,7 +117,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 5, y: 20}
+    spawnProjectile: {x: 10, y: 15}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0.27279308, y: -0.23661365}
@@ -142,6 +144,7 @@ MonoBehaviour:
     baseKnockback: 15
     knockbackGrowth: 5
     damageType: 0
+    attackType: 14
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}

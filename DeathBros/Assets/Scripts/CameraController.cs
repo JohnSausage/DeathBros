@@ -74,13 +74,13 @@ public class CameraController : MonoBehaviour
         transform.position += newPos;
     }
 
-    private void ShakeCameraOnDamage(Damage damage, Vector2 position)
+    private void ShakeCameraOnDamage(Damage damage, Character chr)
     {
         shakeStrength = damage.damageNumber * 2;
         shakeTimer = (int)damage.damageNumber;
     }
 
-    private void FreezeCameraOnDamage(Damage damage, Vector2 position)
+    private void FreezeCameraOnDamage(Damage damage, Character chr)
     {
         StartCoroutine(HitFreeze(damage));
     }

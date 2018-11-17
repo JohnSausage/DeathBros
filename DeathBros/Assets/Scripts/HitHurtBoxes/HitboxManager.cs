@@ -49,6 +49,8 @@ public class HitboxManager : _MB
                     ICanTakeDamage hitObject = (ICanTakeDamage)hit[j].GetComponentInParent(typeof(ICanTakeDamage));
 
                     Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
+                    damage.attackType = Chr.currentAttackType;
+
                     damage.hitID = currentID;
                     damage.Owner = Chr;
                     damage.position = hitBoxPosition;
@@ -136,6 +138,7 @@ public class Damage
     public float baseKnockback;
     public float knockbackGrowth;
     public EDamageType damageType;
+    public EAttackType attackType;
     public Color editorColor;
     public Vector2 positionalInfluence;
     public Vector2 position;
@@ -153,6 +156,7 @@ public class Damage
             baseKnockback = baseKnockback,
             knockbackGrowth = knockbackGrowth,
             damageType = damageType,
+            attackType = attackType,
             editorColor = editorColor,
             positionalInfluence = positionalInfluence,
             position = position

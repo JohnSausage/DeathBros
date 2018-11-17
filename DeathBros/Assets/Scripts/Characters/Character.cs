@@ -69,6 +69,7 @@ public class Character : _MB, ICanTakeDamage
 
     public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
+    public EAttackType currentAttackType { get; set; }
 
     public bool shielding = false;
     public bool IsDead { get { return (currentHealth <= 0); } }
@@ -76,7 +77,9 @@ public class Character : _MB, ICanTakeDamage
     public Queue<int> hitIDs = new Queue<int>();
 
     public event Action<Damage> TakesDamage;
-    public static event Action<Damage, Vector2> TakesDamageAll;
+    public static event Action<Damage, Character> TakesDamageAll;
+    public event Action<bool> ComboOver;
+
 
     public override void Init()
     {
@@ -141,6 +144,11 @@ public class Character : _MB, ICanTakeDamage
     public void Spawn(Vector2 position)
     {
 
+    }
+
+    public void RaiseComboOverEvent()
+    {
+        if (ComboOver != null) ComboOver(true);
     }
 
     #region stats
@@ -283,7 +291,7 @@ public class Character : _MB, ICanTakeDamage
     protected void RaiseTakeDamageEvents(Damage damage)
     {
         if (TakesDamage != null) TakesDamage(damage);
-        if (TakesDamageAll != null) TakesDamageAll(damage, transform.position);
+        if (TakesDamageAll != null) TakesDamageAll(damage, this);
     }
 
     public virtual void Die()

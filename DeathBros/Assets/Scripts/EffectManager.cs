@@ -70,7 +70,7 @@ public class EffectManager : _MB
 
 
 
-    private void SpawnHitEffect(Damage damage, Vector2 position)
+    private void SpawnHitEffect(Damage damage, Character chr)
     {
         Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
 
@@ -78,9 +78,9 @@ public class EffectManager : _MB
         //effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
     }
 
-    private void SpawnDamageNumber(Damage damage, Vector2 position)
+    private void SpawnDamageNumber(Damage damage, Character chr)
     {
-        GameObject dmgNr = Instantiate(damageNumber, position + Vector2.up, Quaternion.identity);
+        GameObject dmgNr = Instantiate(damageNumber, (Vector2)chr.transform.position + Vector2.up, Quaternion.identity);
         dmgNr.GetComponent<DamageNumber>().damageNumber = damage.damageNumber.ToString();
 
     }

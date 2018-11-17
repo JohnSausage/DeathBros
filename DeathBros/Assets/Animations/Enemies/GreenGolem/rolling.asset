@@ -47,10 +47,11 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 94092
+      ID: 10105
       getNewID: 0
     soundName: golemRoll
   - duration: 5
@@ -74,10 +75,11 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 10556
+      ID: 88467
       getNewID: 0
     soundName: 
   - duration: 5
@@ -101,10 +103,11 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 85217
+      ID: 50620
       getNewID: 0
     soundName: 
   - duration: 5
@@ -128,10 +131,11 @@ MonoBehaviour:
         baseKnockback: 5
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 59498
+      ID: 81051
       getNewID: 0
     soundName: 
   - duration: 20
@@ -154,6 +158,7 @@ MonoBehaviour:
     baseKnockback: 5
     knockbackGrowth: 15
     damageType: 0
+    attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}

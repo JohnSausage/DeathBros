@@ -38,7 +38,9 @@ public class UI : _MB
     {
         base.Init();
 
-        Player.EnemyHit += UpdateComboCounter;
+        //Player.EnemyHit += UpdateComboCounter;
+
+        Enemy.TakesDamageAll += CheckComboCounter;
 
         GameManager.Player.ASoulsChanged += UpdateSouls;
         GameManager.Player.ASoulBankPlus += UpdateSoulBank;
@@ -68,7 +70,13 @@ public class UI : _MB
 
             if (comboCounters[i].ComboOver())
             {
-                uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboScore() + "\n", Color.green));
+                // uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboScore() + "\n", Color.green));
+                string message = "Attacks \n";
+                for (int j = 0; j < comboCounters[i].damages.Count; j++)
+                {
+                    message += comboCounters[i].damages[j].attackType + "\n";
+                }
+                uiMessages.Add(new UIMessage( message, Color.green));
 
                 comboCounters.Remove(comboCounters[i]);
             }
@@ -108,6 +116,34 @@ public class UI : _MB
         soulBankText.text = soulBank.ToString();
     }
 
+    private void CheckComboCounter(Damage damage, Character enemy)
+    {
+        if (damage.Owner != GameManager.Player) return;
+
+
+        bool enemyFound = false;
+
+        for (int i = 0; i < comboCounters.Count; i++)
+        {
+            if (comboCounters[i].enemy == enemy)
+            {
+                enemyFound = true;
+                comboCounters[i].damages.Add(damage);
+            }
+        }
+
+        if (!enemyFound)
+        {
+            ComboCounter newComboCount = new ComboCounter((Enemy)enemy);
+            newComboCount.damages.Add(damage);
+
+            GameObject newPanel = Instantiate(ComboPanelPrefab);
+            newPanel.transform.SetParent(transform);
+            comboCounters.Add(newComboCount);
+        }
+
+    }
+
     private void UpdateComboCounter(Character enemy, Damage damage)
     {
         bool enemyFound = false;
@@ -140,6 +176,8 @@ public class ComboCounter
 
     public Enemy enemy;
 
+    public List<Damage> damages;
+
     public float ComboDamage { get; protected set; }
     public float HitCount { get; protected set; }
 
@@ -151,6 +189,7 @@ public class ComboCounter
 
     public ComboCounter(Enemy enemy)
     {
+        damages = new List<Damage>();
         this.enemy = enemy;
         EnemyName = enemy.charName;
         comboMultiplier = enemy.ComboMultiplier;

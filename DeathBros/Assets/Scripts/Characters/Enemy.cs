@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Enemy : Character
@@ -38,7 +37,6 @@ public class Enemy : Character
 
         Anim.SpawnProjectile += SpawnProjectile;
     }
-
 
     public void SpawnProjectile(Vector2 position, Vector2 direction)
     {
