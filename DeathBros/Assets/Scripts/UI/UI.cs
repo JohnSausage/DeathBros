@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,11 @@ using TMPro;
 public class UI : _MB
 {
     [SerializeField]
-    private Slider healthBar;
+    private Color soulMeterColor;
+    public Color SoulBarColor { get { return soulMeterColor; } }
+
+    [SerializeField]
+    private Slider soulMeterSlider;
 
     [SerializeField]
     private TextMeshProUGUI comboCounterText;
@@ -33,6 +38,7 @@ public class UI : _MB
     public List<UIMessage> uiMessages;
 
 
+    private int soulMeterFlashTimer = 0;
 
     public override void Init()
     {
@@ -40,11 +46,11 @@ public class UI : _MB
 
         //Player.EnemyHit += UpdateComboCounter;
 
-        Enemy.TakesDamageAll += CheckComboCounter;
+        Enemy.ATakesDamageAll += CheckComboCounter;
 
         GameManager.Player.ASoulsChanged += UpdateSouls;
         GameManager.Player.ASoulBankPlus += UpdateSoulBank;
-        GameManager.Player.ASoulsChanged += UpdateSouls;
+        GameManager.Player.ASoulMeterChanged += UpdateSoulMeter;
 
         comboPanels = new List<ComboPanel>();
     }
@@ -58,25 +64,40 @@ public class UI : _MB
 
     void FixedUpdate()
     {
+        UpdateSoulMeterColor();
+
+        soulMeterSlider.value = GameManager.Player.SoulPercent;
+
         comboCounterText.text = "";
 
         for (int i = 0; i < comboCounters.Count; i++)
         {
             comboCounters[i].FixedUpdate();
 
-            comboCounterText.text += comboCounters[i].EnemyName + ": \n";
-            comboCounterText.text += comboCounters[i].ComboDamage + " Damage / ";
-            comboCounterText.text += comboCounters[i].HitCount + " Hits \n";
+            //comboCounterText.text += comboCounters[i].EnemyName + ": \n";
+            //comboCounterText.text += comboCounters[i].ComboDamage + " Damage / ";
+            //comboCounterText.text += comboCounters[i].HitCount + " Hits \n";
 
             if (comboCounters[i].ComboOver())
             {
-                // uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboScore() + "\n", Color.green));
-                string message = "Attacks \n";
-                for (int j = 0; j < comboCounters[i].damages.Count; j++)
+                if (comboCounters[i].damages.Count > 1)
                 {
-                    message += comboCounters[i].damages[j].attackType + "\n";
+                    // uiMessages.Add(new UIMessage("Combo Heal: " + comboCounters[i].ComboScore() + "\n", Color.green));
+                    string message = "Combo on " + comboCounters[i].EnemyName + "\n";
+
+                    for (int j = 0; j < comboCounters[i].damages.Count; j++)
+                    {
+                        message += comboCounters[i].damages[j].attackType + "\n";
+                    }
+
+                    message += "\n";
+
+                    message += "Combo Score: " + comboCounters[i].ComboScore;
+
+                    message += "\n";
+
+                    uiMessages.Add(new UIMessage(message, Color.green));
                 }
-                uiMessages.Add(new UIMessage( message, Color.green));
 
                 comboCounters.Remove(comboCounters[i]);
             }
@@ -91,9 +112,40 @@ public class UI : _MB
 
             if (uiMessages[i].Over()) uiMessages.Remove(uiMessages[i]);
         }
+    }
 
-        healthBar.value = GameManager.Player.SoulPercent;
+    private void UpdateSoulMeter(float newValue)
+    {
+        Color flashColor;
 
+        if(GameManager.Player.SoulPercent >= soulMeterSlider.value)
+        {
+            flashColor = Color.white;
+        }
+        else
+        {
+            flashColor = Color.red;
+        }
+
+        FlashSoulMeterColor(flashColor);
+
+        soulMeterSlider.value = GameManager.Player.SoulPercent;
+    }
+
+    private void FlashSoulMeterColor(Color color)
+    {
+        soulMeterFlashTimer = 0;
+        soulMeterSlider.fillRect.GetComponent<Image>().color = color;
+    }
+
+    private void UpdateSoulMeterColor()
+    {
+        soulMeterFlashTimer++;
+
+        if(soulMeterFlashTimer > 60)
+        {
+            soulMeterSlider.fillRect.GetComponent<Image>().color = soulMeterColor;
+        }
     }
 
     private void UpdateSouls(float souls)
@@ -129,6 +181,7 @@ public class UI : _MB
             {
                 enemyFound = true;
                 comboCounters[i].damages.Add(damage);
+                comboCounters[i].ResetComboCounter();
             }
         }
 
@@ -143,30 +196,6 @@ public class UI : _MB
         }
 
     }
-
-    private void UpdateComboCounter(Character enemy, Damage damage)
-    {
-        bool enemyFound = false;
-
-        for (int i = 0; i < comboCounters.Count; i++)
-        {
-            if (comboCounters[i].enemy == enemy)
-            {
-                enemyFound = true;
-                comboCounters[i].AddDamage(damage.damageNumber);
-            }
-        }
-
-        if (!enemyFound)
-        {
-            ComboCounter newComboCount = new ComboCounter((Enemy)enemy);
-            newComboCount.AddDamage(damage.damageNumber);
-
-            GameObject newPanel = Instantiate(ComboPanelPrefab);
-            newPanel.transform.SetParent(transform);
-            comboCounters.Add(newComboCount);
-        }
-    }
 }
 
 [System.Serializable]
@@ -180,12 +209,13 @@ public class ComboCounter
 
     public float ComboDamage { get; protected set; }
     public float HitCount { get; protected set; }
+    public float ComboScore { get; protected set; }
 
     private int comboResetDuration;
     private int timer;
     private float comboMultiplier;
 
-    public static event Action<float> ComboIsOver;
+    public static event Action<float> AComboIsOver;
 
     public ComboCounter(Enemy enemy)
     {
@@ -195,6 +225,8 @@ public class ComboCounter
         comboMultiplier = enemy.ComboMultiplier;
         comboResetDuration = 90;
         timer = 0;
+
+        enemy.AComboOver += SetComboOverInEvent;
     }
 
     public void FixedUpdate()
@@ -202,24 +234,52 @@ public class ComboCounter
         timer++;
     }
 
-    public float ComboScore()
+    public void CalculateComboScore()
     {
-        return ComboDamage * comboMultiplier;
+        ComboDamage = 0;
+
+        if (damages.Count <= 1) return;
+
+        List<EAttackType> attackTypeList = new List<EAttackType>();
+
+        for (int i = 0; i < damages.Count; i++)
+        {
+            if (!attackTypeList.Contains(damages[i].attackType))
+            {
+                ComboDamage += damages[i].damageNumber;
+                attackTypeList.Add(damages[i].attackType);
+            }
+            else
+            {
+                ComboDamage += damages[i].damageNumber * 0.5f;
+            }
+
+
+        }
+
+        ComboScore = ComboDamage * comboMultiplier;
     }
 
-    public void AddDamage(float damageNumber)
+    public void ResetComboCounter()
     {
-        ComboDamage += damageNumber;
-        HitCount++;
-
         timer = 0;
+    }
+
+    private void SetComboOverInEvent(bool value)
+    {
+        timer = comboResetDuration + 1;
     }
 
     public bool ComboOver()
     {
         if (timer > comboResetDuration)
         {
-            if (ComboIsOver != null) ComboIsOver(ComboScore());
+            CalculateComboScore();
+
+            enemy.AComboOver -= SetComboOverInEvent;
+
+            if (AComboIsOver != null) AComboIsOver(ComboScore);
+
             return true;
         }
 

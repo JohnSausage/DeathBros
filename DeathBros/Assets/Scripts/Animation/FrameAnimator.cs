@@ -87,15 +87,15 @@ public class FrameAnimator : _MB
                 ctr.resetVelocity = currentFrame.resetVelocity;
             }
 
-            if(currentFrame.spawnHoldItem != null)
+            if (currentFrame.spawnHoldItem != null)
             {
                 Player player = GetComponent<Player>();
-                if(player != null)
+                if (player != null)
                 {
                     GameObject holdItem = Instantiate(currentFrame.spawnHoldItem, transform);
                     Item pickUpItem = holdItem.GetComponent<Item>();
 
-                    if(pickUpItem is ICanBePickedUp)
+                    if (pickUpItem is ICanBePickedUp)
                     {
 
                         player.ReleaseHoldItem();
@@ -105,7 +105,13 @@ public class FrameAnimator : _MB
                 }
                 else
                 {
-                    Instantiate(currentFrame.spawnHoldItem, transform.position, Quaternion.identity);
+                    GameObject spawnItem = Instantiate(currentFrame.spawnHoldItem, transform.position, Quaternion.identity);
+                    DamagingCollider damagingCollider = spawnItem.GetComponent<DamagingCollider>();
+
+                    if (damagingCollider == null) return;
+
+                    damagingCollider.damage.Owner = player;
+                    damagingCollider.damage.attackType = EAttackType.Item;
                 }
             }
 

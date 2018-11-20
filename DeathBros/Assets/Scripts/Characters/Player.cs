@@ -36,6 +36,8 @@ public class Player : Character
     public static event Action<Character, Damage> EnemyHit;
     public event Action<float> ASoulsChanged;
     public event Action<int> ASoulBankPlus;
+    public event Action<float> ASoulMeterChanged;
+
 
     public override void Init()
     {
@@ -50,7 +52,8 @@ public class Player : Character
 
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
-        ComboCounter.ComboIsOver += AddHealthAfterCombo;
+        ComboCounter.AComboIsOver += AddHealthAfterCombo;
+
     }
 
     void Update()
@@ -151,26 +154,26 @@ public class Player : Character
     {
         base.HitEnemy(enemy, damage);
 
+        AddSoulAfterHit(damage);
+
         if (EnemyHit != null) EnemyHit(enemy, damage);
     }
 
-    private void AddHealthAfterCombo(float damageNumber)
+    private void AddHealthAfterCombo(float comboScore)
     {
-        float soulMeterMultiplier = 1f; //to reduce soulMeterHeal
-        ModSoulMeter(damageNumber * soulMeterMultiplier);
+        ModSoulMeter(comboScore);
     }
 
     public override void GetHit(Damage damage)
     {
         base.GetHit(damage);
 
-        //if (PlayerHealthChanged != null) PlayerHealthChanged(stats.currentHealth / stats.maxHealth.CurrentValue);
         if (PlayerHealthChanged != null) PlayerHealthChanged(soulMeter / soulMeterMax);
     }
 
     protected override void TakeDamage(Damage damage)
     {
-        if (!IsDead)
+        if (!dead)
         {
             if (shielding)
             {
@@ -215,6 +218,12 @@ public class Player : Character
         }
     }
 
+    private void AddSoulAfterHit(Damage damage)
+    {
+        ModSoulMeter(damage.damageNumber / 5);
+    }
+
+
     public override void ModSoulMeter(float value)
     {
         if (soulMeter < soulMeterMax / 2) //only wait to fill up again, but drain soul immediately if more than half full
@@ -238,13 +247,18 @@ public class Player : Character
         if (soulMeter <= 0)
         {
             ModSouls(-1);
-            soulMeter = soulMeterMax;
+
+            if (currentSouls != 0)
+                soulMeter = soulMeterMax;
 
             if (currentSouls <= 0)
             {
                 Die();
             }
         }
+
+
+        if (ASoulMeterChanged != null) ASoulMeterChanged(soulMeter);
     }
 
     protected bool CheckForItemPickUp()
@@ -315,6 +329,7 @@ public class Player : Character
         holdItem.Owner = this;
         holdItem.transform.SetParent(transform);
         holdItem.transform.localPosition = Vector3.zero;
+        holdItem.Damage.Owner = this;
     }
 
     public void ReleaseHoldItem()

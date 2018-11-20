@@ -32,6 +32,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     [SerializeField]
     protected Damage damage;
+    public Damage Damage { get { return damage; } }
 
     [SerializeField]
     protected float damagingSpeed = 10;
@@ -80,7 +81,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
             else spr.flipX = false;
         }
 
-        if(flipY)
+        if (flipY)
         {
             if (Velocity.y > 0) spr.flipY = true;
             else spr.flipY = false;

@@ -70,15 +70,17 @@ public class Character : _MB, ICanTakeDamage
     public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
     public EAttackType currentAttackType { get; set; }
+    public float HealthPercent { get { return (currentHealth / GetCurrentStatValue("MaxHealth")); } }
 
     public bool shielding = false;
     public bool IsDead { get { return (currentHealth <= 0); } }
+    public bool dead { get; protected set; }
 
     public Queue<int> hitIDs = new Queue<int>();
 
-    public event Action<Damage> TakesDamage;
-    public static event Action<Damage, Character> TakesDamageAll;
-    public event Action<bool> ComboOver;
+    public event Action<Damage> ATakesDamage;
+    public static event Action<Damage, Character> ATakesDamageAll;
+    public event Action<bool> AComboOver;
 
 
     public override void Init()
@@ -148,7 +150,7 @@ public class Character : _MB, ICanTakeDamage
 
     public void RaiseComboOverEvent()
     {
-        if (ComboOver != null) ComboOver(true);
+        if (AComboOver != null) AComboOver(true);
     }
 
     #region stats
@@ -243,7 +245,7 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void TakeDamage(Damage damage)
     {
-        if (!IsDead)
+        if (!dead)
         {
 
             if (shielding)
@@ -290,8 +292,8 @@ public class Character : _MB, ICanTakeDamage
 
     protected void RaiseTakeDamageEvents(Damage damage)
     {
-        if (TakesDamage != null) TakesDamage(damage);
-        if (TakesDamageAll != null) TakesDamageAll(damage, this);
+        if (ATakesDamage != null) ATakesDamage(damage);
+        if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
     }
 
     public virtual void Die()
@@ -303,7 +305,7 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void Dead()
     {
-
+        dead = true;
     }
 
     public virtual void GetInputs()

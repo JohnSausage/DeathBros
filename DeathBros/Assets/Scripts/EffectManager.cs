@@ -64,8 +64,8 @@ public class EffectManager : _MB
     protected override void Start()
     {
         base.Start();
-        Character.TakesDamageAll += SpawnDamageNumber;
-        Character.TakesDamageAll += SpawnHitEffect;
+        Character.ATakesDamageAll += SpawnDamageNumber;
+        Character.ATakesDamageAll += SpawnHitEffect;
     }
 
 

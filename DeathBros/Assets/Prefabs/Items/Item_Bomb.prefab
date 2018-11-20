@@ -125,14 +125,17 @@ MonoBehaviour:
   destroyOnCollision: 1
   destroyOnCharacterHit: 1
   destroyAfterTime: 180
+  flipX: 0
+  flipY: 0
   damage:
     damageNumber: 0
     knockBackDirection: {x: 1, y: 3}
     baseKnockback: 10
     knockbackGrowth: 5
     damageType: 0
+    attackType: 19
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    directionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
   damagingSpeed: 10
   filter:

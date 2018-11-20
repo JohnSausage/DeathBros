@@ -911,15 +911,22 @@ public class CS_Hitfreeze : CState
         duration = Mathf.Clamp(duration, 4, 10);
 
         CS_Hitstun hitstun = (CS_Hitstun)chr.GetState(typeof(CS_Hitstun));
-        hitstun.HitStunDuration = (int)(5 + damage.damageNumber * 3);
+        hitstun.HitStunDuration = CalculateHitstun(damage, chr);
+    }
+
+    private int CalculateHitstun(Damage damage, Character chr)
+    {
+        int baseHitstun = 10;
+        return baseHitstun + (int)(damage.damageNumber * (5 - 2 * chr.HealthPercent)); //range 3- 5
     }
 
     public override void Init(Character chr)
     {
         base.Init(chr);
 
-        chr.TakesDamage += SetDuration;
+        chr.ATakesDamage += SetDuration;
     }
+
     public override void Enter()
     {
         base.Enter();
@@ -927,6 +934,7 @@ public class CS_Hitfreeze : CState
         chr.Ctr.inControl = false;
         chr.Ctr.freeze = true;
 
+        
         timer = 0;
     }
 
