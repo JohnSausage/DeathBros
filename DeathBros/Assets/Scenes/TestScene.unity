@@ -331,6 +331,7 @@ MonoBehaviour:
   charName: Green Golem
   soundFolderName: 
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 
@@ -1416,6 +1417,16 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114340152992809904, guid: c4265fa076aaabd429c71b28e575eb4e,
+        type: 2}
+      propertyPath: cStateParamtetersSO
+      value: 
+      objectReference: {fileID: 11400000, guid: a82b2525b92a95b449f1aa24a4f6c787,
+        type: 2}
+    - target: {fileID: 1269022456329406, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4265fa076aaabd429c71b28e575eb4e, type: 2}
   m_IsPrefabAsset: 0
@@ -1780,6 +1791,7 @@ MonoBehaviour:
   charName: 
   soundFolderName: 
   statsSO: {fileID: 0}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 
@@ -4587,6 +4599,7 @@ MonoBehaviour:
   charName: Green Golem
   soundFolderName: 
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 
@@ -6916,6 +6929,8 @@ MonoBehaviour:
   charName: Player
   soundFolderName: Sounds/Player/
   statsSO: {fileID: 11400000, guid: 9cc35bdcf6fc10f4f92947daf29277c1, type: 2}
+  cStateParamtetersSO: {fileID: 11400000, guid: a82b2525b92a95b449f1aa24a4f6c787,
+    type: 2}
   statList: []
   CSMachine:
     currentState: 
@@ -8493,6 +8508,7 @@ MonoBehaviour:
   charName: 
   soundFolderName: 
   statsSO: {fileID: 0}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 
@@ -9011,6 +9027,7 @@ MonoBehaviour:
   charName: Green Golem
   soundFolderName: 
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 
@@ -10553,6 +10570,7 @@ MonoBehaviour:
   charName: Green Golem
   soundFolderName: 
   statsSO: {fileID: 11400000, guid: 20b5d2004debdc64cb9c16e81da2328c, type: 2}
+  cStateParamtetersSO: {fileID: 0}
   statList: []
   CSMachine:
     currentState: 

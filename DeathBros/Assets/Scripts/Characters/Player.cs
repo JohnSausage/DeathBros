@@ -46,6 +46,9 @@ public class Player : Character
         soundFolderName = "Sounds/Player/";
 
         advancedMovementStates.Init(this);
+        //CSMachine.ChangeState(SCS_Idle.InstanceP);
+
+
         attackStates.Init(this);
 
         CStates_InitExitStates();

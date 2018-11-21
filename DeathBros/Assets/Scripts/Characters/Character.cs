@@ -16,6 +16,12 @@ public class Character : _MB, ICanTakeDamage
     protected StatsSO statsSO;
 
     [SerializeField]
+    protected CStateParamtetersSO cStateParamtetersSO;
+    public CStateParamtetersSO CStateParamtetersSO { get { return cStateParamtetersSO; } }
+    public int csTimer { get; set; }
+    public float csDirection { get; set; }
+
+    [SerializeField]
     protected List<Stat> statList;// { get; protected set; }
 
     public Vector2 DirectionalInput { get; protected set; }
