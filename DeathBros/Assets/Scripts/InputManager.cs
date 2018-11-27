@@ -78,6 +78,7 @@ public class InputManager : MonoBehaviour
         Attack.SetDefault(KeyCode.LeftControl);
         Jump.SetDefault(KeyCode.Space);
         Shield.SetDefault(KeyCode.LeftShift);
+        Special.SetDefault(KeyCode.LeftAlt);
         CUp.SetDefault(KeyCode.UpArrow);
         CDown.SetDefault(KeyCode.DownArrow);
         CLeft.SetDefault(KeyCode.LeftArrow);
