@@ -51,6 +51,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
@@ -80,6 +81,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
@@ -109,6 +111,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
@@ -138,6 +141,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
@@ -166,6 +170,7 @@ MonoBehaviour:
     baseKnockback: 10
     knockbackGrowth: 20
     damageType: 0
+    attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0.2}
     position: {x: 0, y: 0}

@@ -51,6 +51,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
@@ -80,6 +81,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
@@ -93,6 +95,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
@@ -106,6 +109,7 @@ MonoBehaviour:
         baseKnockback: 20
         knockbackGrowth: 20
         damageType: 1
+        attackType: 0
         editorColor: {r: 0.017205715, g: 0, b: 1, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
@@ -135,6 +139,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
@@ -148,6 +153,7 @@ MonoBehaviour:
         baseKnockback: 10
         knockbackGrowth: 20
         damageType: 0
+        attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0.2}
         position: {x: 0, y: 0}
@@ -176,6 +182,7 @@ MonoBehaviour:
     baseKnockback: 10
     knockbackGrowth: 20
     damageType: 0
+    attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0.2, y: 0.2}
     position: {x: 0, y: 0}
@@ -184,6 +191,7 @@ MonoBehaviour:
     baseKnockback: 20
     knockbackGrowth: 20
     damageType: 1
+    attackType: 0
     editorColor: {r: 0.017205715, g: 0, b: 1, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
