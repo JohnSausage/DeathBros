@@ -229,7 +229,7 @@ public class CS_Walking : CState
 public class CS_Dash : CState
 {
     [SerializeField]
-    private int duration = 10;
+    public int duration = 10;
     private int timer = 0;
 
     private float dirX;
@@ -292,10 +292,10 @@ public class CS_Skid : CState
     public float direction { get; set; }
 
     [SerializeField]
-    int duration = 6;
+    public int duration = 6;
 
     [SerializeField]
-    int idleOutDuration = 3;
+    public int idleOutDuration = 3;
     private int timer;
 
     private int idleTimer;
@@ -401,7 +401,7 @@ public class CS_Crouch : CState
 public class CS_Jumpsquat : CState
 {
     [SerializeField]
-    int duration;
+    public int duration;
     private int timer;
 
     public override void Enter()
@@ -458,7 +458,7 @@ public class CS_Jumpsquat : CState
 public class CS_DoubleJumpsquat : CState
 {
     [SerializeField]
-    int duration = 3;
+    public int duration = 3;
     private int timer;
 
     public override void Enter()
@@ -495,7 +495,10 @@ public class CS_DoubleJumpsquat : CState
 public class CS_Landing : CState
 {
     [SerializeField]
-    int duration = 3;
+    public int duration = 3;
+
+    public int addDuration { get; set; } //additional landing lag from eg aerials
+
     private int timer;
 
     private float dirX;
@@ -521,8 +524,10 @@ public class CS_Landing : CState
 
         timer++;
 
-        if (timer >= duration)
+        if (timer >= (duration + addDuration))
         {
+            addDuration = 0; //clear additional landing lag when landing
+
             chr.GetInputs();
             if (chr.DirectionalInput.y < 0)
             {
@@ -540,7 +545,7 @@ public class CS_Landing : CState
 public class CS_Jumping : CState
 {
     [SerializeField]
-    string jumpRisingAnimation;
+    public string jumpRisingAnimation;
     FrameAnimation jumpRisingFA;
 
     public override void Init(Character chr)
@@ -600,7 +605,7 @@ public class CS_Jumping : CState
 public class CS_Wallsliding : CState
 {
     [SerializeField]
-    string wallUpAnimation;
+    public string wallUpAnimation;
 
     private FrameAnimation wallUpFA;
     private CS_WalljumpStart walljumpStart;
@@ -709,9 +714,9 @@ public class CS_WalljumpStart : CState
     public int walljumpDirection { get; set; }
 
     [SerializeField]
-    float jumpHeightReductionFactor = 0.75f;
+    public float jumpHeightReductionFactor = 0.75f;
     [SerializeField]
-    int duration = 3;
+    public int duration = 3;
 
     private CS_Walljumping walljumping;
     private int timer;
@@ -754,7 +759,7 @@ public class CS_Walljumping : CState
     public int walljumpDirection { get; set; }
 
     [SerializeField]
-    int duration = 20;
+    public int duration = 20;
     private int timer;
 
     private CS_Jumping jumping;
@@ -813,7 +818,7 @@ public class CS_Walljumping : CState
 public class CS_Hitstun : CState
 {
     [SerializeField]
-    string hitstunFallAnimation;
+    public string hitstunFallAnimation;
     FrameAnimation hitstunFallFA;
 
     //public int freezeStart = 15;
@@ -902,7 +907,7 @@ public class CS_Hitstun : CState
 public class CS_Hitfreeze : CState
 {
     [SerializeField]
-    private int duration = 5;
+    public int duration = 5;
     private int timer;
 
     private void SetDuration(Damage damage)
@@ -934,7 +939,7 @@ public class CS_Hitfreeze : CState
         chr.Ctr.inControl = false;
         chr.Ctr.freeze = true;
 
-        
+
         timer = 0;
     }
 
@@ -1036,7 +1041,7 @@ public class CS_Roll : CState
 public class CS_HitLand : CState
 {
     [SerializeField]
-    private int duration = 10;
+    public int duration = 10;
     private int timer;
 
     private Vector2 collisionReflect;
@@ -1131,7 +1136,7 @@ public class CS_HitLand : CState
 public class CS_HitLanded : CState
 {
     [SerializeField]
-    protected int minDuration = 20;
+    public int minDuration = 20;
 
     protected int timer;
 
@@ -1211,7 +1216,7 @@ public class CS_Die : CState
 public class CS_ThrowItem : CState
 {
     [SerializeField]
-    protected string aerialAnimationName;
+    public string aerialAnimationName;
     protected FrameAnimation aerialANimation;
 
     public override void Init(Character chr)
@@ -1263,7 +1268,7 @@ public class CS_ThrowItem : CState
 public class CS_AirDodge : CState
 {
     [SerializeField]
-    protected int duration = 25;
+    public int duration = 25;
     protected int timer = 0;
 
     //protected Vector2 direction;

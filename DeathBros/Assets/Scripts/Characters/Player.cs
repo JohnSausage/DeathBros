@@ -45,18 +45,25 @@ public class Player : Character
 
         soundFolderName = "Sounds/Player/";
 
-        advancedMovementStates.Init(this);
+        //advancedMovementStates.Init(this);
         //CSMachine.ChangeState(SCS_Idle.InstanceP);
 
 
-        attackStates.Init(this);
+        //attackStates.Init(this);
 
-        CStates_InitExitStates();
+        
 
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
         ComboCounter.AComboIsOver += AddHealthAfterCombo;
 
+        statesAndStats.InitStates(this);
+        CStates_InitExitStates();
+
+        foreach (var attackSO in attackSOs)
+        {
+            attackSO.InitState(this);
+        }
     }
 
     void Update()

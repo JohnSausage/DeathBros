@@ -13,6 +13,14 @@ public class Character : _MB, ICanTakeDamage
     [Space]
 
     [SerializeField]
+    protected StatesAndStatsSO statesAndStats;
+
+    [SerializeField]
+    protected List<CS_AttackSO> attackSOs;
+
+    [Space]
+
+    [SerializeField]
     protected StatsSO statsSO;
 
     [SerializeField]
@@ -61,7 +69,7 @@ public class Character : _MB, ICanTakeDamage
         }
     }
 
-    public List<CState> cStates { get; protected set; }
+    public List<CState> cStates;// { get; protected set; }
 
     [Space]
 

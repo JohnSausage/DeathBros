@@ -4,6 +4,7 @@
  <terraintypes>
   <terrain name="purple_ground" tile="17"/>
   <terrain name="dirt_ground" tile="81"/>
+  <terrain name="background" tile="145"/>
  </terraintypes>
  <tile id="0" terrain=",,,0"/>
  <tile id="1" terrain=",,0,0"/>
@@ -31,6 +32,19 @@
  <tile id="96" terrain=",1,,"/>
  <tile id="97" terrain="1,1,,"/>
  <tile id="98" terrain="1,,,"/>
+ <tile id="128" terrain=",,,2"/>
+ <tile id="129" terrain=",,2,2"/>
+ <tile id="130" terrain=",,2,"/>
+ <tile id="132" terrain="2,2,2,"/>
+ <tile id="133" terrain="2,2,,2"/>
+ <tile id="144" terrain=",2,,2"/>
+ <tile id="145" terrain="2,2,2,2"/>
+ <tile id="146" terrain="2,,2,"/>
+ <tile id="148" terrain="2,,2,2"/>
+ <tile id="149" terrain=",2,2,2"/>
+ <tile id="160" terrain=",2,,"/>
+ <tile id="161" terrain="2,2,,"/>
+ <tile id="162" terrain="2,,,"/>
  <tile id="204">
   <objectgroup draworder="index">
    <object id="1" x="0" y="16">

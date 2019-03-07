@@ -8,11 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0bc4342d105f44385d1afb45a3dd33, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: bf8f6a86f75a4154eb0604dee8c31369, type: 3}
+  m_Name: nAir
   m_EditorClassIdentifier: 
-  idle_anim: idle
-  walking_anim: walking
-  running_anim: running
-  jumpsquat_anim: jumpsquat
-  jumpsquat_duration: 4
+  attackName: nAir
+  attackType: 5
+  animationName: nAir
+  landingLag: 3
