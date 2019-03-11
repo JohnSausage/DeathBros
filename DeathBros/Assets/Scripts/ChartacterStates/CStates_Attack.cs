@@ -249,6 +249,8 @@ public class CS_SoulAttack : CS_Attack
 [System.Serializable]
 public class CS_Aerial : CS_Attack
 {
+    public int landingLag;
+
     public override void Execute()
     {
         base.Execute();
@@ -267,7 +269,10 @@ public class CS_Aerial : CS_Attack
 
         if (chr.Ctr.IsGrounded)
         {
-            ChangeState(typeof(CS_Landing));
+            CS_Landing cs_landing = (CS_Landing)chr.GetState(typeof(CS_Landing));
+            cs_landing.addDuration += landingLag;
+            ChangeState(cs_landing);
+            //ChangeState(typeof(CS_Landing));
         }
     }
 }

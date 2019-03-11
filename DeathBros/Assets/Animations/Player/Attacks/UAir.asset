@@ -51,10 +51,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 28433
+      ID: 11239
       getNewID: 0
     soundName: sweep1
   - duration: 2
@@ -80,10 +81,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 55218
+      ID: 11239
       getNewID: 0
     - position: {x: -0.375, y: 0.5833333}
       radius: 1
@@ -93,10 +95,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 55218
+      ID: 11239
       getNewID: 0
     soundName: 
   - duration: 3
@@ -122,10 +125,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 55218
+      ID: 11239
       getNewID: 0
     - position: {x: -0.5208333, y: 0.125}
       radius: 1.4199996
@@ -135,10 +139,11 @@ MonoBehaviour:
         baseKnockback: 15
         knockbackGrowth: 15
         damageType: 0
+        attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 55218
+      ID: 11239
       getNewID: 0
     soundName: 
   - duration: 8
@@ -163,6 +168,7 @@ MonoBehaviour:
     baseKnockback: 15
     knockbackGrowth: 15
     damageType: 0
+    attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0.2, y: 0}
     position: {x: 0, y: 0}
