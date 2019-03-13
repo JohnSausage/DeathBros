@@ -39,15 +39,15 @@ MonoBehaviour:
       radius: 0.6
       damage:
         damageNumber: 10
-        knockBackDirection: {x: -0.5, y: 4}
+        knockBackDirection: {x: 0.3, y: 4}
         baseKnockback: 15
         knockbackGrowth: 0
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0.5, y: 0}
+        positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 53306
+      ID: 62887
       getNewID: 0
     soundName: 
   - duration: 2
@@ -65,15 +65,15 @@ MonoBehaviour:
       radius: 0.6
       damage:
         damageNumber: 10
-        knockBackDirection: {x: -0.5, y: 4}
+        knockBackDirection: {x: 0.3, y: 4}
         baseKnockback: 15
         knockbackGrowth: 0
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0.5, y: 0}
+        positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
-      ID: 53306
+      ID: 62887
       getNewID: 0
     soundName: 
   - duration: 10
@@ -90,11 +90,11 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 10
-    knockBackDirection: {x: -0.5, y: 4}
+    knockBackDirection: {x: 0.3, y: 4}
     baseKnockback: 15
     knockbackGrowth: 0
     damageType: 0
     attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0.5, y: 0}
+    positionalInfluence: {x: 0.2, y: 0}
     position: {x: 0, y: 0}

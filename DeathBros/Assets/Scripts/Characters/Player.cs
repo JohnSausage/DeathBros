@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Player : Character
@@ -51,7 +51,7 @@ public class Player : Character
 
         //attackStates.Init(this);
 
-        
+
 
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
@@ -167,8 +167,20 @@ public class Player : Character
         AddSoulAfterHit(damage);
 
         if (EnemyHit != null) EnemyHit(enemy, damage);
-    }
 
+        //StartCoroutine(IFreezePlayerOnHit(damage));
+    }
+    /*
+    private IEnumerator IFreezePlayerOnHit(Damage damage)
+    {
+        Ctr.freeze = true;
+        for (int i = 0; i < damage.damageNumber + 3; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Ctr.freeze = false;
+    }
+    */
     private void AddHealthAfterCombo(float comboScore)
     {
         ModSoulMeter(comboScore);

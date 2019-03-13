@@ -18,11 +18,11 @@ MonoBehaviour:
   - statName: Weight
     baseValue: 100
   - statName: Movespeed
-    baseValue: 10
+    baseValue: 8
   - statName: Gravity
-    baseValue: -1
+    baseValue: -0.8
   - statName: JumpStrength
-    baseValue: 20
+    baseValue: 15
   - statName: Jumps
     baseValue: 2
   - statName: MaxSouls

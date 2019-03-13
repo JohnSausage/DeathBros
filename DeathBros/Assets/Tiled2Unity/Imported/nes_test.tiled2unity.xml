@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 13.03.2019 18:03:26-->
+<!--Last exported: 13.03.2019 22:36:01-->
 <Tiled2Unity version="1.0.13.2">
   <AssignMaterial mesh="nes_test_mesh_0001" material="NES_16x16_cave" />
   <AssignMaterial mesh="nes_test_mesh_0002" material="NES_16x16_cave" />
@@ -28,7 +28,7 @@
     </GameObject>
     <GameObject name="Collision" x="0" y="0" z="0" layer="Collision">
       <TileLayer offsetX="0" offsetY="0" />
-      <GameObject name="NES_16x16_cave" x="0" y="0" mesh="nes_test_mesh_0005" sortingLayerName="" sortingOrder="4" opacity="0.58" />
+      <GameObject name="NES_16x16_cave" x="0" y="0" mesh="nes_test_mesh_0005" sortingLayerName="" sortingOrder="4" opacity="0" />
       <GameObject name="Collision">
         <PolygonCollider2D>
           <Path>2,-19 4,-17 12,-17 16,-19 25,-19 27,-18 32,-18 32,-1 30,-1 30,-2 29,-2 29,-6 30,-6 30,-15 16,-15 16,-14 2,-14 2,-6 3,-6 3,-3 2,-3 2,-2 0,-2 0,-19</Path>
