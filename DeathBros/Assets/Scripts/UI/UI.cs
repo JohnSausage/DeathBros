@@ -14,14 +14,14 @@ public class UI : _MB
     [SerializeField]
     private Slider soulMeterSlider;
 
-    [SerializeField]
-    private TextMeshProUGUI comboCounterText;
+    //[SerializeField]
+    //private TextMeshProUGUI comboCounterText;
 
-    [SerializeField]
-    private TextMeshProUGUI messageText;
+    //[SerializeField]
+    //private TextMeshProUGUI messageText;
 
-    [SerializeField]
-    private GameObject ComboPanelPrefab;
+    //[SerializeField]
+    //private GameObject ComboPanelPrefab;
 
     [SerializeField]
     private GameObject soulPanel;
@@ -32,8 +32,8 @@ public class UI : _MB
     [SerializeField]
     private GameObject imageSoul;
 
-    public List<ComboPanel> comboPanels;
-
+    //public List<ComboPanel> comboPanels;
+//
     public List<ComboCounter> comboCounters;
     public List<UIMessage> uiMessages;
 
@@ -46,13 +46,13 @@ public class UI : _MB
 
         //Player.EnemyHit += UpdateComboCounter;
 
-        Enemy.ATakesDamageAll += CheckComboCounter;
+        //Enemy.ATakesDamageAll += CheckComboCounter;
 
-        GameManager.Player.ASoulsChanged += UpdateSouls;
-        GameManager.Player.ASoulBankPlus += UpdateSoulBank;
-        GameManager.Player.ASoulMeterChanged += UpdateSoulMeter;
+        //GameManager.Player.ASoulsChanged += UpdateSouls;
+        //GameManager.Player.ASoulBankPlus += UpdateSoulBank;
+        //GameManager.Player.ASoulMeterChanged += UpdateSoulMeter;
 
-        comboPanels = new List<ComboPanel>();
+        //comboPanels = new List<ComboPanel>();
     }
 
     public override void LateInit()
@@ -68,6 +68,7 @@ public class UI : _MB
 
         soulMeterSlider.value = GameManager.Player.SoulPercent;
 
+        /*
         comboCounterText.text = "";
 
         for (int i = 0; i < comboCounters.Count; i++)
@@ -102,7 +103,6 @@ public class UI : _MB
                 comboCounters.Remove(comboCounters[i]);
             }
         }
-
         messageText.text = "";
 
         for (int i = 0; i < uiMessages.Count; i++)
@@ -112,13 +112,15 @@ public class UI : _MB
 
             if (uiMessages[i].Over()) uiMessages.Remove(uiMessages[i]);
         }
+        */
+
     }
 
     private void UpdateSoulMeter(float newValue)
     {
         Color flashColor;
 
-        if(GameManager.Player.SoulPercent >= soulMeterSlider.value)
+        if (GameManager.Player.SoulPercent >= soulMeterSlider.value)
         {
             flashColor = Color.white;
         }
@@ -142,7 +144,7 @@ public class UI : _MB
     {
         soulMeterFlashTimer++;
 
-        if(soulMeterFlashTimer > 60)
+        if (soulMeterFlashTimer > 60)
         {
             soulMeterSlider.fillRect.GetComponent<Image>().color = soulMeterColor;
         }
@@ -168,6 +170,7 @@ public class UI : _MB
         soulBankText.text = soulBank.ToString();
     }
 
+    /*
     private void CheckComboCounter(Damage damage, Character enemy)
     {
         if (damage.Owner != GameManager.Player) return;
@@ -196,8 +199,8 @@ public class UI : _MB
         }
 
     }
+*/
 }
-
 [System.Serializable]
 public class ComboCounter
 {

@@ -88,14 +88,14 @@ public class Player : Character
         if (InputManager.Special.GetButton()) HoldSpecial = true;
         else HoldSpecial = false;
 
-        if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0) Jump = true;
+        if (InputManager.BufferdDown("Jump") || InputManager.BufferdDown("Jump2") || (StrongInputs.y > 0) && InputManager.TapJump == true) Jump = true;
         else
         {
             //reset at the end of FixedUpdate to not miss any inputs
             //Jump = false;
         }
 
-        if (InputManager.Jump.GetButton()) HoldJump = true;
+        if (InputManager.Jump.GetButton() || InputManager.Jump2.GetButton()) HoldJump = true;
         else HoldJump = false;
 
 
