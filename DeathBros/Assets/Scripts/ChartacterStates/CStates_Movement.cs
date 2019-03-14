@@ -252,10 +252,12 @@ public class CS_Dash : CState
 
         chr.GetInputs();
 
-        if (Mathf.Sign(chr.DirectionalInput.x) != dirX && chr.DirectionalInput.x != 0)
+        if (Mathf.Sign(chr.DirectionalInput.x) != dirX && Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
         {
-            ChangeState(typeof(CS_Dash));
+            //ChangeState(typeof(CS_Dash));
+            ChangeState(typeof(CS_Idle));
         }
+
 
         if (timer >= duration)
         {
@@ -269,7 +271,7 @@ public class CS_Dash : CState
             }
         }
 
-        chr.SetInputs(new Vector2(dirX, 0));
+        chr.SetInputs(new Vector2(dirX * 1.2f, 0));
 
         if (chr.Jump)
         {
@@ -281,6 +283,14 @@ public class CS_Dash : CState
             if (chr.Attack)
             {
                 ChangeState(EAttackType.FSoul);
+            }
+        }
+
+        if (chr.CheckForSpecialAttacks() == false)
+        {
+            if (chr.CheckForSoulAttacks() == false)
+            {
+                chr.CheckForTiltAttacks();
             }
         }
     }
@@ -337,7 +347,7 @@ public class CS_Skid : CState
             idleTimer++;
         }
 
-        chr.SetInputs(new Vector2(direction * 0.5f, 0));
+        chr.SetInputs(new Vector2(direction * 0.9f, 0));
 
         if (timer >= duration)
         {

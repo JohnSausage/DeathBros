@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Player : Character
@@ -51,7 +51,7 @@ public class Player : Character
 
         //attackStates.Init(this);
 
-        
+
 
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
@@ -88,14 +88,14 @@ public class Player : Character
         if (InputManager.Special.GetButton()) HoldSpecial = true;
         else HoldSpecial = false;
 
-        if (InputManager.BufferdDown("Jump") || StrongInputs.y > 0) Jump = true;
+        if (InputManager.BufferdDown("Jump") || InputManager.BufferdDown("Jump2") || (StrongInputs.y > 0) && InputManager.TapJump == true) Jump = true;
         else
         {
             //reset at the end of FixedUpdate to not miss any inputs
             //Jump = false;
         }
 
-        if (InputManager.Jump.GetButton()) HoldJump = true;
+        if (InputManager.Jump.GetButton() || InputManager.Jump2.GetButton()) HoldJump = true;
         else HoldJump = false;
 
 
@@ -167,8 +167,20 @@ public class Player : Character
         AddSoulAfterHit(damage);
 
         if (EnemyHit != null) EnemyHit(enemy, damage);
-    }
 
+        //StartCoroutine(IFreezePlayerOnHit(damage));
+    }
+    /*
+    private IEnumerator IFreezePlayerOnHit(Damage damage)
+    {
+        Ctr.freeze = true;
+        for (int i = 0; i < damage.damageNumber + 3; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Ctr.freeze = false;
+    }
+    */
     private void AddHealthAfterCombo(float comboScore)
     {
         ModSoulMeter(comboScore);

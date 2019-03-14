@@ -13,11 +13,14 @@ public class InputManager : MonoBehaviour
 
     public static DualInput Shield;
     public static DualInput Jump;
+    public static DualInput Jump2;
     public static DualInput Attack;
     public static DualInput Special;
     public static DualInput Grab;
 
     public static DualInput Pause;
+
+    public static bool TapJump;
 
     public List<DualInput> Inputs;
 
@@ -64,11 +67,14 @@ public class InputManager : MonoBehaviour
 
         Shield = new DualInput("Shield");
         Jump = new DualInput("Jump");
+        Jump2 = new DualInput("Jump2");
         Attack = new DualInput("Attack");
         Special = new DualInput("Special");
         Grab = new DualInput("Grab");
 
         Pause = new DualInput("Pause");
+
+        TapJump = PlayerPrefs.GetInt("TapJump") == 1 ? true : false;
 
         Up.SetDefault(KeyCode.W);
         Down.SetDefault(KeyCode.S);
@@ -97,6 +103,7 @@ public class InputManager : MonoBehaviour
 
         Inputs.Add(Shield);
         Inputs.Add(Jump);
+        Inputs.Add(Jump2);
         Inputs.Add(Attack);
         Inputs.Add(Special);
         Inputs.Add(Grab);
@@ -144,6 +151,7 @@ public class InputManager : MonoBehaviour
         CheckIfBuffered(Shield);
         CheckIfBuffered(Grab);
         CheckIfBuffered(Jump);
+        CheckIfBuffered(Jump2);
         CheckIfBuffered(Attack);
         CheckIfBuffered(Special);
     }
@@ -295,6 +303,12 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ToggleTapJump(bool toggle)
+    {
+        TapJump = toggle;
+        PlayerPrefs.SetInt("TapJump", toggle ? 1 : 0);
     }
 }
 
