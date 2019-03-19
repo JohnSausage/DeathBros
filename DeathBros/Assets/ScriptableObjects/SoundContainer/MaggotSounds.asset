@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6194b32e991e5dc47b2cdf7333c1fcd3, type: 3}
+  m_Name: MaggotSounds
+  m_EditorClassIdentifier: 
+  loadSoundsFromFolder: Sounds/Enemies/Maggot
+  sounds:
+  - name: magHit
+    clip: {fileID: 8300000, guid: 71bf185baec7dc84d9f8aa2170c022db, type: 3}
+    volume: 1
+    loop: 0
+  - name: magWalk
+    clip: {fileID: 8300000, guid: a95effd95bb14e34387d7284ac95153e, type: 3}
+    volume: 1
+    loop: 0
+  - name: slime
+    clip: {fileID: 8300000, guid: 10bfac6b8fb3e294ca51b988f411deb0, type: 3}
+    volume: 0.3
+    loop: 0

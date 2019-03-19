@@ -12,6 +12,8 @@ public class StatsSOInspector : Editor
     {
         statsSO = (StatsSO)target;
 
+        if (statsSO.stats == null) statsSO.stats = new List<Stat>();
+
         for (int i = 0; i < statsSO.stats.Count; i++)
         {
             EditorGUILayout.BeginHorizontal();

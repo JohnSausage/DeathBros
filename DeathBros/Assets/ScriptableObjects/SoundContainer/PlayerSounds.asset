@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6194b32e991e5dc47b2cdf7333c1fcd3, type: 3}
+  m_Name: PlayerSounds
+  m_EditorClassIdentifier: 
+  loadSoundsFromFolder: Sounds/Player
+  sounds:
+  - name: G
+    clip: {fileID: 8300000, guid: dc5909d2e65846c438daad7cdc254c81, type: 3}
+    volume: 1
+    loop: 0
+  - name: hah1
+    clip: {fileID: 8300000, guid: dac718f5be036d6448802a5d6439338c, type: 3}
+    volume: 1
+    loop: 0
+  - name: magWalk
+    clip: {fileID: 8300000, guid: a95effd95bb14e34387d7284ac95153e, type: 3}
+    volume: 1
+    loop: 0
+  - name: mpf1
+    clip: {fileID: 8300000, guid: d0e1352dcf216ee48955ee3a4158e0f8, type: 3}
+    volume: 1
+    loop: 0
+  - name: Step
+    clip: {fileID: 8300000, guid: 6a57199b3fa0b3b4bb47316fb62a1e7c, type: 3}
+    volume: 1
+    loop: 0
+  - name: sweep1
+    clip: {fileID: 8300000, guid: 79fef7160020d6e4e8f441ea2323639f, type: 3}
+    volume: 1
+    loop: 0

@@ -43,7 +43,7 @@ public class Player : Character
     {
         base.Init();
 
-        soundFolderName = "Sounds/Player/";
+        //soundFolderName = "Sounds/Player/";
 
         //advancedMovementStates.Init(this);
         //CSMachine.ChangeState(SCS_Idle.InstanceP);
@@ -56,14 +56,6 @@ public class Player : Character
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
         ComboCounter.AComboIsOver += AddHealthAfterCombo;
-
-        statesAndStats.InitStates(this);
-        CStates_InitExitStates();
-
-        foreach (var attackSO in attackSOs)
-        {
-            attackSO.InitState(this);
-        }
     }
 
     void Update()

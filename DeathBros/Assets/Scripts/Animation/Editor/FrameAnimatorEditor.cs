@@ -79,9 +79,9 @@ public class FrameAnimatorEditor : EditorWindow
     {
         if (anim != null)
         {
-            SoundContainer sc = anim.gameObject.GetComponentInChildren<SoundContainer>();
+            SoundsSO soundsSO = anim.GetComponent<Character>().GetSoundsSO;
 
-            soundNames = sc.sounds.Select(x => x.name).ToArray();
+            soundNames = soundsSO.sounds.Select(x => x.name).ToArray();
         }
     }
 

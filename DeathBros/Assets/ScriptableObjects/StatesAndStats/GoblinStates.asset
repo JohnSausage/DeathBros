@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0bc4342d105f44385d1afb45a3dd33, type: 3}
+  m_Name: GoblinStates
+  m_EditorClassIdentifier: 
+  idle_anim: idle
+  walking_anim: walk
+  running_anim: walk
+  jumpsquat_anim: jumpsquat
+  jumpsquat_duration: 4
+  jumpUp_anim: idle
+  jumpDown_anim: idle
+  landing_anim: idle
+  landing_duration: 4
+  hitstunUp_anim: idle
+  hitstunDown_anim: idle
+  hitfreeze_anim: idle
+  hitfreeze_duration: 5
+  hitland_anim: idle
+  hitland_duration: 10
+  shield_anim: shield
+  die_anim: idle
+  dead_anim: idle
+  standup_anim: idle
+  hitlanded_anim: idle
+  hitLanded_minDuration: 20

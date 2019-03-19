@@ -8,12 +8,12 @@ public class Character : _MB, ICanTakeDamage
 {
     public string charName;
 
-    public string soundFolderName;
+    //public string soundFolderName;
 
     [Space]
 
     [SerializeField]
-    protected StatesAndStatsSO statesAndStats;
+    protected StatesAndStatsSO statesSO;
 
     [SerializeField]
     protected List<CS_AttackSO> attackSOs;
@@ -23,11 +23,21 @@ public class Character : _MB, ICanTakeDamage
     [SerializeField]
     protected StatsSO statsSO;
 
+    [Space]
+
     [SerializeField]
-    protected CStateParamtetersSO cStateParamtetersSO;
-    public CStateParamtetersSO CStateParamtetersSO { get { return cStateParamtetersSO; } }
-    public int csTimer { get; set; }
-    public float csDirection { get; set; }
+    protected SoundsSO soundsSO;
+    public SoundsSO GetSoundsSO { get { return soundsSO; } }
+
+
+    //[SerializeField]
+    //protected CStateParamtetersSO cStateParamtetersSO;
+    //public CStateParamtetersSO CStateParamtetersSO { get { return cStateParamtetersSO; } }
+
+    //public int csTimer { get; set; }
+    //public float csDirection { get; set; }
+
+    [Space]
 
     [SerializeField]
     protected List<Stat> statList;// { get; protected set; }
@@ -117,6 +127,15 @@ public class Character : _MB, ICanTakeDamage
         HitM = GetComponent<HitboxManager>();
         HurtM = GetComponent<HurtboxManager>();
 
+
+        statesSO.InitStates(this);
+
+        CStates_InitExitStates();
+
+        foreach (var attackSO in attackSOs)
+        {
+            attackSO.InitState(this);
+        }
     }
 
     public override void LateInit()
@@ -124,6 +143,9 @@ public class Character : _MB, ICanTakeDamage
         base.LateInit();
 
         //InitStats();
+
+        if (soundsSO != null) soundsSO.LoadSounds();
+
     }
 
     public virtual void CStates_InitExitStates()
@@ -396,21 +418,21 @@ public class Character : _MB, ICanTakeDamage
         CSMachine.ChangeState(GetState(typeof(CS_Idle)));
     }
 
-    public void LoadSoundFiles()
-    {
-        if (soundFolderName != "")
-        {
-            UnityEngine.Object[] objects = Resources.LoadAll(soundFolderName);
-
-            foreach (var o in objects)
-            {
-                Sound s = new Sound();
-                s.clip = (AudioClip)o;
-                s.name = o.name;
-                AudioManager.AddSound((s));
-            }
-        }
-    }
+    //public void LoadSoundFiles()
+    //{
+    //    if (soundFolderName != "")
+    //    {
+    //        UnityEngine.Object[] objects = Resources.LoadAll(soundFolderName);
+    //
+    //        foreach (var o in objects)
+    //        {
+    //            Sound s = new Sound();
+    //            s.clip = (AudioClip)o;
+    //            s.name = o.name;
+    //            AudioManager.AddSound((s));
+    //        }
+    //    }
+    //}
 
     public virtual bool CheckForTiltAttacks()
     {

@@ -78,7 +78,7 @@ public class SCS_Idle : StaticCState
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.Anim.GetAnimation(chr.CStateParamtetersSO.idleP.animationName));
+        //chr.Anim.ChangeAnimation(chr.Anim.GetAnimation(chr.CStateParamtetersSO.idleP.animationName));
 
         chr.jumpsUsed = 0;
 
@@ -137,7 +137,7 @@ public class SCS_Walk : StaticCState
     {
         base.Enter(chr);
 
-        chr.csDirection = Mathf.Sign(chr.DirectionalInput.x);
+        //chr.csDirection = Mathf.Sign(chr.DirectionalInput.x);
 
         if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
         if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
@@ -159,7 +159,7 @@ public class SCS_Walk : StaticCState
 
         chr.GetInputs();
 
-        if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != chr.csDirection)
+        if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != 0)// != chr.csDirection)
         {
             //CState exit = (CS_Skid)chr.GetState(typeof(CS_Skid));
             //

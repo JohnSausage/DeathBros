@@ -417,10 +417,14 @@ public class CS_Jumpsquat : CState
     public int duration;
     private int timer;
 
+    private float inputX;
+
     public override void Enter()
     {
         base.Enter();
         timer = 0;
+
+        inputX = chr.DirectionalInput.x * 0.75f;
     }
 
     public override void Execute()
@@ -428,6 +432,8 @@ public class CS_Jumpsquat : CState
         base.Execute();
 
         //chr.ModInputs(0.5f);
+
+        chr.SetInputs(new Vector2(inputX, 0));
 
         timer++;
 

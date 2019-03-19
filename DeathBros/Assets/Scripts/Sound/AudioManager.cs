@@ -26,18 +26,29 @@ public class AudioManager : _MB
         base.Init();
 
 
+        //foreach (Sound s in sounds)
+        //{
+        //    InitSound(s);
+        //}
+        //
+        //SoundContainer[] soundContainers = (SoundContainer[])Resources.FindObjectsOfTypeAll(typeof(SoundContainer));
+        //foreach (var sc in soundContainers)
+        //{
+        //    foreach (var s in sc.sounds)
+        //    {
+        //        AddSound(s);
+        //    }
+        //}
+
+    }
+
+    public override void LateInit()
+    {
+        base.LateInit();
+
         foreach (Sound s in sounds)
         {
             InitSound(s);
-        }
-
-        SoundContainer[] soundContainers = (SoundContainer[])Resources.FindObjectsOfTypeAll(typeof(SoundContainer));
-        foreach (var sc in soundContainers)
-        {
-            foreach (var s in sc.sounds)
-            {
-                AddSound(s);
-            }
         }
 
     }

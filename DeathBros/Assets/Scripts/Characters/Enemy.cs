@@ -28,12 +28,12 @@ public class Enemy : Character
     {
         base.Init();
 
-        movementStates.Init(this);
+        //movementStates.Init(this);
         normalAttack.Init(this);
         specialAttack.Init(this);
         aerialAttack.Init(this);
 
-        CStates_InitExitStates();
+        //CStates_InitExitStates();
 
         Anim.SpawnProjectile += SpawnProjectile;
     }
