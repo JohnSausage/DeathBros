@@ -20,22 +20,22 @@ MonoBehaviour:
   jumpDown_anim: jumpDown
   landing_anim: crouch
   landing_duration: 3
-  hitstunUp_anim: idle
-  hitstunDown_anim: idle
-  hitfreeze_anim: idle
+  hitstunUp_anim: hitUp
+  hitstunDown_anim: hitDown
+  hitfreeze_anim: hitFreeze
   hitfreeze_duration: 5
-  hitland_anim: idle
+  hitland_anim: hitUp
   hitland_duration: 10
   shield_anim: shield
-  die_anim: idle
-  dead_anim: idle
+  die_anim: hitLanded
+  dead_anim: hitLanded
   standup_anim: crouch
-  hitlanded_anim: idle
+  hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
   doublejumpsquat_anim: crouch
   doublejumpsquat_duration: 3
-  wallslidingDown_anim: idle
-  wallslidingUp_anim: idle
+  wallslidingDown_anim: wall
+  wallslidingUp_anim: jumpUp
   walljumpstart_anim: crouch
   wallJumpHeightReductionFactor: 0.75
   walljumpstart_duration: 3
@@ -45,11 +45,11 @@ MonoBehaviour:
   skid_duration: 6
   skid_idleOutDuration: 3
   dash_anim: run
-  dash_duration: 10
+  dash_duration: 5
   crouch_anim: crouch
-  roll_anim: idle
-  throwitem_anim: idle
-  throwitemaerial_anim: idle
-  airdodge_anim: idle
-  airdodge_duration: 25
-  shieldhit_anim: idle
+  roll_anim: roll
+  throwitem_anim: crouch
+  throwitemaerial_anim: crouch
+  airdodge_anim: airDodge
+  airdodge_duration: 15
+  shieldhit_anim: shieldHit

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: crouch
+  m_Name: hitUp
   m_EditorClassIdentifier: 
   frames:
-  - duration: 15
-    sprite: {fileID: 21300008, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 60
+    sprite: {fileID: 21300024, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0

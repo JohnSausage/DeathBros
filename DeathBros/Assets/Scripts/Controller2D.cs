@@ -577,6 +577,19 @@ public class Controller2D : MonoBehaviour
                 velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
             }
 
+            //groundcheck for wavedashing
+            groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2),
+        new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 3, collisionMask);
+
+            if (groundCheck)
+            {
+                grounded = true;
+
+                slopeDownAngle = Vector2.Angle(Vector2.up, groundCheck.normal);
+
+                groundPoint = groundCheck.point - (Vector2)bounds.center;
+            }
+
         }
 
         //lost control -> character just falls down
@@ -636,8 +649,8 @@ public class Controller2D : MonoBehaviour
                 }
 
                 float dirX = Mathf.Sign(velocity.x);
-                velocity.x -= movespeed / 60 * aerialDeceleration / 5 * Mathf.Sign(velocity.x); // (/ 5) for less deceleration when not in control for better knockback feeling
-
+                //velocity.x -= movespeed / 60 * aerialDeceleration / 5 * Mathf.Sign(velocity.x); // (/ 5) for less deceleration when not in control for better knockback feeling
+                if (Mathf.Abs(velocity.x) > movespeed / 60) velocity.x *= 0.8f;
 
 
                 if (dirX != Mathf.Sign(velocity.x))

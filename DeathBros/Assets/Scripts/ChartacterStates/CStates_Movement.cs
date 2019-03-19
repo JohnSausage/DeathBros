@@ -271,7 +271,10 @@ public class CS_Dash : CState
             }
         }
 
-        chr.SetInputs(new Vector2(dirX * 1.2f, 0));
+        if (timer <= 2)
+            chr.SetInputs(new Vector2(dirX * 0.05f, 0));
+        else
+            chr.SetInputs(new Vector2(dirX * 1.2f, 0));
 
         if (chr.Jump)
         {
@@ -580,7 +583,8 @@ public class CS_Jumping : CState
 
         chr.GetInputs();
 
-        if (chr.Ctr.velocity.y < 0 && chr.DirectionalInput.y < -0.5f)
+        //if (chr.Ctr.velocity.y < 0 && chr.DirectionalInput.y < -0.5f)
+        if (chr.Ctr.velocity.y < 0 && chr.StrongInputs.y == -1)
         {
             chr.Ctr.fastFall = true;
         }
@@ -1074,7 +1078,7 @@ public class CS_HitLand : CState
 
         chr.GetInputs();
 
-        if (chr.Shield)
+        if (chr.HoldShield)
         {
             chr.RaiseComboOverEvent();
 
@@ -1281,7 +1285,7 @@ public class CS_AirDodge : CState
     public int duration = 25;
     protected int timer = 0;
 
-    //protected Vector2 direction;
+    protected Vector2 direction;
 
     public override void Enter()
     {
@@ -1291,8 +1295,9 @@ public class CS_AirDodge : CState
 
         chr.Flash(EffectManager.ColorDefend, duration);
 
-        //chr.GetInputs();
-        //direction = chr.DirectionalInput;
+        chr.GetInputs();
+        direction = chr.DirectionalInput;
+        direction.y *= 0.3f; //otherwise too high up
     }
 
     public override void Execute()
@@ -1303,12 +1308,18 @@ public class CS_AirDodge : CState
 
         //chr.Ctr.forceMovement = direction * 15;
         //direction *= 0.9f;
+
         chr.GetInputs();
+
+        if (timer <= 3) chr.Ctr.forceMovement = -direction * 3f;
+        else if (timer <= 8) chr.Ctr.forceMovement = direction * 15f;
 
         if (timer > duration)
         {
             ChangeState(typeof(CS_Jumping));
         }
+
+        //if (chr.Ctr.IsGrounded) Debug.Log("grounded");
 
         chr.CS_CheckLanding();
     }
