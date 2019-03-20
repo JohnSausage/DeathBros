@@ -32,3 +32,4 @@ MonoBehaviour:
   standup_anim: standUp
   hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
+  getGrabbed_anim: hit

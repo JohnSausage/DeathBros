@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character
 {
+    public List<CardEffect> cardEffects;
+
     //public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
@@ -27,6 +29,8 @@ public class Player : Character
 
     public LayerMask enemyMask;
 
+    public bool Grab { get; set; }
+
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
@@ -43,6 +47,7 @@ public class Player : Character
     {
         base.Init();
 
+        cardEffects = new List<CardEffect>();
         //soundFolderName = "Sounds/Player/";
 
         //advancedMovementStates.Init(this);
@@ -60,6 +65,28 @@ public class Player : Character
 
     void Update()
     {
+        //Test----------------------------------------------------------------------------------------------------------------------
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            CardEffect_SingleAttackStrength cardEffect = new CardEffect_SingleAttackStrength();
+            cardEffect.attackType = EAttackType.UTilt;
+            cardEffect.damageMultiplier = 2f;
+
+            cardEffects.Add(cardEffect);
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            CardEffect_AllAttackStrength cardEffect = new CardEffect_AllAttackStrength();
+            cardEffect.attackClass = EAttackClass.Aerials;
+            cardEffect.damageMultiplier = 3f;
+
+            cardEffects.Add(cardEffect);
+        }
+
+        //Test----------------------------------------------------------------------------------------------------------------------
+
         DirectionalInput = InputManager.Direction;
         StrongInputs = InputManager.Smash;
         TiltInput = InputManager.CStick;
@@ -96,6 +123,9 @@ public class Player : Character
 
         if (InputManager.Shield.GetButton()) HoldShield = true;
         else HoldShield = false;
+
+        if (InputManager.BufferdDown("Grab")) Grab = true;
+        else Grab = false;
     }
 
     protected override void FixedUpdate()
@@ -422,7 +452,11 @@ public class Player : Character
             return true;
         }
 
-
+        if (Grab)
+        {
+            CSMachine.ChangeState(GetAttackState(EAttackType.Grab));
+            return true;
+        }
         return false;
     }
 
@@ -544,24 +578,50 @@ public class Player : Character
 
     public override bool CheckForThrowAttacks()
     {
-        if (Mathf.Abs(StrongInputs.x) > 0.5f)
+        if (StrongInputs.sqrMagnitude == 1f)
         {
-            if (Mathf.Sign(StrongInputs.x) == Direction) CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
-            else CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+            if (Mathf.Abs(StrongInputs.x) > 0.5f)
+            {
+                if (Mathf.Sign(StrongInputs.x) == Direction) CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                else CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
 
-            return true;
+                return true;
+            }
+            else if (StrongInputs.y > 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                return true;
+            }
+            else if (StrongInputs.y < -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+                return true;
+            }
         }
-        else if (StrongInputs.y > 0.5f)
-        {
-            CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-            return true;
-        }
-        else if (StrongInputs.y < -0.5f)
-        {
-            CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-            return true;
-        }
-
         return false;
+    }
+
+    public float GetCardEffect_DamageMultiplier(EAttackType attackType)
+    {
+        float multi = 1f;
+
+        for (int i = 0; i < cardEffects.Count; i++)
+        {
+            if (cardEffects[i].GetType() == typeof(CardEffect_SingleAttackStrength))
+            {
+                CardEffect_SingleAttackStrength effect = (CardEffect_SingleAttackStrength)cardEffects[i];
+                if (attackType == effect.attackType)
+                    multi *= effect.damageMultiplier;
+            }
+
+            else if (cardEffects[i].GetType() == typeof(CardEffect_AllAttackStrength))
+            {
+                CardEffect_AllAttackStrength effect = (CardEffect_AllAttackStrength)cardEffects[i];
+                if (GameManager.CheckIfDamageApplies(attackType, effect.attackClass))
+                    multi *= effect.damageMultiplier;
+            }
+        }
+
+        return multi;
     }
 }

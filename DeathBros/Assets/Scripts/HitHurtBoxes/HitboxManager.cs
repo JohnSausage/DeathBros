@@ -60,6 +60,8 @@ public class HitboxManager : _MB
                         Player player = (Player)Chr;
 
                         damage.AddDamage(player.soulCharge);
+
+                        damage.damageNumber *= player.GetCardEffect_DamageMultiplier(damage.attackType);
                     }
 
                     if (hitObject != null)

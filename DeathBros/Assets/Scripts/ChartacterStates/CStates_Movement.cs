@@ -1218,6 +1218,8 @@ public class CS_Dead : CState
     {
         base.Execute();
 
+        chr.SetInputs(Vector2.zero);
+
         chr.Dead();
     }
 }
@@ -1409,7 +1411,14 @@ public class CS_GetGrabbed : CState
     {
         base.Execute();
 
-        chr.Ctr.forceMovement = (((damage.position + Vector2.up * 10) - chr.Position).normalized * 5f);
-        Debug.Log(chr.Ctr.forceMovement);
+        chr.Ctr.forceMovement = ((damage.position - chr.Position)) * 20f + Vector2.up;
+        //Debug.Log(chr.Ctr.forceMovement);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.Ctr.inControl = true;
     }
 }

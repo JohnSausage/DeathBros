@@ -83,7 +83,7 @@ public class StatMod
 
     public bool TimeUp { get { return timer <= 0; } }
 
-    public void Aplly()
+    public void Apply()
     {
         timer = durationInFrames;
     }

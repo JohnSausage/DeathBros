@@ -82,7 +82,7 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 Position
     {
         //get { return (Vector2)transform.position; }
-        get { return (Vector2)Ctr.Col.offset; }
+        get { return (Vector2)Ctr.Col.bounds.center; }
     }
 
     public List<CState> cStates;// { get; protected set; }

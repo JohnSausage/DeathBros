@@ -150,11 +150,13 @@ public class CS_TiltAttack : CS_Attack
 public class CS_GrabAttack : CS_Attack
 {
     private float dirX;
+    private bool changedDirection;
 
     public override void Enter()
     {
         base.Enter();
 
+        changedDirection = false;
         dirX = 0;
         if (chr.DirectionalInput.x != 0)
             dirX = chr.DirectionalInput.x;
@@ -166,7 +168,18 @@ public class CS_GrabAttack : CS_Attack
     {
         base.Execute();
 
-        dirX *= 0.8f;
+        chr.GetInputs();
+
+        if (!changedDirection)
+        {
+            if (Mathf.Sign(chr.DirectionalInput.x) != Mathf.Sign(dirX) && chr.DirectionalInput.x != 0) //don't change direction if there is no input
+            {
+                chr.Spr.flipX = !chr.Spr.flipX;
+                changedDirection = true;
+            }
+        }
+
+        dirX *= 0.9f;
         chr.SetInputs(new Vector2(dirX, 0));
 
         if (chr.Ctr.onLedge)
@@ -195,7 +208,7 @@ public class CS_GrabAttack : CS_Attack
 public class CS_SoulAttack : CS_Attack
 {
     [SerializeField]
-    private string chargeAnimationName = "idle";
+    public string chargeAnimationName = "idle";
 
     [SerializeField]
     private float chargeRate = 1f;
@@ -219,7 +232,7 @@ public class CS_SoulAttack : CS_Attack
     public override void Enter()
     {
         base.Enter();
-
+        chr.Anim.animationSpeed = 0;
         chr.Anim.ChangeAnimation(chargeAnimation);
         charging = true;
         chr.Spr.color = Color.red;
@@ -261,6 +274,7 @@ public class CS_SoulAttack : CS_Attack
         {
             if (timer > minChargeTime)
             {
+                chr.Anim.animationSpeed = 1f;
                 chr.Anim.ChangeAnimation(animation);
                 charging = false;
                 chr.Spr.color = Color.white;

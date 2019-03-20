@@ -21,9 +21,11 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.078125, y: -0.03125}
+      radius: 0.3
     hitboxes:
-    - position: {x: 0.359375, y: -0.0625}
+    - position: {x: 0.578125, y: 0.03125}
       radius: 0.4
       damage:
         damageNumber: 0
@@ -35,7 +37,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 11135
+      ID: 55666
       getNewID: 0
     soundName: 
   damages:

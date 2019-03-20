@@ -43,8 +43,8 @@ MonoBehaviour:
   walljumping_anim: jumpUp
   walljumping_duration: 15
   skid_anim: idle
-  skid_duration: 6
-  skid_idleOutDuration: 3
+  skid_duration: 5
+  skid_idleOutDuration: 1
   dash_anim: run
   dash_duration: 5
   crouch_anim: crouch
