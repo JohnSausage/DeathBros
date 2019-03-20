@@ -72,7 +72,13 @@ public class CState : IState
     {
         this.damage = damage;
 
-        if (chr.shielding)
+        if (damage.damageType == EDamageType.Grab)
+        {
+            CS_GetGrabbed grabbed = (CS_GetGrabbed)chr.GetState(typeof(CS_GetGrabbed));
+            grabbed.damage = damage;
+            ChangeState(typeof(CS_GetGrabbed));
+        }
+        else if (chr.shielding)
         {
             ChangeState(typeof(CS_ShieldHit));
         }

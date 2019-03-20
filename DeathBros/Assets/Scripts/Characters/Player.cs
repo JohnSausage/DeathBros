@@ -196,7 +196,7 @@ public class Player : Character
 
                 RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("hit1");
+                AudioManager.PlaySound("NES_hit1");
 
                 currentDamage = damage;
 
@@ -211,7 +211,7 @@ public class Player : Character
             {
                 RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("hit1");
+                AudioManager.PlaySound("NES_hit1");
                 Flash(EffectManager.ColorHit, 3);
 
                 currentDamage = damage;
@@ -371,9 +371,17 @@ public class Player : Character
             }
             else
             {
-                if (DirectionalInput == Vector2.zero)
+                if (HoldShield)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.Grab));
+                }
+                else if (DirectionalInput == Vector2.zero)
                 {
                     CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+                }
+                else if (Mathf.Abs(DirectionalInput.x) > 0.9f)
+                {
+                    CSMachine.ChangeState(GetAttackState(EAttackType.DashAtk));
                 }
                 else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
                 {
@@ -531,6 +539,29 @@ public class Player : Character
             }
             return true;
         }
+        return false;
+    }
+
+    public override bool CheckForThrowAttacks()
+    {
+        if (Mathf.Abs(StrongInputs.x) > 0.5f)
+        {
+            if (Mathf.Sign(StrongInputs.x) == Direction) CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+            else CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+
+            return true;
+        }
+        else if (StrongInputs.y > 0.5f)
+        {
+            CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+            return true;
+        }
+        else if (StrongInputs.y < -0.5f)
+        {
+            CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+            return true;
+        }
+
         return false;
     }
 }

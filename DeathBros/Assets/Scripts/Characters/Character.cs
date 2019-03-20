@@ -79,6 +79,12 @@ public class Character : _MB, ICanTakeDamage
         }
     }
 
+    public Vector2 Position
+    {
+        //get { return (Vector2)transform.position; }
+        get { return (Vector2)Ctr.Col.offset; }
+    }
+
     public List<CState> cStates;// { get; protected set; }
 
     [Space]
@@ -102,6 +108,7 @@ public class Character : _MB, ICanTakeDamage
 
     public Queue<int> hitIDs = new Queue<int>();
 
+    public event Action<Character, Damage> AEnemyHit;
     public event Action<Damage> ATakesDamage;
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
@@ -265,7 +272,7 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void HitEnemy(Character enemy, Damage damage)
     {
-
+        if (AEnemyHit != null) AEnemyHit(enemy, damage);
     }
 
     public virtual void GetHit(Damage damage)
@@ -283,14 +290,13 @@ public class Character : _MB, ICanTakeDamage
     {
         if (!dead)
         {
-
             if (shielding)
             {
                 damage.damageNumber *= 0.25f;
 
                 RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("hit1");
+                AudioManager.PlaySound("NES_hit1");
 
                 currentDamage = damage;
 
@@ -305,7 +311,7 @@ public class Character : _MB, ICanTakeDamage
             {
                 RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("hit1");
+                AudioManager.PlaySound("NES_hit1");
                 Flash(EffectManager.ColorHit, 3);
 
                 currentDamage = damage;
@@ -450,6 +456,11 @@ public class Character : _MB, ICanTakeDamage
     }
 
     public virtual bool CheckForAerialAttacks()
+    {
+        return false;
+    }
+
+    public virtual bool CheckForThrowAttacks()
     {
         return false;
     }

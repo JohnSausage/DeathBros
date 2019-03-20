@@ -14,21 +14,21 @@ MonoBehaviour:
   idle_anim: idle
   walking_anim: walk
   running_anim: walk
-  jumpsquat_anim: jumpsquat
+  jumpsquat_anim: standUp
   jumpsquat_duration: 4
   jumpUp_anim: idle
   jumpDown_anim: idle
-  landing_anim: idle
+  landing_anim: standUp
   landing_duration: 4
-  hitstunUp_anim: idle
-  hitstunDown_anim: idle
-  hitfreeze_anim: idle
+  hitstunUp_anim: hitUp
+  hitstunDown_anim: hitDown
+  hitfreeze_anim: hit
   hitfreeze_duration: 5
-  hitland_anim: idle
+  hitland_anim: hitUp
   hitland_duration: 10
   shield_anim: shield
-  die_anim: idle
-  dead_anim: idle
-  standup_anim: idle
-  hitlanded_anim: idle
+  die_anim: hitLanded
+  dead_anim: hitLanded
+  standup_anim: standUp
+  hitlanded_anim: hitLanded
   hitLanded_minDuration: 20

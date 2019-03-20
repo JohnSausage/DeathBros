@@ -39,6 +39,8 @@ public class StatesAndStatsSO : ScriptableObject
     [Space]
     public string hitlanded_anim = "idle";
     public int hitLanded_minDuration = 20;
+    [Space]
+    public string getGrabbed_anim = "idle";
 
     public virtual void InitStates(Character chr)
     {
@@ -101,6 +103,10 @@ public class StatesAndStatsSO : ScriptableObject
         hitLanded.animationName = hitlanded_anim;
         hitLanded.minDuration = hitLanded_minDuration;
         hitLanded.Init(chr);
+
+        CS_GetGrabbed getGrabbed= new CS_GetGrabbed();
+        getGrabbed.animationName = getGrabbed_anim;
+        getGrabbed.Init(chr);
 
         chr.CSMachine.ChangeState(idle);
     }

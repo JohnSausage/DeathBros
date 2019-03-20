@@ -59,7 +59,7 @@ public class CStates_Attack
     }
 }
 
-public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard }
+public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard, Grab }
 
 [System.Serializable]
 public class CS_Attack : CState
@@ -147,6 +147,51 @@ public class CS_TiltAttack : CS_Attack
 }
 
 [System.Serializable]
+public class CS_GrabAttack : CS_Attack
+{
+    private float dirX;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        dirX = 0;
+        if (chr.DirectionalInput.x != 0)
+            dirX = chr.DirectionalInput.x;
+
+        chr.AEnemyHit += OnGrabHits;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
+
+        if (chr.Ctr.onLedge)
+            chr.SetInputs(Vector2.zero);
+
+        if (chr.Anim.animationOver)
+        {
+            chr.CS_SetIdle();
+        }
+    }
+
+    private void OnGrabHits(Character chr, Damage damage)
+    {
+        ChangeState(typeof(CS_Grab));
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        chr.AEnemyHit -= OnGrabHits;
+    }
+}
+
+    [System.Serializable]
 public class CS_SoulAttack : CS_Attack
 {
     [SerializeField]

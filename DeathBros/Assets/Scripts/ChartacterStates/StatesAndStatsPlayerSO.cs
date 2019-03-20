@@ -37,6 +37,8 @@ public class StatesAndStatsPlayerSO : StatesAndStatsSO
     public int airdodge_duration = 25;
     [Space]
     public string shieldhit_anim = "idle";
+    [Space]
+    public string grab_anim = "grab";
 
     public override void InitStates(Character chr)
     {
@@ -95,5 +97,9 @@ public class StatesAndStatsPlayerSO : StatesAndStatsSO
         CS_ShieldHit shieldHit = new CS_ShieldHit();
         shieldHit.animationName = shieldhit_anim;
         shieldHit.Init(chr);
+
+        CS_Grab grab = new CS_Grab();
+        grab.animationName = grab_anim;
+        grab.Init(chr);
     }
 }

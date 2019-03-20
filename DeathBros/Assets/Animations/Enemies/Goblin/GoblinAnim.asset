@@ -14,3 +14,9 @@ MonoBehaviour:
   frameAnimations:
   - {fileID: 11400000, guid: d16b546c4f98ce94499439324e07fcb0, type: 2}
   - {fileID: 11400000, guid: cb20475cc3ffdc94daad3aa73a98ca32, type: 2}
+  - {fileID: 11400000, guid: be64111a70045334bbdb0f015caca0ea, type: 2}
+  - {fileID: 11400000, guid: 1db0e1236e27207469a219e77571da30, type: 2}
+  - {fileID: 11400000, guid: e9071043f48e73f4881fcc1242be79ef, type: 2}
+  - {fileID: 11400000, guid: dc7e0604d12650149923120acbb11d72, type: 2}
+  - {fileID: 11400000, guid: 38aa9925ca8464b45a5e7e43e36dc205, type: 2}
+  - {fileID: 11400000, guid: fe6541a433759db45b9cba20134e559d, type: 2}

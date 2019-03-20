@@ -47,7 +47,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 45346
+      ID: 41535
       getNewID: 0
     - position: {x: 0.109375, y: -0.53125}
       radius: 0.8
@@ -61,7 +61,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 45346
+      ID: 41535
       getNewID: 0
     soundName: 
   - duration: 2
@@ -87,9 +87,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 45346
+      ID: 41535
       getNewID: 0
-    soundName: sweep1
+    soundName: NES_swoosh1
   - duration: 15
     sprite: {fileID: 21300092, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0

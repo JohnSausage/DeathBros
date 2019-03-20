@@ -1375,7 +1375,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00019073486, y: -0.5928073}
+  m_Offset: {x: 0.00019073486, y: -0.586226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1386,7 +1386,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.74850464, y: 0.80987453}
+  m_Size: {x: 0.74850464, y: 0.7967119}
   m_EdgeRadius: 0
 --- !u!114 &367453644
 MonoBehaviour:
@@ -1628,7 +1628,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 367453641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.01, y: -13.57, z: 0}
+  m_LocalPosition: {x: 20.423, y: -13.506, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2093071238}
@@ -3204,6 +3204,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d79db764f04a754580edbcc63a2d2b8, type: 2}
   - {fileID: 11400000, guid: 44c34e53f0e4b7344b8a40c92f0e460c, type: 2}
   - {fileID: 11400000, guid: fcc696dc4366d4b41a15adbcf3595b82, type: 2}
+  - {fileID: 11400000, guid: 619792fd6c57d234abeb31eeef5bcaff, type: 2}
+  - {fileID: 11400000, guid: 2e6fa15eb88601142833f63d7cb1eb6e, type: 2}
   statsSO: {fileID: 11400000, guid: 9cc35bdcf6fc10f4f92947daf29277c1, type: 2}
   soundsSO: {fileID: 11400000, guid: f4d1a64c10e6eab42ae51fa1aaf463f5, type: 2}
   statList: []
@@ -8410,6 +8412,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114250651830175680, guid: 5587fa29e62386d4f8af18df742b55ff,
+        type: 2}
+      propertyPath: sounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4277830588748200, guid: 5587fa29e62386d4f8af18df742b55ff, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8452,6 +8459,27 @@ Prefab:
       propertyPath: bufferFrames
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114250651830175680, guid: 5587fa29e62386d4f8af18df742b55ff,
+        type: 2}
+      propertyPath: sounds.Array.data[0].name
+      value: hit1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114250651830175680, guid: 5587fa29e62386d4f8af18df742b55ff,
+        type: 2}
+      propertyPath: sounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee7b3170f5418224bb5730b7ef2d8de7, type: 3}
+    - target: {fileID: 114250651830175680, guid: 5587fa29e62386d4f8af18df742b55ff,
+        type: 2}
+      propertyPath: sounds.Array.data[0].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114250651830175680, guid: 5587fa29e62386d4f8af18df742b55ff,
+        type: 2}
+      propertyPath: generalSoundsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: cf0c6efcf4bfe434288721cc4c799591,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5587fa29e62386d4f8af18df742b55ff, type: 2}
   m_IsPrefabAsset: 0

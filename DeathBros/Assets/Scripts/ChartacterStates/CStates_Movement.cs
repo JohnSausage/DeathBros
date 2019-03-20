@@ -1012,6 +1012,8 @@ public class CS_Shield : CState
 
 
         if (chr.Jump) ChangeState(typeof(CS_Jumpsquat));
+
+        chr.CheckForTiltAttacks();
     }
 
     public override void Exit()
@@ -1357,5 +1359,57 @@ public class CS_ShieldHit : CState
         base.Exit();
 
         chr.shielding = false;
+    }
+}
+
+[System.Serializable]
+public class CS_Grab : CState
+{
+    protected int timer = 0;
+
+    public override void Enter()
+    {
+        base.Enter();
+
+
+        timer = 0;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        timer++;
+
+        //chr.CheckForTiltAttacks();
+
+        chr.SetInputs(Vector2.zero);
+
+        if (timer >= 10)
+        {
+            if (chr.CheckForThrowAttacks())
+            {
+                chr.GetInputs();
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class CS_GetGrabbed : CState
+{
+    public override void Enter()
+    {
+        base.Enter();
+
+        chr.Ctr.inControl = false;
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        chr.Ctr.forceMovement = (((damage.position + Vector2.up * 10) - chr.Position).normalized * 5f);
+        Debug.Log(chr.Ctr.forceMovement);
     }
 }

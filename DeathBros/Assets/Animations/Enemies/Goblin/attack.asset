@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: fAir
+  m_Name: attack
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
-    sprite: {fileID: 21300078, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 25
+    sprite: {fileID: 21300016, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -21,11 +21,27 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.125, y: -0.65625}
+      radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300080, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 5
+    sprite: {fileID: 21300018, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.125, y: -0.59375}
+      radius: 0.4
+    hitboxes: []
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300020, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -33,25 +49,27 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.0625, y: -0.3125}
+      radius: 0.4
     hitboxes:
-    - position: {x: 0.421875, y: 0.3125}
-      radius: 1
+    - position: {x: 0.125, y: -0.15625}
+      radius: 0.3
       damage:
-        damageNumber: 15
+        damageNumber: 10
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 12
-        knockbackGrowth: 0
+        baseKnockback: 10
+        knockbackGrowth: 10
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 8637
+      ID: 88985
       getNewID: 0
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300082, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 5
+    sprite: {fileID: 21300022, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -59,25 +77,27 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.09375, y: -0.53125}
+      radius: 0.4
     hitboxes:
-    - position: {x: 0.484375, y: -0.40625}
-      radius: 1
+    - position: {x: 0.25, y: -0.40625}
+      radius: 0.3
       damage:
-        damageNumber: 15
+        damageNumber: 10
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 12
-        knockbackGrowth: 0
+        baseKnockback: 10
+        knockbackGrowth: 10
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 8637
+      ID: 88985
       getNewID: 0
-    soundName: NES_swoosh1
-  - duration: 15
-    sprite: {fileID: 21300084, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+    soundName: 
+  - duration: 30
+    sprite: {fileID: 21300024, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -85,14 +105,16 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0, y: -0.59375}
+      radius: 0.4
     hitboxes: []
     soundName: 
   damages:
-  - damageNumber: 15
+  - damageNumber: 10
     knockBackDirection: {x: 1, y: 1}
-    baseKnockback: 12
-    knockbackGrowth: 0
+    baseKnockback: 10
+    knockbackGrowth: 10
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

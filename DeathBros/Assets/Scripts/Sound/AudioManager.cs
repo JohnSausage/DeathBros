@@ -5,6 +5,10 @@ using UnityEngine;
 public class AudioManager : _MB
 {
     [SerializeField]
+    private SoundsSO generalSoundsSO;
+
+    [Space]
+    [SerializeField]
     private List<Sound> sounds;
 
     public static AudioManager Instance { get; protected set; }
@@ -46,11 +50,13 @@ public class AudioManager : _MB
     {
         base.LateInit();
 
-        foreach (Sound s in sounds)
-        {
-            InitSound(s);
-        }
 
+        //foreach (Sound s in sounds)
+        //{
+        //    InitSound(s);
+        //}
+
+        generalSoundsSO.LoadSounds();
     }
 
     private void InitSound(Sound sound)
