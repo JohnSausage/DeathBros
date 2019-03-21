@@ -85,43 +85,5 @@ public class GameManager : _MB
             Instance.LevelSM.ChangeState(newLevel);
     }
 
-    public static bool CheckIfDamageApplies(EAttackType attackType, EAttackClass eAttackClass)
-    {
-        switch (eAttackClass)
-        {
-
-            case EAttackClass.Tilts:
-                {
-                    if (attackType == EAttackType.DTilt || attackType == EAttackType.UTilt || attackType == EAttackType.FTilt ||
-                        attackType == EAttackType.Jab1 || attackType == EAttackType.DashAtk)
-                        return true;
-                    break;
-                }
-
-            case EAttackClass.Aerials:
-                {
-                    if (attackType == EAttackType.NAir || attackType == EAttackType.DAir || attackType == EAttackType.UAir || 
-                        attackType == EAttackType.FAir || attackType == EAttackType.BAir)
-                        return true;
-                    break;
-                }
-
-            case EAttackClass.Strongs:
-                {
-                    if (attackType == EAttackType.USoul || attackType == EAttackType.DSoul || attackType == EAttackType.FSoul)
-                        return true;
-                    break;
-                }
-
-            case EAttackClass.Specials:
-                {
-                    if (attackType == EAttackType.NSpec || attackType == EAttackType.FSpec || attackType == EAttackType.DSpec || attackType == EAttackType.USpec)
-                        return true;
-                    break;
-                }
-            default: break;
-        }
-
-        return false;
-    }
+    
 }

@@ -157,10 +157,8 @@ public class CS_GrabAttack : CS_Attack
         base.Enter();
 
         changedDirection = false;
-        dirX = 0;
-        if (chr.DirectionalInput.x != 0)
-            dirX = chr.DirectionalInput.x;
 
+        dirX = chr.Direction * Mathf.Abs(chr.DirectionalInput.x);
         chr.AEnemyHit += OnGrabHits;
     }
 
@@ -179,7 +177,7 @@ public class CS_GrabAttack : CS_Attack
             }
         }
 
-        dirX *= 0.9f;
+        dirX *= 0.8f;
         chr.SetInputs(new Vector2(dirX, 0));
 
         if (chr.Ctr.onLedge)

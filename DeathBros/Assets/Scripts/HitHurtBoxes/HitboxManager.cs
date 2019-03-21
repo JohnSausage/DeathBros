@@ -55,13 +55,20 @@ public class HitboxManager : _MB
                     damage.Owner = Chr;
                     damage.position = hitBoxPosition;
 
+                    //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);
+
+                    for (int k = 0; k < Chr.cardEffects.Count; k++)
+                    {
+                        Chr.cardEffects[k].ModifyDamage(damage);
+                    }
+
                     if (Chr is Player)
                     {
                         Player player = (Player)Chr;
 
                         damage.AddDamage(player.soulCharge);
 
-                        damage.damageNumber *= player.GetCardEffect_DamageMultiplier(damage.attackType);
+
                     }
 
                     if (hitObject != null)
@@ -71,7 +78,6 @@ public class HitboxManager : _MB
                             Character hitChr = (Character)hitObject;
 
                             damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
-
 
                             //hitChr.GetHit(damage);
 
@@ -86,6 +92,7 @@ public class HitboxManager : _MB
                         }
 
                         hitObject.GetHit(damage);
+
                     }
                 }
 
@@ -149,6 +156,8 @@ public class Damage
     public Character Owner { get; set; }
     public Vector2 HitPosition { get; set; }
 
+    public StatMod ApplyStatMod { get; set; }
+
     public Damage Clone()
     {
         return new Damage
@@ -161,7 +170,8 @@ public class Damage
             attackType = attackType,
             editorColor = editorColor,
             positionalInfluence = positionalInfluence,
-            position = position
+            position = position,
+            ApplyStatMod = ApplyStatMod
         };
     }
 
@@ -211,5 +221,45 @@ public class Damage
     public void GenerateID()
     {
         hitID = UnityEngine.Random.Range(0, 99999);
+    }
+
+    public static bool CheckIfDamageApplies(EAttackType attackType, EAttackClass eAttackClass)
+    {
+        switch (eAttackClass)
+        {
+
+            case EAttackClass.Tilts:
+                {
+                    if (attackType == EAttackType.DTilt || attackType == EAttackType.UTilt || attackType == EAttackType.FTilt ||
+                        attackType == EAttackType.Jab1 || attackType == EAttackType.DashAtk)
+                        return true;
+                    break;
+                }
+
+            case EAttackClass.Aerials:
+                {
+                    if (attackType == EAttackType.NAir || attackType == EAttackType.DAir || attackType == EAttackType.UAir ||
+                        attackType == EAttackType.FAir || attackType == EAttackType.BAir)
+                        return true;
+                    break;
+                }
+
+            case EAttackClass.Strongs:
+                {
+                    if (attackType == EAttackType.USoul || attackType == EAttackType.DSoul || attackType == EAttackType.FSoul)
+                        return true;
+                    break;
+                }
+
+            case EAttackClass.Specials:
+                {
+                    if (attackType == EAttackType.NSpec || attackType == EAttackType.FSpec || attackType == EAttackType.DSpec || attackType == EAttackType.USpec)
+                        return true;
+                    break;
+                }
+            default: break;
+        }
+
+        return false;
     }
 }

@@ -42,6 +42,9 @@ public class Character : _MB, ICanTakeDamage
     [SerializeField]
     protected List<Stat> statList;// { get; protected set; }
 
+    public List<CardEffect> cardEffects;
+
+
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
     public Vector2 TiltInput { get; protected set; }
@@ -143,6 +146,8 @@ public class Character : _MB, ICanTakeDamage
         {
             attackSO.InitState(this);
         }
+
+        cardEffects = new List<CardEffect>();
     }
 
     public override void LateInit()
@@ -283,6 +288,9 @@ public class Character : _MB, ICanTakeDamage
             if (hitIDs.Count > 10) hitIDs.Dequeue();
 
             TakeDamage(damage);
+
+            if (damage.ApplyStatMod != null)
+                damage.ApplyStatMod.ApplyToCharacter(this);
         }
     }
 
@@ -488,6 +496,31 @@ public class Character : _MB, ICanTakeDamage
 
         Spr.material = EffectManager.DefaultMaterial;
     }
+    /*
+    public float GetCardEffect_DamageMultiplier(EAttackType attackType)
+    {
+        float multi = 1f;
+
+        for (int i = 0; i < cardEffects.Count; i++)
+        {
+            if (cardEffects[i].GetType() == typeof(CardEffect_SingleAttackStrength))
+            {
+                CardEffect_SingleAttackStrength effect = (CardEffect_SingleAttackStrength)cardEffects[i];
+                if (attackType == effect.attackType)
+                    multi *= effect.damageMultiplier;
+            }
+
+            else if (cardEffects[i].GetType() == typeof(CardEffect_AllAttackStrength))
+            {
+                CardEffect_AllAttackStrength effect = (CardEffect_AllAttackStrength)cardEffects[i];
+                if (Damage.CheckIfDamageApplies(attackType, effect.attackClass))
+                    multi *= effect.damageMultiplier;
+            }
+        }
+
+        return multi;
+    }
+    */
 }
 
 public interface ICanTakeDamage

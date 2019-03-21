@@ -79,9 +79,23 @@ public class StatMod
     public bool isAdditive;
     public bool isMultiplicative;
     public int durationInFrames;
+
+    public string statName;
+
     private int timer;
 
     public bool TimeUp { get { return timer <= 0; } }
+
+    public StatMod() { }
+
+    public StatMod(float modValue, bool isAdditive, bool isMultiplicative, int durationInFrames, string statName)
+    {
+        this.modValue = modValue;
+        this.isAdditive = isAdditive;
+        this.isMultiplicative = isMultiplicative;
+        this.durationInFrames = durationInFrames;
+        this.statName = statName;
+    }
 
     public void Apply()
     {
@@ -91,6 +105,18 @@ public class StatMod
     public void FixedUpdate()
     {
         timer--;
+    }
+
+    public void ApplyToCharacter(Character chr)
+    {
+        Stat stat = chr.GetStat(statName);
+
+        if (stat != null)
+        {
+            stat.AddMod(this);
+            Apply();
+            Debug.Log("statmod applied");
+        }
     }
 }
 

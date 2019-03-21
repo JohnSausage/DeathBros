@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public List<CardEffect> cardEffects;
 
     //public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
 
@@ -47,7 +46,6 @@ public class Player : Character
     {
         base.Init();
 
-        cardEffects = new List<CardEffect>();
         //soundFolderName = "Sounds/Player/";
 
         //advancedMovementStates.Init(this);
@@ -67,6 +65,12 @@ public class Player : Character
     {
         //Test----------------------------------------------------------------------------------------------------------------------
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StatMod slow = new StatMod(2f, false, true, 60, "Movespeed");
+            slow.ApplyToCharacter(this);
+        }
+
         if (Input.GetKeyDown(KeyCode.B))
         {
             CardEffect_SingleAttackStrength cardEffect = new CardEffect_SingleAttackStrength();
@@ -78,9 +82,9 @@ public class Player : Character
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            CardEffect_AllAttackStrength cardEffect = new CardEffect_AllAttackStrength();
-            cardEffect.attackClass = EAttackClass.Aerials;
-            cardEffect.damageMultiplier = 3f;
+            CardEffect_StatMod cardEffect = new CardEffect_StatMod();
+            cardEffect.attackType = EAttackType.Jab1;
+            cardEffect.statMod = new StatMod(0.5f, false, true, 600, "Movespeed");
 
             cardEffects.Add(cardEffect);
         }
@@ -601,27 +605,5 @@ public class Player : Character
         return false;
     }
 
-    public float GetCardEffect_DamageMultiplier(EAttackType attackType)
-    {
-        float multi = 1f;
 
-        for (int i = 0; i < cardEffects.Count; i++)
-        {
-            if (cardEffects[i].GetType() == typeof(CardEffect_SingleAttackStrength))
-            {
-                CardEffect_SingleAttackStrength effect = (CardEffect_SingleAttackStrength)cardEffects[i];
-                if (attackType == effect.attackType)
-                    multi *= effect.damageMultiplier;
-            }
-
-            else if (cardEffects[i].GetType() == typeof(CardEffect_AllAttackStrength))
-            {
-                CardEffect_AllAttackStrength effect = (CardEffect_AllAttackStrength)cardEffects[i];
-                if (GameManager.CheckIfDamageApplies(attackType, effect.attackClass))
-                    multi *= effect.damageMultiplier;
-            }
-        }
-
-        return multi;
-    }
 }

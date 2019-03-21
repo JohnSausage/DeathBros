@@ -54,18 +54,12 @@ public class Card : MonoBehaviour
 
         cardBG.sprite = Sprite.Create(newTexture, cardBG.sprite.rect, Vector2.up);
     }
-
-
-    public void ApplyEffect(Player player)
-    {
-        cardEffect.ApplyEffect(player);
-    }
 }
 
 [System.Serializable]
 public class CardEffect
 {
-    public virtual void ApplyEffect(Player player) { }
+    public virtual void ModifyDamage(Damage damage) { }
 }
 
 [System.Serializable]
@@ -74,15 +68,18 @@ public class CardEffect_SingleAttackStrength : CardEffect
     public EAttackType attackType;
     public float damageMultiplier;
 
-    public override void ApplyEffect(Player player)
+    public override void ModifyDamage(Damage damage)
     {
-        base.ApplyEffect(player);
+        base.ModifyDamage(damage);
 
-        player.cardEffects.Add(this);
+        if(damage.attackType == attackType)
+        {
+            damage.damageNumber *= damageMultiplier;
+        }
     }
 }
 
-public enum EAttackClass { Tilts, Aerials, Strongs, Specials, Throws }
+public enum EAttackClass { Tilts, Aerials, Strongs, Specials, Throws, None }
 
 [System.Serializable]
 public class CardEffect_AllAttackStrength : CardEffect
@@ -90,10 +87,30 @@ public class CardEffect_AllAttackStrength : CardEffect
     public EAttackClass attackClass;
     public float damageMultiplier;
 
-    public override void ApplyEffect(Player player)
+    public override void ModifyDamage(Damage damage)
     {
-        base.ApplyEffect(player);
+        base.ModifyDamage(damage);
 
+        if (Damage.CheckIfDamageApplies(damage.attackType, attackClass))
+        {
+            damage.damageNumber *= damageMultiplier;
+        }
+    }
+}
 
+public class CardEffect_StatMod : CardEffect
+{
+    public EAttackType attackType;
+
+    public StatMod statMod;
+
+    public override void ModifyDamage(Damage damage)
+    {
+        base.ModifyDamage(damage);
+
+        if (damage.attackType == attackType)
+        {
+            damage.ApplyStatMod = statMod;
+        }
     }
 }
