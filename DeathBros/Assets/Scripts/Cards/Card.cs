@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public enum ECardColor { Red, Blue, Green }
 
 [System.Serializable]
-public class Card : MonoBehaviour
+public class CardData
 {
     public int level;
     public ECardColor color;
@@ -15,8 +15,13 @@ public class Card : MonoBehaviour
     public float triggerPosition;
 
     public CardEffect cardEffect;
+}
 
-    [SerializeField]
+[System.Serializable]
+public class Card : MonoBehaviour
+{
+    public CardData cardData;
+
     private Image cardBG;
 
     private void Start()
@@ -26,33 +31,36 @@ public class Card : MonoBehaviour
         Color replaceColor = new Color((200f / 255f), (50f / 255f), (200f / 255f), 1f);
 
         Texture2D oldTexture = cardBG.sprite.texture;
-
-        Texture2D newTexture = new Texture2D(oldTexture.width, oldTexture.height);
-        newTexture.filterMode = FilterMode.Point;
-
-        int y = 0;
-        while (y < newTexture.height)
+        try
         {
-            int x = 0;
-            while (x < newTexture.width)
+            Texture2D newTexture = new Texture2D(oldTexture.width, oldTexture.height);
+            newTexture.filterMode = FilterMode.Point;
+
+            int y = 0;
+            while (y < newTexture.height)
             {
-                if (oldTexture.GetPixel(x, y) == replaceColor)
+                int x = 0;
+                while (x < newTexture.width)
                 {
-                    newTexture.SetPixel(x, y, Color.red);
+                    if (oldTexture.GetPixel(x, y) == replaceColor)
+                    {
+                        newTexture.SetPixel(x, y, Color.red);
+                    }
+                    else
+                    {
+                        newTexture.SetPixel(x, y, oldTexture.GetPixel(x, y));
+                    }
+                    ++x;
                 }
-                else
-                {
-                    newTexture.SetPixel(x, y, oldTexture.GetPixel(x, y));
-                }
-                ++x;
+                ++y;
             }
-            ++y;
+
+
+            newTexture.Apply();
+
+            cardBG.sprite = Sprite.Create(newTexture, cardBG.sprite.rect, Vector2.up);
         }
-
-
-        newTexture.Apply();
-
-        cardBG.sprite = Sprite.Create(newTexture, cardBG.sprite.rect, Vector2.up);
+        catch { }
     }
 }
 
@@ -72,7 +80,7 @@ public class CardEffect_SingleAttackStrength : CardEffect
     {
         base.ModifyDamage(damage);
 
-        if(damage.attackType == attackType)
+        if (damage.attackType == attackType)
         {
             damage.damageNumber *= damageMultiplier;
         }

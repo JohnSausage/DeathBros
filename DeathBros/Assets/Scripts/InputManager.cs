@@ -148,12 +148,15 @@ public class InputManager : MonoBehaviour
         }
         */
 
-        CheckIfBuffered(Shield);
-        CheckIfBuffered(Grab);
-        CheckIfBuffered(Jump);
-        CheckIfBuffered(Jump2);
-        CheckIfBuffered(Attack);
-        CheckIfBuffered(Special);
+        if (!GameManager.IsPaused)
+        {
+            CheckIfBuffered(Shield);
+            CheckIfBuffered(Grab);
+            CheckIfBuffered(Jump);
+            CheckIfBuffered(Jump2);
+            CheckIfBuffered(Attack);
+            CheckIfBuffered(Special);
+        }
     }
 
     private void CheckIfBuffered(DualInput di)

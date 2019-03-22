@@ -32,7 +32,7 @@ MonoBehaviour:
   standup_anim: crouch
   hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
-  getGrabbed_anim: idle
+  getGrabbed_anim: hitFreeze
   doublejumpsquat_anim: crouch
   doublejumpsquat_duration: 3
   wallslidingDown_anim: wall
@@ -42,11 +42,11 @@ MonoBehaviour:
   walljumpstart_duration: 3
   walljumping_anim: jumpUp
   walljumping_duration: 15
-  skid_anim: idle
+  skid_anim: run
   skid_duration: 5
   skid_idleOutDuration: 1
   dash_anim: run
-  dash_duration: 5
+  dash_duration: 3
   crouch_anim: crouch
   roll_anim: roll
   throwitem_anim: crouch

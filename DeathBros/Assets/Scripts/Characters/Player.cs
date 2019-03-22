@@ -91,6 +91,7 @@ public class Player : Character
 
         //Test----------------------------------------------------------------------------------------------------------------------
 
+
         DirectionalInput = InputManager.Direction;
         StrongInputs = InputManager.Smash;
         TiltInput = InputManager.CStick;
@@ -130,6 +131,7 @@ public class Player : Character
 
         if (InputManager.BufferdDown("Grab")) Grab = true;
         else Grab = false;
+
     }
 
     protected override void FixedUpdate()
