@@ -9,13 +9,31 @@ public class CardListControl : MonoBehaviour
     private GameObject cardButtonTemplate;
 
     [SerializeField]
+    private GameObject[] comboCards;
+
+    [SerializeField]
     private List<GameObject> cards;
 
     private void Start()
     {
         cards = new List<GameObject>();
 
-        GenerateCards();
+        //GenerateCards();
+    }
+
+    public void LoadCards()
+    {
+        cards.Clear();
+
+        for (int i = 0; i < InventoryManager.cards.Count; i++)
+        {
+            AddCard(InventoryManager.cards[i]);
+        }
+
+        for (int i = 0; i < comboCards.Length; i++)
+        {
+            comboCards[i].GetComponent<CardButton>().SetCard(InventoryManager.comboCards[i]);
+        }
     }
 
     private void GenerateCards()
@@ -28,9 +46,22 @@ public class CardListControl : MonoBehaviour
             card.GetComponent<CardButton>().SetCard(InventoryManager.CreateRandomCard());
 
             card.transform.SetParent(cardButtonTemplate.transform.parent);
+
+            cards.Add(card);
         }
     }
 
+    public void AddCard(CardData cardData)
+    {
+        GameObject card = Instantiate(cardButtonTemplate) as GameObject;
+        card.SetActive(true);
+
+        card.GetComponent<CardButton>().SetCard(cardData);
+
+        card.transform.SetParent(cardButtonTemplate.transform.parent);
+
+        cards.Add(card);
+    }
 
     public void CardClicked(CardData cardData)
     {

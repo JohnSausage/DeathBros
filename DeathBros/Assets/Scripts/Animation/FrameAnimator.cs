@@ -118,7 +118,7 @@ public class FrameAnimator : _MB
 
             if (frameTimer == 0 && currentFrame.soundName != "")
             {
-                AudioManager.PlaySound(currentFrame.soundName);
+                AudioManager.PlaySound(currentFrame.soundName, spr.transform.position);
             }
 
             frameTimer += animationSpeed;

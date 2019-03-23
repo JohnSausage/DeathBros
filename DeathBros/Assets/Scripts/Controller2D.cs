@@ -179,7 +179,7 @@ public class Controller2D : MonoBehaviour
             if (velocity.y <= 0)
             {
                 groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2),
-            new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 3, collisionMask);
+            new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 4, collisionMask);
 
                 if (groundCheck)
                 {
@@ -388,7 +388,6 @@ public class Controller2D : MonoBehaviour
                     {
                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
 
-                        onWall = true;
                         onWall = true;
                     }
 
@@ -803,6 +802,9 @@ public class Controller2D : MonoBehaviour
         triangleDistance = skin * Mathf.Sqrt(2) * Mathf.Sin(gamma * Mathf.Deg2Rad) / Mathf.Sin(alpha * Mathf.Deg2Rad);
 
         float moveDistance = (collision.distance - triangleDistance);
+
+        //to stop backwards movemenet
+        if (moveDistance < 0) moveDistance = 0;
 
         return moveDistance;
     }

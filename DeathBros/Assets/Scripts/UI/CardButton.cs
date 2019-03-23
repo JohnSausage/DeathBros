@@ -25,6 +25,11 @@ public class CardButton : MonoBehaviour
 
         Texture2D oldTexture = cardBG.sprite.texture;
 
+        if(cardData == null)
+        {
+            cardBG.sprite = InventoryManager.NoCardSprite;
+
+        }
         try
         {
             //Replace main Colors
@@ -99,17 +104,18 @@ public class CardButton : MonoBehaviour
             newTexture.Apply();
 
             trigger.GetComponent<Image>().sprite = Sprite.Create(newTexture, trigger.GetComponent<Image>().sprite.rect, Vector2.up);
+
+
+            //set number icons
+
+            figure1.GetComponent<Image>().sprite = InventoryManager.GetNumber((cardData.level) % 10);
+            figure10.GetComponent<Image>().sprite = InventoryManager.GetNumber((int)(cardData.level / 10));
+
+            //set trigger position
+
+            trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), 11, 0);
         }
         catch { }
-
-        //set number icons
-
-        figure1.GetComponent<Image>().sprite = InventoryManager.GetNumber((cardData.level) % 10);
-        figure10.GetComponent<Image>().sprite = InventoryManager.GetNumber((int)(cardData.level / 10));
-
-        //set trigger position
-
-        trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), 11, 0);
     }
 
     public void OnClick()

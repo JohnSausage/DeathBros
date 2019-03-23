@@ -39,11 +39,14 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 
-    public List<CardData> cards;
+    public static List<CardData> cards;
+
+    public static CardData[] comboCards;
 
     void Start()
     {
-
+        cards = new List<CardData>();
+        comboCards = new CardData[5];
     }
 
     void Update()

@@ -24,6 +24,7 @@ public class CameraController : MonoBehaviour
 
     protected BoxCollider2D movementBoundsCollider;
 
+    public static Vector2 Position { get { return Camera.main.transform.position; } }
     void Start()
     {
         cam = Camera.main;

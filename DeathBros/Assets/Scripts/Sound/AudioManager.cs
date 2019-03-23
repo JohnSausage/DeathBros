@@ -82,6 +82,26 @@ public class AudioManager : _MB
         }
     }
 
+    public static void PlaySound(string name, Vector2 position)
+    {
+        Sound s = Instance.sounds.Find(x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log(name + " sound not found!");
+        }
+        else
+        {
+            float maxdistance = 24f;
+            float volume = (maxdistance - (position - CameraController.Position).magnitude) / maxdistance;
+            if (volume < 0) volume = 0;
+
+            float oldVolume = s.Source.volume;
+            s.Source.volume = s.volume * volume;
+            s.Source.Play();
+        }
+    }
+
     public static void AddSound(Sound sound)
     {
         Instance.InitSound(sound);
