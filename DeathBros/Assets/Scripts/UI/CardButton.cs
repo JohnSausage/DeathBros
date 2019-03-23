@@ -113,7 +113,7 @@ public class CardButton : MonoBehaviour
 
             //set trigger position
 
-            trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), 11, 0);
+            trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), trigger.transform.localPosition.y, 0);
         }
         catch { }
     }
