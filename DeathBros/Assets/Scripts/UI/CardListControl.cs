@@ -13,6 +13,9 @@ public class CardListControl : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> cards;
+    public List<GameObject> Cards { get { return cards; } }
+
+    public CardData clickedCard;
 
     private void Start()
     {
@@ -65,6 +68,6 @@ public class CardListControl : MonoBehaviour
 
     public void CardClicked(CardData cardData)
     {
-
+        clickedCard = cardData;
     }
 }

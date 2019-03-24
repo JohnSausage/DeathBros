@@ -43,10 +43,15 @@ public class InventoryManager : MonoBehaviour
 
     public static CardData[] comboCards;
 
+    private System.Type[] cardEffectTypes;
+
     void Start()
     {
         cards = new List<CardData>();
         comboCards = new CardData[5];
+
+
+        cardEffectTypes = System.AppDomain.CurrentDomain.GetAllDerivedTypes(typeof(CardEffect));
     }
 
     void Update()
@@ -56,7 +61,7 @@ public class InventoryManager : MonoBehaviour
 
 
 
-    static T GetRandomEnum<T>()
+    public static T GetRandomEnum<T>()
     {
         System.Array A = System.Enum.GetValues(typeof(T));
         T V = (T)A.GetValue(UnityEngine.Random.Range(0, A.Length));
@@ -76,7 +81,14 @@ public class InventoryManager : MonoBehaviour
 
         cardData.triggerPosition = Random.Range(0f, 1f);
 
-        cardData.cardEffect = new CardEffect();
+        int i = Random.Range(0, instance.cardEffectTypes.Length);
+
+        System.Type RandomType = instance.cardEffectTypes[i];
+
+        CardEffect randomEffect = System.Activator.CreateInstance(RandomType) as CardEffect;
+
+        cardData.cardEffect = randomEffect;
+        cardData.cardEffect.SetRandomValues(cardData.level);
 
         return cardData;
     }
@@ -149,5 +161,24 @@ public class InventoryManager : MonoBehaviour
         }
 
         return brightColor;
+    }
+}
+
+public static class ReflectionHelpers
+{
+    public static System.Type[] GetAllDerivedTypes(this System.AppDomain aAppDomain, System.Type aType)
+    {
+        var result = new List<System.Type>();
+        var assemblies = aAppDomain.GetAssemblies();
+        foreach (var assembly in assemblies)
+        {
+            var types = assembly.GetTypes();
+            foreach (var type in types)
+            {
+                if (type.IsSubclassOf(aType))
+                    result.Add(type);
+            }
+        }
+        return result.ToArray();
     }
 }

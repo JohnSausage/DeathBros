@@ -67,6 +67,7 @@ public class Card : MonoBehaviour
 [System.Serializable]
 public class CardEffect
 {
+    public virtual void SetRandomValues(int level) { }
     public virtual void ModifyDamage(Damage damage) { }
 }
 
@@ -75,6 +76,15 @@ public class CardEffect_SingleAttackStrength : CardEffect
 {
     public EAttackType attackType;
     public float damageMultiplier;
+
+    public override void SetRandomValues(int level)
+    {
+        base.SetRandomValues(level);
+
+        attackType = InventoryManager.GetRandomEnum<EAttackType>();
+
+        damageMultiplier = 1f + level * 0.1f;
+    }
 
     public override void ModifyDamage(Damage damage)
     {
@@ -95,6 +105,15 @@ public class CardEffect_AllAttackStrength : CardEffect
     public EAttackClass attackClass;
     public float damageMultiplier;
 
+    public override void SetRandomValues(int level)
+    {
+        base.SetRandomValues(level);
+
+        attackClass = InventoryManager.GetRandomEnum<EAttackClass>();
+
+        damageMultiplier = 1f + level * 0.1f;
+    }
+
     public override void ModifyDamage(Damage damage)
     {
         base.ModifyDamage(damage);
@@ -111,6 +130,15 @@ public class CardEffect_StatMod : CardEffect
     public EAttackType attackType;
 
     public StatMod statMod;
+
+    public override void SetRandomValues(int level)
+    {
+        base.SetRandomValues(level);
+
+        attackType = InventoryManager.GetRandomEnum<EAttackType>();
+
+        statMod = new StatMod(1f + level * 0.1f, false, true, 60 * level, "Movespeed");
+    }
 
     public override void ModifyDamage(Damage damage)
     {

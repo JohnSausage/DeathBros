@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardButton : MonoBehaviour
 {
+    public bool HasCard { get; set; }
+
     [SerializeField]
     private GameObject figure10, figure1, trigger;
 
@@ -28,7 +30,11 @@ public class CardButton : MonoBehaviour
         if(cardData == null)
         {
             cardBG.sprite = InventoryManager.NoCardSprite;
-
+            HasCard = false;
+        }
+        else
+        {
+            HasCard = true;
         }
         try
         {
@@ -114,6 +120,10 @@ public class CardButton : MonoBehaviour
             //set trigger position
 
             trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), trigger.transform.localPosition.y, 0);
+
+            //set effect icons
+
+
         }
         catch { }
     }

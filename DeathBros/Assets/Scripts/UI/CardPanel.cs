@@ -7,6 +7,8 @@ public class CardPanel : MenuPanel
     [SerializeField]
     private CardListControl cardListControl;
 
+    public CardButton selectedCard;
+
     public override void Enter()
     {
         base.Enter();
@@ -17,6 +19,7 @@ public class CardPanel : MenuPanel
     public override void Execute()
     {
         base.Execute();
+
     }
 
     public override void Exit()
