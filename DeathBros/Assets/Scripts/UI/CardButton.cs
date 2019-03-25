@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CardButton : MonoBehaviour
 {
+    public SpriteFont cardEffectFont;
+    public GameObject spriteFontCharacterPrefab;
+
     public bool HasCard { get; set; }
 
     [SerializeField]
@@ -15,6 +18,9 @@ public class CardButton : MonoBehaviour
 
     [SerializeField]
     private CardListControl cardListControl;
+
+    [SerializeField]
+    private CardPanel cardPanel;
 
     private Image cardBG;
 
@@ -27,7 +33,7 @@ public class CardButton : MonoBehaviour
 
         Texture2D oldTexture = cardBG.sprite.texture;
 
-        if(cardData == null)
+        if (cardData == null)
         {
             cardBG.sprite = InventoryManager.NoCardSprite;
             HasCard = false;
@@ -123,13 +129,25 @@ public class CardButton : MonoBehaviour
 
             //set effect icons
 
+            string text = cardData.cardEffect.GetEffectText();
 
+            List<Sprite> sprites = cardEffectFont.Sprites(text);
+
+            int i = 0;
+            foreach (Sprite sprite in sprites)
+            {
+                GameObject spriteChar = Instantiate(spriteFontCharacterPrefab, transform);
+                spriteChar.GetComponent<Image>().sprite = sprite;
+                spriteChar.transform.localPosition = new Vector3(spriteChar.transform.localPosition.x + i * 20, spriteChar.transform.localPosition.y, 0);
+                i++;
+
+            }
         }
         catch { }
     }
 
-    public void OnClick()
+    public void Select()
     {
-        cardListControl.CardClicked(cardData);
+        cardPanel.SelectCard(cardData);
     }
 }

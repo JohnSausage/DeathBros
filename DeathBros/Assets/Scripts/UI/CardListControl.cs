@@ -26,7 +26,13 @@ public class CardListControl : MonoBehaviour
 
     public void LoadCards()
     {
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Destroy(cards[i].gameObject);
+        }
         cards.Clear();
+        
+
 
         for (int i = 0; i < InventoryManager.cards.Count; i++)
         {

@@ -69,6 +69,64 @@ public class CardEffect
 {
     public virtual void SetRandomValues(int level) { }
     public virtual void ModifyDamage(Damage damage) { }
+    public virtual string GetEffectText() { return ""; }
+
+    protected string TranslateAttackType(EAttackType attackType)
+    {
+        string text = "";
+
+        switch(attackType)
+        {
+            case EAttackType.DTilt:
+                {
+                    text = "DT";
+                    break;
+                }
+            case EAttackType.UTilt:
+                {
+                    text = "UT";
+                    break;
+                }
+            case EAttackType.FTilt:
+                {
+                    text = "RT";
+                    break;
+                }
+            case EAttackType.Jab1:
+                {
+                    text = "NT";
+                    break;
+                }
+            case EAttackType.DAir:
+                {
+                    text = "DA";
+                    break;
+                }
+            case EAttackType.UAir:
+                {
+                    text = "UA";
+                    break;
+                }
+            case EAttackType.FAir:
+                {
+                    text = "RA";
+                    break;
+                }
+            case EAttackType.NAir:
+                {
+                    text = "NA";
+                    break;
+                }
+            case EAttackType.BAir:
+                {
+                    text = "LA";
+                    break;
+                }
+            default: break;
+        }
+
+        return text;
+    }
 }
 
 [System.Serializable]
@@ -94,6 +152,15 @@ public class CardEffect_SingleAttackStrength : CardEffect
         {
             damage.damageNumber *= damageMultiplier;
         }
+    }
+
+    public override string GetEffectText()
+    {
+        string text = "";
+
+        text = TranslateAttackType(attackType);
+
+        return text;
     }
 }
 
@@ -148,5 +215,14 @@ public class CardEffect_StatMod : CardEffect
         {
             damage.ApplyStatMod = statMod;
         }
+    }
+
+    public override string GetEffectText()
+    {
+        string text = "";
+
+        text = TranslateAttackType(attackType);
+
+        return text;
     }
 }

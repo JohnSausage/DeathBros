@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bb93d85a72c7841a5a1b681e123814, type: 3}
+  m_Name: CardEffectFont
+  m_EditorClassIdentifier: 
+  chars:
+  - cahracter: 85
+    sprite: {fileID: 21300024, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 68
+    sprite: {fileID: 21300026, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 76
+    sprite: {fileID: 21300020, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 82
+    sprite: {fileID: 21300022, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 78
+    sprite: {fileID: 21300028, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 84
+    sprite: {fileID: 21300034, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 65
+    sprite: {fileID: 21300038, guid: 88f9ec950bd652b46915f2110569254f, type: 3}
+  - cahracter: 83
+    sprite: {fileID: 21300036, guid: 88f9ec950bd652b46915f2110569254f, type: 3}

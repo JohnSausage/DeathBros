@@ -19,11 +19,15 @@ public class CardPanel : MenuPanel
     public override void Execute()
     {
         base.Execute();
-
     }
 
     public override void Exit()
     {
         base.Exit();
+    }
+
+    public void SelectCard(CardData cardData)
+    {
+        selectedCard.GetComponent<CardButton>().SetCard(cardData);
     }
 }
