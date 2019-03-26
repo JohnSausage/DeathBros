@@ -253,6 +253,7 @@ public class InputManager : MonoBehaviour
     public static void ClearBuffer()
     {
         BufferedInput = null;
+        Smash = Vector2.zero;
     }
 
     public static bool GetButton(string inputName)

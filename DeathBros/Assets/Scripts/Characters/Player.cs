@@ -41,6 +41,11 @@ public class Player : Character
     public event Action<int> ASoulBankPlus;
     public event Action<float> ASoulMeterChanged;
 
+    public override void ClearStrongInputs()
+    {
+        base.ClearStrongInputs();
+        InputManager.ClearBuffer();
+    }
 
     public override void Init()
     {

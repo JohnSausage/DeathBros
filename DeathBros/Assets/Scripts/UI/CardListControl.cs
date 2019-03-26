@@ -8,8 +8,7 @@ public class CardListControl : MonoBehaviour
     [SerializeField]
     private GameObject cardButtonTemplate;
 
-    [SerializeField]
-    private GameObject[] comboCards;
+
 
     [SerializeField]
     private List<GameObject> cards;
@@ -39,10 +38,6 @@ public class CardListControl : MonoBehaviour
             AddCard(InventoryManager.cards[i]);
         }
 
-        for (int i = 0; i < comboCards.Length; i++)
-        {
-            comboCards[i].GetComponent<CardButton>().SetCard(InventoryManager.comboCards[i]);
-        }
     }
 
     private void GenerateCards()

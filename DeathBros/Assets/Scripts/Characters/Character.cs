@@ -47,6 +47,7 @@ public class Character : _MB, ICanTakeDamage
 
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
+    public virtual void ClearStrongInputs() { StrongInputs = Vector2.zero; }
     public Vector2 TiltInput { get; protected set; }
 
     public bool Jump { get; set; }

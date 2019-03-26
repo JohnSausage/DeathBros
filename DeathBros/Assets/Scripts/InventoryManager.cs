@@ -74,8 +74,8 @@ public class InventoryManager : MonoBehaviour
         CardData cardData = new CardData();
 
         cardData.color = GetRandomEnum<ECardColor>();
-        cardData.colorLeft = ECardColor.Red;
-        cardData.colorRight = ECardColor.Green;
+        cardData.colorLeft = cardData.color;
+        cardData.colorRight = GetRandomEnum<ECardColor>();
 
         cardData.level = Random.Range(1, 21);
 

@@ -314,7 +314,7 @@ public class CS_Aerial : CS_Attack
 
         chr.GetInputs();
 
-        if (chr.Ctr.velocity.y < 0 && chr.DirectionalInput.y < -0.5f)
+        if (chr.Ctr.velocity.y < 0 && chr.StrongInputs.y < -0.5f)
         {
             chr.Ctr.fastFall = true;
         }

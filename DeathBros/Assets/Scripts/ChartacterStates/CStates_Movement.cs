@@ -386,6 +386,7 @@ public class CS_Crouch : CState
         if (chr.StrongInputs.y < 0)
         {
             chr.Ctr.fallThroughPlatform = true;
+            chr.ClearStrongInputs();
         }
 
         if (chr.DirectionalInput.y >= -0.25f)
@@ -537,8 +538,8 @@ public class CS_Landing : CState
     {
         base.Execute();
 
-        dirX *= 0.8f;
-        chr.SetInputs(new Vector2(dirX, 0));
+        chr.GetInputs();
+
 
 
         timer++;
@@ -547,7 +548,6 @@ public class CS_Landing : CState
         {
             addDuration = 0; //clear additional landing lag when landing
 
-            chr.GetInputs();
             if (chr.DirectionalInput.y < 0)
             {
                 ChangeState(typeof(CS_Crouch));
@@ -557,6 +557,9 @@ public class CS_Landing : CState
                 chr.CS_SetIdle();
             }
         }
+
+        dirX *= 0.8f;
+        chr.SetInputs(new Vector2(dirX, 0));
     }
 }
 
@@ -574,6 +577,10 @@ public class CS_Jumping : CState
         jumpRisingFA = chr.Anim.GetAnimation(jumpRisingAnimation);
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+    }
     public override void Execute()
     {
         base.Execute();
@@ -595,6 +602,14 @@ public class CS_Jumping : CState
             chr.Ctr.fastFall = true;
         }
 
+        if (chr.DirectionalInput.y <= -0.5f)
+        {
+            chr.Ctr.fallThroughPlatform = true;
+        }
+        else
+        {
+            chr.Ctr.fallThroughPlatform = false;
+        }
 
         chr.CS_CheckLanding();
 
@@ -619,6 +634,7 @@ public class CS_Jumping : CState
 
         chr.CheckForAerialAttacks();
     }
+
 }
 
 [System.Serializable]
