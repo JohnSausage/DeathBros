@@ -52,13 +52,12 @@ public class InventoryManager : MonoBehaviour
 
 
         cardEffectTypes = System.AppDomain.CurrentDomain.GetAllDerivedTypes(typeof(CardEffect));
+
+        for (int i = 0; i < 50; i++)
+        {
+            cards.Add(CreateRandomCard());
+        }
     }
-
-    void Update()
-    {
-
-    }
-
 
 
     public static T GetRandomEnum<T>()

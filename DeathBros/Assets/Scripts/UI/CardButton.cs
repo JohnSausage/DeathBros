@@ -38,6 +38,8 @@ public class CardButton : MonoBehaviour, ISelectHandler
     {
         if (HasCard)
             cardPanel.SelectCard(cardData);
+
+        cardListControl.ZoomToCard(gameObject);
     }
 
     public void SetCard(CardData cardData)
