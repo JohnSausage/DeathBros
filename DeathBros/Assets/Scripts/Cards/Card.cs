@@ -3,7 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ECardColor { Red, Blue, Green }
+public enum ECardColor { Red, Blue, Green, White, Legendary }
+
+[System.Serializable]
+public class Card : MonoBehaviour
+{
+    public int level;
+
+    public ECardColor connectColor;
+
+    public CardEffectSO cardEffectSO;
+
+    private void Start()
+    {
+
+    }
+}
 
 [System.Serializable]
 public class CardData
@@ -18,53 +33,6 @@ public class CardData
 }
 
 [System.Serializable]
-public class Card : MonoBehaviour
-{
-    public CardData cardData;
-
-    private Image cardBG;
-
-    private void Start()
-    {
-        cardBG = GetComponent<Image>();
-
-        Color replaceColor = new Color((200f / 255f), (50f / 255f), (200f / 255f), 1f);
-
-        Texture2D oldTexture = cardBG.sprite.texture;
-        try
-        {
-            Texture2D newTexture = new Texture2D(oldTexture.width, oldTexture.height);
-            newTexture.filterMode = FilterMode.Point;
-
-            int y = 0;
-            while (y < newTexture.height)
-            {
-                int x = 0;
-                while (x < newTexture.width)
-                {
-                    if (oldTexture.GetPixel(x, y) == replaceColor)
-                    {
-                        newTexture.SetPixel(x, y, Color.red);
-                    }
-                    else
-                    {
-                        newTexture.SetPixel(x, y, oldTexture.GetPixel(x, y));
-                    }
-                    ++x;
-                }
-                ++y;
-            }
-
-
-            newTexture.Apply();
-
-            cardBG.sprite = Sprite.Create(newTexture, cardBG.sprite.rect, Vector2.up);
-        }
-        catch { }
-    }
-}
-
-[System.Serializable]
 public class CardEffect
 {
     public virtual void SetRandomValues(int level) { }
@@ -75,7 +43,7 @@ public class CardEffect
     {
         string text = "";
 
-        switch(attackType)
+        switch (attackType)
         {
             case EAttackType.DTilt:
                 {

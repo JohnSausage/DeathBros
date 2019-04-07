@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class FrameAnimator : _MB
 {
     public FrameAnimation currentAnimation;
@@ -30,6 +29,11 @@ public class FrameAnimator : _MB
         base.Init();
 
         spr = GetComponent<SpriteRenderer>();
+        if (spr == null)
+        {
+            spr = GetComponentInChildren<SpriteRenderer>();
+        }
+
         hubM = GetComponent<HurtboxManager>();
         hibM = GetComponent<HitboxManager>();
         ctr = GetComponent<Controller2D>();

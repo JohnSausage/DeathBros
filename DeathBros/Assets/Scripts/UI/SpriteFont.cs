@@ -13,7 +13,7 @@ public class SpriteFont : ScriptableObject
 
         foreach (char character in text)
         {
-            SpriteFontCharacter spriteFontCharacter = chars.Find(x => x.cahracter == character);
+            SpriteFontCharacter spriteFontCharacter = chars.Find(x => x.character == character);
 
             sprites.Add(spriteFontCharacter.sprite);
         }
@@ -25,6 +25,13 @@ public class SpriteFont : ScriptableObject
 [System.Serializable]
 public class SpriteFontCharacter
 {
-    public char cahracter;
+    public char character;
     public Sprite sprite;
+
+    public SpriteFontCharacter() { }
+
+    public SpriteFontCharacter(char character)
+    {
+        this.character = character;
+    }
 }

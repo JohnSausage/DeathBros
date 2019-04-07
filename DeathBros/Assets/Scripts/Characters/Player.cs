@@ -101,7 +101,7 @@ public class Player : Character
         StrongInputs = InputManager.Smash;
         TiltInput = InputManager.CStick;
 
-        if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
+        if (Mathf.Abs(DirectionalInput.x) < 0.25f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
         if (InputManager.BufferdDown("Attack")) Attack = true;
         else Attack = false;

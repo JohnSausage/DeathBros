@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class StaticCState : IState
 {
     //private static StaticCState instance;
@@ -264,3 +264,4 @@ public class SCS_Shield : StaticCState
         }
     }
 }
+*/

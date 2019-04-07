@@ -14,6 +14,9 @@ public class Character : _MB, ICanTakeDamage
 
     [SerializeField]
     protected StatesAndStatsSO statesSO;
+    public StatesAndStatsSO StatesSO { get { return statesSO; } }
+
+    public StatesAndStatsPlayerSO PlayerStatesSO { get { return (StatesAndStatsPlayerSO)statesSO; } }
 
     [SerializeField]
     protected List<CS_AttackSO> attackSOs;
@@ -44,6 +47,7 @@ public class Character : _MB, ICanTakeDamage
 
     public List<CardEffect> cardEffects;
 
+    public List<Buff> Buffs { get; protected set; }
 
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
@@ -65,6 +69,13 @@ public class Character : _MB, ICanTakeDamage
     public bool canChangeDirctionInAir { get; set; }
 
     [Space]
+
+    public ChrStateMachine ChrSM;
+    public int Timer { get; set; }
+    public int IdleTimer { get; set; }
+    public float FrozenInputX { get; set; }
+    public int LandingLag { get; set; }
+    public bool ChangedDirection { get; set; }
 
     public StateMachine CSMachine;// { get; protected set; }
     public FrameAnimator Anim { get; protected set; }
@@ -126,6 +137,8 @@ public class Character : _MB, ICanTakeDamage
 
         if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
 
+
+
         cStates = new List<CState>();
 
         CSMachine = new StateMachine();
@@ -133,6 +146,11 @@ public class Character : _MB, ICanTakeDamage
         Anim.Init();
 
         Spr = GetComponent<SpriteRenderer>();
+        if (Spr == null)
+        {
+            Spr = GetComponentInChildren<SpriteRenderer>();
+        }
+
         Ctr = GetComponent<Controller2D>();
 
         HitM = GetComponent<HitboxManager>();
@@ -149,6 +167,11 @@ public class Character : _MB, ICanTakeDamage
         }
 
         cardEffects = new List<CardEffect>();
+
+        Buffs = new List<Buff>();
+
+        ChrSM = new ChrStateMachine();
+        ChrSM.ChangeState(this, StaticStates.idle);
     }
 
     public override void LateInit()
@@ -171,7 +194,9 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void FixedUpdate()
     {
-        CSMachine.Update();
+        ChrSM.Update(this);
+
+        //CSMachine.Update();
 
         //stats.FixedUpdate();
 
@@ -522,6 +547,32 @@ public class Character : _MB, ICanTakeDamage
         return multi;
     }
     */
+
+    public virtual void SCS_CheckForAerials()
+    {
+
+    }
+
+    public virtual void SCS_CheckForGroundAttacks()
+    {
+
+    }
+
+    public virtual void SCS_CheckIfGrounded()
+    {
+        if (Ctr.IsGrounded == false)
+        {
+            ChrSM.ChangeState(this, StaticStates.jumping);
+        }
+    }
+
+    public virtual void SCS_CheckIfLanding()
+    {
+        if (Ctr.IsGrounded == true)
+        {
+            ChrSM.ChangeState(this, StaticStates.landing);
+        }
+    }
 }
 
 public interface ICanTakeDamage

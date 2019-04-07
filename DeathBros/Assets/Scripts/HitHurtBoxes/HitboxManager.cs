@@ -19,6 +19,11 @@ public class HitboxManager : _MB
         base.Awake();
 
         spr = GetComponent<SpriteRenderer>();
+        if(spr == null)
+        {
+            spr = GetComponentInChildren<SpriteRenderer>();
+        }
+
         Chr = GetComponent<Character>();
     }
 
@@ -57,10 +62,13 @@ public class HitboxManager : _MB
 
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);
 
+                    /*
                     for (int k = 0; k < Chr.cardEffects.Count; k++)
                     {
                         Chr.cardEffects[k].ModifyDamage(damage);
                     }
+                    */
+
 
                     if (Chr is Player)
                     {
@@ -73,6 +81,19 @@ public class HitboxManager : _MB
 
                     if (hitObject != null)
                     {
+                        for (int l = 0; l < Chr.Buffs.Count; l++)
+                        {
+                            if (Chr.Buffs[l].GetType() == typeof(BuffAddDamageToAttack))
+                            {
+                                BuffAddDamageToAttack buff = (BuffAddDamageToAttack)Chr.Buffs[l];
+
+                                if (damage.attackType == buff.attackType)
+                                {
+                                    damage.damageNumber *= (1 + buff.damagePercent);
+                                }
+                            }
+                        }
+
                         if (hitObject is Character)
                         {
                             Character hitChr = (Character)hitObject;
