@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StatesAndStats")]
 public class StatesAndStatsSO : ScriptableObject
 {
+    public EStateType stateTypes = EStateType.Standard;
+    [Space]
+    [Space]
     public string idle_anim = "idle";
     [Space]
     public string walking_anim = "walking";

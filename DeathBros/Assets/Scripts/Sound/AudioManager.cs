@@ -7,6 +7,9 @@ public class AudioManager : _MB
     [SerializeField]
     private SoundsSO generalSoundsSO;
 
+    [SerializeField]
+    private SoundsSO backgroundMusicSO;
+
     [Space]
     [SerializeField]
     private List<Sound> sounds;
@@ -57,6 +60,7 @@ public class AudioManager : _MB
         //}
 
         generalSoundsSO.LoadSounds();
+        backgroundMusicSO.LoadSounds();
     }
 
     private void InitSound(Sound sound)

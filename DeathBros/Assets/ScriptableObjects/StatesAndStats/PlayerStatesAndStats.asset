@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d51540b2bd9724c925dbff66be0498, type: 3}
   m_Name: PlayerStatesAndStats
   m_EditorClassIdentifier: 
+  stateTypes: 2
   idle_anim: idle
   walking_anim: run
   running_anim: run

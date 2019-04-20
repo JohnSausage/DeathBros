@@ -76,6 +76,9 @@ public class Character : _MB, ICanTakeDamage
     public float FrozenInputX { get; set; }
     public int LandingLag { get; set; }
     public bool ChangedDirection { get; set; }
+    public int HitStunDuration { get; set; }
+    public Vector2 CollisionReflectVector { get; set; }
+    public Vector2 AirDodgeVector { get; set; }
 
     public StateMachine CSMachine;// { get; protected set; }
     public FrameAnimator Anim { get; protected set; }
@@ -572,6 +575,16 @@ public class Character : _MB, ICanTakeDamage
         {
             ChrSM.ChangeState(this, StaticStates.landing);
         }
+    }
+
+    public void SCS_Idle()
+    {
+        ChrSM.ChangeState(this, StaticStates.idle);
+    }
+
+    public void SCS_ChangeState(SCState newState)
+    {
+        ChrSM.ChangeState(this, newState);
     }
 }
 

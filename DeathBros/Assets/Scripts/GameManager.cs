@@ -46,8 +46,11 @@ public class GameManager : _MB
     {
         if (levelStarted == false)
         {
-            LevelSM.ChangeState(startingLevel);
-            levelStarted = true;
+            if (AudioManager.Instance.IsInitialized)
+            {
+                LevelSM.ChangeState(startingLevel);
+                levelStarted = true;
+            }
         }
 
         LevelSM.Update();

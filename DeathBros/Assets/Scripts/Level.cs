@@ -37,6 +37,11 @@ public class Level : _MB, IState
 
         levelTransforms = GetComponentInChildren<TiledMap>().gameObject;
 
+        if(levelTransforms == null)
+        {
+            Debug.Log("Level transform not found!");
+        }
+
         enemiesTransform = transform.Find("Enemies");
 
         if (enemiesTransform != null)
