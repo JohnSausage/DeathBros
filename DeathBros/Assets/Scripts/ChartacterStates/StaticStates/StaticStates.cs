@@ -10,14 +10,14 @@ public static class StaticStates
     public static SCS_Jumpsquat jumpsquat = new SCS_Jumpsquat();
     public static SCS_Landing landing = new SCS_Landing();
 
-    public static SCS_Crouch crouch = new SCS_Crouch(EStateType.Complex);
-    public static SCS_DoubleJumpsquat doubleJumpsquat = new SCS_DoubleJumpsquat(EStateType.Complex);
-    public static SCS_Dash dash = new SCS_Dash(EStateType.Complex);
-    public static SCS_Skid skid = new SCS_Skid(EStateType.Complex);
+    public static SCS_Crouch crouch = new SCS_Crouch();
+    public static SCS_DoubleJumpsquat doubleJumpsquat = new SCS_DoubleJumpsquat();
+    public static SCS_Dash dash = new SCS_Dash();
+    public static SCS_Skid skid = new SCS_Skid();
 
-    public static SCS_Wallsliding wallsliding = new SCS_Wallsliding(EStateType.Complex);
-    public static SCS_WalljumpStart walljumpStart = new SCS_WalljumpStart(EStateType.Complex);
-    public static SCS_Walljumping walljumping = new SCS_Walljumping(EStateType.Complex);
+    public static SCS_Wallsliding wallsliding = new SCS_Wallsliding();
+    public static SCS_WalljumpStart walljumpStart = new SCS_WalljumpStart();
+    public static SCS_Walljumping walljumping = new SCS_Walljumping();
 
     public static SCS_Shield shield = new SCS_Shield();
     public static SCS_HitLand hitland = new SCS_HitLand();
@@ -25,6 +25,7 @@ public static class StaticStates
     public static SCS_Hitstun hitstun = new SCS_Hitstun();
     public static SCS_Roll roll = new SCS_Roll();
     public static SCS_StandUp standUp = new SCS_StandUp();
+    public static SCS_Hitfreeze hitfreeze = new SCS_Hitfreeze();
 
     public static SCS_Dead dead = new SCS_Dead();
     public static SCS_Die die = new SCS_Die();

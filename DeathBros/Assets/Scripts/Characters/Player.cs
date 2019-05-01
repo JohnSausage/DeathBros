@@ -4,8 +4,29 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public StaticAttackStateSO jab;
+    public StaticAttackStateSO dTilt;
+    public StaticAttackStateSO uTilt;
+    public StaticAttackStateSO fTilt;
 
-    //public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
+    public StaticAttackStateSO nAir;
+    public StaticAttackStateSO fAir;
+    public StaticAttackStateSO bAir;
+    public StaticAttackStateSO dAir;
+    public StaticAttackStateSO uAir;
+
+    public SCS_Attack jabAtk;
+    public SCS_Attack dTiltAtk;
+    public SCS_Attack uTiltAtk;
+    public SCS_Attack fTiltAtk;
+
+    public SCS_Attack nAirAtk;
+    public SCS_Attack fAirAtk;
+    public SCS_Attack bAirAtk;
+    public SCS_Attack dAirAtk;
+    public SCS_Attack uAirAtk;
+
+    //public Stat wallSuAirlideSpeed = new Stat("WallslideSpeed", 5);
 
     public CStates_AdvancedMovement advancedMovementStates;
     public CStates_Attack attackStates;
@@ -64,6 +85,19 @@ public class Player : Character
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
         ComboCounter.AComboIsOver += AddHealthAfterCombo;
+
+        jabAtk = jab.CreateAttackState();
+        dTiltAtk = dTilt.CreateAttackState();
+        uTiltAtk = uTilt.CreateAttackState();
+        fTiltAtk = fTilt.CreateAttackState();
+
+        nAirAtk = nAir.CreateAttackState();
+        fAirAtk = fAir.CreateAttackState();
+        bAirAtk = bAir.CreateAttackState();
+        dAirAtk = dAir.CreateAttackState();
+        uAirAtk = uAir.CreateAttackState();
+
+        dTiltAtk.attackBuff.damageMulti = 2;
     }
 
     void Update()
@@ -613,4 +647,174 @@ public class Player : Character
     }
 
 
+    public override void SCS_CheckForGroundAttacks()
+    {
+
+        if (Attack)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                ChrSM.ChangeState(this, jabAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                ChrSM.ChangeState(this, fTiltAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uTiltAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dTiltAtk);
+            }
+        }
+        else if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f)
+            {
+                Direction = TiltInput.x;
+
+                ChrSM.ChangeState(this, fTiltAtk);
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uTiltAtk);
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dTiltAtk);
+            }
+        }
+    }
+
+    public override void SCS_CheckForAerials()
+    {
+        if (Attack)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                ChrSM.ChangeState(this, nAirAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) == Direction)
+            {
+                ChrSM.ChangeState(this, fAirAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) != Direction)
+            {
+                ChrSM.ChangeState(this, bAirAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uAirAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dAirAtk);
+            }
+
+        }
+
+        if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) == Direction)
+            {
+                ChrSM.ChangeState(this, fAirAtk);
+            }
+            else if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) != Direction)
+            {
+                ChrSM.ChangeState(this, bAirAtk);
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uAirAtk);
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dAirAtk);
+            }
+
+
+        }
+    }
+
+    public override void SCS_CheckForTech()
+    {
+        if (HoldShield)
+        {
+            RaiseComboOverEvent();
+
+            if (Ctr.lastCollisionAngle <= 45)
+            {
+                if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+                {
+                    SCS_ChangeState(StaticStates.roll);
+                }
+                else SCS_ChangeState(StaticStates.standUp);
+            }
+            else if (Ctr.lastCollisionAngle == 90)
+            {
+                if (HoldJump)
+                {
+                    SCS_ChangeState(StaticStates.walljumpStart);
+                }
+                else
+                {
+                    SCS_ChangeState(StaticStates.jumping);
+                }
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.jumping);
+            }
+
+            Ctr.inControl = true;
+        }
+    }
+
+    public override void SCS_GetUpAfterHitLanded()
+    {
+        if (DirectionalInput.y > 0.5f)
+        {
+            SCS_ChangeState(StaticStates.standUp);
+
+        }
+        else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+        {
+            SCS_ChangeState(StaticStates.roll);
+        }
+    }
+
+    public override void SCS_CheckForIdleOptions()
+    {
+        if (DirectionalInput.y < -0.5f)
+            SCS_ChangeState(StaticStates.crouch);
+
+        if (Mathf.Abs(DirectionalInput.x) != 0)
+            SCS_ChangeState(StaticStates.walking);
+
+        if (StrongInputs.x != 0)
+            SCS_ChangeState(StaticStates.dash);
+
+        if (HoldShield)
+            SCS_ChangeState(StaticStates.shield);
+
+        if (Jump)
+            SCS_ChangeState(StaticStates.jumpsquat);
+    }
+
+    public override void SCS_CheckForWalkingOptions()
+    {
+        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
+            SCS_ChangeState(StaticStates.skid);
+
+        if (HoldShield)
+            SCS_ChangeState(StaticStates.shield);
+
+        if (Jump)
+            SCS_ChangeState(StaticStates.jumpsquat);
+
+        if (DirectionalInput.y < -0.5f)
+            SCS_ChangeState(StaticStates.crouch);
+    }
 }

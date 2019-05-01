@@ -60,6 +60,10 @@ public class HitboxManager : _MB
                     damage.Owner = Chr;
                     damage.position = hitBoxPosition;
 
+
+                    damage.damageNumber += Chr.CurrentAttackBuff.damageAdd;
+                    damage.damageNumber *= Chr.CurrentAttackBuff.damageMulti;
+
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);
 
                     /*

@@ -178,7 +178,7 @@ public class Controller2D : MonoBehaviour
 
             if (velocity.y <= 0)
             {
-                groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2),
+                groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin/* / 2*/),
             new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 4, collisionMask);
 
                 if (groundCheck)
@@ -195,7 +195,7 @@ public class Controller2D : MonoBehaviour
                 {
                     platformCasts = new RaycastHit2D[10];
 
-                    RCXY_noAl(Vector2.down, skin * 2, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2), new Vector2(bounds.size.x, skin), platformMask);
+                    RCXY_noAl(Vector2.down, skin * 2, (Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin/* / 2*/), new Vector2(bounds.size.x, skin), platformMask);
 
                     for (int i = 0; i < platformCasts.Length; i++)
                     {
@@ -804,7 +804,7 @@ public class Controller2D : MonoBehaviour
         float moveDistance = (collision.distance - triangleDistance);
 
         //to stop backwards movemenet
-        if (moveDistance < 0) moveDistance = 0;
+        if (moveDistance < 0) moveDistance  *= -1;
 
         return moveDistance;
     }

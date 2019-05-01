@@ -16,8 +16,6 @@ public class Character : _MB, ICanTakeDamage
     protected StatesAndStatsSO statesSO;
     public StatesAndStatsSO StatesSO { get { return statesSO; } }
 
-    public StatesAndStatsPlayerSO PlayerStatesSO { get { return (StatesAndStatsPlayerSO)statesSO; } }
-
     [SerializeField]
     protected List<CS_AttackSO> attackSOs;
 
@@ -48,6 +46,7 @@ public class Character : _MB, ICanTakeDamage
     public List<CardEffect> cardEffects;
 
     public List<Buff> Buffs { get; protected set; }
+    public AttackBuff CurrentAttackBuff;// { get; set; }
 
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
@@ -77,6 +76,7 @@ public class Character : _MB, ICanTakeDamage
     public int LandingLag { get; set; }
     public bool ChangedDirection { get; set; }
     public int HitStunDuration { get; set; }
+    public int HitFreezeDuration { get; set; }
     public Vector2 CollisionReflectVector { get; set; }
     public Vector2 AirDodgeVector { get; set; }
 
@@ -130,6 +130,10 @@ public class Character : _MB, ICanTakeDamage
     public event Action<Damage> ATakesDamage;
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
+
+    public event Action<Character, Damage> ACharacterTakesDasmage;
+
+    public event Action<Character,Vector2> ASpawnProjectile;
 
 
     public override void Init()
@@ -373,6 +377,18 @@ public class Character : _MB, ICanTakeDamage
     {
         if (ATakesDamage != null) ATakesDamage(damage);
         if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
+        if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);
+
+        HitFreezeDuration = (int)damage.damageNumber;
+        HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 4, 10);
+
+        HitStunDuration = CalculateHitstun(damage);
+    }
+
+    protected int CalculateHitstun(Damage damage)
+    {
+        int baseHitstun = 10;
+        return baseHitstun + (int)(damage.damageNumber * (5 - 2 * HealthPercent)); //range 3- 5
     }
 
     public virtual void Die()
@@ -585,6 +601,46 @@ public class Character : _MB, ICanTakeDamage
     public void SCS_ChangeState(SCState newState)
     {
         ChrSM.ChangeState(this, newState);
+    }
+
+    public virtual void SCS_CheckForTech()
+    {
+
+    }
+
+    public virtual void SCS_GetUpAfterHitLanded()
+    {
+        SCS_ChangeState(StaticStates.standUp);
+    }
+
+    public virtual void SCS_CheckForIdleOptions()
+    {
+        if (Mathf.Abs(DirectionalInput.x) != 0)
+            SCS_ChangeState(StaticStates.walking);
+
+        if (Jump)
+            SCS_ChangeState(StaticStates.jumpsquat);
+    }
+
+    public virtual void SCS_CheckForWalkingOptions()
+    {
+        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
+            SCS_ChangeState(StaticStates.idle);
+
+        if (Jump)
+            SCS_ChangeState(StaticStates.jumpsquat);
+    }
+
+    public virtual void RaiseSpawnProjectileEvent(Character chr, Vector2 position)
+    {
+        if (ASpawnProjectile != null) ASpawnProjectile(this,position);
+    }
+
+    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 velocity)
+    {
+        NES_Projectile proj = Instantiate(projectile.gameObject,transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
+        proj.Velocity = velocity * Direction;
+        projectile.destroyAfterSeconds = 5;
     }
 }
 

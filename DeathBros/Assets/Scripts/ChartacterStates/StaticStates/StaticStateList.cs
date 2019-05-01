@@ -49,19 +49,11 @@ public class ChrStateMachine
     }
 }
 
-public enum EStateType { None, Standard, Complex, Flying }
 ///-----------------------------------------------------------------
 /// SCState
 ///-----------------------------------------------------------------
 public class SCState
 {
-    public EStateType stateType;
-
-    public SCState(EStateType stateType = EStateType.Standard)
-    {
-        this.stateType = stateType;
-    }
-
     public virtual void Enter(Character chr)
     {
         if (chr == null) return;
@@ -69,6 +61,8 @@ public class SCState
 
         chr.Timer = 0;
         chr.FrozenInputX = chr.DirectionalInput.x;
+
+        chr.ACharacterTakesDasmage += TakeDamage;
     }
 
     public virtual void Execute(Character chr)
@@ -84,6 +78,8 @@ public class SCState
         if (chr.Anim == null) return;
 
         chr.Anim.animationSpeed = 1;
+
+        chr.ACharacterTakesDasmage -= TakeDamage;
     }
 
     /*
@@ -101,27 +97,24 @@ public class SCState
     }
     */
 
-    protected void ChangeState(Character chr, SCState newState, SCState standardState = null)
+
+    protected void TakeDamage(Character chr, Damage damage)
     {
-        if (chr == null) return;
-
-        if(standardState == null)
+        //if (damage.damageType == EDamageType.Grab)
+        //{
+        //    CS_GetGrabbed grabbed = (CS_GetGrabbed)chr.GetState(typeof(CS_GetGrabbed));
+        //    grabbed.damage = damage;
+        //    ChangeState(typeof(CS_GetGrabbed));
+        //}
+        //else
+        if (chr.shielding)
         {
-            standardState = StaticStates.idle;
-        }
-
-        if (newState.stateType == EStateType.Complex && chr.StatesSO.stateTypes != EStateType.Complex)
-        {
-            chr.ChrSM.ChangeState(chr, standardState);
+            chr.SCS_ChangeState(StaticStates.shieldHit);
         }
         else
         {
-            chr.ChrSM.ChangeState(chr, newState);
+            chr.SCS_ChangeState(StaticStates.hitfreeze);
         }
-    }
-    protected void TakeDamage(Damage damage, Character chr)
-    {
-
     }
 }
 
@@ -130,10 +123,6 @@ public class SCState
 ///-----------------------------------------------------------------
 public class SCS_Idle : SCState
 {
-    public SCS_Idle(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
@@ -151,20 +140,7 @@ public class SCS_Idle : SCState
 
         chr.GetInputs();
 
-        if (chr.DirectionalInput.y < -0.5f)
-            ChangeState(chr, StaticStates.crouch);
-
-        if (Mathf.Abs(chr.DirectionalInput.x) != 0)
-            ChangeState(chr, StaticStates.walking);
-
-        if (chr.StrongInputs.x != 0)
-            ChangeState(chr, StaticStates.dash);
-
-        if (chr.HoldShield)
-            chr.SCS_ChangeState(StaticStates.shield);
-
-        if (chr.Jump)
-            ChangeState(chr, StaticStates.jumpsquat);
+        chr.SCS_CheckForIdleOptions();
 
         chr.SCS_CheckIfGrounded();
 
@@ -177,10 +153,6 @@ public class SCS_Idle : SCState
 ///-----------------------------------------------------------------
 public class SCS_Walking : SCState
 {
-    public SCS_Walking(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
@@ -205,34 +177,7 @@ public class SCS_Walking : SCState
 
         chr.GetInputs();
 
-        if (Mathf.Abs(chr.DirectionalInput.x) == 0f || Mathf.Sign(chr.DirectionalInput.x) != chr.Direction)
-        {
-            ChangeState(chr, StaticStates.skid);
-
-            //CState exit = (CS_Skid)chr.GetState(typeof(CS_Skid));
-            //
-            //if (exit != null)
-            //{
-            //    CS_Skid skid = (CS_Skid)exit;
-            //    skid.direction = chr.Direction;
-            //}
-            //else
-            //{
-            //    exit = (CS_Idle)chr.GetState(typeof(CS_Idle));
-            //}
-            //ChangeState(exit);
-
-        }
-
-        if (chr.HoldShield)
-            chr.SCS_ChangeState(StaticStates.shield);
-
-        if (chr.Jump)
-            ChangeState(chr, StaticStates.jumpsquat);
-
-
-        if (chr.DirectionalInput.y < -0.5f)
-            ChangeState(chr, StaticStates.crouch);
+        chr.SCS_CheckForWalkingOptions();
 
         chr.SCS_CheckForGroundAttacks();
 
@@ -246,10 +191,6 @@ public class SCS_Walking : SCState
 ///-----------------------------------------------------------------
 public class SCS_Jumping : SCState
 {
-    public SCS_Jumping(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Execute(Character chr)
     {
         base.Execute(chr);
@@ -286,13 +227,13 @@ public class SCS_Jumping : SCState
 
             if (chr.jumpsUsed < chr.GetCurrentStatValue("Jumps"))
             {
-                ChangeState(chr, StaticStates.doubleJumpsquat);
+                chr.SCS_ChangeState(StaticStates.doubleJumpsquat);
             }
         }
 
         if (chr.Ctr.onWall)
-        
-          ChangeState(chr, StaticStates.wallsliding);
+
+            chr.SCS_ChangeState(StaticStates.wallsliding);
         
          
         if (chr.Shield)
@@ -310,15 +251,11 @@ public class SCS_Jumping : SCState
 ///-----------------------------------------------------------------
 public class SCS_Crouch : SCState
 {
-    public SCS_Crouch(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.crouch_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.crouch_anim);
     }
 
     public override void Execute(Character chr)
@@ -336,12 +273,12 @@ public class SCS_Crouch : SCState
 
         if (chr.DirectionalInput.y >= -0.25f)
         {
-            ChangeState(chr, StaticStates.idle);
+            chr.SCS_ChangeState(StaticStates.idle);
         }
 
         if (chr.Jump)
         {
-            ChangeState(chr, StaticStates.jumpsquat);
+            chr.SCS_ChangeState(StaticStates.jumpsquat);
         }
 
         chr.SCS_CheckIfGrounded();
@@ -356,10 +293,6 @@ public class SCS_Crouch : SCState
 ///-----------------------------------------------------------------
 public class SCS_Jumpsquat : SCState
 {
-    public SCS_Jumpsquat(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
@@ -391,7 +324,7 @@ public class SCS_Jumpsquat : SCState
             }
             else
             {
-                ChangeState(chr, StaticStates.jumping);
+                chr.SCS_ChangeState(StaticStates.jumping);
 
                 chr.GetInputs();
 
@@ -421,15 +354,11 @@ public class SCS_Jumpsquat : SCState
 
 public class SCS_DoubleJumpsquat : SCState
 {
-    public SCS_DoubleJumpsquat(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.doublejumpsquat_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.doublejumpsquat_anim);
     }
 
     public override void Execute(Character chr)
@@ -437,9 +366,9 @@ public class SCS_DoubleJumpsquat : SCState
         base.Execute(chr);
 
 
-        if (chr.Timer >= chr.PlayerStatesSO.doublejumpsquat_duration)
+        if (chr.Timer >= chr.StatesSO.doublejumpsquat_duration)
         {
-            ChangeState(chr, StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.jumping);
             chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength");
         }
     }
@@ -459,10 +388,6 @@ public class SCS_DoubleJumpsquat : SCState
 ///-----------------------------------------------------------------
 public class SCS_Landing : SCState
 {
-    public SCS_Landing(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
@@ -482,16 +407,23 @@ public class SCS_Landing : SCState
 
             if (chr.DirectionalInput.y < 0)
             {
-                ChangeState(chr, StaticStates.crouch);
+                chr.SCS_ChangeState(StaticStates.crouch);
             }
             else
             {
-                ChangeState(chr, StaticStates.idle);
+                chr.SCS_ChangeState(StaticStates.idle);
             }
         }
 
         chr.FrozenInputX *= 0.8f;
         chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.LandingLag = 0;
     }
 }
 
@@ -500,17 +432,13 @@ public class SCS_Landing : SCState
 ///-----------------------------------------------------------------
 public class SCS_Dash : SCState
 {
-    public SCS_Dash(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
         chr.Direction = Mathf.Sign(chr.FrozenInputX);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.dash_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.dash_anim);
     }
 
     public override void Execute(Character chr)
@@ -521,19 +449,19 @@ public class SCS_Dash : SCState
 
         if (Mathf.Sign(chr.DirectionalInput.x) != chr.Direction && Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
         {
-            ChangeState(chr, StaticStates.idle);
+            chr.SCS_ChangeState(StaticStates.idle);
         }
 
 
-        if (chr.Timer >= chr.PlayerStatesSO.dash_duration)
+        if (chr.Timer >= chr.StatesSO.dash_duration)
         {
             if (chr.DirectionalInput.x == 0)
             {
-                ChangeState(chr, StaticStates.idle);
+                chr.SCS_ChangeState(StaticStates.idle);
             }
             else
             {
-                ChangeState(chr, StaticStates.walking);
+                chr.SCS_ChangeState(StaticStates.walking);
             }
         }
 
@@ -544,7 +472,7 @@ public class SCS_Dash : SCState
 
         if (chr.Jump)
         {
-            ChangeState(chr, StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.jumping);
         }
 
         if (chr.Timer <= 5)
@@ -564,10 +492,6 @@ public class SCS_Dash : SCState
 ///-----------------------------------------------------------------
 public class SCS_Skid : SCState
 {
-    public SCS_Skid(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         //base.Enter(chr);
@@ -578,7 +502,7 @@ public class SCS_Skid : SCState
         chr.IdleTimer = 0;
         chr.Timer = 0;
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.skid_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.skid_anim);
     }
 
     public override void Execute(Character chr)
@@ -605,21 +529,21 @@ public class SCS_Skid : SCState
 
         chr.SetInputs(new Vector2(chr.FrozenInputX * 0.9f, 0));
 
-        if (chr.Timer >= chr.PlayerStatesSO.skid_duration)
+        if (chr.Timer >= chr.StatesSO.skid_duration)
         {
-            ChangeState(chr, StaticStates.idle);
+            chr.SCS_ChangeState(StaticStates.idle);
 
             chr.GetInputs();
         }
-        else if (chr.IdleTimer >= chr.PlayerStatesSO.skid_idleOutDuration)
+        else if (chr.IdleTimer >= chr.StatesSO.skid_idleOutDuration)
         {
-            ChangeState(chr, StaticStates.idle);
+            chr.SCS_ChangeState(StaticStates.idle);
 
             chr.GetInputs();
         }
         else if (chr.Jump)
         {
-            ChangeState(chr, StaticStates.jumpsquat);
+            chr.SCS_ChangeState(StaticStates.jumpsquat);
         }
     }
 }
@@ -629,21 +553,17 @@ public class SCS_Skid : SCState
 ///-----------------------------------------------------------------
 public class SCS_Wallsliding : SCState
 {
-    public SCS_Wallsliding(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Execute(Character chr)
     {
         base.Execute(chr);
 
         if (chr.Ctr.velocity.y > 0)
         {
-            chr.Anim.ChangeAnimation(chr.PlayerStatesSO.wallslidingUp_anim);
+            chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingUp_anim);
         }
         else
         {
-            chr.Anim.ChangeAnimation(chr.PlayerStatesSO.wallslidingDown_anim);
+            chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingDown_anim);
         }
 
         chr.Spr.flipX = chr.Ctr.wallDirection == -1;
@@ -654,7 +574,7 @@ public class SCS_Wallsliding : SCState
 
         if (!chr.Ctr.onWall)
         {
-            ChangeState(chr, StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.jumping);
         }
 
         chr.SCS_CheckForAerials();
@@ -663,7 +583,7 @@ public class SCS_Wallsliding : SCState
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 
-            ChangeState(chr, StaticStates.walljumpStart);
+            chr.SCS_ChangeState(StaticStates.walljumpStart);
         }
     }
 
@@ -682,10 +602,6 @@ public class SCS_WalljumpStart : SCState
 {
     protected float jumpHeightReductionFactor = 0.75f;
 
-    public SCS_WalljumpStart(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
@@ -693,19 +609,19 @@ public class SCS_WalljumpStart : SCState
         chr.Spr.flipX = chr.Ctr.wallDirection == 1;
         chr.SetInputs(Vector2.zero);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.walljumpstart_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.walljumpstart_anim);
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
 
-        if (chr.Timer >= chr.PlayerStatesSO.walljumpstart_duration)
+        if (chr.Timer >= chr.StatesSO.walljumpstart_duration)
         {
             chr.SetInputs(new Vector2(-Mathf.Sign(chr.FrozenInputX), 0));
             chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * jumpHeightReductionFactor;
 
-            ChangeState(chr, StaticStates.walljumping);
+            chr.SCS_ChangeState(StaticStates.walljumping);
         }
     }
 }
@@ -715,15 +631,11 @@ public class SCS_WalljumpStart : SCState
 ///-----------------------------------------------------------------
 public class SCS_Walljumping : SCState
 {
-    public SCS_Walljumping(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.walljumping_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.walljumping_anim);
     }
 
     public override void Execute(Character chr)
@@ -740,13 +652,13 @@ public class SCS_Walljumping : SCState
 
         if (chr.Ctr.onWall)
         {
-            ChangeState(chr, StaticStates.wallsliding);
+            chr.SCS_ChangeState(StaticStates.wallsliding);
         }
 
 
-        if (chr.Timer >= chr.PlayerStatesSO.walljumping_duration)
+        if (chr.Timer >= chr.StatesSO.walljumping_duration)
         {
-            ChangeState(chr, StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.jumping);
         }
     }
 }
@@ -759,10 +671,6 @@ public class SCS_Hitstun : SCState
 
     //public int minDuration = 3;
     private float spawnCloudVelocity = 10;
-
-    public SCS_Hitstun(EStateType stateType = EStateType.Standard) : base(stateType)
-    {
-    }
 
     public override void Enter(Character chr)
     {
@@ -805,14 +713,14 @@ public class SCS_Hitstun : SCState
         if (chr.Timer > chr.HitStunDuration)
         {
             chr.Ctr.inControl = true;
-            ChangeState(chr, StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.jumping);
 
             chr.RaiseComboOverEvent();
         }
 
         if (chr.Ctr.collision)
         {
-            ChangeState(chr, StaticStates.hitland);
+            chr.SCS_ChangeState(StaticStates.hitland);
         }
     }
 
@@ -821,6 +729,8 @@ public class SCS_Hitstun : SCState
         base.Exit(chr);
 
         chr.Ctr.freeze = false;
+
+        chr.HitStunDuration = 0;
     }
 }
 
@@ -847,9 +757,9 @@ public class SCS_Hitfreeze : SCState
     {
         base.Execute(chr);
 
-        if (chr.Timer > chr.StatesSO.hitfreeze_duration)
+        if (chr.Timer > chr.HitFreezeDuration)
         {
-            ChangeState(chr,StaticStates.hitstun);
+            chr.SCS_ChangeState(StaticStates.hitstun);
         }
     }
 
@@ -916,15 +826,14 @@ public class SCS_Roll : SCState
         base.Enter(chr);
 
         chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.roll_anim);
-
+        chr.Anim.ChangeAnimation(chr.StatesSO.roll_anim);
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
 
-        chr.SetInputs(new Vector2(chr.FrozenInputX * 0.8f, 0));
+        chr.SetInputs(new Vector2(Mathf.Sign(chr.FrozenInputX) * 0.8f, 0));
 
         if (chr.Ctr.onLedge)
         {
@@ -968,37 +877,7 @@ public class SCS_HitLand : SCState
 
         chr.GetInputs();
 
-        // Check for tech
-        if (chr.HoldShield)
-        {
-            chr.RaiseComboOverEvent();
-
-            if (chr.Ctr.lastCollisionAngle <= 45)
-            {
-                if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
-                {
-                    chr.SCS_ChangeState(StaticStates.roll);
-                }
-                else chr.SCS_ChangeState(StaticStates.standUp);
-            }
-            else if (chr.Ctr.lastCollisionAngle == 90)
-            {
-                if (chr.HoldJump)
-                {
-                    chr.SCS_ChangeState(StaticStates.walljumpStart);
-                }
-                else
-                {
-                    chr.SCS_ChangeState(StaticStates.jumping);
-                }
-            }
-            else
-            {
-                chr.SCS_ChangeState(StaticStates.jumping);
-            }
-
-            chr.Ctr.inControl = true;
-        }
+        chr.SCS_CheckForTech();
 
         if (chr.Timer > chr.StatesSO.hitland_duration)
         {
@@ -1053,15 +932,7 @@ public class SCS_HitLanded : SCState
 
         if (chr.Timer > chr.StatesSO.hitLanded_minDuration)
         {
-            if (chr.DirectionalInput.y > 0.5f)
-            {
-                chr.SCS_ChangeState(StaticStates.standUp);
-
-            }
-            else if (Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
-            {
-                    chr.SCS_ChangeState(StaticStates.roll);
-            }
+            chr.SCS_GetUpAfterHitLanded();
         }
 
         chr.SetInputs(Vector2.zero);
@@ -1147,11 +1018,11 @@ public class SCS_ThrowItem : SCState
 
         if (!chr.Ctr.IsGrounded)
         {
-            chr.Anim.ChangeAnimation(chr.PlayerStatesSO.throwitemaerial_anim);
+            chr.Anim.ChangeAnimation(chr.StatesSO.throwitemaerial_anim);
         }
         else
         {
-            chr.Anim.ChangeAnimation(chr.PlayerStatesSO.throwitem_anim);
+            chr.Anim.ChangeAnimation(chr.StatesSO.throwitem_anim);
         }
     }
 
@@ -1206,7 +1077,7 @@ public class SCS_AirDodge : SCState
         chr.AirDodgeVector = chr.DirectionalInput;
         chr.AirDodgeVector = new Vector2(chr.AirDodgeVector.x, chr.AirDodgeVector.y * 0.3f); //otherwise too high up
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.airdodge_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.airdodge_anim);
     }
 
     public override void Execute(Character chr)
@@ -1237,7 +1108,7 @@ public class SCS_ShieldHit : SCState
         base.Enter(chr);
 
         chr.shielding = true;
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.shieldhit_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.shieldhit_anim);
 
     }
     public override void Execute(Character chr)
@@ -1269,7 +1140,7 @@ public class SCS_Grab : SCState
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.PlayerStatesSO.grab_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.grab_anim);
     }
     public override void Execute(Character chr)
     {

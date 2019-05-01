@@ -85,6 +85,13 @@ public class FrameAnimator : _MB
 
                 if (currentFrame.spawnProjectile != Vector2.zero)
                 {
+                    Character chr = GetComponent<Character>();
+                    if (chr != null)
+                    {
+                        chr.RaiseSpawnProjectileEvent(chr, currentFrame.spawnProjectile);
+                    }
+
+
                     if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
                 }
 

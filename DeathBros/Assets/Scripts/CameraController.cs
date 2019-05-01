@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CameraController : MonoBehaviour
 {
+    public CanvasScaler canvasScaler;
+
+    [Space]
     public Transform target;
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
@@ -25,6 +29,7 @@ public class CameraController : MonoBehaviour
     protected BoxCollider2D movementBoundsCollider;
 
     public static Vector2 Position { get { return Camera.main.transform.position; } }
+
     void Start()
     {
         cam = Camera.main;
@@ -36,6 +41,9 @@ public class CameraController : MonoBehaviour
         //Character.ATakesDamageAll += ShakeCameraOnDamage;
         //Character.ATakesDamageAll += FreezeCameraOnDamage;
         Character.ATakesDamageAll += FreezeThenShakeCameraOnDamage;
+
+        //cam.orthographicSize = 160 / pixelsPerUnit / 2;
+        //canvasScaler.referenceResolution = new Vector2(cam.pixelRect.width, cam.pixelRect.height);
     }
 
     void LateUpdate()

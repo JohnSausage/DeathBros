@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0bc4342d105f44385d1afb45a3dd33, type: 3}
   m_Name: GoblinStates
   m_EditorClassIdentifier: 
+  stateTypes: 1
   idle_anim: idle
   walking_anim: walk
   running_anim: walk
@@ -33,3 +34,25 @@ MonoBehaviour:
   hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
   getGrabbed_anim: hit
+  doublejumpsquat_anim: idle
+  doublejumpsquat_duration: 3
+  wallslidingDown_anim: idle
+  wallslidingUp_anim: idle
+  walljumpstart_anim: idle
+  wallJumpHeightReductionFactor: 0.75
+  walljumpstart_duration: 3
+  walljumping_anim: idle
+  walljumping_duration: 20
+  skid_anim: idle
+  skid_duration: 0
+  skid_idleOutDuration: 0
+  dash_anim: idle
+  dash_duration: 0
+  crouch_anim: idle
+  roll_anim: idle
+  throwitem_anim: idle
+  throwitemaerial_anim: idle
+  airdodge_anim: idle
+  airdodge_duration: 10
+  shieldhit_anim: idle
+  grab_anim: grab

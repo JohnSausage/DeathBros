@@ -72,13 +72,20 @@ public class AudioManager : _MB
         sound.Source.loop = sound.loop;
     }
 
-    public static void PlaySound(string name)
+    public static void PlaySound(string name, bool retry = true)
     {
         Sound s = Instance.sounds.Find(x => x.name == name);
 
         if (s == null)
         {
-            Debug.Log(name + " sound not found!");
+            if (retry)
+            {
+                Instance.StartCoroutine(Instance.PlaySoundRetry(name));
+            }
+            else
+            {
+                Debug.Log(name + " sound not found!");
+            }
         }
         else
         {
@@ -110,5 +117,11 @@ public class AudioManager : _MB
     {
         Instance.InitSound(sound);
         Instance.sounds.Add(sound);
+    }
+
+    IEnumerator PlaySoundRetry(string name)
+    {
+        yield return new WaitForSeconds(1);
+        PlaySound(name,false);
     }
 }
