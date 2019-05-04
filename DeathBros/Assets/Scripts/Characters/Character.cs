@@ -133,7 +133,7 @@ public class Character : _MB, ICanTakeDamage
 
     public event Action<Character, Damage> ACharacterTakesDasmage;
 
-    public event Action<Character,Vector2> ASpawnProjectile;
+    public event Action<Character, Vector2> ASpawnProjectile;
 
 
     public override void Init()
@@ -329,48 +329,57 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void TakeDamage(Damage damage)
     {
-        if (!dead)
+        if(damage.damageType == EDamageType.Trigger) // e.g. used to trigger the explosion of projectiles
         {
-            if (shielding)
-            {
-                damage.damageNumber *= 0.25f;
-
-                RaiseTakeDamageEvents(damage);
-
-                AudioManager.PlaySound("NES_hit1");
-
-                currentDamage = damage;
-
-                if (damage.Owner != null)
-                {
-                    damage.Owner.HitEnemy(this, damage);
-                }
-
-                currentHealth -= damage.damageNumber;
-            }
-            else
-            {
-                RaiseTakeDamageEvents(damage);
-
-                AudioManager.PlaySound("NES_hit1");
-                Flash(EffectManager.ColorHit, 3);
-
-                currentDamage = damage;
-
-                if (damage.Owner != null)
-                {
-                    damage.Owner.HitEnemy(this, damage);
-                }
-
-                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
-
-                currentHealth -= damage.damageNumber;
-            }
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
+            return;
         }
+
+        if (dead)
+        {
+            return;
+        }
+        
+        if (shielding)
+        {
+            damage.damageNumber *= 0.25f;
+
+            RaiseTakeDamageEvents(damage);
+
+            AudioManager.PlaySound("NES_hit1");
+
+            currentDamage = damage;
+
+            if (damage.Owner != null)
+            {
+                damage.Owner.HitEnemy(this, damage);
+            }
+
+            currentHealth -= damage.damageNumber;
+        }
+        else
+        {
+            RaiseTakeDamageEvents(damage);
+
+            AudioManager.PlaySound("NES_hit1");
+            Flash(EffectManager.ColorHit, 3);
+
+            currentDamage = damage;
+
+            if (damage.Owner != null)
+            {
+                damage.Owner.HitEnemy(this, damage);
+            }
+
+            currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+
+            currentHealth -= damage.damageNumber;
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
     }
 
     protected void RaiseTakeDamageEvents(Damage damage)
@@ -633,14 +642,14 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void RaiseSpawnProjectileEvent(Character chr, Vector2 position)
     {
-        if (ASpawnProjectile != null) ASpawnProjectile(this,position);
+        if (ASpawnProjectile != null) ASpawnProjectile(this, position);
     }
 
-    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 velocity)
+    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 direction)
     {
-        NES_Projectile proj = Instantiate(projectile.gameObject,transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
-        proj.Velocity = velocity * Direction;
-        projectile.destroyAfterSeconds = 5;
+        NES_Projectile proj = Instantiate(projectile.gameObject, transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
+        proj.Velocity = new Vector2(proj.Velocity.x * Direction, proj.Velocity.y);
+        proj.SetOwner(this);
     }
 }
 

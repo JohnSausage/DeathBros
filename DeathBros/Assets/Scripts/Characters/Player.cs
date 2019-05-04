@@ -15,6 +15,11 @@ public class Player : Character
     public StaticAttackStateSO dAir;
     public StaticAttackStateSO uAir;
 
+    public StaticAttackStateSO nSpec;
+    public StaticAttackStateSO sSpec;
+    public StaticAttackStateSO uSpec;
+    public StaticAttackStateSO dSpec;
+
     public SCS_Attack jabAtk;
     public SCS_Attack dTiltAtk;
     public SCS_Attack uTiltAtk;
@@ -25,6 +30,11 @@ public class Player : Character
     public SCS_Attack bAirAtk;
     public SCS_Attack dAirAtk;
     public SCS_Attack uAirAtk;
+
+    public SCS_Attack nSpecAtk;
+    public SCS_Attack sSpecAtk;
+    public SCS_Attack uSpecAtk;
+    public SCS_Attack dSpecAtk;
 
     //public Stat wallSuAirlideSpeed = new Stat("WallslideSpeed", 5);
 
@@ -97,7 +107,12 @@ public class Player : Character
         dAirAtk = dAir.CreateAttackState();
         uAirAtk = uAir.CreateAttackState();
 
-        dTiltAtk.attackBuff.damageMulti = 2;
+        nSpecAtk = nSpec.CreateAttackState();
+        sSpecAtk = sSpec.CreateAttackState();
+        uSpecAtk = uSpec.CreateAttackState();
+        dSpecAtk = dSpec.CreateAttackState();
+
+        dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
     }
 
     void Update()
@@ -686,6 +701,26 @@ public class Player : Character
                 ChrSM.ChangeState(this, dTiltAtk);
             }
         }
+
+        if (Special)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                ChrSM.ChangeState(this, nSpecAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                ChrSM.ChangeState(this, sSpecAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uSpecAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dSpecAtk);
+            }
+        }
     }
 
     public override void SCS_CheckForAerials()
@@ -712,7 +747,6 @@ public class Player : Character
             {
                 ChrSM.ChangeState(this, dAirAtk);
             }
-
         }
 
         if (TiltInput != Vector2.zero)
@@ -733,8 +767,26 @@ public class Player : Character
             {
                 ChrSM.ChangeState(this, dAirAtk);
             }
+        }
 
-
+        if (Special)
+        {
+            if (DirectionalInput == Vector2.zero)
+            {
+                ChrSM.ChangeState(this, nSpecAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                ChrSM.ChangeState(this, sSpecAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uSpecAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dSpecAtk);
+            }
         }
     }
 

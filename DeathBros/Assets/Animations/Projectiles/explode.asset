@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: fAir
+  m_Name: explode
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
-    sprite: {fileID: 21300078, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 2
+    sprite: {fileID: 21300008, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -24,8 +24,32 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300080, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 1
+    sprite: {fileID: 21300010, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes: []
+    hitboxes: []
+    soundName: 
+  - duration: 1
+    sprite: {fileID: 21300012, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes: []
+    hitboxes: []
+    soundName: 
+  - duration: 1
+    sprite: {fileID: 21300014, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -35,23 +59,23 @@ MonoBehaviour:
     spawnHoldItem: {fileID: 0}
     hurtboxes: []
     hitboxes:
-    - position: {x: 0.421875, y: 0.3125}
-      radius: 1
+    - position: {x: 0, y: 0}
+      radius: 0.6
       damage:
-        damageNumber: 15
+        damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 12
-        knockbackGrowth: 0
-        damageType: 0
+        baseKnockback: 10
+        knockbackGrowth: 5
+        damageType: 4
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 12137
+      ID: 92725
       getNewID: 0
     soundName: 
   - duration: 2
-    sprite: {fileID: 21300082, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+    sprite: {fileID: 21300016, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -61,23 +85,23 @@ MonoBehaviour:
     spawnHoldItem: {fileID: 0}
     hurtboxes: []
     hitboxes:
-    - position: {x: 0.484375, y: -0.40625}
-      radius: 1
+    - position: {x: 0, y: 0}
+      radius: 0.8
       damage:
-        damageNumber: 15
+        damageNumber: 5
         knockBackDirection: {x: 1, y: 1}
-        baseKnockback: 12
-        knockbackGrowth: 0
-        damageType: 0
+        baseKnockback: 10
+        knockbackGrowth: 5
+        damageType: 4
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 12137
+      ID: 92725
       getNewID: 0
-    soundName: NES_swoosh1
-  - duration: 15
-    sprite: {fileID: 21300084, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+    soundName: 
+  - duration: 2
+    sprite: {fileID: 21300018, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -86,14 +110,28 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes: []
-    hitboxes: []
+    hitboxes:
+    - position: {x: 0, y: 0}
+      radius: 1
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 1}
+        baseKnockback: 10
+        knockbackGrowth: 5
+        damageType: 4
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+      ID: 65327
+      getNewID: 0
     soundName: 
   damages:
-  - damageNumber: 15
+  - damageNumber: 5
     knockBackDirection: {x: 1, y: 1}
-    baseKnockback: 12
-    knockbackGrowth: 0
-    damageType: 0
+    baseKnockback: 10
+    knockbackGrowth: 5
+    damageType: 4
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}

@@ -1070,7 +1070,7 @@ Prefab:
     - target: {fileID: 224179174761730326, guid: 14b338fd98054f64aac6f841b9a326f1,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224179174761730326, guid: 14b338fd98054f64aac6f841b9a326f1,
         type: 2}
@@ -4051,7 +4051,7 @@ MonoBehaviour:
   soulMeterMax: 100
   soulMeterBalanceRate: 0.025
   shielding: 0
-  jab: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  jab: {fileID: 11400000, guid: f1a872cfa4a699547a7192b54c72b244, type: 2}
   dTilt: {fileID: 11400000, guid: 452c474a2a5e769439842dc3af19de4f, type: 2}
   uTilt: {fileID: 11400000, guid: b9a29f524fa21064ebbb8529b46b21aa, type: 2}
   fTilt: {fileID: 11400000, guid: d371895bafd9be54d900d0614c8d3a7c, type: 2}
@@ -4060,6 +4060,10 @@ MonoBehaviour:
   bAir: {fileID: 11400000, guid: 03d18d9223e5c244bb941cd3071c2f6b, type: 2}
   dAir: {fileID: 11400000, guid: 819a2609c410e7d43a3b4c25cd5dc6c7, type: 2}
   uAir: {fileID: 11400000, guid: 9eedbbd7aad4fb2499396aa2c4f5375a, type: 2}
+  nSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  sSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  uSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  dSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
   advancedMovementStates:
     idle:
       animationName: idle

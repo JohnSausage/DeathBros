@@ -22,8 +22,7 @@ GameObject:
   - component: {fileID: 212135830212102026}
   - component: {fileID: 114940108949917332}
   - component: {fileID: 114121695611491556}
-  - component: {fileID: 114832200152671690}
-  - component: {fileID: 58953432801460498}
+  - component: {fileID: 114495431552907718}
   m_Layer: 0
   m_Name: NESProjetileTest
   m_TagString: Untagged
@@ -44,21 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58953432801460498
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1369209867268328}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.44
 --- !u!114 &114121695611491556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,7 +54,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9478d562682b0724dba5e3da81c2364e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114832200152671690
+  fly_anim: fly
+  explode_anim: explode
+  Velocity: {x: 10, y: 0}
+  destroyAfterSeconds: 0.5
+--- !u!114 &114495431552907718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,33 +66,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1369209867268328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03fe77aefa05c4747bf90529d0794263, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce20147491b8224f9e36b3d2082c3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage:
-    damageNumber: 10
-    knockBackDirection: {x: 2, y: 2}
-    baseKnockback: 10
-    knockbackGrowth: 10
-    damageType: 0
-    attackType: 19
-    editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0, y: 0}
-    position: {x: 0, y: 0}
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 2048
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  currentID: 0
 --- !u!114 &114940108949917332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAnimation: {fileID: 0}
-  frameAnimationsSO: {fileID: 0}
+  frameAnimationsSO: {fileID: 11400000, guid: 930d11ac45b01814a939b123b7be0362, type: 2}
   animationSpeed: 1
 --- !u!212 &212135830212102026
 SpriteRenderer:
@@ -154,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 184962683
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 00d968e8cc41bb24e8f91a21e68777aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

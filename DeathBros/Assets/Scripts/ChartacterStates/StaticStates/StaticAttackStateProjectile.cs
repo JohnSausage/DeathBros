@@ -52,26 +52,46 @@ public class SCS_SpecialAttackProjectile : SCS_SpecialAttack
 
 public class SCS_SpecialAttack : SCS_Attack
 {
+    protected bool waveBounced;
 
     public override void Enter(Character chr)
     {
         base.Enter(chr);
+
+        waveBounced = false;
     }
 
     public override void Execute(Character chr)
+
     {
         base.Execute(chr);
+
+        CheckForWaveBounce(chr);
 
         chr.FrozenInputX *= 0.95f;
 
         chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
 
-        //if (chr.Ctr.onLedge)
-        //    chr.SetInputs(Vector2.zero);
-
         if (chr.Anim.animationOver)
         {
             chr.SCS_Idle();
+        }
+    }
+
+    protected void CheckForWaveBounce(Character chr)
+    {
+        if(chr.Timer >= 5)
+        {
+            return;
+        }
+
+        if(waveBounced == false)
+        {
+            if(chr.Direction != Mathf.Sign(chr.DirectionalInput.x))
+            {
+                chr.Direction = -chr.Direction;
+                waveBounced = true;
+            }
         }
     }
 }

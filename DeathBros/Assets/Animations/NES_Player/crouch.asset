@@ -19,7 +19,7 @@ MonoBehaviour:
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
     addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 0, y: 0.5}
+    spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
     - position: {x: 0, y: -0.125}

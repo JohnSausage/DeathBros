@@ -8,10 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ebd9868f9757c40bf2e2320a26dc3e, type: 3}
-  m_Name: PlayerFireball
+  m_Script: {fileID: 11500000, guid: 122d3b7926ad24f4ab1beb873bd8bdac, type: 3}
+  m_Name: FireballFA
   m_EditorClassIdentifier: 
-  animationName: cast
-  projectile: {fileID: 114121695611491556, guid: 2bcfda0a08cf74c4d9cc99655b34e28c,
-    type: 2}
-  projectileVelocity: {x: 1, y: 0}
+  frameAnimations:
+  - {fileID: 11400000, guid: f73166403fc7bbf439e98e076a954935, type: 2}
+  - {fileID: 11400000, guid: 4ed09af41c7b7494fa54cb4bc1245587, type: 2}
