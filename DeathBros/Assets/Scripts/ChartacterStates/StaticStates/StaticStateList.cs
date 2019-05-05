@@ -127,7 +127,7 @@ public class SCS_Idle : SCState
     {
         base.Enter(chr);
 
-        chr.jumpsUsed = 0;
+        //chr.jumpsUsed = 0;
 
         chr.Anim.animationSpeed = 1.5f;
 
@@ -392,7 +392,10 @@ public class SCS_Landing : SCState
     {
         base.Enter(chr);
 
+        chr.jumpsUsed = 0;
+
         chr.Anim.ChangeAnimation(chr.StatesSO.landing_anim);
+        chr.SCS_RaiseLandingEvent();
     }
 
     public override void Execute(Character chr)
@@ -863,6 +866,10 @@ public class SCS_HitLand : SCState
     public override void Enter(Character chr)
     {
         base.Enter(chr);
+
+        chr.jumpsUsed = 0;
+        chr.SCS_RaiseLandingEvent();
+
         chr.Ctr.freeze = true;
         chr.Ctr.inControl = false;
         chr.CollisionReflectVector = chr.Ctr.collisionReflect;

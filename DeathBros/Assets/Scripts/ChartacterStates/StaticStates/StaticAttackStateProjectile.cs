@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "StaticAttackStates/Special_Projectile")]
-public class StaticAttackStateProjectile : StaticAttackStateSO
+public class StaticAttackStateProjectile : StaticAttackStateSpecial
 {
     public NES_Projectile projectile;
     public Vector2 projectileVelocity;
@@ -12,9 +12,26 @@ public class StaticAttackStateProjectile : StaticAttackStateSO
     {
         SCS_SpecialAttackProjectile projectileAttack = new SCS_SpecialAttackProjectile();
         projectileAttack.animationName = animationName;
+        projectileAttack.aerialLimit = aerialLimit;
+
         projectileAttack.projectile = projectile;
         projectileAttack.projectileVelocity = projectileVelocity;
         projectileAttack.attackBuff = new AttackBuff();
+        return projectileAttack;
+    }
+
+    public override SCS_SpecialAttack CreateAttackState(ESpecial type)
+    {
+        SCS_SpecialAttackProjectile projectileAttack = new SCS_SpecialAttackProjectile();
+
+        projectileAttack.animationName = animationName;
+        projectileAttack.aerialLimit = aerialLimit;
+        projectileAttack.attackBuff = new AttackBuff();
+
+        projectileAttack.projectile = projectile;
+        projectileAttack.projectileVelocity = projectileVelocity;
+        projectileAttack.type = type;
+        projectileAttack.comboPowerCost = comboPowerCost;
         return projectileAttack;
     }
 }
@@ -46,52 +63,5 @@ public class SCS_SpecialAttackProjectile : SCS_SpecialAttack
     protected void SpawnProjectile(Character chr, Vector2 position)
     {
         chr.SCS_SpawnProjetile(projectile, projectileVelocity);
-    }
-}
-
-
-public class SCS_SpecialAttack : SCS_Attack
-{
-    protected bool waveBounced;
-
-    public override void Enter(Character chr)
-    {
-        base.Enter(chr);
-
-        waveBounced = false;
-    }
-
-    public override void Execute(Character chr)
-
-    {
-        base.Execute(chr);
-
-        CheckForWaveBounce(chr);
-
-        chr.FrozenInputX *= 0.95f;
-
-        chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
-
-        if (chr.Anim.animationOver)
-        {
-            chr.SCS_Idle();
-        }
-    }
-
-    protected void CheckForWaveBounce(Character chr)
-    {
-        if(chr.Timer >= 5)
-        {
-            return;
-        }
-
-        if(waveBounced == false)
-        {
-            if(chr.Direction != Mathf.Sign(chr.DirectionalInput.x))
-            {
-                chr.Direction = -chr.Direction;
-                waveBounced = true;
-            }
-        }
     }
 }

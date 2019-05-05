@@ -134,6 +134,7 @@ public class Character : _MB, ICanTakeDamage
     public event Action<Character, Damage> ACharacterTakesDasmage;
 
     public event Action<Character, Vector2> ASpawnProjectile;
+    public event Action AIsLanding;
 
 
     public override void Init()
@@ -650,6 +651,17 @@ public class Character : _MB, ICanTakeDamage
         NES_Projectile proj = Instantiate(projectile.gameObject, transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
         proj.Velocity = new Vector2(proj.Velocity.x * Direction, proj.Velocity.y);
         proj.SetOwner(this);
+        proj.GetComponent<SpriteRenderer>().flipX = Spr.flipX; // Otherwise damge direction is wrong
+    }
+
+    public virtual void SCS_RaiseLandingEvent()
+    {
+        if (AIsLanding != null) AIsLanding();
+    }
+
+    public virtual void SCS_CountSpecial(ESpecial type)
+    {
+
     }
 }
 

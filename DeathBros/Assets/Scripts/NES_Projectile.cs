@@ -50,7 +50,7 @@ public class NES_Projectile : MonoBehaviour
         {
             spr.flipX = true;
         }
-        else
+        else if (Velocity.x > 0)
         {
             spr.flipX = false;
         }
@@ -64,13 +64,13 @@ public class NES_Projectile : MonoBehaviour
 
     protected void DestroyAfterAnimation(FrameAnimation anim)
     {
-        if(anim.name == explode_anim)
+        if (anim.name == explode_anim)
         {
             Destroy(gameObject);
         }
     }
 
-    protected void ExplodeOnHit(Character hitChr)
+    protected void ExplodeOnHit(Character hitChr, Damage damage)
     {
         Velocity = Vector2.zero;
         fanim.ChangeAnimation(explode_anim);

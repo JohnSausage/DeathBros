@@ -15,10 +15,11 @@ public class Player : Character
     public StaticAttackStateSO dAir;
     public StaticAttackStateSO uAir;
 
-    public StaticAttackStateSO nSpec;
-    public StaticAttackStateSO sSpec;
-    public StaticAttackStateSO uSpec;
-    public StaticAttackStateSO dSpec;
+
+    public StaticAttackStateSpecial nSpec;
+    public StaticAttackStateSpecial sSpec;
+    public StaticAttackStateSpecial uSpec;
+    public StaticAttackStateSpecial dSpec;
 
     public SCS_Attack jabAtk;
     public SCS_Attack dTiltAtk;
@@ -31,10 +32,15 @@ public class Player : Character
     public SCS_Attack dAirAtk;
     public SCS_Attack uAirAtk;
 
-    public SCS_Attack nSpecAtk;
-    public SCS_Attack sSpecAtk;
-    public SCS_Attack uSpecAtk;
-    public SCS_Attack dSpecAtk;
+    public SCS_SpecialAttack nSpecAtk;
+    public SCS_SpecialAttack sSpecAtk;
+    public SCS_SpecialAttack uSpecAtk;
+    public SCS_SpecialAttack dSpecAtk;
+
+    protected int nSpecCount;
+    protected int sSpecCount;
+    protected int uSpecCount;
+    protected int dSpecCount;
 
     //public Stat wallSuAirlideSpeed = new Stat("WallslideSpeed", 5);
 
@@ -52,6 +58,9 @@ public class Player : Character
     [SerializeField]
     protected int soulBalanceDelayDuration = 60;
     private int soulBalanceDelayTimer = 0;
+
+    public float ComboPower { get; protected set; }
+    protected bool[] cardPowerActivated = new bool[5];
 
     public int soulBank = 0;
 
@@ -71,6 +80,8 @@ public class Player : Character
     public event Action<float> ASoulsChanged;
     public event Action<int> ASoulBankPlus;
     public event Action<float> ASoulMeterChanged;
+
+    public event Action<float> AChangeComboPower;
 
     public override void ClearStrongInputs()
     {
@@ -107,12 +118,52 @@ public class Player : Character
         dAirAtk = dAir.CreateAttackState();
         uAirAtk = uAir.CreateAttackState();
 
-        nSpecAtk = nSpec.CreateAttackState();
-        sSpecAtk = sSpec.CreateAttackState();
-        uSpecAtk = uSpec.CreateAttackState();
-        dSpecAtk = dSpec.CreateAttackState();
+        nSpecAtk = nSpec.CreateAttackState(ESpecial.NEUTRAL);
+        sSpecAtk = sSpec.CreateAttackState(ESpecial.SIDE);
+        uSpecAtk = uSpec.CreateAttackState(ESpecial.UP);
+        dSpecAtk = dSpec.CreateAttackState(ESpecial.DOWN);
 
-        dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
+        AEnemyHit += OnEnemyHit;
+        ComboPower = 0;
+    }
+
+    protected void OnEnemyHit(Character enemy,Damage damage)
+    {
+        ModifiyComboPower(damage.damageNumber); 
+    }
+
+    protected void ModifiyComboPower(float value)
+    {
+        ComboPower += value;
+        ComboPower = Mathf.Clamp(ComboPower, 0, 110);
+
+        for (int i = 0; i < cardPowerActivated.Length; i++)
+        {
+            cardPowerActivated[i] = false;
+        }
+
+        if (ComboPower >= 20)
+        {
+            cardPowerActivated[0] = true;
+        }
+        if (ComboPower >= 40)
+        {
+            cardPowerActivated[1] = true;
+        }
+        if (ComboPower >= 60)
+        {
+            cardPowerActivated[2] = true;
+        }
+        if (ComboPower >= 80)
+        {
+            cardPowerActivated[3] = true;
+        }
+        if (ComboPower >= 100)
+        {
+            cardPowerActivated[4] = true;
+        }
+
+        if (AChangeComboPower != null) AChangeComboPower(ComboPower);
     }
 
     void Update()
@@ -193,6 +244,10 @@ public class Player : Character
         base.FixedUpdate();
 
         BalanceSoulMeter();
+
+        ModifiyComboPower(-0.01f);
+
+        ManageCardBuffs();
     }
 
     protected override void InitStats()
@@ -617,20 +672,21 @@ public class Player : Character
             {
                 CSMachine.ChangeState(GetAttackState(EAttackType.NSpec));
             }
+            else if (DirectionalInput.y >= 0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.USpec));
+            }
+            else if (DirectionalInput.y <= -0.5f)
+            {
+                CSMachine.ChangeState(GetAttackState(EAttackType.DSpec));
+            }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
                 Direction = DirectionalInput.x;
 
                 CSMachine.ChangeState(GetAttackState(EAttackType.FSpec));
             }
-            else if (DirectionalInput.y > 0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.USpec));
-            }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DSpec));
-            }
+
             return true;
         }
         return false;
@@ -702,25 +758,7 @@ public class Player : Character
             }
         }
 
-        if (Special)
-        {
-            if (DirectionalInput == Vector2.zero)
-            {
-                ChrSM.ChangeState(this, nSpecAtk);
-            }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
-            {
-                ChrSM.ChangeState(this, sSpecAtk);
-            }
-            else if (DirectionalInput.y > 0.5f)
-            {
-                ChrSM.ChangeState(this, uSpecAtk);
-            }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                ChrSM.ChangeState(this, dSpecAtk);
-            }
-        }
+        SCS_CheckForSpecials();
     }
 
     public override void SCS_CheckForAerials()
@@ -769,23 +807,40 @@ public class Player : Character
             }
         }
 
+        SCS_CheckForSpecials();
+    }
+
+    protected void CheckForSpecialAttack(SCS_SpecialAttack specialAtk, int specCount)
+    {
+        if (specCount < specialAtk.aerialLimit || specialAtk.aerialLimit == 0)
+        {
+            if (ComboPower >= specialAtk.comboPowerCost)
+            {
+                ModifiyComboPower(-specialAtk.comboPowerCost);
+                ChrSM.ChangeState(this, specialAtk);
+            }
+        }
+    }
+
+    protected void SCS_CheckForSpecials()
+    {
         if (Special)
         {
             if (DirectionalInput == Vector2.zero)
             {
-                ChrSM.ChangeState(this, nSpecAtk);
+                CheckForSpecialAttack(nSpecAtk, nSpecCount);
+            }
+            else if (DirectionalInput.y >= 0.5f)
+            {
+                CheckForSpecialAttack(uSpecAtk, uSpecCount);
+            }
+            else if (DirectionalInput.y <= -0.5f)
+            {
+                CheckForSpecialAttack(dSpecAtk, dSpecCount);
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
-                ChrSM.ChangeState(this, sSpecAtk);
-            }
-            else if (DirectionalInput.y > 0.5f)
-            {
-                ChrSM.ChangeState(this, uSpecAtk);
-            }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                ChrSM.ChangeState(this, dSpecAtk);
+                CheckForSpecialAttack(sSpecAtk, sSpecCount);
             }
         }
     }
@@ -868,5 +923,66 @@ public class Player : Character
 
         if (DirectionalInput.y < -0.5f)
             SCS_ChangeState(StaticStates.crouch);
+    }
+
+    public override void SCS_CountSpecial(ESpecial type)
+    {
+        switch (type)
+        {
+            case ESpecial.NEUTRAL:
+                {
+                    nSpecCount++;
+                    break;
+                }
+            case ESpecial.SIDE:
+                {
+                    sSpecCount++;
+                    break;
+                }
+            case ESpecial.UP:
+                {
+                    uSpecCount++;
+                    break;
+                }
+            case ESpecial.DOWN:
+                {
+                    dSpecCount++;
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    public override void SCS_RaiseLandingEvent()
+    {
+        base.SCS_RaiseLandingEvent();
+
+        nSpecCount = 0;
+        sSpecCount = 0;
+        uSpecCount = 0;
+        dSpecCount = 0;
+    }
+
+    protected void ManageCardBuffs()
+    {
+        if(cardPowerActivated[0])
+        {
+            dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
+        }
+        else
+        {
+            dTiltAtk.attackBuff.damageMulti = 1;
+        }
+
+        if (cardPowerActivated[1])
+        {
+
+        }
+        else
+        {
+            
+        }
+
     }
 }

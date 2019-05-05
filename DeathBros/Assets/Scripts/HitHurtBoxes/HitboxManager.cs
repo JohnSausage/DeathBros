@@ -14,7 +14,7 @@ public class HitboxManager : _MB
     //public static event Action<Vector2> EnemyHit;
     //public static event Action<Enemy, Damage> PlayerHitsEnenmy;
 
-    public event Action<Character> ACharacterHit;
+    public event Action<Character, Damage> ACharacterHit;
 
     protected override void Awake()
     {
@@ -113,7 +113,7 @@ public class HitboxManager : _MB
                             damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
 
                             //hitChr.GetHit(damage);
-                            if (ACharacterHit != null) ACharacterHit(hitChr);
+                            if (ACharacterHit != null) ACharacterHit(hitChr,damage);
                         }
                         else if (hitObject is Item)
                         {
