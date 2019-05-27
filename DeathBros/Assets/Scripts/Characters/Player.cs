@@ -9,6 +9,8 @@ public class Player : Character
     public StaticAttackStateSO uTilt;
     public StaticAttackStateSO fTilt;
 
+    public StaticAttackStateSO grab;
+
     public StaticAttackStateSO nAir;
     public StaticAttackStateSO fAir;
     public StaticAttackStateSO bAir;
@@ -25,6 +27,8 @@ public class Player : Character
     public SCS_Attack dTiltAtk;
     public SCS_Attack uTiltAtk;
     public SCS_Attack fTiltAtk;
+
+    public SCS_Attack grabAtk;
 
     public SCS_Attack nAirAtk;
     public SCS_Attack fAirAtk;
@@ -83,6 +87,8 @@ public class Player : Character
 
     public event Action<float> AChangeComboPower;
 
+    public NES_BasicController2D ctr;
+
     public override void ClearStrongInputs()
     {
         base.ClearStrongInputs();
@@ -93,17 +99,9 @@ public class Player : Character
     {
         base.Init();
 
-        //soundFolderName = "Sounds/Player/";
+        ctr = GetComponent<NES_BasicController2D>();
 
-        //advancedMovementStates.Init(this);
-        //CSMachine.ChangeState(SCS_Idle.InstanceP);
-
-
-        //attackStates.Init(this);
-
-
-
-        Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
+        //Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
         ComboCounter.AComboIsOver += AddHealthAfterCombo;
 
@@ -111,6 +109,9 @@ public class Player : Character
         dTiltAtk = dTilt.CreateAttackState();
         uTiltAtk = uTilt.CreateAttackState();
         fTiltAtk = fTilt.CreateAttackState();
+
+        grabAtk = grab.CreateAttackState();
+
 
         nAirAtk = nAir.CreateAttackState();
         fAirAtk = fAir.CreateAttackState();
@@ -124,12 +125,12 @@ public class Player : Character
         dSpecAtk = dSpec.CreateAttackState(ESpecial.DOWN);
 
         AEnemyHit += OnEnemyHit;
-        ComboPower = 0;
+        ComboPower = 50; //@@@ set to 0 later
     }
 
-    protected void OnEnemyHit(Character enemy,Damage damage)
+    protected void OnEnemyHit(Character enemy, Damage damage)
     {
-        ModifiyComboPower(damage.damageNumber); 
+        ModifiyComboPower(damage.damageNumber);
     }
 
     protected void ModifiyComboPower(float value)
@@ -197,45 +198,45 @@ public class Player : Character
         //Test----------------------------------------------------------------------------------------------------------------------
 
 
-        DirectionalInput = InputManager.Direction;
-        StrongInputs = InputManager.Smash;
-        TiltInput = InputManager.CStick;
+        //DirectionalInput = InputManager.Direction;
+        //StrongInputs = InputManager.Smash;
+        //TiltInput = InputManager.CStick;
 
-        if (Mathf.Abs(DirectionalInput.x) < 0.25f) DirectionalInput = new Vector2(0, DirectionalInput.y);
+        //if (Mathf.Abs(DirectionalInput.x) < 0.25f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
-        if (InputManager.BufferdDown("Attack")) Attack = true;
-        else Attack = false;
-
-
-        if (InputManager.Attack.GetButton()) HoldAttack = true;
-        else HoldAttack = false;
-
-        if (InputManager.BufferdDown("Special")) Special = true;
-        else Special = false;
+        //if (InputManager.BufferdDown("Attack")) Attack = true;
+        //else Attack = false;
 
 
-        if (InputManager.Special.GetButton()) HoldSpecial = true;
-        else HoldSpecial = false;
+        //if (InputManager.Attack.GetButton()) HoldAttack = true;
+        //else HoldAttack = false;
 
-        if (InputManager.BufferdDown("Jump") || InputManager.BufferdDown("Jump2") || (StrongInputs.y > 0) && InputManager.TapJump == true) Jump = true;
-        else
-        {
-            //reset at the end of FixedUpdate to not miss any inputs
-            //Jump = false;
-        }
-
-        if (InputManager.Jump.GetButton() || InputManager.Jump2.GetButton()) HoldJump = true;
-        else HoldJump = false;
+        //if (InputManager.BufferdDown("Special")) Special = true;
+        //else Special = false;
 
 
-        if ((InputManager.BufferdDown("Shield"))) Shield = true;
-        else Shield = false;
+        //if (InputManager.Special.GetButton()) HoldSpecial = true;
+        //else HoldSpecial = false;
 
-        if (InputManager.Shield.GetButton()) HoldShield = true;
-        else HoldShield = false;
+        //if (InputManager.BufferdDown("Jump") || InputManager.BufferdDown("Jump2") || (StrongInputs.y > 0) && InputManager.TapJump == true) Jump = true;
+        //else
+        //{
+        //    //reset at the end of FixedUpdate to not miss any inputs
+        //    //Jump = false;
+        //}
 
-        if (InputManager.BufferdDown("Grab")) Grab = true;
-        else Grab = false;
+        //if (InputManager.Jump.GetButton() || InputManager.Jump2.GetButton()) HoldJump = true;
+        //else HoldJump = false;
+
+
+        //if ((InputManager.BufferdDown("Shield"))) Shield = true;
+        //else Shield = false;
+
+        //if (InputManager.Shield.GetButton()) HoldShield = true;
+        //else HoldShield = false;
+
+        //if (InputManager.BufferdDown("Grab")) Grab = true;
+        //else Grab = false;
 
     }
 
@@ -759,6 +760,11 @@ public class Player : Character
         }
 
         SCS_CheckForSpecials();
+
+        if(Grab)
+        {
+            ChrSM.ChangeState(this, grabAtk);
+        }
     }
 
     public override void SCS_CheckForAerials()
@@ -825,7 +831,7 @@ public class Player : Character
     protected void SCS_CheckForSpecials()
     {
         if (Special)
-        {
+        {        
             if (DirectionalInput == Vector2.zero)
             {
                 CheckForSpecialAttack(nSpecAtk, nSpecCount);
@@ -879,6 +885,23 @@ public class Player : Character
         }
     }
 
+    public override void SCS_CheckForAerialTech()
+    {
+        if (HoldShield)
+        {
+            RaiseComboOverEvent();
+
+            if (HoldJump || DirectionalInput.y >= 0.5f)
+            {
+                SCS_ChangeState(StaticStates.walljumpStart);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.jumping);
+            }
+        }
+    }
+
     public override void SCS_GetUpAfterHitLanded()
     {
         if (DirectionalInput.y > 0.5f)
@@ -895,19 +918,35 @@ public class Player : Character
     public override void SCS_CheckForIdleOptions()
     {
         if (DirectionalInput.y < -0.5f)
+        {
             SCS_ChangeState(StaticStates.crouch);
-
-        if (Mathf.Abs(DirectionalInput.x) != 0)
-            SCS_ChangeState(StaticStates.walking);
+        }
 
         if (StrongInputs.x != 0)
+        {
             SCS_ChangeState(StaticStates.dash);
+        }
+        else if (Mathf.Abs(DirectionalInput.x) != 0)
+        {
+            if (Mathf.Abs(DirectionalInput.x) >= 0.75f)
+            {
+                SCS_ChangeState(StaticStates.dash);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.walking);
+            }
+        }
 
         if (HoldShield)
+        {
             SCS_ChangeState(StaticStates.shield);
+        }
 
         if (Jump)
+        {
             SCS_ChangeState(StaticStates.jumpsquat);
+        }
     }
 
     public override void SCS_CheckForWalkingOptions()
@@ -966,7 +1005,7 @@ public class Player : Character
 
     protected void ManageCardBuffs()
     {
-        if(cardPowerActivated[0])
+        if (cardPowerActivated[0])
         {
             dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
         }
@@ -981,7 +1020,7 @@ public class Player : Character
         }
         else
         {
-            
+
         }
 
     }

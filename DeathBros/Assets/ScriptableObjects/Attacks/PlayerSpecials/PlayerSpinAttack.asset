@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8eed5518addeb4e9295ce0b08cfd81, type: 3}
   m_Name: PlayerSpinAttack
   m_EditorClassIdentifier: 
-  animationName: specSpin
+  animationName: specSpinGrounded
+  animationNameAerial: specSpin
   aerialLimit: 1
   comboPowerCost: 10

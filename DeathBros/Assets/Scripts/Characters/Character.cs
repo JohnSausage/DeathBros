@@ -78,6 +78,7 @@ public class Character : _MB, ICanTakeDamage
     public int HitStunDuration { get; set; }
     public int HitFreezeDuration { get; set; }
     public Vector2 CollisionReflectVector { get; set; }
+    public Vector2 HitstunVector { get; set; }
     public Vector2 AirDodgeVector { get; set; }
 
     public StateMachine CSMachine;// { get; protected set; }
@@ -614,6 +615,11 @@ public class Character : _MB, ICanTakeDamage
     }
 
     public virtual void SCS_CheckForTech()
+    {
+
+    }
+
+    public virtual void SCS_CheckForAerialTech()
     {
 
     }

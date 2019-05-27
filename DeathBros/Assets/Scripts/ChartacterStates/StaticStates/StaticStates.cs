@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class StaticStates
+﻿public static class StaticStates
 {
     public static SCS_Idle idle = new SCS_Idle();
     public static SCS_Walking walking = new SCS_Walking();
@@ -26,6 +22,8 @@ public static class StaticStates
     public static SCS_Roll roll = new SCS_Roll();
     public static SCS_StandUp standUp = new SCS_StandUp();
     public static SCS_Hitfreeze hitfreeze = new SCS_Hitfreeze();
+    public static SCS_Tumble tumble = new SCS_Tumble();
+    public static SCS_HitLandWall hitLandWall = new SCS_HitLandWall();
 
     public static SCS_Dead dead = new SCS_Dead();
     public static SCS_Die die = new SCS_Die();

@@ -71,7 +71,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 92725
+        hitID: 0
+      ID: 74430
       getNewID: 0
     soundName: 
   - duration: 2
@@ -97,7 +98,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 92725
+        hitID: 0
+      ID: 74430
       getNewID: 0
     soundName: 
   - duration: 2
@@ -123,7 +125,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 65327
+        hitID: 0
+      ID: 74430
       getNewID: 0
     soundName: 
   damages:
@@ -136,3 +139,4 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    hitID: 0

@@ -12,6 +12,7 @@ public class StaticAttackStateProjectile : StaticAttackStateSpecial
     {
         SCS_SpecialAttackProjectile projectileAttack = new SCS_SpecialAttackProjectile();
         projectileAttack.animationName = animationName;
+        projectileAttack.animationNameAerial = animationNameAerial;
         projectileAttack.aerialLimit = aerialLimit;
 
         projectileAttack.projectile = projectile;
@@ -25,6 +26,7 @@ public class StaticAttackStateProjectile : StaticAttackStateSpecial
         SCS_SpecialAttackProjectile projectileAttack = new SCS_SpecialAttackProjectile();
 
         projectileAttack.animationName = animationName;
+        projectileAttack.animationNameAerial = animationNameAerial;
         projectileAttack.aerialLimit = aerialLimit;
         projectileAttack.attackBuff = new AttackBuff();
 

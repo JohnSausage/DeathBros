@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
+
     public Vector2 input;
     public float jumpVelocity;
     public bool fallThroughPlatform = false;
@@ -107,7 +108,7 @@ public class Controller2D : MonoBehaviour
         slopeUp = false;
         slidingDownSlope = false;
         collision = false;
-        collisionReflect = Vector2.zero;
+        //collisionReflect = Vector2.zero;
 
         oldSlopeUpAngle = slopeUpAngle;
         slopeUpAngle = 0;
@@ -446,15 +447,6 @@ public class Controller2D : MonoBehaviour
                 {
                     airTimer = 0;
 
-                    /*
-                    velocity.y += gravity / 60 * 2;
-
-                    if (velocity.y < fastFallSpeed / 60)
-                    {
-                        velocity.y = fastFallSpeed / 60;
-
-                    }
-                    */
                     velocity.y = fastFallSpeed / 60;
                 }
                 else
@@ -476,6 +468,8 @@ public class Controller2D : MonoBehaviour
                         wallDirection = (int)Mathf.Sign(velocity.x);
                         velocity.x = 0;
                         onWall = true;
+                        collision = true;
+                        collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
 
                         if (velocity.y < -wallslideSpeed / 60) velocity.y = -wallslideSpeed / 60;
                     }
@@ -484,6 +478,9 @@ public class Controller2D : MonoBehaviour
 
                 if (collisionCheck)
                 {
+                    collision = true;
+                    collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
+
                     velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
                 }
 
@@ -508,6 +505,8 @@ public class Controller2D : MonoBehaviour
                         if (groundAngle <= maxSlopeAngle) //ohterwise gets stuck on walls
                         {
                             velocity = Vector2.ClampMagnitude(velocity, HitDistance(groundCheck));
+
+                            grounded = true;
                         }
                     }
 
@@ -529,6 +528,8 @@ public class Controller2D : MonoBehaviour
                                     if (groundAngle <= maxSlopeAngle) //ohterwise gets stuck on walls
                                     {
                                         velocity = Vector2.ClampMagnitude(velocity, HitDistance(platformCasts[i]));
+
+                                        grounded = true;
                                     }
                                 }
                             }
@@ -573,6 +574,9 @@ public class Controller2D : MonoBehaviour
 
             if (collisionCheck && inControl) // checks again in !inControl
             {
+                collision = true;
+                collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
+
                 velocity = Vector2.ClampMagnitude(velocity, HitDistance(collisionCheck));
             }
 
@@ -674,8 +678,12 @@ public class Controller2D : MonoBehaviour
                 if (collisionCheck.distance > 0)
                 {
                     collision = true;
-
                     collisionReflect = Vector2.Reflect(velocity, collisionCheck.normal);
+
+                    if(Vector2.Angle(Vector2.up, collisionCheck.normal) <= maxSlopeAngle)
+                    {
+                        grounded = true;
+                    }
 
                     lastCollisionAngle = Vector2.Angle(Vector2.up, collisionCheck.normal);
 

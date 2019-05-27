@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0bc4342d105f44385d1afb45a3dd33, type: 3}
   m_Name: PlayerStates
   m_EditorClassIdentifier: 
-  stateTypes: 2
   idle_anim: idle
   walking_anim: run
   running_anim: run
@@ -23,7 +22,7 @@ MonoBehaviour:
   landing_duration: 4
   hitstunUp_anim: hitUp
   hitstunDown_anim: hitDown
-  hitfreeze_anim: hit
+  hitfreeze_anim: hitFreeze
   hitfreeze_duration: 5
   hitland_anim: hitUp
   hitland_duration: 10
@@ -33,7 +32,7 @@ MonoBehaviour:
   standup_anim: crouch
   hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
-  getGrabbed_anim: hit
+  getGrabbed_anim: hitFreeze
   doublejumpsquat_anim: crouch
   doublejumpsquat_duration: 3
   wallslidingDown_anim: wall
@@ -47,7 +46,7 @@ MonoBehaviour:
   skid_duration: 5
   skid_idleOutDuration: 1
   dash_anim: run
-  dash_duration: 3
+  dash_duration: 10
   crouch_anim: crouch
   roll_anim: roll
   throwitem_anim: crouch

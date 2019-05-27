@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StaticAttackStates/Special")]
 public class StaticAttackStateSpecial : StaticAttackStateSO
 {
+    public string animationNameAerial;
+
     public int aerialLimit = 0;
     public int comboPowerCost = 5;
 
@@ -12,6 +14,7 @@ public class StaticAttackStateSpecial : StaticAttackStateSO
     {
         SCS_SpecialAttack specialAttack = new SCS_SpecialAttack();
         specialAttack.animationName = animationName;
+        specialAttack.animationNameAerial = animationNameAerial;
         specialAttack.aerialLimit = aerialLimit;
         specialAttack.attackBuff = new AttackBuff();
         
@@ -22,6 +25,7 @@ public class StaticAttackStateSpecial : StaticAttackStateSO
     {
         SCS_SpecialAttack specialAttack = new SCS_SpecialAttack();
         specialAttack.animationName = animationName;
+        specialAttack.animationNameAerial = animationNameAerial;
         specialAttack.aerialLimit = aerialLimit;
         specialAttack.attackBuff = new AttackBuff();
         specialAttack.type = type;
@@ -34,6 +38,8 @@ public enum ESpecial { NONE, NEUTRAL, SIDE, UP, DOWN };
 
 public class SCS_SpecialAttack : SCS_Attack
 {
+    public string animationNameAerial;
+
     public ESpecial type;
     public int comboPowerCost = 0;
     public int aerialLimit = 0;
@@ -43,7 +49,33 @@ public class SCS_SpecialAttack : SCS_Attack
 
     public override void Enter(Character chr)
     {
-        base.Enter(chr);
+        //base.Enter(chr);
+
+        if (chr == null) return;
+        if (chr.Anim == null) return;
+
+        chr.Timer = 0;
+        chr.FrozenInputX = chr.DirectionalInput.x;
+
+        chr.ACharacterTakesDasmage += TakeDamage;
+
+        if (animationNameAerial == "")
+        {
+            chr.Anim.ChangeAnimation(animationName);
+        }
+        else
+        {
+            if(chr.Ctr.IsGrounded == true)
+            {
+                chr.Anim.ChangeAnimation(animationName);
+            }
+            else
+            {
+                chr.Anim.ChangeAnimation(animationNameAerial);
+            }
+        }
+
+        chr.CurrentAttackBuff = attackBuff;
 
         waveBounced = false;
 
@@ -56,7 +88,10 @@ public class SCS_SpecialAttack : SCS_Attack
             }
         }
 
-        chr.SCS_CountSpecial(type); // counts how often the special is used in the air, is reset on landing
+        if (chr.Ctr.IsGrounded == false)
+        {
+            chr.SCS_CountSpecial(type); // counts how often the special is used in the air, is reset on landing
+        }
     }
 
     public override void Execute(Character chr)

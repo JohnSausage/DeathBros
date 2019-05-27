@@ -35,7 +35,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 41939
+        hitID: 0
+      ID: 32909
       getNewID: 0
     soundName: 
   - duration: 15
@@ -61,7 +62,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 41939
+        hitID: 0
+      ID: 32909
       getNewID: 0
     soundName: 
   - duration: 15
@@ -87,7 +89,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 74390
+        hitID: 0
+      ID: 32909
       getNewID: 0
     soundName: 
   - duration: 15
@@ -113,6 +116,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        hitID: 0
       ID: 18020
       getNewID: 0
     soundName: 
@@ -126,3 +130,4 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    hitID: 0

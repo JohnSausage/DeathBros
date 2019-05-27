@@ -127,6 +127,8 @@ public class SCS_Idle : SCState
     {
         base.Enter(chr);
 
+        chr.Ctr.inControl = true;
+
         //chr.jumpsUsed = 0;
 
         chr.Anim.animationSpeed = 1.5f;
@@ -234,8 +236,8 @@ public class SCS_Jumping : SCState
         if (chr.Ctr.onWall)
 
             chr.SCS_ChangeState(StaticStates.wallsliding);
-        
-         
+
+
         if (chr.Shield)
 
             chr.SCS_ChangeState(StaticStates.airDodge);
@@ -295,9 +297,17 @@ public class SCS_Jumpsquat : SCState
 {
     public override void Enter(Character chr)
     {
-        base.Enter(chr);
+        //base.Enter(chr);
 
-        chr.FrozenInputX = chr.DirectionalInput.x * 0.75f;
+        if (chr == null) return;
+        if (chr.Anim == null) return;
+
+        chr.Timer = 0;
+
+        chr.ACharacterTakesDasmage += TakeDamage;
+
+        // Don't reset FrozenInput on Enter to allow for sliding jumpsquat while skid
+        chr.FrozenInputX = chr.FrozenInputX * 0.75f;
 
         chr.Anim.ChangeAnimation(chr.StatesSO.jumpsquat_anim);
     }
@@ -440,6 +450,7 @@ public class SCS_Dash : SCState
         base.Enter(chr);
 
         chr.Direction = Mathf.Sign(chr.FrozenInputX);
+        chr.FrozenInputX = Mathf.Sign(chr.FrozenInputX);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.dash_anim);
     }
@@ -469,16 +480,22 @@ public class SCS_Dash : SCState
         }
 
         if (chr.Timer <= 2)
-            chr.SetInputs(new Vector2(chr.FrozenInputX * 0.05f, 0));
-        else
-            chr.SetInputs(new Vector2(chr.FrozenInputX * 1.2f, 0));
-
-        if (chr.Jump)
         {
-            chr.SCS_ChangeState(StaticStates.jumping);
+            chr.SetInputs(new Vector2(chr.FrozenInputX * 0.1f, 0));
+        }
+        else
+        {
+            chr.SetInputs(new Vector2(chr.FrozenInputX * 1.3f, 0));
+
+            if (chr.Jump)
+            {
+                chr.SCS_ChangeState(StaticStates.jumpsquat);
+            }
         }
 
-        if (chr.Timer <= 5)
+
+
+        if (chr.Timer <= 10)
         {
             if (chr.Attack)
             {
@@ -667,6 +684,62 @@ public class SCS_Walljumping : SCState
 }
 
 ///-----------------------------------------------------------------
+/// SCS_Tumble
+///-----------------------------------------------------------------
+public class SCS_Tumble : SCState
+{
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.Ctr.inControl = true;
+
+        chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
+
+        chr.RaiseComboOverEvent();
+    }
+
+    public override void Execute(Character chr)
+    {
+        base.Execute(chr);
+
+        if (chr.Ctr.velocity.y > 0)
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+        else
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+
+
+        chr.GetInputs();
+
+
+        if (chr.Ctr.IsGrounded)
+        {
+            chr.SCS_ChangeState(StaticStates.hitland);
+        }
+        else if (chr.Ctr.collision)
+        {
+            chr.SCS_ChangeState(StaticStates.hitLandWall);
+        }
+
+        chr.SCS_CheckForAerials();
+
+        if (chr.Jump)
+        {
+            chr.SCS_ChangeState(StaticStates.jumping);
+        }
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.Ctr.freeze = false;
+
+        chr.HitStunDuration = 0;
+    }
+}
+
+///-----------------------------------------------------------------
 /// SCS_Hitstun
 ///-----------------------------------------------------------------
 public class SCS_Hitstun : SCState
@@ -677,7 +750,15 @@ public class SCS_Hitstun : SCState
 
     public override void Enter(Character chr)
     {
-        base.Enter(chr);
+        //base.Enter(chr);
+
+        if (chr == null) return;
+        if (chr.Anim == null) return;
+
+        chr.Timer = 0;
+        //chr.FrozenInputX = chr.DirectionalInput.x;
+
+        chr.ACharacterTakesDasmage += TakeDamage;
 
         chr.Ctr.inControl = false;
 
@@ -695,8 +776,17 @@ public class SCS_Hitstun : SCState
         else
             chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
 
-
-        chr.GetInputs();
+        if (chr.Timer < 10)
+        {
+            if (chr.HitstunVector != Vector2.zero)
+            {
+                chr.Ctr.forceMovement = chr.HitstunVector;
+            }
+        }
+        else
+        {
+            chr.GetInputs();
+        }
 
         if (chr.Timer <= 60)
         {
@@ -708,23 +798,27 @@ public class SCS_Hitstun : SCState
                 }
 
                 if (chr.Timer % 10 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
-
-
             }
         }
 
         if (chr.Timer > chr.HitStunDuration)
         {
             chr.Ctr.inControl = true;
-            chr.SCS_ChangeState(StaticStates.jumping);
+            chr.SCS_ChangeState(StaticStates.tumble);
 
             chr.RaiseComboOverEvent();
         }
 
-        if (chr.Ctr.collision)
+
+        if (chr.Ctr.IsGrounded)
         {
             chr.SCS_ChangeState(StaticStates.hitland);
         }
+        else if (chr.Ctr.collision)
+        {
+            chr.SCS_ChangeState(StaticStates.hitLandWall);
+        }
+
     }
 
     public override void Exit(Character chr)
@@ -734,6 +828,7 @@ public class SCS_Hitstun : SCState
         chr.Ctr.freeze = false;
 
         chr.HitStunDuration = 0;
+        chr.HitstunVector = Vector2.zero;
     }
 }
 
@@ -847,7 +942,7 @@ public class SCS_Roll : SCState
         {
             chr.SCS_Idle();
         }
-            
+
     }
 
     public override void Exit(Character chr)
@@ -890,7 +985,9 @@ public class SCS_HitLand : SCState
         {
             if (chr.CollisionReflectVector.magnitude * 60 > 20f)
             {
-                chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
+                chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
+                chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
+                chr.HitStunDuration = 15;
 
                 chr.SCS_ChangeState(StaticStates.hitstun);
             }
@@ -905,7 +1002,9 @@ public class SCS_HitLand : SCState
                 }
                 else
                 {
-                    chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
+                    chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
+                    chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
+                    chr.HitStunDuration = 15;
 
                     chr.SCS_ChangeState(StaticStates.hitstun);
                 }
@@ -919,6 +1018,54 @@ public class SCS_HitLand : SCState
         chr.Ctr.freeze = false;
     }
 }
+
+///-----------------------------------------------------------------
+/// SCS_HitLandWall
+///-----------------------------------------------------------------
+public class SCS_HitLandWall : SCState
+{
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.SCS_RaiseLandingEvent();
+
+        chr.Ctr.freeze = true;
+        chr.Ctr.inControl = false;
+        chr.CollisionReflectVector = chr.Ctr.collisionReflect;
+
+        chr.Flash(Color.white, 5);
+
+        chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
+    }
+
+    public override void Execute(Character chr)
+    {
+        base.Execute(chr);
+
+        chr.GetInputs();
+
+        chr.SCS_CheckForAerialTech();
+
+        if (chr.Timer > chr.StatesSO.hitland_duration)
+        {
+            chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
+            chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.8f;
+            chr.HitstunVector = new Vector2(chr.HitstunVector.x, 0);
+            chr.HitStunDuration = 15;
+
+            chr.SCS_ChangeState(StaticStates.hitstun);
+        }
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+        chr.Ctr.freeze = false;
+        chr.Ctr.inControl = true;
+    }
+}
+
 ///-----------------------------------------------------------------
 /// SCS_HitLanded
 ///-----------------------------------------------------------------
@@ -945,6 +1092,7 @@ public class SCS_HitLanded : SCState
         chr.SetInputs(Vector2.zero);
     }
 }
+
 
 ///-----------------------------------------------------------------
 /// SCS_StandUp
