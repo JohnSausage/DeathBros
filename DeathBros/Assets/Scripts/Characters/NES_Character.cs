@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NES_Character : MonoBehaviour
+public class NES_Character : MonoBehaviour, ICanBeTransported
 {
+    public Vector2 ForeceMovement;
     /* Inputs */
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
@@ -20,12 +21,15 @@ public class NES_Character : MonoBehaviour
     public bool HoldShield { get; protected set; }
     public bool Grab { get; set; }
 
+    public bool allowTransporting { get; set; }
 
     protected NES_BasicController2D ctr;
 
     protected void Start()
     {
         InitCtr();
+
+        allowTransporting = false;
     }
 
     protected void Update()
@@ -37,6 +41,8 @@ public class NES_Character : MonoBehaviour
     protected void FixedUpdate()
     {
         ctr.FixedMove();
+
+        allowTransporting = ctr.IsGrounded;
     }
 
     protected void InitCtr()
@@ -57,12 +63,16 @@ public class NES_Character : MonoBehaviour
 
         if(Attack)
         {
-            ctr.FreezeCtr(30);
+            ctr.FreezeCtr(10);
+            ctr.ForceMovement = ForeceMovement / 60;
+            ctr.Tumble = true;
         }
 
         if(HoldShield)
         {
             ctr.FreezeCtr(2);
+            ctr.ForceMovement = ForeceMovement / 60;
+            ctr.Tumble = true;
         }
 
         if(Jump)
@@ -80,4 +90,9 @@ public class NES_Character : MonoBehaviour
             ctr.FallThroughPlatforms = false;
         }
     }
+}
+
+public interface ICanBeTransported
+{
+    bool allowTransporting { get; set; }
 }

@@ -16,6 +16,9 @@ public class NES_BasicController2D : MonoBehaviour
     public Vector2 oldVelocity;
     public bool FallThroughPlatforms;//{get;set;}
 
+    public Vector2 ForceMovement;
+    public Vector2 AddMovement;
+
     protected BoxCollider2D col;
     protected Bounds bounds;
     public static float skin = 0.01f;
@@ -24,11 +27,13 @@ public class NES_BasicController2D : MonoBehaviour
     protected CtrStateMachine ctrSM;
 
     /* can be changed during runtime*/
-    public float Gravity;// { get; set; }
-    public float Movespeed;// { get; set; }
-    public float MaxSlopeAngle; //{get;set;}
+    public float Gravity = -1;// { get; set; }
+    public float Movespeed = 10;// { get; set; }
+    public float MaxSlopeAngle = 50; //{get;set;}
     public float aerialAcceleration = 0.2f;
     public float aerialDeceleration = 0.05f;
+    public float maxAerialSpeed = 30;
+    public float DIStrength = 2;
     public float maxFallSpeed = -15;
     public float fastFallSpeed = -20;
     public bool fastFall = false;
@@ -44,7 +49,11 @@ public class NES_BasicController2D : MonoBehaviour
     {
         Frozen = true;
         freezeCounter = freezeForFrames;
+        ChangeState(CtrStateMachine.frozen);
     }
+
+    public bool Tumble = false;// { get; protected set; }
+    public bool resetVelocity = false;
 
     public int freezeCounter = 0;
     public Vector2 frozenVelocity = Vector2.zero;
@@ -87,9 +96,39 @@ public class NES_BasicController2D : MonoBehaviour
         velocity = Vector2.zero;
     }
 
+    /* Used to move the object in the objects FixedUpdate cycle */
+    public virtual void FixedMove()
+    {
+        bounds = col.bounds;
+        bounds.Expand(-2 * skin);
+
+        CheckIfInsidePlatforms();
+
+        ctrSM.FixedUpdate(this);
+
+        ClearIgnoredPlatforms();
+
+        transform.Translate(velocity);
+    }
+
     public void ChangeState(CtrState newState)
     {
         ctrSM.ChangeState(this, newState);
+    }
+
+    public void ApplyAddMovementToVelocity()
+    {
+        velocity += AddMovement;
+        AddMovement = Vector2.zero;
+    }
+
+    public void ApplyForceMovementToVelocity()
+    {
+        if (ForceMovement != Vector2.zero)
+        {
+            velocity = ForceMovement;
+            ForceMovement = Vector2.zero;
+        }
     }
 
     public void ApplyGravity()
@@ -121,18 +160,6 @@ public class NES_BasicController2D : MonoBehaviour
                 velocity.y = maxFallSpeed / 60f;
             }
         }
-    }
-
-    /* Used to move the object in the objects FixedUpdate cycle */
-    public virtual void FixedMove()
-    {
-        bounds = col.bounds;
-        bounds.Expand(-2 * skin);
-
-        ctrSM.FixedUpdate(this);
-
-
-        transform.Translate(velocity);
     }
 
     public void CheckJumpVelocity()
@@ -182,19 +209,15 @@ public class NES_BasicController2D : MonoBehaviour
 
     public bool CheckIfGrounded()
     {
-        SetIgnoredPlatforms();
         RaycastHit2D groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2f),
             new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 2, groundMask);
-        ClearIgnoredPlatforms();
 
         return groundCheck;
     }
 
     public bool CheckForSlopeUp()
     {
-        SetIgnoredPlatforms();
         RaycastHit2D slopeUpCheck = RayCastLine(velocity, velocity.magnitude + skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(DirectionalInput.x), -bounds.extents.y), groundMask);
-        ClearIgnoredPlatforms();
 
         if (slopeUpCheck)
         {
@@ -224,10 +247,8 @@ public class NES_BasicController2D : MonoBehaviour
 
     public bool CheckForNewSlopeUp()
     {
-        SetIgnoredPlatforms();
         RaycastHit2D newSlopeUpCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2f),
            new Vector2(bounds.size.x, skin), 0, velocity, velocity.magnitude + skin, groundMask);
-        ClearIgnoredPlatforms();
 
         if (newSlopeUpCheck)
         {
@@ -239,9 +260,7 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void CheckForSlopeDown()
     {
-        SetIgnoredPlatforms();
         RaycastHit2D slopeDownCheck = RayCastLine(Vector2.down, skin, (Vector2)bounds.center + new Vector2(-bounds.extents.x * Mathf.Sign(DirectionalInput.x), -bounds.extents.y), groundMask);
-        ClearIgnoredPlatforms();
 
         if (slopeDownCheck)
         {
@@ -262,12 +281,8 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void CheckForNewSlopeDown()
     {
-        SetIgnoredPlatforms();
-
         RaycastHit2D newSlopeDownCast = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y + skin / 2) + velocity,
                        new Vector2(bounds.size.x, skin), 0, Vector2.down, 1, groundMask);
-
-        ClearIgnoredPlatforms();
 
         if (newSlopeDownCast)
         {
@@ -378,8 +393,6 @@ public class NES_BasicController2D : MonoBehaviour
 
             platformCheck = RayCastXY(Vector2.up, 0, platformMask);
         }
-
-        ClearIgnoredPlatforms();
     }
 
     public void SetIgnoredPlatforms()
@@ -411,6 +424,26 @@ public class NES_BasicController2D : MonoBehaviour
         velocity.x += DirectionalInput.x * Movespeed / 60 * aerialAcceleration;
 
         velocity.x = Mathf.Clamp(velocity.x, -Movespeed / 60, Movespeed / 60);
+    }
+
+    public void CalculateTumbleVelocityX()
+    {
+        float dirX = Mathf.Sign(velocity.x);
+        velocity.x -= 1 / 60 * aerialDeceleration * Mathf.Sign(velocity.x);
+
+        if (dirX != Mathf.Sign(velocity.x))
+        {
+            velocity.x = 0;
+        }
+
+        velocity.x += DirectionalInput.x * DIStrength / 60 * aerialAcceleration;
+
+        velocity.x = Mathf.Clamp(velocity.x, -maxAerialSpeed / 60, maxAerialSpeed / 60);
+
+        if (velocity.y > 0)
+        {
+            velocity = velocity.normalized * (velocity.magnitude + DirectionalInput.y * DIStrength / 60 * aerialAcceleration);
+        }
     }
 }
 
@@ -474,7 +507,6 @@ public class CtrState
     public virtual void Execute(NES_BasicController2D ctr)
     {
         ctr.SetGroundMask();
-        ctr.CheckIfInsidePlatforms();
 
         ctr.HasCollided = false;
         ctr.OnWall = false;
@@ -484,9 +516,30 @@ public class CtrState
         {
             ctr.ChangeState(CtrStateMachine.frozen);
         }
+
+        MoveCtr(ctr);
+
     }
 
     public virtual void Exit(NES_BasicController2D ctr)
+    {
+
+    }
+
+    protected virtual void MoveCtr(NES_BasicController2D ctr)
+    {
+        if(ctr.resetVelocity)
+        {
+            ctr.velocity = Vector2.zero;
+            ctr.resetVelocity = false;
+        }
+
+        ApplyStateMovement(ctr);
+        ctr.ApplyAddMovementToVelocity();
+        ctr.ApplyForceMovementToVelocity();
+    }
+
+    protected virtual void ApplyStateMovement(NES_BasicController2D ctr)
     {
 
     }
@@ -506,8 +559,7 @@ public class CtrS_groundedIdle : CtrState
     {
         base.Execute(ctr);
 
-        ctr.velocity = Vector2.zero;
-        ctr.CheckJumpVelocity();
+        
 
         if (ctr.CheckIfGrounded() == false)
         {
@@ -523,6 +575,11 @@ public class CtrS_groundedIdle : CtrState
         ctr.CheckForCollision();
     }
 
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.velocity = Vector2.zero;
+        ctr.CheckJumpVelocity();
+    }
 }
 
 public class CtrS_groundedMoving : CtrState
@@ -538,10 +595,6 @@ public class CtrS_groundedMoving : CtrState
     public override void Execute(NES_BasicController2D ctr)
     {
         base.Execute(ctr);
-
-        ctr.velocity.y = 0;
-        ctr.velocity.x = ctr.DirectionalInput.x * ctr.Movespeed / 60;
-
 
         ctr.CheckForSlopeUp();
         ctr.CheckForSlopeDown();
@@ -559,6 +612,12 @@ public class CtrS_groundedMoving : CtrState
             ctr.ChangeState(CtrStateMachine.airborne);
         }
     }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.velocity.y = 0;
+        ctr.velocity.x = ctr.DirectionalInput.x * ctr.Movespeed / 60;
+    }
 }
 
 public class CtrS_groundedSlopeUp : CtrState
@@ -572,9 +631,6 @@ public class CtrS_groundedSlopeUp : CtrState
     public override void Execute(NES_BasicController2D ctr)
     {
         base.Execute(ctr);
-
-        ctr.velocity = new Vector2(Mathf.Sign(ctr.DirectionalInput.x) * Mathf.Cos(Mathf.Deg2Rad * ctr.movingSlopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * ctr.movingSlopeUpAngle)).normalized / 60 * ctr.Movespeed;
-        ctr.velocity *= Mathf.Abs(ctr.DirectionalInput.x);
 
         ctr.CheckForSlopeUp();
         ctr.CheckForNewSlopeDown();
@@ -591,6 +647,12 @@ public class CtrS_groundedSlopeUp : CtrState
             ctr.ChangeState(CtrStateMachine.airborne);
         }
     }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.velocity = new Vector2(Mathf.Sign(ctr.DirectionalInput.x) * Mathf.Cos(Mathf.Deg2Rad * ctr.movingSlopeUpAngle), Mathf.Sin(Mathf.Deg2Rad * ctr.movingSlopeUpAngle)).normalized / 60 * ctr.Movespeed;
+        ctr.velocity *= Mathf.Abs(ctr.DirectionalInput.x);
+    }
 }
 
 public class CtrS_groundedSlopeDown : CtrState
@@ -604,9 +666,6 @@ public class CtrS_groundedSlopeDown : CtrState
     public override void Execute(NES_BasicController2D ctr)
     {
         base.Execute(ctr);
-
-        ctr.velocity = new Vector2(Mathf.Sign(ctr.DirectionalInput.x) * Mathf.Cos(Mathf.Deg2Rad * ctr.movingSlopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * ctr.movingSlopeDownAngle)).normalized / 60 * ctr.Movespeed;
-        ctr.velocity *= Mathf.Abs(ctr.DirectionalInput.x);
 
         ctr.CheckForSlopeUp();
         ctr.CheckForNewSlopeDown();
@@ -628,6 +687,12 @@ public class CtrS_groundedSlopeDown : CtrState
             ctr.ChangeState(CtrStateMachine.groundedMoving);
         }
     }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.velocity = new Vector2(Mathf.Sign(ctr.DirectionalInput.x) * Mathf.Cos(Mathf.Deg2Rad * ctr.movingSlopeDownAngle), -Mathf.Sin(Mathf.Deg2Rad * ctr.movingSlopeDownAngle)).normalized / 60 * ctr.Movespeed;
+        ctr.velocity *= Mathf.Abs(ctr.DirectionalInput.x);
+    }
 }
 
 public class CtrS_airborne : CtrState
@@ -644,11 +709,6 @@ public class CtrS_airborne : CtrState
     {
         base.Execute(ctr);
 
-        ctr.CalculateAerialVelocityX();
-
-        ctr.ApplyGravity();
-        ctr.CheckJumpVelocity();
-
         ctr.CheckForOnWall();
         ctr.CheckForCollision();
 
@@ -658,6 +718,13 @@ public class CtrS_airborne : CtrState
         {
             ctr.ChangeState(CtrStateMachine.groundedIdle);
         }
+    }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.CalculateAerialVelocityX();
+        ctr.ApplyGravity();
+        ctr.CheckJumpVelocity();
     }
 }
 
@@ -677,12 +744,19 @@ public class CtrS_frozen : CtrState
 
         ctr.freezeCounter--;
 
+        ctr.frozenVelocity += ctr.velocity;
         ctr.velocity = Vector2.zero;
 
         if (ctr.freezeCounter <= 0)
         {
-            ctr.Frozen = false;
-            ctr.ChangeState(CtrStateMachine.airborne);
+            if (ctr.Tumble == true)
+            {
+                ctr.ChangeState(CtrStateMachine.tumble);
+            }
+            else
+            {
+                ctr.ChangeState(CtrStateMachine.airborne);
+            }
         }
     }
 
@@ -690,8 +764,15 @@ public class CtrS_frozen : CtrState
     {
         base.Exit(ctr);
 
+        ctr.Frozen = false;
         ctr.velocity = ctr.frozenVelocity;
         ctr.CheckForCollision();
+    }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.JumpVelocity = 0;
+        ctr.velocity = Vector2.zero;
     }
 }
 
@@ -709,11 +790,6 @@ public class CtrS_tumble : CtrState
     {
         base.Execute(ctr);
 
-        ctr.CalculateAerialVelocityX();
-
-        ctr.ApplyGravity();
-        ctr.CheckJumpVelocity();
-
         ctr.CheckForOnWall();
         ctr.CheckForCollision();
 
@@ -723,6 +799,19 @@ public class CtrS_tumble : CtrState
         {
             ctr.ChangeState(CtrStateMachine.groundedIdle);
         }
+    }
+
+    public override void Exit(NES_BasicController2D ctr)
+    {
+        base.Exit(ctr);
+
+        ctr.Tumble = false;
+    }
+
+    protected override void ApplyStateMovement(NES_BasicController2D ctr)
+    {
+        ctr.CalculateTumbleVelocityX();
+        ctr.ApplyGravity();
     }
 }
 
