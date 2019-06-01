@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796841752238776}
   - component: {fileID: 212116446320915906}
-  - component: {fileID: 114393800055287304}
+  - component: {fileID: 114104902246958064}
   m_Layer: 9
   m_Name: PixelPerfectSprite
   m_TagString: Untagged
@@ -55,7 +55,7 @@ GameObject:
   m_Layer: 9
   m_Name: Start
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -86,7 +86,7 @@ GameObject:
   m_Layer: 9
   m_Name: End
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -239,7 +239,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114393800055287304
+--- !u!114 &114104902246958064
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,10 +265,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transportMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 16384
   Movement: {x: 0, y: 0}
-  movespeed: 2
+  movespeed: 1
   transportedThings: []
+  parentedObjects: []
   platform: {fileID: 1538495788627904}
   TransporterCol: {fileID: 61866801218350168}
   points:

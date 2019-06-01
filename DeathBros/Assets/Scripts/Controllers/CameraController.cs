@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +12,8 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
-    [SerializeField]
-    private int pixelsPerUnit = 16;
+    //[SerializeField]
+    //private int pixelsPerUnit = 16;
 
     public float shakeSpeed = 1;
     public float shakeStrength = 1;
@@ -33,7 +32,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-
         movementBoundsCollider = GetComponent<BoxCollider2D>();
 
         //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
@@ -46,7 +44,7 @@ public class CameraController : MonoBehaviour
         //canvasScaler.referenceResolution = new Vector2(cam.pixelRect.width, cam.pixelRect.height);
     }
 
-    void LateUpdate()
+    private void MoveCamera()
     {
         MoveCameraToPlayer();
 
@@ -55,13 +53,13 @@ public class CameraController : MonoBehaviour
             ShakeCamera();
         }
 
-        Vector3 newLocalPosition = Vector3.zero;
+        //Vector3 newLocalPosition = Vector3.zero;
 
-        newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
-        newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
-        newLocalPosition.z = transform.position.z;
+        //newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
+        //newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
+        //newLocalPosition.z = transform.position.z;
 
-        transform.position = newLocalPosition;
+        //transform.position = newLocalPosition;
     }
 
     private void FixedUpdate()
@@ -72,6 +70,8 @@ public class CameraController : MonoBehaviour
 
             ShakeCamera();
         }
+
+        MoveCamera();
     }
 
     private void ShakeCamera()
@@ -132,17 +132,18 @@ public class CameraController : MonoBehaviour
         movementBounds.center = new Vector3(movementBounds.center.x, movementBounds.center.y, 0);
 
 
-
         //smooth movement
         newPosition = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
+        //newPosition = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
+        //newPosition = new Vector3(target.position.x, target.position.y, -10) - transform.position;
+
+        //if (movementBounds.Contains(target.position))
+        //{
+        //    newPosition = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
+        //}
+
+
         /*
-        if (movementBounds.Contains(target.position))
-        {
-            newPosition = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y, -10), smoothSpeed);
-        }
-
-
-
         if (target.position.x < movementBounds.Rect().xMin)
         {
             newPosition.x = target.position.x;// + cameraSizeBounds.extents.x;

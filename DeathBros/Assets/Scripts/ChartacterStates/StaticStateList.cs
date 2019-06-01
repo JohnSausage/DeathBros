@@ -127,7 +127,7 @@ public class SCS_Idle : SCState
     {
         base.Enter(chr);
 
-        chr.Ctr.inControl = true;
+        chr.Ctr.InControl = true;
 
         //chr.jumpsUsed = 0;
 
@@ -147,6 +147,13 @@ public class SCS_Idle : SCState
         chr.SCS_CheckIfGrounded();
 
         chr.SCS_CheckForGroundAttacks();
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.FrozenInputX = 0f;
     }
 }
 
@@ -215,11 +222,11 @@ public class SCS_Jumping : SCState
 
         if (chr.DirectionalInput.y <= -0.5f)
         {
-            chr.Ctr.fallThroughPlatform = true;
+            chr.Ctr.FallThroughPlatforms = true;
         }
         else
         {
-            chr.Ctr.fallThroughPlatform = false;
+            chr.Ctr.FallThroughPlatforms = false;
         }
 
         chr.SCS_CheckIfLanding();
@@ -233,7 +240,7 @@ public class SCS_Jumping : SCState
             }
         }
 
-        if (chr.Ctr.onWall)
+        if (chr.Ctr.OnWall)
 
             chr.SCS_ChangeState(StaticStates.wallsliding);
 
@@ -269,7 +276,7 @@ public class SCS_Crouch : SCState
 
         if (chr.StrongInputs.y < 0)
         {
-            chr.Ctr.fallThroughPlatform = true;
+            chr.Ctr.FallThroughPlatforms = true;
             chr.ClearStrongInputs();
         }
 
@@ -330,7 +337,7 @@ public class SCS_Jumpsquat : SCState
             if (chr.TiltInput != Vector2.zero)
             {
                 chr.SCS_CheckForAerials();
-                chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
+                chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
             }
             else
             {
@@ -340,11 +347,11 @@ public class SCS_Jumpsquat : SCState
 
                 if (chr.HoldJump || chr.DirectionalInput.y > 0.75f)
                 {
-                    chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength");
+                    chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength");
                 }
                 else
                 {
-                    chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
+                    chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength") * 0.75f;
                 }
             }
         }
@@ -379,7 +386,7 @@ public class SCS_DoubleJumpsquat : SCState
         if (chr.Timer >= chr.StatesSO.doublejumpsquat_duration)
         {
             chr.SCS_ChangeState(StaticStates.jumping);
-            chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength");
+            chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength");
         }
     }
 
@@ -586,13 +593,13 @@ public class SCS_Wallsliding : SCState
             chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingDown_anim);
         }
 
-        chr.Spr.flipX = chr.Ctr.wallDirection == -1;
+        chr.Spr.flipX = chr.Ctr.WallDirection == -1;
 
         chr.GetInputs();
 
         chr.SCS_CheckIfLanding();
 
-        if (!chr.Ctr.onWall)
+        if (!chr.Ctr.OnWall)
         {
             chr.SCS_ChangeState(StaticStates.jumping);
         }
@@ -626,7 +633,7 @@ public class SCS_WalljumpStart : SCState
     {
         base.Enter(chr);
 
-        chr.Spr.flipX = chr.Ctr.wallDirection == 1;
+        chr.Spr.flipX = chr.Ctr.WallDirection == 1;
         chr.SetInputs(Vector2.zero);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.walljumpstart_anim);
@@ -639,7 +646,7 @@ public class SCS_WalljumpStart : SCState
         if (chr.Timer >= chr.StatesSO.walljumpstart_duration)
         {
             chr.SetInputs(new Vector2(-Mathf.Sign(chr.FrozenInputX), 0));
-            chr.Ctr.jumpVelocity = chr.GetCurrentStatValue("JumpStrength") * jumpHeightReductionFactor;
+            chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength") * jumpHeightReductionFactor;
 
             chr.SCS_ChangeState(StaticStates.walljumping);
         }
@@ -670,7 +677,7 @@ public class SCS_Walljumping : SCState
 
         chr.SCS_CheckIfLanding();
 
-        if (chr.Ctr.onWall)
+        if (chr.Ctr.OnWall)
         {
             chr.SCS_ChangeState(StaticStates.wallsliding);
         }
@@ -692,7 +699,7 @@ public class SCS_Tumble : SCState
     {
         base.Enter(chr);
 
-        chr.Ctr.inControl = true;
+        chr.Ctr.InControl = true;
 
         chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
 
@@ -716,7 +723,7 @@ public class SCS_Tumble : SCState
         {
             chr.SCS_ChangeState(StaticStates.hitland);
         }
-        else if (chr.Ctr.collision)
+        else if (chr.Ctr.HasCollided)
         {
             chr.SCS_ChangeState(StaticStates.hitLandWall);
         }
@@ -733,7 +740,7 @@ public class SCS_Tumble : SCState
     {
         base.Exit(chr);
 
-        chr.Ctr.freeze = false;
+        chr.Ctr.Frozen = false;
 
         chr.HitStunDuration = 0;
     }
@@ -760,7 +767,7 @@ public class SCS_Hitstun : SCState
 
         chr.ACharacterTakesDasmage += TakeDamage;
 
-        chr.Ctr.inControl = false;
+        chr.Ctr.InControl = false;
 
         chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
 
@@ -780,7 +787,7 @@ public class SCS_Hitstun : SCState
         {
             if (chr.HitstunVector != Vector2.zero)
             {
-                chr.Ctr.forceMovement = chr.HitstunVector;
+                chr.Ctr.ForceMovement = chr.HitstunVector;
             }
         }
         else
@@ -803,7 +810,7 @@ public class SCS_Hitstun : SCState
 
         if (chr.Timer > chr.HitStunDuration)
         {
-            chr.Ctr.inControl = true;
+            chr.Ctr.InControl = true;
             chr.SCS_ChangeState(StaticStates.tumble);
 
             chr.RaiseComboOverEvent();
@@ -814,7 +821,7 @@ public class SCS_Hitstun : SCState
         {
             chr.SCS_ChangeState(StaticStates.hitland);
         }
-        else if (chr.Ctr.collision)
+        else if (chr.Ctr.HasCollided)
         {
             chr.SCS_ChangeState(StaticStates.hitLandWall);
         }
@@ -825,7 +832,7 @@ public class SCS_Hitstun : SCState
     {
         base.Exit(chr);
 
-        chr.Ctr.freeze = false;
+        chr.Ctr.Frozen = false;
 
         chr.HitStunDuration = 0;
         chr.HitstunVector = Vector2.zero;
@@ -845,8 +852,8 @@ public class SCS_Hitfreeze : SCState
     {
         base.Enter(chr);
 
-        chr.Ctr.inControl = false;
-        chr.Ctr.freeze = true;
+        chr.Ctr.InControl = false;
+        chr.Ctr.Frozen = true;
 
         chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
     }
@@ -865,10 +872,10 @@ public class SCS_Hitfreeze : SCState
     {
         base.Exit(chr);
 
-        chr.Ctr.inControl = false;
-        chr.Ctr.freeze = false;
+        chr.Ctr.InControl = false;
+        chr.Ctr.Frozen = false;
 
-        chr.Ctr.forceMovement = chr.currentKnockback;
+        chr.Ctr.ForceMovement = chr.currentKnockback;
     }
 }
 
@@ -933,7 +940,7 @@ public class SCS_Roll : SCState
 
         chr.SetInputs(new Vector2(Mathf.Sign(chr.FrozenInputX) * 0.8f, 0));
 
-        if (chr.Ctr.onLedge)
+        if (chr.Ctr.OnLedge)
         {
             chr.SetInputs(Vector2.zero);
         }
@@ -965,9 +972,9 @@ public class SCS_HitLand : SCState
         chr.jumpsUsed = 0;
         chr.SCS_RaiseLandingEvent();
 
-        chr.Ctr.freeze = true;
-        chr.Ctr.inControl = false;
-        chr.CollisionReflectVector = chr.Ctr.collisionReflect;
+        chr.Ctr.Frozen = true;
+        chr.Ctr.InControl = false;
+        chr.CollisionReflectVector = chr.Ctr.reflectedVelocity;
         chr.Flash(Color.white, 5);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.hitland_anim);
@@ -985,7 +992,7 @@ public class SCS_HitLand : SCState
         {
             if (chr.CollisionReflectVector.magnitude * 60 > 20f)
             {
-                chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
+                chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
                 chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
                 chr.HitStunDuration = 15;
 
@@ -993,16 +1000,16 @@ public class SCS_HitLand : SCState
             }
             else
             {
-                if (chr.Ctr.grounded)
+                if (chr.Ctr.IsGrounded)
                 {
                     chr.RaiseComboOverEvent();
 
                     chr.SCS_ChangeState(StaticStates.hitlanded);
-                    chr.Ctr.inControl = true;
+                    chr.Ctr.InControl = true;
                 }
                 else
                 {
-                    chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
+                    chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
                     chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
                     chr.HitStunDuration = 15;
 
@@ -1015,7 +1022,7 @@ public class SCS_HitLand : SCState
     public override void Exit(Character chr)
     {
         base.Exit(chr);
-        chr.Ctr.freeze = false;
+        chr.Ctr.Frozen = false;
     }
 }
 
@@ -1030,9 +1037,9 @@ public class SCS_HitLandWall : SCState
 
         chr.SCS_RaiseLandingEvent();
 
-        chr.Ctr.freeze = true;
-        chr.Ctr.inControl = false;
-        chr.CollisionReflectVector = chr.Ctr.collisionReflect;
+        chr.Ctr.Frozen = true;
+        chr.Ctr.InControl = false;
+        chr.CollisionReflectVector = chr.Ctr.reflectedVelocity;
 
         chr.Flash(Color.white, 5);
 
@@ -1049,7 +1056,7 @@ public class SCS_HitLandWall : SCState
 
         if (chr.Timer > chr.StatesSO.hitland_duration)
         {
-            chr.Ctr.forceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
+            chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
             chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.8f;
             chr.HitstunVector = new Vector2(chr.HitstunVector.x, 0);
             chr.HitStunDuration = 15;
@@ -1061,8 +1068,8 @@ public class SCS_HitLandWall : SCState
     public override void Exit(Character chr)
     {
         base.Exit(chr);
-        chr.Ctr.freeze = false;
-        chr.Ctr.inControl = true;
+        chr.Ctr.Frozen = false;
+        chr.Ctr.InControl = true;
     }
 }
 
@@ -1241,15 +1248,21 @@ public class SCS_AirDodge : SCState
 
         chr.GetInputs();
 
-        if (chr.Timer <= 3) chr.Ctr.forceMovement = -chr.AirDodgeVector * 3f;
-        else if (chr.Timer <= 8) chr.Ctr.forceMovement = chr.AirDodgeVector * 15f;
+        if (chr.Timer <= 3)
+        {
+            chr.Ctr.ForceMovement = -chr.AirDodgeVector * 3f;
+        }
+        else if (chr.Timer <= 8)
+        {
+            chr.Ctr.ForceMovement = chr.AirDodgeVector * 15f;
+        }
 
         if (chr.Timer > duration)
         {
             chr.SCS_ChangeState(StaticStates.jumping);
         }
 
-        chr.CS_CheckLanding();
+        chr.SCS_CheckIfLanding();
     }
 }
 
@@ -1270,7 +1283,7 @@ public class SCS_ShieldHit : SCState
     {
         base.Execute(chr);
 
-        chr.CS_CheckIfStillGrounded();
+        chr.SCS_CheckIfGrounded();
 
         if (chr.Anim.animationOver)
         {
@@ -1323,7 +1336,7 @@ public class SCS_GetGrabbed : SCState
     {
         base.Enter(chr);
 
-        chr.Ctr.inControl = false;
+        chr.Ctr.InControl = false;
         chr.Anim.ChangeAnimation(chr.StatesSO.getGrabbed_anim);
 
     }
@@ -1332,13 +1345,13 @@ public class SCS_GetGrabbed : SCState
     {
         base.Execute(chr);
 
-        chr.Ctr.forceMovement = ((chr.currentDamage.position - chr.Position)) * 20f + Vector2.up;
+        chr.Ctr.ForceMovement = ((chr.currentDamage.position - chr.Position)) * 20f + Vector2.up;
     }
 
     public override void Exit(Character chr)
     {
         base.Exit(chr);
 
-        chr.Ctr.inControl = true;
+        chr.Ctr.InControl = true;
     }
 }

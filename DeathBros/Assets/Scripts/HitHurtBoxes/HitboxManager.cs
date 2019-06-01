@@ -82,14 +82,14 @@ public class HitboxManager : _MB
                     */
 
 
-                    if (Chr is Player)
-                    {
-                        Player player = (Player)Chr;
+                    //if (Chr is Player)
+                    //{
+                    //    Player player = (Player)Chr;
 
-                        damage.AddDamage(player.soulCharge);
+                    //    damage.AddDamage(player.soulCharge);
 
 
-                    }
+                    //}
 
                     if (hitObject != null)
                     {

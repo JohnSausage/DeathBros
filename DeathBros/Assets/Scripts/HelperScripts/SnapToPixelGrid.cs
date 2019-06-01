@@ -10,7 +10,7 @@ public class SnapToPixelGrid : MonoBehaviour
 
     private Vector3 oldPosition;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if(oldPosition == transform.position)
         {
@@ -22,8 +22,12 @@ public class SnapToPixelGrid : MonoBehaviour
         Vector3 newLocalPosition;
         newLocalPosition = Vector3.zero;
 
-        newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
-        newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
+        //newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
+        //newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
+
+        newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit * 2) / pixelsPerUnit / 2);
+        newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit * 2) / pixelsPerUnit / 2);
+
         newLocalPosition.z = transform.position.z;
 
         transform.position = newLocalPosition;

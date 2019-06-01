@@ -6,7 +6,7 @@ public class InputManager : MonoBehaviour
 {
     public static Vector2 Direction;
     public static Vector2 CStick;
-    public static Vector2 Smash;
+    public static Vector2 StrongInput;
 
     public static DualInput Up, Down, Left, Right;
     public static DualInput CUp, CDown, CLeft, CRight;
@@ -172,14 +172,14 @@ public class InputManager : MonoBehaviour
     {
         oldDirection = Direction;
 
-        if (Smash != Vector2.zero)
+        if (StrongInput != Vector2.zero)
         {
             smashBufferTimer--;
         }
 
         if (smashBufferTimer <= 0)
         {
-            Smash = Vector2.zero;
+            StrongInput = Vector2.zero;
         }
 
         Direction = new Vector2(-Left.GetAxis() + Right.GetAxis(), Up.GetAxis() - Down.GetAxis());
@@ -202,15 +202,15 @@ public class InputManager : MonoBehaviour
         }
         */
 
-        if (Mathf.Abs(oldDirection.x - Direction.x) > 0.25f && Mathf.Abs(Direction.x) > 0.5f)
+        if (Mathf.Abs(oldDirection.x - Direction.x) > 0.5f && Mathf.Abs(Direction.x) > 0.75f)
         {
-            Smash.x = Mathf.Sign(Direction.x);
+            StrongInput.x = Mathf.Sign(Direction.x);
             smashBufferTimer = smashBufferFrames;
         }
 
-        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.25f && Mathf.Abs(Direction.y) > 0.5f)
+        if (Mathf.Abs(oldDirection.y - Direction.y) > 0.25f && Mathf.Abs(Direction.y) > 0.75f)
         {
-            Smash.y = Mathf.Sign(Direction.y);
+            StrongInput.y = Mathf.Sign(Direction.y);
             smashBufferTimer = smashBufferFrames;
         }
 
@@ -230,9 +230,9 @@ public class InputManager : MonoBehaviour
 
     public static bool CheckForSmash(Vector2 direction)
     {
-        if (Smash == direction)
+        if (StrongInput == direction)
         {
-            Smash = Vector2.zero;
+            StrongInput = Vector2.zero;
             return true;
         }
         return false;
@@ -253,7 +253,7 @@ public class InputManager : MonoBehaviour
     public static void ClearBuffer()
     {
         BufferedInput = null;
-        Smash = Vector2.zero;
+        StrongInput = Vector2.zero;
     }
 
     public static bool GetButton(string inputName)

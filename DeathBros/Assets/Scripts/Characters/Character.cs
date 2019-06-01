@@ -8,16 +8,11 @@ public class Character : _MB, ICanTakeDamage
 {
     public string charName;
 
-    //public string soundFolderName;
-
     [Space]
 
     [SerializeField]
     protected StatesAndStatsSO statesSO;
     public StatesAndStatsSO StatesSO { get { return statesSO; } }
-
-    [SerializeField]
-    protected List<CS_AttackSO> attackSOs;
 
     [Space]
 
@@ -30,13 +25,6 @@ public class Character : _MB, ICanTakeDamage
     protected SoundsSO soundsSO;
     public SoundsSO GetSoundsSO { get { return soundsSO; } }
 
-
-    //[SerializeField]
-    //protected CStateParamtetersSO cStateParamtetersSO;
-    //public CStateParamtetersSO CStateParamtetersSO { get { return cStateParamtetersSO; } }
-
-    //public int csTimer { get; set; }
-    //public float csDirection { get; set; }
 
     [Space]
 
@@ -62,8 +50,6 @@ public class Character : _MB, ICanTakeDamage
     public bool Shield { get; set; }
     public bool HoldShield { get; protected set; }
 
-    //public float jumpStrength = 20;
-    //public int jumps = 2;
     public int jumpsUsed { get; set; }
     public bool canChangeDirctionInAir { get; set; }
 
@@ -81,12 +67,12 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 HitstunVector { get; set; }
     public Vector2 AirDodgeVector { get; set; }
 
-    public StateMachine CSMachine;// { get; protected set; }
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
-    public Controller2D Ctr { get; protected set; }
     public HitboxManager HitM { get; protected set; }
     public HurtboxManager HurtM { get; protected set; }
+
+    public NES_BasicController2D Ctr;
 
     public float Direction
     {
@@ -100,21 +86,11 @@ public class Character : _MB, ICanTakeDamage
 
     public Vector2 Position
     {
-        //get { return (Vector2)transform.position; }
-        get { return (Vector2)Ctr.Col.bounds.center; }
+        get { return Ctr.Position; }
     }
 
-    public List<CState> cStates;// { get; protected set; }
-
     [Space]
-
-    //public Stats stats;
-
     public float currentHealth;
-    public float currentSouls = 1;
-    public float soulMeter = 50;
-    public float soulMeterMax = 100;
-    public float soulMeterBalanceRate = 0.25f;
 
     public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
@@ -144,13 +120,10 @@ public class Character : _MB, ICanTakeDamage
 
         InitStats();
 
+        Ctr = GetComponent<NES_BasicController2D>();
+
         if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
 
-
-
-        cStates = new List<CState>();
-
-        CSMachine = new StateMachine();
         Anim = GetComponent<FrameAnimator>();
         Anim.Init();
 
@@ -160,24 +133,13 @@ public class Character : _MB, ICanTakeDamage
             Spr = GetComponentInChildren<SpriteRenderer>();
         }
 
-        Ctr = GetComponent<Controller2D>();
-
         HitM = GetComponent<HitboxManager>();
         HurtM = GetComponent<HurtboxManager>();
 
 
-        statesSO.InitStates(this);
-
-        CStates_InitExitStates();
-
-        foreach (var attackSO in attackSOs)
-        {
-            attackSO.InitState(this);
-        }
-
         cardEffects = new List<CardEffect>();
-
         Buffs = new List<Buff>();
+
 
         ChrSM = new ChrStateMachine();
         ChrSM.ChangeState(this, StaticStates.idle);
@@ -187,43 +149,29 @@ public class Character : _MB, ICanTakeDamage
     {
         base.LateInit();
 
-        //InitStats();
-
         if (soundsSO != null) soundsSO.LoadSounds();
-
     }
 
-    public virtual void CStates_InitExitStates()
-    {
-        foreach (CState cs in cStates)
-        {
-            cs.InitExitStates();
-        }
-    }
 
     protected virtual void FixedUpdate()
     {
         ChrSM.Update(this);
 
-        //CSMachine.Update();
-
-        //stats.FixedUpdate();
-
         UpdateStats();
 
         UpdatesStatsForCtr();
-        Ctr.ManualFixedUpdate();
+
+        Ctr.FixedMove();
 
         currentDamage = null;
         Jump = false;
-
         Attack = false;
     }
 
     protected virtual void UpdatesStatsForCtr()
     {
-        Ctr.movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
-        Ctr.gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
+        Ctr.Movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
+        Ctr.Gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
     }
 
     public void Spawn(Vector2 position)
@@ -242,21 +190,12 @@ public class Character : _MB, ICanTakeDamage
     {
         statList = new List<Stat>();
 
-        //statsSO.Init(statList);
-
         for (int i = 0; i < statsSO.stats.Count; i++)
         {
             statList.Add(statsSO.stats[i].Clone());
         }
 
         currentHealth = GetCurrentStatValue("MaxHealth");
-    }
-
-    public virtual void ModSouls(float value)
-    {
-        currentSouls += value;
-
-        currentSouls = Mathf.Clamp(currentSouls, 0, GetCurrentStatValue("MaxSouls"));
     }
 
     protected void ModHealth(float value)
@@ -406,7 +345,7 @@ public class Character : _MB, ICanTakeDamage
     {
         //Debug.Log(this.name + " died");
 
-        CSMachine.ChangeState(GetState(typeof(CS_Die)));
+        //CSMachine.ChangeState(GetState(typeof(CS_Die)));
     }
 
     public virtual void Dead()
@@ -416,7 +355,7 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void GetInputs()
     {
-        Ctr.input = DirectionalInput;
+        Ctr.DirectionalInput = DirectionalInput;
     }
 
     public virtual void SetInputs(Vector2 inputs)
@@ -436,57 +375,57 @@ public class Character : _MB, ICanTakeDamage
         Attack = value;
     }
 
-    public CState GetState(Type type)
-    {
-        CState returnState = null;
+    //public CState GetState(Type type)
+    //{
+    //    CState returnState = null;
 
-        for (int i = 0; i < cStates.Count; i++)
-        {
-            if (cStates[i].GetType() == type)
-                returnState = cStates[i];
-        }
-        return returnState;
-    }
+    //    //for (int i = 0; i < cStates.Count; i++)
+    //    //{
+    //    //    if (cStates[i].GetType() == type)
+    //    //        returnState = cStates[i];
+    //    //}
+    //    return returnState;
+    //}
 
-    public CS_Attack GetAttackState(EAttackType attackType)
-    {
-        CS_Attack returnState = null;
+    //public CS_Attack GetAttackState(EAttackType attackType)
+    //{
+    //    CS_Attack returnState = null;
 
-        for (int i = 0; i < cStates.Count; i++)
-        {
-            if (cStates[i] is CS_Attack)
-            {
-                CS_Attack checkAttackType = (CS_Attack)cStates[i];
+    //    for (int i = 0; i < cStates.Count; i++)
+    //    {
+    //        if (cStates[i] is CS_Attack)
+    //        {
+    //            CS_Attack checkAttackType = (CS_Attack)cStates[i];
 
-                if (checkAttackType.attackType == attackType)
-                {
-                    returnState = (CS_Attack)cStates[i];
-                }
-            }
-        }
-        return returnState;
-    }
+    //            if (checkAttackType.attackType == attackType)
+    //            {
+    //                returnState = (CS_Attack)cStates[i];
+    //            }
+    //        }
+    //    }
+    //    return returnState;
+    //}
 
-    public virtual void CS_CheckLanding()
-    {
-        if (Ctr.IsGrounded)
-        {
-            CSMachine.ChangeState(GetState(typeof(CS_Landing)));
-        }
-    }
+    //public virtual void CS_CheckLanding()
+    //{
+    //    if (Ctr.IsGrounded)
+    //    {
+    //        CSMachine.ChangeState(GetState(typeof(CS_Landing)));
+    //    }
+    //}
 
-    public virtual void CS_CheckIfStillGrounded()
-    {
-        if (!Ctr.IsGrounded)
-        {
-            CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
-        }
-    }
+    //public virtual void CS_CheckIfStillGrounded()
+    //{
+    //    if (!Ctr.IsGrounded)
+    //    {
+    //        CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
+    //    }
+    //}
 
-    public virtual void CS_SetIdle()
-    {
-        CSMachine.ChangeState(GetState(typeof(CS_Idle)));
-    }
+    //public virtual void CS_SetIdle()
+    //{
+    //    CSMachine.ChangeState(GetState(typeof(CS_Idle)));
+    //}
 
     //public void LoadSoundFiles()
     //{
@@ -527,13 +466,6 @@ public class Character : _MB, ICanTakeDamage
     public virtual bool CheckForThrowAttacks()
     {
         return false;
-    }
-
-    public virtual void ModSoulMeter(float value)
-    {
-        soulMeter += value;
-
-        soulMeter = Mathf.Clamp(soulMeter, 0, 100);
     }
 
     public void Flash(Color color, int durationInFrames)
@@ -675,3 +607,5 @@ public interface ICanTakeDamage
 {
     void GetHit(Damage damage);
 }
+
+public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard, Grab }

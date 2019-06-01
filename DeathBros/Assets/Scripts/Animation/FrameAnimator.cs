@@ -14,7 +14,7 @@ public class FrameAnimator : _MB
     private SpriteRenderer spr;
     private HurtboxManager hubM;
     private HitboxManager hibM;
-    private Controller2D ctr;
+    private NES_BasicController2D ctr;
 
     public event Action<Vector2, Vector2> SpawnProjectile;
     public event Action<FrameAnimation> AnimationOver;
@@ -36,7 +36,7 @@ public class FrameAnimator : _MB
 
         hubM = GetComponent<HurtboxManager>();
         hibM = GetComponent<HitboxManager>();
-        ctr = GetComponent<Controller2D>();
+        ctr = GetComponent<NES_BasicController2D>();
 
         frameTimer = 0;
         animTimer = 0;
@@ -80,8 +80,8 @@ public class FrameAnimator : _MB
                     forceMovement.x *= -1;
                     addMovement.x *= -1;
                 }
-                ctr.forceMovement += forceMovement;
-                ctr.addMovement = addMovement;
+                ctr.ForceMovement += forceMovement;
+                ctr.AddMovement = addMovement;
 
                 if (currentFrame.spawnProjectile != Vector2.zero)
                 {
@@ -109,8 +109,8 @@ public class FrameAnimator : _MB
                     if (pickUpItem is ICanBePickedUp)
                     {
 
-                        player.ReleaseHoldItem();
-                        player.SetHoldItem(pickUpItem);
+                        //player.ReleaseHoldItem();
+                        //player.SetHoldItem(pickUpItem);
                     }
 
                 }

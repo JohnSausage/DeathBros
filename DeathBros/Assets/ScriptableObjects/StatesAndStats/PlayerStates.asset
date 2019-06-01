@@ -44,9 +44,9 @@ MonoBehaviour:
   walljumping_duration: 15
   skid_anim: run
   skid_duration: 5
-  skid_idleOutDuration: 1
+  skid_idleOutDuration: 3
   dash_anim: run
-  dash_duration: 10
+  dash_duration: 5
   crouch_anim: crouch
   roll_anim: roll
   throwitem_anim: crouch

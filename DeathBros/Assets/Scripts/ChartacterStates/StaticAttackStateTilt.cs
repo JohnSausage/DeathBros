@@ -37,7 +37,7 @@ public class SCS_TiltAttack : SCS_Attack
 
         chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
 
-        if (chr.Ctr.onLedge)
+        if (chr.Ctr.OnLedge)
             chr.SetInputs(Vector2.zero);
 
         if (chr.Anim.animationOver)

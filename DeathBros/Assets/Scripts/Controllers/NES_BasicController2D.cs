@@ -15,9 +15,13 @@ public class NES_BasicController2D : MonoBehaviour
     public Vector2 velocity;// { get { return velocity; } }
     public Vector2 oldVelocity;
     public bool FallThroughPlatforms;//{get;set;}
-
     public Vector2 ForceMovement;
     public Vector2 AddMovement;
+
+    protected float faceDirection;
+    public float FaceDirection { set { faceDirection = value; } }
+
+    public Vector2 Position { get { return col.offset; } }
 
     protected BoxCollider2D col;
     protected Bounds bounds;
@@ -37,14 +41,17 @@ public class NES_BasicController2D : MonoBehaviour
     public float maxFallSpeed = -15;
     public float fastFallSpeed = -20;
     public bool fastFall = false;
-    public float wallslideSpeed = 5;
+    public float WallslideSpeed = 5;
 
     /* checks */
     public bool IsGrounded;// { get; set; }
     public bool HasCollided;// { get; set; }
     public bool OnWall;// { get; set; }
+    public bool OnLedge;// { get; set; }
     public bool Frozen;// { get; protected set; }
-
+    public bool InControl;//get;set;}
+    public bool IsJumping;//get;set;}
+    public int WallDirection { get { return (int)Mathf.Sign(DirectionalInput.x); } }
     public void FreezeCtr(int freezeForFrames)
     {
         Frozen = true;
@@ -59,6 +66,7 @@ public class NES_BasicController2D : MonoBehaviour
     public Vector2 frozenVelocity = Vector2.zero;
     public Vector2 reflectedVelocity = Vector2.zero;
     public Vector2 plannedVelocity = Vector2.zero;
+    public Vector2 requestedPlatformMovement = Vector2.zero;
 
     public float slopeUpAngle = 0f;
     public float movingSlopeUpAngle = 0f;
@@ -118,7 +126,7 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void ApplyAddMovementToVelocity()
     {
-        velocity += AddMovement;
+        velocity += AddMovement / 60f;
         AddMovement = Vector2.zero;
     }
 
@@ -126,7 +134,7 @@ public class NES_BasicController2D : MonoBehaviour
     {
         if (ForceMovement != Vector2.zero)
         {
-            velocity = ForceMovement;
+            velocity = ForceMovement / 60f;
             ForceMovement = Vector2.zero;
         }
     }
@@ -168,6 +176,12 @@ public class NES_BasicController2D : MonoBehaviour
         {
             velocity.y = JumpVelocity / 60;
             JumpVelocity = 0;
+
+            IsJumping = true;
+        }
+        else
+        {
+            IsJumping = false;
         }
     }
 
@@ -182,11 +196,17 @@ public class NES_BasicController2D : MonoBehaviour
 
             if(velocity.y < 0)
             {
-                velocity.y = -wallslideSpeed / 60f;
+                velocity.y = -WallslideSpeed / 60f;
             }
         }
 
         return onWallCheck;
+    }
+
+    public bool CheckForOnLedge()
+    {
+        Debug.Log("CheckForOnLedge() not implemented yet");
+        return false;
     }
 
     public bool CheckForCollision()
@@ -209,6 +229,11 @@ public class NES_BasicController2D : MonoBehaviour
 
     public bool CheckIfGrounded()
     {
+        if(IsJumping)
+        {
+            return false;
+        }
+
         RaycastHit2D groundCheck = Physics2D.BoxCast((Vector2)bounds.center - new Vector2(0, bounds.extents.y - skin / 2f),
             new Vector2(bounds.size.x, skin), 0, Vector2.down, skin * 2, groundMask);
 
@@ -578,6 +603,8 @@ public class CtrS_groundedIdle : CtrState
     protected override void ApplyStateMovement(NES_BasicController2D ctr)
     {
         ctr.velocity = Vector2.zero;
+        ctr.velocity += ctr.requestedPlatformMovement;
+
         ctr.CheckJumpVelocity();
     }
 }
@@ -734,7 +761,7 @@ public class CtrS_frozen : CtrState
     {
         base.Enter(ctr);
         ctr.IsGrounded = false;
-
+        ctr.InControl = false;
         ctr.frozenVelocity = ctr.velocity;
     }
 
@@ -765,6 +792,7 @@ public class CtrS_frozen : CtrState
         base.Exit(ctr);
 
         ctr.Frozen = false;
+        ctr.InControl = true;
         ctr.velocity = ctr.frozenVelocity;
         ctr.CheckForCollision();
     }
