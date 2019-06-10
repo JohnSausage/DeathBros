@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class FrameAnimator : _MB
 {
     public FrameAnimation currentAnimation;
@@ -15,7 +14,7 @@ public class FrameAnimator : _MB
     private SpriteRenderer spr;
     private HurtboxManager hubM;
     private HitboxManager hibM;
-    private Controller2D ctr;
+    private NES_BasicController2D ctr;
 
     public event Action<Vector2, Vector2> SpawnProjectile;
     public event Action<FrameAnimation> AnimationOver;
@@ -30,9 +29,14 @@ public class FrameAnimator : _MB
         base.Init();
 
         spr = GetComponent<SpriteRenderer>();
+        if (spr == null)
+        {
+            spr = GetComponentInChildren<SpriteRenderer>();
+        }
+
         hubM = GetComponent<HurtboxManager>();
         hibM = GetComponent<HitboxManager>();
-        ctr = GetComponent<Controller2D>();
+        ctr = GetComponent<NES_BasicController2D>();
 
         frameTimer = 0;
         animTimer = 0;
@@ -76,11 +80,18 @@ public class FrameAnimator : _MB
                     forceMovement.x *= -1;
                     addMovement.x *= -1;
                 }
-                ctr.forceMovement += forceMovement;
-                ctr.addMovement = addMovement;
+                ctr.ForceMovement += forceMovement;
+                ctr.AddMovement = addMovement;
 
                 if (currentFrame.spawnProjectile != Vector2.zero)
                 {
+                    Character chr = GetComponent<Character>();
+                    if (chr != null)
+                    {
+                        chr.RaiseSpawnProjectileEvent(chr, currentFrame.spawnProjectile);
+                    }
+
+
                     if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
                 }
 
@@ -98,8 +109,8 @@ public class FrameAnimator : _MB
                     if (pickUpItem is ICanBePickedUp)
                     {
 
-                        player.ReleaseHoldItem();
-                        player.SetHoldItem(pickUpItem);
+                        //player.ReleaseHoldItem();
+                        //player.SetHoldItem(pickUpItem);
                     }
 
                 }
@@ -118,7 +129,7 @@ public class FrameAnimator : _MB
 
             if (frameTimer == 0 && currentFrame.soundName != "")
             {
-                AudioManager.PlaySound(currentFrame.soundName);
+                AudioManager.PlaySound(currentFrame.soundName, spr.transform.position);
             }
 
             frameTimer += animationSpeed;

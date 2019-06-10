@@ -108,7 +108,7 @@ public class AI_Walk : AIState
 
         timer++;
 
-        if (ai.chr.Ctr.onLedge)
+        if (ai.chr.Ctr.OnLedge)
             dirX = -dirX;
 
         ai.chr.SetInputs(new Vector2(dirX, 0));
@@ -153,7 +153,7 @@ public class AI_Follow : AIState
 
         timer++;
 
-        if (ai.chr.Ctr.onLedge)
+        if (ai.chr.Ctr.OnLedge)
             dirX = -dirX;
 
         ai.chr.SetInputs(new Vector2(dirX, 0));
@@ -201,7 +201,7 @@ public class AI_Flee : AIState
 
         timer++;
 
-        if (ai.chr.Ctr.onLedge)
+        if (ai.chr.Ctr.OnLedge)
             dirX = -dirX;
 
         ai.chr.SetInputs(new Vector2(dirX, 0));

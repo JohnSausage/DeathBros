@@ -79,31 +79,3 @@ public class StatesAndStatsSO : ScriptableObject
     public string grab_anim = "grab";
 }
 
-        CS_Shield shield = new CS_Shield();
-        shield.animationName = shield_anim;
-        shield.Init(chr);
-
-        CS_Die die = new CS_Die();
-        die.animationName = die_anim;
-        die.Init(chr);
-
-        CS_Dead dead = new CS_Dead();
-        dead.animationName = dead_anim;
-        dead.Init(chr);
-
-        CS_StandUp standUp = new CS_StandUp();
-        standUp.animationName = standup_anim;
-        standUp.Init(chr);
-
-        CS_HitLanded hitLanded = new CS_HitLanded();
-        hitLanded.animationName = hitlanded_anim;
-        hitLanded.minDuration = hitLanded_minDuration;
-        hitLanded.Init(chr);
-
-        CS_GetGrabbed getGrabbed= new CS_GetGrabbed();
-        getGrabbed.animationName = getGrabbed_anim;
-        getGrabbed.Init(chr);
-
-        chr.CSMachine.ChangeState(idle);
-    }
-}

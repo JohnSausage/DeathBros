@@ -24,7 +24,7 @@ public class AIActionWalk : AIActionSO
 
         if (turnOnLedge)
         {
-            if (aiCtr.Enemy.Ctr.onLedge)
+            if (aiCtr.Enemy.Ctr.OnLedge)
             {
                 if (aiCtr.inputDirection == right) aiCtr.inputDirection = left;
                 else aiCtr.inputDirection = right;
@@ -33,7 +33,7 @@ public class AIActionWalk : AIActionSO
 
         if (turnOnWall)
         {
-            if (aiCtr.Enemy.Ctr.onWall)
+            if (aiCtr.Enemy.Ctr.OnWall)
             {
                 if (aiCtr.inputDirection == right) aiCtr.inputDirection = left;
                 else aiCtr.inputDirection = right;

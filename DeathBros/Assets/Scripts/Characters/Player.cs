@@ -4,25 +4,50 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public StaticAttackStateSO jab;
+    public StaticAttackStateSO dTilt;
+    public StaticAttackStateSO uTilt;
+    public StaticAttackStateSO fTilt;
 
-    //public Stat wallSlideSpeed = new Stat("WallslideSpeed", 5);
+    public StaticAttackStateSO grab;
 
-    public CStates_AdvancedMovement advancedMovementStates;
-    public CStates_Attack attackStates;
+    public StaticAttackStateSO nAir;
+    public StaticAttackStateSO fAir;
+    public StaticAttackStateSO bAir;
+    public StaticAttackStateSO dAir;
+    public StaticAttackStateSO uAir;
 
-    public float soulCharge = 0;
 
-    //public Stat maxSouls;
-    //public Stat currentSouls;
-    //protected int maxSouls = 3;
-    //protected int currentSouls;
-    //public int CurrentSouls { get { return (int)stats.FindStat("currentSouls").CurrentValue; } }
+    public StaticAttackStateSpecial nSpec;
+    public StaticAttackStateSpecial sSpec;
+    public StaticAttackStateSpecial uSpec;
+    public StaticAttackStateSpecial dSpec;
 
-    [SerializeField]
-    protected int soulBalanceDelayDuration = 60;
-    private int soulBalanceDelayTimer = 0;
+    public SCS_Attack jabAtk;
+    public SCS_Attack dTiltAtk;
+    public SCS_Attack uTiltAtk;
+    public SCS_Attack fTiltAtk;
 
-    public int soulBank = 0;
+    public SCS_Attack grabAtk;
+
+    public SCS_Attack nAirAtk;
+    public SCS_Attack fAirAtk;
+    public SCS_Attack bAirAtk;
+    public SCS_Attack dAirAtk;
+    public SCS_Attack uAirAtk;
+
+    public SCS_SpecialAttack nSpecAtk;
+    public SCS_SpecialAttack sSpecAtk;
+    public SCS_SpecialAttack uSpecAtk;
+    public SCS_SpecialAttack dSpecAtk;
+
+    protected int nSpecCount;
+    protected int sSpecCount;
+    protected int uSpecCount;
+    protected int dSpecCount;
+
+    public float ComboPower { get; protected set; }
+    protected bool[] cardPowerActivated = new bool[5];
 
     public float pickUpRadius = 1.5f;
 
@@ -33,30 +58,50 @@ public class Player : Character
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
-    public float SoulPercent { get { return soulMeter / soulMeterMax; } }
 
-    public static event Action<float> PlayerHealthChanged;
+    //public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
-    public event Action<float> ASoulsChanged;
-    public event Action<int> ASoulBankPlus;
-    public event Action<float> ASoulMeterChanged;
 
+    public event Action<float> AChangeComboPower;
+
+    public override void ClearStrongInputs()
+    {
+        base.ClearStrongInputs();
+        InputManager.ClearBuffer();
+    }
 
     public override void Init()
     {
         base.Init();
 
-        //soundFolderName = "Sounds/Player/";
-
-        //advancedMovementStates.Init(this);
-        //CSMachine.ChangeState(SCS_Idle.InstanceP);
+        Ctr.WallslideSpeed = GetCurrentStatValue("WallslideSpeed");
 
 
-        //attackStates.Init(this);
+        jabAtk = jab.CreateAttackState();
+        dTiltAtk = dTilt.CreateAttackState();
+        uTiltAtk = uTilt.CreateAttackState();
+        fTiltAtk = fTilt.CreateAttackState();
+
+        grabAtk = grab.CreateAttackState();
 
 
+        nAirAtk = nAir.CreateAttackState();
+        fAirAtk = fAir.CreateAttackState();
+        bAirAtk = bAir.CreateAttackState();
+        dAirAtk = dAir.CreateAttackState();
+        uAirAtk = uAir.CreateAttackState();
 
+<<<<<<< HEAD
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
+=======
+        nSpecAtk = nSpec.CreateAttackState(ESpecial.NEUTRAL);
+        sSpecAtk = sSpec.CreateAttackState(ESpecial.SIDE);
+        uSpecAtk = uSpec.CreateAttackState(ESpecial.UP);
+        dSpecAtk = dSpec.CreateAttackState(ESpecial.DOWN);
+
+        AEnemyHit += OnEnemyHit;
+        ComboPower = 50; //@@@ set to 0 later
+>>>>>>> parent of df0081a... Merge branch 'master' of https://github.com/JohnSausage/DeathBros
     }
 
     protected void OnEnemyHit(Character enemy, Damage damage)
@@ -130,10 +175,10 @@ public class Player : Character
 
 
         DirectionalInput = InputManager.Direction;
-        StrongInputs = InputManager.Smash;
+        StrongInputs = InputManager.StrongInput;
         TiltInput = InputManager.CStick;
 
-        if (Mathf.Abs(DirectionalInput.x) < 0.2f) DirectionalInput = new Vector2(0, DirectionalInput.y);
+        if (Mathf.Abs(DirectionalInput.x) < 0.25f) DirectionalInput = new Vector2(0, DirectionalInput.y);
 
         if (InputManager.BufferdDown("Attack")) Attack = true;
         else Attack = false;
@@ -175,54 +220,9 @@ public class Player : Character
     {
         base.FixedUpdate();
 
-        BalanceSoulMeter();
-    }
+        ModifiyComboPower(-0.01f);
 
-    protected override void InitStats()
-    {
-        base.InitStats();
-
-        if (GetCurrentStatValue("MaxSouls") != 0)
-        {
-            currentSouls = 0;
-            ModSouls(GetCurrentStatValue("MaxSouls"));
-        }
-    }
-
-
-    public override void ModSouls(float value)
-    {
-        base.ModSouls(value);
-
-        if (ASoulsChanged != null) ASoulsChanged((int)currentSouls);
-    }
-
-    protected void BalanceSoulMeter()
-    {
-        if (currentSouls > GetCurrentStatValue("MaxSouls"))
-        {
-            ModSouls(-1);
-        }
-
-        if (soulBalanceDelayTimer > 0) soulBalanceDelayTimer--;
-
-        if (soulBalanceDelayTimer == 0)
-        {
-            if (soulMeter > 50)
-            {
-                soulMeter -= soulMeterBalanceRate;
-
-                if (soulMeter < 50) soulMeter = 50;
-            }
-            else
-            {
-                soulMeter += soulMeterBalanceRate;
-
-                if (soulMeter > 50) soulMeter = 50;
-            }
-
-            soulMeter = Mathf.Clamp(soulMeter, 0, 100);
-        }
+        ManageCardBuffs();
     }
 
     public override void UpdateInputs()
@@ -235,33 +235,7 @@ public class Player : Character
     {
         base.HitEnemy(enemy, damage);
 
-        AddSoulAfterHit(damage);
-
         if (EnemyHit != null) EnemyHit(enemy, damage);
-
-        //StartCoroutine(IFreezePlayerOnHit(damage));
-    }
-    /*
-    private IEnumerator IFreezePlayerOnHit(Damage damage)
-    {
-        Ctr.freeze = true;
-        for (int i = 0; i < damage.damageNumber + 3; i++)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        Ctr.freeze = false;
-    }
-    */
-    private void AddHealthAfterCombo(float comboScore)
-    {
-        ModSoulMeter(comboScore);
-    }
-
-    public override void GetHit(Damage damage)
-    {
-        base.GetHit(damage);
-
-        if (PlayerHealthChanged != null) PlayerHealthChanged(soulMeter / soulMeterMax);
     }
 
     protected override void TakeDamage(Damage damage)
@@ -283,8 +257,6 @@ public class Player : Character
                 {
                     damage.Owner.HitEnemy(this, damage);
                 }
-
-                ModSoulMeter(-damage.damageNumber);
             }
             else
             {
@@ -300,9 +272,7 @@ public class Player : Character
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (SoulPercent));
-
-                ModSoulMeter(-damage.damageNumber);
+                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (HealthPercent));
             }
             if (currentHealth <= 0)
             {
@@ -310,176 +280,228 @@ public class Player : Character
             }
         }
     }
+    
 
-    private void AddSoulAfterHit(Damage damage)
-    {
-        ModSoulMeter(damage.damageNumber / 5);
-    }
+    //protected bool CheckForItemPickUp()
+    //{
+    //    if (holdItem == null)
+    //    {
+    //        RaycastHit2D itemCheck = Physics2D.CircleCast(transform.position, pickUpRadius, Vector2.zero, 0, enemyMask);
 
+    //        if (itemCheck)
+    //        {
+    //            Interactable interactable = itemCheck.transform.GetComponentInParent<Interactable>();
+    //            if (interactable != null)
+    //            {
+    //                InputManager.ClearBuffer();
+    //                interactable.StartInteraction(this);
+    //                return true;
+    //            }
 
-    public override void ModSoulMeter(float value)
-    {
-        if (soulMeter < soulMeterMax / 2) //only wait to fill up again, but drain soul immediately if more than half full
-        {
-            soulBalanceDelayTimer = soulBalanceDelayDuration;
-        }
-        else
-        {
-            soulBalanceDelayTimer = 0;
-        }
+    //            Item pickedItem = itemCheck.transform.GetComponentInParent<Item>();
+    //            if (pickedItem != null)
+    //            {
+    //                if (pickedItem is ICanBePickedUp)
+    //                {
+    //                    InputManager.ClearBuffer();
+    //                    SetHoldItem(pickedItem);
+    //                    return true;
+    //                }
+    //            }
+    //        }
+    //    }
 
-        soulMeter += value;
-
-        if (soulMeter > soulMeterMax)
-        {
-            soulBank += (int)(soulMeter - soulMeterMax);
-
-            if (ASoulBankPlus != null) ASoulBankPlus(soulBank);
-        }
-
-        if (soulMeter <= 0)
-        {
-            ModSouls(-1);
-
-            if (currentSouls != 0)
-                soulMeter = soulMeterMax;
-
-            if (currentSouls <= 0)
-            {
-                Die();
-            }
-        }
-
-
-        if (ASoulMeterChanged != null) ASoulMeterChanged(soulMeter);
-    }
-
-    protected bool CheckForItemPickUp()
-    {
-        if (holdItem == null)
-        {
-            RaycastHit2D itemCheck = Physics2D.CircleCast(transform.position, pickUpRadius, Vector2.zero, 0, enemyMask);
-
-            if (itemCheck)
-            {
-                Interactable interactable = itemCheck.transform.GetComponentInParent<Interactable>();
-                if (interactable != null)
-                {
-                    InputManager.ClearBuffer();
-                    interactable.StartInteraction(this);
-                    return true;
-                }
-
-                Item pickedItem = itemCheck.transform.GetComponentInParent<Item>();
-                if (pickedItem != null)
-                {
-                    if (pickedItem is ICanBePickedUp)
-                    {
-                        InputManager.ClearBuffer();
-                        SetHoldItem(pickedItem);
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
+    //    return false;
+    //}
 
     public bool ThrowItem(Vector2 throwVelocity)
     {
-        if (holdItem != null)
-        {
-            Vector2 itemVelocity;
+        //if (holdItem != null)
+        //{
+        //    Vector2 itemVelocity;
 
-            if (throwVelocity == Vector2.zero)
-            {
-                itemVelocity = Vector2.zero;
-            }
-            else if (Mathf.Abs(throwVelocity.x) > Mathf.Abs(throwVelocity.y))
-            {
-                itemVelocity = new Vector2(Mathf.Sign(throwVelocity.x), 0.25f);
-            }
-            else
-            {
-                itemVelocity = new Vector2(0, Mathf.Sign(throwVelocity.y));
-            }
+        //    if (throwVelocity == Vector2.zero)
+        //    {
+        //        itemVelocity = Vector2.zero;
+        //    }
+        //    else if (Mathf.Abs(throwVelocity.x) > Mathf.Abs(throwVelocity.y))
+        //    {
+        //        itemVelocity = new Vector2(Mathf.Sign(throwVelocity.x), 0.25f);
+        //    }
+        //    else
+        //    {
+        //        itemVelocity = new Vector2(0, Mathf.Sign(throwVelocity.y));
+        //    }
 
-            holdItem.Velocity = itemVelocity.normalized * 25f;
-            ReleaseHoldItem();
+        //    holdItem.Velocity = itemVelocity.normalized * 25f;
+        //    ReleaseHoldItem();
 
-            InputManager.ClearBuffer();
-            CSMachine.ChangeState(advancedMovementStates.throwItem);
-            return true;
-        }
+        //    InputManager.ClearBuffer();
+        //    //CSMachine.ChangeState(advancedMovementStates.throwItem);
+        //    return true;
+        //}
+        //return false;
+
         return false;
     }
 
-    public void SetHoldItem(Item item)
-    {
-        holdItem = item;
-        holdItem.IsSimulated = false;
-        holdItem.Owner = this;
-        holdItem.transform.SetParent(transform);
-        holdItem.transform.localPosition = Vector3.zero;
-        holdItem.Damage.Owner = this;
-    }
+    //public void SetHoldItem(Item item)
+    //{
+    //    holdItem = item;
+    //    holdItem.IsSimulated = false;
+    //    holdItem.Owner = this;
+    //    holdItem.transform.SetParent(transform);
+    //    holdItem.transform.localPosition = Vector3.zero;
+    //    holdItem.Damage.Owner = this;
+    //}
 
-    public void ReleaseHoldItem()
+    //public void ReleaseHoldItem()
+    //{
+    //    if (hasItem)
+    //    {
+    //        holdItem.transform.SetParent(null);
+    //        holdItem.IsSimulated = true;
+    //        holdItem.GenerateID();
+    //        holdItem = null;
+    //    }
+    //}
+
+
+    public override void SCS_CheckForGroundAttacks()
     {
-        if (hasItem)
+
+        if (Attack)
         {
-            holdItem.transform.SetParent(null);
-            holdItem.IsSimulated = true;
-            holdItem.GenerateID();
-            holdItem = null;
+            if (DirectionalInput == Vector2.zero)
+            {
+                ChrSM.ChangeState(this, jabAtk);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                ChrSM.ChangeState(this, fTiltAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uTiltAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dTiltAtk);
+            }
+        }
+        else if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f)
+            {
+                Direction = TiltInput.x;
+
+                ChrSM.ChangeState(this, fTiltAtk);
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uTiltAtk);
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dTiltAtk);
+            }
+        }
+
+        SCS_CheckForSpecials();
+
+        if(Grab)
+        {
+            ChrSM.ChangeState(this, grabAtk);
         }
     }
 
-    public override bool CheckForTiltAttacks()
+    public override void SCS_CheckForAerials()
     {
         if (Attack)
         {
-            if (ThrowItem(DirectionalInput))
+            if (DirectionalInput == Vector2.zero)
             {
-                return true;
+                ChrSM.ChangeState(this, nAirAtk);
             }
-            else if (CheckForItemPickUp())
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) == Direction)
             {
-                return true;
+                ChrSM.ChangeState(this, fAirAtk);
             }
-            else
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) != Direction)
             {
-                if (HoldShield)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.Grab));
-                }
-                else if (DirectionalInput == Vector2.zero)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
-                }
-                else if (Mathf.Abs(DirectionalInput.x) > 0.9f)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.DashAtk));
-                }
-                else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
-                }
-                else if (DirectionalInput.y > 0.5f)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-                }
-                else if (DirectionalInput.y < -0.5f)
-                {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-                }
+                ChrSM.ChangeState(this, bAirAtk);
             }
-
-            return true;
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uAirAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dAirAtk);
+            }
         }
 
         if (TiltInput != Vector2.zero)
+        {
+            if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) == Direction)
+            {
+                ChrSM.ChangeState(this, fAirAtk);
+            }
+            else if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) != Direction)
+            {
+                ChrSM.ChangeState(this, bAirAtk);
+            }
+            else if (TiltInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uAirAtk);
+            }
+            else if (TiltInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dAirAtk);
+            }
+        }
+
+        SCS_CheckForSpecials();
+    }
+
+    protected void CheckForSpecialAttack(SCS_SpecialAttack specialAtk, int specCount)
+    {
+        if (specCount < specialAtk.aerialLimit || specialAtk.aerialLimit == 0)
+        {
+            if (ComboPower >= specialAtk.comboPowerCost)
+            {
+                ModifiyComboPower(-specialAtk.comboPowerCost);
+                ChrSM.ChangeState(this, specialAtk);
+            }
+        }
+    }
+
+    protected void SCS_CheckForSpecials()
+    {
+        if (Special)
+        {        
+            if (DirectionalInput == Vector2.zero)
+            {
+                CheckForSpecialAttack(nSpecAtk, nSpecCount);
+            }
+            else if (DirectionalInput.y >= 0.5f)
+            {
+                CheckForSpecialAttack(uSpecAtk, uSpecCount);
+            }
+            else if (DirectionalInput.y <= -0.5f)
+            {
+                CheckForSpecialAttack(dSpecAtk, dSpecCount);
+            }
+            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                CheckForSpecialAttack(sSpecAtk, sSpecCount);
+            }
+        }
+    }
+
+    public override void SCS_CheckForTech()
+    {
+        if (HoldShield)
         {
             HitStunDuration = 0;
             Ctr.InControl = true;
@@ -489,19 +511,22 @@ public class Player : Character
             //if (Ctr.lastCollisionAngle <= 45)
             if (Ctr.IsGrounded)
             {
-                if (Mathf.Abs(TiltInput.x) > 0.5f)
+                if (Mathf.Abs(DirectionalInput.x) > 0.5f)
                 {
-                    Direction = TiltInput.x;
-
-                    CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
+                    SCS_ChangeState(StaticStates.roll);
                 }
-                else if (TiltInput.y > 0.5f)
+                else SCS_ChangeState(StaticStates.standUp);
+            }
+            //else if (Ctr.lastCollisionAngle == 90)
+                else if (Ctr.OnWall)
+            {
+                if (HoldJump)
                 {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
+                    SCS_ChangeState(StaticStates.walljumpStart);
                 }
-                else if (TiltInput.y < -0.5f)
+                else
                 {
-                    CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
+                    SCS_ChangeState(StaticStates.jumping);
                 }
             }
             else
@@ -509,72 +534,71 @@ public class Player : Character
                 SCS_ChangeState(StaticStates.jumping);
             }
         }
-        return false;
     }
 
-    public override bool CheckForSoulAttacks()
+    public override void SCS_CheckForAerialTech()
     {
-        Vector2 smash = InputManager.Smash;
-
-        if (Attack && smash != Vector2.zero)
+        if (HoldShield)
         {
-            if (ThrowItem(smash)) return true;
+            RaiseComboOverEvent();
 
-
-            if (Mathf.Abs(smash.x) > 0.5f)
+            if (HoldJump || DirectionalInput.y >= 0.5f)
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.FSoul));
+                SCS_ChangeState(StaticStates.walljumpStart);
             }
-            else if (smash.y > 0.5f)
+            else
             {
-                CSMachine.ChangeState(GetAttackState(EAttackType.USoul));
+                SCS_ChangeState(StaticStates.jumping);
             }
-            else if (smash.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DSoul));
-            }
-
-            return true;
         }
-
-        else return false;
     }
 
-    public override bool CheckForAerialAttacks()
+    public override void SCS_GetUpAfterHitLanded()
     {
-        if (Attack)
+        if (DirectionalInput.y > 0.5f)
         {
-            if (CheckForItemPickUp()) return true;
-            if (ThrowItem(DirectionalInput)) return true;
+            SCS_ChangeState(StaticStates.standUp);
 
-            if (DirectionalInput == Vector2.zero)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.NAir));
-            }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) == Direction)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.FAir));
-            }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) != Direction)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.BAir));
-            }
-            else if (DirectionalInput.y > 0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.UAir));
-            }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DAir));
-            }
+        }
+        else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+        {
+            SCS_ChangeState(StaticStates.roll);
+        }
+    }
 
-            return true;
+    public override void SCS_CheckForIdleOptions()
+    {
+        if (DirectionalInput.y < -0.5f)
+        {
+            SCS_ChangeState(StaticStates.crouch);
         }
 
-        if (TiltInput != Vector2.zero)
+        if (StrongInputs.x != 0)
         {
-            if (CheckForItemPickUp()) return true;
-            if (ThrowItem(TiltInput)) return true;
+            SCS_ChangeState(StaticStates.dash);
+        }
+        else if (Mathf.Abs(DirectionalInput.x) != 0)
+        {
+            if (Mathf.Abs(DirectionalInput.x) >= 0.75f)
+            {
+                SCS_ChangeState(StaticStates.dash);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.walking);
+            }
+        }
+
+        if (HoldShield)
+        {
+            SCS_ChangeState(StaticStates.shield);
+        }
+
+        if (Jump)
+        {
+            SCS_ChangeState(StaticStates.jumpsquat);
+        }
+    }
 
     public override void SCS_CheckForWalkingOptions()
     {
@@ -583,65 +607,74 @@ public class Player : Character
             SCS_ChangeState(StaticStates.skid);
         }
 
-            return true;
-        }
+        if (HoldShield)
+            SCS_ChangeState(StaticStates.shield);
 
-        if (CheckForSpecialAttacks()) return true;
+        if (Jump)
+            SCS_ChangeState(StaticStates.jumpsquat);
 
-        return false;
+        if (DirectionalInput.y < -0.5f)
+            SCS_ChangeState(StaticStates.crouch);
     }
 
-    public override bool CheckForSpecialAttacks()
+    public override void SCS_CountSpecial(ESpecial type)
     {
-        if (Special)
+        switch (type)
         {
-            if (DirectionalInput == Vector2.zero)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.NSpec));
-            }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
-            {
-                Direction = DirectionalInput.x;
-
-                CSMachine.ChangeState(GetAttackState(EAttackType.FSpec));
-            }
-            else if (DirectionalInput.y > 0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.USpec));
-            }
-            else if (DirectionalInput.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DSpec));
-            }
-            return true;
+            case ESpecial.NEUTRAL:
+                {
+                    nSpecCount++;
+                    break;
+                }
+            case ESpecial.SIDE:
+                {
+                    sSpecCount++;
+                    break;
+                }
+            case ESpecial.UP:
+                {
+                    uSpecCount++;
+                    break;
+                }
+            case ESpecial.DOWN:
+                {
+                    dSpecCount++;
+                    break;
+                }
+            default:
+                break;
         }
-        return false;
     }
 
-    public override bool CheckForThrowAttacks()
+    public override void SCS_RaiseLandingEvent()
     {
-        if (StrongInputs.sqrMagnitude == 1f)
-        {
-            if (Mathf.Abs(StrongInputs.x) > 0.5f)
-            {
-                if (Mathf.Sign(StrongInputs.x) == Direction) CSMachine.ChangeState(GetAttackState(EAttackType.FTilt));
-                else CSMachine.ChangeState(GetAttackState(EAttackType.Jab1));
+        base.SCS_RaiseLandingEvent();
 
-                return true;
-            }
-            else if (StrongInputs.y > 0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.UTilt));
-                return true;
-            }
-            else if (StrongInputs.y < -0.5f)
-            {
-                CSMachine.ChangeState(GetAttackState(EAttackType.DTilt));
-                return true;
-            }
-        }
-        return false;
+        nSpecCount = 0;
+        sSpecCount = 0;
+        uSpecCount = 0;
+        dSpecCount = 0;
     }
 
+    protected void ManageCardBuffs()
+    {
+        if (cardPowerActivated[0])
+        {
+            dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
+        }
+        else
+        {
+            dTiltAtk.attackBuff.damageMulti = 1;
+        }
 
+        if (cardPowerActivated[1])
+        {
+
+        }
+        else
+        {
+
+        }
+
+    }
 }

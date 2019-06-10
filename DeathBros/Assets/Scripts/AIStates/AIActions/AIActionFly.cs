@@ -48,7 +48,7 @@ public class AIActionFly : AIActionSO
 
         if (turnOnWall)
         {
-            if (aiCtr.Enemy.Ctr.onWall)
+            if (aiCtr.Enemy.Ctr.OnWall)
             {
                 if (aiCtr.inputDirection.x == 1) aiCtr.inputDirection.x = -1;
                 else aiCtr.inputDirection.x = 1;

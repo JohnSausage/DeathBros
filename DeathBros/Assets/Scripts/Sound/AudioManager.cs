@@ -7,6 +7,9 @@ public class AudioManager : _MB
     [SerializeField]
     private SoundsSO generalSoundsSO;
 
+    [SerializeField]
+    private SoundsSO backgroundMusicSO;
+
     [Space]
     [SerializeField]
     private List<Sound> sounds;
@@ -57,6 +60,7 @@ public class AudioManager : _MB
         //}
 
         generalSoundsSO.LoadSounds();
+        backgroundMusicSO.LoadSounds();
     }
 
     private void InitSound(Sound sound)
@@ -68,7 +72,28 @@ public class AudioManager : _MB
         sound.Source.loop = sound.loop;
     }
 
-    public static void PlaySound(string name)
+    public static void PlaySound(string name, bool retry = true)
+    {
+        Sound s = Instance.sounds.Find(x => x.name == name);
+
+        if (s == null)
+        {
+            if (retry)
+            {
+                Instance.StartCoroutine(Instance.PlaySoundRetry(name));
+            }
+            else
+            {
+                Debug.Log(name + " sound not found!");
+            }
+        }
+        else
+        {
+            s.Source.Play();
+        }
+    }
+
+    public static void PlaySound(string name, Vector2 position)
     {
         Sound s = Instance.sounds.Find(x => x.name == name);
 
@@ -78,6 +103,12 @@ public class AudioManager : _MB
         }
         else
         {
+            float maxdistance = 24f;
+            float volume = (maxdistance - (position - CameraController.Position).magnitude) / maxdistance;
+            if (volume < 0) volume = 0;
+
+            float oldVolume = s.Source.volume;
+            s.Source.volume = s.volume * volume;
             s.Source.Play();
         }
     }
@@ -86,5 +117,11 @@ public class AudioManager : _MB
     {
         Instance.InitSound(sound);
         Instance.sounds.Add(sound);
+    }
+
+    IEnumerator PlaySoundRetry(string name)
+    {
+        yield return new WaitForSeconds(1);
+        PlaySound(name,false);
     }
 }
