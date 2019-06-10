@@ -67,7 +67,7 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
         {
             hitIDs.Enqueue(damage.hitID);
 
-            //ctr.SetVelocity = damage.Knockback(transform.position, weight, 1);
+            ctr.SetVelocity = damage.Knockback(transform.position, weight, 1);
         }
 
         if (hitIDs.Count > 10) hitIDs.Dequeue();
@@ -75,107 +75,107 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     protected void FixedUpdate()
     {
-        //if (flipX)
-        //{
-        //    if (Velocity.x < 0) spr.flipX = true;
-        //    else spr.flipX = false;
-        //}
+        if (flipX)
+        {
+            if (Velocity.x < 0) spr.flipX = true;
+            else spr.flipX = false;
+        }
 
-        //if (flipY)
-        //{
-        //    if (Velocity.y > 0) spr.flipY = true;
-        //    else spr.flipY = false;
-        //}
+        if (flipY)
+        {
+            if (Velocity.y > 0) spr.flipY = true;
+            else spr.flipY = false;
+        }
 
-        //if (destroyAfterTime != 0)
-        //    timer++;
+        if (destroyAfterTime != 0)
+            timer++;
 
-        //if (Velocity.magnitude * 60 >= damagingSpeed)
-        //{
-        //    int colNr = col.Cast(Vector2.zero, filter, collisions);
+        if (Velocity.magnitude * 60 >= damagingSpeed)
+        {
+            int colNr = col.Cast(Vector2.zero, filter, collisions);
 
-        //    if (colNr > 0)
-        //    {
-        //        for (int i = 0; i < collisions.Length; i++)
-        //        {
+            if (colNr > 0)
+            {
+                for (int i = 0; i < collisions.Length; i++)
+                {
 
-        //            Character chr = collisions[0].transform.GetComponentInParent<Character>();
+                    Character chr = collisions[0].transform.GetComponentInParent<Character>();
 
-        //            if (chr != Owner)
-        //            {
-        //                damage.knockBackDirection = Velocity;
-        //                if (chr != null) chr.GetHit(damage);
+                    if (chr != Owner)
+                    {
+                        damage.knockBackDirection = Velocity;
+                        if (chr != null) chr.GetHit(damage);
 
-        //                if (destroyIfGrounded) Destroy(gameObject);
-        //            }
-        //        }
-        //    }
-        //}
+                        if (destroyIfGrounded) Destroy(gameObject);
+                    }
+                }
+            }
+        }
 
-        //if (destroyIfGrounded)
-        //{
-        //    if (ctr.grounded)
-        //    {
-        //        FrameAnimator anim = GetComponent<FrameAnimator>();
+        if (destroyIfGrounded)
+        {
+            if (ctr.grounded)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
 
-        //        if (anim != null)
-        //        {
-        //            anim.ChangeAnimation("die");
-        //        }
-        //        else
-        //        {
-        //            Destroy(gameObject);
-        //        }
-        //    }
-        //}
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
 
-        //if (destroyOnCollision)
-        //{
-        //    if (ctr.collision)
-        //    {
-        //        FrameAnimator anim = GetComponent<FrameAnimator>();
+        if (destroyOnCollision)
+        {
+            if (ctr.collision)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
 
-        //        if (anim != null)
-        //        {
-        //            anim.ChangeAnimation("die");
-        //        }
-        //        else
-        //        {
-        //            Destroy(gameObject);
-        //        }
-        //    }
-        //}
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
 
-        //if (destroyOnCharacterHit)
-        //{
-        //    if (ctr.characterHit)
-        //    {
-        //        FrameAnimator anim = GetComponent<FrameAnimator>();
+        if (destroyOnCharacterHit)
+        {
+            if (ctr.characterHit)
+            {
+                FrameAnimator anim = GetComponent<FrameAnimator>();
 
-        //        if (anim != null)
-        //        {
-        //            anim.ChangeAnimation("die");
-        //        }
-        //        else
-        //        {
-        //            Destroy(gameObject);
-        //        }
-        //    }
-        //}
+                if (anim != null)
+                {
+                    anim.ChangeAnimation("die");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
 
-        //if (timer > destroyAfterTime)
-        //{
-        //    FrameAnimator anim = GetComponent<FrameAnimator>();
+        if (timer > destroyAfterTime)
+        {
+            FrameAnimator anim = GetComponent<FrameAnimator>();
 
-        //    if (anim != null)
-        //    {
-        //        anim.ChangeAnimation("die");
-        //    }
-        //    else
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+            if (anim != null)
+            {
+                anim.ChangeAnimation("die");
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public void GenerateID()

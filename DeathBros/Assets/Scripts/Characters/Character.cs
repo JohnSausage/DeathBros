@@ -8,11 +8,15 @@ public class Character : _MB, ICanTakeDamage
 {
     public string charName;
 
+    //public string soundFolderName;
+
     [Space]
 
     [SerializeField]
     protected StatesAndStatsSO statesSO;
-    public StatesAndStatsSO StatesSO { get { return statesSO; } }
+
+    [SerializeField]
+    protected List<CS_AttackSO> attackSOs;
 
     [Space]
 
@@ -26,6 +30,13 @@ public class Character : _MB, ICanTakeDamage
     public SoundsSO GetSoundsSO { get { return soundsSO; } }
 
 
+    //[SerializeField]
+    //protected CStateParamtetersSO cStateParamtetersSO;
+    //public CStateParamtetersSO CStateParamtetersSO { get { return cStateParamtetersSO; } }
+
+    //public int csTimer { get; set; }
+    //public float csDirection { get; set; }
+
     [Space]
 
     [SerializeField]
@@ -33,12 +44,9 @@ public class Character : _MB, ICanTakeDamage
 
     public List<CardEffect> cardEffects;
 
-    public List<Buff> Buffs { get; protected set; }
-    public AttackBuff CurrentAttackBuff;// { get; set; }
 
     public Vector2 DirectionalInput { get; protected set; }
     public Vector2 StrongInputs { get; protected set; }
-    public virtual void ClearStrongInputs() { StrongInputs = Vector2.zero; }
     public Vector2 TiltInput { get; protected set; }
 
     public bool Jump { get; set; }
@@ -50,6 +58,8 @@ public class Character : _MB, ICanTakeDamage
     public bool Shield { get; set; }
     public bool HoldShield { get; protected set; }
 
+    //public float jumpStrength = 20;
+    //public int jumps = 2;
     public int jumpsUsed { get; set; }
     public bool canChangeDirctionInAir { get; set; }
 
@@ -70,10 +80,9 @@ public class Character : _MB, ICanTakeDamage
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
+    public Controller2D Ctr { get; protected set; }
     public HitboxManager HitM { get; protected set; }
     public HurtboxManager HurtM { get; protected set; }
-
-    public NES_BasicController2D Ctr;
 
     public float Direction
     {
@@ -87,11 +96,21 @@ public class Character : _MB, ICanTakeDamage
 
     public Vector2 Position
     {
-        get { return Ctr.Position; }
+        //get { return (Vector2)transform.position; }
+        get { return (Vector2)Ctr.Col.bounds.center; }
     }
 
+    public List<CState> cStates;// { get; protected set; }
+
     [Space]
+
+    //public Stats stats;
+
     public float currentHealth;
+    public float currentSouls = 1;
+    public float soulMeter = 50;
+    public float soulMeterMax = 100;
+    public float soulMeterBalanceRate = 0.25f;
 
     public Damage currentDamage { get; protected set; }
     public Vector2 currentKnockback { get; protected set; }
@@ -109,11 +128,6 @@ public class Character : _MB, ICanTakeDamage
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
 
-    public event Action<Character, Damage> ACharacterTakesDasmage;
-
-    public event Action<Character, Vector2> ASpawnProjectile;
-    public event Action AIsLanding;
-
 
     public override void Init()
     {
@@ -121,42 +135,56 @@ public class Character : _MB, ICanTakeDamage
 
         InitStats();
 
-        Ctr = GetComponent<NES_BasicController2D>();
-
         if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
 
+        cStates = new List<CState>();
+
+        CSMachine = new StateMachine();
         Anim = GetComponent<FrameAnimator>();
         Anim.Init();
 
         Spr = GetComponent<SpriteRenderer>();
-        if (Spr == null)
-        {
-            Spr = GetComponentInChildren<SpriteRenderer>();
-        }
+        Ctr = GetComponent<Controller2D>();
 
         HitM = GetComponent<HitboxManager>();
         HurtM = GetComponent<HurtboxManager>();
 
 
+        statesSO.InitStates(this);
+
+        CStates_InitExitStates();
+
+        foreach (var attackSO in attackSOs)
+        {
+            attackSO.InitState(this);
+        }
+
         cardEffects = new List<CardEffect>();
-        Buffs = new List<Buff>();
-
-
-        ChrSM = new ChrStateMachine();
-        ChrSM.ChangeState(this, StaticStates.idle);
     }
 
     public override void LateInit()
     {
         base.LateInit();
 
+        //InitStats();
+
         if (soundsSO != null) soundsSO.LoadSounds();
+
     }
 
+    public virtual void CStates_InitExitStates()
+    {
+        foreach (CState cs in cStates)
+        {
+            cs.InitExitStates();
+        }
+    }
 
     protected virtual void FixedUpdate()
     {
-        ChrSM.Update(this);
+        CSMachine.Update();
+
+        //stats.FixedUpdate();
 
         UpdateStats();
 
@@ -166,13 +194,14 @@ public class Character : _MB, ICanTakeDamage
 
         currentDamage = null;
         Jump = false;
+
         Attack = false;
     }
 
     protected virtual void UpdatesStatsForCtr()
     {
-        Ctr.Movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
-        Ctr.Gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
+        Ctr.movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
+        Ctr.gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
     }
 
     public void Spawn(Vector2 position)
@@ -191,12 +220,21 @@ public class Character : _MB, ICanTakeDamage
     {
         statList = new List<Stat>();
 
+        //statsSO.Init(statList);
+
         for (int i = 0; i < statsSO.stats.Count; i++)
         {
             statList.Add(statsSO.stats[i].Clone());
         }
 
         currentHealth = GetCurrentStatValue("MaxHealth");
+    }
+
+    public virtual void ModSouls(float value)
+    {
+        currentSouls += value;
+
+        currentSouls = Mathf.Clamp(currentSouls, 0, GetCurrentStatValue("MaxSouls"));
     }
 
     protected void ModHealth(float value)
@@ -271,45 +309,46 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void TakeDamage(Damage damage)
     {
-        if(damage.damageType == EDamageType.Trigger) // e.g. used to trigger the explosion of projectiles
+        if (!dead)
         {
-            return;
-        }
-
-        if (dead)
-        {
-            return;
-        }
-        
-        if (shielding)
-        {
-            damage.damageNumber *= 0.25f;
-
-            RaiseTakeDamageEvents(damage);
-
-            AudioManager.PlaySound("NES_hit1");
-
-            currentDamage = damage;
-
-            if (damage.Owner != null)
+            if (shielding)
             {
-                damage.Owner.HitEnemy(this, damage);
+                damage.damageNumber *= 0.25f;
+
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("NES_hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                currentHealth -= damage.damageNumber;
             }
-
-            currentHealth -= damage.damageNumber;
-        }
-        else
-        {
-            RaiseTakeDamageEvents(damage);
-
-            AudioManager.PlaySound("NES_hit1");
-            Flash(EffectManager.ColorHit, 3);
-
-            currentDamage = damage;
-
-            if (damage.Owner != null)
+            else
             {
-                damage.Owner.HitEnemy(this, damage);
+                RaiseTakeDamageEvents(damage);
+
+                AudioManager.PlaySound("NES_hit1");
+                Flash(EffectManager.ColorHit, 3);
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+
+                currentHealth -= damage.damageNumber;
+            }
+            if (currentHealth <= 0)
+            {
+                Die();
             }
 
             currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
@@ -323,7 +362,6 @@ public class Character : _MB, ICanTakeDamage
         {
             Die();
         }
-
     }
 
     protected virtual void OnTakeDamage()
@@ -355,7 +393,7 @@ public class Character : _MB, ICanTakeDamage
     {
         //Debug.Log(this.name + " died");
 
-        //CSMachine.ChangeState(GetState(typeof(CS_Die)));
+        CSMachine.ChangeState(GetState(typeof(CS_Die)));
     }
 
     public virtual void Dead()
@@ -370,7 +408,7 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void GetInputs()
     {
-        Ctr.DirectionalInput = DirectionalInput;
+        Ctr.input = DirectionalInput;
     }
 
     public virtual void SetInputs(Vector2 inputs)
@@ -390,57 +428,57 @@ public class Character : _MB, ICanTakeDamage
         Attack = value;
     }
 
-    //public CState GetState(Type type)
-    //{
-    //    CState returnState = null;
+    public CState GetState(Type type)
+    {
+        CState returnState = null;
 
-    //    //for (int i = 0; i < cStates.Count; i++)
-    //    //{
-    //    //    if (cStates[i].GetType() == type)
-    //    //        returnState = cStates[i];
-    //    //}
-    //    return returnState;
-    //}
+        for (int i = 0; i < cStates.Count; i++)
+        {
+            if (cStates[i].GetType() == type)
+                returnState = cStates[i];
+        }
+        return returnState;
+    }
 
-    //public CS_Attack GetAttackState(EAttackType attackType)
-    //{
-    //    CS_Attack returnState = null;
+    public CS_Attack GetAttackState(EAttackType attackType)
+    {
+        CS_Attack returnState = null;
 
-    //    for (int i = 0; i < cStates.Count; i++)
-    //    {
-    //        if (cStates[i] is CS_Attack)
-    //        {
-    //            CS_Attack checkAttackType = (CS_Attack)cStates[i];
+        for (int i = 0; i < cStates.Count; i++)
+        {
+            if (cStates[i] is CS_Attack)
+            {
+                CS_Attack checkAttackType = (CS_Attack)cStates[i];
 
-    //            if (checkAttackType.attackType == attackType)
-    //            {
-    //                returnState = (CS_Attack)cStates[i];
-    //            }
-    //        }
-    //    }
-    //    return returnState;
-    //}
+                if (checkAttackType.attackType == attackType)
+                {
+                    returnState = (CS_Attack)cStates[i];
+                }
+            }
+        }
+        return returnState;
+    }
 
-    //public virtual void CS_CheckLanding()
-    //{
-    //    if (Ctr.IsGrounded)
-    //    {
-    //        CSMachine.ChangeState(GetState(typeof(CS_Landing)));
-    //    }
-    //}
+    public virtual void CS_CheckLanding()
+    {
+        if (Ctr.IsGrounded)
+        {
+            CSMachine.ChangeState(GetState(typeof(CS_Landing)));
+        }
+    }
 
-    //public virtual void CS_CheckIfStillGrounded()
-    //{
-    //    if (!Ctr.IsGrounded)
-    //    {
-    //        CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
-    //    }
-    //}
+    public virtual void CS_CheckIfStillGrounded()
+    {
+        if (!Ctr.IsGrounded)
+        {
+            CSMachine.ChangeState(GetState(typeof(CS_Jumping)));
+        }
+    }
 
-    //public virtual void CS_SetIdle()
-    //{
-    //    CSMachine.ChangeState(GetState(typeof(CS_Idle)));
-    //}
+    public virtual void CS_SetIdle()
+    {
+        CSMachine.ChangeState(GetState(typeof(CS_Idle)));
+    }
 
     //public void LoadSoundFiles()
     //{
@@ -481,6 +519,13 @@ public class Character : _MB, ICanTakeDamage
     public virtual bool CheckForThrowAttacks()
     {
         return false;
+    }
+
+    public virtual void ModSoulMeter(float value)
+    {
+        soulMeter += value;
+
+        soulMeter = Mathf.Clamp(soulMeter, 0, 100);
     }
 
     public void Flash(Color color, int durationInFrames)
@@ -524,103 +569,9 @@ public class Character : _MB, ICanTakeDamage
         return multi;
     }
     */
-
-    public virtual void SCS_CheckForAerials()
-    {
-
-    }
-
-    public virtual void SCS_CheckForGroundAttacks()
-    {
-
-    }
-
-    public virtual void SCS_CheckIfGrounded()
-    {
-        if (Ctr.IsGrounded == false)
-        {
-            ChrSM.ChangeState(this, StaticStates.jumping);
-        }
-    }
-
-    public virtual void SCS_CheckIfLanding()
-    {
-        if (Ctr.IsGrounded == true)
-        {
-            ChrSM.ChangeState(this, StaticStates.landing);
-        }
-    }
-
-    public void SCS_Idle()
-    {
-        ChrSM.ChangeState(this, StaticStates.idle);
-    }
-
-    public void SCS_ChangeState(SCState newState)
-    {
-        ChrSM.ChangeState(this, newState);
-    }
-
-    public virtual void SCS_CheckForTech()
-    {
-
-    }
-
-    public virtual void SCS_CheckForAerialTech()
-    {
-
-    }
-
-    public virtual void SCS_GetUpAfterHitLanded()
-    {
-        SCS_ChangeState(StaticStates.standUp);
-    }
-
-    public virtual void SCS_CheckForIdleOptions()
-    {
-        if (Mathf.Abs(DirectionalInput.x) != 0)
-            SCS_ChangeState(StaticStates.walking);
-
-        if (Jump)
-            SCS_ChangeState(StaticStates.jumpsquat);
-    }
-
-    public virtual void SCS_CheckForWalkingOptions()
-    {
-        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
-            SCS_ChangeState(StaticStates.idle);
-
-        if (Jump)
-            SCS_ChangeState(StaticStates.jumpsquat);
-    }
-
-    public virtual void RaiseSpawnProjectileEvent(Character chr, Vector2 position)
-    {
-        if (ASpawnProjectile != null) ASpawnProjectile(this, position);
-    }
-
-    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 direction)
-    {
-        NES_Projectile proj = Instantiate(projectile.gameObject, transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
-        proj.Velocity = new Vector2(proj.Velocity.x * Direction, proj.Velocity.y);
-        proj.SetOwner(this);
-        proj.GetComponent<SpriteRenderer>().flipX = Spr.flipX; // Otherwise damge direction is wrong
-    }
-
-    public virtual void SCS_RaiseLandingEvent()
-    {
-        if (AIsLanding != null) AIsLanding();
-    }
-
-    public virtual void SCS_CountSpecial(ESpecial type)
-    {
-
-    }
 }
 
 public interface ICanTakeDamage
 {
     void GetHit(Damage damage);
 }
-
-public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard, Grab }

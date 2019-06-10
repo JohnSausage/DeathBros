@@ -59,14 +59,14 @@ public class UI : _MB
     {
         base.LateInit();
 
-        //UpdateSouls(GameManager.Player.currentSouls);
+        UpdateSouls(GameManager.Player.currentSouls);
     }
 
     void FixedUpdate()
     {
         UpdateSoulMeterColor();
 
-        //soulMeterSlider.value = GameManager.Player.SoulPercent;
+        soulMeterSlider.value = GameManager.Player.SoulPercent;
 
         /*
         comboCounterText.text = "";
@@ -118,20 +118,20 @@ public class UI : _MB
 
     private void UpdateSoulMeter(float newValue)
     {
-        //Color flashColor;
+        Color flashColor;
 
-        //if (GameManager.Player.SoulPercent >= soulMeterSlider.value)
-        //{
-        //    flashColor = Color.white;
-        //}
-        //else
-        //{
-        //    flashColor = Color.red;
-        //}
+        if (GameManager.Player.SoulPercent >= soulMeterSlider.value)
+        {
+            flashColor = Color.white;
+        }
+        else
+        {
+            flashColor = Color.red;
+        }
 
-        //FlashSoulMeterColor(flashColor);
+        FlashSoulMeterColor(flashColor);
 
-        //soulMeterSlider.value = GameManager.Player.SoulPercent;
+        soulMeterSlider.value = GameManager.Player.SoulPercent;
     }
 
     private void FlashSoulMeterColor(Color color)

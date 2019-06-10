@@ -10,7 +10,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: fTilt
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   frames:
   - duration: 5
     sprite: {fileID: 21300118, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -25,7 +25,7 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes: []
-    soundName: 
+    soundName:
   - duration: 2
     sprite: {fileID: 21300120, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
         position: {x: 0, y: 0}
       ID: 57733
       getNewID: 0
-    soundName: 
+    soundName:
   - duration: 2
     sprite: {fileID: 21300122, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
     - position: {x: 0.09375, y: -0.0625}
       radius: 0.4
     hitboxes: []
-    soundName: 
+    soundName:
   damages:
   - damageNumber: 15
     knockBackDirection: {x: 2, y: 1}

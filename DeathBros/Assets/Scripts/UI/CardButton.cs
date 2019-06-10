@@ -2,84 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class CardButton : MonoBehaviour, ISelectHandler
+public class CardButton : MonoBehaviour
 {
-    public SpriteFont cardEffectFont;
-    public GameObject spriteFontCharacterPrefab;
-    private List<GameObject> spriteFontCharacters;
-
-    public bool HasCard { get; set; }
-
     [SerializeField]
     private GameObject figure10, figure1, trigger;
 
     [SerializeField]
-    public CardData cardData;
-
+    private CardData cardData;
 
     [SerializeField]
     private CardListControl cardListControl;
 
-    [SerializeField]
-    private CardPanel cardPanel;
-
     private Image cardBG;
-
-    private void Awake()
-    {
-        cardBG = GetComponent<Image>();
-
-        spriteFontCharacters = new List<GameObject>();
-    }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        if (HasCard)
-            cardPanel.SelectCard(cardData);
-
-        cardListControl.ZoomToCard(gameObject);
-    }
 
     public void SetCard(CardData cardData)
     {
         this.cardData = cardData;
 
+
         cardBG = GetComponent<Image>();
 
-        cardBG.sprite = InventoryManager.NoCardSprite;
-        cardBG.sprite = InventoryManager.NoCardSprite;
-        HasCard = false;
-
-        figure1.SetActive(false);
-        figure10.SetActive(false);
-        trigger.SetActive(false);
-
-        for (int j = 0; j < spriteFontCharacters.Count; j++)
-        {
-            Destroy(spriteFontCharacters[j].gameObject);
-        }
-
-        spriteFontCharacters.Clear();
-
-
-        if (cardData == null) return;
-        if (cardData.level == 0) return;
-
-
-        cardBG.sprite = InventoryManager.BlankCardSprite;
-        HasCard = true;
-
-        figure1.SetActive(true);
-        figure10.SetActive(true);
-        trigger.SetActive(true);
-
-
+        Texture2D oldTexture = cardBG.sprite.texture;
 
         try
         {
-            Texture2D oldTexture = cardBG.sprite.texture;
             //Replace main Colors
 
             Color mainColor = Color.black;
@@ -152,36 +99,21 @@ public class CardButton : MonoBehaviour, ISelectHandler
             newTexture.Apply();
 
             trigger.GetComponent<Image>().sprite = Sprite.Create(newTexture, trigger.GetComponent<Image>().sprite.rect, Vector2.up);
-
-
-            //set number icons
-
-            figure1.GetComponent<Image>().sprite = InventoryManager.GetNumber((cardData.level) % 10);
-            figure10.GetComponent<Image>().sprite = InventoryManager.GetNumber((int)(cardData.level / 10));
-
-            //set trigger position
-
-            trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), trigger.transform.localPosition.y, 0);
-
-            //set effect icons
-
-
-
-            string text = cardData.cardEffect.GetEffectText();
-
-            List<Sprite> sprites = cardEffectFont.Sprites(text);
-
-            int i = 0;
-            foreach (Sprite sprite in sprites)
-            {
-                GameObject spriteChar = Instantiate(spriteFontCharacterPrefab, transform);
-                spriteChar.GetComponent<Image>().sprite = sprite;
-                spriteChar.transform.localPosition = new Vector3(spriteChar.transform.localPosition.x + i * 20, spriteChar.transform.localPosition.y, 0);
-                i++;
-
-                spriteFontCharacters.Add(spriteChar);
-            }
         }
         catch { }
+
+        //set number icons
+
+        figure1.GetComponent<Image>().sprite = InventoryManager.GetNumber((cardData.level) % 10);
+        figure10.GetComponent<Image>().sprite = InventoryManager.GetNumber((int)(cardData.level / 10));
+
+        //set trigger position
+
+        trigger.transform.localPosition = new Vector3((-28.5f + 57f * cardData.triggerPosition), 11, 0);
+    }
+
+    public void OnClick()
+    {
+        cardListControl.CardClicked(cardData);
     }
 }

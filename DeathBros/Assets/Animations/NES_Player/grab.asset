@@ -10,23 +10,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: grab
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   frames:
-  - duration: 10
-    sprite: {fileID: 21300000, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
-    newHitID: 0
-    applyGravity: 1
-    resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
-    addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 0, y: 0}
-    spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: -0.03125, y: -0.015625}
-      radius: 0.3
-    hitboxes: []
-    soundName: 
-  - duration: 5
+  - duration: 25
     sprite: {fileID: 21300180, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -54,7 +40,7 @@ MonoBehaviour:
         position: {x: 0, y: 0}
       ID: 96756
       getNewID: 0
-    soundName: 
+    soundName:
   - duration: 10
     sprite: {fileID: 21300002, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
@@ -68,7 +54,7 @@ MonoBehaviour:
     - position: {x: 0.03125, y: -0.078125}
       radius: 0.3
     hitboxes: []
-    soundName: 
+    soundName:
   damages:
   - damageNumber: 0
     knockBackDirection: {x: 0, y: 0}

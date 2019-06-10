@@ -20,7 +20,7 @@ TagManager:
   - Enemy
   - Transporter
   - Item
-  - Objects
+  - 
   - 
   - 
   - 
@@ -47,7 +47,4 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2495035417
-    locked: 0
-  - name: Camera
-    uniqueID: 4165717423
     locked: 0

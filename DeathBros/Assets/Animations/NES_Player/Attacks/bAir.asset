@@ -10,7 +10,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: bAir
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   frames:
   - duration: 4
     sprite: {fileID: 21300086, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -25,7 +25,7 @@ MonoBehaviour:
     - position: {x: 0.03125, y: -0.03125}
       radius: 0.4
     hitboxes: []
-    soundName: 
+    soundName:
   - duration: 2
     sprite: {fileID: 21300088, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 1
@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 54191
       getNewID: 0
     - position: {x: 0.109375, y: -0.53125}
       radius: 0.8
@@ -67,9 +67,9 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 54191
       getNewID: 0
-    soundName: 
+    soundName:
   - duration: 2
     sprite: {fileID: 21300090, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 54191
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 15
@@ -112,7 +112,7 @@ MonoBehaviour:
     - position: {x: 0.21875, y: -0.1875}
       radius: 0.4
     hitboxes: []
-    soundName: 
+    soundName:
   damages:
   - damageNumber: 20
     knockBackDirection: {x: -2, y: 1}

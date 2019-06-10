@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,9 @@ public class DamagingCollider : MonoBehaviour
 {
     public Damage damage;
     public ContactFilter2D filter;
+
+    //public int tickDelay = 10;
+    //private int timer = 0;
 
     public Collider2D Col { get; protected set; }
 
@@ -37,10 +39,7 @@ public class DamagingCollider : MonoBehaviour
             {
                 ICanTakeDamage hitObject = collisions[i].transform.GetComponentInParent<ICanTakeDamage>();
                 if (hitObject != null)
-                {
                     hitObject.GetHit(damage);
-                    StartCoroutine(EGenerateNewHitID());
-                }
             }
         }
     }

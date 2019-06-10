@@ -14,7 +14,7 @@ public class RatAI : EnemyAI
         target = GameObject.FindGameObjectWithTag(followTag).transform;
 
         //enemy.HitM.EnemyHit += EnemyHit;
-        //chr.currentAttack.AttackOver += AttackOver;
+        chr.currentAttack.AttackOver += AttackOver;
 
         aiFollowPlayer.Init(this);
         aiFlee.Init(this);
@@ -30,10 +30,10 @@ public class RatAI : EnemyAI
         //Debug.Log(hitChr.name + " was hit by " + enemy.name);
     }
 
-    //private void AttackOver(CS_Attack cs_attack)
-    //{
-    //    aiMachine.ChangeState(aiWalk);
-    //}
+    private void AttackOver(CS_Attack cs_attack)
+    {
+        aiMachine.ChangeState(aiWalk);
+    }
 
     public override AIState GetAttackState()
     {

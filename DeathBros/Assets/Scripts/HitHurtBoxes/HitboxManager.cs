@@ -9,28 +9,17 @@ public class HitboxManager : _MB
     private bool flipped;
     public int currentID;
 
-    public Character Chr { get; set; }
+    public Character Chr { get; protected set; }
 
     //public static event Action<Vector2> EnemyHit;
     //public static event Action<Enemy, Damage> PlayerHitsEnenmy;
-
-    public event Action<Character, Damage> ACharacterHit;
 
     protected override void Awake()
     {
         base.Awake();
 
         spr = GetComponent<SpriteRenderer>();
-        if (spr == null)
-        {
-            spr = GetComponentInChildren<SpriteRenderer>();
-        }
-
-        if (Chr == null)
-        {
-            Chr = GetComponent<Character>();
-        }
-
+        Chr = GetComponent<Character>();
     }
 
     public void DrawHitboxes(Frame currentFrame)
@@ -60,52 +49,30 @@ public class HitboxManager : _MB
                     ICanTakeDamage hitObject = (ICanTakeDamage)hit[j].GetComponentInParent(typeof(ICanTakeDamage));
 
                     Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
-                    //damage.attackType = Chr.currentAttackType;
+                    damage.attackType = Chr.currentAttackType;
 
                     damage.hitID = currentID;
                     damage.Owner = Chr;
                     damage.position = hitBoxPosition;
 
-                    if (Chr.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
-                    {
-                        damage.damageNumber += Chr.CurrentAttackBuff.damageAdd;
-                        damage.damageNumber *= Chr.CurrentAttackBuff.damageMulti;
-                    }
-
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);
 
-                    /*
                     for (int k = 0; k < Chr.cardEffects.Count; k++)
                     {
                         Chr.cardEffects[k].ModifyDamage(damage);
                     }
-                    */
+
+                    if (Chr is Player)
+                    {
+                        Player player = (Player)Chr;
+
+                        damage.AddDamage(player.soulCharge);
 
 
-                    //if (Chr is Player)
-                    //{
-                    //    Player player = (Player)Chr;
-
-                    //    damage.AddDamage(player.soulCharge);
-
-
-                    //}
+                    }
 
                     if (hitObject != null)
                     {
-                        for (int l = 0; l < Chr.Buffs.Count; l++)
-                        {
-                            if (Chr.Buffs[l].GetType() == typeof(BuffAddDamageToAttack))
-                            {
-                                BuffAddDamageToAttack buff = (BuffAddDamageToAttack)Chr.Buffs[l];
-
-                                if (damage.attackType == buff.attackType)
-                                {
-                                    damage.damageNumber *= (1 + buff.damagePercent);
-                                }
-                            }
-                        }
-
                         if (hitObject is Character)
                         {
                             Character hitChr = (Character)hitObject;
@@ -113,7 +80,7 @@ public class HitboxManager : _MB
                             damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
 
                             //hitChr.GetHit(damage);
-                            if (ACharacterHit != null) ACharacterHit(hitChr,damage);
+
                         }
                         else if (hitObject is Item)
                         {
@@ -170,7 +137,7 @@ public class Hitbox
     }
 }
 
-public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab, Trigger }
+public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab }
 
 [System.Serializable]
 public class Damage

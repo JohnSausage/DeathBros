@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: roll
   m_EditorClassIdentifier: 
   frames:
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300028, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       radius: 0.3
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300030, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300032, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300034, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300036, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300038, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
