@@ -191,12 +191,16 @@ public class SCS_Walking : SCState
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
         if (Mathf.Abs(chr.DirectionalInput.x) < 0.5f)
+        {
             chr.Anim.ChangeAnimation(chr.StatesSO.walking_anim);
-
+            chr.isRunning = false;
+        }
 
         if (Mathf.Abs(chr.DirectionalInput.x) >= 0.7f)
+        {
             chr.Anim.ChangeAnimation(chr.StatesSO.running_anim);
-
+            chr.isRunning = true;
+        }
 
         chr.GetInputs();
 
@@ -206,6 +210,13 @@ public class SCS_Walking : SCState
 
         chr.SCS_CheckIfGrounded();
 
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.isRunning = false;
     }
 }
 
@@ -715,11 +726,14 @@ public class SCS_Walljumping : SCState
 ///-----------------------------------------------------------------
 public class SCS_Launch : SCState
 {
+    private float spawnCloudVelocity = 5;
+
     // knockback is applied when exiting hitFreeze state
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
+        chr.isInControl = false;
         chr.Ctr.IsInTumble = true;
 
         chr.Ctr.ForceMovement = chr.LaunchVector;
@@ -731,12 +745,29 @@ public class SCS_Launch : SCState
 
         base.Execute(chr);
 
-        chr.Flash(Color.red, 2);
+        //chr.Flash(Color.red, 2);
+
+        if (chr.Timer <= 60)
+        {
+            if (chr.Ctr.velocity.magnitude * 60 >= spawnCloudVelocity)
+            {
+                if (chr.Timer <= 30)
+                {
+                    if (chr.Timer % 4 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+                }
+
+                if (chr.Timer % 10 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+            }
+        }
 
         if (chr.Ctr.velocity.y > 0)
+        {
             chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+        }
         else
-            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+        {
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunDown_anim);
+        }
 
         chr.GetInputs();
 
@@ -766,6 +797,7 @@ public class SCS_Launch : SCState
     {
         base.Exit(chr);
 
+        chr.isInControl = true;
         chr.Ctr.IsInTumble = false;
     }
 }
@@ -782,6 +814,9 @@ public class SCS_Tumble : SCState
 
         chr.RaiseComboOverEvent();
 
+        chr.Flash(Color.blue, 2);
+
+        chr.isInControl = false;
         chr.Ctr.IsInTumble = true;
     }
 
@@ -789,13 +824,15 @@ public class SCS_Tumble : SCState
     {
         base.Execute(chr);
 
-        chr.Flash(Color.blue, 2);
 
         if (chr.Ctr.velocity.y > 0)
+        {
             chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+        }
         else
-            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
-
+        {
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunDown_anim);
+        }
 
         chr.GetInputs();
 
@@ -837,6 +874,7 @@ public class SCS_Tumble : SCState
         base.Exit(chr);
 
         chr.Ctr.IsInTumble = false;
+        chr.isInControl = true;
     }
 }
 
@@ -942,6 +980,8 @@ public class SCS_Hitfreeze : SCState
     {
         base.Enter(chr);
 
+        chr.isInControl = false;
+        chr.isTakingDamage = true;
         chr.Ctr.Frozen = true;
         chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
     }
@@ -960,6 +1000,7 @@ public class SCS_Hitfreeze : SCState
     {
         base.Exit(chr);
 
+        chr.isTakingDamage = false;
         chr.Ctr.Frozen = false;
         chr.Ctr.IsInTumble = true;
 
@@ -1061,6 +1102,7 @@ public class SCS_HitLand : SCState
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
+        chr.isInControl = false;
 
         chr.Flash(Color.white, 5);
         chr.Anim.ChangeAnimation(chr.StatesSO.hitland_anim);
@@ -1108,6 +1150,7 @@ public class SCS_HitLand : SCState
     {
         base.Exit(chr);
         chr.Ctr.Frozen = false;
+        chr.isInControl = true;
     }
 }
 
@@ -1123,6 +1166,7 @@ public class SCS_HitLandWall : SCState
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
+        chr.isInControl = false;
 
         chr.Flash(Color.white, 5);
 
@@ -1151,6 +1195,7 @@ public class SCS_HitLandWall : SCState
         base.Exit(chr);
         chr.Ctr.Frozen = false;
         chr.Ctr.IsInTumble = true;
+        chr.isInControl = true;
     }
 }
 
@@ -1225,7 +1270,7 @@ public class SCS_Dead : SCState
 
         chr.SetInputs(Vector2.zero);
 
-        chr.Dead();
+        chr.SCS_Dead();
     }
 }
 

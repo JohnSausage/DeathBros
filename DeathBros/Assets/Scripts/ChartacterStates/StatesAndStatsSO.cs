@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StatesAndStats")]
+[CreateAssetMenu(menuName = "FrameData")]
 public class StatesAndStatsSO : ScriptableObject
 {
     public string idle_anim = "idle";
@@ -14,19 +14,19 @@ public class StatesAndStatsSO : ScriptableObject
     public string jumpsquat_anim = "jumpsquat";
     public int jumpsquat_duration = 4;
     [Space]
-    public string jumpUp_anim = "idle";
-    public string jumpDown_anim = "idle";
+    public string jumpUp_anim = "jumpUp";
+    public string jumpDown_anim = "jumpDown";
     [Space]
-    public string landing_anim = "idle";
+    public string landing_anim = "land";
     public int landing_duration = 4;
     [Space]
-    public string hitstunUp_anim = "idle";
-    public string hitstunDown_anim = "idle";
+    public string hitstunUp_anim = "hitUp";
+    public string hitstunDown_anim = "hitDown";
     [Space]
-    public string hitfreeze_anim = "idle";
+    public string hitfreeze_anim = "hit";
     public int hitfreeze_duration = 5;
     [Space]
-    public string hitland_anim = "idle";
+    public string hitland_anim = "hitLand";
     public int hitland_duration = 10;
     [Space]
     public string shield_anim = "shield";
@@ -37,7 +37,7 @@ public class StatesAndStatsSO : ScriptableObject
     [Space]
     public string standup_anim = "idle";
     [Space]
-    public string hitlanded_anim = "idle";
+    public string hitlanded_anim = "hitLanded";
     public int hitLanded_minDuration = 20;
     [Space]
     public string getGrabbed_anim = "idle";

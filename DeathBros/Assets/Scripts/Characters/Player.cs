@@ -8,6 +8,7 @@ public class Player : Character
     public StaticAttackStateSO dTilt;
     public StaticAttackStateSO uTilt;
     public StaticAttackStateSO fTilt;
+    public StaticAttackStateSO dash;
 
     public StaticAttackStateSO grab;
 
@@ -27,6 +28,7 @@ public class Player : Character
     public SCS_Attack dTiltAtk;
     public SCS_Attack uTiltAtk;
     public SCS_Attack fTiltAtk;
+    public SCS_Attack dashAtk;
 
     public SCS_Attack grabAtk;
 
@@ -81,6 +83,7 @@ public class Player : Character
         dTiltAtk = dTilt.CreateAttackState();
         uTiltAtk = uTilt.CreateAttackState();
         fTiltAtk = fTilt.CreateAttackState();
+        dashAtk = dash.CreateAttackState();
 
         grabAtk = grab.CreateAttackState();
 
@@ -369,7 +372,11 @@ public class Player : Character
 
         if (Attack)
         {
-            if (DirectionalInput == Vector2.zero)
+            if(isRunning)
+            {
+                ChrSM.ChangeState(this, dashAtk);
+            }
+            else if (DirectionalInput == Vector2.zero)
             {
                 ChrSM.ChangeState(this, jabAtk);
             }
@@ -388,7 +395,11 @@ public class Player : Character
         }
         else if (TiltInput != Vector2.zero)
         {
-            if (Mathf.Abs(TiltInput.x) > 0.5f)
+            if (isRunning)
+            {
+                ChrSM.ChangeState(this, dashAtk);
+            }
+            else if (Mathf.Abs(TiltInput.x) > 0.5f)
             {
                 Direction = TiltInput.x;
 
@@ -411,6 +422,7 @@ public class Player : Character
             ChrSM.ChangeState(this, grabAtk);
         }
     }
+
 
     public override void SCS_CheckForAerials()
     {

@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470063077638556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 87.66, y: -26.6, z: 0}
+  m_LocalPosition: {x: 169, y: -29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4833170131501388}
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826aa1a2d6416654d8b58b69fc702025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charName: Goblin
-  statesSO: {fileID: 11400000, guid: b1fde04e94ed7e94a845524543050968, type: 2}
-  statsSO: {fileID: 11400000, guid: f5cb641aa0f36d9459163d70df711931, type: 2}
+  charName: Frog
+  statesSO: {fileID: 11400000, guid: 9f83538249154294ca9a30c922516106, type: 2}
+  statsSO: {fileID: 11400000, guid: bd8caf4ded7854048ba6421e0c0ca2f7, type: 2}
   soundsSO: {fileID: 11400000, guid: d6a48b7bc222d5542995423c42537239, type: 2}
   statList: []
   cardEffects: []
@@ -158,6 +158,7 @@ MonoBehaviour:
   Ctr: {fileID: 0}
   currentHealth: 0
   shielding: 0
+  normalAttack: {fileID: 11400000, guid: 615a827ff60e5854c91244aa7856c6ff, type: 2}
   comboMultiplier: 1
   projectile: {fileID: 0}
 --- !u!114 &114175033050138594
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAnimation: {fileID: 0}
-  frameAnimationsSO: {fileID: 11400000, guid: 0e4c22a8fa0bcb54bac3a15322087311, type: 2}
+  frameAnimationsSO: {fileID: 11400000, guid: 582f2dd57bc58814dbe9a5a7ab0a4110, type: 2}
   animationSpeed: 1
 --- !u!114 &114249340114820856
 MonoBehaviour:
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397271ac8a360fc4e9e13158843a2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Goblin1ID
+  ID: FrogID
   DirectionalInput: {x: 0, y: 0}
   JumpVelocity: 0
   velocity: {x: 0, y: 0}
@@ -283,7 +284,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTag: Player
-  aiStates: []
+  aiStates:
+  - aiAction: {fileID: 11400000, guid: fe672aa533b93a34197e2120f9621911, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 803dfb2ed078f624db2c36bf53794ef4, type: 2}
+    - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
+    - {fileID: 11400000, guid: 72bbdecfe0367504e8802b67c9d9cc26, type: 2}
+  - aiAction: {fileID: 11400000, guid: e8dc44f5803cd9249a1b16808c23b2b4, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 729033b8ef083b44c9ce6bf9809ae0e6, type: 2}
+    - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
+  - aiAction: {fileID: 11400000, guid: b6d8c6e45cbfe7749b7eec44b586b0ab, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 40c4df9fb85f31e4b96ec199437e3b8f, type: 2}
   inputDirection: {x: 0, y: 0}
 --- !u!114 &114694927648961400
 MonoBehaviour:
@@ -337,7 +350,7 @@ SpriteRenderer:
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 2}

@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: atk_lick
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 8
+    sprite: {fileID: 21300010, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.1875, y: -0.5625}
+      radius: 0.5
+    hitboxes: []
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300004, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.15625, y: -0.53125}
+      radius: 0.5
+    hitboxes:
+    - position: {x: 0.78125, y: -0.375}
+      radius: 0.4
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 3, y: 2}
+        baseKnockback: 12
+        knockbackGrowth: 3
+        hitStunFrames: 25
+        damageType: 0
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0.5}
+        position: {x: 0, y: 0}
+      ID: 1805
+      getNewID: 0
+    - position: {x: 0.03125, y: -0.40625}
+      radius: 0.3
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 3, y: 2}
+        baseKnockback: 12
+        knockbackGrowth: 3
+        hitStunFrames: 25
+        damageType: 0
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0.5}
+        position: {x: 0, y: 0}
+      ID: 1805
+      getNewID: 0
+    soundName: 
+  - duration: 3
+    sprite: {fileID: 21300006, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.15625, y: -0.53125}
+      radius: 0.5
+    hitboxes:
+    - position: {x: 0.53125, y: -0.4375}
+      radius: 0.4
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 3, y: 2}
+        baseKnockback: 12
+        knockbackGrowth: 3
+        hitStunFrames: 25
+        damageType: 0
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0.5}
+        position: {x: 0, y: 0}
+      ID: 1805
+      getNewID: 0
+    soundName: 
+  - duration: 30
+    sprite: {fileID: 21300020, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.21875, y: -0.625}
+      radius: 0.5
+    hitboxes: []
+    soundName: 
+  damages:
+  - damageNumber: 10
+    knockBackDirection: {x: 3, y: 2}
+    baseKnockback: 12
+    knockbackGrowth: 3
+    hitStunFrames: 25
+    damageType: 0
+    attackType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}
+    positionalInfluence: {x: 0, y: 0.5}
+    position: {x: 0, y: 0}

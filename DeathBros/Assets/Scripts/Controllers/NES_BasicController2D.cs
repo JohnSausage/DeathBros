@@ -23,7 +23,7 @@ public class NES_BasicController2D : MonoBehaviour
     protected float faceDirection;
     public float FaceDirection { set { faceDirection = value; } }
 
-    public Vector2 Position { get { return col.offset; } }
+    public Vector2 Position { get { return transform.TransformPoint(col.offset); } }
 
     protected BoxCollider2D col;
     protected Bounds bounds;
@@ -234,7 +234,14 @@ public class NES_BasicController2D : MonoBehaviour
 
                         ApplyAddMovementToVelocity();
 
-                        CheckForNewSlopeDown();
+                        if (CheckForNewSlopeDown() == true)
+                        {
+                            //no collisioncheck
+                        }
+                        else
+                        {
+                            CheckForCollision();
+                        }
 
                         if (CheckForSlopeUp() == true)
                         {
@@ -293,7 +300,14 @@ public class NES_BasicController2D : MonoBehaviour
                             }
                         }
 
-                        CheckForNewSlopeDown();
+                        if(CheckForNewSlopeDown() == true)
+                        {
+                            //no collisioncheck
+                        }
+                        else
+                        {
+                            CheckForCollision();
+                        }
 
                         break;
                     }
@@ -328,6 +342,10 @@ public class NES_BasicController2D : MonoBehaviour
                             {
                                 moveState = EGroundMoveState.Moving;
                             }
+                        }
+                        else
+                        {
+                            CheckForCollision();
                         }
 
                         break;

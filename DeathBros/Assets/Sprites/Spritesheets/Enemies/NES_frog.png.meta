@@ -12,6 +12,12 @@ TextureImporter:
     21300014: NES_frog_7
     21300016: NES_frog_8
     21300018: NES_frog_9
+    21300020: NES_frog_10
+    21300022: NES_frog_11
+    21300024: NES_frog_12
+    21300026: NES_frog_13
+    21300028: NES_frog_14
+    21300030: NES_frog_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -108,7 +114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8702638c797b6b64aa215cabdc269358
+      spriteID: a4011a0b2cfdcf24fbb312ee7d5e84ec
       vertices: []
       indices: 
       edges: []
@@ -128,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f50d59e6fca9b34fb5b610e37cebcfa
+      spriteID: 1ae8f8c5bb39c284093875f885759db7
       vertices: []
       indices: 
       edges: []
@@ -148,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1496cbdc00385314fb49c78b6be44ee9
+      spriteID: 0757ca1b760a1484d988198a3d1fb481
       vertices: []
       indices: 
       edges: []
@@ -168,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9df2bd48c88eaef44b42340f1309e0a2
+      spriteID: 57680e3177790ae44bf83b5afa17a093
       vertices: []
       indices: 
       edges: []
@@ -188,7 +194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2768042958f0ab448532cad41a1021c
+      spriteID: b8d208202b9edca448a3af4a241f0f97
       vertices: []
       indices: 
       edges: []
@@ -208,7 +214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d77c4c40fcc43524181e7f8173f0459d
+      spriteID: c3b1a1be89c90ed4fbfe546d49ed5247
       vertices: []
       indices: 
       edges: []
@@ -228,7 +234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6261fff105a8d94ea43c92a75fcfae2
+      spriteID: def6f823c89076445867f8ec618a5a8f
       vertices: []
       indices: 
       edges: []
@@ -248,7 +254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a57517d35cd71fc45991d7061dce4bdb
+      spriteID: 3408ad7b15aa7454da59ef259ae0db87
       vertices: []
       indices: 
       edges: []
@@ -268,7 +274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32d86cf9e4ae07941a836308a53132a2
+      spriteID: 85d6dd22a25fa03429c7ebdd9dd450a7
       vertices: []
       indices: 
       edges: []
@@ -288,7 +294,127 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16a1339a948e1404585a6f6af2c3be2c
+      spriteID: 3cc1e84fc1fbe8943a992a140240809e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ee359f38c2d1c4faa83d13764df95a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5465ccbb6303342448b5e31fceeeea6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9da6641b5fe5cc468ccfaa36bbcd186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd811b3715d50443b182b41f1783d4d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b0a31cc844ecb94d8c6fb74dc28e238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e266529ff6107429d71d78ba84c6fe
       vertices: []
       indices: 
       edges: []

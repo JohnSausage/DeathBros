@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoulBubbleController : MonoBehaviour
 {
     public Transform target;
-    public int comboPower = 1;
+    public float comboPower = 1;
 
     [Space]
 

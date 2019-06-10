@@ -43,31 +43,31 @@ MonoBehaviour:
       radius: 0.8
       damage:
         damageNumber: 20
-        knockBackDirection: {x: -2, y: 1}
-        baseKnockback: 15
-        knockbackGrowth: 0
+        knockBackDirection: {x: -3, y: 2}
+        baseKnockback: 8
+        knockbackGrowth: 15
         hitStunFrames: 40
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 4509
       getNewID: 0
     - position: {x: 0.109375, y: -0.53125}
       radius: 0.8
       damage:
         damageNumber: 20
-        knockBackDirection: {x: -2, y: 1}
-        baseKnockback: 15
-        knockbackGrowth: 0
+        knockBackDirection: {x: -3, y: 2}
+        baseKnockback: 8
+        knockbackGrowth: 15
         hitStunFrames: 40
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 4509
       getNewID: 0
     soundName: 
   - duration: 2
@@ -87,19 +87,19 @@ MonoBehaviour:
       radius: 0.8
       damage:
         damageNumber: 20
-        knockBackDirection: {x: -2, y: 1}
-        baseKnockback: 15
-        knockbackGrowth: 0
+        knockBackDirection: {x: -3, y: 2}
+        baseKnockback: 8
+        knockbackGrowth: 15
         hitStunFrames: 40
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 24440
+      ID: 4509
       getNewID: 0
     soundName: NES_swoosh1
-  - duration: 15
+  - duration: 18
     sprite: {fileID: 21300092, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -115,12 +115,12 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 20
-    knockBackDirection: {x: -2, y: 1}
-    baseKnockback: 15
-    knockbackGrowth: 0
+    knockBackDirection: {x: -3, y: 2}
+    baseKnockback: 8
+    knockbackGrowth: 15
     hitStunFrames: 40
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0, y: 0.2}
     position: {x: 0, y: 0}

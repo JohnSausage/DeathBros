@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0384344d248d0043a2a6ae758eb85e0, type: 3}
   m_Name: GoblinStats
   m_EditorClassIdentifier: 
-  charName: Maggot
+  charName: Goblin
   stats:
   - statName: MaxHealth
     baseValue: 5000

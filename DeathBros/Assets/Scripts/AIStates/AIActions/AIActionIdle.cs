@@ -3,6 +3,8 @@
 [CreateAssetMenu(menuName = "EnemyAI/Actions/Idle")]
 public class AIActionIdle : AIActionSO
 {
+    public bool faceTarget = false;
+
     public string nextState = "walk";
 
     public float minTimeInSec = 1;
@@ -17,10 +19,21 @@ public class AIActionIdle : AIActionSO
     }
     public override void Execute(AIController aiCtr)
     {
-        aiCtr.Timer++;
+        if(faceTarget == true)
+        {
+            aiCtr.Enemy.Direction = aiCtr.TargetDirection().x;
+        }
 
-        aiCtr.Enemy.SetInputs(Vector2.zero);
+        if (nextState != "")
+        {
+            aiCtr.Timer++;
 
-        if (aiCtr.Timer > aiCtr.RandomTimerNumber) aiCtr.ChangeState(nextState);
+            aiCtr.Enemy.SetInputs(Vector2.zero);
+
+            if (aiCtr.Timer > aiCtr.RandomTimerNumber)
+            {
+                aiCtr.ChangeState(nextState);
+            }
+        }
     }
 }

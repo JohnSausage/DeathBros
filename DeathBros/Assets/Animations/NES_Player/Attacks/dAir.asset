@@ -43,16 +43,16 @@ MonoBehaviour:
       radius: 1
       damage:
         damageNumber: 15
-        knockBackDirection: {x: 0, y: -3}
-        baseKnockback: 25
-        knockbackGrowth: 2
+        knockBackDirection: {x: 1, y: -5}
+        baseKnockback: 15
+        knockbackGrowth: 15
         hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 31608
+      ID: 36571
       getNewID: 0
     soundName: 
   - duration: 2
@@ -72,16 +72,16 @@ MonoBehaviour:
       radius: 1
       damage:
         damageNumber: 15
-        knockBackDirection: {x: 0, y: -3}
-        baseKnockback: 25
-        knockbackGrowth: 2
+        knockBackDirection: {x: 1, y: -5}
+        baseKnockback: 15
+        knockbackGrowth: 15
         hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 31608
+      ID: 36571
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -98,7 +98,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 15
+  - duration: 20
     sprite: {fileID: 21300076, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -114,12 +114,12 @@ MonoBehaviour:
     soundName: 
   damages:
   - damageNumber: 15
-    knockBackDirection: {x: 0, y: -3}
-    baseKnockback: 25
-    knockbackGrowth: 2
+    knockBackDirection: {x: 1, y: -5}
+    baseKnockback: 15
+    knockbackGrowth: 15
     hitStunFrames: 30
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0.3, y: 0}
     position: {x: 0, y: 0}

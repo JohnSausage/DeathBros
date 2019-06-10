@@ -13,3 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frameAnimations:
   - {fileID: 11400000, guid: 14788a25de4119945a061f3cdc7f058c, type: 2}
+  - {fileID: 11400000, guid: 938410f84c049164085e679764c618e7, type: 2}
+  - {fileID: 11400000, guid: 550371f7683b645459fdd7f760a07e9d, type: 2}
+  - {fileID: 11400000, guid: a2daa8c5fca10bf468ddd42bd073691b, type: 2}
+  - {fileID: 11400000, guid: 632b43d3e4af74f4682daf863ada7d9e, type: 2}
+  - {fileID: 11400000, guid: 8a7c15784e07e944e9deca8dd4cec420, type: 2}
+  - {fileID: 11400000, guid: b1fcc0069d51dfa4bb2af10e09fc91cd, type: 2}

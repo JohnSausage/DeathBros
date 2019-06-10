@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    public StaticAttackStateSO normalAttack;
+    protected SCS_Attack normalAttack_SCS;
+
     [SerializeField]
     protected float comboMultiplier = 1;
     public float ComboMultiplier { get { return comboMultiplier; } }
@@ -14,8 +17,16 @@ public class Enemy : Character
     {
         base.Init();
 
-
         Anim.SpawnProjectile += SpawnProjectile;
+
+        if (normalAttack == null)
+        {
+
+        }
+        else
+        {
+            normalAttack_SCS = normalAttack.CreateAttackState();
+        }
     }
 
     public void SpawnProjectile(Vector2 position, Vector2 direction)
@@ -48,9 +59,16 @@ public class Enemy : Character
         //}
     }
 
-    public override void Dead()
+    public override void Die()
     {
-        base.Dead();
+        base.Die();
+
+        SCS_ChangeState(StaticStates.die);
+    }
+
+    public override void SCS_Dead()
+    {
+        base.SCS_Dead();
 
         Destroy(gameObject);
     }
@@ -60,5 +78,22 @@ public class Enemy : Character
         base.OnTakeDamage();
 
         EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 2), transform.position);
+    }
+
+    public override void SCS_CheckForGroundAttacks()
+    {
+        base.SCS_CheckForGroundAttacks();
+
+        if (Attack)
+        {
+            if (normalAttack == null)
+            {
+
+            }
+            else
+            {
+                ChrSM.ChangeState(this, normalAttack_SCS);
+            }
+        }
     }
 }

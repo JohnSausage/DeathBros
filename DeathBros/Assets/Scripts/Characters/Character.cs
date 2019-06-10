@@ -52,6 +52,9 @@ public class Character : _MB, ICanTakeDamage
 
     public int jumpsUsed { get; set; }
     public bool canChangeDirctionInAir { get; set; }
+    public bool isRunning { get; set; }
+    public bool isTakingDamage { get; set; }
+    public bool isInControl { get; set; }
 
     [Space]
 
@@ -144,6 +147,8 @@ public class Character : _MB, ICanTakeDamage
 
         ChrSM = new ChrStateMachine();
         ChrSM.ChangeState(this, StaticStates.idle);
+
+        isInControl = true;
     }
 
     public override void LateInit()
@@ -312,7 +317,7 @@ public class Character : _MB, ICanTakeDamage
                 damage.Owner.HitEnemy(this, damage);
             }
 
-            currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+            currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
 
             currentHealth -= damage.damageNumber;
 
@@ -358,7 +363,7 @@ public class Character : _MB, ICanTakeDamage
         //CSMachine.ChangeState(GetState(typeof(CS_Die)));
     }
 
-    public virtual void Dead()
+    public virtual void SCS_Dead()
     {
         dead = true;
     }

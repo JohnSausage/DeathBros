@@ -64,7 +64,8 @@ public class HitboxManager : _MB
 
                     damage.hitID = currentID;
                     damage.Owner = Chr;
-                    damage.position = hitBoxPosition;
+                    //damage.position = hitBoxPosition;
+                    damage.position = Chr.Position;
 
                     if (Chr.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
                     {
@@ -237,7 +238,7 @@ public class Damage
 
         if (position != Vector2.zero)
         {
-            Vector2 hitDirection = (hitPosition - position).normalized;
+            Vector2 hitDirection = (hitPosition - position);
             hitDirection.x *= positionalInfluence.x;
             hitDirection.y *= positionalInfluence.y;
 
