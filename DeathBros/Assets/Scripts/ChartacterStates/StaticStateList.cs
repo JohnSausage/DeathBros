@@ -24,6 +24,7 @@ public class ChrStateMachine
     public void Update(Character chr)
     {
         CurrentState.Execute(chr);
+        CurrentState.UpdateCtr(chr);
 
         currentState = CurrentState.ToString();
     }
@@ -70,6 +71,11 @@ public class SCState
         if (chr == null) return;
 
         chr.Timer++;
+    }
+
+    public virtual void UpdateCtr(Character chr)
+    {
+        chr.Ctr.UpdateCtr();
     }
 
     public virtual void Exit(Character chr)
@@ -166,8 +172,16 @@ public class SCS_Walking : SCState
     {
         base.Enter(chr);
 
-        if (chr.DirectionalInput.x < 0) chr.Spr.flipX = true;
-        if (chr.DirectionalInput.x > 0) chr.Spr.flipX = false;
+        chr.UpdateInputs();
+
+        if (chr.DirectionalInput.x < 0)
+        {
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+        }
+        if (chr.DirectionalInput.x > 0)
+        {
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+        }
     }
 
     public override void Execute(Character chr)
@@ -241,14 +255,14 @@ public class SCS_Jumping : SCState
         }
 
         if (chr.Ctr.OnWall)
-
+        {
             chr.SCS_ChangeState(StaticStates.wallsliding);
-
+        }
 
         if (chr.Shield)
-
+        {
             chr.SCS_ChangeState(StaticStates.airDodge);
-
+        }
 
         chr.SCS_CheckForAerials();
     }
@@ -280,6 +294,9 @@ public class SCS_Crouch : SCState
             chr.ClearStrongInputs();
         }
 
+        chr.SCS_CheckIfGrounded();
+        chr.SCS_CheckForGroundAttacks();
+
         if (chr.DirectionalInput.y >= -0.25f)
         {
             chr.SCS_ChangeState(StaticStates.idle);
@@ -289,11 +306,6 @@ public class SCS_Crouch : SCState
         {
             chr.SCS_ChangeState(StaticStates.jumpsquat);
         }
-
-        chr.SCS_CheckIfGrounded();
-
-        chr.SCS_CheckForGroundAttacks();
-
     }
 }
 
@@ -345,7 +357,8 @@ public class SCS_Jumpsquat : SCState
 
                 chr.GetInputs();
 
-                if (chr.HoldJump || chr.DirectionalInput.y > 0.75f)
+                //if (chr.HoldJump || chr.DirectionalInput.y > 0.75f)
+                if (chr.HoldJump)
                 {
                     chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength");
                 }
@@ -558,9 +571,16 @@ public class SCS_Skid : SCState
 
         if (chr.Timer >= chr.StatesSO.skid_duration)
         {
-            chr.SCS_ChangeState(StaticStates.idle);
+            chr.UpdateInputs();
 
-            chr.GetInputs();
+            if (chr.DirectionalInput.x == 0)
+            {
+                chr.SCS_ChangeState(StaticStates.idle);
+            }
+            else
+            {
+                chr.SCS_ChangeState(StaticStates.walking);
+            }
         }
         else if (chr.IdleTimer >= chr.StatesSO.skid_idleOutDuration)
         {
@@ -691,6 +711,67 @@ public class SCS_Walljumping : SCState
 }
 
 ///-----------------------------------------------------------------
+/// SCS_Launch
+///-----------------------------------------------------------------
+public class SCS_Launch : SCState
+{
+    // knockback is applied when exiting hitFreeze state
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.Ctr.IsInTumble = true;
+
+        chr.Ctr.ForceMovement = chr.LaunchVector;
+    }
+
+    public override void Execute(Character chr)
+    {
+        chr.Ctr.IsInTumble = true;
+
+        base.Execute(chr);
+
+        chr.Flash(Color.red, 2);
+
+        if (chr.Ctr.velocity.y > 0)
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+        else
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+
+        chr.GetInputs();
+
+        chr.HitStunDuration--;
+
+        if (chr.HitStunDuration <= 0)
+        {
+            chr.SCS_ChangeState(StaticStates.tumble);
+        }
+
+        if (chr.Ctr.HasCollided)
+        {
+            if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
+            {
+                chr.SCS_ChangeState(StaticStates.hitland);
+                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+            }
+            else
+            {
+                chr.SCS_ChangeState(StaticStates.hitLandWall);
+                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+            }
+        }
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.Ctr.IsInTumble = false;
+    }
+}
+
+
+///-----------------------------------------------------------------
 /// SCS_Tumble
 ///-----------------------------------------------------------------
 public class SCS_Tumble : SCState
@@ -699,16 +780,16 @@ public class SCS_Tumble : SCState
     {
         base.Enter(chr);
 
-        chr.Ctr.InControl = true;
-
-        chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
-
         chr.RaiseComboOverEvent();
+
+        chr.Ctr.IsInTumble = true;
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
+
+        chr.Flash(Color.blue, 2);
 
         if (chr.Ctr.velocity.y > 0)
             chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
@@ -718,15 +799,25 @@ public class SCS_Tumble : SCState
 
         chr.GetInputs();
 
-
         if (chr.Ctr.IsGrounded)
         {
             chr.SCS_ChangeState(StaticStates.hitland);
         }
-        else if (chr.Ctr.HasCollided)
+
+        if (chr.Ctr.HasCollided)
         {
-            chr.SCS_ChangeState(StaticStates.hitLandWall);
+            if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
+            {
+                chr.SCS_ChangeState(StaticStates.hitland);
+                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+            }
+            else
+            {
+                chr.SCS_ChangeState(StaticStates.hitLandWall);
+                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+            }
         }
+
 
         chr.SCS_CheckForAerials();
 
@@ -734,127 +825,124 @@ public class SCS_Tumble : SCState
         {
             chr.SCS_ChangeState(StaticStates.jumping);
         }
+
+        if (chr.Shield)
+        {
+            chr.SCS_ChangeState(StaticStates.airDodge);
+        }
     }
 
     public override void Exit(Character chr)
     {
         base.Exit(chr);
 
-        chr.Ctr.Frozen = false;
-
-        chr.HitStunDuration = 0;
+        chr.Ctr.IsInTumble = false;
     }
 }
 
-///-----------------------------------------------------------------
-/// SCS_Hitstun
-///-----------------------------------------------------------------
-public class SCS_Hitstun : SCState
-{
+/////-----------------------------------------------------------------
+///// SCS_Hitstun
+/////-----------------------------------------------------------------
+//public class SCS_Hitstun : SCState
+//{
 
-    //public int minDuration = 3;
-    private float spawnCloudVelocity = 10;
+//    //public int minDuration = 3;
+//    private float spawnCloudVelocity = 10;
 
-    public override void Enter(Character chr)
-    {
-        //base.Enter(chr);
+//    public override void Enter(Character chr)
+//    {
+//        //base.Enter(chr);
 
-        if (chr == null) return;
-        if (chr.Anim == null) return;
+//        if (chr == null) return;
+//        if (chr.Anim == null) return;
 
-        chr.Timer = 0;
-        //chr.FrozenInputX = chr.DirectionalInput.x;
+//        chr.Timer = 0;
+//        //chr.FrozenInputX = chr.DirectionalInput.x;
 
-        chr.ACharacterTakesDasmage += TakeDamage;
+//        chr.ACharacterTakesDasmage += TakeDamage;
 
-        chr.Ctr.InControl = false;
+//        chr.Ctr.InControl = false;
 
-        chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
+//        chr.Direction = Mathf.Sign(chr.Ctr.velocity.x);
 
-        EffectManager.SpawnEffect("Cloud1", chr.transform.position);
-    }
+//        EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+//    }
 
-    public override void Execute(Character chr)
-    {
-        base.Execute(chr);
+//    public override void Execute(Character chr)
+//    {
+//        base.Execute(chr);
 
-        if (chr.Ctr.velocity.y > 0)
-            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
-        else
-            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+//        if (chr.Ctr.velocity.y > 0)
+//            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
+//        else
+//            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunUp_anim);
 
-        if (chr.Timer < 10)
-        {
-            if (chr.HitstunVector != Vector2.zero)
-            {
-                chr.Ctr.ForceMovement = chr.HitstunVector;
-            }
-        }
-        else
-        {
-            chr.GetInputs();
-        }
+//        if (chr.Timer < 10)
+//        {
+//            if (chr.HitstunVector != Vector2.zero)
+//            {
+//                chr.Ctr.ForceMovement = chr.HitstunVector;
+//            }
+//        }
+//        else
+//        {
+//            chr.GetInputs();
+//        }
 
-        if (chr.Timer <= 60)
-        {
-            if (chr.Ctr.velocity.magnitude * 60 >= spawnCloudVelocity)
-            {
-                if (chr.Timer <= 30)
-                {
-                    if (chr.Timer % 4 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
-                }
+//        if (chr.Timer <= 60)
+//        {
+//            if (chr.Ctr.velocity.magnitude * 60 >= spawnCloudVelocity)
+//            {
+//                if (chr.Timer <= 30)
+//                {
+//                    if (chr.Timer % 4 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+//                }
 
-                if (chr.Timer % 10 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
-            }
-        }
+//                if (chr.Timer % 10 == 0) EffectManager.SpawnEffect("Cloud1", chr.transform.position);
+//            }
+//        }
 
-        if (chr.Timer > chr.HitStunDuration)
-        {
-            chr.Ctr.InControl = true;
-            chr.SCS_ChangeState(StaticStates.tumble);
+//        if (chr.Timer > chr.HitStunDuration)
+//        {
+//            chr.Ctr.InControl = true;
+//            chr.SCS_ChangeState(StaticStates.tumble);
 
-            chr.RaiseComboOverEvent();
-        }
+//            chr.RaiseComboOverEvent();
+//        }
 
 
-        if (chr.Ctr.IsGrounded)
-        {
-            chr.SCS_ChangeState(StaticStates.hitland);
-        }
-        else if (chr.Ctr.HasCollided)
-        {
-            chr.SCS_ChangeState(StaticStates.hitLandWall);
-        }
+//        if (chr.Ctr.IsGrounded)
+//        {
+//            chr.SCS_ChangeState(StaticStates.hitland);
+//        }
+//        else if (chr.Ctr.HasCollided)
+//        {
+//            chr.SCS_ChangeState(StaticStates.hitLandWall);
+//        }
 
-    }
+//    }
 
-    public override void Exit(Character chr)
-    {
-        base.Exit(chr);
+//    public override void Exit(Character chr)
+//    {
+//        base.Exit(chr);
 
-        chr.Ctr.Frozen = false;
+//        chr.Ctr.Frozen = false;
 
-        chr.HitStunDuration = 0;
-        chr.HitstunVector = Vector2.zero;
-    }
-}
+//        chr.HitStunDuration = 0;
+//        chr.HitstunVector = Vector2.zero;
+//    }
+//}
 
 ///-----------------------------------------------------------------
 /// SCS_Hitfreeze
 ///-----------------------------------------------------------------
 public class SCS_Hitfreeze : SCState
 {
-
-    [SerializeField]
-    public int duration = 5;
-
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
-        chr.Ctr.InControl = false;
         chr.Ctr.Frozen = true;
-
         chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
     }
 
@@ -864,7 +952,7 @@ public class SCS_Hitfreeze : SCState
 
         if (chr.Timer > chr.HitFreezeDuration)
         {
-            chr.SCS_ChangeState(StaticStates.hitstun);
+            chr.SCS_ChangeState(StaticStates.launch);
         }
     }
 
@@ -872,10 +960,10 @@ public class SCS_Hitfreeze : SCState
     {
         base.Exit(chr);
 
-        chr.Ctr.InControl = false;
         chr.Ctr.Frozen = false;
+        chr.Ctr.IsInTumble = true;
 
-        chr.Ctr.ForceMovement = chr.currentKnockback;
+        chr.LaunchVector = chr.currentKnockback;
     }
 }
 
@@ -973,10 +1061,8 @@ public class SCS_HitLand : SCState
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
-        chr.Ctr.InControl = false;
-        chr.CollisionReflectVector = chr.Ctr.reflectedVelocity;
-        chr.Flash(Color.white, 5);
 
+        chr.Flash(Color.white, 5);
         chr.Anim.ChangeAnimation(chr.StatesSO.hitland_anim);
     }
 
@@ -990,30 +1076,29 @@ public class SCS_HitLand : SCState
 
         if (chr.Timer > chr.StatesSO.hitland_duration)
         {
-            if (chr.CollisionReflectVector.magnitude * 60 > 20f)
+            if ((chr.CollisionReflectVector.magnitude) > 15f && (chr.HitStunDuration > 0))
             {
-                chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
-                chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
-                chr.HitStunDuration = 15;
-
-                chr.SCS_ChangeState(StaticStates.hitstun);
+                //grounded spike
+                chr.LaunchVector = chr.CollisionReflectVector * 0.25f;
+                chr.SCS_ChangeState(StaticStates.launch);
             }
             else
             {
-                if (chr.Ctr.IsGrounded)
+                if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
                 {
+                    //keep lying on ground
                     chr.RaiseComboOverEvent();
 
                     chr.SCS_ChangeState(StaticStates.hitlanded);
-                    chr.Ctr.InControl = true;
+                    chr.HitStunDuration = 0;
                 }
                 else
                 {
-                    chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.5f; //80% reduction
-                    chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.5f;
-                    chr.HitStunDuration = 15;
+                    //bounce from wall/slope
+                    chr.HitStunDuration += 10;
 
-                    chr.SCS_ChangeState(StaticStates.hitstun);
+                    chr.LaunchVector = chr.CollisionReflectVector * 0.25f;
+                    chr.SCS_ChangeState(StaticStates.launch);
                 }
             }
         }
@@ -1038,8 +1123,6 @@ public class SCS_HitLandWall : SCState
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
-        chr.Ctr.InControl = false;
-        chr.CollisionReflectVector = chr.Ctr.reflectedVelocity;
 
         chr.Flash(Color.white, 5);
 
@@ -1056,12 +1139,10 @@ public class SCS_HitLandWall : SCState
 
         if (chr.Timer > chr.StatesSO.hitland_duration)
         {
-            chr.Ctr.ForceMovement = chr.CollisionReflectVector * 60 * 0.8f; //80% reduction
-            chr.HitstunVector = chr.CollisionReflectVector * 60 * 0.8f;
-            chr.HitstunVector = new Vector2(chr.HitstunVector.x, 0);
-            chr.HitStunDuration = 15;
+            chr.HitStunDuration += 10;
 
-            chr.SCS_ChangeState(StaticStates.hitstun);
+            chr.LaunchVector = chr.CollisionReflectVector * 0.33f;
+            chr.SCS_ChangeState(StaticStates.launch);
         }
     }
 
@@ -1069,7 +1150,7 @@ public class SCS_HitLandWall : SCState
     {
         base.Exit(chr);
         chr.Ctr.Frozen = false;
-        chr.Ctr.InControl = true;
+        chr.Ctr.IsInTumble = true;
     }
 }
 

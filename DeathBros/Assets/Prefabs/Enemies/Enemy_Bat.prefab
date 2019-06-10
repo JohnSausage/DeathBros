@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 114974291168452482}
   - component: {fileID: 114609069300868980}
   - component: {fileID: 114216191892096462}
-  - component: {fileID: 114240915749755786}
   - component: {fileID: 61189036597972946}
   - component: {fileID: 114593677525329788}
   m_Layer: 0
@@ -264,70 +263,6 @@ MonoBehaviour:
   currentAnimation: {fileID: 0}
   frameAnimationsSO: {fileID: 11400000, guid: 390cf34f2928d1d4db0c5c1fd5868d2a, type: 2}
   animationSpeed: 1
---- !u!114 &114240915749755786
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196939669774506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dc39f2f4be6ee34987dc67a49c38f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {x: 0, y: 0}
-  jumpVelocity: 0
-  fallThroughPlatform: 0
-  fastFall: 0
-  forceMovement: {x: 0, y: 0}
-  addMovement: {x: 0, y: 0}
-  resetVelocity: 0
-  allowDI: 1
-  inControl: 1
-  freeze: 0
-  testKnockback: {x: 15, y: 20}
-  movespeed: 10
-  jumpForce: 15
-  gravity: -1
-  maxFallSpeed: -15
-  fastFallSpeed: -20
-  wallslideSpeed: 5
-  maxAirSpeed: 20
-  aerialAcceleration: 0.2
-  aerialDeceleration: 0.05
-  airFrames: 15
-  maxSlopeAngle: 45
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  platformMask:
-    serializedVersion: 2
-    m_Bits: 512
-  transporterMask:
-    serializedVersion: 2
-    m_Bits: 4096
-  velocity: {x: 0, y: 0}
-  velocitybfCol: {x: 0, y: 0}
-  oldInControl: 0
-  moveAngle: 0
-  grounded: 0
-  onWall: 0
-  wallDirection: 0
-  onCeiling: 0
-  onLedge: 0
-  slidingDownSlope: 0
-  collision: 0
-  collisionReflect: {x: 0, y: 0}
-  lastCollisionAngle: 0
-  slopeDown: 0
-  slopeUp: 0
-  slopeUpAngle: 0
-  oldSlopeUpAngle: 0
-  slopeDownAngle: 0
-  lastCollisionCheck: 0
-  skin: 0.01
-  skinDistance: 0
-  triangleDistance: 0
 --- !u!114 &114587500772317278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -393,64 +328,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Bat
-  soundFolderName: Sounds/Enemies/
+  statesSO: {fileID: 0}
   statsSO: {fileID: 11400000, guid: c1a392a0311e04a4598f1a7ecdd8c323, type: 2}
+  soundsSO: {fileID: 0}
   statList: []
-  CSMachine:
+  cardEffects: []
+  CurrentAttackBuff:
+    damageMulti: 1
+    damageAdd: 0
+    damageEffect: 1
+  ChrSM:
     currentState: 
+  Ctr: {fileID: 0}
   currentHealth: 0
-  currentSouls: 1
-  soulMeter: 50
-  soulMeterMax: 100
-  soulMeterBalanceRate: 0.25
   shielding: 0
   comboMultiplier: 1
-  movementStates:
-    idle:
-      animationName: idle
-    walking:
-      animationName: fly
-      animationSlow: fly
-      direction: 0
-    jumpsquat:
-      animationName: idle
-      duration: 0
-    jumping:
-      animationName: fly
-      jumpRisingAnimation: fly
-    landing:
-      animationName: idle
-      duration: 0
-    hitstun:
-      animationName: hitUp
-      hitstunFallAnimation: hitDown
-      minDuration: 3
-    hitfreeze:
-      animationName: hit
-      duration: 10
-    hitLand:
-      animationName: hitLand
-      duration: 5
-    shield:
-      animationName: idle
-    die:
-      animationName: hitLand
-    dead:
-      animationName: hitLand
-    standUp:
-      animationName: idle
-    hitLanded:
-      animationName: idle
-      minDuration: 20
-  normalAttack:
-    animationName: attack
-    attackType: 0
-  aerialAttack:
-    animationName: attack
-    attackType: 5
-  specialAttack:
-    animationName: idle
-    attackType: 18
   projectile: {fileID: 1365562643926888, guid: 42eace4f54b249e4ca212c0c029dac86, type: 2}
 --- !u!114 &114829232162217112
 MonoBehaviour:

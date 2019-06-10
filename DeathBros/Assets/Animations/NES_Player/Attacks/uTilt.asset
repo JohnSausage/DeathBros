@@ -21,7 +21,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes: []
     soundName: 
   - duration: 2
@@ -33,7 +35,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: 0.734375, y: 0.09375}
       radius: 0.65
@@ -42,12 +46,13 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.1, y: 0}
         position: {x: 0, y: 0}
-      ID: 57155
+      ID: 52880
       getNewID: 0
     - position: {x: 0.203125, y: 0.71875}
       radius: 0.65
@@ -56,12 +61,13 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.1, y: 0}
         position: {x: 0, y: 0}
-      ID: 57155
+      ID: 52880
       getNewID: 0
     soundName: 
   - duration: 2
@@ -73,7 +79,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: -0.796875, y: 0.34375}
       radius: 0.65
@@ -82,12 +90,13 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.1, y: 0}
         position: {x: 0, y: 0}
-      ID: 57155
+      ID: 52880
       getNewID: 0
     - position: {x: -0.046875, y: 0.75}
       radius: 0.65
@@ -96,12 +105,13 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.1, y: 0}
         position: {x: 0, y: 0}
-      ID: 57155
+      ID: 52880
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 12
@@ -113,7 +123,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes: []
     soundName: 
   damages:
@@ -121,6 +133,7 @@ MonoBehaviour:
     knockBackDirection: {x: 0, y: 5}
     baseKnockback: 12
     knockbackGrowth: 0
+    hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}

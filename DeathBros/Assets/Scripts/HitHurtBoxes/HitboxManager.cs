@@ -179,6 +179,7 @@ public class Damage
     public Vector2 knockBackDirection;
     public float baseKnockback;
     public float knockbackGrowth;
+    public int hitStunFrames;
     public EDamageType damageType;
     public EAttackType attackType;
     public Color editorColor;
@@ -199,6 +200,7 @@ public class Damage
             knockBackDirection = knockBackDirection,
             baseKnockback = baseKnockback,
             knockbackGrowth = knockbackGrowth,
+            hitStunFrames = hitStunFrames,
             damageType = damageType,
             attackType = attackType,
             editorColor = editorColor,

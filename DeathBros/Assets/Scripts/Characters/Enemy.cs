@@ -54,4 +54,11 @@ public class Enemy : Character
 
         Destroy(gameObject);
     }
+
+    protected override void OnTakeDamage()
+    {
+        base.OnTakeDamage();
+
+        EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 2), transform.position);
+    }
 }

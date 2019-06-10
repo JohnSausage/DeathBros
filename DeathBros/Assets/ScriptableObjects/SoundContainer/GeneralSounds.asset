@@ -15,7 +15,7 @@ MonoBehaviour:
   sounds:
   - name: NES_bubble
     clip: {fileID: 8300000, guid: db668abc1cf67b047aa08d6bc93e76aa, type: 3}
-    volume: 1
+    volume: 0.2
     loop: 0
   - name: NES_hit1
     clip: {fileID: 8300000, guid: 06d129ce18021974882fad13e16f53e6, type: 3}

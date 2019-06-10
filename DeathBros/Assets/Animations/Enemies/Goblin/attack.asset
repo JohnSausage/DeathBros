@@ -60,6 +60,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 1}
         baseKnockback: 10
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -88,6 +89,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 1}
         baseKnockback: 10
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -115,6 +117,7 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: 1}
     baseKnockback: 10
     knockbackGrowth: 10
+    hitStunFrames: 0
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

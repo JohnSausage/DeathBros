@@ -41,7 +41,7 @@ MonoBehaviour:
   wallJumpHeightReductionFactor: 0.75
   walljumpstart_duration: 3
   walljumping_anim: jumpUp
-  walljumping_duration: 15
+  walljumping_duration: 10
   skid_anim: run
   skid_duration: 5
   skid_idleOutDuration: 3

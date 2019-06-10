@@ -21,7 +21,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.21875, y: -0}
+      radius: 0.4
     hitboxes: []
     soundName: 
   - duration: 2
@@ -33,7 +35,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: 0.140625, y: 0.25}
       radius: 1.2
@@ -41,13 +45,14 @@ MonoBehaviour:
         damageNumber: 12
         knockBackDirection: {x: 1, y: 3}
         baseKnockback: 15
-        knockbackGrowth: 0
+        knockbackGrowth: 2
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 50186
+      ID: 43911
       getNewID: 0
     soundName: 
   - duration: 2
@@ -59,7 +64,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: -0.203125, y: 0.0625}
       radius: 1.2
@@ -67,13 +74,14 @@ MonoBehaviour:
         damageNumber: 12
         knockBackDirection: {x: 1, y: 3}
         baseKnockback: 15
-        knockbackGrowth: 0
+        knockbackGrowth: 2
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 50186
+      ID: 43911
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10
@@ -85,14 +93,17 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.0625, y: -0.15625}
+      radius: 0.4
     hitboxes: []
     soundName: 
   damages:
   - damageNumber: 12
     knockBackDirection: {x: 1, y: 3}
     baseKnockback: 15
-    knockbackGrowth: 0
+    knockbackGrowth: 2
+    hitStunFrames: 25
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

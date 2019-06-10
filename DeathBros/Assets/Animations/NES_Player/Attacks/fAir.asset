@@ -21,7 +21,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.4
     hitboxes: []
     soundName: 
   - duration: 2
@@ -33,7 +35,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.125, y: 0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: 0.421875, y: 0.3125}
       radius: 1
@@ -42,12 +46,13 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 1}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 38181
+      ID: 59816
       getNewID: 0
     soundName: 
   - duration: 2
@@ -59,7 +64,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.15625, y: 0.03125}
+      radius: 0.4
     hitboxes:
     - position: {x: 0.484375, y: -0.40625}
       radius: 1
@@ -68,12 +75,13 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 1}
         baseKnockback: 12
         knockbackGrowth: 0
+        hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 38181
+      ID: 59816
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 15
@@ -85,7 +93,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: 0.15625, y: -0}
+      radius: 0.4
     hitboxes: []
     soundName: 
   damages:
@@ -93,6 +103,7 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: 1}
     baseKnockback: 12
     knockbackGrowth: 0
+    hitStunFrames: 30
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

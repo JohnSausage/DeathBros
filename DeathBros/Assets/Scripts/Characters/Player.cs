@@ -102,10 +102,10 @@ public class Player : Character
 
     protected void OnEnemyHit(Character enemy, Damage damage)
     {
-        ModifiyComboPower(damage.damageNumber);
+        //ModifiyComboPower(damage.damageNumber);
     }
 
-    protected void ModifiyComboPower(float value)
+    public void ModifiyComboPower(float value)
     {
         ComboPower += value;
         ComboPower = Mathf.Clamp(ComboPower, 0, 110);
@@ -219,6 +219,12 @@ public class Player : Character
         ModifiyComboPower(-0.01f);
 
         ManageCardBuffs();
+    }
+
+    public override void UpdateInputs()
+    {
+        DirectionalInput = InputManager.Direction;
+        GetInputs();
     }
 
     public override void HitEnemy(Character enemy, Damage damage)
@@ -493,6 +499,9 @@ public class Player : Character
     {
         if (HoldShield)
         {
+            HitStunDuration = 0;
+            Ctr.InControl = true;
+
             RaiseComboOverEvent();
 
             //if (Ctr.lastCollisionAngle <= 45)
@@ -520,8 +529,6 @@ public class Player : Character
             {
                 SCS_ChangeState(StaticStates.jumping);
             }
-
-            Ctr.InControl = true;
         }
     }
 
@@ -592,7 +599,9 @@ public class Player : Character
     public override void SCS_CheckForWalkingOptions()
     {
         if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
+        {
             SCS_ChangeState(StaticStates.skid);
+        }
 
         if (HoldShield)
             SCS_ChangeState(StaticStates.shield);

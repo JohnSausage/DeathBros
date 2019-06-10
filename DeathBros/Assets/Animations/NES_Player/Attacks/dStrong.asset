@@ -46,6 +46,7 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
+        hitStunFrames: 0
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -74,6 +75,7 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
+        hitStunFrames: 0
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -88,6 +90,7 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
+        hitStunFrames: 0
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -116,6 +119,7 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
+        hitStunFrames: 0
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -158,6 +162,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -186,6 +191,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -200,6 +206,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -228,6 +235,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
+        hitStunFrames: 0
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -255,6 +263,7 @@ MonoBehaviour:
     knockBackDirection: {x: 0, y: 1}
     baseKnockback: 5
     knockbackGrowth: 2
+    hitStunFrames: 0
     damageType: 2
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -264,6 +273,7 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: 2}
     baseKnockback: 15
     knockbackGrowth: 10
+    hitStunFrames: 0
     damageType: 1
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

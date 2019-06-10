@@ -14,7 +14,7 @@ MonoBehaviour:
   charName: Maggot
   stats:
   - statName: MaxHealth
-    baseValue: 50
+    baseValue: 5000
   - statName: Weight
     baseValue: 60
   - statName: Movespeed

@@ -11,7 +11,7 @@ public class DamagingCollider : MonoBehaviour
     public Collider2D Col { get; protected set; }
 
     protected RaycastHit2D[] collisions;
-    protected int colNr;
+    protected int numberOfCollisions;
 
     protected virtual void Start()
     {
@@ -29,11 +29,11 @@ public class DamagingCollider : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        colNr = Col.Cast(Vector2.zero, filter, collisions);
+        numberOfCollisions = Col.Cast(Vector2.zero, filter, collisions);
 
-        if (colNr > 0)
+        if (numberOfCollisions > 0)
         {
-            for (int i = 0; i < colNr; i++)
+            for (int i = 0; i < numberOfCollisions; i++)
             {
                 ICanTakeDamage hitObject = collisions[i].transform.GetComponentInParent<ICanTakeDamage>();
                 if (hitObject != null)
@@ -47,7 +47,7 @@ public class DamagingCollider : MonoBehaviour
 
     private IEnumerator EGenerateNewHitID()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds((damage.hitStunFrames + 3) / 60f);
         damage.GenerateID();
     }
 }

@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 114247830038948058}
   - component: {fileID: 114048903627970666}
   - component: {fileID: 114941361038313446}
-  - component: {fileID: 114545029233109272}
   - component: {fileID: 61542803858809420}
   m_Layer: 0
   m_Name: PlayerTest
@@ -313,70 +312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxes: []
---- !u!114 &114545029233109272
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1036813610648658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4408d94a1dbfcb7408118eb2e143f8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: {x: 0, y: 0}
-  jumpVelocity: 0
-  fallThroughPlatform: 0
-  fastFall: 0
-  forceMovement: {x: 0, y: 0}
-  addMovement: {x: 0, y: 0}
-  resetVelocity: 0
-  allowDI: 1
-  inControl: 1
-  freeze: 0
-  testKnockback: {x: 15, y: 20}
-  movespeed: 10
-  jumpForce: 15
-  gravity: -1
-  maxFallSpeed: -15
-  fastFallSpeed: -25
-  wallslideSpeed: -5
-  maxAirSpeed: 20
-  aerialAcceleration: 0.2
-  aerialDeceleration: 0.03
-  airFrames: 0
-  maxSlopeAngle: 45
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  platformMask:
-    serializedVersion: 2
-    m_Bits: 512
-  transporterMask:
-    serializedVersion: 2
-    m_Bits: 4096
-  velocity: {x: 0, y: 0}
-  velocitybfCol: {x: 0, y: 0}
-  oldInControl: 0
-  moveAngle: 0
-  grounded: 0
-  onWall: 0
-  wallDirection: 0
-  onCeiling: 0
-  onLedge: 0
-  slidingDownSlope: 0
-  collision: 0
-  collisionReflect: {x: 0, y: 0}
-  lastCollisionAngle: 0
-  slopeDown: 0
-  slopeUp: 0
-  slopeUpAngle: 0
-  oldSlopeUpAngle: 0
-  slopeDownAngle: 0
-  lastCollisionCheck: 0
-  skin: 0.01
-  skinDistance: 0
-  triangleDistance: 0
 --- !u!114 &114719340606539506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,177 +338,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charName: Player
-  soundFolderName: Sounds/Player/
+  statesSO: {fileID: 0}
   statsSO: {fileID: 11400000, guid: 9cc35bdcf6fc10f4f92947daf29277c1, type: 2}
-  cStateParamtetersSO: {fileID: 11400000, guid: a82b2525b92a95b449f1aa24a4f6c787,
-    type: 2}
+  soundsSO: {fileID: 0}
   statList: []
-  CSMachine:
+  cardEffects: []
+  CurrentAttackBuff:
+    damageMulti: 1
+    damageAdd: 0
+    damageEffect: 1
+  ChrSM:
     currentState: 
+  Ctr: {fileID: 0}
   currentHealth: 0
-  currentSouls: 1
-  soulMeter: 50
-  soulMeterMax: 100
-  soulMeterBalanceRate: 0.025
   shielding: 0
-  advancedMovementStates:
-    idle:
-      animationName: idle
-    walking:
-      animationName: run
-      animationSlow: walking
-      direction: 0
-    jumpsquat:
-      animationName: jumpsquat
-      duration: 4
-    jumping:
-      animationName: jumpFalling
-      jumpRisingAnimation: jumpRising
-    landing:
-      animationName: landing
-      duration: 4
-    hitstun:
-      animationName: hitUp
-      hitstunFallAnimation: hitDown
-      minDuration: 3
-    hitfreeze:
-      animationName: hitUp
-      duration: 5
-    hitLand:
-      animationName: hitLanded
-      duration: 10
-    shield:
-      animationName: shield
-    die:
-      animationName: hitLanded
-    dead:
-      animationName: hitLanded
-    standUp:
-      animationName: standUp
-    hitLanded:
-      animationName: hitLanded
-      minDuration: 20
-    doubleJumpsquat:
-      animationName: jumpsquat
-      duration: 3
-    wallsliding:
-      animationName: wallsliding
-      wallUpAnimation: jumpRising
-    walljumpStart:
-      animationName: jumpsquat
-      jumpHeightReductionFactor: 0.8
-      duration: 3
-    walljumping:
-      animationName: wallJumping
-      duration: 15
-    skid:
-      animationName: run
-      duration: 6
-      idleOutDuration: 3
-    dash:
-      animationName: run
-      duration: 8
-    crouch:
-      animationName: crouch
-    roll:
-      animationName: roll
-    throwItem:
-      animationName: jumpsquat
-      aerialAnimationName: jumpsquat
-    airDodge:
-      animationName: airDodge
-      duration: 15
-    shieldHit:
-      animationName: shieldHit
-  attackStates:
-    uSoul:
-      animationName: UTilt
-      attackType: 12
-      chargeAnimationName: UCharge
-      chargeRate: 1
-    dSoul:
-      animationName: DTilt
-      attackType: 11
-      chargeAnimationName: DCharge
-      chargeRate: 1
-    fSoul:
-      animationName: FTilt
-      attackType: 10
-      chargeAnimationName: FCharge
-      chargeRate: 1
-    jab1:
-      animationName: Jab1
-      attackType: 0
-      jabNr: 1
-      cancelTime: 15
-    jab2:
-      animationName: Jab2
-      attackType: 13
-      jabNr: 2
-      cancelTime: 15
-    uTilt:
-      animationName: UTilt
-      attackType: 3
-    dTilt:
-      animationName: DTilt
-      attackType: 2
-    fTilt:
-      animationName: FTilt
-      attackType: 1
-    nAir:
-      animationName: NAir
-      attackType: 5
-    uAir:
-      animationName: UAir
-      attackType: 8
-    dAir:
-      animationName: DAir
-      attackType: 7
-    fAir:
-      animationName: FAir
-      attackType: 6
-    bAir:
-      animationName: BAir
-      attackType: 9
-    nSpec:
-      animationName: SpecTPose
-      attackType: 14
-      consumeSoulOverTime: 1
-      soulCost: 80
-      changeStatOnExit:
-        statName: 
-        addValue: 0
-      addSoulsOnExit: 1
-    uSpec:
-      animationName: landing
-      attackType: 16
-      consumeSoulOverTime: 0
-      soulCost: 0
-      changeStatOnExit:
-        statName: 
-        addValue: 0
-      addSoulsOnExit: 0
-    dSpec:
-      animationName: SpecSpawnBomb
-      attackType: 15
-      consumeSoulOverTime: 0
-      soulCost: 20
-      changeStatOnExit:
-        statName: 
-        addValue: 0
-      addSoulsOnExit: 0
-    fSpec:
-      animationName: SpecDash
-      attackType: 17
-      consumeSoulOverTime: 0
-      soulCost: 25
-      changeStatOnExit:
-        statName: 
-        addValue: 0
-      addSoulsOnExit: 0
-  soulCharge: 0
-  soulBalanceDelayDuration: 120
-  soulBank: 0
+  jab: {fileID: 0}
+  dTilt: {fileID: 0}
+  uTilt: {fileID: 0}
+  fTilt: {fileID: 0}
+  grab: {fileID: 0}
+  nAir: {fileID: 0}
+  fAir: {fileID: 0}
+  bAir: {fileID: 0}
+  dAir: {fileID: 0}
+  uAir: {fileID: 0}
+  nSpec: {fileID: 0}
+  sSpec: {fileID: 0}
+  uSpec: {fileID: 0}
+  dSpec: {fileID: 0}
   pickUpRadius: 1.5
   enemyMask:
     serializedVersion: 2

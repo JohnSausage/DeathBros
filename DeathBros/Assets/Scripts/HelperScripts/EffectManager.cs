@@ -101,4 +101,14 @@ public class EffectManager : _MB
         else
             Debug.Log(spawnGO);
     }
+
+    public static void SpawnSoulBubbles(int amount, Vector2 position)
+    {
+        GameObject spawnGO = Instance.effectGOs.Find(x => x.name == "SoulBubble").gameObject;
+
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(spawnGO, position, Quaternion.identity);
+        }
+    }
 }

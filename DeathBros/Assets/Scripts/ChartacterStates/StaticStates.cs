@@ -18,10 +18,11 @@
     public static SCS_Shield shield = new SCS_Shield();
     public static SCS_HitLand hitland = new SCS_HitLand();
     public static SCS_HitLanded hitlanded = new SCS_HitLanded();
-    public static SCS_Hitstun hitstun = new SCS_Hitstun();
+    //public static SCS_Hitstun hitstun = new SCS_Hitstun();
     public static SCS_Roll roll = new SCS_Roll();
     public static SCS_StandUp standUp = new SCS_StandUp();
     public static SCS_Hitfreeze hitfreeze = new SCS_Hitfreeze();
+    public static SCS_Launch launch = new SCS_Launch();
     public static SCS_Tumble tumble = new SCS_Tumble();
     public static SCS_HitLandWall hitLandWall = new SCS_HitLandWall();
 

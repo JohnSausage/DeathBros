@@ -61,11 +61,12 @@ public class Character : _MB, ICanTakeDamage
     public float FrozenInputX { get; set; }
     public int LandingLag { get; set; }
     public bool ChangedDirection { get; set; }
-    public int HitStunDuration { get; set; }
+    public int HitStunDuration;// { get; set; }
     public int HitFreezeDuration { get; set; }
     public Vector2 CollisionReflectVector { get; set; }
     public Vector2 HitstunVector { get; set; }
     public Vector2 AirDodgeVector { get; set; }
+    public Vector2 LaunchVector { get; set; }
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -161,7 +162,7 @@ public class Character : _MB, ICanTakeDamage
 
         UpdatesStatsForCtr();
 
-        Ctr.FixedMove();
+        //Ctr.UpdateCtr();
 
         currentDamage = null;
         Jump = false;
@@ -314,6 +315,8 @@ public class Character : _MB, ICanTakeDamage
             currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
 
             currentHealth -= damage.damageNumber;
+
+            OnTakeDamage();
         }
 
         if (currentHealth <= 0)
@@ -323,23 +326,30 @@ public class Character : _MB, ICanTakeDamage
 
     }
 
+    protected virtual void OnTakeDamage()
+    {
+
+    }
+
     protected void RaiseTakeDamageEvents(Damage damage)
     {
         if (ATakesDamage != null) ATakesDamage(damage);
         if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
         if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);
 
-        HitFreezeDuration = (int)damage.damageNumber;
-        HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 4, 10);
+        HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
+        HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
 
-        HitStunDuration = CalculateHitstun(damage);
+        HitStunDuration = damage.hitStunFrames;
+
+        //HitStunDuration = CalculateHitstun(damage);
     }
 
-    protected int CalculateHitstun(Damage damage)
-    {
-        int baseHitstun = 10;
-        return baseHitstun + (int)(damage.damageNumber * (5 - 2 * HealthPercent)); //range 3- 5
-    }
+    //protected int CalculateHitstun(Damage damage)
+    //{
+    //    int baseHitstun = 10;
+    //    return baseHitstun + (int)(damage.damageNumber * (5 - 2 * HealthPercent)); //range 3- 5
+    //}
 
     public virtual void Die()
     {
@@ -351,6 +361,11 @@ public class Character : _MB, ICanTakeDamage
     public virtual void Dead()
     {
         dead = true;
+    }
+
+    public virtual void UpdateInputs()
+    {
+
     }
 
     public virtual void GetInputs()

@@ -619,7 +619,7 @@ public class FrameAnimatorEditor : EditorWindow
                 }
 
                 showHurtboxes = EditorGUILayout.Toggle("Show Hurtboxes", showHurtboxes);
-                showHitboxes = EditorGUILayout.Toggle("Show Hurtboxes", showHitboxes);
+                showHitboxes = EditorGUILayout.Toggle("Show Hitboxes", showHitboxes);
 
                 currentFrame.sprite = (Sprite)EditorGUILayout.ObjectField("Change Sprite:", currentFrame.sprite, typeof(Sprite), false);
 
@@ -792,6 +792,18 @@ public class FrameAnimatorEditor : EditorWindow
                 currentFrame.hurtboxes.Add(copyHurtboxes[i].Clone());
             }
         }
+
+        if (GUILayout.Button("Paste All To All Frames"))
+        {
+
+            foreach (Frame frame in currentAnimation.frames)
+            {
+                for (int i = 0; i < copyHurtboxes.Count; i++)
+                {
+                    frame.hurtboxes.Add(copyHurtboxes[i].Clone());
+                }
+            }
+        }
     }
 
     private void DisplayHitboxTab()
@@ -819,6 +831,7 @@ public class FrameAnimatorEditor : EditorWindow
                 currentAnimation.damages[i].positionalInfluence = EditorGUILayout.Vector2Field("Positional Influence", currentAnimation.damages[i].positionalInfluence);
                 currentAnimation.damages[i].baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentAnimation.damages[i].baseKnockback);
                 currentAnimation.damages[i].knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentAnimation.damages[i].knockbackGrowth);
+                currentAnimation.damages[i].hitStunFrames = EditorGUILayout.IntField("Hitstun Frames", currentAnimation.damages[i].hitStunFrames);
                 currentAnimation.damages[i].damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentAnimation.damages[i].damageType);
                 currentAnimation.damages[i].editorColor = EditorGUILayout.ColorField("Color", currentAnimation.damages[i].editorColor);
 
@@ -887,6 +900,7 @@ public class FrameAnimatorEditor : EditorWindow
                         currentFrame.hitboxes[i].damage.positionalInfluence = EditorGUILayout.Vector2Field("Positional Influence", currentFrame.hitboxes[i].damage.positionalInfluence);
                         currentFrame.hitboxes[i].damage.baseKnockback = EditorGUILayout.FloatField("Base Knockback", currentFrame.hitboxes[i].damage.baseKnockback);
                         currentFrame.hitboxes[i].damage.knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentFrame.hitboxes[i].damage.knockbackGrowth);
+                        currentFrame.hitboxes[i].damage.hitStunFrames = EditorGUILayout.IntField("Hitstun Frames", currentFrame.hitboxes[i].damage.hitStunFrames);
 
                     }
                     EditorGUILayout.EndVertical();

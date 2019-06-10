@@ -77,14 +77,5 @@ public class StatesAndStatsSO : ScriptableObject
     public string shieldhit_anim = "idle";
     [Space]
     public string grab_anim = "grab";
-
-
-
-    public virtual void InitStates(Character chr)
-    {
-
-     
-
-    }
 }
 
