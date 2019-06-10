@@ -57,6 +57,7 @@ public class Player : Character
 
 
         Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
+    }
 
     protected void OnEnemyHit(Character enemy, Damage damage)
     {
