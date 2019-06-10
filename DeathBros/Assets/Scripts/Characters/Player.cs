@@ -91,9 +91,7 @@ public class Player : Character
         dAirAtk = dAir.CreateAttackState();
         uAirAtk = uAir.CreateAttackState();
 
-<<<<<<< HEAD
-        Ctr.wallslideSpeed = GetCurrentStatValue("WallslideSpeed");
-=======
+
         nSpecAtk = nSpec.CreateAttackState(ESpecial.NEUTRAL);
         sSpecAtk = sSpec.CreateAttackState(ESpecial.SIDE);
         uSpecAtk = uSpec.CreateAttackState(ESpecial.UP);
@@ -101,7 +99,6 @@ public class Player : Character
 
         AEnemyHit += OnEnemyHit;
         ComboPower = 50; //@@@ set to 0 later
->>>>>>> parent of df0081a... Merge branch 'master' of https://github.com/JohnSausage/DeathBros
     }
 
     protected void OnEnemyHit(Character enemy, Damage damage)
