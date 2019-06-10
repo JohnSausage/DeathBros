@@ -1,15 +1,17 @@
 fileFormatVersion: 2
-guid: 671dc273d6ed0d54cac442e1802ba08b
+guid: 2eaba7cfec2776348b28d3e3f8c8e64e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: NES_bubblebee_0
-    21300002: NES_bubblebee_1
-    21300004: NES_bubblebee_2
-    21300006: NES_bubblebee_3
-    21300008: NES_bubblebee_4
-    21300010: NES_bubblebee_5
-    21300012: NES_bubblebee_6
-    21300014: NES_bubblebee_7
+    21300000: NES_frog_0
+    21300002: NES_frog_1
+    21300004: NES_frog_2
+    21300006: NES_frog_3
+    21300008: NES_frog_4
+    21300010: NES_frog_5
+    21300012: NES_frog_6
+    21300014: NES_frog_7
+    21300016: NES_frog_8
+    21300018: NES_frog_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -71,7 +73,7 @@ TextureImporter:
     maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +84,7 @@ TextureImporter:
     maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -92,7 +94,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NES_bubblebee_0
+      name: NES_frog_0
       rect:
         serializedVersion: 2
         x: 0
@@ -106,13 +108,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37e971b219bdffe4a97d332b09cf8a48
+      spriteID: 8702638c797b6b64aa215cabdc269358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_1
+      name: NES_frog_1
       rect:
         serializedVersion: 2
         x: 32
@@ -126,13 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056cc9d6859702b4a8281a5d69a0c7de
+      spriteID: 2f50d59e6fca9b34fb5b610e37cebcfa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_2
+      name: NES_frog_2
       rect:
         serializedVersion: 2
         x: 64
@@ -146,13 +148,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faeccc071cdc89647b5f343e8890a99c
+      spriteID: 1496cbdc00385314fb49c78b6be44ee9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_3
+      name: NES_frog_3
       rect:
         serializedVersion: 2
         x: 96
@@ -166,13 +168,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e07d46b322042fe49855663535466471
+      spriteID: 9df2bd48c88eaef44b42340f1309e0a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_4
+      name: NES_frog_4
       rect:
         serializedVersion: 2
         x: 0
@@ -186,13 +188,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a5c2946c51470e4c853ae3118565c16
+      spriteID: e2768042958f0ab448532cad41a1021c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_5
+      name: NES_frog_5
       rect:
         serializedVersion: 2
         x: 32
@@ -206,13 +208,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 511a630fe1226a942a63f98a1334c4b5
+      spriteID: d77c4c40fcc43524181e7f8173f0459d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_6
+      name: NES_frog_6
       rect:
         serializedVersion: 2
         x: 64
@@ -226,13 +228,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 759261153170ea24c906ec4773cfad37
+      spriteID: e6261fff105a8d94ea43c92a75fcfae2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_bubblebee_7
+      name: NES_frog_7
       rect:
         serializedVersion: 2
         x: 96
@@ -246,7 +248,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 762fe05e915f6154ab473884f45c62b3
+      spriteID: a57517d35cd71fc45991d7061dce4bdb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d86cf9e4ae07941a836308a53132a2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_frog_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a1339a948e1404585a6f6af2c3be2c
       vertices: []
       indices: 
       edges: []
@@ -254,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fbd68bf70929508408259f9e0e9da25d
+    spriteID: f1fc1bd94abd4714cafa7e142ab9b522
     vertices: []
     indices: 
     edges: []
