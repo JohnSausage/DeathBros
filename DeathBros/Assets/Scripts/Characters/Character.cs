@@ -42,13 +42,13 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 TiltInput { get; protected set; }
 
     public bool Jump { get; set; }
-    public bool HoldJump { get; protected set; }
+    public bool HoldJump { get; set; }
     public bool Attack { get; set; }
     public bool HoldAttack { get; set; }
     public bool Special { get; set; }
     public bool HoldSpecial { get; protected set; }
     public bool Shield { get; set; }
-    public bool HoldShield { get; protected set; }
+    public bool HoldShield { get; set; }
 
     public int jumpsUsed { get; set; }
     public bool canChangeDirctionInAir { get; set; }
@@ -167,8 +167,6 @@ public class Character : _MB, ICanTakeDamage
 
         UpdatesStatsForCtr();
 
-        //Ctr.UpdateCtr();
-
         currentDamage = null;
         Jump = false;
         Attack = false;
@@ -177,6 +175,7 @@ public class Character : _MB, ICanTakeDamage
     protected virtual void UpdatesStatsForCtr()
     {
         Ctr.Movespeed = GetCurrentStatValue("Movespeed");//stats.movespeed.CurrentValue;
+        Ctr.Airspeed = GetCurrentStatValue("Airspeed");
         Ctr.Gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
     }
 
@@ -276,7 +275,7 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void TakeDamage(Damage damage)
     {
-        if(damage.damageType == EDamageType.Trigger) // e.g. used to trigger the explosion of projectiles
+        if (damage.damageType == EDamageType.Trigger) // e.g. used to trigger the explosion of projectiles
         {
             return;
         }
@@ -285,7 +284,7 @@ public class Character : _MB, ICanTakeDamage
         {
             return;
         }
-        
+
         if (shielding)
         {
             damage.damageNumber *= 0.25f;
@@ -584,19 +583,27 @@ public class Character : _MB, ICanTakeDamage
     public virtual void SCS_CheckForIdleOptions()
     {
         if (Mathf.Abs(DirectionalInput.x) != 0)
+        {
             SCS_ChangeState(StaticStates.walking);
+        }
 
         if (Jump)
+        {
             SCS_ChangeState(StaticStates.jumpsquat);
+        }
     }
 
     public virtual void SCS_CheckForWalkingOptions()
     {
         if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
+        {
             SCS_ChangeState(StaticStates.idle);
+        }
 
         if (Jump)
+        {
             SCS_ChangeState(StaticStates.jumpsquat);
+        }
     }
 
     public virtual void RaiseSpawnProjectileEvent(Character chr, Vector2 position)

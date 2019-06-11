@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: AIExit_FrogTargetOutOfRange
   m_EditorClassIdentifier: 
   exitState: idle
-  targetRange: 2.5
+  targetRange: 1

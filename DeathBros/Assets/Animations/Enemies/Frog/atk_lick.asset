@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.5}
         position: {x: 0, y: 0}
-      ID: 1805
+      ID: 40490
       getNewID: 0
     - position: {x: 0.03125, y: -0.40625}
       radius: 0.3
@@ -67,7 +67,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.5}
         position: {x: 0, y: 0}
-      ID: 1805
+      ID: 40490
       getNewID: 0
     soundName: 
   - duration: 3
@@ -96,7 +96,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.5}
         position: {x: 0, y: 0}
-      ID: 1805
+      ID: 40490
       getNewID: 0
     soundName: 
   - duration: 30

@@ -728,14 +728,12 @@ public class SCS_Launch : SCState
 {
     private float spawnCloudVelocity = 5;
 
-    // knockback is applied when exiting hitFreeze state
     public override void Enter(Character chr)
     {
         base.Enter(chr);
 
         chr.isInControl = false;
         chr.Ctr.IsInTumble = true;
-
         chr.Ctr.ForceMovement = chr.LaunchVector;
     }
 
@@ -1168,7 +1166,7 @@ public class SCS_HitLandWall : SCState
         chr.Ctr.Frozen = true;
         chr.isInControl = false;
 
-        chr.Flash(Color.white, 5);
+        chr.Flash(Color.green, 5);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
     }
@@ -1185,7 +1183,7 @@ public class SCS_HitLandWall : SCState
         {
             chr.HitStunDuration += 10;
 
-            chr.LaunchVector = chr.CollisionReflectVector * 0.33f;
+            chr.LaunchVector = chr.CollisionReflectVector * 0.66f;
             chr.SCS_ChangeState(StaticStates.launch);
         }
     }
@@ -1194,7 +1192,6 @@ public class SCS_HitLandWall : SCState
     {
         base.Exit(chr);
         chr.Ctr.Frozen = false;
-        chr.Ctr.IsInTumble = true;
         chr.isInControl = true;
     }
 }

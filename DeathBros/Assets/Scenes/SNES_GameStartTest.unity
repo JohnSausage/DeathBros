@@ -1877,11 +1877,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4635486800766076, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 165
+      value: 163.38
       objectReference: {fileID: 0}
     - target: {fileID: 4635486800766076, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -27
+      value: -28.94
       objectReference: {fileID: 0}
     - target: {fileID: 4635486800766076, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3877,6 +3877,7 @@ MonoBehaviour:
     currentStateName: 
   Gravity: -1
   Movespeed: 10
+  Airspeed: 8
   MaxSlopeAngle: 50
   aerialAcceleration: 0.1
   aerialDeceleration: 0.05
@@ -6054,7 +6055,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 674594481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 158.3, y: -29, z: 0}
+  m_LocalPosition: {x: 164.39, y: -27.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1678464635}

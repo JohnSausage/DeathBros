@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470063077638556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 169, y: -29, z: 0}
+  m_LocalPosition: {x: 163.38, y: -28.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4833170131501388}
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00019073486, y: -0.586226}
+  m_Offset: {x: 0.060000002, y: -0.65587807}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.74850464, y: 0.7967119}
+  m_Size: {x: 1, y: 0.68824387}
   m_EdgeRadius: 0
 --- !u!114 &114015756156798324
 MonoBehaviour:
@@ -290,11 +290,17 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 803dfb2ed078f624db2c36bf53794ef4, type: 2}
     - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
     - {fileID: 11400000, guid: 72bbdecfe0367504e8802b67c9d9cc26, type: 2}
+    - {fileID: 11400000, guid: fe81cf30bc4405843914c01acfdae3a5, type: 2}
   - aiAction: {fileID: 11400000, guid: e8dc44f5803cd9249a1b16808c23b2b4, type: 2}
     aiExitConditions:
     - {fileID: 11400000, guid: 729033b8ef083b44c9ce6bf9809ae0e6, type: 2}
     - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
+    - {fileID: 11400000, guid: fe81cf30bc4405843914c01acfdae3a5, type: 2}
   - aiAction: {fileID: 11400000, guid: b6d8c6e45cbfe7749b7eec44b586b0ab, type: 2}
+    aiExitConditions:
+    - {fileID: 11400000, guid: 40c4df9fb85f31e4b96ec199437e3b8f, type: 2}
+    - {fileID: 11400000, guid: 9f7d5321d1e18ee45be8e2c7231fd7d1, type: 2}
+  - aiAction: {fileID: 11400000, guid: 63b525c3106b63849bbdf9227b3d75f1, type: 2}
     aiExitConditions:
     - {fileID: 11400000, guid: 40c4df9fb85f31e4b96ec199437e3b8f, type: 2}
   inputDirection: {x: 0, y: 0}

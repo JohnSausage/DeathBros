@@ -15,9 +15,9 @@ MonoBehaviour:
   walking_anim: idle
   running_anim: idle
   jumpsquat_anim: idle
-  jumpsquat_duration: 4
-  jumpUp_anim: idle
-  jumpDown_anim: idle
+  jumpsquat_duration: 5
+  jumpUp_anim: jumpUp
+  jumpDown_anim: jumpDown
   landing_anim: idle
   landing_duration: 4
   hitstunUp_anim: hitUp

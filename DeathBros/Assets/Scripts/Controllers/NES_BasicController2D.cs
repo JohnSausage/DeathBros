@@ -35,6 +35,7 @@ public class NES_BasicController2D : MonoBehaviour
     /* can be changed during runtime*/
     public float Gravity = -1;// { get; set; }
     public float Movespeed = 10;// { get; set; }
+    public float Airspeed = 8;
     public float MaxSlopeAngle = 50; //{get;set;}
     public float aerialAcceleration = 0.2f;
     public float aerialDeceleration = 0.05f;
@@ -374,10 +375,11 @@ public class NES_BasicController2D : MonoBehaviour
                 ApplyAddMovementToVelocity();
                 ApplyForceMovementToVelocity();
 
-                CheckForOnWall();
 
                 //check if landing on platform
                 CheckForCollision();
+
+                //CheckForOnWall();
 
                 CheckForNewSlopeUp();
             }
@@ -774,16 +776,16 @@ public class NES_BasicController2D : MonoBehaviour
     public void CalculateAerialVelocityX()
     {
         float dirX = Mathf.Sign(velocity.x);
-        velocity.x -= Movespeed / 60 * aerialDeceleration * Mathf.Sign(velocity.x);
+        velocity.x -= Airspeed / 60 * aerialDeceleration * Mathf.Sign(velocity.x);
 
         if (dirX != Mathf.Sign(velocity.x))
         {
             velocity.x = 0;
         }
 
-        velocity.x += DirectionalInput.x * Movespeed / 60 * aerialAcceleration;
+        velocity.x += DirectionalInput.x * Airspeed / 60 * aerialAcceleration;
 
-        velocity.x = Mathf.Clamp(velocity.x, -Movespeed / 60, Movespeed / 60);
+        velocity.x = Mathf.Clamp(velocity.x, -Airspeed / 60, Airspeed / 60);
     }
 
     public void CalculateTumbleVelocityX()

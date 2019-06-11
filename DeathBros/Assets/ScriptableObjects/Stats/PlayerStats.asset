@@ -29,3 +29,5 @@ MonoBehaviour:
     baseValue: 3
   - statName: WallslideSpeed
     baseValue: 5
+  - statName: Airspeed
+    baseValue: 8

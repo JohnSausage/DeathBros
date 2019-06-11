@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: AIExit_FrogTargetInRange
   m_EditorClassIdentifier: 
   exitState: lick
-  targetRange: 2
+  targetRangeRadius: 1
+  targetOffset: {x: 1.5, y: 0}
