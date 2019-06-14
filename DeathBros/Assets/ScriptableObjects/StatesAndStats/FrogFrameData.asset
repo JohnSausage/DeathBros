@@ -31,7 +31,7 @@ MonoBehaviour:
   dead_anim: die
   standup_anim: idle
   hitlanded_anim: hitLanded
-  hitLanded_minDuration: 20
+  hitLanded_minDuration: 8
   getGrabbed_anim: hit
   doublejumpsquat_anim: idle
   doublejumpsquat_duration: 3

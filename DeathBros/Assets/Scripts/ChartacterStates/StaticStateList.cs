@@ -265,12 +265,19 @@ public class SCS_Jumping : SCState
             }
         }
 
-        if (chr.Ctr.OnWall)
+        if ((chr.Ctr.OnWallTimed == true) &&  (chr.StrongInputs.x == -chr.Ctr.WallDirection))
+        {
+            //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
+
+            chr.SCS_ChangeState(StaticStates.walljumpStart);
+        }
+
+        if (chr.Ctr.OnWall && chr.Ctr.velocity.y < 0)
         {
             chr.SCS_ChangeState(StaticStates.wallsliding);
         }
 
-        if (chr.Shield)
+        if (chr.Shield && chr.AirdodgeCounter == 0)
         {
             chr.SCS_ChangeState(StaticStates.airDodge);
         }
@@ -615,16 +622,16 @@ public class SCS_Wallsliding : SCState
     {
         base.Execute(chr);
 
-        if (chr.Ctr.velocity.y > 0)
-        {
-            chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingUp_anim);
-        }
-        else
-        {
+        //if (chr.Ctr.velocity.y > 0)
+        //{
+        //    chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingUp_anim);
+        //}
+        //else
+        //{
             chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingDown_anim);
-        }
+        //}
 
-        chr.Spr.flipX = chr.Ctr.WallDirection == -1;
+        chr.Direction = chr.Ctr.WallDirection;
 
         chr.GetInputs();
 
@@ -637,11 +644,20 @@ public class SCS_Wallsliding : SCState
 
         chr.SCS_CheckForAerials();
 
-        if (chr.Jump)
+        if (chr.StrongInputs.x == -chr.Ctr.WallDirection)
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 
             chr.SCS_ChangeState(StaticStates.walljumpStart);
+        }
+
+        if (chr.Jump)
+        {
+
+            if (chr.jumpsUsed < chr.GetCurrentStatValue("Jumps"))
+            {
+                chr.SCS_ChangeState(StaticStates.doubleJumpsquat);
+            }
         }
     }
 
@@ -664,7 +680,7 @@ public class SCS_WalljumpStart : SCState
     {
         base.Enter(chr);
 
-        chr.Spr.flipX = chr.Ctr.WallDirection == 1;
+        chr.Direction = -chr.Ctr.WallDirection;
         chr.SetInputs(Vector2.zero);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.walljumpstart_anim);
@@ -676,7 +692,7 @@ public class SCS_WalljumpStart : SCState
 
         if (chr.Timer >= chr.StatesSO.walljumpstart_duration)
         {
-            chr.SetInputs(new Vector2(-Mathf.Sign(chr.FrozenInputX), 0));
+            chr.SetInputs(new Vector2(-Mathf.Sign(chr.Direction), 0));
             chr.Ctr.JumpVelocity = chr.GetCurrentStatValue("JumpStrength") * jumpHeightReductionFactor;
 
             chr.SCS_ChangeState(StaticStates.walljumping);
@@ -704,14 +720,14 @@ public class SCS_Walljumping : SCState
 
         chr.CheckForAerialAttacks();
 
-        chr.SetInputs(new Vector2(Mathf.Sign(chr.FrozenInputX), 0));
+        chr.SetInputs(new Vector2(chr.Direction * 2, 0));
 
         chr.SCS_CheckIfLanding();
 
-        if (chr.Ctr.OnWall)
-        {
-            chr.SCS_ChangeState(StaticStates.wallsliding);
-        }
+        //if (chr.Ctr.OnWall)
+        //{
+        //    chr.SCS_ChangeState(StaticStates.wallsliding);
+        //}
 
 
         if (chr.Timer >= chr.StatesSO.walljumping_duration)
@@ -781,12 +797,12 @@ public class SCS_Launch : SCState
             if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
             {
                 chr.SCS_ChangeState(StaticStates.hitland);
-                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+                chr.CollisionReflectVector = chr.Ctr.ReflectedVelocity * 60;
             }
             else
             {
                 chr.SCS_ChangeState(StaticStates.hitLandWall);
-                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+                chr.CollisionReflectVector = chr.Ctr.ReflectedVelocity * 60;
             }
         }
     }
@@ -844,12 +860,12 @@ public class SCS_Tumble : SCState
             if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
             {
                 chr.SCS_ChangeState(StaticStates.hitland);
-                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+                chr.CollisionReflectVector = chr.Ctr.ReflectedVelocity * 60;
             }
             else
             {
                 chr.SCS_ChangeState(StaticStates.hitLandWall);
-                chr.CollisionReflectVector = chr.Ctr.reflectedVelocity * 60;
+                chr.CollisionReflectVector = chr.Ctr.ReflectedVelocity * 60;
             }
         }
 
@@ -1363,6 +1379,8 @@ public class SCS_AirDodge : SCState
         chr.AirDodgeVector = new Vector2(chr.AirDodgeVector.x, chr.AirDodgeVector.y * 0.3f); //otherwise too high up
 
         chr.Anim.ChangeAnimation(chr.StatesSO.airdodge_anim);
+
+        chr.AirdodgeCounter = 60;
     }
 
     public override void Execute(Character chr)

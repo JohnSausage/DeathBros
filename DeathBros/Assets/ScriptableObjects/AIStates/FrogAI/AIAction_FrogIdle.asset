@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Name: AIAction_FrogIdle
   m_EditorClassIdentifier: 
   actionName: idle
-  faceTarget: 1
-  nextState: 
-  minTimeInSec: 1
-  maxTimeInSec: 2
+  aiExitConditions:
+  - {fileID: 11400000, guid: 803dfb2ed078f624db2c36bf53794ef4, type: 2}
+  faceTarget: 0
+  nextState: jumpForward
+  minTimeInSec: 0.5
+  maxTimeInSec: 1

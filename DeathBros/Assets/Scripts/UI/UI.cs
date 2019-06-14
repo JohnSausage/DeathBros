@@ -7,12 +7,12 @@ using TMPro;
 
 public class UI : _MB
 {
-    [SerializeField]
-    private Color soulMeterColor;
-    public Color SoulBarColor { get { return soulMeterColor; } }
+    //[SerializeField]
+    //private Color soulMeterColor;
+    //public Color SoulBarColor { get { return soulMeterColor; } }
 
-    [SerializeField]
-    private Slider soulMeterSlider;
+    //[SerializeField]
+    //private Slider soulMeterSlider;
 
     //[SerializeField]
     //private TextMeshProUGUI comboCounterText;
@@ -23,22 +23,22 @@ public class UI : _MB
     //[SerializeField]
     //private GameObject ComboPanelPrefab;
 
-    [SerializeField]
-    private GameObject soulPanel;
+    //[SerializeField]
+    //private GameObject soulPanel;
 
-    [SerializeField]
-    private TextMeshProUGUI soulBankText;
+    //[SerializeField]
+    //private TextMeshProUGUI soulBankText;
 
-    [SerializeField]
-    private GameObject imageSoul;
+    //[SerializeField]
+    //private GameObject imageSoul;
 
     //public List<ComboPanel> comboPanels;
 //
-    public List<ComboCounter> comboCounters;
-    public List<UIMessage> uiMessages;
+    //public List<ComboCounter> comboCounters;
+    //public List<UIMessage> uiMessages;
 
 
-    private int soulMeterFlashTimer = 0;
+    //private int soulMeterFlashTimer = 0;
 
     public override void Init()
     {
@@ -64,7 +64,7 @@ public class UI : _MB
 
     void FixedUpdate()
     {
-        UpdateSoulMeterColor();
+        //UpdateSoulMeterColor();
 
         //soulMeterSlider.value = GameManager.Player.SoulPercent;
 
@@ -134,41 +134,41 @@ public class UI : _MB
         //soulMeterSlider.value = GameManager.Player.SoulPercent;
     }
 
-    private void FlashSoulMeterColor(Color color)
-    {
-        soulMeterFlashTimer = 0;
-        soulMeterSlider.fillRect.GetComponent<Image>().color = color;
-    }
+    //private void FlashSoulMeterColor(Color color)
+    //{
+    //    soulMeterFlashTimer = 0;
+    //    soulMeterSlider.fillRect.GetComponent<Image>().color = color;
+    //}
 
-    private void UpdateSoulMeterColor()
-    {
-        soulMeterFlashTimer++;
+    //private void UpdateSoulMeterColor()
+    //{
+    //    soulMeterFlashTimer++;
 
-        if (soulMeterFlashTimer > 60)
-        {
-            soulMeterSlider.fillRect.GetComponent<Image>().color = soulMeterColor;
-        }
-    }
+    //    if (soulMeterFlashTimer > 60)
+    //    {
+    //        soulMeterSlider.fillRect.GetComponent<Image>().color = soulMeterColor;
+    //    }
+    //}
 
-    private void UpdateSouls(float souls)
-    {
-        for (int i = 0; i < soulPanel.transform.childCount; i++)
-        {
-            Destroy(soulPanel.transform.GetChild(i).gameObject);
-        }
+    //private void UpdateSouls(float souls)
+    //{
+    //    for (int i = 0; i < soulPanel.transform.childCount; i++)
+    //    {
+    //        Destroy(soulPanel.transform.GetChild(i).gameObject);
+    //    }
 
-        for (int i = 0; i < souls; i++)
-        {
-            GameObject newImageSoul = Instantiate(imageSoul, soulPanel.transform);
-            newImageSoul.GetComponent<RectTransform>().anchoredPosition = new Vector2(30 + i * 30, 0);
-            //newImageSoul.transform.localPosition = new Vector2(30 + i * 30, 0);
-        }
-    }
+    //    for (int i = 0; i < souls; i++)
+    //    {
+    //        GameObject newImageSoul = Instantiate(imageSoul, soulPanel.transform);
+    //        newImageSoul.GetComponent<RectTransform>().anchoredPosition = new Vector2(30 + i * 30, 0);
+    //        //newImageSoul.transform.localPosition = new Vector2(30 + i * 30, 0);
+    //    }
+    //}
 
-    private void UpdateSoulBank(int soulBank)
-    {
-        soulBankText.text = soulBank.ToString();
-    }
+    //private void UpdateSoulBank(int soulBank)
+    //{
+    //    soulBankText.text = soulBank.ToString();
+    //}
 
     /*
     private void CheckComboCounter(Damage damage, Character enemy)
@@ -201,118 +201,118 @@ public class UI : _MB
     }
 */
 }
-[System.Serializable]
-public class ComboCounter
-{
-    public string EnemyName { get; protected set; }
+//[System.Serializable]
+//public class ComboCounter
+//{
+//    public string EnemyName { get; protected set; }
 
-    public Enemy enemy;
+//    public Enemy enemy;
 
-    public List<Damage> damages;
+//    public List<Damage> damages;
 
-    public float ComboDamage { get; protected set; }
-    public float HitCount { get; protected set; }
-    public float ComboScore { get; protected set; }
+//    public float ComboDamage { get; protected set; }
+//    public float HitCount { get; protected set; }
+//    public float ComboScore { get; protected set; }
 
-    private int comboResetDuration;
-    private int timer;
-    private float comboMultiplier;
+//    private int comboResetDuration;
+//    private int timer;
+//    private float comboMultiplier;
 
-    public static event Action<float> AComboIsOver;
+//    public static event Action<float> AComboIsOver;
 
-    public ComboCounter(Enemy enemy)
-    {
-        damages = new List<Damage>();
-        this.enemy = enemy;
-        EnemyName = enemy.charName;
-        comboMultiplier = enemy.ComboMultiplier;
-        comboResetDuration = 90;
-        timer = 0;
+//    public ComboCounter(Enemy enemy)
+//    {
+//        damages = new List<Damage>();
+//        this.enemy = enemy;
+//        EnemyName = enemy.charName;
+//        comboMultiplier = enemy.ComboMultiplier;
+//        comboResetDuration = 90;
+//        timer = 0;
 
-        enemy.AComboOver += SetComboOverInEvent;
-    }
+//        enemy.AComboOver += SetComboOverInEvent;
+//    }
 
-    public void FixedUpdate()
-    {
-        timer++;
-    }
+//    public void FixedUpdate()
+//    {
+//        timer++;
+//    }
 
-    public void CalculateComboScore()
-    {
-        ComboDamage = 0;
+//    public void CalculateComboScore()
+//    {
+//        ComboDamage = 0;
 
-        if (damages.Count <= 1) return;
+//        if (damages.Count <= 1) return;
 
-        List<EAttackType> attackTypeList = new List<EAttackType>();
+//        List<EAttackType> attackTypeList = new List<EAttackType>();
 
-        for (int i = 0; i < damages.Count; i++)
-        {
-            if (!attackTypeList.Contains(damages[i].attackType))
-            {
-                ComboDamage += damages[i].damageNumber;
-                attackTypeList.Add(damages[i].attackType);
-            }
-            else
-            {
-                ComboDamage += damages[i].damageNumber * 0.5f;
-            }
+//        for (int i = 0; i < damages.Count; i++)
+//        {
+//            if (!attackTypeList.Contains(damages[i].attackType))
+//            {
+//                ComboDamage += damages[i].damageNumber;
+//                attackTypeList.Add(damages[i].attackType);
+//            }
+//            else
+//            {
+//                ComboDamage += damages[i].damageNumber * 0.5f;
+//            }
 
 
-        }
+//        }
 
-        ComboScore = ComboDamage * comboMultiplier;
-    }
+//        ComboScore = ComboDamage * comboMultiplier;
+//    }
 
-    public void ResetComboCounter()
-    {
-        timer = 0;
-    }
+//    public void ResetComboCounter()
+//    {
+//        timer = 0;
+//    }
 
-    private void SetComboOverInEvent(bool value)
-    {
-        timer = comboResetDuration + 1;
-    }
+//    private void SetComboOverInEvent(bool value)
+//    {
+//        timer = comboResetDuration + 1;
+//    }
 
-    public bool ComboOver()
-    {
-        if (timer > comboResetDuration)
-        {
-            CalculateComboScore();
+//    public bool ComboOver()
+//    {
+//        if (timer > comboResetDuration)
+//        {
+//            CalculateComboScore();
 
-            enemy.AComboOver -= SetComboOverInEvent;
+//            enemy.AComboOver -= SetComboOverInEvent;
 
-            if (AComboIsOver != null) AComboIsOver(ComboScore);
+//            if (AComboIsOver != null) AComboIsOver(ComboScore);
 
-            return true;
-        }
+//            return true;
+//        }
 
-        return false;
-    }
-}
+//        return false;
+//    }
+//}
 
-[System.Serializable]
-public class UIMessage
-{
-    public string text;
-    public Color color;
+//[System.Serializable]
+//public class UIMessage
+//{
+//    public string text;
+//    public Color color;
 
-    private int duration = 180;
-    private int timer;
+//    private int duration = 180;
+//    private int timer;
 
-    public UIMessage(string text, Color color)
-    {
-        this.text = text;
-        this.color = color;
-    }
+//    public UIMessage(string text, Color color)
+//    {
+//        this.text = text;
+//        this.color = color;
+//    }
 
-    public bool Over()
-    {
-        timer++;
+//    public bool Over()
+//    {
+//        timer++;
 
-        if (timer > duration)
-        {
-            return true;
-        }
-        return false;
-    }
-}
+//        if (timer > duration)
+//        {
+//            return true;
+//        }
+//        return false;
+//    }
+//}

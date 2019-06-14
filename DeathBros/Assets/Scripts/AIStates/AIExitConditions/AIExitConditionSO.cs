@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AIExitConditionSO : ScriptableObject
+public class AIExitConditionSO : ScriptableObjectWithDrawer
 {
     public string exitState;
 

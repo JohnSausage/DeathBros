@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 74.01, y: -28.61, z: 0}
+  m_LocalPosition: {x: 21.5, y: -29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4741648372137012}
@@ -141,13 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTag: Player
-  aiStates:
-  - aiAction: {fileID: 11400000, guid: 04099e11c8f33774e8c8cce92edccb5b, type: 2}
-    aiExitConditions:
-    - {fileID: 11400000, guid: 7dcf79eb65dbd0944aaedca3438ac40b, type: 2}
-  - aiAction: {fileID: 11400000, guid: c51fefe787efcc64fad0e5042d0947d0, type: 2}
-    aiExitConditions:
-    - {fileID: 11400000, guid: 5d8bf3890c0f2764696d2a2e4845547a, type: 2}
+  aiMachine:
+    currentAction: {fileID: 0}
+  aIStatesSO: {fileID: 11400000, guid: 27ee5f352623294428825f480cdbeb16, type: 2}
   inputDirection: {x: 0, y: 0}
 --- !u!114 &114609069300868980
 MonoBehaviour:
@@ -170,12 +166,15 @@ MonoBehaviour:
     damageMulti: 1
     damageAdd: 0
     damageEffect: 1
+  Jump: 0
+  HoldJump: 0
   ChrSM:
     currentState: 
   HitStunDuration: 0
   Ctr: {fileID: 0}
   currentHealth: 0
   shielding: 0
+  normalAttack: {fileID: 11400000, guid: 7638e7ffb0b9e09448ba27037235e939, type: 2}
   comboMultiplier: 1
   projectile: {fileID: 0}
 --- !u!114 &114692243710159598
@@ -189,18 +188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397271ac8a360fc4e9e13158843a2f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Goblin1ID
   DirectionalInput: {x: 0, y: 0}
-  JumpVelocity: 0
   velocity: {x: 0, y: 0}
-  oldVelocity: {x: 0, y: 0}
-  FallThroughPlatforms: 0
-  ForceMovement: {x: 0, y: 0}
-  AddMovement: {x: 0, y: 0}
-  ctrSM:
-    currentStateName: 
   Gravity: -1
   Movespeed: 10
+  Airspeed: 8
   MaxSlopeAngle: 50
   aerialAcceleration: 0.2
   aerialDeceleration: 0.05
@@ -210,34 +202,6 @@ MonoBehaviour:
   fastFallSpeed: -20
   fastFall: 0
   WallslideSpeed: 5
-  IsGrounded: 0
-  WasGrounded: 0
-  HasCollided: 0
-  OnWall: 0
-  OnLedge: 0
-  Frozen: 0
-  InControl: 0
-  IsJumping: 0
-  IsMovingSlopeUp: 0
-  IsMovingSlopeDown: 0
-  NewSlopeSownFound: 0
-  IsOnSlope: 0
-  IsInTumble: 0
-  resetVelocity: 0
-  freezeCounter: 0
-  frozenVelocity: {x: 0, y: 0}
-  reflectedVelocity: {x: 0, y: 0}
-  plannedVelocity: {x: 0, y: 0}
-  requestedPlatformMovement: {x: 0, y: 0}
-  slopeUpAngle: 0
-  movingSlopeUpAngle: 0
-  slopeDownAngle: 0
-  movingSlopeDownAngle: 0
-  CollisionAngle: 0
-  slopeUpFound: 0
-  slopeDownFound: 0
-  moveState: 1
-  ignoredPlatforms: []
   collisionMask:
     serializedVersion: 2
     m_Bits: 256

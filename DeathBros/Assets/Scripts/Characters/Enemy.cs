@@ -59,12 +59,6 @@ public class Enemy : Character
         //}
     }
 
-    public override void Die()
-    {
-        base.Die();
-
-        SCS_ChangeState(StaticStates.die);
-    }
 
     public override void SCS_Dead()
     {

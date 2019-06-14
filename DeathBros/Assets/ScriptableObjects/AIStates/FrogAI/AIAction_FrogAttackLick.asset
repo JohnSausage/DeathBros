@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: AIAction_FrogAttackLick
   m_EditorClassIdentifier: 
   actionName: lick
+  aiExitConditions:
+  - {fileID: 11400000, guid: 72bbdecfe0367504e8802b67c9d9cc26, type: 2}
   normalAttack: 1
   specialAttack: 0
   targetOffset: {x: 0, y: 0}

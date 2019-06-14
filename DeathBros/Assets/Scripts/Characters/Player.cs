@@ -221,6 +221,7 @@ public class Player : Character
         base.FixedUpdate();
 
         ModifiyComboPower(-0.01f);
+        ModHealth(+0.01f);
 
         ManageCardBuffs();
     }
@@ -238,48 +239,50 @@ public class Player : Character
         if (EnemyHit != null) EnemyHit(enemy, damage);
     }
 
-    protected override void TakeDamage(Damage damage)
-    {
-        if (!dead)
-        {
-            if (shielding)
-            {
-                damage.damageNumber *= 0.25f;
+    //protected override void TakeDamage(Damage damage)
+    //{
+    //    if (!dead)
+    //    {
+    //        if (shielding)
+    //        {
+    //            damage.damageNumber *= 0.25f;
 
 
-                RaiseTakeDamageEvents(damage);
+    //            RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("NES_hit1");
+    //            AudioManager.PlaySound("NES_hit1");
 
-                currentDamage = damage;
+    //            currentDamage = damage;
 
-                if (damage.Owner != null)
-                {
-                    damage.Owner.HitEnemy(this, damage);
-                }
-            }
-            else
-            {
-                RaiseTakeDamageEvents(damage);
+    //            if (damage.Owner != null)
+    //            {
+    //                damage.Owner.HitEnemy(this, damage);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            RaiseTakeDamageEvents(damage);
 
-                AudioManager.PlaySound("NES_hit1");
-                Flash(EffectManager.ColorHit, 3);
+    //            AudioManager.PlaySound("NES_hit1");
+    //            Flash(EffectManager.ColorHit, 3);
 
-                currentDamage = damage;
+    //            currentDamage = damage;
 
-                if (damage.Owner != null)
-                {
-                    damage.Owner.HitEnemy(this, damage);
-                }
+    //            if (damage.Owner != null)
+    //            {
+    //                damage.Owner.HitEnemy(this, damage);
+    //            }
 
-                currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (HealthPercent));
-            }
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-        }
-    }
+    //            currentKnockback = damage.Knockback(transform.position, GetCurrentStatValue("Weight"), (HealthPercent));
+
+    //            currentHealth -= damage.damageNumber;
+    //        }
+    //        if (currentHealth <= 0)
+    //        {
+    //            Die();
+    //        }
+    //    }
+    //}
     
 
     //protected bool CheckForItemPickUp()

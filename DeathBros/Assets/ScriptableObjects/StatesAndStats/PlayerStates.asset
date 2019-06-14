@@ -46,7 +46,7 @@ MonoBehaviour:
   skid_duration: 5
   skid_idleOutDuration: 3
   dash_anim: run
-  dash_duration: 5
+  dash_duration: 8
   crouch_anim: crouch
   roll_anim: roll
   throwitem_anim: crouch

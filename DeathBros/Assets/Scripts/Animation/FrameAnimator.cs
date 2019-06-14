@@ -23,6 +23,7 @@ public class FrameAnimator : _MB
     private int animTimer;
 
     public bool animationOver { get; protected set; }
+    public string lastAnimationName { get; protected set; }
 
     public override void Init()
     {
@@ -95,7 +96,7 @@ public class FrameAnimator : _MB
                     if (SpawnProjectile != null) SpawnProjectile(transform.position, currentFrame.spawnProjectile);
                 }
 
-                ctr.resetVelocity = currentFrame.resetVelocity;
+                ctr.ResetVelocity = currentFrame.resetVelocity;
             }
 
             if (currentFrame.spawnHoldItem != null)
@@ -142,6 +143,8 @@ public class FrameAnimator : _MB
 
             if (animTimer >= currentAnimation.frames.Count)
             {
+                lastAnimationName = currentAnimation.name;
+
                 animTimer = 0;
                 animationOver = true;
                 if (AnimationOver != null) AnimationOver(currentAnimation);

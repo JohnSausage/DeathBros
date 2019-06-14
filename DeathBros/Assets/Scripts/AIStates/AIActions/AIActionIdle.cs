@@ -14,11 +14,14 @@ public class AIActionIdle : AIActionSO
     {
         base.Enter(aiCtr);
 
-        aiCtr.Timer = 0;
+        
         aiCtr.RandomTimerNumber = Random.Range(minTimeInSec * 60, maxTimeInSec * 60);
     }
+
     public override void Execute(AIController aiCtr)
     {
+        base.Execute(aiCtr);
+
         if(faceTarget == true)
         {
             aiCtr.Enemy.Direction = aiCtr.TargetDirection().x;
@@ -26,8 +29,6 @@ public class AIActionIdle : AIActionSO
 
         if (nextState != "")
         {
-            aiCtr.Timer++;
-
             aiCtr.Enemy.SetInputs(Vector2.zero);
 
             if (aiCtr.Timer > aiCtr.RandomTimerNumber)

@@ -23,7 +23,6 @@ public class Item : _MB, ICanTakeDamage, ICanBePickedUp
 
     [SerializeField]
     protected int destroyAfterTime = 0;
-    private int timer = 0;
 
     [SerializeField]
     protected bool flipX, flipY;

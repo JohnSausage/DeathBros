@@ -36,7 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4796841752238776}
   - component: {fileID: 212116446320915906}
-  - component: {fileID: 114104902246958064}
   m_Layer: 9
   m_Name: PixelPerfectSprite
   m_TagString: Untagged
@@ -68,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4072505874297386}
   - component: {fileID: 61341363692078702}
+  - component: {fileID: 114359884129535724}
   m_Layer: 9
   m_Name: Platform
   m_TagString: MovingPlatform
@@ -141,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773433813863902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4425977893792264}
@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111587817603326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.15, y: -24.62, z: 0}
+  m_LocalPosition: {x: 136, y: -27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4906769426713548}
@@ -239,18 +239,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114104902246958064
+--- !u!114 &114359884129535724
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1502370342311114}
+  m_GameObject: {fileID: 1538495788627904}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6443fb21ed5e2f46bc1c5b07af2a76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapToParent: 1
+  snapToParent: 0
   pixelsPerUnit: 16
 --- !u!114 &114597710119840086
 MonoBehaviour:
@@ -267,7 +267,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   Movement: {x: 0, y: 0}
-  movespeed: 1
+  movespeed: 4
   transportedThings: []
   parentedObjects: []
   platform: {fileID: 1538495788627904}

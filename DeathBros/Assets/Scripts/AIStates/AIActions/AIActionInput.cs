@@ -5,8 +5,18 @@ public class AIActionInput : AIActionSO
 {
     public Vector2 directionalInput = Vector2.zero;
 
+    [Space]
+
+    public bool directionalInputXToDirection = false;
+    public bool changeDirectionOnWall = false;
+    public bool changeDirectionOnLedge = false;
+
+    [Space]
+
     public bool directionalInputXToTarget = false;
     public bool directionalInputYToTarget = false;
+
+    [Space]
 
     public bool attack = false;
     public bool special = false;
@@ -14,6 +24,13 @@ public class AIActionInput : AIActionSO
     public bool holdJump = false;
     public bool shield = false;
     public bool holdShield = false;
+
+    [Space]
+
+    public int stopInputsAfterFrame = 0;
+
+
+
 
     protected Vector2 input;
     public override void Enter(AIController aiCtr)
@@ -23,9 +40,32 @@ public class AIActionInput : AIActionSO
 
     public override void Execute(AIController aiCtr)
     {
+        base.Execute(aiCtr);
+
         if (directionalInput != Vector2.zero)
         {
             input = directionalInput;
+        }
+
+        if(directionalInputXToDirection == true)
+        {
+            if(changeDirectionOnWall == true)
+            {
+                if(aiCtr.Enemy.Ctr.OnWall == true)
+                {
+                    aiCtr.Enemy.Direction = -aiCtr.Enemy.Direction;
+                }
+            }
+
+            if (changeDirectionOnLedge == true)
+            {
+                if (aiCtr.Enemy.Ctr.OnLedge == true)
+                {
+                    aiCtr.Enemy.Direction = -aiCtr.Enemy.Direction;
+                }
+            }
+
+            input.x *= aiCtr.Enemy.Direction;
         }
 
         if (directionalInputXToTarget == true)
@@ -40,6 +80,21 @@ public class AIActionInput : AIActionSO
 
         aiCtr.Enemy.SetInputs(input);
 
+        if(stopInputsAfterFrame != 0)
+        {
+            if(aiCtr.Timer > stopInputsAfterFrame || aiCtr.Timer == 0)
+            {
+
+                aiCtr.Enemy.Attack = false;
+                aiCtr.Enemy.Special = false;
+                aiCtr.Enemy.Jump = false;
+                aiCtr.Enemy.Shield = false;
+                aiCtr.Enemy.HoldJump = false;
+                aiCtr.Enemy.HoldShield = false;
+
+                return;
+            }
+        }
 
         aiCtr.Enemy.Attack = attack;
         aiCtr.Enemy.Special = special;
@@ -51,6 +106,8 @@ public class AIActionInput : AIActionSO
 
     public override void Exit(AIController aiCtr)
     {
+        base.Exit(aiCtr);
+
         aiCtr.Enemy.Special = false;
         aiCtr.Enemy.HoldJump = false;
         aiCtr.Enemy.Shield = false;

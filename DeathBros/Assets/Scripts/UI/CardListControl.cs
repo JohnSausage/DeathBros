@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CardListControl : MonoBehaviour
 {
-    [SerializeField]
-    private int NrOfColumnsForZooming = 6;
+    //[SerializeField]
+    //private int NrOfColumnsForZooming = 6;
 
     [SerializeField]
     private GameObject cardButtonTemplate;

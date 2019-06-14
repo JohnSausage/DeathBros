@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "AIStateSO")]
-public class AIStatesSO : ScriptableObject
+public class AIStatesSO : ScriptableObjectWithDrawer
 {
-    public List<AIState> aiStates;
+    public List<AIActionSO> aiActions;
 }

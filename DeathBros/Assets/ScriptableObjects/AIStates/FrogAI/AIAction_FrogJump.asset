@@ -11,9 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9d241e96abeb4459220cdf10abbf61, type: 3}
   m_Name: AIAction_FrogJump
   m_EditorClassIdentifier: 
-  actionName: jump
-  directionalInput: {x: -1, y: 0}
-  directionalInputXToTarget: 1
+  actionName: jumpForward
+  aiExitConditions:
+  - {fileID: 11400000, guid: 48c937f5d152c8745857c0dee240b4ad, type: 2}
+  directionalInput: {x: 1, y: 0}
+  directionalInputXToDirection: 1
+  changeDirectionOnWall: 1
+  directionalInputXToTarget: 0
   directionalInputYToTarget: 0
   attack: 0
   special: 0
@@ -21,3 +25,4 @@ MonoBehaviour:
   holdJump: 1
   shield: 0
   holdShield: 0
+  stopInputsAfterFrame: 5

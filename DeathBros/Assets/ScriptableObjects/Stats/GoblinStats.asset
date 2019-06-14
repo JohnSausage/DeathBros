@@ -14,7 +14,7 @@ MonoBehaviour:
   charName: Goblin
   stats:
   - statName: MaxHealth
-    baseValue: 5000
+    baseValue: 40
   - statName: Weight
     baseValue: 60
   - statName: Movespeed

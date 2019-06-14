@@ -6,9 +6,11 @@ public class AIController : MonoBehaviour
 {
     public string followTag = "Player";
 
-    public StateMachine aiMachine { get; protected set; }
+    public AIStateMachine aiMachine;// { get; protected set; }
 
-    public List<AI_State> aiStates;
+    public AIStatesSO aIStatesSO;
+
+    //public List<AI_State> aiStates;
 
     public Transform Target { get; protected set; }
     //public Vector2 TargetDirection { get; protected set; }
@@ -28,13 +30,24 @@ public class AIController : MonoBehaviour
         Enemy = GetComponent<Enemy>();
         Target = GameObject.FindGameObjectWithTag(followTag).transform;
 
-        for (int i = 0; i < aiStates.Count; i++)
+        //for (int i = 0; i < aiStates.Count; i++)
+        //{
+        //    aiStates[i].Init(this);
+        //}
+
+        //aiMachine = new StateMachine();
+        //if (aiStates.Count > 0) aiMachine.ChangeState(aiStates[0]);
+        aiMachine = new AIStateMachine();
+
+        if(aIStatesSO == null)
         {
-            aiStates[i].Init(this);
+            return;
         }
 
-        aiMachine = new StateMachine();
-        if (aiStates.Count > 0) aiMachine.ChangeState(aiStates[0]);
+        if(aIStatesSO.aiActions.Count > 0)
+        {
+            ChangeState(aIStatesSO.aiActions[0].actionName);
+        }
     }
 
     protected void FixedUpdate()
@@ -47,14 +60,22 @@ public class AIController : MonoBehaviour
         */
         TargetVector = Target.position - transform.position;
 
-        aiMachine.Update();
+        aiMachine.Update(this);
     }
 
     public void ChangeState(string actionName)
     {
-        AI_State changeState = aiStates.Find(x => x.aiAction.actionName == actionName);
+        //AI_State changeState = aiStates.Find(x => x.aiAction.actionName == actionName);
 
-        if (changeState != null) aiMachine.ChangeState(changeState);
+        //if (changeState != null) aiMachine.ChangeState(changeState);
+
+        AIActionSO newAction = aIStatesSO.aiActions.Find(x => x.actionName == actionName);
+
+        if (newAction != null)
+        {
+            aiMachine.ChangeAction(this, newAction);
+        }
+
     }
 
     public Vector2 TargetDirection(Vector2 offset = new Vector2())
@@ -69,13 +90,42 @@ public class AIController : MonoBehaviour
 }
 
 [System.Serializable]
+public class AIStateMachine
+{
+    public AIActionSO currentAction;
+    protected AIActionSO previousAction;
+
+    public void Update(AIController aiCtr)
+    {
+        if (currentAction != null)
+        {
+            currentAction.Execute(aiCtr);
+        }
+    }
+
+    public void ChangeAction(AIController aiCtr, AIActionSO newAction)
+    {
+        previousAction = currentAction;
+
+        if (currentAction != null)
+        {
+            currentAction.Exit(aiCtr);
+        }
+
+        currentAction = newAction;
+        currentAction.Enter(aiCtr);
+
+    }
+}
+
+[System.Serializable]
 public class AI_State : IState
 {
     public AIActionSO aiAction;
 
-    public List<AIExitConditionSO> aiExitConditions;
+    //public List<AIExitConditionSO> aiExitConditions;
 
-    public Vector2 setInputDirection { get; protected set; }
+    //public Vector2 setInputDirection { get; protected set; }
 
     protected AIController aiCtr;
 
@@ -93,10 +143,10 @@ public class AI_State : IState
     {
         aiAction.Execute(aiCtr);
 
-        for (int i = 0; i < aiExitConditions.Count; i++)
-        {
-            aiExitConditions[i].CheckForExit(aiCtr);
-        }
+        //for (int i = 0; i < aiExitConditions.Count; i++)
+        //{
+        //    aiExitConditions[i].CheckForExit(aiCtr);
+        //}
     }
 
     public void Exit()

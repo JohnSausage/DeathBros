@@ -20,6 +20,8 @@ public class AIActionAttack : AIActionSO
 
     public override void Execute(AIController aiCtr)
     {
+        base.Execute(aiCtr);
+
         if (moveToEnemy)
             aiCtr.Enemy.SetInputs(aiCtr.TargetDirection(targetOffset));
         else
@@ -31,6 +33,8 @@ public class AIActionAttack : AIActionSO
 
     public override void Exit(AIController aiCtr)
     {
+        base.Exit(aiCtr);
+
         aiCtr.Enemy.Attack = false;
         aiCtr.Enemy.Special = false;
     }

@@ -22,7 +22,7 @@ MonoBehaviour:
   - statName: Gravity
     baseValue: -0.6
   - statName: JumpStrength
-    baseValue: 15
+    baseValue: 10
   - statName: Jumps
     baseValue: 2
   - statName: Airspeed

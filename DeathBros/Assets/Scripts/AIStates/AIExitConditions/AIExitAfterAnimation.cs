@@ -19,10 +19,7 @@ public class AIExitAfterAnimation : AIExitConditionSO
         {
             if (aiCtr.Enemy.Anim.currentAnimation.name == animationName)
             {
-                if (aiCtr.Enemy.Anim.animationOver)
-                {
-                    aiCtr.ChangeState(exitState);
-                }
+                aiCtr.ChangeState(exitState);
             }
         }
     }

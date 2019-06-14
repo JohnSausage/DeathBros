@@ -41,8 +41,8 @@ public class Character : _MB, ICanTakeDamage
     public virtual void ClearStrongInputs() { StrongInputs = Vector2.zero; }
     public Vector2 TiltInput { get; protected set; }
 
-    public bool Jump { get; set; }
-    public bool HoldJump { get; set; }
+    public bool Jump;// { get; set; }
+    public bool HoldJump;// { get; set; }
     public bool Attack { get; set; }
     public bool HoldAttack { get; set; }
     public bool Special { get; set; }
@@ -70,6 +70,7 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 HitstunVector { get; set; }
     public Vector2 AirDodgeVector { get; set; }
     public Vector2 LaunchVector { get; set; }
+    public int AirdodgeCounter { get; set; }
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -161,6 +162,11 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void FixedUpdate()
     {
+        if(AirdodgeCounter > 0)
+        {
+            AirdodgeCounter--;
+        }
+
         ChrSM.Update(this);
 
         UpdateStats();
@@ -357,9 +363,8 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void Die()
     {
-        //Debug.Log(this.name + " died");
-
-        //CSMachine.ChangeState(GetState(typeof(CS_Die)));
+        dead = true;
+        SCS_ChangeState(StaticStates.die);
     }
 
     public virtual void SCS_Dead()
@@ -621,6 +626,8 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void SCS_RaiseLandingEvent()
     {
+        AirdodgeCounter = 0;
+
         if (AIsLanding != null) AIsLanding();
     }
 
