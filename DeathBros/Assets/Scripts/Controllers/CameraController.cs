@@ -212,3 +212,11 @@ public static class BoundsExtensions
         return new Rect(bounds.center - bounds.extents, bounds.size);
     }
 }
+
+public static class ColorExtensions
+{
+    public static Color SetTransparency(this Color color, float a)
+    {
+        return new Color(color.r, color.g, color.b, a);
+    }
+}

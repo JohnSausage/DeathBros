@@ -35,14 +35,20 @@ public class SCS_TiltAttack : SCS_Attack
 
         chr.FrozenInputX *= 0.8f;
 
-        chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
-
         if (chr.Ctr.OnLedge)
+        {
             chr.SetInputs(Vector2.zero);
+        }
+        else
+        {
+            chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
+        }
 
         if (chr.Anim.animationOver)
         {
             chr.SCS_Idle();
         }
+
+        chr.SCS_CheckIfGrounded();
     }
 }

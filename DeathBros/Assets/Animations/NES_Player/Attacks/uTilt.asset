@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: uTilt
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
+  - duration: 10
     sprite: {fileID: 21300102, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -45,14 +45,14 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 8
-        knockbackGrowth: 6
-        hitStunFrames: 20
+        knockbackGrowth: 10
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 89161
+      ID: 67276
       getNewID: 0
     - position: {x: 0.203125, y: 0.71875}
       radius: 0.65
@@ -60,14 +60,14 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 8
-        knockbackGrowth: 6
-        hitStunFrames: 20
+        knockbackGrowth: 10
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 89161
+      ID: 67276
       getNewID: 0
     soundName: 
   - duration: 2
@@ -89,14 +89,14 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 8
-        knockbackGrowth: 6
-        hitStunFrames: 20
+        knockbackGrowth: 10
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 89161
+      ID: 67276
       getNewID: 0
     - position: {x: -0.046875, y: 0.75}
       radius: 0.65
@@ -104,17 +104,17 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 8
-        knockbackGrowth: 6
-        hitStunFrames: 20
+        knockbackGrowth: 10
+        hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 89161
+      ID: 67276
       getNewID: 0
     soundName: NES_swoosh1
-  - duration: 18
+  - duration: 12
     sprite: {fileID: 21300108, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -132,8 +132,8 @@ MonoBehaviour:
   - damageNumber: 10
     knockBackDirection: {x: 0, y: 5}
     baseKnockback: 8
-    knockbackGrowth: 6
-    hitStunFrames: 20
+    knockbackGrowth: 10
+    hitStunFrames: 25
     damageType: 0
     attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}

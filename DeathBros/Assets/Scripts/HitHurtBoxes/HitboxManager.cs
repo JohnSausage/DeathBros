@@ -171,7 +171,7 @@ public class Hitbox
     }
 }
 
-public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab, Trigger }
+public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab, Trigger, Multi1, Multi2, Multi3, Multi4, Multi5 }
 
 [System.Serializable]
 public class Damage
@@ -252,6 +252,15 @@ public class Damage
         knockback *= (0.5f + (200 - weight) / 200);
 
         return knockback;
+    }
+
+    public int HitStunFrames(float percentHealth)
+    {
+        int retVal = 0;
+
+        retVal = (int)((baseKnockback + knockbackGrowth * (1 - percentHealth)) / baseKnockback * hitStunFrames);
+
+        return retVal;
     }
 
     public void GenerateID()

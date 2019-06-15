@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: dAir
   m_EditorClassIdentifier: 
   frames:
-  - duration: 6
+  - duration: 10
     sprite: {fileID: 21300068, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -46,13 +46,13 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: -5}
         baseKnockback: 15
         knockbackGrowth: 15
-        hitStunFrames: 30
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 92384
+      ID: 9037
       getNewID: 0
     soundName: 
   - duration: 2
@@ -75,13 +75,13 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: -5}
         baseKnockback: 15
         knockbackGrowth: 15
-        hitStunFrames: 30
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 92384
+      ID: 9037
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -117,7 +117,7 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: -5}
     baseKnockback: 15
     knockbackGrowth: 15
-    hitStunFrames: 30
+    hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

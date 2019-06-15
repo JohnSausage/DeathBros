@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d37bea13241b7409ca9993a7dfb6d5, type: 3}
   m_Name: AIExit_FrogInTumble
   m_EditorClassIdentifier: 
-  exitState: jump
+  exitState: airdodge

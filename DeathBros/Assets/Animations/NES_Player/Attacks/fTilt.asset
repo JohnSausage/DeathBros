@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: fTilt
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
+  - duration: 10
     sprite: {fileID: 21300118, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -46,13 +46,13 @@ MonoBehaviour:
         knockBackDirection: {x: 2, y: 1}
         baseKnockback: 10
         knockbackGrowth: 10
-        hitStunFrames: 30
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 23392
+      ID: 1572
       getNewID: 0
     soundName: 
   - duration: 2
@@ -75,13 +75,13 @@ MonoBehaviour:
         knockBackDirection: {x: 2, y: 1}
         baseKnockback: 10
         knockbackGrowth: 10
-        hitStunFrames: 30
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 23392
+      ID: 1572
       getNewID: 0
     - position: {x: 0.359375, y: 0.84375}
       radius: 0.65
@@ -90,13 +90,13 @@ MonoBehaviour:
         knockBackDirection: {x: 2, y: 1}
         baseKnockback: 10
         knockbackGrowth: 10
-        hitStunFrames: 30
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 23392
+      ID: 1572
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 20
@@ -118,7 +118,7 @@ MonoBehaviour:
     knockBackDirection: {x: 2, y: 1}
     baseKnockback: 10
     knockbackGrowth: 10
-    hitStunFrames: 30
+    hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

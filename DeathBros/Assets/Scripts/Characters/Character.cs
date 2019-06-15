@@ -306,7 +306,7 @@ public class Character : _MB, ICanTakeDamage
                 damage.Owner.HitEnemy(this, damage);
             }
 
-            currentHealth -= damage.damageNumber;
+            ModHealth(-damage.damageNumber);
         }
         else
         {
@@ -324,7 +324,7 @@ public class Character : _MB, ICanTakeDamage
 
             currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
 
-            currentHealth -= damage.damageNumber;
+            ModHealth(-damage.damageNumber);
 
             OnTakeDamage();
         }
@@ -350,16 +350,8 @@ public class Character : _MB, ICanTakeDamage
         HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
         HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
 
-        HitStunDuration = damage.hitStunFrames;
-
-        //HitStunDuration = CalculateHitstun(damage);
+        HitStunDuration = damage.HitStunFrames(HealthPercent);
     }
-
-    //protected int CalculateHitstun(Damage damage)
-    //{
-    //    int baseHitstun = 10;
-    //    return baseHitstun + (int)(damage.damageNumber * (5 - 2 * HealthPercent)); //range 3- 5
-    //}
 
     public virtual void Die()
     {

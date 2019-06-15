@@ -14,7 +14,8 @@ MonoBehaviour:
   actionName: lick
   aiExitConditions:
   - {fileID: 11400000, guid: 72bbdecfe0367504e8802b67c9d9cc26, type: 2}
+  - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
   normalAttack: 1
   specialAttack: 0
-  targetOffset: {x: 0, y: 0}
-  moveToEnemy: 0
+  targetOffset: {x: 0.5, y: 0}
+  moveToEnemy: 1

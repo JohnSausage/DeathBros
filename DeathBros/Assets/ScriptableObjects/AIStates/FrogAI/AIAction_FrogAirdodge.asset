@@ -9,22 +9,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9d241e96abeb4459220cdf10abbf61, type: 3}
-  m_Name: AIAction_FrogJump
+  m_Name: AIAction_FrogAirdodge
   m_EditorClassIdentifier: 
-  actionName: jumpForward
+  actionName: airdodge
   aiExitConditions:
   - {fileID: 11400000, guid: 48c937f5d152c8745857c0dee240b4ad, type: 2}
-  - {fileID: 11400000, guid: 6615b29d4e0ba8342a5bafa7c30a68db, type: 2}
-  directionalInput: {x: 1, y: 0}
-  directionalInputXToDirection: 1
-  changeDirectionOnWall: 1
+  - {fileID: 11400000, guid: 40c4df9fb85f31e4b96ec199437e3b8f, type: 2}
+  directionalInput: {x: -1, y: -0.5}
+  directionalInputXToDirection: 0
+  changeDirectionOnWall: 0
   changeDirectionOnLedge: 0
-  directionalInputXToTarget: 0
+  directionalInputXToTarget: 1
   directionalInputYToTarget: 0
   attack: 0
   special: 0
-  jump: 1
-  holdJump: 1
-  shield: 0
-  holdShield: 0
-  stopInputsAfterFrame: 5
+  jump: 0
+  holdJump: 0
+  shield: 1
+  holdShield: 1
+  stopInputsAfterFrame: 0

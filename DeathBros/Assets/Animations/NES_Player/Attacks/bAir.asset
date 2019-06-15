@@ -46,13 +46,13 @@ MonoBehaviour:
         knockBackDirection: {x: -3, y: 2}
         baseKnockback: 8
         knockbackGrowth: 15
-        hitStunFrames: 40
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 3186
+      ID: 94365
       getNewID: 0
     - position: {x: 0.109375, y: -0.53125}
       radius: 0.8
@@ -61,13 +61,13 @@ MonoBehaviour:
         knockBackDirection: {x: -3, y: 2}
         baseKnockback: 8
         knockbackGrowth: 15
-        hitStunFrames: 40
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 3186
+      ID: 94365
       getNewID: 0
     soundName: 
   - duration: 2
@@ -90,13 +90,13 @@ MonoBehaviour:
         knockBackDirection: {x: -3, y: 2}
         baseKnockback: 8
         knockbackGrowth: 15
-        hitStunFrames: 40
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 3186
+      ID: 94365
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 18
@@ -118,7 +118,7 @@ MonoBehaviour:
     knockBackDirection: {x: -3, y: 2}
     baseKnockback: 8
     knockbackGrowth: 15
-    hitStunFrames: 40
+    hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

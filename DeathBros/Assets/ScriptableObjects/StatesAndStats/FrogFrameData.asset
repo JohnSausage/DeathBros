@@ -51,7 +51,7 @@ MonoBehaviour:
   roll_anim: idle
   throwitem_anim: idle
   throwitemaerial_anim: idle
-  airdodge_anim: idle
-  airdodge_duration: 25
+  airdodge_anim: airdodge
+  airdodge_duration: 20
   shieldhit_anim: idle
   grab_anim: idle

@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371009a761fd6594f840e54b5c7954ff, type: 3}
   m_Name: AIExit_DamageTaken
   m_EditorClassIdentifier: 
-  exitState: flee
+  exitState: airdodge

@@ -200,6 +200,8 @@ public class NES_BasicController2D : MonoBehaviour
                             }
                         }
 
+                        CheckForOnLedge();
+
                         break;
                     }
                 case EGroundMoveState.Moving:

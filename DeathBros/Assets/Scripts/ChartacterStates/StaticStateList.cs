@@ -265,7 +265,7 @@ public class SCS_Jumping : SCState
             }
         }
 
-        if ((chr.Ctr.OnWallTimed == true) &&  (chr.StrongInputs.x == -chr.Ctr.WallDirection))
+        if ((chr.Ctr.OnWallTimed == true) && (chr.StrongInputs.x == -chr.Ctr.WallDirection))
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 
@@ -491,6 +491,8 @@ public class SCS_Dash : SCState
         chr.FrozenInputX = Mathf.Sign(chr.FrozenInputX);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.dash_anim);
+
+        chr.isRunning = true;
     }
 
     public override void Execute(Character chr)
@@ -542,6 +544,13 @@ public class SCS_Dash : SCState
         }
 
         chr.SCS_CheckForGroundAttacks();
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.isRunning = false;
     }
 }
 
@@ -628,7 +637,7 @@ public class SCS_Wallsliding : SCState
         //}
         //else
         //{
-            chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingDown_anim);
+        chr.Anim.ChangeAnimation(chr.StatesSO.wallslidingDown_anim);
         //}
 
         chr.Direction = chr.Ctr.WallDirection;
@@ -828,7 +837,7 @@ public class SCS_Tumble : SCState
 
         chr.RaiseComboOverEvent();
 
-        chr.Flash(Color.blue, 2);
+        //chr.Flash(Color.blue, 2);
 
         chr.isInControl = false;
         chr.Ctr.IsInTumble = true;
@@ -1199,7 +1208,7 @@ public class SCS_HitLandWall : SCState
         {
             chr.HitStunDuration += 10;
 
-            chr.LaunchVector = chr.CollisionReflectVector * 0.66f;
+            chr.LaunchVector = chr.CollisionReflectVector * 0.80f;
             chr.SCS_ChangeState(StaticStates.launch);
         }
     }
@@ -1274,12 +1283,22 @@ public class SCS_Dead : SCState
     {
         base.Enter(chr);
 
-        chr.Anim.ChangeAnimation(chr.StatesSO.dead_anim);
+        chr.SetInputs(Vector2.zero);
+        chr.Ctr.ResetVelocity = true;
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
+
+        if(chr.Ctr.IsGrounded)
+        {
+            chr.Anim.ChangeAnimation(chr.StatesSO.dead_anim);
+        }
+        else
+        {
+            chr.Anim.ChangeAnimation(chr.StatesSO.hitstunDown_anim);
+        }
 
         chr.SetInputs(Vector2.zero);
 
@@ -1297,14 +1316,19 @@ public class SCS_Die : SCState
         base.Enter(chr);
 
         chr.Anim.ChangeAnimation(chr.StatesSO.die_anim);
+        chr.SetInputs(Vector2.zero);
+        chr.Ctr.ResetVelocity = true;
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
 
+
         if (chr.Anim.animationOver)
+        {
             chr.SCS_ChangeState(StaticStates.dead);
+        }
     }
 }
 

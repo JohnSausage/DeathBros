@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class NES_PlatformController : MonoBehaviour
 {
-
     public LayerMask transportMask;
 
-    public Vector2 Movement;// { get; private set; }
+    public Vector2 Movement { get; private set; }
 
     [SerializeField]
-    float movespeed = 1;
+    protected float movespeed = 1;
 
     [Space]
     public List<ColliderAndLayer> transportedThings;
@@ -20,13 +19,16 @@ public class NES_PlatformController : MonoBehaviour
     [Space]
 
     [SerializeField]
-    GameObject platform;
+    protected GameObject platform;
 
     [SerializeField]
-    BoxCollider2D TransporterCol;
+    protected BoxCollider2D TransporterCol;
+
+    protected BoxCollider2D platformCol;
+    protected Vector2 platformReducedSize;
 
     [SerializeField]
-    Transform[] points;
+    protected Transform[] points;
 
     [Space]
 
@@ -38,19 +40,22 @@ public class NES_PlatformController : MonoBehaviour
     private void Start()
     {
         currentPoint = points[pointSelection];
-        //Col = platform.GetComponent<BoxCollider2D>();
+        platformCol = platform.GetComponent<BoxCollider2D>();
+        platformReducedSize = platformCol.bounds.size * 0.9f;
     }
 
     private void FixedUpdate()
     {
+        //reset the parents of the transported things
         foreach (ColliderAndLayer storedCollider in transportedThings)
         {
             storedCollider.collider.transform.SetParent(null);
         }
 
+        //clear the list with the transported things
         transportedThings.Clear();
 
-
+        //calculate the new movement
         Movement = (currentPoint.position - platform.transform.position).normalized * movespeed / 60f;
 
         //moving
@@ -69,38 +74,38 @@ public class NES_PlatformController : MonoBehaviour
         }
 
 
+        //check if something that can be transported is in the transporter area
         RaycastHit2D findThingsToTransport = Physics2D.BoxCast(TransporterCol.bounds.center, TransporterCol.bounds.size, 0, Vector2.zero, 0, transportMask);
 
+        //repeateldy cast while something was found
         while (findThingsToTransport)
         {
+            //store everything that has been found
             ColliderAndLayer storeCollider = new ColliderAndLayer(findThingsToTransport.collider, findThingsToTransport.collider.gameObject.layer);
+
+            //before setting its layer to ignore, check if is inside the platform collider
+            RaycastHit2D checkIfInsidePlatform = Physics2D.BoxCast(platformCol.bounds.center, platformReducedSize, 0, Vector2.zero, 0, transportMask);
+
             transportedThings.Add(storeCollider);
-
             storeCollider.collider.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            storeCollider.collider.transform.SetParent(platform.transform);
 
+            //only set parent if it is not inside the platform
+            if (checkIfInsidePlatform == false)
+            {
+                storeCollider.collider.transform.SetParent(platform.transform);
+            }
+
+            //cast again
             findThingsToTransport = Physics2D.BoxCast(TransporterCol.bounds.center, TransporterCol.bounds.size, 0, Vector2.zero, 0, transportMask);
         }
 
+        //move the platform
         platform.transform.Translate(Movement, Space.World);
 
+        //reset the layermasks after moving
         foreach (ColliderAndLayer storedCollider in transportedThings)
         {
             storedCollider.collider.gameObject.layer = storedCollider.layerMask;
-
-            //ICanBeTransported transportedObject = storedCollider.collider.GetComponent<ICanBeTransported>();
-            //if (transportedObject != null)
-            //{
-            //    if (transportedObject.allowTransporting == true)
-            //    {
-            //        //storedCollider.collider.transform.Translate(Movement, Space.World);
-            //        //transportedObject.requestedPlatformMovement = Movement;
-
-            //        //storedCollider.collider.transform.SetParent(null);
-            //    }
-            //}
         }
-
-        //transportedThings.Clear();
     }
 }
