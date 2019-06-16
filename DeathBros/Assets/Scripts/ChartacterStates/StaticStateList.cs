@@ -188,9 +188,12 @@ public class SCS_Walking : SCState
     {
         base.Execute(chr);
 
+        chr.GetInputs();
+        chr.SetInputs(new Vector2(chr.DirectionalInput.x * chr.walkSpeedReduction, chr.DirectionalInput.y));
+
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
-        if (Mathf.Abs(chr.DirectionalInput.x) < 0.5f)
+        if (Mathf.Abs(chr.DirectionalInput.x) <= 0.5f)
         {
             chr.Anim.ChangeAnimation(chr.StatesSO.walking_anim);
             chr.isRunning = false;
@@ -201,6 +204,56 @@ public class SCS_Walking : SCState
             chr.Anim.ChangeAnimation(chr.StatesSO.running_anim);
             chr.isRunning = true;
         }
+
+        
+
+
+        chr.SCS_CheckForWalkingOptions();
+
+        chr.SCS_CheckForGroundAttacks();
+
+        chr.SCS_CheckIfGrounded();
+
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.isRunning = false;
+    }
+}
+
+///-----------------------------------------------------------------
+/// SCS_Running
+///-----------------------------------------------------------------
+public class SCS_Running : SCState
+{
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.UpdateInputs();
+
+        if (chr.DirectionalInput.x < 0)
+        {
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+        }
+        if (chr.DirectionalInput.x > 0)
+        {
+            chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+        }
+
+        chr.Anim.ChangeAnimation(chr.StatesSO.running_anim);
+
+        chr.isRunning = true;
+    }
+
+    public override void Execute(Character chr)
+    {
+        base.Execute(chr);
+
+        chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
         chr.GetInputs();
 
@@ -456,21 +509,7 @@ public class SCS_Landing : SCState
         {
             chr.LandingLag = 0; //clear additional landing lag when landing
 
-            if (chr.DirectionalInput.y < 0)
-            {
-                chr.SCS_ChangeState(StaticStates.crouch);
-            }
-            else
-            {
-                if (chr.DirectionalInput.x == 0)
-                {
-                    chr.SCS_ChangeState(StaticStates.idle);
-                }
-                else
-                {
-                    chr.SCS_ChangeState(StaticStates.walking);
-                }
-            }
+            chr.SCS_CheckForLandingOptions();
         }
 
         chr.FrozenInputX *= 0.8f;
@@ -522,7 +561,7 @@ public class SCS_Dash : SCState
             }
             else
             {
-                chr.SCS_ChangeState(StaticStates.walking);
+                chr.SCS_ChangeState(StaticStates.running);
             }
         }
 
@@ -533,14 +572,12 @@ public class SCS_Dash : SCState
         else
         {
             chr.SetInputs(new Vector2(chr.FrozenInputX * 1.2f, 0));
-
-            if (chr.Jump)
-            {
-                chr.SCS_ChangeState(StaticStates.jumpsquat);
-            }
         }
 
-
+        if (chr.Jump)
+        {
+            chr.SCS_ChangeState(StaticStates.jumpsquat);
+        }
 
         if (chr.Timer <= 10)
         {
@@ -739,7 +776,7 @@ public class SCS_Walljumping : SCState
 
         chr.GetInputs();
 
-        chr.CheckForAerialAttacks();
+        chr.SCS_CheckForAerials();
 
         chr.SetInputs(new Vector2(chr.Direction * 2, 0));
 
@@ -1074,8 +1111,6 @@ public class SCS_Shield : SCState
 
 
         if (chr.Jump) chr.SCS_ChangeState(StaticStates.idle);
-
-        chr.CheckForTiltAttacks();
     }
 
     public override void Exit(Character chr)
@@ -1496,10 +1531,10 @@ public class SCS_Grab : SCState
 
         if (chr.Timer >= 10)
         {
-            if (chr.CheckForThrowAttacks())
-            {
-                chr.GetInputs();
-            }
+            //if (chr.CheckForThrowAttacks())
+            //{
+            //    chr.GetInputs();
+            //}
         }
     }
 }

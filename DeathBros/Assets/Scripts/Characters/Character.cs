@@ -71,6 +71,7 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 AirDodgeVector { get; set; }
     public Vector2 LaunchVector { get; set; }
     public int AirdodgeCounter { get; set; }
+    public float walkSpeedReduction { get; protected set; }
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -150,6 +151,8 @@ public class Character : _MB, ICanTakeDamage
         ChrSM.ChangeState(this, StaticStates.idle);
 
         isInControl = true;
+
+        walkSpeedReduction = 1;
     }
 
     public override void LateInit()
@@ -461,30 +464,30 @@ public class Character : _MB, ICanTakeDamage
     //    }
     //}
 
-    public virtual bool CheckForTiltAttacks()
-    {
-        return false;
-    }
+    //public virtual bool CheckForTiltAttacks()
+    //{
+    //    return false;
+    //}
 
-    public virtual bool CheckForSoulAttacks()
-    {
-        return false;
-    }
+    //public virtual bool CheckForSoulAttacks()
+    //{
+    //    return false;
+    //}
 
-    public virtual bool CheckForSpecialAttacks()
-    {
-        return false;
-    }
+    //public virtual bool CheckForSpecialAttacks()
+    //{
+    //    return false;
+    //}
 
-    public virtual bool CheckForAerialAttacks()
-    {
-        return false;
-    }
+    //public virtual bool CheckForAerialAttacks()
+    //{
+    //    return false;
+    //}
 
-    public virtual bool CheckForThrowAttacks()
-    {
-        return false;
-    }
+    //public virtual bool CheckForThrowAttacks()
+    //{
+    //    return false;
+    //}
 
     public void Flash(Color color, int durationInFrames)
     {
@@ -602,6 +605,25 @@ public class Character : _MB, ICanTakeDamage
         if (Jump)
         {
             SCS_ChangeState(StaticStates.jumpsquat);
+        }
+    }
+
+    public virtual void SCS_CheckForLandingOptions()
+    {
+        if (DirectionalInput.y < 0)
+        {
+            SCS_ChangeState(StaticStates.crouch);
+        }
+        else
+        {
+            if (DirectionalInput.x == 0)
+            {
+                SCS_ChangeState(StaticStates.idle);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.walking);
+            }
         }
     }
 

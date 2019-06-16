@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 10184
+      ID: 74194
       getNewID: 0
     - position: {x: 0.109375, y: -0.53125}
       radius: 0.8
@@ -67,7 +67,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 10184
+      ID: 74194
       getNewID: 0
     soundName: 
   - duration: 2
@@ -96,7 +96,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 10184
+      ID: 74194
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 18

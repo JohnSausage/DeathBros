@@ -102,6 +102,8 @@ public class Player : Character
 
         AEnemyHit += OnEnemyHit;
         ComboPower = 50; //@@@ set to 0 later
+
+        walkSpeedReduction = 0.5f;
     }
 
     protected void OnEnemyHit(Character enemy, Damage damage)
@@ -383,7 +385,7 @@ public class Player : Character
             {
                 ChrSM.ChangeState(this, jabAtk);
             }
-            else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            else if (Mathf.Abs(DirectionalInput.x) >= 0.1f)
             {
                 ChrSM.ChangeState(this, fTiltAtk);
             }
@@ -614,9 +616,16 @@ public class Player : Character
 
     public override void SCS_CheckForWalkingOptions()
     {
-        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Mathf.Sign(Ctr.velocity.x))
+        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
         {
-            SCS_ChangeState(StaticStates.skid);
+            if (isRunning)
+            {
+                SCS_ChangeState(StaticStates.skid);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.idle);
+            }
         }
 
         if (HoldShield)
@@ -627,6 +636,29 @@ public class Player : Character
 
         if (DirectionalInput.y < -0.5f)
             SCS_ChangeState(StaticStates.crouch);
+    }
+
+    public override void SCS_CheckForLandingOptions()
+    {
+        if (DirectionalInput.y < 0)
+        {
+            SCS_ChangeState(StaticStates.crouch);
+        }
+        else
+        {
+            if (DirectionalInput.x == 0)
+            {
+                SCS_ChangeState(StaticStates.idle);
+            }
+            else if(Mathf.Abs(DirectionalInput.x) <= 0.5f)
+            {
+                SCS_ChangeState(StaticStates.walking);
+            }
+            else
+            {
+                SCS_ChangeState(StaticStates.dash);
+            }
+        }
     }
 
     public override void SCS_CountSpecial(ESpecial type)

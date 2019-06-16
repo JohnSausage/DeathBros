@@ -39,4 +39,9 @@ public class PauseMenu : MonoBehaviour
     {
         MenuSM.ChangeState(newPanel);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

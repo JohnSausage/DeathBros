@@ -2,6 +2,7 @@
 {
     public static SCS_Idle idle = new SCS_Idle();
     public static SCS_Walking walking = new SCS_Walking();
+    public static SCS_Running running = new SCS_Running();
     public static SCS_Jumping jumping = new SCS_Jumping();
     public static SCS_Jumpsquat jumpsquat = new SCS_Jumpsquat();
     public static SCS_Landing landing = new SCS_Landing();

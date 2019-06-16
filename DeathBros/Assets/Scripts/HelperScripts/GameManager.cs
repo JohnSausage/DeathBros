@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : _MB
 {
+    public bool gameHasStarted = false;
+    [Space]
     public Level startingLevel;
     public World startWorld;
 
@@ -31,7 +33,7 @@ public class GameManager : _MB
         }
         else
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         Player = FindObjectOfType<Player>();
@@ -41,11 +43,26 @@ public class GameManager : _MB
             Debug.Log("Player not found");
 
         LevelSM = new StateMachine();
+    }
 
+
+    public override void LateInit()
+    {
+        base.LateInit();
+
+        if (gameHasStarted == false)
+        {
+            PauseMenu.Open();
+        }
     }
 
     void Update()
     {
+        if(gameHasStarted == false)
+        {
+            return;
+        }
+
         if (levelStarted == false)
         {
             if (AudioManager.Instance.IsInitialized)
@@ -90,5 +107,9 @@ public class GameManager : _MB
             Instance.LevelSM.ChangeState(newLevel);
     }
 
-    
+    public static void StartGame()
+    {
+        Instance.gameHasStarted = true;
+        Instance.Init();
+    }
 }

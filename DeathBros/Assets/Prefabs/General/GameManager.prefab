@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81261a1051a6344eac488674215e7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameHasStarted: 1
   startingLevel: {fileID: 0}
   startWorld: {fileID: 0}
   knTestFactor: 1
@@ -241,10 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fea536f3a1a18ba46a371ff1acada422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soulBubble: {fileID: 0}
   colorHit: {r: 1, g: 1, b: 1, a: 0.39215687}
   colorAttack: {r: 1, g: 0, b: 0, a: 0.39215687}
-  colorDefend: {r: 0, g: 0, b: 0, a: 0.39215687}
+  colorDefend: {r: 0, g: 0, b: 0, a: 0.49803922}
   colorShaderMaterial: {fileID: 2100000, guid: 398738aefaace3e4cb81dc5b7e0beafd, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 03437e8157ac215489b8857b273dcce2, type: 2}
   effectGOs: []
