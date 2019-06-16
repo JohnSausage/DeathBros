@@ -20,19 +20,23 @@ public class CameraController : MonoBehaviour
 
     public int shakeTimer;
 
+    [SerializeField]
+    protected LayerMask activateObjectsMask;
+
     protected Bounds levelBounds;
     protected Bounds cameraSizeBounds;
     protected Bounds movementBounds;
     protected Camera cam;
 
-    protected BoxCollider2D movementBoundsCollider;
+    protected BoxCollider2D activateGoCollider;
 
     public static Vector2 Position { get { return Camera.main.transform.position; } }
+    public Bounds ActivateionBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
 
     void Start()
     {
         cam = Camera.main;
-        movementBoundsCollider = GetComponent<BoxCollider2D>();
+        activateGoCollider = GetComponent<BoxCollider2D>();
 
         //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
 
@@ -128,7 +132,7 @@ public class CameraController : MonoBehaviour
 
         cameraSizeBounds = cam.OrthographicBounds();
 
-        movementBounds = movementBoundsCollider.bounds;
+        movementBounds = activateGoCollider.bounds;
         movementBounds.center = new Vector3(movementBounds.center.x, movementBounds.center.y, 0);
 
 
@@ -190,6 +194,24 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(newPosition.x, newPosition.y, -10);
         //transform.position = Vector3.Lerp(transform.position, new Vector3(newPosition.x, newPosition.y, -10), 0.05f);
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    IActivatedByCamera activatedObject = collision.GetComponent<IActivatedByCamera>();
+    //    if (activatedObject != null)
+    //    {
+    //        activatedObject.isActive = true;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    IActivatedByCamera activatedObject = collision.GetComponent<IActivatedByCamera>();
+    //    if (activatedObject != null)
+    //    {
+    //        activatedObject.isActive = false;
+    //    }
+    //}
 }
 
 public static class CameraExtensions

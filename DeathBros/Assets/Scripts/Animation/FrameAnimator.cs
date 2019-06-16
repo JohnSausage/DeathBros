@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FrameAnimator : _MB
 {
+    [SerializeField]
+    protected bool UpdateAutomatically = true;
+
     public FrameAnimation currentAnimation;
 
     public List<FrameAnimation> animations { get; protected set; }
@@ -54,10 +57,13 @@ public class FrameAnimator : _MB
 
     void FixedUpdate()
     {
-        PlayCurrentAnimation();
+        if (UpdateAutomatically)
+        {
+            ManualUpdate();
+        }
     }
 
-    private void PlayCurrentAnimation()
+    public void ManualUpdate()
     {
         animationOver = false;
 

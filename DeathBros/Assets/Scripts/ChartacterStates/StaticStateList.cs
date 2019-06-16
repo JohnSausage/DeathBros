@@ -462,7 +462,14 @@ public class SCS_Landing : SCState
             }
             else
             {
-                chr.SCS_ChangeState(StaticStates.idle);
+                if (chr.DirectionalInput.x == 0)
+                {
+                    chr.SCS_ChangeState(StaticStates.idle);
+                }
+                else
+                {
+                    chr.SCS_ChangeState(StaticStates.walking);
+                }
             }
         }
 
@@ -501,17 +508,17 @@ public class SCS_Dash : SCState
 
         chr.GetInputs();
 
-        if (Mathf.Sign(chr.DirectionalInput.x) != chr.Direction && Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
-        {
-            chr.SCS_ChangeState(StaticStates.idle);
-        }
+        //if (Mathf.Sign(chr.DirectionalInput.x) != chr.Direction && Mathf.Abs(chr.DirectionalInput.x) > 0.5f)
+        //{
+        //    chr.SCS_ChangeState(StaticStates.idle);
+        //}
 
 
         if (chr.Timer >= chr.StatesSO.dash_duration)
         {
             if (chr.DirectionalInput.x == 0)
             {
-                chr.SCS_ChangeState(StaticStates.idle);
+                chr.SCS_ChangeState(StaticStates.skid);
             }
             else
             {
@@ -521,11 +528,11 @@ public class SCS_Dash : SCState
 
         if (chr.Timer <= 2)
         {
-            chr.SetInputs(new Vector2(chr.FrozenInputX * 0.1f, 0));
+            chr.SetInputs(new Vector2(chr.FrozenInputX * 0.05f, 0));
         }
         else
         {
-            chr.SetInputs(new Vector2(chr.FrozenInputX * 1.3f, 0));
+            chr.SetInputs(new Vector2(chr.FrozenInputX * 1.2f, 0));
 
             if (chr.Jump)
             {
@@ -563,6 +570,8 @@ public class SCS_Skid : SCState
     {
         //base.Enter(chr);
 
+        chr.ACharacterTakesDasmage += TakeDamage;
+
         chr.Anim.animationSpeed = 0.5f;
         chr.ChangedDirection = false;
 
@@ -594,7 +603,8 @@ public class SCS_Skid : SCState
             chr.IdleTimer++;
         }
 
-        chr.SetInputs(new Vector2(chr.FrozenInputX * 0.9f, 0));
+        chr.FrozenInputX *= 0.9f;
+        chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
 
         if (chr.Timer >= chr.StatesSO.skid_duration)
         {
@@ -606,7 +616,7 @@ public class SCS_Skid : SCState
             }
             else
             {
-                chr.SCS_ChangeState(StaticStates.walking);
+                chr.SCS_ChangeState(StaticStates.dash);
             }
         }
         else if (chr.IdleTimer >= chr.StatesSO.skid_idleOutDuration)
@@ -615,7 +625,8 @@ public class SCS_Skid : SCState
 
             chr.GetInputs();
         }
-        else if (chr.Jump)
+
+        if (chr.Jump)
         {
             chr.SCS_ChangeState(StaticStates.jumpsquat);
         }
@@ -653,7 +664,8 @@ public class SCS_Wallsliding : SCState
 
         chr.SCS_CheckForAerials();
 
-        if (chr.StrongInputs.x == -chr.Ctr.WallDirection)
+        //if (chr.StrongInputs.x == -chr.Ctr.WallDirection)
+        if (chr.StrongInputs.y == 1)
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 

@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114593677525329788}
   - component: {fileID: 114247023696476894}
   - component: {fileID: 114692243710159598}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Enemy_Maggot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00019073486, y: -0.586226}
@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateAutomatically: 0
   currentAnimation: {fileID: 0}
   frameAnimationsSO: {fileID: 11400000, guid: 0e4c22a8fa0bcb54bac3a15322087311, type: 2}
   animationSpeed: 1

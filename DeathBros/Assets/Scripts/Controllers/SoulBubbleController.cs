@@ -56,7 +56,7 @@ public class SoulBubbleController : MonoBehaviour
     {
         Blink();
         MoveToTarget();
-        FadeOut();
+        //FadeOut();
         CheckForDestruction();
     }
 
@@ -96,21 +96,28 @@ public class SoulBubbleController : MonoBehaviour
             return;
         }
 
-        if (moveTimer < moveStartVelocityTimer)
-        {
-            moveTimer++;
-        }
+        moveTimer++;
 
-        Vector2 targetVector = target.position - transform.position;
 
-        if (moveTimer < moveStartVelocityTimer)
+        velocity *= 0.95f;
+
+        //velocity = startVelocity * (1 - moveTimer / moveStartVelocityTimer) + targetVector * acceleration * (moveTimer / moveStartVelocityTimer);
+
+        if (moveTimer >= 300)
         {
-            velocity = startVelocity * (1 - moveTimer / moveStartVelocityTimer) + targetVector * acceleration * (moveTimer / moveStartVelocityTimer);
+            fanim.ChangeAnimation("burst");
+            fanim.AnimationOver += Burst;
         }
-        else
-        {
-            velocity += targetVector * acceleration;
-        }
+        //Vector2 targetVector = target.position - transform.position;
+
+        //if (moveTimer < moveStartVelocityTimer)
+        //{
+        //    velocity = startVelocity * (1 - moveTimer / moveStartVelocityTimer) + targetVector * acceleration * (moveTimer / moveStartVelocityTimer);
+        //}
+        //else
+        //{
+        //    velocity += targetVector * acceleration;
+        //}
 
         transform.Translate(velocity / 60f);
 
@@ -118,12 +125,15 @@ public class SoulBubbleController : MonoBehaviour
 
     protected void CheckForDestruction()
     {
-        if (moveTimer < moveStartVelocityTimer)
+        float targetDistanceSqr = (target.position - transform.position).sqrMagnitude;
+
+        if (moveTimer > 15 && targetDistanceSqr < 3f)
         {
-            return;
+            Vector2 targetVector = target.position - transform.position;
+            velocity = targetVector * 3f;
         }
 
-        if ((target.position - transform.position).sqrMagnitude < 1)
+        if (moveTimer >= 15 && targetDistanceSqr < 0.5f)
         {
             AddComboPowerToPlayer();
             fanim.ChangeAnimation("burst");
@@ -135,7 +145,7 @@ public class SoulBubbleController : MonoBehaviour
 
     protected void Burst(FrameAnimation burstAnimation)
     {
-        if(burstAnimation == fanim.currentAnimation)
+        if (burstAnimation == fanim.currentAnimation)
         {
             Destroy(gameObject);
         }
@@ -161,5 +171,6 @@ public class SoulBubbleController : MonoBehaviour
     protected void RandomizeStartingVelocity()
     {
         startVelocity = new Vector2(Random.Range(-startVelocityMax, startVelocityMax), Random.Range(-startVelocityMax, startVelocityMax));
+        velocity = startVelocity;
     }
 }

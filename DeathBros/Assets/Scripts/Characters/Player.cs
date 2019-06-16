@@ -591,7 +591,7 @@ public class Player : Character
         }
         else if (Mathf.Abs(DirectionalInput.x) != 0)
         {
-            if (Mathf.Abs(DirectionalInput.x) >= 0.75f)
+            if (Mathf.Abs(DirectionalInput.x) >= 0.5f)
             {
                 SCS_ChangeState(StaticStates.dash);
             }
@@ -614,7 +614,7 @@ public class Player : Character
 
     public override void SCS_CheckForWalkingOptions()
     {
-        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
+        if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Mathf.Sign(Ctr.velocity.x))
         {
             SCS_ChangeState(StaticStates.skid);
         }

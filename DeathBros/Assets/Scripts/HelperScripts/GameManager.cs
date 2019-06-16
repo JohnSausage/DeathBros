@@ -11,6 +11,7 @@ public class GameManager : _MB
     public static bool IsPaused { get; private set; }
 
     public static Player Player { get; private set; }
+    public static CameraController MainCamera { get; private set; }
     public StateMachine LevelSM { get; private set; }
     public static Level CurrentLevel { get { return (Level)Instance.LevelSM.CurrentState; } }
     public static Vector2 PlayerLevelPosition { get { return Player.transform.position - CurrentLevel.transform.position; } }
@@ -34,6 +35,7 @@ public class GameManager : _MB
         }
 
         Player = FindObjectOfType<Player>();
+        MainCamera = FindObjectOfType<CameraController>();
 
         if (!Player)
             Debug.Log("Player not found");

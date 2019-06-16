@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Enemy : Character
+public class Enemy : Character, IActivatedByCamera
 {
     public StaticAttackStateSO normalAttack;
     protected SCS_Attack normalAttack_SCS;
@@ -9,6 +9,8 @@ public class Enemy : Character
     [SerializeField]
     protected float comboMultiplier = 1;
     public float ComboMultiplier { get { return comboMultiplier; } }
+
+    public bool isActive { get; set; }
 
     [SerializeField]
     protected GameObject projectile;
@@ -27,7 +29,30 @@ public class Enemy : Character
         {
             normalAttack_SCS = normalAttack.CreateAttackState();
         }
+
+        isActive = false;
     }
+
+    protected override void FixedUpdate()
+    {
+        if (isActive)
+        {
+            base.FixedUpdate();
+
+            if (GameManager.MainCamera.ActivateionBounds.Contains(transform.position) == false)
+            {
+                isActive = false; ;
+            }
+        }
+        else
+        {
+            if (GameManager.MainCamera.ActivateionBounds.Contains(transform.position) == true)
+            {
+                isActive = true;
+            }
+        }
+    }
+
 
     public void SpawnProjectile(Vector2 position, Vector2 direction)
     {
@@ -90,4 +115,9 @@ public class Enemy : Character
             }
         }
     }
+}
+
+public interface IActivatedByCamera
+{
+    bool isActive { get; set; }
 }

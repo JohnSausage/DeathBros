@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 61054146951891028}
   - component: {fileID: 114629433643133476}
   - component: {fileID: 114249340114820856}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Enemy_Frog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.060000002, y: -0.65587807}
@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateAutomatically: 0
   currentAnimation: {fileID: 0}
   frameAnimationsSO: {fileID: 11400000, guid: 582f2dd57bc58814dbe9a5a7ab0a4110, type: 2}
   animationSpeed: 1

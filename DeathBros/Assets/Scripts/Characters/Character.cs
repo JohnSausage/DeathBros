@@ -173,6 +173,8 @@ public class Character : _MB, ICanTakeDamage
 
         UpdatesStatsForCtr();
 
+        Anim.ManualUpdate();
+
         currentDamage = null;
         Jump = false;
         Attack = false;
@@ -295,8 +297,6 @@ public class Character : _MB, ICanTakeDamage
         {
             damage.damageNumber *= 0.25f;
 
-            RaiseTakeDamageEvents(damage);
-
             AudioManager.PlaySound("NES_hit1");
 
             currentDamage = damage;
@@ -307,11 +307,11 @@ public class Character : _MB, ICanTakeDamage
             }
 
             ModHealth(-damage.damageNumber);
+
+            RaiseTakeDamageEvents(damage);
         }
         else
         {
-            RaiseTakeDamageEvents(damage);
-
             AudioManager.PlaySound("NES_hit1");
             Flash(EffectManager.ColorHit, 3);
 
@@ -327,6 +327,8 @@ public class Character : _MB, ICanTakeDamage
             ModHealth(-damage.damageNumber);
 
             OnTakeDamage();
+
+            RaiseTakeDamageEvents(damage);
         }
 
         if (currentHealth <= 0)
@@ -343,14 +345,14 @@ public class Character : _MB, ICanTakeDamage
 
     protected void RaiseTakeDamageEvents(Damage damage)
     {
-        if (ATakesDamage != null) ATakesDamage(damage);
-        if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
-        if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);
-
         HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
         HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
 
         HitStunDuration = damage.HitStunFrames(HealthPercent);
+
+        if (ATakesDamage != null) ATakesDamage(damage);
+        if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
+        if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);
     }
 
     public virtual void Die()

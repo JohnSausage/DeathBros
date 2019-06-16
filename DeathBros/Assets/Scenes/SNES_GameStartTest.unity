@@ -189,7 +189,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 916803161}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -272,6 +272,19 @@ Prefab:
     - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
       propertyPath: m_Name
       value: Enemy_Frog (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61054146951891028, guid: 38aea30d9e6142c4c918b8e044039fa9,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
@@ -720,6 +733,21 @@ Prefab:
       propertyPath: m_Type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114522307859490292, guid: 291ba7b511ce7224c850531629cdcaca,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114522307859490292, guid: 291ba7b511ce7224c850531629cdcaca,
+        type: 2}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 2112176896}
+    - target: {fileID: 114522307859490292, guid: 291ba7b511ce7224c850531629cdcaca,
+        type: 2}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 587352776}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 291ba7b511ce7224c850531629cdcaca, type: 2}
   m_IsPrefabAsset: 0
@@ -1979,7 +2007,7 @@ Prefab:
     - target: {fileID: 224179174761730326, guid: 14b338fd98054f64aac6f841b9a326f1,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000045776367
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 224179174761730326, guid: 14b338fd98054f64aac6f841b9a326f1,
         type: 2}
@@ -2256,6 +2284,19 @@ Prefab:
     - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_Name
       value: Enemy_Goblin (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61189036597972946, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
@@ -3160,7 +3201,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 6}
+  m_Size: {x: 32, y: 16}
   m_EdgeRadius: 0
 --- !u!114 &382728582
 MonoBehaviour:
@@ -3181,6 +3222,9 @@ MonoBehaviour:
   shakeSpeed: 1
   shakeStrength: 1
   shakeTimer: 0
+  activateObjectsMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!81 &382728583
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4348,6 +4392,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 586497754}
   m_CullTransparentMesh: 0
+--- !u!114 &587352776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114522307859490292, guid: 291ba7b511ce7224c850531629cdcaca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1936632179}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &621342755
 Prefab:
   m_ObjectHideFlags: 0
@@ -5138,6 +5188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateAutomatically: 0
   currentAnimation: {fileID: 0}
   frameAnimationsSO: {fileID: 11400000, guid: e857fbccfd0ac864999545c3a83be2d2, type: 2}
   animationSpeed: 1
@@ -5162,7 +5213,7 @@ MonoBehaviour:
   aerialDeceleration: 0.05
   maxAerialSpeed: 30
   DIStrength: 2
-  maxFallSpeed: -15
+  maxFallSpeed: -10
   fastFallSpeed: -20
   fastFall: 0
   WallslideSpeed: 5
@@ -7820,8 +7871,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9000,6 +9051,19 @@ Prefab:
     - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_Name
       value: Enemy_Goblin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61189036597972946, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
@@ -11419,6 +11483,19 @@ Prefab:
       propertyPath: m_Name
       value: Enemy_Frog (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61054146951891028, guid: 38aea30d9e6142c4c918b8e044039fa9,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
   m_IsPrefabAsset: 0
@@ -11464,6 +11541,19 @@ Prefab:
     - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
       propertyPath: m_Name
       value: Enemy_Goblin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61189036597972946, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
@@ -12239,6 +12329,19 @@ Prefab:
       propertyPath: m_Name
       value: Enemy_Goblin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61189036597972946, guid: 6cf0281aa3ef00b479f70ccd2eaea90b,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196939669774506, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf0281aa3ef00b479f70ccd2eaea90b, type: 2}
   m_IsPrefabAsset: 0
@@ -12579,6 +12682,19 @@ Prefab:
     - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
       propertyPath: m_Name
       value: Enemy_Frog (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61054146951891028, guid: 38aea30d9e6142c4c918b8e044039fa9,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470063077638556, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38aea30d9e6142c4c918b8e044039fa9, type: 2}
@@ -13684,7 +13800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024947856, y: 0.000029081048}
+  m_AnchoredPosition: {x: -0.000042739346, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1897948073
@@ -16386,7 +16502,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 36226176}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 1048412885}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

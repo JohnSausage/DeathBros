@@ -429,10 +429,10 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void ApplyGravity()
     {
-        /* slow down gravity at the apex of the jump */
-        if (velocity.y < 0 && velocity.y > 2 * Gravity / 60f)
+        /* slow down gravity before going down at a certain speed */
+        if (velocity.y > 2 * Gravity / 60f)
         {
-            velocity.y += Gravity / 60f / 3f;
+            velocity.y += Gravity / 60f * 0.75f;
         }
         else
         {
