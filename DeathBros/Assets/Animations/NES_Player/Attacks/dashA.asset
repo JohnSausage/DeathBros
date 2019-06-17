@@ -44,7 +44,7 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: 4}
-        baseKnockback: 10
+        baseKnockback: 8
         knockbackGrowth: 5
         hitStunFrames: 26
         damageType: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: -0.2, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 17616
+      ID: 82455
       getNewID: 0
     soundName: 
   - duration: 3
@@ -73,7 +73,7 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: 4}
-        baseKnockback: 10
+        baseKnockback: 8
         knockbackGrowth: 5
         hitStunFrames: 26
         damageType: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: -0.2, y: 0.2}
         position: {x: 0, y: 0}
-      ID: 17616
+      ID: 82455
       getNewID: 0
     soundName: 
   - duration: 15
@@ -101,7 +101,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 10
     knockBackDirection: {x: 1, y: 4}
-    baseKnockback: 10
+    baseKnockback: 8
     knockbackGrowth: 5
     hitStunFrames: 26
     damageType: 0

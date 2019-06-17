@@ -15,6 +15,8 @@ public class Enemy : Character, IActivatedByCamera
     [SerializeField]
     protected GameObject projectile;
 
+    public int ComboHitCounter { get; protected set; }
+
     public override void Init()
     {
         base.Init();
@@ -42,6 +44,11 @@ public class Enemy : Character, IActivatedByCamera
             if (GameManager.MainCamera.ActivateionBounds.Contains(transform.position) == false)
             {
                 isActive = false; ;
+            }
+
+            if(HitStunDuration <= 0)
+            {
+                ComboHitCounter = 0;
             }
         }
         else
@@ -96,7 +103,12 @@ public class Enemy : Character, IActivatedByCamera
     {
         base.OnTakeDamage();
 
-        EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 2), transform.position);
+        if(HitStunDuration >= 0)
+        {
+            ComboHitCounter++;
+        }
+
+        EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 8 * ComboHitCounter), transform.position);
     }
 
     public override void SCS_CheckForGroundAttacks()

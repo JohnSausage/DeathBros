@@ -884,7 +884,7 @@ public class SCS_Tumble : SCState
     {
         base.Enter(chr);
 
-        chr.RaiseComboOverEvent();
+        //chr.RaiseComboOverEvent();
 
         //chr.Flash(Color.blue, 2);
 
@@ -1199,7 +1199,7 @@ public class SCS_HitLand : SCState
                 if (chr.Ctr.CollisionAngle <= chr.Ctr.MaxSlopeAngle)
                 {
                     //keep lying on ground
-                    chr.RaiseComboOverEvent();
+                    //chr.RaiseComboOverEvent();
 
                     chr.SCS_ChangeState(StaticStates.hitlanded);
                     chr.HitStunDuration = 0;

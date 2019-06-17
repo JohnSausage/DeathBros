@@ -34,6 +34,15 @@ public class EnemyHealthBar : MonoBehaviour
         if(fadeOutTimer > 0)
         {
             fadeOutTimer--;
+
+            if(enemy.HitStunDuration > 0)
+            {
+                sprHealthSlider.color = Color.red;
+            }
+            else
+            {
+                sprHealthSlider.color = Color.green;
+            }
         }
 
         if(fadeOutTimer < 100)

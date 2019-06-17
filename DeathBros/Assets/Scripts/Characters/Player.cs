@@ -520,7 +520,7 @@ public class Player : Character
             HitStunDuration = 0;
             Ctr.InControl = true;
 
-            RaiseComboOverEvent();
+            //RaiseComboOverEvent();
 
             //if (Ctr.lastCollisionAngle <= 45)
             if (Ctr.IsGrounded)
@@ -554,7 +554,7 @@ public class Player : Character
     {
         if (HoldShield)
         {
-            RaiseComboOverEvent();
+            //RaiseComboOverEvent();
 
             if (HoldJump || DirectionalInput.y >= 0.5f)
             {

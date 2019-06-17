@@ -44,7 +44,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 8
+        baseKnockback: 6
         knockbackGrowth: 2
         hitStunFrames: 25
         damageType: 7
@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 80075
+      ID: 3262
       getNewID: 0
     soundName: 
   - duration: 2
@@ -73,7 +73,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 8
+        baseKnockback: 6
         knockbackGrowth: 2
         hitStunFrames: 25
         damageType: 7
@@ -81,7 +81,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 80075
+      ID: 3262
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -130,7 +130,7 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 2, y: 3}
-        baseKnockback: 10
+        baseKnockback: 6
         knockbackGrowth: 10
         hitStunFrames: 20
         damageType: 8
@@ -138,7 +138,7 @@ MonoBehaviour:
         editorColor: {r: 1, g: 0, b: 0, a: 1}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 42343
+      ID: 23368
       getNewID: 0
     soundName: 
   - duration: 2
@@ -159,7 +159,7 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 2, y: 3}
-        baseKnockback: 10
+        baseKnockback: 6
         knockbackGrowth: 10
         hitStunFrames: 20
         damageType: 8
@@ -167,7 +167,7 @@ MonoBehaviour:
         editorColor: {r: 1, g: 0, b: 0, a: 1}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 42343
+      ID: 23368
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10
@@ -187,7 +187,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 5
     knockBackDirection: {x: 1, y: 2}
-    baseKnockback: 8
+    baseKnockback: 6
     knockbackGrowth: 2
     hitStunFrames: 25
     damageType: 7
@@ -197,7 +197,7 @@ MonoBehaviour:
     position: {x: 0, y: 0}
   - damageNumber: 10
     knockBackDirection: {x: 2, y: 3}
-    baseKnockback: 10
+    baseKnockback: 6
     knockbackGrowth: 10
     hitStunFrames: 20
     damageType: 8

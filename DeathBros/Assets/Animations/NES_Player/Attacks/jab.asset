@@ -44,7 +44,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 7
+        baseKnockback: 5
         knockbackGrowth: 7
         hitStunFrames: 20
         damageType: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 96885
+      ID: 39337
       getNewID: 0
     soundName: 
   - duration: 2
@@ -73,7 +73,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 7
+        baseKnockback: 5
         knockbackGrowth: 7
         hitStunFrames: 20
         damageType: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 96885
+      ID: 39337
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 15
@@ -101,7 +101,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 5
     knockBackDirection: {x: 1, y: 3}
-    baseKnockback: 7
+    baseKnockback: 5
     knockbackGrowth: 7
     hitStunFrames: 20
     damageType: 0

@@ -32,13 +32,30 @@ public class SoulBubbleController : MonoBehaviour
     protected Vector2 velocity;
     protected Vector2 startVelocity;
 
+    protected int burstTime = 300;
+
+    protected bool healthBubble = false;
+
     protected void Start()
     {
         spr = GetComponentInChildren<SpriteRenderer>();
         spr.sprite = sprite1;
 
+        if (Random.Range(0f, 1f) >= 0.8f)
+        {
+            healthBubble = true;
+        }
+
         fanim = GetComponent<FrameAnimator>();
-        fanim.ChangeAnimation("blink");
+
+        if (healthBubble == true)
+        {
+            fanim.ChangeAnimation("blinkRed");
+        }
+        else
+        {
+            fanim.ChangeAnimation("blink");
+        }
 
         if (GameManager.Player.transform == null)
         {
@@ -50,6 +67,9 @@ public class SoulBubbleController : MonoBehaviour
         }
 
         RandomizeStartingVelocity();
+
+        burstTime += Random.Range(0, 61);
+
     }
 
     protected void FixedUpdate()
@@ -103,9 +123,17 @@ public class SoulBubbleController : MonoBehaviour
 
         //velocity = startVelocity * (1 - moveTimer / moveStartVelocityTimer) + targetVector * acceleration * (moveTimer / moveStartVelocityTimer);
 
-        if (moveTimer >= 300)
+        if (moveTimer >= burstTime)
         {
-            fanim.ChangeAnimation("burst");
+            if (healthBubble == true)
+            {
+                fanim.ChangeAnimation("burstRed");
+            }
+            else
+            {
+                fanim.ChangeAnimation("burst");
+            }
+
             fanim.AnimationOver += Burst;
         }
         //Vector2 targetVector = target.position - transform.position;
@@ -135,9 +163,18 @@ public class SoulBubbleController : MonoBehaviour
 
         if (moveTimer >= 15 && targetDistanceSqr < 0.5f)
         {
-            AddComboPowerToPlayer();
-            fanim.ChangeAnimation("burst");
+            
 
+            if (healthBubble == true)
+            {
+                fanim.ChangeAnimation("burstRed");
+            }
+            else
+            {
+                fanim.ChangeAnimation("burst");
+            }
+
+            AddComboPowerOrHealthToPlayer();
             fanim.AnimationOver += Burst;
 
         }
@@ -151,7 +188,7 @@ public class SoulBubbleController : MonoBehaviour
         }
     }
 
-    protected void AddComboPowerToPlayer()
+    protected void AddComboPowerOrHealthToPlayer()
     {
         if (target == null)
         {
@@ -165,6 +202,14 @@ public class SoulBubbleController : MonoBehaviour
             return;
         }
 
+        if (healthBubble == true)
+        {
+            player.ModHealth(comboPower);
+        }
+        else
+        {
+            player.ModifiyComboPower(comboPower);
+        }
         player.ModifiyComboPower(comboPower);
     }
 

@@ -214,7 +214,7 @@ public class Character : _MB, ICanTakeDamage
         currentHealth = GetCurrentStatValue("MaxHealth");
     }
 
-    protected void ModHealth(float value)
+    public void ModHealth(float value)
     {
         currentHealth += value;
 

@@ -14,3 +14,5 @@ MonoBehaviour:
   frameAnimations:
   - {fileID: 11400000, guid: d1b85fbed5dd5144a95cbafb7e4a9184, type: 2}
   - {fileID: 11400000, guid: 4dbfb722a3b06c1448be0a56cc6073e8, type: 2}
+  - {fileID: 11400000, guid: 416ddb163b147124185e518244e148c1, type: 2}
+  - {fileID: 11400000, guid: af5e31bcf59f0aa479fb016de54b4df8, type: 2}

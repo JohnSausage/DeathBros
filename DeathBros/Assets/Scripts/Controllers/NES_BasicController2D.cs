@@ -460,7 +460,7 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void ApplyTumbleGravity()
     {
-        float velYAfterGravity = velocity.y + Gravity / 60f;
+        float velYAfterGravity = velocity.y + Gravity / 60f * 0.75f;
 
         //only apply gravity when slower than fastFallSpeed
         if (velYAfterGravity > fastFallSpeed)
