@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: jumpUp
+  m_Name: fly
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
-    sprite: {fileID: 21300024, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
+  - duration: 60
+    sprite: {fileID: 21300012, guid: 1c5cd3b742d452246bc68c6998828467, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -21,34 +21,32 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: -0.03125, y: -0.28125}
-      radius: 0.43999997
+    hurtboxes: []
     hitboxes:
-    - position: {x: 0.09375, y: 0.09375}
-      radius: 0.36
+    - position: {x: 0, y: 0}
+      radius: 0.3
       damage:
-        damageNumber: 5
+        damageNumber: 10
         knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 10
-        knockbackGrowth: 3
+        baseKnockback: 8
+        knockbackGrowth: 6
         hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0.3, y: 0}
+        positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
-      ID: 8109
+      ID: 30603
       getNewID: 0
     soundName: 
   damages:
-  - damageNumber: 5
+  - damageNumber: 10
     knockBackDirection: {x: 1, y: 2}
-    baseKnockback: 10
-    knockbackGrowth: 3
+    baseKnockback: 8
+    knockbackGrowth: 6
     hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0.3, y: 0}
+    positionalInfluence: {x: 1, y: 0}
     position: {x: 0, y: 0}

@@ -7,6 +7,7 @@ public class StaticAttackStateProjectile : StaticAttackStateSpecial
 {
     public NES_Projectile projectile;
     public Vector2 projectileVelocity;
+    public Vector2 spawnOffset;
 
     public override SCS_Attack CreateAttackState()
     {
@@ -17,6 +18,7 @@ public class StaticAttackStateProjectile : StaticAttackStateSpecial
 
         projectileAttack.projectile = projectile;
         projectileAttack.projectileVelocity = projectileVelocity;
+        projectileAttack.spawnOffset = spawnOffset;
         projectileAttack.attackBuff = new AttackBuff();
         return projectileAttack;
     }
@@ -32,6 +34,7 @@ public class StaticAttackStateProjectile : StaticAttackStateSpecial
 
         projectileAttack.projectile = projectile;
         projectileAttack.projectileVelocity = projectileVelocity;
+        projectileAttack.spawnOffset = spawnOffset;
         projectileAttack.type = type;
         projectileAttack.comboPowerCost = comboPowerCost;
         return projectileAttack;
@@ -42,6 +45,7 @@ public class SCS_SpecialAttackProjectile : SCS_SpecialAttack
 {
     public NES_Projectile projectile;
     public Vector2 projectileVelocity;
+    public Vector2 spawnOffset;
 
     public override void Enter(Character chr)
     {
@@ -64,6 +68,6 @@ public class SCS_SpecialAttackProjectile : SCS_SpecialAttack
 
     protected void SpawnProjectile(Character chr, Vector2 position)
     {
-        chr.SCS_SpawnProjetile(projectile, projectileVelocity);
+        chr.SCS_SpawnProjetile(projectile, spawnOffset);
     }
 }

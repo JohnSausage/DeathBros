@@ -4,7 +4,10 @@ using UnityEngine;
 public class Enemy : Character, IActivatedByCamera
 {
     public StaticAttackStateSO normalAttack;
+    public StaticAttackStateSO specialAttack;
+
     protected SCS_Attack normalAttack_SCS;
+    protected SCS_Attack specialAttack_SCS;
 
     [SerializeField]
     protected float comboMultiplier = 1;
@@ -30,6 +33,15 @@ public class Enemy : Character, IActivatedByCamera
         else
         {
             normalAttack_SCS = normalAttack.CreateAttackState();
+        }
+
+        if (specialAttack == null)
+        {
+
+        }
+        else
+        {
+            specialAttack_SCS = specialAttack.CreateAttackState();
         }
 
         isActive = false;
@@ -123,7 +135,19 @@ public class Enemy : Character, IActivatedByCamera
             }
             else
             {
-                ChrSM.ChangeState(this, normalAttack_SCS);
+                SCS_ChangeState(normalAttack_SCS);
+            }
+        }
+
+        if (Special)
+        {
+            if (specialAttack == null)
+            {
+
+            }
+            else
+            {
+                SCS_ChangeState(specialAttack_SCS);
             }
         }
     }

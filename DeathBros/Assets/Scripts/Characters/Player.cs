@@ -636,6 +636,11 @@ public class Player : Character
 
         if (DirectionalInput.y < -0.5f)
             SCS_ChangeState(StaticStates.crouch);
+
+        if(Timer >= 30)
+        {
+            SCS_ChangeState(StaticStates.running);
+        }
     }
 
     public override void SCS_CheckForLandingOptions()
@@ -646,7 +651,11 @@ public class Player : Character
         }
         else
         {
-            if (DirectionalInput.x == 0)
+            if(Mathf.Abs(StrongInputs.x) == 1)
+            {
+                SCS_ChangeState(StaticStates.dash);
+            }
+            else if (DirectionalInput.x == 0)
             {
                 SCS_ChangeState(StaticStates.idle);
             }

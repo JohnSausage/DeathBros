@@ -8,8 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8822ee7ec2ccc3545bfa4e12f9d8cfc6, type: 3}
-  m_Name: PlayerNAir
+  m_Script: {fileID: 11500000, guid: 122d3b7926ad24f4ab1beb873bd8bdac, type: 3}
+  m_Name: FrogBubbleFA
   m_EditorClassIdentifier: 
-  animationName: nAir
-  landingLag: 1
+  frameAnimations:
+  - {fileID: 11400000, guid: 190960a7cddb7064eb419b557eb00796, type: 2}
+  - {fileID: 11400000, guid: 3ec521c8bcac445458de37a85adebb41, type: 2}

@@ -10,6 +10,14 @@ TextureImporter:
     21300010: NES_bubblebee_5
     21300012: NES_bubblebee_6
     21300014: NES_bubblebee_7
+    21300016: NES_bubblebee_8
+    21300018: NES_bubblebee_9
+    21300020: NES_bubblebee_10
+    21300022: NES_bubblebee_11
+    21300024: NES_bubblebee_12
+    21300026: NES_bubblebee_13
+    21300028: NES_bubblebee_14
+    21300030: NES_bubblebee_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -106,7 +114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37e971b219bdffe4a97d332b09cf8a48
+      spriteID: eaa4a345343a78242ae7170a3981d180
       vertices: []
       indices: 
       edges: []
@@ -126,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056cc9d6859702b4a8281a5d69a0c7de
+      spriteID: 857e6d07eb5d140479f91e8f6978ebd3
       vertices: []
       indices: 
       edges: []
@@ -146,7 +154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faeccc071cdc89647b5f343e8890a99c
+      spriteID: 3d98d11d6eb42a24eb3d0e65dd9fa7e2
       vertices: []
       indices: 
       edges: []
@@ -166,7 +174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e07d46b322042fe49855663535466471
+      spriteID: 7a332c1c5416b0441a747d64ae17dcf3
       vertices: []
       indices: 
       edges: []
@@ -186,7 +194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a5c2946c51470e4c853ae3118565c16
+      spriteID: f693669abaae2634cba87979fb1abb1f
       vertices: []
       indices: 
       edges: []
@@ -206,7 +214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 511a630fe1226a942a63f98a1334c4b5
+      spriteID: 04d03eb63f01de14cbb0b380f8a81e85
       vertices: []
       indices: 
       edges: []
@@ -226,7 +234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 759261153170ea24c906ec4773cfad37
+      spriteID: 56b6d079e26730649a36c6f6c3414a1f
       vertices: []
       indices: 
       edges: []
@@ -246,7 +254,167 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 762fe05e915f6154ab473884f45c62b3
+      spriteID: ba9c77fb9e9dd4645805a77b71b2e47a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb24b7fdb9b1c0a449deefc76c83d9fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d30cf133524c04ea5f14dad6cf081f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617384403e46ce5439edc8944bb0c4b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ab6aa29e45d0054cb685fb556f32738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1427082a2825c4894cc83e4c48354d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fedad6849c92a84490e5a01ffbc5028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40ee2d3b714064438ec5cdf3667b1c3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_bubblebee_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8082225a06b523d48ba257d53e5debe7
       vertices: []
       indices: 
       edges: []

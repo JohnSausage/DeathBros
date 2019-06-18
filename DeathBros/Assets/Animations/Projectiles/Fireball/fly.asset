@@ -30,13 +30,13 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 0}
         baseKnockback: 5
         knockbackGrowth: 0
+        hitStunFrames: 0
         damageType: 6
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-        hitID: 0
-      ID: 32909
+      ID: 7645
       getNewID: 0
     soundName: 
   - duration: 15
@@ -57,12 +57,12 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 0}
         baseKnockback: 5
         knockbackGrowth: 0
+        hitStunFrames: 0
         damageType: 6
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-        hitID: 0
       ID: 32909
       getNewID: 0
     soundName: 
@@ -84,12 +84,12 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 0}
         baseKnockback: 5
         knockbackGrowth: 0
+        hitStunFrames: 0
         damageType: 6
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-        hitID: 0
       ID: 32909
       getNewID: 0
     soundName: 
@@ -111,12 +111,12 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 0}
         baseKnockback: 5
         knockbackGrowth: 0
+        hitStunFrames: 0
         damageType: 6
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-        hitID: 0
       ID: 18020
       getNewID: 0
     soundName: 
@@ -125,9 +125,9 @@ MonoBehaviour:
     knockBackDirection: {x: 0, y: 0}
     baseKnockback: 5
     knockbackGrowth: 0
+    hitStunFrames: 0
     damageType: 6
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
-    hitID: 0

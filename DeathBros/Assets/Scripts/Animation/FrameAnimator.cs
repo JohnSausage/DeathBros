@@ -170,7 +170,6 @@ public class FrameAnimator : _MB
     public void ChangeAnimation(string animationName, bool restartIfAlreadyPlaying = false)
     {
         FrameAnimation animation = GetAnimation(animationName);
-        //Debug.Log(animationName);
         ChangeAnimation(animation, restartIfAlreadyPlaying);
     }
 

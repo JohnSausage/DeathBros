@@ -52,7 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 37066
+      ID: 43453
       getNewID: 0
     soundName: 
   - duration: 2
@@ -81,7 +81,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 37066
+      ID: 43453
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -98,7 +98,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 20
+  - duration: 12
     sprite: {fileID: 21300076, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1

@@ -7,6 +7,7 @@ public class NES_Projectile : MonoBehaviour
     public string fly_anim;
     public string explode_anim;
     public Vector2 Velocity;// { get; set; }
+    public float gravity;
     public float destroyAfterSeconds;// { get; set; }
 
     protected FrameAnimator fanim;
@@ -27,6 +28,7 @@ public class NES_Projectile : MonoBehaviour
 
         counter = 0;
 
+        fanim.Init();
         fanim.ChangeAnimation(fly_anim);
     }
 
@@ -43,6 +45,7 @@ public class NES_Projectile : MonoBehaviour
     {
         counter++;
 
+        Velocity.y += (gravity);
         transform.Translate(Velocity / 60);
 
 

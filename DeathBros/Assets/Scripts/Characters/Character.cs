@@ -632,9 +632,11 @@ public class Character : _MB, ICanTakeDamage
         if (ASpawnProjectile != null) ASpawnProjectile(this, position);
     }
 
-    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 direction)
+    public virtual void SCS_SpawnProjetile(NES_Projectile projectile, Vector2 spawnOffset)
     {
-        NES_Projectile proj = Instantiate(projectile.gameObject, transform.position, Quaternion.identity).GetComponent<NES_Projectile>();
+        Vector2 localSpawnOffset = new Vector2(spawnOffset.x * Direction, spawnOffset.y);
+
+        NES_Projectile proj = Instantiate(projectile.gameObject, Position + localSpawnOffset, Quaternion.identity).GetComponent<NES_Projectile>();
         proj.Velocity = new Vector2(proj.Velocity.x * Direction, proj.Velocity.y);
         proj.SetOwner(this);
         proj.GetComponent<SpriteRenderer>().flipX = Spr.flipX; // Otherwise damge direction is wrong
