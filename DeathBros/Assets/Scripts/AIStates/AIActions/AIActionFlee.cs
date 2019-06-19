@@ -7,6 +7,8 @@ public class AIActionFlee : AIActionSO
 
     public override void Execute(AIController aiCtr)
     {
+        base.Execute(aiCtr);
+
         aiCtr.Enemy.SetInputs(-aiCtr.TargetDirection(targetOffset));
     }
 }

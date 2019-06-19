@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: walk
   m_EditorClassIdentifier: 
   frames:
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300004, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300006, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -40,7 +40,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: Step
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300008, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -54,7 +54,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300010, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: 
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300012, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -82,7 +82,7 @@ MonoBehaviour:
       radius: 0.4
     hitboxes: []
     soundName: Step
-  - duration: 5
+  - duration: 3
     sprite: {fileID: 21300014, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
     newHitID: 0
     applyGravity: 1

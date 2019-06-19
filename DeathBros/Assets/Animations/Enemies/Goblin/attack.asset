@@ -66,7 +66,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
-      ID: 56848
+      ID: 31049
       getNewID: 0
     soundName: 
   - duration: 5
@@ -95,7 +95,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
-      ID: 15724
+      ID: 31049
       getNewID: 0
     soundName: 
   - duration: 20

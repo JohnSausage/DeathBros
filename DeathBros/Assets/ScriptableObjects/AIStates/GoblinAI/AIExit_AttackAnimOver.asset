@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: AIExit_AttackAnimOver
   m_EditorClassIdentifier: 
   exitState: walk
-  animationName: 
+  animationName: attack

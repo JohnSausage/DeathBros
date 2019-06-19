@@ -330,6 +330,14 @@ public class FrameAnimatorEditor : EditorWindow
 
         EditorGUILayout.Space();
 
+        //object field with th current animation
+        if (currentAnimation != null)
+        {
+            currentAnimation = (FrameAnimation)EditorGUILayout.ObjectField(currentAnimation, typeof(FrameAnimation), false);
+        }
+
+        EditorGUILayout.Space();
+
         GUI.color = Color.cyan;
         if (GUILayout.Button("Save Changes", GUILayout.MinHeight(40)))
         {

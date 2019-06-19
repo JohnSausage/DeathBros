@@ -337,8 +337,8 @@ public class SCS_Jumping : SCState
 
         chr.SCS_CheckForAerials();
     }
-
 }
+
 
 ///-----------------------------------------------------------------
 /// SCS_Crouch

@@ -9,6 +9,8 @@ public class NES_Projectile : MonoBehaviour
     public Vector2 Velocity;// { get; set; }
     public float gravity;
     public float destroyAfterSeconds;// { get; set; }
+    public bool destroyOnCollision;
+    public LayerMask collisionMask;
 
     protected FrameAnimator fanim;
     protected SpriteRenderer spr;
@@ -63,6 +65,16 @@ public class NES_Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (destroyOnCollision == true)
+        {
+            RaycastHit2D collisionCheck = Physics2D.CircleCast((Vector2)transform.position + col.offset, col.radius, Vector2.zero, 0, collisionMask);
+
+            if (collisionCheck == true)
+            {
+                ExplodeOnHit();
+            }
+        }
     }
 
     protected void DestroyAfterAnimation(FrameAnimation anim)
@@ -73,7 +85,8 @@ public class NES_Projectile : MonoBehaviour
         }
     }
 
-    protected void ExplodeOnHit(Character hitChr, Damage damage)
+
+    protected void ExplodeOnHit(Character hitChr = null, Damage damage = null)
     {
         Velocity = Vector2.zero;
         fanim.ChangeAnimation(explode_anim);

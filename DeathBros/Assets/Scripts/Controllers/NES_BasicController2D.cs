@@ -35,14 +35,19 @@ public class NES_BasicController2D : MonoBehaviour
     public bool fastFall = false;
     public float WallslideSpeed = 5;
 
+    [Space]
+
+    public bool canFly;
+
+
     /* checks */
-    public bool IsGrounded{  get; protected set; }
-    public bool WasGrounded{  get; protected set; }
-    public bool HasCollided{ get; protected set; }
+    public bool IsGrounded { get; protected set; }
+    public bool WasGrounded { get; protected set; }
+    public bool HasCollided { get; protected set; }
     public bool OnWall { get; protected set; }
     public bool OnWallTimed { get; protected set; }
     public bool OnLedge { get; protected set; }
-    public bool IsJumping{get; protected set;}
+    public bool IsJumping { get; protected set; }
 
     public int WallDirection { get; protected set; }
     public float CollisionAngle { get; protected set; }
@@ -51,7 +56,7 @@ public class NES_BasicController2D : MonoBehaviour
 
     //Can be set in SCS
     public bool IsInTumble { get; set; }
-    public bool InControl{get; set;}
+    public bool InControl { get; set; }
     public bool Frozen { get; set; }
     public bool ResetVelocity { get; set; }
     public bool FallThroughPlatforms { get; set; }
@@ -110,7 +115,7 @@ public class NES_BasicController2D : MonoBehaviour
         IsJumping = false;
         CollisionAngle = 0f;
 
-        if(onWallTimer > 0)
+        if (onWallTimer > 0)
         {
             OnWallTimed = true;
             onWallTimer--;
@@ -143,7 +148,7 @@ public class NES_BasicController2D : MonoBehaviour
             return;
         }
 
-        if(ResetVelocity == true)
+        if (ResetVelocity == true)
         {
             velocity = Vector2.zero;
         }
@@ -283,7 +288,7 @@ public class NES_BasicController2D : MonoBehaviour
                             }
                         }
 
-                        if(CheckForNewSlopeDown() == true)
+                        if (CheckForNewSlopeDown() == true)
                         {
                             //no collisioncheck
                         }
@@ -305,6 +310,23 @@ public class NES_BasicController2D : MonoBehaviour
                         ApplyAddMovementToVelocity();
 
                         if (CheckForSlopeUp() == true)
+                        {
+                            if (slopeUpAngle == 0)
+                            {
+                                moveState = EGroundMoveState.Moving;
+                            }
+                            else if (slopeUpAngle <= MaxSlopeAngle)
+                            {
+                                movingSlopeUpAngle = slopeUpAngle;
+                                moveState = EGroundMoveState.SlopeUp;
+                            }
+                            else
+                            {
+                                HasCollided = true;
+                            }
+                        }
+
+                        if (CheckForNewSlopeUp() == true)
                         {
                             if (slopeUpAngle == 0)
                             {
@@ -515,7 +537,7 @@ public class NES_BasicController2D : MonoBehaviour
     {
         RaycastHit2D ledgeCheck = RayCastLine(Vector2.down, 0.5f + skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(DirectionalInput.x), -bounds.extents.y), groundMask);
 
-        if(ledgeCheck)
+        if (ledgeCheck)
         {
             OnLedge = false;
         }
@@ -576,9 +598,9 @@ public class NES_BasicController2D : MonoBehaviour
         }
 
         // dont check if in the air and moving up
-        if(WasGrounded == false)
+        if (WasGrounded == false)
         {
-            if(velocity.y > 0)
+            if (velocity.y > 0)
             {
                 return false;
             }
@@ -610,7 +632,7 @@ public class NES_BasicController2D : MonoBehaviour
 
             slopeUpAngle = Vector2.Angle(Vector2.up, slopeUpCheck.normal);
 
-            if(slopeUpAngle == 90)
+            if (slopeUpAngle == 90)
             {
                 OnWall = true;
             }
@@ -777,6 +799,16 @@ public class NES_BasicController2D : MonoBehaviour
         velocity.x += DirectionalInput.x * Airspeed / 60 * aerialAcceleration;
 
         velocity.x = Mathf.Clamp(velocity.x, -Airspeed / 60, Airspeed / 60);
+
+
+        if (canFly == true)
+        {
+            velocity.y -= Airspeed / 60 * aerialDeceleration * Mathf.Sign(velocity.y);
+
+            velocity.y += DirectionalInput.y * Airspeed / 60 * aerialAcceleration;
+
+            velocity.y = Mathf.Clamp(velocity.y, -Airspeed / 60, Airspeed / 60);
+        }
     }
 
     public void CalculateTumbleVelocityX()

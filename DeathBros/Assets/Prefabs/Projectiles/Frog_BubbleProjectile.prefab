@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114668001376460580}
   - component: {fileID: 114317887450852964}
   - component: {fileID: 114700492458761300}
+  - component: {fileID: 58727771372321886}
   m_Layer: 0
   m_Name: Frog_BubbleProjectile
   m_TagString: Untagged
@@ -37,12 +38,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1992626104371932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 168.47, y: -58.17, z: 0}
+  m_LocalPosition: {x: 162.09, y: -61.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58727771372321886
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992626104371932}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!114 &114317887450852964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,9 +72,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fly_anim: fly
   explode_anim: explode
-  Velocity: {x: 4, y: 2}
+  Velocity: {x: 4, y: 2.5}
   gravity: -0.05
   destroyAfterSeconds: 2
+  destroyOnCollision: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114668001376460580
 MonoBehaviour:
   m_ObjectHideFlags: 1

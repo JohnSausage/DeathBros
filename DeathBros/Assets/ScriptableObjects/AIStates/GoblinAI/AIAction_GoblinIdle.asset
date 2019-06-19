@@ -14,6 +14,7 @@ MonoBehaviour:
   actionName: idle
   aiExitConditions:
   - {fileID: 11400000, guid: 55bdb2fb5ec37454eb86462b06a86aec, type: 2}
+  - {fileID: 11400000, guid: 5a0ca7d402a65814599c5a12941c5fc1, type: 2}
   faceTarget: 0
   nextState: walk
   minTimeInSec: 1

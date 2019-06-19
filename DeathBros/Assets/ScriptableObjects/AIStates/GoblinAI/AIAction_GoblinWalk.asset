@@ -14,7 +14,8 @@ MonoBehaviour:
   actionName: walk
   aiExitConditions:
   - {fileID: 11400000, guid: 55bdb2fb5ec37454eb86462b06a86aec, type: 2}
-  directionalInput: {x: 1, y: 0}
+  - {fileID: 11400000, guid: 5a0ca7d402a65814599c5a12941c5fc1, type: 2}
+  directionalInput: {x: 0.5, y: 0}
   directionalInputXToDirection: 1
   changeDirectionOnWall: 1
   changeDirectionOnLedge: 1
