@@ -19,7 +19,7 @@ MonoBehaviour:
     loop: 0
   - name: NES_hit1
     clip: {fileID: 8300000, guid: 06d129ce18021974882fad13e16f53e6, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
   - name: NES_pickUp
     clip: {fileID: 8300000, guid: e41cdc7a78c777540ad43cc63c0e11e8, type: 3}

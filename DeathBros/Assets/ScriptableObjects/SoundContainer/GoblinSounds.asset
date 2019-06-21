@@ -15,5 +15,5 @@ MonoBehaviour:
   sounds:
   - name: Step
     clip: {fileID: 8300000, guid: 68958f4abe9eed249bbf181d26a5a531, type: 3}
-    volume: 0.05
+    volume: 0.2
     loop: 0

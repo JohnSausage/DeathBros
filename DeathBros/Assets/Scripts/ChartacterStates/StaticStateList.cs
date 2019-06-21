@@ -119,7 +119,10 @@ public class SCState
         }
         else
         {
-            chr.SCS_ChangeState(StaticStates.hitfreeze);
+            if (damage.hitStunFrames > 0)
+            {
+                chr.SCS_ChangeState(StaticStates.hitfreeze);
+            }
         }
     }
 }

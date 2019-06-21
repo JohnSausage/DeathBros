@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectType: 1
   durationS: 4
-  colorEffect: {r: 0.39048594, g: 0.39048594, b: 0.627451, a: 1}
+  colorEffect: {r: 0.39215687, g: 0.39215687, b: 0.627451, a: 1}
+  effectAnimationName: wet
   weightIncrease: 0.5
   gravityIncrease: 0.5
   jumpStrengthFactor: 0.8

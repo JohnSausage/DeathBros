@@ -154,13 +154,22 @@ public class Character : _MB, ICanTakeDamage
         isInControl = true;
 
         walkSpeedReduction = 1;
+
+
+        if (soundsSO != null)
+        {
+            soundsSO.LoadSounds();
+        }
     }
 
     public override void LateInit()
     {
         base.LateInit();
 
-        if (soundsSO != null) soundsSO.LoadSounds();
+        if (soundsSO != null)
+        {
+            soundsSO.LoadSounds();
+        }
     }
 
 
@@ -285,7 +294,7 @@ public class Character : _MB, ICanTakeDamage
         }
     }
 
-    protected virtual void TakeDamage(Damage damage)
+    public virtual void TakeDamage(Damage damage)
     {
         if (AGetsHit != null) AGetsHit(damage);
 

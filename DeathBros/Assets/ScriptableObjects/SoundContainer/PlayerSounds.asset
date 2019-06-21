@@ -25,15 +25,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d0e1352dcf216ee48955ee3a4158e0f8, type: 3}
     volume: 1
     loop: 0
-  - name: Step
-    clip: {fileID: 8300000, guid: 6a57199b3fa0b3b4bb47316fb62a1e7c, type: 3}
-    volume: 1
-    loop: 0
   - name: sweep1
     clip: {fileID: 8300000, guid: 79fef7160020d6e4e8f441ea2323639f, type: 3}
     volume: 0.2
     loop: 0
   - name: NES_swoosh1
     clip: {fileID: 8300000, guid: ea13b90cd328ced439a78609380a6d47, type: 3}
-    volume: 1
+    volume: 0.9
     loop: 0

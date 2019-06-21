@@ -6,14 +6,31 @@ public class StatusEffectManager : MonoBehaviour
 {
     public StatusEffect currentStatusEffect;
 
-    protected Character chr;
-    protected int currentEffectTimer = 0;
+    public Character Chr { get; protected set; }
+    protected FrameAnimator fanim;
+    protected SpriteRenderer spr;
+
+    public int currentEffectTimer { get; protected set; }
 
     protected void Start()
     {
-        chr = GetComponent<Character>();
+        Chr = GetComponent<Character>();
 
-        chr.AGetsHit += CheckForStatusEffect;
+        if(Chr == null)
+        {
+            Chr = GetComponentInParent<Character>();
+        }
+
+        spr = GetComponent<SpriteRenderer>();
+
+        fanim = GetComponent<FrameAnimator>();
+
+        if(fanim != null)
+        {
+            fanim.stopAnimation = true;
+        }
+
+        Chr.AGetsHit += CheckForStatusEffect;
     }
 
     protected void FixedUpdate()
@@ -23,13 +40,20 @@ public class StatusEffectManager : MonoBehaviour
             return;
         }
 
+        currentStatusEffect.ManualUpdate(this);
+
         currentEffectTimer++;
 
         if (currentEffectTimer >= currentStatusEffect.durationS * 60)
         {
-            currentStatusEffect.RemoveEffect(chr);
+            currentStatusEffect.RemoveEffect(Chr);
 
             currentStatusEffect = null;
+
+            if(fanim != null)
+            {
+                fanim.stopAnimation = true;
+            }
         }
     }
 
@@ -50,6 +74,15 @@ public class StatusEffectManager : MonoBehaviour
         currentStatusEffect = statusEffect;
         currentEffectTimer = 0;
 
-        statusEffect.ApplyEffect(chr);
+        statusEffect.ApplyEffect(Chr);
+
+        if(fanim != null)
+        {
+            if(statusEffect.effectAnimationName != "")
+            {
+                fanim.stopAnimation = false;
+                fanim.ChangeAnimation(statusEffect.effectAnimationName, false);
+            }
+        }
     }
 }

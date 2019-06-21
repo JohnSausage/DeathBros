@@ -9,20 +9,21 @@ public class Enemy : Character, IActivatedByCamera
     protected SCS_Attack normalAttack_SCS;
     protected SCS_Attack specialAttack_SCS;
 
-    [SerializeField]
-    protected float comboMultiplier = 1;
-    public float ComboMultiplier { get { return comboMultiplier; } }
+    //[SerializeField]
+    //protected float comboMultiplier = 1;
+    //public float ComboMultiplier { get { return comboMultiplier; } }
 
     public bool isActive { get; set; }
 
-    [SerializeField]
-    protected GameObject projectile;
+    //[SerializeField]
+    //protected GameObject projectile;
 
     public int ComboHitCounter { get; protected set; }
 
     public override void Init()
     {
         base.Init();
+        
 
         Anim.SpawnProjectile += SpawnProjectile;
 

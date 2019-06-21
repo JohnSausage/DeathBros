@@ -53,7 +53,7 @@ MonoBehaviour:
         positionalInfluence: {x: -0.2, y: 0.2}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 86892
+      ID: 68537
       getNewID: 0
     soundName: 
   - duration: 3
@@ -83,7 +83,7 @@ MonoBehaviour:
         positionalInfluence: {x: -0.2, y: 0.2}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 86892
+      ID: 68537
       getNewID: 0
     soundName: 
   - duration: 15

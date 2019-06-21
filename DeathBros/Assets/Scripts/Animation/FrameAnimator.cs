@@ -27,6 +27,7 @@ public class FrameAnimator : _MB
 
     public bool animationOver { get; protected set; }
     public string lastAnimationName { get; protected set; }
+    public bool stopAnimation { get; set; }
 
     public override void Init()
     {
@@ -65,6 +66,12 @@ public class FrameAnimator : _MB
 
     public void ManualUpdate()
     {
+        if(stopAnimation == true)
+        {
+            spr.sprite = null;
+            return;
+        }
+
         animationOver = false;
 
         if (currentAnimation != null)
@@ -72,11 +79,20 @@ public class FrameAnimator : _MB
             Frame currentFrame = currentAnimation.frames[animTimer];
 
             spr.sprite = currentFrame.sprite;
-            if (hubM != null)
-                hubM.SetHurtboxes(currentFrame);
-            if (hibM != null)
-                hibM.DrawHitboxes(currentFrame);
 
+            // set Hurtboxes
+            if (hubM != null)
+            {
+                hubM.SetHurtboxes(currentFrame);
+            }
+
+            // set Hitboxes
+            if (hibM != null)
+            {
+                hibM.DrawHitboxes(currentFrame);
+            }
+
+            // set Controller movement
             if (ctr != null)
             {
                 Vector2 forceMovement = currentFrame.forceMovement;
@@ -105,6 +121,7 @@ public class FrameAnimator : _MB
                 ctr.ResetVelocity = currentFrame.resetVelocity;
             }
 
+            //set spawn items
             if (currentFrame.spawnHoldItem != null)
             {
                 Player player = GetComponent<Player>();
@@ -133,12 +150,14 @@ public class FrameAnimator : _MB
                 }
             }
 
-
+            // set sound
             if (frameTimer == 0 && currentFrame.soundName != "")
             {
                 AudioManager.PlaySound(currentFrame.soundName, spr.transform.position);
             }
 
+
+            //actual animation
             frameTimer += animationSpeed;
 
             if (frameTimer >= currentAnimation.frames[animTimer].duration)

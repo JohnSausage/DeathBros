@@ -12,6 +12,7 @@ public class StatusEffect_Wet : StatusEffect
     {
         effectType = EStatusEffectType.Wet;
         colorEffect = new Color((100f / 255f), (100f / 255f), (160f / 255f));
+        effectAnimationName = "wet";
     }
 
     public override void ApplyEffect(Character chr)

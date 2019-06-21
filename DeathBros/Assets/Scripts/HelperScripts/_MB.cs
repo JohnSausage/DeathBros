@@ -28,7 +28,6 @@ public class _MB : MonoBehaviour
 
     public virtual void LateInit()
     {
-
     }
 
     protected IEnumerator LateUpdateRoutine()

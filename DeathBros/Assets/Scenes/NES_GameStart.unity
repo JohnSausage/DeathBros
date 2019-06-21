@@ -1492,7 +1492,7 @@ Prefab:
     - target: {fileID: 224191108731389814, guid: c33e5388720589c4abc9a102e508bcaf,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000051745807
+      value: -0.00010612866
       objectReference: {fileID: 0}
     - target: {fileID: 114539455675858354, guid: c33e5388720589c4abc9a102e508bcaf,
         type: 2}
@@ -2398,6 +2398,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4373523791583240, guid: 1b25839dcb87a9b419be14b039995de1,
     type: 2}
   m_PrefabInternal: {fileID: 561266272}
+--- !u!1001 &562639293
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 67.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -60.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036813610648658, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+      propertyPath: m_Name
+      value: NES_Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &566008827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4373523791583240, guid: 65c1de620b06c8b479991a394f848fe8,
@@ -2472,52 +2518,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 586497754}
   m_CullTransparentMesh: 0
---- !u!1001 &605417081
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 67.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -60.47
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1036813610648658, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-      propertyPath: m_Name
-      value: NES_Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 12fdbac89f03f7d4fb52f140ee172d21, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!4 &631382484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4771608037622536, guid: 07b2ddd3df7d78a46abf12b5a5be4c1a,
@@ -4246,7 +4246,7 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4251810416128416, guid: 12fdbac89f03f7d4fb52f140ee172d21,
     type: 2}
-  m_PrefabInternal: {fileID: 605417081}
+  m_PrefabInternal: {fileID: 562639293}
 --- !u!4 &1118149137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4514244654563310, guid: 04f8ecfe864430f40969c0d281f48527,
@@ -6015,11 +6015,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4514244654563310, guid: 04f8ecfe864430f40969c0d281f48527, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 9.6
+      value: 30.87
       objectReference: {fileID: 0}
     - target: {fileID: 4514244654563310, guid: 04f8ecfe864430f40969c0d281f48527, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -26.71
+      value: -27.93
       objectReference: {fileID: 0}
     - target: {fileID: 4514244654563310, guid: 04f8ecfe864430f40969c0d281f48527, type: 2}
       propertyPath: m_LocalPosition.z
