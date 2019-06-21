@@ -65,14 +65,17 @@ public class HitboxManager : _MB
                     damage.hitID = currentID;
                     damage.Owner = Chr;
                     //damage.position = hitBoxPosition;
-                    damage.position = Chr.Position;
-
-                    if (Chr.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
+                    if (Chr != null)
                     {
-                        damage.damageNumber += Chr.CurrentAttackBuff.damageAdd;
-                        damage.damageNumber *= Chr.CurrentAttackBuff.damageMulti;
-                    }
+                        damage.position = Chr.Position;
 
+
+                        if (Chr.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
+                        {
+                            damage.damageNumber += Chr.CurrentAttackBuff.damageAdd;
+                            damage.damageNumber *= Chr.CurrentAttackBuff.damageMulti;
+                        }
+                    }
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);
 
                     /*
@@ -94,36 +97,34 @@ public class HitboxManager : _MB
 
                     if (hitObject != null)
                     {
-                        for (int l = 0; l < Chr.Buffs.Count; l++)
-                        {
-                            if (Chr.Buffs[l].GetType() == typeof(BuffAddDamageToAttack))
-                            {
-                                BuffAddDamageToAttack buff = (BuffAddDamageToAttack)Chr.Buffs[l];
+                        //for (int l = 0; l < Chr.Buffs.Count; l++)
+                        //{
+                        //    if (Chr.Buffs[l].GetType() == typeof(BuffAddDamageToAttack))
+                        //    {
+                        //        BuffAddDamageToAttack buff = (BuffAddDamageToAttack)Chr.Buffs[l];
 
-                                if (damage.attackType == buff.attackType)
-                                {
-                                    damage.damageNumber *= (1 + buff.damagePercent);
-                                }
-                            }
-                        }
+                        //        if (damage.attackType == buff.attackType)
+                        //        {
+                        //            damage.damageNumber *= (1 + buff.damagePercent);
+                        //        }
+                        //    }
+                        //}
 
-                        if (hitObject is Character)
-                        {
-                            Character hitChr = (Character)hitObject;
+                        //if (hitObject is Character)
+                        //{
+                        //    Character hitChr = (Character)hitObject;
 
-                            damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
+                        //    damage.HitPosition = (Chr.transform.position + hitChr.transform.position) / 2f;
 
-                            //hitChr.GetHit(damage);
-                            if (ACharacterHit != null) ACharacterHit(hitChr,damage);
-                        }
-                        else if (hitObject is Item)
-                        {
-                            Item hitItem = (Item)hitObject;
+                        //    if (ACharacterHit != null) ACharacterHit(hitChr, damage);
+                        //}
+                        //else if (hitObject is Item)
+                        //{
+                        //    Item hitItem = (Item)hitObject;
 
-                            hitItem.Owner = Chr;
+                        //    hitItem.Owner = Chr;
 
-                            //hitItem.GetHit(damage);
-                        }
+                        //}
 
                         hitObject.GetHit(damage);
 
@@ -186,12 +187,14 @@ public class Damage
     public Color editorColor;
     public Vector2 positionalInfluence;
     public Vector2 position;
+    public StatusEffect StatusEffect;
 
     public int hitID { get; set; }
     public Character Owner { get; set; }
     public Vector2 HitPosition { get; set; }
 
     public StatMod ApplyStatMod { get; set; }
+
 
     public Damage Clone()
     {
@@ -207,7 +210,8 @@ public class Damage
             editorColor = editorColor,
             positionalInfluence = positionalInfluence,
             position = position,
-            ApplyStatMod = ApplyStatMod
+            ApplyStatMod = ApplyStatMod,
+            StatusEffect = StatusEffect
         };
     }
 

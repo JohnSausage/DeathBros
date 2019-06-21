@@ -41,14 +41,14 @@ public class Character : _MB, ICanTakeDamage
     public virtual void ClearStrongInputs() { StrongInputs = Vector2.zero; }
     public Vector2 TiltInput { get; protected set; }
 
-    public bool Jump;// { get; set; }
-    public bool HoldJump;// { get; set; }
+    public bool Jump { get; set; }
+    public bool HoldJump { get; set; }
     public bool Attack { get; set; }
     public bool HoldAttack { get; set; }
     public bool Special { get; set; }
     public bool HoldSpecial { get; protected set; }
-    public bool Shield { get; set; }
-    public bool HoldShield { get; set; }
+    public bool Shield;// { get; set; }
+    public bool HoldShield;// { get; set; }
 
     public int jumpsUsed { get; set; }
     public bool canChangeDirctionInAir { get; set; }
@@ -111,6 +111,7 @@ public class Character : _MB, ICanTakeDamage
 
     public event Action<Character, Damage> AEnemyHit;
     public event Action<Damage> ATakesDamage;
+    public event Action<Damage> AGetsHit;
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
 
@@ -165,7 +166,7 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void FixedUpdate()
     {
-        if(AirdodgeCounter > 0)
+        if (AirdodgeCounter > 0)
         {
             AirdodgeCounter--;
         }
@@ -286,6 +287,8 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void TakeDamage(Damage damage)
     {
+        if (AGetsHit != null) AGetsHit(damage);
+
         if (damage.damageType == EDamageType.Trigger) // e.g. used to trigger the explosion of projectiles
         {
             return;
@@ -296,12 +299,8 @@ public class Character : _MB, ICanTakeDamage
             return;
         }
 
-        if (shielding)
+        if (damage.damageNumber == 0)
         {
-            damage.damageNumber *= 0.25f;
-
-            AudioManager.PlaySound("NES_hit1");
-
             currentDamage = damage;
 
             if (damage.Owner != null)
@@ -309,31 +308,48 @@ public class Character : _MB, ICanTakeDamage
                 damage.Owner.HitEnemy(this, damage);
             }
 
-            ModHealth(-damage.damageNumber);
-
-            RaiseTakeDamageEvents(damage);
+            //RaiseTakeDamageEvents(damage);
         }
         else
         {
-            AudioManager.PlaySound("NES_hit1");
-            Flash(EffectManager.ColorHit, 3);
-
-            currentDamage = damage;
-
-            if (damage.Owner != null)
+            if (shielding)
             {
-                damage.Owner.HitEnemy(this, damage);
+                damage.damageNumber *= 0.25f;
+
+                AudioManager.PlaySound("NES_hit1");
+
+                currentDamage = damage;
+
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
+
+                ModHealth(-damage.damageNumber);
+
+                RaiseTakeDamageEvents(damage);
             }
+            else
+            {
+                AudioManager.PlaySound("NES_hit1");
+                Flash(EffectManager.ColorHit, 3);
 
-            currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+                currentDamage = damage;
 
-            ModHealth(-damage.damageNumber);
+                if (damage.Owner != null)
+                {
+                    damage.Owner.HitEnemy(this, damage);
+                }
 
-            OnTakeDamage();
+                currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
 
-            RaiseTakeDamageEvents(damage);
+                ModHealth(-damage.damageNumber);
+
+                OnTakeDamage(damage);
+
+                RaiseTakeDamageEvents(damage);
+            }
         }
-
         if (currentHealth <= 0)
         {
             Die();
@@ -341,18 +357,16 @@ public class Character : _MB, ICanTakeDamage
 
     }
 
-    protected virtual void OnTakeDamage()
-    {
-
-    }
-
-    protected void RaiseTakeDamageEvents(Damage damage)
+    protected virtual void OnTakeDamage(Damage damage)
     {
         HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
         HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
 
         HitStunDuration = damage.HitStunFrames(HealthPercent);
+    }
 
+    protected void RaiseTakeDamageEvents(Damage damage)
+    {
         if (ATakesDamage != null) ATakesDamage(damage);
         if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
         if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);

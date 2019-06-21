@@ -8,6 +8,9 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
     protected float hitPoints = 10;
 
     [SerializeField]
+    protected string destroyAnimation = "die";
+
+    [SerializeField]
     protected bool takeOnlyDamageFromExplosions = false;
 
     protected Queue<int> hitIDs = new Queue<int>();
@@ -26,7 +29,9 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
         if (takeOnlyDamageFromExplosions)
         {
             if (damage.damageType != EDamageType.Explosion)
+            {
                 return;
+            }
         }
 
 
@@ -47,13 +52,13 @@ public class Destructable : MonoBehaviour, ICanTakeDamage
 
     protected void Die()
     {
-        anim.ChangeAnimation("die");
+        anim.ChangeAnimation(destroyAnimation);
     }
 
 
     protected void Remove(FrameAnimation die)
     {
-        if (die == anim.GetAnimation("die"))
+        if (die == anim.GetAnimation(destroyAnimation))
             Destroy(gameObject);
     }
 }

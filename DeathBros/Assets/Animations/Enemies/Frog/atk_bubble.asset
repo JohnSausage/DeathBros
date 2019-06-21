@@ -80,7 +80,7 @@ MonoBehaviour:
       radius: 0.5
     hitboxes: []
     soundName: 
-  - duration: 15
+  - duration: 25
     sprite: {fileID: 21300002, guid: 2eaba7cfec2776348b28d3e3f8c8e64e, type: 3}
     newHitID: 0
     applyGravity: 1

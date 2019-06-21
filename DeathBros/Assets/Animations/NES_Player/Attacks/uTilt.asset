@@ -45,14 +45,15 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
-        knockbackGrowth: 10
+        knockbackGrowth: 12
         hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 84442
+        StatusEffect: {fileID: 0}
+      ID: 89076
       getNewID: 0
     - position: {x: 0.203125, y: 0.71875}
       radius: 0.65
@@ -60,14 +61,15 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
-        knockbackGrowth: 10
+        knockbackGrowth: 12
         hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 84442
+        StatusEffect: {fileID: 0}
+      ID: 89076
       getNewID: 0
     soundName: 
   - duration: 2
@@ -89,14 +91,15 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
-        knockbackGrowth: 10
+        knockbackGrowth: 12
         hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 84442
+        StatusEffect: {fileID: 0}
+      ID: 89076
       getNewID: 0
     - position: {x: -0.046875, y: 0.75}
       radius: 0.65
@@ -104,14 +107,15 @@ MonoBehaviour:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
-        knockbackGrowth: 10
+        knockbackGrowth: 12
         hitStunFrames: 25
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
-      ID: 84442
+        StatusEffect: {fileID: 0}
+      ID: 89076
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10
@@ -139,3 +143,4 @@ MonoBehaviour:
     editorColor: {r: 1, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0.3, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}

@@ -107,6 +107,8 @@ public class AudioManager : _MB
             float volume = (maxdistance - (position - CameraController.Position).magnitude) / maxdistance;
             if (volume < 0) volume = 0;
 
+            Debug.Log(volume);
+
             float oldVolume = s.Source.volume;
             s.Source.volume = s.volume * volume;
             s.Source.Play();

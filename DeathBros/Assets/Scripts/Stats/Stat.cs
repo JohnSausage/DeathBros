@@ -115,7 +115,6 @@ public class StatMod
         {
             stat.AddMod(this);
             Apply();
-            Debug.Log("statmod applied");
         }
     }
 }

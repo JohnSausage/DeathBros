@@ -49,7 +49,11 @@ public class NES_PlatformController : MonoBehaviour
         //reset the parents of the transported things
         foreach (ColliderAndLayer storedCollider in transportedThings)
         {
-            storedCollider.collider.transform.SetParent(null);
+            //check if destroyed while on platform
+            if (storedCollider.collider != null)
+            {
+                storedCollider.collider.transform.SetParent(null);
+            }
         }
 
         //clear the list with the transported things

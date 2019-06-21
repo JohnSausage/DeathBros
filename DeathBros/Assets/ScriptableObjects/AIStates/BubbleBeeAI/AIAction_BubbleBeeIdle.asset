@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: AIAction_BubbleBeeIdle
   m_EditorClassIdentifier: 
   actionName: idle
-  aiExitConditions: []
+  aiExitConditions:
+  - {fileID: 11400000, guid: 2cfcfcab2b7d4bc4da3d68866511f8a3, type: 2}
   faceTarget: 0
   nextState: fly
   minTimeInSec: 0.5

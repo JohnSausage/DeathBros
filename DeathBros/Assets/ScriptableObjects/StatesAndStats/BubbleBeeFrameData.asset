@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Name: BubbleBeeFrameData
   m_EditorClassIdentifier: 
   idle_anim: idle
-  walking_anim: walk
-  running_anim: walk
-  jumpsquat_anim: crouch
+  walking_anim: idle
+  running_anim: idle
+  jumpsquat_anim: idle
   jumpsquat_duration: 4
   jumpUp_anim: idle
   jumpDown_anim: idle
-  landing_anim: crouch
+  landing_anim: idle
   landing_duration: 4
   hitstunUp_anim: hitUp
   hitstunDown_anim: hitDown
@@ -26,14 +26,14 @@ MonoBehaviour:
   hitfreeze_duration: 5
   hitland_anim: hitUp
   hitland_duration: 10
-  shield_anim: shield
+  shield_anim: idle
   die_anim: hitLanded
   dead_anim: hitLanded
-  standup_anim: standUp
+  standup_anim: idle
   hitlanded_anim: hitLanded
   hitLanded_minDuration: 20
   getGrabbed_anim: hit
-  doublejumpsquat_anim: crouch
+  doublejumpsquat_anim: idle
   doublejumpsquat_duration: 3
   wallslidingDown_anim: idle
   wallslidingUp_anim: idle

@@ -6,18 +6,21 @@ public class NES_Projectile : MonoBehaviour
 {
     public string fly_anim;
     public string explode_anim;
+    public bool chasePlayer = false;
     public Vector2 Velocity;// { get; set; }
     public float gravity;
     public float destroyAfterSeconds;// { get; set; }
     public bool destroyOnCollision;
     public LayerMask collisionMask;
 
+
+
     protected FrameAnimator fanim;
     protected SpriteRenderer spr;
     protected HitboxManager hibMn;
     protected CircleCollider2D col;
     public Character Owner { get; set; }
-
+    public Character Target { get; protected set; }
 
     protected int counter;
 
@@ -32,6 +35,11 @@ public class NES_Projectile : MonoBehaviour
 
         fanim.Init();
         fanim.ChangeAnimation(fly_anim);
+
+        if (chasePlayer == true)
+        {
+            Target = GameManager.Player;
+        }
     }
 
     public void SetOwner(Character owner)
@@ -47,7 +55,18 @@ public class NES_Projectile : MonoBehaviour
     {
         counter++;
 
+        if (Target != null)
+        {
+            if (chasePlayer == true)
+            {
+                Vector2 targetVector = Target.Position - (Vector2)transform.position;
+
+                Velocity = targetVector.normalized;
+            }
+        }
+
         Velocity.y += (gravity);
+
         transform.Translate(Velocity / 60);
 
 

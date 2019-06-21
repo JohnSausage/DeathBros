@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frames:
   - duration: 60
-    sprite: {fileID: 21300012, guid: 1c5cd3b742d452246bc68c6998828467, type: 3}
+    sprite: {fileID: 21300020, guid: 157c68c61e1c28a419bc07f9bc8f2810, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -26,27 +26,29 @@ MonoBehaviour:
     - position: {x: 0, y: 0}
       radius: 0.3
       damage:
-        damageNumber: 10
+        damageNumber: 5
         knockBackDirection: {x: 1, y: 2}
-        baseKnockback: 8
-        knockbackGrowth: 6
+        baseKnockback: 6
+        knockbackGrowth: 8
         hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
-      ID: 30603
+        StatusEffect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}
+      ID: 48204
       getNewID: 0
     soundName: 
   damages:
-  - damageNumber: 10
+  - damageNumber: 5
     knockBackDirection: {x: 1, y: 2}
-    baseKnockback: 8
-    knockbackGrowth: 6
+    baseKnockback: 6
+    knockbackGrowth: 8
     hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 1, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}

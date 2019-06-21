@@ -52,6 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 55803
       getNewID: 0
     soundName: 
@@ -81,6 +82,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 55803
       getNewID: 0
     - position: {x: -0.203125, y: -0.5625}
@@ -96,6 +98,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 55803
       getNewID: 0
     soundName: 
@@ -125,6 +128,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 55803
       getNewID: 0
     soundName: 
@@ -168,6 +172,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 3473
       getNewID: 0
     soundName: 
@@ -197,6 +202,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 3473
       getNewID: 0
     - position: {x: -0.359375, y: 0.15625}
@@ -212,6 +218,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 3473
       getNewID: 0
     soundName: 
@@ -241,6 +248,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 3473
       getNewID: 0
     soundName: 
@@ -269,6 +277,7 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}
   - damageNumber: 15
     knockBackDirection: {x: 1, y: 2}
     baseKnockback: 15
@@ -279,3 +288,4 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}

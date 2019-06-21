@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9d241e96abeb4459220cdf10abbf61, type: 3}
+  m_Name: AIAction_BubbleBeeAirdodge
+  m_EditorClassIdentifier: 
+  actionName: airdodge
+  aiExitConditions:
+  - {fileID: 11400000, guid: 58a1a3e6a1c85fb44bc2698042ca7401, type: 2}
+  directionalInput: {x: 0, y: 0}
+  directionalInputXToDirection: 0
+  changeDirectionOnWall: 0
+  changeDirectionOnLedge: 0
+  directionalInputXToTarget: 1
+  directionalInputYToTarget: 0
+  attack: 0
+  special: 0
+  jump: 0
+  holdJump: 0
+  shield: 1
+  holdShield: 1
+  stopInputsAfterFrame: 0

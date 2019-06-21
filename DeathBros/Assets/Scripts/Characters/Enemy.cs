@@ -62,6 +62,11 @@ public class Enemy : Character, IActivatedByCamera
             {
                 ComboHitCounter = 0;
             }
+
+            HoldShield = false;
+            Shield = false;
+            Attack = false;
+            Special = false;
         }
         else
         {
@@ -111,9 +116,9 @@ public class Enemy : Character, IActivatedByCamera
         Destroy(gameObject);
     }
 
-    protected override void OnTakeDamage()
+    protected override void OnTakeDamage(Damage damage)
     {
-        base.OnTakeDamage();
+        base.OnTakeDamage(damage);
 
         if(HitStunDuration >= 0)
         {
@@ -138,6 +143,23 @@ public class Enemy : Character, IActivatedByCamera
                 SCS_ChangeState(normalAttack_SCS);
             }
         }
+
+        if (Special)
+        {
+            if (specialAttack == null)
+            {
+
+            }
+            else
+            {
+                SCS_ChangeState(specialAttack_SCS);
+            }
+        }
+    }
+
+    public override void SCS_CheckForAerials()
+    {
+        base.SCS_CheckForAerials();
 
         if (Special)
         {

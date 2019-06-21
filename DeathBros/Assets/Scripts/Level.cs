@@ -121,6 +121,19 @@ public class Level : _MB, IState
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            if (spawnEnemyList.Count > 2)
+            {
+                if (spawnEnemyList[2] != null)
+                {
+                    Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    position.z = 0;
+                    Instantiate(spawnEnemyList[2], position, Quaternion.identity);
+                }
+            }
+        }
     }
 
     public void Exit()

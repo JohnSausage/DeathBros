@@ -23,6 +23,7 @@ public class AIController : MonoBehaviour
     public Vector2 inputDirection;
 
     public int Timer { get; set; }
+    public int MovementTimer { get; set; }
     public float RandomTimerNumber { get; set; }
 
     private void Awake()

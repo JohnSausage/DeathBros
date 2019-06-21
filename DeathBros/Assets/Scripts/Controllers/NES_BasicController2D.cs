@@ -451,38 +451,45 @@ public class NES_BasicController2D : MonoBehaviour
 
     public void ApplyGravity()
     {
-        /* slow down gravity before going down at a certain speed */
-        if (velocity.y > 2 * Gravity / 60f)
+        if (canFly == true)
         {
-            velocity.y += Gravity / 60f * 0.75f;
+            // no gravity
         }
         else
         {
-            velocity.y += Gravity / 60f;
-        }
-
-        if (velocity.y >= 0)
-        {
-            fastFall = false;
-        }
-
-        /* adjust fallspeed */
-        if (fastFall)
-        {
-            velocity.y = fastFallSpeed / 60f;
-        }
-        else
-        {
-            if (velocity.y < maxFallSpeed / 60f)
+            /* slow down gravity before going down at a certain speed */
+            if (velocity.y > 2 * Gravity / 60f)
             {
-                velocity.y = maxFallSpeed / 60f;
+                velocity.y += Gravity / 60f * 0.75f;
+            }
+            else
+            {
+                velocity.y += Gravity / 60f;
+            }
+
+            if (velocity.y >= 0)
+            {
+                fastFall = false;
+            }
+
+            /* adjust fallspeed */
+            if (fastFall)
+            {
+                velocity.y = fastFallSpeed / 60f;
+            }
+            else
+            {
+                if (velocity.y < maxFallSpeed / 60f)
+                {
+                    velocity.y = maxFallSpeed / 60f;
+                }
             }
         }
     }
 
     public void ApplyTumbleGravity()
     {
-        float velYAfterGravity = velocity.y + Gravity / 60f * 0.75f;
+        float velYAfterGravity = velocity.y + Gravity / 60f * 0.5f;
 
         //only apply gravity when slower than fastFallSpeed
         if (velYAfterGravity > fastFallSpeed)
@@ -535,7 +542,7 @@ public class NES_BasicController2D : MonoBehaviour
 
     public bool CheckForOnLedge()
     {
-        RaycastHit2D ledgeCheck = RayCastLine(Vector2.down, 0.5f + skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(DirectionalInput.x), -bounds.extents.y), groundMask);
+        RaycastHit2D ledgeCheck = RayCastLine(Vector2.down, 0.75f + skin, (Vector2)bounds.center + new Vector2(bounds.extents.x * Mathf.Sign(DirectionalInput.x), -bounds.extents.y), groundMask);
 
         if (ledgeCheck)
         {
@@ -803,11 +810,14 @@ public class NES_BasicController2D : MonoBehaviour
 
         if (canFly == true)
         {
+            //velocity.y -= Gravity / 60f;
+
             velocity.y -= Airspeed / 60 * aerialDeceleration * Mathf.Sign(velocity.y);
 
             velocity.y += DirectionalInput.y * Airspeed / 60 * aerialAcceleration;
 
             velocity.y = Mathf.Clamp(velocity.y, -Airspeed / 60, Airspeed / 60);
+
         }
     }
 

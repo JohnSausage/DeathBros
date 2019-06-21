@@ -282,13 +282,19 @@ public class SCS_Jumping : SCState
     {
         base.Execute(chr);
 
-        if (chr.canChangeDirctionInAir)
+        if (chr.Ctr.canFly)
+        {
             chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
+        }
 
-        if (chr.Ctr.velocity.y > 0)
-            chr.Anim.ChangeAnimation(chr.StatesSO.jumpUp_anim);
-        else
+        if (chr.Ctr.velocity.y < -0.1f)
+        {
             chr.Anim.ChangeAnimation(chr.StatesSO.jumpDown_anim);
+        }
+        else
+        {
+            chr.Anim.ChangeAnimation(chr.StatesSO.jumpUp_anim);
+        }
 
 
         chr.GetInputs();

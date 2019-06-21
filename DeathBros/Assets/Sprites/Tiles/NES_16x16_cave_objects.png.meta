@@ -257,6 +257,7 @@ TextureImporter:
     21300504: NES_16x16_cave_objects_252
     21300506: NES_16x16_cave_objects_253
     21300508: NES_16x16_cave_objects_254
+    21300510: NES_16x16_cave_objects_255
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -353,7 +354,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a74c9cca6e960b24482f5a186cc5dfee
+      spriteID: 7da6f65aa10da5e4d805db14f8e91a94
       vertices: []
       indices: 
       edges: []
@@ -373,7 +374,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8cfdce0683834f4194b6662de40548f
+      spriteID: c30e1e6f4c5a6c644969a2120dd061bf
       vertices: []
       indices: 
       edges: []
@@ -393,7 +394,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f309e646e4cd0d4c9818be3e359afeb
+      spriteID: f6e6ea29ec30eb948bd67446716eacf8
       vertices: []
       indices: 
       edges: []
@@ -413,7 +414,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef0971d8d1ee9ec4f9eeaefe1827573a
+      spriteID: 1dafd1a8acdcc9e47b4c2f2024b417a8
       vertices: []
       indices: 
       edges: []
@@ -433,7 +434,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7310081e1686ed4499636b4da45b14d5
+      spriteID: fd3878ea768368d479abc15d8c798545
       vertices: []
       indices: 
       edges: []
@@ -453,7 +454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dcfe332b3d48a243a0a10292f8dbcf8
+      spriteID: 43fbf70a4ee1d1a488e1268ad4338633
       vertices: []
       indices: 
       edges: []
@@ -473,7 +474,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78f3dc5522847c249a2735cce073578c
+      spriteID: 35ce223ad7b88f74db041745f211ae24
       vertices: []
       indices: 
       edges: []
@@ -493,7 +494,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b38df05d41aeb949a01776e7a1a9923
+      spriteID: 7b1f36529c758444a89cc10ac41f95e9
       vertices: []
       indices: 
       edges: []
@@ -513,7 +514,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6b7a55028f55a14a8f0f8ef6a9de6bc
+      spriteID: 1f20e529ba1c0aa4c8e6cabf51caf387
       vertices: []
       indices: 
       edges: []
@@ -533,7 +534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31ba8f094d51c1344b974be184b933ac
+      spriteID: f45f0b91278d6b54790b275d2b8ac78f
       vertices: []
       indices: 
       edges: []
@@ -553,7 +554,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfa8b5b8611cdc34dbf8d806ce3a90dd
+      spriteID: 092d67a573135e24d87f3cc4f251658e
       vertices: []
       indices: 
       edges: []
@@ -573,7 +574,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 057ca0d969793824eab3d8d8c0ae1e9d
+      spriteID: 2f72010d4b4f35e428f8f33ed5aac845
       vertices: []
       indices: 
       edges: []
@@ -593,7 +594,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e60a14207984a2b40bece27703ba0616
+      spriteID: 9a28e909663182047b518f5e8edc67ac
       vertices: []
       indices: 
       edges: []
@@ -613,7 +614,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f081c86b040ba184884eeab2a9685b78
+      spriteID: efca432440fbde74b9b904055cd5f568
       vertices: []
       indices: 
       edges: []
@@ -633,7 +634,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3952c3d862856842a27a82700e3171b
+      spriteID: a3b11cd4c344d2248a0c7485a59ccee7
       vertices: []
       indices: 
       edges: []
@@ -653,7 +654,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ef7f4b5b12cffb4a80b468e95d4b122
+      spriteID: 90fed8d320a3c0644843915276c34df1
       vertices: []
       indices: 
       edges: []
@@ -673,7 +674,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8cf1eef3a5d7fe45af072bc7bcf87ed
+      spriteID: 207a0f19d658e794581e4baa8eddee24
       vertices: []
       indices: 
       edges: []
@@ -682,7 +683,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_17
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 224
         width: 16
         height: 16
@@ -693,7 +694,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bfc25a87a996a2409770fedb583cae0
+      spriteID: 4104cecac18dd064c8388fceab7a72ea
       vertices: []
       indices: 
       edges: []
@@ -702,7 +703,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_18
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 224
         width: 16
         height: 16
@@ -713,7 +714,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efd7ca0484a67ea4186e63e0aa0d6e01
+      spriteID: 22f36e0aa02c3f641b1c60bdff41eb8d
       vertices: []
       indices: 
       edges: []
@@ -722,7 +723,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_19
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 224
         width: 16
         height: 16
@@ -733,7 +734,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87c7aa6deada7c7409bd4e4fbc72bfa3
+      spriteID: 6841d6061ff34764d81716accb0a0702
       vertices: []
       indices: 
       edges: []
@@ -742,7 +743,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_20
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 224
         width: 16
         height: 16
@@ -753,7 +754,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 783e61708e3f21e419cd514c3b7595ef
+      spriteID: 662fa256ec0048f4887066ba9c770b6e
       vertices: []
       indices: 
       edges: []
@@ -762,7 +763,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_21
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 224
         width: 16
         height: 16
@@ -773,7 +774,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69a35e1a8d96ec74784093a1ffe1dfee
+      spriteID: 3380f71312a5e66438e5563e91bd4de4
       vertices: []
       indices: 
       edges: []
@@ -782,7 +783,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_22
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 224
         width: 16
         height: 16
@@ -793,7 +794,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 719fbd2a9fe3f2547a0eff178d7f5ed7
+      spriteID: 8b583ba87452bb54eb219d3f60379d29
       vertices: []
       indices: 
       edges: []
@@ -802,7 +803,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_23
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 224
         width: 16
         height: 16
@@ -813,7 +814,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29908883ff59f7c439d212214d48c0c0
+      spriteID: 28c7dc269e510ba40848244aa79d5f70
       vertices: []
       indices: 
       edges: []
@@ -822,7 +823,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_24
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 224
         width: 16
         height: 16
@@ -833,7 +834,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e37ad309f8bb417468b3db0e1d69abd2
+      spriteID: 65a9d1ab5797b754ca4816a4303bf977
       vertices: []
       indices: 
       edges: []
@@ -842,7 +843,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_25
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 224
         width: 16
         height: 16
@@ -853,7 +854,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d442711114789b141acdb82a5122ff19
+      spriteID: b44f7782412301c44b4343e08751ada1
       vertices: []
       indices: 
       edges: []
@@ -862,7 +863,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_26
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 224
         width: 16
         height: 16
@@ -873,7 +874,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 055cbe68e2c4ee240bb764ebb12da13f
+      spriteID: 56268854d62886343befb7aa7f20c502
       vertices: []
       indices: 
       edges: []
@@ -882,7 +883,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_27
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 224
         width: 16
         height: 16
@@ -893,7 +894,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29ccec16655a5e9449b11b54f2f78d26
+      spriteID: 974e75256425cec4586a2ebfdec54872
       vertices: []
       indices: 
       edges: []
@@ -902,7 +903,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_28
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 224
         width: 16
         height: 16
@@ -913,7 +914,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40bbb8b74cb5a9b4d91aa3c3a6e383a3
+      spriteID: db81f29fe1fb02f4c8183b24c4140d3f
       vertices: []
       indices: 
       edges: []
@@ -922,7 +923,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_29
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 224
         width: 16
         height: 16
@@ -933,7 +934,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bfbba1ce7f8e97479e6653972761b8c
+      spriteID: ab6c116e474c8fd478ce43b854c001b1
       vertices: []
       indices: 
       edges: []
@@ -942,6 +943,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_30
       rect:
         serializedVersion: 2
+        x: 224
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44542ccc6d5311743b57fe117ce18c58
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_31
+      rect:
+        serializedVersion: 2
         x: 240
         y: 224
         width: 16
@@ -953,27 +974,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25a7d53ff7efa5641b66df23c53dc6a2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_31
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 208
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a4af35340ab2384cb749947c65b4c6e
+      spriteID: b05c6ef3d9b0ca1408fe4ce7c1f7eabf
       vertices: []
       indices: 
       edges: []
@@ -982,7 +983,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_32
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 208
         width: 16
         height: 16
@@ -993,7 +994,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2d3539aa54b37c4b8488ddcf14446a8
+      spriteID: ea01234467a4083479dc2837b1a193b6
       vertices: []
       indices: 
       edges: []
@@ -1002,7 +1003,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_33
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 208
         width: 16
         height: 16
@@ -1013,7 +1014,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b6238a6f8be17643931ed4d78707d0e
+      spriteID: 34567493a2f4d5c4780bb07f23fbcfa8
       vertices: []
       indices: 
       edges: []
@@ -1022,7 +1023,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_34
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 208
         width: 16
         height: 16
@@ -1033,7 +1034,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 653a3adb4af3a1c48b49384ce99fbf2f
+      spriteID: c0583e4bf8c0c5147bbc6e1f7a38a150
       vertices: []
       indices: 
       edges: []
@@ -1042,7 +1043,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_35
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 208
         width: 16
         height: 16
@@ -1053,7 +1054,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e97ab1933a395df438fff994fd64fa8e
+      spriteID: b488652927e825c47b92edab59b6425c
       vertices: []
       indices: 
       edges: []
@@ -1062,7 +1063,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_36
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 208
         width: 16
         height: 16
@@ -1073,7 +1074,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9329a41c17432bc42be4225292be337e
+      spriteID: 421e0c7dd5315e54f963b476076fac9e
       vertices: []
       indices: 
       edges: []
@@ -1082,7 +1083,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_37
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 208
         width: 16
         height: 16
@@ -1093,7 +1094,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42ded098137b533459cfe9726753c4ce
+      spriteID: e3e2764039ff1794d8e0f2da49f5ce95
       vertices: []
       indices: 
       edges: []
@@ -1102,7 +1103,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_38
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 208
         width: 16
         height: 16
@@ -1113,7 +1114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8dda869ddffc7bf4b8d757bf50031baf
+      spriteID: f42ef67d71db23049880f1140b661727
       vertices: []
       indices: 
       edges: []
@@ -1122,7 +1123,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_39
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 208
         width: 16
         height: 16
@@ -1133,7 +1134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10dc69dfe3b94d14c88fb52ef95a151c
+      spriteID: 002d00b029d35c141b6b41ce83552167
       vertices: []
       indices: 
       edges: []
@@ -1142,7 +1143,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_40
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 208
         width: 16
         height: 16
@@ -1153,7 +1154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1ef61680ea5a884dbe73334e0fae099
+      spriteID: 60ecf4b5aedfe784ebcd958c8c148823
       vertices: []
       indices: 
       edges: []
@@ -1162,7 +1163,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_41
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 208
         width: 16
         height: 16
@@ -1173,7 +1174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be1b5dcb2915d004aacd88c41c26dd1a
+      spriteID: a45ae4cd466ab4946bc1643be7907a3a
       vertices: []
       indices: 
       edges: []
@@ -1182,7 +1183,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_42
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 208
         width: 16
         height: 16
@@ -1193,7 +1194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b27cf2a68414b6b448c3249333e28f29
+      spriteID: f376d3ab87908314cbc76054b5cfcdfa
       vertices: []
       indices: 
       edges: []
@@ -1202,7 +1203,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_43
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 208
         width: 16
         height: 16
@@ -1213,7 +1214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 111f4e63309a3084f98bdbd97d080f7b
+      spriteID: 2a36e69c1bf62a643a6fc1043ecf6d1e
       vertices: []
       indices: 
       edges: []
@@ -1222,7 +1223,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_44
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 208
         width: 16
         height: 16
@@ -1233,7 +1234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad289316371fc54429291513f50a218a
+      spriteID: 7e4e20fe2ef1aa04fa249af9e8f55910
       vertices: []
       indices: 
       edges: []
@@ -1242,7 +1243,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_45
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 208
         width: 16
         height: 16
@@ -1253,7 +1254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d0a675750be31248b90ba26de2816ef
+      spriteID: 2b24d9f896ef2314da506a831fb5aa94
       vertices: []
       indices: 
       edges: []
@@ -1262,6 +1263,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_46
       rect:
         serializedVersion: 2
+        x: 224
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a96ddeb74424fb645a2ad58e7e9b22fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_47
+      rect:
+        serializedVersion: 2
         x: 240
         y: 208
         width: 16
@@ -1273,27 +1294,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e742f02876d405041b08502b435e02df
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_47
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c98d932818c4b9142b611ab9c244ec61
+      spriteID: 6bc36e15ef473684d982f4d07f385e0a
       vertices: []
       indices: 
       edges: []
@@ -1302,7 +1303,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_48
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 192
         width: 16
         height: 16
@@ -1313,7 +1314,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7480ce35a4400454d836126b3f0d965a
+      spriteID: 50e4c7603a0bd3e43b35c6a7c94ae529
       vertices: []
       indices: 
       edges: []
@@ -1322,7 +1323,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_49
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 192
         width: 16
         height: 16
@@ -1333,7 +1334,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16a8db363b13d194b9375d80baa5262b
+      spriteID: 63f9e8e1adf763b4192fe152a93801fb
       vertices: []
       indices: 
       edges: []
@@ -1342,7 +1343,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_50
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 192
         width: 16
         height: 16
@@ -1353,7 +1354,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 994dfcb3ab317c34da2c8432121d672f
+      spriteID: 095e8cecc39d4444490894bddc7688f8
       vertices: []
       indices: 
       edges: []
@@ -1362,7 +1363,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_51
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 192
         width: 16
         height: 16
@@ -1373,7 +1374,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5623f6f0b7a3c7844a9f9ba810fc555b
+      spriteID: 582f3060578f3174488fc38cec646cb1
       vertices: []
       indices: 
       edges: []
@@ -1382,7 +1383,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_52
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 192
         width: 16
         height: 16
@@ -1393,7 +1394,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 237c2ffae9141154c913a81baa706037
+      spriteID: 963312fe9fa5312499da8a3d38782382
       vertices: []
       indices: 
       edges: []
@@ -1402,7 +1403,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_53
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 192
         width: 16
         height: 16
@@ -1413,7 +1414,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5388eeb6d0504494998e8f36f6e0dc26
+      spriteID: c6035e7f0e20b534e8c2881099d8a6aa
       vertices: []
       indices: 
       edges: []
@@ -1422,7 +1423,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_54
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 192
         width: 16
         height: 16
@@ -1433,7 +1434,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 073a847c6fd5d1b4bb71cb762d893746
+      spriteID: a9b59a46d70fafa4e8e607121698ba6b
       vertices: []
       indices: 
       edges: []
@@ -1442,7 +1443,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_55
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 192
         width: 16
         height: 16
@@ -1453,7 +1454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70919587e9b553244bbfa2fcf9e73bbb
+      spriteID: 1e8b8eeb385799c40a7357ab1b974099
       vertices: []
       indices: 
       edges: []
@@ -1462,7 +1463,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_56
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 192
         width: 16
         height: 16
@@ -1473,7 +1474,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bdb3ebf5b492c5459f98f4a1e8fcfd4
+      spriteID: 2c533efae29047c45bdf0a29a7242b6a
       vertices: []
       indices: 
       edges: []
@@ -1482,7 +1483,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_57
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 192
         width: 16
         height: 16
@@ -1493,7 +1494,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e6b31b34ad0c5e408de451ac8126b03
+      spriteID: a3d04793dd546a54d88799e519cc9ddc
       vertices: []
       indices: 
       edges: []
@@ -1502,7 +1503,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_58
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 192
         width: 16
         height: 16
@@ -1513,7 +1514,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62fe956e1ba29bd4bb6977591fe7ba22
+      spriteID: dbe45ea0d4a56674493ba10339a8f154
       vertices: []
       indices: 
       edges: []
@@ -1522,7 +1523,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_59
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 192
         width: 16
         height: 16
@@ -1533,7 +1534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b035b5a62b742dd4f941091d712353a0
+      spriteID: b31819dd6638ac0458236ae04df7eb9f
       vertices: []
       indices: 
       edges: []
@@ -1542,7 +1543,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_60
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 192
         width: 16
         height: 16
@@ -1553,7 +1554,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a37eb0411158bb4ea10cd84367890ce
+      spriteID: d67e01c33221e3d4c8c72843d20e9718
       vertices: []
       indices: 
       edges: []
@@ -1562,7 +1563,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_61
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 192
         width: 16
         height: 16
@@ -1573,7 +1574,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74ca6fe28b8c0604081dbc9841f10482
+      spriteID: c1f3458bee100f64793fa0617013083e
       vertices: []
       indices: 
       edges: []
@@ -1582,6 +1583,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_62
       rect:
         serializedVersion: 2
+        x: 224
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2373390ae0ad1e4187d8de1eaed35f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_63
+      rect:
+        serializedVersion: 2
         x: 240
         y: 192
         width: 16
@@ -1593,27 +1614,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 813a707832074d94a89f310a709d7978
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_63
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 176
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f3a510baf4e719a4283429f47dc08223
+      spriteID: 5e180f73aafe8e34cbd6fae4d47c950b
       vertices: []
       indices: 
       edges: []
@@ -1622,7 +1623,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_64
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 176
         width: 16
         height: 16
@@ -1633,7 +1634,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c10fc6b149f8d864aa6fe69a40584b11
+      spriteID: b3d119108f99a0841b13341486da338f
       vertices: []
       indices: 
       edges: []
@@ -1642,7 +1643,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_65
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 176
         width: 16
         height: 16
@@ -1653,7 +1654,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58823ee48f90de3489701e8e04ba3fd5
+      spriteID: 02f36f93513714b449760ed1e9a8939b
       vertices: []
       indices: 
       edges: []
@@ -1662,7 +1663,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_66
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 176
         width: 16
         height: 16
@@ -1673,7 +1674,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 968677b7bf7472e4c94798ef05f62e1c
+      spriteID: 1fb457acd87c02443957d5503e1807ff
       vertices: []
       indices: 
       edges: []
@@ -1682,7 +1683,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_67
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 176
         width: 16
         height: 16
@@ -1693,7 +1694,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d86b7571298a4fe42a2b660c85ec4a4d
+      spriteID: 46c9c12466503e74fa6b4586a7542095
       vertices: []
       indices: 
       edges: []
@@ -1702,7 +1703,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_68
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 176
         width: 16
         height: 16
@@ -1713,7 +1714,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 517227630e40a9a49b87bc1c9762b8a3
+      spriteID: ebe09552e98900444b6f0cbfd828e139
       vertices: []
       indices: 
       edges: []
@@ -1722,7 +1723,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_69
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 176
         width: 16
         height: 16
@@ -1733,7 +1734,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 094863ad3b60bf641a8a042727216eb5
+      spriteID: 19d57a07697bc8244acc6ef6a782e679
       vertices: []
       indices: 
       edges: []
@@ -1742,7 +1743,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_70
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 176
         width: 16
         height: 16
@@ -1753,7 +1754,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2336726b694a504ab16a1579311822b
+      spriteID: 32d64d0d7fa8fd749b50beda94049747
       vertices: []
       indices: 
       edges: []
@@ -1762,7 +1763,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_71
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 176
         width: 16
         height: 16
@@ -1773,7 +1774,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99b77421762f79146ae04ac47766c352
+      spriteID: d1ee55ebfab227147a269476abc41c23
       vertices: []
       indices: 
       edges: []
@@ -1782,7 +1783,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_72
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 176
         width: 16
         height: 16
@@ -1793,7 +1794,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8079a695bf93d84488930c7b35aedf7
+      spriteID: 8cb430575b581544b83ad750ffd819fb
       vertices: []
       indices: 
       edges: []
@@ -1802,7 +1803,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_73
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 176
         width: 16
         height: 16
@@ -1813,7 +1814,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b263d72a2488c24ca660ac31e464e39
+      spriteID: 92ccc444306a8f34fb51d35dfd2228e5
       vertices: []
       indices: 
       edges: []
@@ -1822,7 +1823,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_74
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 176
         width: 16
         height: 16
@@ -1833,7 +1834,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9ede0ef8a1cbc249a40c463086404c8
+      spriteID: 18c298f348d2eba48bce52f4522e3b44
       vertices: []
       indices: 
       edges: []
@@ -1842,7 +1843,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_75
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 176
         width: 16
         height: 16
@@ -1853,7 +1854,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cc73f5015657b041a4ecc4a6b0be414
+      spriteID: e7cff4256cfce584784d182cf92870b1
       vertices: []
       indices: 
       edges: []
@@ -1862,7 +1863,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_76
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 176
         width: 16
         height: 16
@@ -1873,7 +1874,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f354dda83b1e4294385b50a4f70dee4b
+      spriteID: 2b382b7796d95f64e85c6d4f31cf0c0e
       vertices: []
       indices: 
       edges: []
@@ -1882,7 +1883,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_77
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 176
         width: 16
         height: 16
@@ -1893,7 +1894,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77085a4ebcf48364c835de8df85ac608
+      spriteID: 4087060ae86165943ab7905b0ab690c7
       vertices: []
       indices: 
       edges: []
@@ -1902,6 +1903,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_78
       rect:
         serializedVersion: 2
+        x: 224
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546433c109094a1429e49f92289aee87
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_79
+      rect:
+        serializedVersion: 2
         x: 240
         y: 176
         width: 16
@@ -1913,27 +1934,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 607ccbd758481ce48a73cb2f93f2147d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_79
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c148eb18688d15743a01ffd4c7b4fdc9
+      spriteID: b1caf1a2c84ee9440ba38f046d001154
       vertices: []
       indices: 
       edges: []
@@ -1942,7 +1943,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_80
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 160
         width: 16
         height: 16
@@ -1953,7 +1954,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 739768f3cfcbb2544916836c21b3bc86
+      spriteID: 11f19bcd70773bd4090d4666eef63af7
       vertices: []
       indices: 
       edges: []
@@ -1962,7 +1963,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_81
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 160
         width: 16
         height: 16
@@ -1973,7 +1974,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bed4d80e757994c4887d1eff2d4a1fdd
+      spriteID: ab5c22ffbab1262488a58da796ba8619
       vertices: []
       indices: 
       edges: []
@@ -1982,7 +1983,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_82
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 160
         width: 16
         height: 16
@@ -1993,7 +1994,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70f37bda20e874a40b6cd73c57cec1d3
+      spriteID: 2421502e0f5b851429030a585fcaa487
       vertices: []
       indices: 
       edges: []
@@ -2002,7 +2003,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_83
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 160
         width: 16
         height: 16
@@ -2013,7 +2014,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05ffc47f2bba24c44aef5ee68d95df15
+      spriteID: e68d99753f5191d46b7516e9bea9b1be
       vertices: []
       indices: 
       edges: []
@@ -2022,7 +2023,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_84
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 160
         width: 16
         height: 16
@@ -2033,7 +2034,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b00f2a164bfbd4b4bbadb5d325c428dd
+      spriteID: dd9e1b1ff0cc26348b940db1fdf1d718
       vertices: []
       indices: 
       edges: []
@@ -2042,7 +2043,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_85
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 160
         width: 16
         height: 16
@@ -2053,7 +2054,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4bd1d92eaa6c6541aa4821eafdaaaab
+      spriteID: 516c7e2baa8f4cf4e824f429fbdf6b4c
       vertices: []
       indices: 
       edges: []
@@ -2062,7 +2063,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_86
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 160
         width: 16
         height: 16
@@ -2073,7 +2074,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6034f8a17467c4d4fbf2689ae68f8e2b
+      spriteID: 2a5486b5a8d5ba346beecb59edbc0600
       vertices: []
       indices: 
       edges: []
@@ -2082,7 +2083,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_87
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 160
         width: 16
         height: 16
@@ -2093,7 +2094,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 756d312748cf14b408cc2308e629e113
+      spriteID: 72ad269f66095d942bab39f01d97d073
       vertices: []
       indices: 
       edges: []
@@ -2102,7 +2103,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_88
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 160
         width: 16
         height: 16
@@ -2113,7 +2114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a233a3f9531b2b488f7bbc2bc5e3bae
+      spriteID: e961c6d5257d6df438fcea38b7826e52
       vertices: []
       indices: 
       edges: []
@@ -2122,7 +2123,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_89
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 160
         width: 16
         height: 16
@@ -2133,7 +2134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e8446563fa790a4c986fd6d5c992cd3
+      spriteID: 8188371d10bc75f498df9c371dda614a
       vertices: []
       indices: 
       edges: []
@@ -2142,7 +2143,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_90
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 160
         width: 16
         height: 16
@@ -2153,7 +2154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b76e56da593044747a8f2f5d45c403bc
+      spriteID: edcf5864e6de2054ba5af1b11b0b58bf
       vertices: []
       indices: 
       edges: []
@@ -2162,7 +2163,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_91
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 160
         width: 16
         height: 16
@@ -2173,7 +2174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c120aa36397d395459754c1a6eec8dfd
+      spriteID: cee1f392e5dd9114e9b11a69f23a0650
       vertices: []
       indices: 
       edges: []
@@ -2182,7 +2183,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_92
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 160
         width: 16
         height: 16
@@ -2193,7 +2194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2443d1d3bf7662459084db0a04c0b65
+      spriteID: f4bb7f1d8d9f1884eaf164a7e45ebc5e
       vertices: []
       indices: 
       edges: []
@@ -2202,7 +2203,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_93
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 160
         width: 16
         height: 16
@@ -2213,7 +2214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b03551ed5c6a484ab5b18ba91088927
+      spriteID: ee220262320d00c40a05ccccc5f8ef8d
       vertices: []
       indices: 
       edges: []
@@ -2222,6 +2223,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_94
       rect:
         serializedVersion: 2
+        x: 224
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2053dbb0d038a6b4ca3d8cb40905a399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_95
+      rect:
+        serializedVersion: 2
         x: 240
         y: 160
         width: 16
@@ -2233,27 +2254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24b6fb106c90a1a40ade5e2bfc674ecc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_95
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 144
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f340950c4cdae35499f6f70e43c64cb9
+      spriteID: 5a50676ba144f554e818dd1b14151b6e
       vertices: []
       indices: 
       edges: []
@@ -2262,7 +2263,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_96
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 144
         width: 16
         height: 16
@@ -2273,7 +2274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b1256f1cbeb2d64b8fd4e588bc7f8b5
+      spriteID: d19804888707ca64c9074829cee74420
       vertices: []
       indices: 
       edges: []
@@ -2282,7 +2283,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_97
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 144
         width: 16
         height: 16
@@ -2293,7 +2294,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 742f73c0ac7f3fa479c4a79602240c5c
+      spriteID: c969afd99aaba9643bd1ef02dbd3d2b2
       vertices: []
       indices: 
       edges: []
@@ -2302,7 +2303,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_98
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 144
         width: 16
         height: 16
@@ -2313,7 +2314,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f019d3754983b041903c59719c40ff2
+      spriteID: 7fb634e6fa2685946893661d70e755b0
       vertices: []
       indices: 
       edges: []
@@ -2322,7 +2323,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_99
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 144
         width: 16
         height: 16
@@ -2333,7 +2334,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b910a85907bcf224baa9df8a0d0fb598
+      spriteID: c3607dbe353a656458185c27fdb7db62
       vertices: []
       indices: 
       edges: []
@@ -2342,7 +2343,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_100
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 144
         width: 16
         height: 16
@@ -2353,7 +2354,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95c849c14923b974b8089021c1fcf024
+      spriteID: 2bcd9f17e055f9d4bbb6b3ddfc865920
       vertices: []
       indices: 
       edges: []
@@ -2362,7 +2363,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_101
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 144
         width: 16
         height: 16
@@ -2373,7 +2374,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f9169e11fdd0644baaa99dd491e0950
+      spriteID: 3b83597563e1c4c4ab99ec8f3064a1ef
       vertices: []
       indices: 
       edges: []
@@ -2382,7 +2383,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_102
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 144
         width: 16
         height: 16
@@ -2393,7 +2394,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36e79b20056174745983e29afae5b684
+      spriteID: 0268ffa7c7e380d4e8eef103489d0b35
       vertices: []
       indices: 
       edges: []
@@ -2402,7 +2403,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_103
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 144
         width: 16
         height: 16
@@ -2413,7 +2414,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89c885d46d4e8a94bab6eff927740241
+      spriteID: a48589472416a584285be598f0001402
       vertices: []
       indices: 
       edges: []
@@ -2422,7 +2423,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_104
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 144
         width: 16
         height: 16
@@ -2433,7 +2434,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7c1235284cdd8f4c984b0e3107d6caa
+      spriteID: 403c6cb5e36542c4c8b7b862f7c1f6d3
       vertices: []
       indices: 
       edges: []
@@ -2442,7 +2443,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_105
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 144
         width: 16
         height: 16
@@ -2453,7 +2454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c8080e958a56154e9ff4961a347b513
+      spriteID: fca5f54a63b6e3343b58b26332eada54
       vertices: []
       indices: 
       edges: []
@@ -2462,7 +2463,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_106
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 144
         width: 16
         height: 16
@@ -2473,7 +2474,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5199cc1b89c64cd4eaa5ac05e7fafd17
+      spriteID: b2b8b1c595b6e3741a51692ab2cca79f
       vertices: []
       indices: 
       edges: []
@@ -2482,7 +2483,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_107
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 144
         width: 16
         height: 16
@@ -2493,7 +2494,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbba98dd7b9f3274eb7930c6bfd2bf52
+      spriteID: e67a16de87a595145806aed3815e9349
       vertices: []
       indices: 
       edges: []
@@ -2502,7 +2503,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_108
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 144
         width: 16
         height: 16
@@ -2513,7 +2514,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57678095954a5404ab7f48b90a55fc04
+      spriteID: d83eabf39d0b52545a6e8ad79fea1df5
       vertices: []
       indices: 
       edges: []
@@ -2522,7 +2523,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_109
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 144
         width: 16
         height: 16
@@ -2533,7 +2534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0936890e94b182b40859502293cd6cbf
+      spriteID: cd7477cfa5c06df4f9b03edaec26efca
       vertices: []
       indices: 
       edges: []
@@ -2542,6 +2543,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_110
       rect:
         serializedVersion: 2
+        x: 224
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269eb3de08911124f8d4fe8e24722ed6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_111
+      rect:
+        serializedVersion: 2
         x: 240
         y: 144
         width: 16
@@ -2553,27 +2574,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e78bb0071ce0f33498079861a1944b96
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_111
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bbade20c662e58540846e70af828ea4a
+      spriteID: f389506a4305ebc4a9b662c6e8b4b0af
       vertices: []
       indices: 
       edges: []
@@ -2582,7 +2583,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_112
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 128
         width: 16
         height: 16
@@ -2593,7 +2594,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fc335b70c3e302418e7307a01001e4b
+      spriteID: ed83ee4a61bf5804d8957e0d63d78a55
       vertices: []
       indices: 
       edges: []
@@ -2602,7 +2603,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_113
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 128
         width: 16
         height: 16
@@ -2613,7 +2614,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 463b3328a1bbd9d48b3a0a561c0d707f
+      spriteID: 39193e87d12e2a640bfa123a5f8ff708
       vertices: []
       indices: 
       edges: []
@@ -2622,7 +2623,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_114
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 128
         width: 16
         height: 16
@@ -2633,7 +2634,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d4d297d9322adf408efb1a84d32fe73
+      spriteID: 45076519456d73d478371cc4775345db
       vertices: []
       indices: 
       edges: []
@@ -2642,7 +2643,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_115
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 128
         width: 16
         height: 16
@@ -2653,7 +2654,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d7a377c1d4c9f1478f1d299114e871d
+      spriteID: 2d54b45ab02210b44a1702d70624e047
       vertices: []
       indices: 
       edges: []
@@ -2662,7 +2663,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_116
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 128
         width: 16
         height: 16
@@ -2673,7 +2674,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c3e85c07080df742b900f1769cb68c1
+      spriteID: 73ce2c7142a70e14d8d24665f7c61dc6
       vertices: []
       indices: 
       edges: []
@@ -2682,7 +2683,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_117
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 128
         width: 16
         height: 16
@@ -2693,7 +2694,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7b393093518ba04ba8cb78d52084a16
+      spriteID: 032734a7ad922d24394a00c33442feae
       vertices: []
       indices: 
       edges: []
@@ -2702,7 +2703,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_118
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 128
         width: 16
         height: 16
@@ -2713,7 +2714,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0915ef02799dc5c4d858524d5f5cd630
+      spriteID: 04f77e278da138248b8abcb85d60c1c3
       vertices: []
       indices: 
       edges: []
@@ -2722,7 +2723,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_119
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 128
         width: 16
         height: 16
@@ -2733,7 +2734,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3fbcd0541bed854eb78d3518027c100
+      spriteID: 66e68ea57ec0d744385418db8eb2bf7e
       vertices: []
       indices: 
       edges: []
@@ -2742,7 +2743,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_120
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 128
         width: 16
         height: 16
@@ -2753,7 +2754,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 793caa348d361b543b68121e9dbd7771
+      spriteID: 0f4f5292aefa2ff4bb7863cf564ec45b
       vertices: []
       indices: 
       edges: []
@@ -2762,7 +2763,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_121
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 128
         width: 16
         height: 16
@@ -2773,7 +2774,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9568cf803d3d7ac41ba9b4df563b0c48
+      spriteID: c8f71adc748976f4f99d55e9487fa232
       vertices: []
       indices: 
       edges: []
@@ -2782,7 +2783,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_122
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 128
         width: 16
         height: 16
@@ -2793,7 +2794,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 992ac8742eacbd74e9e949d6b907f404
+      spriteID: 2323d3069a9bf8d4491ecc2a347d5a9a
       vertices: []
       indices: 
       edges: []
@@ -2802,7 +2803,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_123
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 128
         width: 16
         height: 16
@@ -2813,7 +2814,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79120318a913e5f4081ec44ef521cc97
+      spriteID: 259593477b7cbfc40bef427aa5f12fec
       vertices: []
       indices: 
       edges: []
@@ -2822,7 +2823,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_124
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 128
         width: 16
         height: 16
@@ -2833,7 +2834,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94ce332ed5b2aa54fb85bcf63a38fa4e
+      spriteID: 2ecae51537ac59940b6ff6b901b4c8a4
       vertices: []
       indices: 
       edges: []
@@ -2842,7 +2843,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_125
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 128
         width: 16
         height: 16
@@ -2853,7 +2854,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d4eba1eb8e334c40bb08d7f36331846
+      spriteID: dfbf3db201087e8478f9c39ec5a0df7d
       vertices: []
       indices: 
       edges: []
@@ -2862,6 +2863,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_126
       rect:
         serializedVersion: 2
+        x: 224
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1bfdd640419cde4395ab67b7e32e58a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_127
+      rect:
+        serializedVersion: 2
         x: 240
         y: 128
         width: 16
@@ -2873,27 +2894,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecb95add771b59c4e96e32c61a097695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_127
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e0ded2967e1cf0429161baa08a5ca28
+      spriteID: 3d6f17b6ef068e442902a067030cf3e8
       vertices: []
       indices: 
       edges: []
@@ -2902,7 +2903,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_128
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 112
         width: 16
         height: 16
@@ -2913,7 +2914,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6676e15529aafd540a3c0eb25193979d
+      spriteID: 6832efd764243e4468c5a9063af5c436
       vertices: []
       indices: 
       edges: []
@@ -2922,7 +2923,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_129
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 112
         width: 16
         height: 16
@@ -2933,7 +2934,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a42e691bb36a323409ee0cd147708e18
+      spriteID: 5dbc8517d11985f49a0f9dde8e0b3e74
       vertices: []
       indices: 
       edges: []
@@ -2942,7 +2943,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_130
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 112
         width: 16
         height: 16
@@ -2953,7 +2954,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5635318e2d79fda43a0320459309dad0
+      spriteID: 5dd5b592177088340a4708b0d630be7b
       vertices: []
       indices: 
       edges: []
@@ -2962,7 +2963,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_131
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 112
         width: 16
         height: 16
@@ -2973,7 +2974,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42d39b086f22d11488f993cd05fa4dd9
+      spriteID: 42fbdeea8bfe2614b963082dbedba6f5
       vertices: []
       indices: 
       edges: []
@@ -2982,7 +2983,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_132
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 112
         width: 16
         height: 16
@@ -2993,7 +2994,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a41f4a98f87c44469e52ff3c7d70a16
+      spriteID: e589f099d751ee14b91e8371bddc3edc
       vertices: []
       indices: 
       edges: []
@@ -3002,7 +3003,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_133
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 112
         width: 16
         height: 16
@@ -3013,7 +3014,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0013a54bf7807da45a3bf6cb996139a8
+      spriteID: 730c004d4d2f0f843b89a3d5532d0d07
       vertices: []
       indices: 
       edges: []
@@ -3022,7 +3023,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_134
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 112
         width: 16
         height: 16
@@ -3033,7 +3034,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66c2e68a14a0d0a4985cdbc5250c3e26
+      spriteID: 96a80bb895abe0f4e80988b51b29118a
       vertices: []
       indices: 
       edges: []
@@ -3042,7 +3043,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_135
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 112
         width: 16
         height: 16
@@ -3053,7 +3054,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a6c99d7117b3704bb93533686cfba44
+      spriteID: 5bb97e5eb6f3cbd43823f3190fcf9985
       vertices: []
       indices: 
       edges: []
@@ -3062,7 +3063,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_136
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 112
         width: 16
         height: 16
@@ -3073,7 +3074,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb1b611d0cac1914e82d8d3b1175c70e
+      spriteID: 24a1801297530674cb531783c0514551
       vertices: []
       indices: 
       edges: []
@@ -3082,7 +3083,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_137
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 112
         width: 16
         height: 16
@@ -3093,7 +3094,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73bad51f1074aba469087b2cb0e11fc5
+      spriteID: 3619006b1ec3abc47b2f27ce05b76b3f
       vertices: []
       indices: 
       edges: []
@@ -3102,7 +3103,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_138
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 112
         width: 16
         height: 16
@@ -3113,7 +3114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b25878a367c2cd84f8135ce84e45df10
+      spriteID: 2a3bb81d505add440bd1d93925ed3600
       vertices: []
       indices: 
       edges: []
@@ -3122,7 +3123,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_139
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 112
         width: 16
         height: 16
@@ -3133,7 +3134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86da0faf5e753f94d8e18b33028b4bee
+      spriteID: 0780d8ba82a260a4fae056912007fb53
       vertices: []
       indices: 
       edges: []
@@ -3142,7 +3143,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_140
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 112
         width: 16
         height: 16
@@ -3153,7 +3154,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d78ce3936a76f646bab2640c174dd92
+      spriteID: e368ec31590ff6a48b1846e11997839a
       vertices: []
       indices: 
       edges: []
@@ -3162,7 +3163,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_141
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 112
         width: 16
         height: 16
@@ -3173,7 +3174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fc3587b68e655749883dc3a0d563080
+      spriteID: 365fe796a4a01264498499b14a64cdb7
       vertices: []
       indices: 
       edges: []
@@ -3182,6 +3183,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_142
       rect:
         serializedVersion: 2
+        x: 224
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e2b5fa7228f7149881971f064f2554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_143
+      rect:
+        serializedVersion: 2
         x: 240
         y: 112
         width: 16
@@ -3193,27 +3214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df47861700fe3404485705a308d90ac6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_143
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 311e18381beb3dd4b8337d1f18656678
+      spriteID: 1d150dc2642c6d049a99105e4ae3b0f6
       vertices: []
       indices: 
       edges: []
@@ -3222,7 +3223,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_144
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 96
         width: 16
         height: 16
@@ -3233,7 +3234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fce69604301cd4e45b8ce6f27d21703e
+      spriteID: 10cb0a55bdecf9b44b1b2e9f61daf93f
       vertices: []
       indices: 
       edges: []
@@ -3242,7 +3243,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_145
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 96
         width: 16
         height: 16
@@ -3253,7 +3254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b40e24d3346e5a4ab1c94cecf41e559
+      spriteID: 8139d47d1611f4d40b30e961e059ded2
       vertices: []
       indices: 
       edges: []
@@ -3262,7 +3263,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_146
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 96
         width: 16
         height: 16
@@ -3273,7 +3274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb714a6b0c8d7c44b4f7bf6ddc7edb3
+      spriteID: c4c8f00c1831a204f8fa6decaac65290
       vertices: []
       indices: 
       edges: []
@@ -3282,7 +3283,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_147
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 96
         width: 16
         height: 16
@@ -3293,7 +3294,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5891f05caa0028a4596d44688e041342
+      spriteID: 5e37c850dcf70aa4c9b09e0073e8f2c9
       vertices: []
       indices: 
       edges: []
@@ -3302,7 +3303,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_148
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 96
         width: 16
         height: 16
@@ -3313,7 +3314,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 557cdf799fef11d4da2835c6cbc8f1e2
+      spriteID: c3c91802fed60e34483fc0dbfc71efea
       vertices: []
       indices: 
       edges: []
@@ -3322,7 +3323,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_149
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 96
         width: 16
         height: 16
@@ -3333,7 +3334,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 477adf6a1ad6ff44db7f33840a6a057b
+      spriteID: c4bf374b03a5b3c4a87d6baf90f97dfd
       vertices: []
       indices: 
       edges: []
@@ -3342,7 +3343,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_150
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 96
         width: 16
         height: 16
@@ -3353,7 +3354,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 097518c1fc57780499976799cecbd4f1
+      spriteID: 3f6e8d989f079404bb5853299cfcc4f4
       vertices: []
       indices: 
       edges: []
@@ -3362,7 +3363,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_151
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 96
         width: 16
         height: 16
@@ -3373,7 +3374,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cb34fc25ad5d824682c9e80d53520f1
+      spriteID: 385ab0b4de3a47648bec9c931710dba6
       vertices: []
       indices: 
       edges: []
@@ -3382,7 +3383,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_152
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 96
         width: 16
         height: 16
@@ -3393,7 +3394,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 454e3c0545157aa4ea18ab89128e01be
+      spriteID: c843c97c142c5aa47b3d90a4529d2620
       vertices: []
       indices: 
       edges: []
@@ -3402,7 +3403,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_153
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 96
         width: 16
         height: 16
@@ -3413,7 +3414,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc67df008efe99445bd8a1a163571e73
+      spriteID: 1c1ee0746d5d7e54b876d19ff3d8b560
       vertices: []
       indices: 
       edges: []
@@ -3422,7 +3423,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_154
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 96
         width: 16
         height: 16
@@ -3433,7 +3434,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ac3ab0a0a6c244439cbbf78856b3113
+      spriteID: e3e1e57e960c2f14fa2347068b05e201
       vertices: []
       indices: 
       edges: []
@@ -3442,7 +3443,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_155
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 96
         width: 16
         height: 16
@@ -3453,7 +3454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63705b1a5c2136f4f9faf626aaad0492
+      spriteID: f1a7dbf10dd891a48a4afe612a4cc756
       vertices: []
       indices: 
       edges: []
@@ -3462,7 +3463,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_156
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 96
         width: 16
         height: 16
@@ -3473,7 +3474,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 926bce87a19c1a74b8d0149954cd828e
+      spriteID: a2fa5e861a4f81049af0e7da9b08d9bd
       vertices: []
       indices: 
       edges: []
@@ -3482,7 +3483,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_157
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 96
         width: 16
         height: 16
@@ -3493,7 +3494,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00c39dc3c84f9ef41a87776a73e766c8
+      spriteID: f996e6a5bcec7f149bbf5990f275bdd3
       vertices: []
       indices: 
       edges: []
@@ -3502,6 +3503,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_158
       rect:
         serializedVersion: 2
+        x: 224
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10041376c7b187647a100a4556e12edf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_159
+      rect:
+        serializedVersion: 2
         x: 240
         y: 96
         width: 16
@@ -3513,27 +3534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82f224f8ac5a46246baced421df1ee18
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_159
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4755e4531076e134f932dc46f7df0edb
+      spriteID: dbaeaae1475186d43b51298c7dea9ade
       vertices: []
       indices: 
       edges: []
@@ -3542,7 +3543,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_160
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 80
         width: 16
         height: 16
@@ -3553,7 +3554,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3e602dd221a5c146aaedb2e18f2c32e
+      spriteID: 08ba4b37e959eb44385b6f730e3ad764
       vertices: []
       indices: 
       edges: []
@@ -3562,7 +3563,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_161
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 80
         width: 16
         height: 16
@@ -3573,7 +3574,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f208c9502b22824bbe1258a4ed41dff
+      spriteID: e9f9699203f63e14a90517572e452245
       vertices: []
       indices: 
       edges: []
@@ -3582,7 +3583,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_162
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 80
         width: 16
         height: 16
@@ -3593,7 +3594,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8aab26e5de26d04cbfd4be9d7a3063c
+      spriteID: 19154b683b5273a4ea25c49520796bda
       vertices: []
       indices: 
       edges: []
@@ -3602,7 +3603,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_163
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 80
         width: 16
         height: 16
@@ -3613,7 +3614,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e0de4a3d71e8064f9bf52071e979dd6
+      spriteID: 16732c7eb399bbc4a87d02cb8b5b4ceb
       vertices: []
       indices: 
       edges: []
@@ -3622,7 +3623,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_164
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 80
         width: 16
         height: 16
@@ -3633,7 +3634,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e745c1f40f381e34191e2b9b83842a0f
+      spriteID: dbdab2832a91d6c46973ac174a8f6373
       vertices: []
       indices: 
       edges: []
@@ -3642,7 +3643,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_165
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 80
         width: 16
         height: 16
@@ -3653,7 +3654,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1167272c509a93043bbbe4ab37c213e2
+      spriteID: f5309eb250ead504683150da7fbd6994
       vertices: []
       indices: 
       edges: []
@@ -3662,7 +3663,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_166
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 80
         width: 16
         height: 16
@@ -3673,7 +3674,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80ba8b2a238d3684da3a10074f24a6a6
+      spriteID: 4c242416231a00149b476f482f2e743e
       vertices: []
       indices: 
       edges: []
@@ -3682,7 +3683,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_167
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 80
         width: 16
         height: 16
@@ -3693,7 +3694,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ed5e126ae9e9024f8c7da866b0afb84
+      spriteID: 45297fd3272d2484abc1d7c5e9701c7f
       vertices: []
       indices: 
       edges: []
@@ -3702,7 +3703,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_168
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 80
         width: 16
         height: 16
@@ -3713,7 +3714,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9c0b3eef5248e7498446a1c2a21089b
+      spriteID: 590b958ea8825ba4396ef5d28f3abbe3
       vertices: []
       indices: 
       edges: []
@@ -3722,7 +3723,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_169
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 80
         width: 16
         height: 16
@@ -3733,7 +3734,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cc366c5182a8104fb05df5c58ca9cc8
+      spriteID: db8ad00697f6eaa46b7071942779fadf
       vertices: []
       indices: 
       edges: []
@@ -3742,7 +3743,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_170
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 80
         width: 16
         height: 16
@@ -3753,7 +3754,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f33ce1c9067a36f439fb9b1cec218118
+      spriteID: 2979bb0a0e0b8f441bc3066c624a9bfd
       vertices: []
       indices: 
       edges: []
@@ -3762,7 +3763,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_171
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 80
         width: 16
         height: 16
@@ -3773,7 +3774,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35528bcdff4fd744e902c4634df29ad3
+      spriteID: e554ed1b465846a49bd1683c68eb48ec
       vertices: []
       indices: 
       edges: []
@@ -3782,7 +3783,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_172
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 80
         width: 16
         height: 16
@@ -3793,7 +3794,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4573d40bced9c6a42bd9247a38e2bd6b
+      spriteID: bcc6c114414a394469072c9a251eae47
       vertices: []
       indices: 
       edges: []
@@ -3802,7 +3803,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_173
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 80
         width: 16
         height: 16
@@ -3813,7 +3814,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19530e811e0ac4d4098c1b47698142f0
+      spriteID: 02e573a10657ce041959f8ea350df0ab
       vertices: []
       indices: 
       edges: []
@@ -3822,6 +3823,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_174
       rect:
         serializedVersion: 2
+        x: 224
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67dbeaffa706a54d9142976705f88b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_175
+      rect:
+        serializedVersion: 2
         x: 240
         y: 80
         width: 16
@@ -3833,27 +3854,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6390f3a8fb4ee5647b63424d9f7f1e43
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_175
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59425e8ee02ed6343af9e0b52b32b052
+      spriteID: c29544e68f1aff247a2a72c841b9ac3b
       vertices: []
       indices: 
       edges: []
@@ -3862,7 +3863,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_176
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 64
         width: 16
         height: 16
@@ -3873,7 +3874,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8139977afc03eb1479bb96adf6815ba4
+      spriteID: c6689ac3fb910124999278b67d208ce1
       vertices: []
       indices: 
       edges: []
@@ -3882,7 +3883,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_177
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 64
         width: 16
         height: 16
@@ -3893,7 +3894,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9758260c8dd27bc40b1e2eab6f3e17e2
+      spriteID: 47b2703a403652b4ab2b6182d4eabbfc
       vertices: []
       indices: 
       edges: []
@@ -3902,7 +3903,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_178
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 64
         width: 16
         height: 16
@@ -3913,7 +3914,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d1dd757793f5a3479a262b6ecbec184
+      spriteID: 2fab9cb8c0c0f8643933a31bf0fb853b
       vertices: []
       indices: 
       edges: []
@@ -3922,7 +3923,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_179
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 64
         width: 16
         height: 16
@@ -3933,7 +3934,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9c432298534a244abac20cf29c9c407
+      spriteID: d5c376c9e251dda4ab9bc67b7bab3e31
       vertices: []
       indices: 
       edges: []
@@ -3942,7 +3943,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_180
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 64
         width: 16
         height: 16
@@ -3953,7 +3954,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e0bbe4f9a1731944938d4628caad84b
+      spriteID: 869dfc41974200b46b57fd0be830a8f1
       vertices: []
       indices: 
       edges: []
@@ -3962,7 +3963,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_181
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 64
         width: 16
         height: 16
@@ -3973,7 +3974,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0481545242c12c04ca4ebf6d271fd880
+      spriteID: 32cc62f03f7d8d34eb07d1a46b345e09
       vertices: []
       indices: 
       edges: []
@@ -3982,7 +3983,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_182
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 64
         width: 16
         height: 16
@@ -3993,7 +3994,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c37bf4c0516cdf54c90fff26ce2c6496
+      spriteID: 6e80a41024899a740b38fd3de1ca7f88
       vertices: []
       indices: 
       edges: []
@@ -4002,7 +4003,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_183
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 64
         width: 16
         height: 16
@@ -4013,7 +4014,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e00351d9e21e196449bb40e717383467
+      spriteID: 13e95988e2b46964d9becaf259e743d9
       vertices: []
       indices: 
       edges: []
@@ -4022,7 +4023,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_184
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 64
         width: 16
         height: 16
@@ -4033,7 +4034,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94eea8401cc249f41b4aaf1840afc690
+      spriteID: 120a30cdd5716f44b9e1a66d1d93811e
       vertices: []
       indices: 
       edges: []
@@ -4042,7 +4043,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_185
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 64
         width: 16
         height: 16
@@ -4053,7 +4054,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46288b4f718c48c4a833400c218af30e
+      spriteID: aa3dfbedaff956d4aadfe64d826e1e36
       vertices: []
       indices: 
       edges: []
@@ -4062,7 +4063,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_186
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 64
         width: 16
         height: 16
@@ -4073,7 +4074,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 237fd0f9b36fdb3488395bc12cc14215
+      spriteID: 220467c87639e324ea5902d20c8b1732
       vertices: []
       indices: 
       edges: []
@@ -4082,7 +4083,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_187
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 64
         width: 16
         height: 16
@@ -4093,7 +4094,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61a2b715040bc154f82f084ab09d1d3a
+      spriteID: d22d63cf3437bdc4c9269fe12bb5a6af
       vertices: []
       indices: 
       edges: []
@@ -4102,7 +4103,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_188
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 64
         width: 16
         height: 16
@@ -4113,7 +4114,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdc351d327672c54b9c68e3dbc0c6518
+      spriteID: d6bf0a4b88df7e642aa87002be6f2ab9
       vertices: []
       indices: 
       edges: []
@@ -4122,7 +4123,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_189
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 64
         width: 16
         height: 16
@@ -4133,7 +4134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ec5563b23fdc5847a14e71a42acafff
+      spriteID: 9d89211b85effec459b3a69719e5b5fe
       vertices: []
       indices: 
       edges: []
@@ -4142,6 +4143,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_190
       rect:
         serializedVersion: 2
+        x: 224
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5785c3eb93ae2d04a9f2ed6109ba2a3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_191
+      rect:
+        serializedVersion: 2
         x: 240
         y: 64
         width: 16
@@ -4153,27 +4174,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 749013ee605491043beb3dbc60a29d02
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_191
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 075e1195701ab614ebfa7fc516fae946
+      spriteID: 4a09603125d2152448adfdbea1dc5526
       vertices: []
       indices: 
       edges: []
@@ -4182,7 +4183,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_192
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 48
         width: 16
         height: 16
@@ -4193,7 +4194,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bf259e26a09ab34f91abaa8415a9503
+      spriteID: 895547128dcde7643bee8ec17a062367
       vertices: []
       indices: 
       edges: []
@@ -4202,7 +4203,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_193
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 48
         width: 16
         height: 16
@@ -4213,7 +4214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f066167c9c0791945884b2be36a79f14
+      spriteID: 169066a2e8c4a5148a3a214a83c90a49
       vertices: []
       indices: 
       edges: []
@@ -4222,7 +4223,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_194
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 48
         width: 16
         height: 16
@@ -4233,7 +4234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa32bfc9ef8b3641849aad9e1ae9556
+      spriteID: 57195d3b479cbce4caefb293120ca935
       vertices: []
       indices: 
       edges: []
@@ -4242,7 +4243,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_195
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 48
         width: 16
         height: 16
@@ -4253,7 +4254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 977e2c91f14642d4a925439dd8cc1a43
+      spriteID: 2fbcf12fefba86b4183c4bf0e78dcf54
       vertices: []
       indices: 
       edges: []
@@ -4262,7 +4263,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_196
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 48
         width: 16
         height: 16
@@ -4273,7 +4274,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7d4673785b2aa04bbe51245318dad11
+      spriteID: aeb97484948e7e540b85fa871e189400
       vertices: []
       indices: 
       edges: []
@@ -4282,7 +4283,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_197
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 48
         width: 16
         height: 16
@@ -4293,7 +4294,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27fa8c9f4b40dba4ea6d091f1a600ab8
+      spriteID: 5c5c1d1a34b11e5419a620323c85a4d2
       vertices: []
       indices: 
       edges: []
@@ -4302,7 +4303,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_198
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 48
         width: 16
         height: 16
@@ -4313,7 +4314,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b83e95d986944e348b4b55f5150630fb
+      spriteID: de5c0a179059525408d6c634b7032b85
       vertices: []
       indices: 
       edges: []
@@ -4322,7 +4323,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_199
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 48
         width: 16
         height: 16
@@ -4333,7 +4334,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0799e49eb5d17640b2c24e809504806
+      spriteID: 8b404948fdd9a9b48a44831d6b739ec0
       vertices: []
       indices: 
       edges: []
@@ -4342,7 +4343,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_200
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 48
         width: 16
         height: 16
@@ -4353,7 +4354,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1f0e23130d67e4e862ad94fcd5f1ea
+      spriteID: a45475d90fd56814eaa4c932071a897b
       vertices: []
       indices: 
       edges: []
@@ -4362,7 +4363,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_201
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 48
         width: 16
         height: 16
@@ -4373,7 +4374,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6453925ee7efef4ea533d46e56e5b59
+      spriteID: 77159180a0f6c6748af2b964ca1d2409
       vertices: []
       indices: 
       edges: []
@@ -4382,7 +4383,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_202
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 48
         width: 16
         height: 16
@@ -4393,7 +4394,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a86f0af96bc080849a7c00156fc6b535
+      spriteID: 52860c6ce8a75c44ba264e4cdc46188d
       vertices: []
       indices: 
       edges: []
@@ -4402,7 +4403,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_203
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 48
         width: 16
         height: 16
@@ -4413,7 +4414,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07c8b7073ef28664f90bdd4ade3136c0
+      spriteID: 3381d9b7771ac7947921ad4d14d5e0f5
       vertices: []
       indices: 
       edges: []
@@ -4422,7 +4423,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_204
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 48
         width: 16
         height: 16
@@ -4433,7 +4434,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7045bcccd1ff72d4a983cdb57cf0e19c
+      spriteID: c0308696355e67842aae9fb433ca7af9
       vertices: []
       indices: 
       edges: []
@@ -4442,7 +4443,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_205
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 48
         width: 16
         height: 16
@@ -4453,7 +4454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 542d09758cd1b6b4fb4ff0004b27b06c
+      spriteID: 74e5217ddf377884ea7625c7a4c34ddc
       vertices: []
       indices: 
       edges: []
@@ -4462,6 +4463,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_206
       rect:
         serializedVersion: 2
+        x: 224
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c4adaa2d0493d4196b4c685d343762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_207
+      rect:
+        serializedVersion: 2
         x: 240
         y: 48
         width: 16
@@ -4473,27 +4494,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4852ebaee622e44ab4bdac0df6627a0
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_207
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14cd1b866faa3b043b682e779e652722
+      spriteID: 4b788cf1ffab693489fc677524e483cc
       vertices: []
       indices: 
       edges: []
@@ -4502,7 +4503,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_208
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 32
         width: 16
         height: 16
@@ -4513,7 +4514,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e8b62db360cc1f4fbc73de045d78f91
+      spriteID: f3a40273a51c9bc48a0060d109e1cc28
       vertices: []
       indices: 
       edges: []
@@ -4522,7 +4523,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_209
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 32
         width: 16
         height: 16
@@ -4533,7 +4534,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1543e301f7db54499bec1f0d989eca7
+      spriteID: 39ca5db7d810b8540992a5b4c65e465b
       vertices: []
       indices: 
       edges: []
@@ -4542,7 +4543,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_210
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 32
         width: 16
         height: 16
@@ -4553,7 +4554,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb9fd2ddfaf34084da5ba3f9d2851fdd
+      spriteID: 85db52a1d64422a4faea8abe33e1fa2d
       vertices: []
       indices: 
       edges: []
@@ -4562,7 +4563,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_211
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 32
         width: 16
         height: 16
@@ -4573,7 +4574,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1aca66f39ea56649a21fbf63300ee52
+      spriteID: cdbff3c35e4f73f41b33b8564d43d799
       vertices: []
       indices: 
       edges: []
@@ -4582,7 +4583,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_212
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 32
         width: 16
         height: 16
@@ -4593,7 +4594,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 226ed6c75207454438185c30ab0a8ec0
+      spriteID: 5fd75e3de24710c488d6052a85d1ee5f
       vertices: []
       indices: 
       edges: []
@@ -4602,7 +4603,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_213
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 32
         width: 16
         height: 16
@@ -4613,7 +4614,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f242c365b42b5a4c98e2a6842c9a50f
+      spriteID: dd305d352e06464488baed12b33ab78f
       vertices: []
       indices: 
       edges: []
@@ -4622,7 +4623,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_214
       rect:
         serializedVersion: 2
-        x: 112
+        x: 96
         y: 32
         width: 16
         height: 16
@@ -4633,7 +4634,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c5cd27b8da15004f970e4b57925d64d
+      spriteID: 23a535723359c0e4092410515ced239a
       vertices: []
       indices: 
       edges: []
@@ -4642,7 +4643,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_215
       rect:
         serializedVersion: 2
-        x: 128
+        x: 112
         y: 32
         width: 16
         height: 16
@@ -4653,7 +4654,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33215a83fa6b2e440a378e9437d4fb5c
+      spriteID: 41ea46377214a20499ad814d858cfb04
       vertices: []
       indices: 
       edges: []
@@ -4662,7 +4663,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_216
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 32
         width: 16
         height: 16
@@ -4673,7 +4674,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 249e0ed846f3c24499010200b6d44b1f
+      spriteID: ad6e8ae8ea2de5a408c3ebeccd30607a
       vertices: []
       indices: 
       edges: []
@@ -4682,7 +4683,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_217
       rect:
         serializedVersion: 2
-        x: 160
+        x: 144
         y: 32
         width: 16
         height: 16
@@ -4693,7 +4694,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db763e0532b84fe47a15731d14393025
+      spriteID: b59e681d503ced747b21b8821ab1f407
       vertices: []
       indices: 
       edges: []
@@ -4702,7 +4703,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_218
       rect:
         serializedVersion: 2
-        x: 176
+        x: 160
         y: 32
         width: 16
         height: 16
@@ -4713,7 +4714,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 557379d96eb10934d83e160922207bbb
+      spriteID: 39142d78083a44c46b4a83ae7be6b0a4
       vertices: []
       indices: 
       edges: []
@@ -4722,7 +4723,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_219
       rect:
         serializedVersion: 2
-        x: 192
+        x: 176
         y: 32
         width: 16
         height: 16
@@ -4733,7 +4734,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c681ee77134aaa14cbbfd0a295620397
+      spriteID: ca11b96a61a77d846a2eb9c33a7c67e1
       vertices: []
       indices: 
       edges: []
@@ -4742,7 +4743,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_220
       rect:
         serializedVersion: 2
-        x: 208
+        x: 192
         y: 32
         width: 16
         height: 16
@@ -4753,7 +4754,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f346db062892afa4ea9bc4e5eba30123
+      spriteID: 6641247a609b37e4793a3c0df63251e6
       vertices: []
       indices: 
       edges: []
@@ -4762,7 +4763,7 @@ TextureImporter:
       name: NES_16x16_cave_objects_221
       rect:
         serializedVersion: 2
-        x: 224
+        x: 208
         y: 32
         width: 16
         height: 16
@@ -4773,7 +4774,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ca11f523ca66d64196a9941b1a13068
+      spriteID: 434d370ff316a804c90d6d2823db7ecf
       vertices: []
       indices: 
       edges: []
@@ -4782,6 +4783,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_222
       rect:
         serializedVersion: 2
+        x: 224
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06609ae3263b98b418d0ec7a247fc753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_223
+      rect:
+        serializedVersion: 2
         x: 240
         y: 32
         width: 16
@@ -4793,27 +4814,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b714c7a4ac70d414cbb3cee7f515b585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NES_16x16_cave_objects_223
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19296445e7ba28c4e93652dcf74a4570
+      spriteID: c899b174588758b46ac54a6729db5d17
       vertices: []
       indices: 
       edges: []
@@ -4822,6 +4823,26 @@ TextureImporter:
       name: NES_16x16_cave_objects_224
       rect:
         serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3c41c8fbb4ee844b704b55a4965226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NES_16x16_cave_objects_225
+      rect:
+        serializedVersion: 2
         x: 16
         y: 16
         width: 16
@@ -4833,13 +4854,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fbd14e94ac202a4fb8f1fb6895408d8
+      spriteID: f9cce16bd5a97b941a9a09334c426a81
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_225
+      name: NES_16x16_cave_objects_226
       rect:
         serializedVersion: 2
         x: 32
@@ -4853,13 +4874,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63a95905dbfd10248a0e3aa0928fd7c8
+      spriteID: 44f7d0d66f0c14340882938d727fe541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_226
+      name: NES_16x16_cave_objects_227
       rect:
         serializedVersion: 2
         x: 48
@@ -4873,13 +4894,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa47ff05471cb114b89f2610ad56f72c
+      spriteID: ba41bebfe07143946a20e7a9dda3f698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_227
+      name: NES_16x16_cave_objects_228
       rect:
         serializedVersion: 2
         x: 64
@@ -4893,13 +4914,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a216e2e22815fc4184cbe3620970047
+      spriteID: ee2dc176de2670a45ae7deb3dfd0f18b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_228
+      name: NES_16x16_cave_objects_229
       rect:
         serializedVersion: 2
         x: 80
@@ -4913,13 +4934,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fb7158e8a7dc494f9f5a60a030bc45e
+      spriteID: 71cf3e70a9e210b44b1cc060e71763ce
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_229
+      name: NES_16x16_cave_objects_230
       rect:
         serializedVersion: 2
         x: 96
@@ -4933,13 +4954,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 810012c247f4e0d4b8740159564a8a89
+      spriteID: 174f632d25d202e499a1283a460216ad
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_230
+      name: NES_16x16_cave_objects_231
       rect:
         serializedVersion: 2
         x: 112
@@ -4953,13 +4974,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22a2dadee63bd3e4187f88c659b07c98
+      spriteID: e7cac5f015e161c4e9caa9b986938747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_231
+      name: NES_16x16_cave_objects_232
       rect:
         serializedVersion: 2
         x: 128
@@ -4973,13 +4994,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2976d269a96b0cc4ba81cc4c42358b5d
+      spriteID: d32a77d4970f60d4788a1d64c284b033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_232
+      name: NES_16x16_cave_objects_233
       rect:
         serializedVersion: 2
         x: 144
@@ -4993,13 +5014,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4700ec1a7f44f5546b911ef71d6a93a4
+      spriteID: b96c8a2025916c44b88f07b3b12c6e02
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_233
+      name: NES_16x16_cave_objects_234
       rect:
         serializedVersion: 2
         x: 160
@@ -5013,13 +5034,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62e1f073c72f8984b8dc0cc841eebc61
+      spriteID: d3db4383dc9e2dc42810b93fbd7df76a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_234
+      name: NES_16x16_cave_objects_235
       rect:
         serializedVersion: 2
         x: 176
@@ -5033,13 +5054,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a403edaabb783b6499ea20fe3dfc803b
+      spriteID: c09eddbc08d274c41bf7515f6b097e3e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_235
+      name: NES_16x16_cave_objects_236
       rect:
         serializedVersion: 2
         x: 192
@@ -5053,13 +5074,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99976cef5d087324aa27f8bc8ae37998
+      spriteID: 3ef0cfeb2c430024e91fe3e622b70596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_236
+      name: NES_16x16_cave_objects_237
       rect:
         serializedVersion: 2
         x: 208
@@ -5073,13 +5094,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d8499a458fcd3b4c8bf3dc7ea09f13f
+      spriteID: 23208ae1d5921be4c98f318b9222f358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_237
+      name: NES_16x16_cave_objects_238
       rect:
         serializedVersion: 2
         x: 224
@@ -5093,13 +5114,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51b19b38e0534e648abe15d4d4487b9d
+      spriteID: 0991915a66dc54b469e8f4109b8b33ec
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_238
+      name: NES_16x16_cave_objects_239
       rect:
         serializedVersion: 2
         x: 240
@@ -5113,13 +5134,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 606ce123a674d7644b6b2c00e27b8f0d
+      spriteID: 888656f502c4b7247a82fadf935ccde8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_239
+      name: NES_16x16_cave_objects_240
       rect:
         serializedVersion: 2
         x: 0
@@ -5133,13 +5154,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6948f1a35bc39b342adb9aa4c417a16a
+      spriteID: 4cb9a02fb18fe3444aaa0ef937e73f3c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_240
+      name: NES_16x16_cave_objects_241
       rect:
         serializedVersion: 2
         x: 16
@@ -5153,13 +5174,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bccad81d2cbb502478b796325e2a506b
+      spriteID: e5347f7d8b4ed6a4f862fb150af82145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_241
+      name: NES_16x16_cave_objects_242
       rect:
         serializedVersion: 2
         x: 32
@@ -5173,13 +5194,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a20e0c17caf62b4f95fcbacfcbf00f4
+      spriteID: 36c4d40568cb52f49ac05bd1ea039ff2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_242
+      name: NES_16x16_cave_objects_243
       rect:
         serializedVersion: 2
         x: 48
@@ -5193,13 +5214,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4529b3dfca5c30a4a8ebe3bb914f0b03
+      spriteID: f468964167ac208488aa9ef57197fd1e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_243
+      name: NES_16x16_cave_objects_244
       rect:
         serializedVersion: 2
         x: 64
@@ -5213,13 +5234,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4bf123fe64a3e2418c08be33ca15b8a
+      spriteID: 2738031038e9b1e438012cb5d0ef0895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_244
+      name: NES_16x16_cave_objects_245
       rect:
         serializedVersion: 2
         x: 80
@@ -5233,13 +5254,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d380f08691d8f3e458d3fe5bf8133676
+      spriteID: 29ce2d9637a38fd4abf6d9da7756ee11
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_245
+      name: NES_16x16_cave_objects_246
       rect:
         serializedVersion: 2
         x: 96
@@ -5253,13 +5274,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 011b051114be01d418fd9f03fe42984c
+      spriteID: d257963e91346754994f6d9ae14b0861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_246
+      name: NES_16x16_cave_objects_247
       rect:
         serializedVersion: 2
         x: 112
@@ -5273,13 +5294,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92668d1cb30600c49964de0017a9e51a
+      spriteID: 4b0021b6e13df1d449294a5b8909c691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_247
+      name: NES_16x16_cave_objects_248
       rect:
         serializedVersion: 2
         x: 128
@@ -5293,13 +5314,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 994106ff47255d54ca7a8a7869f7ae29
+      spriteID: f76e9615601ff13498b07354252f7450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_248
+      name: NES_16x16_cave_objects_249
       rect:
         serializedVersion: 2
         x: 144
@@ -5313,13 +5334,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08185efaafba94a489b5a93384b4a32e
+      spriteID: 76fbd018e517640429d3e15edcaad8e7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_249
+      name: NES_16x16_cave_objects_250
       rect:
         serializedVersion: 2
         x: 160
@@ -5333,13 +5354,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 661422290165f4448bdd9d2a70d41c51
+      spriteID: 45918951c4c761e4a87a7f77f55f325d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_250
+      name: NES_16x16_cave_objects_251
       rect:
         serializedVersion: 2
         x: 176
@@ -5353,13 +5374,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 521f8ac9bb221194ea40e9942d51c6aa
+      spriteID: c9feb7dfa6cc4d349a825c58f14e56c0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_251
+      name: NES_16x16_cave_objects_252
       rect:
         serializedVersion: 2
         x: 192
@@ -5373,13 +5394,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36d47a35534e6914eb5199af4295dad5
+      spriteID: 6e546fd6bf022f34c9e748c72bc800b5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_252
+      name: NES_16x16_cave_objects_253
       rect:
         serializedVersion: 2
         x: 208
@@ -5393,13 +5414,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcd3976586e2e0240aef3b3292513e96
+      spriteID: 8466d885ed74bfb48b745de2dd13a65a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_253
+      name: NES_16x16_cave_objects_254
       rect:
         serializedVersion: 2
         x: 224
@@ -5413,13 +5434,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e52a8a761d9657499890dc37a428389
+      spriteID: d43b6cc4e5d2c824086a7ce123676199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NES_16x16_cave_objects_254
+      name: NES_16x16_cave_objects_255
       rect:
         serializedVersion: 2
         x: 240
@@ -5433,7 +5454,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca8428008f37a7d47977c6441f1822c4
+      spriteID: 3bbbcd4393d95fe40b1b3a3b29431c03
       vertices: []
       indices: 
       edges: []

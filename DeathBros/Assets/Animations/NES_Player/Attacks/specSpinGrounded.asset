@@ -52,6 +52,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 86819
       getNewID: 0
     soundName: 
@@ -81,6 +82,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 86819
       getNewID: 0
     soundName: NES_swoosh1
@@ -138,6 +140,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 1607
       getNewID: 0
     soundName: 
@@ -167,6 +170,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.2, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
       ID: 1607
       getNewID: 0
     soundName: NES_swoosh1
@@ -195,6 +199,7 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}
   - damageNumber: 10
     knockBackDirection: {x: 1, y: 4}
     baseKnockback: 8
@@ -205,3 +210,4 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0.2, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}

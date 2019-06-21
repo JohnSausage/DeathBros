@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: AIAction_BubbleBeeFly
   m_EditorClassIdentifier: 
   actionName: fly
-  aiExitConditions: []
+  aiExitConditions:
+  - {fileID: 11400000, guid: 2cfcfcab2b7d4bc4da3d68866511f8a3, type: 2}
+  - {fileID: 11400000, guid: 1c07738f78c505644a59d9cde7c292ae, type: 2}
   turnOnWall: 1
   yMovement: 1
   yMovementDurationInSec: 1
+  collsisionCheckRange: 1.5
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256

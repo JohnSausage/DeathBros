@@ -841,6 +841,9 @@ public class FrameAnimatorEditor : EditorWindow
                 currentAnimation.damages[i].knockbackGrowth = EditorGUILayout.FloatField("Knockback Growth", currentAnimation.damages[i].knockbackGrowth);
                 currentAnimation.damages[i].hitStunFrames = EditorGUILayout.IntField("Hitstun Frames", currentAnimation.damages[i].hitStunFrames);
                 currentAnimation.damages[i].damageType = (EDamageType)EditorGUILayout.EnumPopup("Damage Type", currentAnimation.damages[i].damageType);
+
+                currentAnimation.damages[i].StatusEffect = (StatusEffect)EditorGUILayout.ObjectField("Status Effect:", currentAnimation.damages[i].StatusEffect, typeof(StatusEffect), false);
+
                 currentAnimation.damages[i].editorColor = EditorGUILayout.ColorField("Color", currentAnimation.damages[i].editorColor);
 
                 if (GUILayout.Button("Remove")) currentAnimation.damages.Remove(currentAnimation.damages[i]);

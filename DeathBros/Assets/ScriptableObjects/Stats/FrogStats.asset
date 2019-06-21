@@ -14,7 +14,7 @@ MonoBehaviour:
   charName: Frog
   stats:
   - statName: MaxHealth
-    baseValue: 60
+    baseValue: 50
   - statName: Weight
     baseValue: 80
   - statName: Movespeed

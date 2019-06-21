@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
+  m_Name: fly
+  m_EditorClassIdentifier: 
+  frames:
+  - duration: 20
+    sprite: {fileID: 21300028, guid: 157c68c61e1c28a419bc07f9bc8f2810, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes: []
+    hitboxes: []
+    soundName: 
+  - duration: 600
+    sprite: {fileID: 21300030, guid: 157c68c61e1c28a419bc07f9bc8f2810, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes: []
+    hitboxes:
+    - position: {x: -0.025669629, y: -0.085937515}
+      radius: 0.3
+      damage:
+        damageNumber: 0
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 4
+        knockbackGrowth: 2
+        hitStunFrames: 0
+        damageType: 0
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 1, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}
+      ID: 64776
+      getNewID: 0
+    soundName: 
+  damages:
+  - damageNumber: 0
+    knockBackDirection: {x: 1, y: 2}
+    baseKnockback: 4
+    knockbackGrowth: 2
+    hitStunFrames: 0
+    damageType: 0
+    attackType: 0
+    editorColor: {r: 0, g: 0, b: 0, a: 0}
+    positionalInfluence: {x: 1, y: 0}
+    position: {x: 0, y: 0}
+    StatusEffect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}

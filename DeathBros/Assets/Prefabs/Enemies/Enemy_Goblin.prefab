@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 61189036597972946}
   - component: {fileID: 114593677525329788}
   - component: {fileID: 114692243710159598}
+  - component: {fileID: 114582228098327482}
   m_Layer: 14
   m_Name: Enemy_Goblin
   m_TagString: Untagged
@@ -232,6 +233,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapToParent: 1
   pixelsPerUnit: 16
+--- !u!114 &114582228098327482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196939669774506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa6446923637f94e8533bc45183b62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStatusEffect: {fileID: 0}
 --- !u!114 &114593677525329788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,8 +282,8 @@ MonoBehaviour:
     damageMulti: 1
     damageAdd: 0
     damageEffect: 1
-  Jump: 0
-  HoldJump: 0
+  Shield: 0
+  HoldShield: 0
   ChrSM:
     currentState: 
   HitStunDuration: 0
@@ -306,6 +319,7 @@ MonoBehaviour:
   fastFallSpeed: -20
   fastFall: 0
   WallslideSpeed: 5
+  canFly: 0
   collisionMask:
     serializedVersion: 2
     m_Bits: 256
