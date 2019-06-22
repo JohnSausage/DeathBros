@@ -290,7 +290,9 @@ public class Character : _MB, ICanTakeDamage
             TakeDamage(damage);
 
             if (damage.ApplyStatMod != null)
+            {
                 damage.ApplyStatMod.ApplyToCharacter(this);
+            }
         }
     }
 
@@ -350,7 +352,11 @@ public class Character : _MB, ICanTakeDamage
                     damage.Owner.HitEnemy(this, damage);
                 }
 
-                currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+                // don't calculate a knockback if knockback is zero
+                if (damage.baseKnockback != 0)
+                {
+                    currentKnockback = damage.Knockback(Position, GetCurrentStatValue("Weight"), (currentHealth / GetCurrentStatValue("MaxHealth")));
+                }
 
                 ModHealth(-damage.damageNumber);
 
@@ -371,7 +377,7 @@ public class Character : _MB, ICanTakeDamage
         HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
         HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
 
-        HitStunDuration = damage.HitStunFrames(HealthPercent);
+        HitStunDuration += damage.HitStunFrames(HealthPercent);
     }
 
     protected void RaiseTakeDamageEvents(Damage damage)

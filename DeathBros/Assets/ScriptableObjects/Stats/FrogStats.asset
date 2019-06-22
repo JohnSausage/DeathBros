@@ -16,7 +16,7 @@ MonoBehaviour:
   - statName: MaxHealth
     baseValue: 50
   - statName: Weight
-    baseValue: 80
+    baseValue: 120
   - statName: Movespeed
     baseValue: 0
   - statName: Gravity

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114940108949917332}
   - component: {fileID: 114121695611491556}
   - component: {fileID: 114495431552907718}
+  - component: {fileID: 58622470912955840}
   m_Layer: 0
   m_Name: NESProjetileTest
   m_TagString: Untagged
@@ -37,12 +38,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1369209867268328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.963, y: -25.649, z: 0}
+  m_LocalPosition: {x: 74.82519, y: -59.12788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58622470912955840
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1369209867268328}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
 --- !u!114 &114121695611491556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,8 +72,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fly_anim: fly
   explode_anim: explode
-  Velocity: {x: 10, y: 0}
+  chasePlayer: 0
+  Velocity: {x: 8, y: 0}
+  gravity: 0
   destroyAfterSeconds: 0.5
+  destroyOnCollision: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 2304
 --- !u!114 &114495431552907718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpdateAutomatically: 1
   currentAnimation: {fileID: 0}
   frameAnimationsSO: {fileID: 11400000, guid: 930d11ac45b01814a939b123b7be0362, type: 2}
   animationSpeed: 1

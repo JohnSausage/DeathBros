@@ -48,7 +48,7 @@ public class NES_Projectile : MonoBehaviour
 
         hibMn.Chr = owner;
 
-        hibMn.ACharacterHit += ExplodeOnHit;
+        hibMn.ACharacterHit += Explode;
     }
 
     protected void FixedUpdate()
@@ -82,7 +82,7 @@ public class NES_Projectile : MonoBehaviour
 
         if (counter > destroyAfterSeconds * 60)
         {
-            Destroy(gameObject);
+            Explode();
         }
 
         if (destroyOnCollision == true)
@@ -91,7 +91,7 @@ public class NES_Projectile : MonoBehaviour
 
             if (collisionCheck == true)
             {
-                ExplodeOnHit();
+                Explode();
             }
         }
     }
@@ -105,7 +105,7 @@ public class NES_Projectile : MonoBehaviour
     }
 
 
-    protected void ExplodeOnHit(Character hitChr = null, Damage damage = null)
+    protected void Explode(Character hitChr = null, Damage damage = null)
     {
         Velocity = Vector2.zero;
         fanim.ChangeAnimation(explode_anim);

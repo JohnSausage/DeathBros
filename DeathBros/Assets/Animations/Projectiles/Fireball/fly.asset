@@ -36,7 +36,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 7645
+        StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
+      ID: 29214
       getNewID: 0
     soundName: 
   - duration: 15
@@ -63,7 +64,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 32909
+        StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
+      ID: 53173
       getNewID: 0
     soundName: 
   - duration: 15
@@ -90,7 +92,8 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
-      ID: 32909
+        StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
+      ID: 85427
       getNewID: 0
     soundName: 
   - duration: 15
@@ -117,6 +120,7 @@ MonoBehaviour:
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
+        StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
       ID: 18020
       getNewID: 0
     soundName: 
@@ -131,3 +135,4 @@ MonoBehaviour:
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}

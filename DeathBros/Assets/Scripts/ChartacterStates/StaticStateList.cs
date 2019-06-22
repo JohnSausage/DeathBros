@@ -290,15 +290,18 @@ public class SCS_Jumping : SCState
             chr.Direction = Mathf.Sign(chr.DirectionalInput.x);
         }
 
-        if (chr.Ctr.velocity.y < -0.1f)
+        //the collision check is to prevent the animator to change the animation to jumpUp while landing
+        if (chr.Ctr.HasCollided == false)
         {
-            chr.Anim.ChangeAnimation(chr.StatesSO.jumpDown_anim);
+            if (chr.Ctr.velocity.y < -0.1f)
+            {
+                chr.Anim.ChangeAnimation(chr.StatesSO.jumpDown_anim);
+            }
+            else
+            {
+                chr.Anim.ChangeAnimation(chr.StatesSO.jumpUp_anim);
+            }
         }
-        else
-        {
-            chr.Anim.ChangeAnimation(chr.StatesSO.jumpUp_anim);
-        }
-
 
         chr.GetInputs();
 

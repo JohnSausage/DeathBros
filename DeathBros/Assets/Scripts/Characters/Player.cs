@@ -285,7 +285,7 @@ public class Player : Character
     //        }
     //    }
     //}
-    
+
 
     //protected bool CheckForItemPickUp()
     //{
@@ -377,7 +377,7 @@ public class Player : Character
 
         if (Attack)
         {
-            if(isRunning)
+            if (isRunning)
             {
                 ChrSM.ChangeState(this, dashAtk);
             }
@@ -422,7 +422,7 @@ public class Player : Character
 
         SCS_CheckForSpecials();
 
-        if(Grab)
+        if (Grab)
         {
             ChrSM.ChangeState(this, grabAtk);
         }
@@ -493,7 +493,7 @@ public class Player : Character
     protected void SCS_CheckForSpecials()
     {
         if (Special)
-        {        
+        {
             if (DirectionalInput == Vector2.zero)
             {
                 CheckForSpecialAttack(nSpecAtk, nSpecCount);
@@ -532,7 +532,7 @@ public class Player : Character
                 else SCS_ChangeState(StaticStates.standUp);
             }
             //else if (Ctr.lastCollisionAngle == 90)
-                else if (Ctr.OnWall)
+            else if (Ctr.OnWall)
             {
                 if (HoldJump)
                 {
@@ -593,7 +593,7 @@ public class Player : Character
         }
         else if (Mathf.Abs(DirectionalInput.x) != 0)
         {
-            if (Mathf.Abs(DirectionalInput.x) >= 0.5f)
+            if (Mathf.Abs(DirectionalInput.x) >= 0.4f)
             {
                 SCS_ChangeState(StaticStates.dash);
             }
@@ -629,17 +629,26 @@ public class Player : Character
         }
 
         if (HoldShield)
+        {
             SCS_ChangeState(StaticStates.shield);
+        }
 
         if (Jump)
+        {
             SCS_ChangeState(StaticStates.jumpsquat);
+        }
 
         if (DirectionalInput.y < -0.5f)
-            SCS_ChangeState(StaticStates.crouch);
-
-        if(Timer >= 30)
         {
-            SCS_ChangeState(StaticStates.running);
+            SCS_ChangeState(StaticStates.crouch);
+        }
+
+        if (Timer >= 15)
+        {
+            if (Mathf.Abs(DirectionalInput.x) >= 0.45f)
+            {
+                SCS_ChangeState(StaticStates.running);
+            }
         }
     }
 
@@ -651,7 +660,7 @@ public class Player : Character
         }
         else
         {
-            if(Mathf.Abs(StrongInputs.x) == 1)
+            if (Mathf.Abs(StrongInputs.x) == 1)
             {
                 SCS_ChangeState(StaticStates.dash);
             }
@@ -659,7 +668,7 @@ public class Player : Character
             {
                 SCS_ChangeState(StaticStates.idle);
             }
-            else if(Mathf.Abs(DirectionalInput.x) <= 0.5f)
+            else if (Mathf.Abs(DirectionalInput.x) <= 0.5f)
             {
                 SCS_ChangeState(StaticStates.walking);
             }

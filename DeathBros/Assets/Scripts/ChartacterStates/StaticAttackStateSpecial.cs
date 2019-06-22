@@ -110,6 +110,7 @@ public class SCS_SpecialAttack : SCS_Attack
         if (chr.Ctr.IsGrounded)
         {
             chr.FrozenInputX *= 0.9f;
+            chr.SetInputs(new Vector2(chr.FrozenInputX, 0));
         }
         else
         {

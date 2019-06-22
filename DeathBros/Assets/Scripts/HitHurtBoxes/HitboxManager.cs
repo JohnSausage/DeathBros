@@ -260,6 +260,11 @@ public class Damage
 
     public int HitStunFrames(float percentHealth)
     {
+        if(hitStunFrames == 0)
+        {
+            return 0;
+        }
+
         int retVal = 0;
 
         retVal = (int)((baseKnockback + knockbackGrowth * (1 - percentHealth)) / baseKnockback * hitStunFrames);

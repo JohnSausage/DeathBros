@@ -123,7 +123,10 @@ public class Enemy : Character, IActivatedByCamera
 
         if(HitStunDuration >= 0)
         {
-            ComboHitCounter++;
+            if (damage.damageNumber >= 5)
+            {
+                ComboHitCounter++;
+            }
         }
 
         EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 8 * ComboHitCounter), transform.position);
