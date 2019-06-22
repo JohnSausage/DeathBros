@@ -24,7 +24,7 @@ MonoBehaviour:
   - name: cave_bells_and_droplets
     clip: {fileID: 8300000, guid: b26a3e4b886bd3144a6c4e4d794cbf0d, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1
   - name: mystical_1
     clip: {fileID: 8300000, guid: ed3dcb1f5ef1f4d438ce3571bf463a89, type: 3}
     volume: 0.2

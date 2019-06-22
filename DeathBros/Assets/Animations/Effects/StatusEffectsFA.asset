@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frameAnimations:
   - {fileID: 11400000, guid: e953674fb15ec1f4fa8af03b661e2913, type: 2}
+  - {fileID: 11400000, guid: cb7b78a5b90fce943b855252c9dd31ca, type: 2}

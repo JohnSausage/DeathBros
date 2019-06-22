@@ -51,6 +51,11 @@ public class SCS_SpecialAttack : SCS_Attack
     {
         //base.Enter(chr);
 
+        if (chr is Enemy)
+        {
+            chr.Flash(Color.red, 10);
+        }
+
         if (chr == null) return;
         if (chr.Anim == null) return;
 

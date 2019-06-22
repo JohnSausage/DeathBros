@@ -5,43 +5,39 @@ using UnityEngine.UI;
 
 public class CardComboStrip : MonoBehaviour
 {
-    public RectTransform sliderImage;
+    public Image sliderImage;
     public Color sliderColor;
     public Color sliderColorBlink;
 
-    private Image image;
     private int counter = 0;
 
     private void Start()
     {
-        image = sliderImage.GetComponent<Image>();
-        image.color = sliderColor;
-
         ModifySlider(GameManager.Player.ComboPower);
 
         GameManager.Player.AChangeComboPower += ModifySlider;
+
+        sliderImage.color = sliderColor;
     }
 
     private void FixedUpdate()
     {
-
-
         if (GameManager.Player.ComboPower >= 100f)
         {
             counter++;
 
             if (counter >= 8)
             {
-                image.color = sliderColorBlink;
+                sliderImage.color = sliderColorBlink;
             }
             else
             {
-                image.color = sliderColor;
+                sliderImage.color = sliderColor;
             }
         }
         else
         {
-            image.color = sliderColor;
+            sliderImage.color = sliderColor;
         }
 
         if (counter > 10)
@@ -52,6 +48,7 @@ public class CardComboStrip : MonoBehaviour
 
     private void ModifySlider(float value)
     {
-        sliderImage.sizeDelta = new Vector2(value / 110 * 352, sliderImage.sizeDelta.y);
+        sliderImage.fillAmount = value / 110f;
+        //sliderImage.sizeDelta = new Vector2(value / 110 * 352, sliderImage.sizeDelta.y);
     }
 }

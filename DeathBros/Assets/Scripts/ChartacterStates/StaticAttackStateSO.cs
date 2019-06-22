@@ -36,6 +36,11 @@ public class SCS_Attack : SCState
 
         chr.Anim.ChangeAnimation(animationName);
         chr.CurrentAttackBuff = attackBuff;
+
+        if(chr is Enemy)
+        {
+            chr.Flash(Color.red, 10);
+        }
     }
 
     public override void Execute(Character chr)
