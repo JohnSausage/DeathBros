@@ -79,7 +79,7 @@ public class FrameAnimatorEditor : EditorWindow
     {
         if (anim != null)
         {
-            SoundsSO soundsSO = anim.GetComponent<Character>().GetSoundsSO;
+            SoundsSO soundsSO = anim.GetComponentInChildren<SoundContainer>().soundsSO;
 
             soundNames = soundsSO.sounds.Select(x => x.name).ToArray();
         }

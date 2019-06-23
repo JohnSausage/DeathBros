@@ -67,7 +67,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 98843
+      ID: 59034
       getNewID: 0
     soundName: 
   - duration: 15
@@ -97,7 +97,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 98843
+      ID: 59034
       getNewID: 0
     soundName: 
   - duration: 15

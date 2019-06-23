@@ -9,9 +9,16 @@ public class CustomSpriteFontInspector : Editor
 {
     private SpriteFont spriteFont;
 
+    public List<Sprite> sprites;
+
     public override void OnInspectorGUI()
     {
         spriteFont = (SpriteFont)target;
+
+        if (spriteFont.chars == null)
+        {
+            spriteFont.chars = new List<SpriteFontCharacter>();
+        }
 
         for (int i = 0; i < spriteFont.chars.Count; i++)
         {
@@ -31,7 +38,7 @@ public class CustomSpriteFontInspector : Editor
             EditorGUILayout.EndHorizontal();
         }
 
-        if(GUILayout.Button("Add Empty"))
+        if (GUILayout.Button("Add Empty"))
         {
             spriteFont.chars.Add(new SpriteFontCharacter());
         }
@@ -48,11 +55,22 @@ public class CustomSpriteFontInspector : Editor
             spriteFont.chars.Clear();
         }
 
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("addSprites"), true);
+
+        AddSpritesAsCharacters();
+        serializedObject.ApplyModifiedProperties();
+
         base.OnInspectorGUI();
     }
 
     private void GenerateEmpty(SpriteFont spriteFont)
     {
+        for (char c = 'A'; c <= 'Z'; c++)
+        {
+            spriteFont.chars.Add(new SpriteFontCharacter(c));
+        }
+
         for (char c = 'a'; c <= 'z'; c++)
         {
             spriteFont.chars.Add(new SpriteFontCharacter(c));
@@ -62,5 +80,39 @@ public class CustomSpriteFontInspector : Editor
         {
             spriteFont.chars.Add(new SpriteFontCharacter((char)i));
         }
+    }
+
+    private void AddSpritesAsCharacters()
+    {
+        if (spriteFont.addSprites == null)
+        {
+            spriteFont.addSprites = new List<Sprite>();
+            return;
+        }
+
+        if (spriteFont.addSprites.Count == 0)
+        {
+            return;
+        }
+
+        char c = 'A';
+
+        for (int i = 0; i < spriteFont.addSprites.Count; i++)
+        {
+            spriteFont.chars.Add(new SpriteFontCharacter(c, spriteFont.addSprites[i]));
+            c++;
+
+            if (c == ('Z' + 1))
+            {
+                c = 'a';
+            }
+
+            if (c == ('z' + 1))
+            {
+                c = '0';
+            }
+        }
+
+        spriteFont.addSprites.Clear();
     }
 }

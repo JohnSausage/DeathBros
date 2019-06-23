@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SoundContainer : MonoBehaviour
 {
-    public string loadSoundsFromFolder = "Sounds/";
+    //public string loadSoundsFromFolder = "Sounds/";
 
-    public List<Sound> sounds;
+    //public List<Sound> sounds;
+
+    public SoundsSO soundsSO;
 }

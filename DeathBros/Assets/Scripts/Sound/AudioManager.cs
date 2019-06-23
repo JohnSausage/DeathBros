@@ -16,6 +16,7 @@ public class AudioManager : _MB
 
     public static AudioManager Instance { get; protected set; }
 
+    public SoundContainer[] soundsSOs;
 
     public override void Init()
     {
@@ -47,6 +48,12 @@ public class AudioManager : _MB
         //    }
         //}
 
+        soundsSOs = FindObjectsOfType<SoundContainer>();
+
+        for (int i = 0; i < soundsSOs.Length; i++)
+        {
+            soundsSOs[i].soundsSO.LoadSounds();
+        }
     }
 
     public override void LateInit()
@@ -61,6 +68,8 @@ public class AudioManager : _MB
 
         generalSoundsSO.LoadSounds();
         backgroundMusicSO.LoadSounds();
+
+
     }
 
     private void InitSound(Sound sound)

@@ -7,6 +7,8 @@ public class SpriteFont : ScriptableObject
 {
     public List<SpriteFontCharacter> chars;
 
+    public List<Sprite> addSprites;
+
     public List<Sprite> Sprites(string text)
     {
         List<Sprite> sprites = new List<Sprite>();
@@ -33,5 +35,11 @@ public class SpriteFontCharacter
     public SpriteFontCharacter(char character)
     {
         this.character = character;
+    }
+
+    public SpriteFontCharacter(char character, Sprite sprite)
+    {
+        this.character = character;
+        this.sprite = sprite;
     }
 }

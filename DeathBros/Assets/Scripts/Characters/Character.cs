@@ -21,9 +21,9 @@ public class Character : _MB, ICanTakeDamage
 
     [Space]
 
-    [SerializeField]
-    protected SoundsSO soundsSO;
-    public SoundsSO GetSoundsSO { get { return soundsSO; } }
+    //[SerializeField]
+    //protected SoundsSO soundsSO;
+    //public SoundsSO GetSoundsSO { get { return soundsSO; } }
 
 
     [Space]
@@ -157,20 +157,20 @@ public class Character : _MB, ICanTakeDamage
         walkSpeedReduction = 1;
 
 
-        if (soundsSO != null)
-        {
-            soundsSO.LoadSounds();
-        }
+        //if (soundsSO != null)
+        //{
+        //    soundsSO.LoadSounds();
+        //}
     }
 
     public override void LateInit()
     {
         base.LateInit();
 
-        if (soundsSO != null)
-        {
-            soundsSO.LoadSounds();
-        }
+        //if (soundsSO != null)
+        //{
+        //    soundsSO.LoadSounds();
+        //}
     }
 
 
