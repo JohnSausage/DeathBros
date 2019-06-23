@@ -11,6 +11,8 @@ public class CustomSpriteFontInspector : Editor
 
     public List<Sprite> sprites;
 
+    protected int width = 0;
+
     public override void OnInspectorGUI()
     {
         spriteFont = (SpriteFont)target;
@@ -20,23 +22,41 @@ public class CustomSpriteFontInspector : Editor
             spriteFont.chars = new List<SpriteFontCharacter>();
         }
 
+        width = EditorGUILayout.IntField("Width:", width);
+
+        if (GUILayout.Button("Set width for all"))
+        {
+            for (int i = 0; i < spriteFont.chars.Count; i++)
+            {
+                spriteFont.chars[i].width = width;
+            }
+        }
+
         for (int i = 0; i < spriteFont.chars.Count; i++)
         {
-            Texture2D spritePreview = AssetPreview.GetAssetPreview(spriteFont.chars[i].sprite);
+            //Texture2D spritePreview = AssetPreview.GetAssetPreview(spriteFont.chars[i].sprite);
 
 
             EditorGUILayout.BeginHorizontal("Box");
 
             EditorGUILayout.BeginVertical();
             spriteFont.chars[i].character = EditorGUILayout.TextField(spriteFont.chars[i].character.ToString())[0];
-
-            spriteFont.chars[i].sprite = (Sprite)EditorGUILayout.ObjectField(spriteFont.chars[i].sprite, typeof(Sprite), true);
+            spriteFont.chars[i].width = EditorGUILayout.IntField(spriteFont.chars[i].width);
             EditorGUILayout.EndVertical();
 
-            if (GUILayout.Button(spritePreview)) { }
+            //spriteFont.chars[i].sprite = (Sprite)EditorGUILayout.ObjectField("Spriter", spriteFont.chars[i].sprite, typeof(Sprite), false, GUILayout.Width(32), GUILayout.Height(32));
+            spriteFont.chars[i].sprite = (Sprite)EditorGUILayout.ObjectField("Sprite:", spriteFont.chars[i].sprite, typeof(Sprite), false);
+
+            //if (GUILayout.Button(spritePreview)) { }
 
             EditorGUILayout.EndHorizontal();
         }
+
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("addSprites"), true);
+
+        AddSpritesAsCharacters();
+        serializedObject.ApplyModifiedProperties();
 
         if (GUILayout.Button("Add Empty"))
         {
@@ -54,12 +74,7 @@ public class CustomSpriteFontInspector : Editor
         {
             spriteFont.chars.Clear();
         }
-
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("addSprites"), true);
-
-        AddSpritesAsCharacters();
-        serializedObject.ApplyModifiedProperties();
+        
 
         base.OnInspectorGUI();
     }
@@ -95,22 +110,12 @@ public class CustomSpriteFontInspector : Editor
             return;
         }
 
-        char c = 'A';
+        char c = (char)32;
 
         for (int i = 0; i < spriteFont.addSprites.Count; i++)
         {
             spriteFont.chars.Add(new SpriteFontCharacter(c, spriteFont.addSprites[i]));
             c++;
-
-            if (c == ('Z' + 1))
-            {
-                c = 'a';
-            }
-
-            if (c == ('z' + 1))
-            {
-                c = '0';
-            }
         }
 
         spriteFont.addSprites.Clear();

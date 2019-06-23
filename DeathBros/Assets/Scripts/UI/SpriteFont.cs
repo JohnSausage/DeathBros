@@ -22,6 +22,16 @@ public class SpriteFont : ScriptableObject
 
         return sprites;
     }
+
+    public Sprite GetSprite(char c)
+    {
+        return chars.Find(x => x.character == c).sprite;
+    }
+
+    public int GetWidth(char c)
+    {
+        return chars.Find(x => x.character == c).width;
+    }
 }
 
 [System.Serializable]
@@ -29,6 +39,7 @@ public class SpriteFontCharacter
 {
     public char character;
     public Sprite sprite;
+    public int width;
 
     public SpriteFontCharacter() { }
 
