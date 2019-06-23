@@ -22,7 +22,10 @@ public class SoundsSO : ScriptableObject
         {
             for (int i = 0; i < sounds.Count; i++)
             {
-                AudioManager.AddSound(sounds[i]);
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.AddSound(sounds[i]);
+                }
             }
 
             loaded = true;

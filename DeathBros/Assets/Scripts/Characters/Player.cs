@@ -513,6 +513,34 @@ public class Player : Character
         }
     }
 
+    public override bool SCS_CheckForThrowAttacks()
+    {
+
+        if (DirectionalInput != Vector2.zero)
+        {
+            if (Mathf.Abs(DirectionalInput.x) > 0.5f)
+            {
+                Direction = DirectionalInput.x;
+
+                ChrSM.ChangeState(this, fTiltAtk);
+            }
+            else if (DirectionalInput.y > 0.5f)
+            {
+                ChrSM.ChangeState(this, uTiltAtk);
+            }
+            else if (DirectionalInput.y < -0.5f)
+            {
+                ChrSM.ChangeState(this, dTiltAtk);
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public override void SCS_CheckForTech()
     {
         if (HoldShield)

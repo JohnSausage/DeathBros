@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: dAir
+  m_Name: specFAirSpike
   m_EditorClassIdentifier: 
   frames:
-  - duration: 8
-    sprite: {fileID: 21300068, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 15
+    sprite: {fileID: 21300170, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -22,12 +22,12 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.03125, y: -0.03125}
-      radius: 0.4
+    - position: {x: -0.140625, y: -0.03125}
+      radius: 0.3
     hitboxes: []
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300070, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300172, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -36,28 +36,28 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.125, y: -0.03125}
-      radius: 0.4
+    - position: {x: -0.078125, y: -0.03125}
+      radius: 0.3
     hitboxes:
-    - position: {x: 0.453125, y: -0.34375}
-      radius: 1
+    - position: {x: -0.890625, y: 0.28125}
+      radius: 0.6
       damage:
-        damageNumber: 20
-        knockBackDirection: {x: 1, y: -5}
+        damageNumber: 25
+        knockBackDirection: {x: 1, y: -4}
         baseKnockback: 30
-        knockbackGrowth: 25
-        hitStunFrames: 20
+        knockbackGrowth: 20
+        hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0.3, y: 0}
+        positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 13904
+      ID: 32750
       getNewID: 0
     soundName: 
-  - duration: 2
-    sprite: {fileID: 21300072, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300174, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -66,42 +66,28 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.03125, y: -0.03125}
-      radius: 0.4
+    - position: {x: -0.078125, y: -0.03125}
+      radius: 0.3
     hitboxes:
-    - position: {x: -0.578125, y: -0.28125}
+    - position: {x: 0.265625, y: 0.34375}
       radius: 1
       damage:
-        damageNumber: 20
-        knockBackDirection: {x: 1, y: -5}
+        damageNumber: 25
+        knockBackDirection: {x: 1, y: -4}
         baseKnockback: 30
-        knockbackGrowth: 25
-        hitStunFrames: 20
+        knockbackGrowth: 20
+        hitStunFrames: 30
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0.3, y: 0}
+        positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 13904
+      ID: 32750
       getNewID: 0
-    soundName: NES_swoosh1
-  - duration: 2
-    sprite: {fileID: 21300074, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
-    newHitID: 0
-    applyGravity: 1
-    resetVelocity: 0
-    forceMovement: {x: 0, y: 0}
-    addMovment: {x: 0, y: 0}
-    spawnProjectile: {x: 0, y: 0}
-    spawnHoldItem: {fileID: 0}
-    hurtboxes:
-    - position: {x: -0.03125, y: -0.03125}
-      radius: 0.4
-    hitboxes: []
     soundName: 
-  - duration: 12
-    sprite: {fileID: 21300076, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300176, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
     resetVelocity: 0
@@ -110,19 +96,49 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.03125, y: -0.03125}
-      radius: 0.4
+    - position: {x: -0.015625, y: -0.0625}
+      radius: 0.3
+    hitboxes:
+    - position: {x: 0.453125, y: 0.28125}
+      radius: 1
+      damage:
+        damageNumber: 25
+        knockBackDirection: {x: 1, y: -4}
+        baseKnockback: 30
+        knockbackGrowth: 20
+        hitStunFrames: 30
+        damageType: 0
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 32750
+      getNewID: 0
+    soundName: 
+  - duration: 20
+    sprite: {fileID: 21300178, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
+    newHitID: 0
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: 0.046875, y: -0.09375}
+      radius: 0.3
     hitboxes: []
     soundName: 
   damages:
-  - damageNumber: 20
-    knockBackDirection: {x: 1, y: -5}
+  - damageNumber: 25
+    knockBackDirection: {x: 1, y: -4}
     baseKnockback: 30
-    knockbackGrowth: 25
-    hitStunFrames: 20
+    knockbackGrowth: 20
+    hitStunFrames: 30
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0.3, y: 0}
+    positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
     StatusEffect: {fileID: 0}

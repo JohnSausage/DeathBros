@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: grab
+  m_Name: grabAtk
   m_EditorClassIdentifier: 
   frames:
-  - duration: 10
+  - duration: 5
     sprite: {fileID: 21300000, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
       radius: 0.3
     hitboxes: []
     soundName: 
-  - duration: 5
+  - duration: 8
     sprite: {fileID: 21300180, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 81331
+      ID: 25044
       getNewID: 0
     soundName: 
   - duration: 10
@@ -76,7 +76,7 @@ MonoBehaviour:
     baseKnockback: 0
     knockbackGrowth: 0
     hitStunFrames: 0
-    damageType: 0
+    damageType: 5
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
     positionalInfluence: {x: 0, y: 0}

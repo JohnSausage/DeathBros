@@ -208,7 +208,7 @@ public class SCS_Walking : SCState
             chr.isRunning = true;
         }
 
-        
+
 
 
         chr.SCS_CheckForWalkingOptions();
@@ -1350,7 +1350,7 @@ public class SCS_Dead : SCState
     {
         base.Execute(chr);
 
-        if(chr.Ctr.IsGrounded)
+        if (chr.Ctr.IsGrounded)
         {
             chr.Anim.ChangeAnimation(chr.StatesSO.dead_anim);
         }
@@ -1539,14 +1539,15 @@ public class SCS_Grab : SCState
         base.Execute(chr);
 
 
-        chr.SetInputs(Vector2.zero);
-
         if (chr.Timer >= 10)
         {
-            //if (chr.CheckForThrowAttacks())
-            //{
-            //    chr.GetInputs();
-            //}
+            chr.GetInputs();
+            chr.SCS_CheckForThrowAttacks();
+            chr.SetInputs(Vector2.zero);
+        }
+        else
+        {
+            chr.SetInputs(Vector2.zero);
         }
     }
 }
@@ -1569,7 +1570,7 @@ public class SCS_GetGrabbed : SCState
     {
         base.Execute(chr);
 
-        chr.Ctr.ForceMovement = ((chr.currentDamage.position - chr.Position)) * 20f + Vector2.up;
+        chr.Ctr.ForceMovement = ((chr.GetGrabbedPosition - chr.Position)) * 20f + Vector2.up;
     }
 
     public override void Exit(Character chr)

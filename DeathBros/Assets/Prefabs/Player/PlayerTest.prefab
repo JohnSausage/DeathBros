@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036813610648658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.88, y: -60.47, z: 0}
+  m_LocalPosition: {x: 69.63, y: -49.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4988473889698574}
@@ -296,7 +296,7 @@ MonoBehaviour:
   dAir: {fileID: 11400000, guid: 819a2609c410e7d43a3b4c25cd5dc6c7, type: 2}
   uAir: {fileID: 11400000, guid: 9eedbbd7aad4fb2499396aa2c4f5375a, type: 2}
   nSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
-  sSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  sSpec: {fileID: 11400000, guid: 9d6643c9b367cd542b3717fee813e531, type: 2}
   uSpec: {fileID: 11400000, guid: ab6381f80f6fd64488dc658e562109d1, type: 2}
   dSpec: {fileID: 11400000, guid: ab6381f80f6fd64488dc658e562109d1, type: 2}
   pickUpRadius: 1.5

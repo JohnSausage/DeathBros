@@ -72,6 +72,7 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 LaunchVector { get; set; }
     public int AirdodgeCounter { get; set; }
     public float walkSpeedReduction { get; protected set; }
+    public Vector2 GetGrabbedPosition { get; protected set; }
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -278,6 +279,12 @@ public class Character : _MB, ICanTakeDamage
     public virtual void HitEnemy(Character enemy, Damage damage)
     {
         if (AEnemyHit != null) AEnemyHit(enemy, damage);
+
+        if(damage.damageType == EDamageType.Grab)
+        {
+            GrabEnemy(enemy);
+            enemy.GetGrabbed(this, damage.position + Vector2.right * Direction);
+        }
     }
 
     public virtual void GetHit(Damage damage)
@@ -385,6 +392,17 @@ public class Character : _MB, ICanTakeDamage
         if (ATakesDamage != null) ATakesDamage(damage);
         if (ATakesDamageAll != null) ATakesDamageAll(damage, this);
         if (ACharacterTakesDasmage != null) ACharacterTakesDasmage(this, damage);
+    }
+
+    protected virtual void GrabEnemy(Character enemy)
+    {
+        SCS_ChangeState(StaticStates.grab);
+    }
+
+    public virtual void GetGrabbed(Character enemy, Vector2 getGrabbedPosition)
+    {
+        SCS_ChangeState(StaticStates.getGrabbed);
+        GetGrabbedPosition = getGrabbedPosition;
     }
 
     public virtual void Die()
@@ -568,6 +586,11 @@ public class Character : _MB, ICanTakeDamage
     public virtual void SCS_CheckForGroundAttacks()
     {
 
+    }
+
+    public virtual bool SCS_CheckForThrowAttacks()
+    {
+        return false;
     }
 
     public virtual void SCS_CheckIfGrounded()

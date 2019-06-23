@@ -46,14 +46,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
         knockbackGrowth: 12
-        hitStunFrames: 25
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 15248
+      ID: 2292
       getNewID: 0
     - position: {x: 0.203125, y: 0.71875}
       radius: 0.65
@@ -62,14 +62,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
         knockbackGrowth: 12
-        hitStunFrames: 25
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 15248
+      ID: 2292
       getNewID: 0
     soundName: 
   - duration: 2
@@ -92,14 +92,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
         knockbackGrowth: 12
-        hitStunFrames: 25
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 15248
+      ID: 2292
       getNewID: 0
     - position: {x: -0.046875, y: 0.75}
       radius: 0.65
@@ -108,14 +108,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 5}
         baseKnockback: 6
         knockbackGrowth: 12
-        hitStunFrames: 25
+        hitStunFrames: 20
         damageType: 0
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 15248
+      ID: 2292
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10
@@ -137,7 +137,7 @@ MonoBehaviour:
     knockBackDirection: {x: 0, y: 5}
     baseKnockback: 6
     knockbackGrowth: 12
-    hitStunFrames: 25
+    hitStunFrames: 20
     damageType: 0
     attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 0}

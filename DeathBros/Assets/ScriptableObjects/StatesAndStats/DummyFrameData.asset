@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0bc4342d105f44385d1afb45a3dd33, type: 3}
+  m_Name: DummyFrameData
+  m_EditorClassIdentifier: 
+  idle_anim: idle
+  walking_anim: idle
+  running_anim: idle
+  jumpsquat_anim: idle
+  jumpsquat_duration: 5
+  jumpUp_anim: idle
+  jumpDown_anim: idle
+  landing_anim: idle
+  landing_duration: 4
+  hitstunUp_anim: idle
+  hitstunDown_anim: idle
+  hitfreeze_anim: idle
+  hitfreeze_duration: 5
+  hitland_anim: idle
+  hitland_duration: 10
+  shield_anim: idle
+  die_anim: idle
+  dead_anim: die
+  standup_anim: idle
+  hitlanded_anim: idle
+  hitLanded_minDuration: 8
+  getGrabbed_anim: idle
+  doublejumpsquat_anim: idle
+  doublejumpsquat_duration: 3
+  wallslidingDown_anim: idle
+  wallslidingUp_anim: idle
+  walljumpstart_anim: idle
+  wallJumpHeightReductionFactor: 0.75
+  walljumpstart_duration: 3
+  walljumping_anim: idle
+  walljumping_duration: 20
+  skid_anim: idle
+  skid_duration: 6
+  skid_idleOutDuration: 3
+  dash_anim: idle
+  dash_duration: 10
+  crouch_anim: idle
+  roll_anim: idle
+  throwitem_anim: idle
+  throwitemaerial_anim: idle
+  airdodge_anim: idle
+  airdodge_duration: 20
+  shieldhit_anim: idle
+  grab_anim: idle

@@ -54,4 +54,4 @@ MonoBehaviour:
   airdodge_anim: airDodge
   airdodge_duration: 15
   shieldhit_anim: shieldHit
-  grab_anim: grab
+  grab_anim: grabHold

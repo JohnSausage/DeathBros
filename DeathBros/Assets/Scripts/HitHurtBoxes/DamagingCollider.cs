@@ -18,7 +18,7 @@ public class DamagingCollider : MonoBehaviour
         SetCollider();
 
         collisions = new RaycastHit2D[10];
-        damage.position = transform.position;
+        damage.position = (Vector2)transform.position + Col.offset;
         damage.GenerateID();
     }
 
