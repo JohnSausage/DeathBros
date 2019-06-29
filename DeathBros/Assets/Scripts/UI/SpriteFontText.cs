@@ -6,8 +6,10 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class SpriteFontText : MonoBehaviour
 {
-    public string text;
-    public int spaceLeft;
+    [SerializeField]
+    protected string text;
+
+    public Color color = Color.black;
 
     [Space]
 
@@ -15,7 +17,19 @@ public class SpriteFontText : MonoBehaviour
 
     [Space]
 
+    public int spaceLeft;
+    public bool alignLeft;
+    public bool alignCenter;
+    public bool alignRight;
+    public bool alignMiddle;
+
+    [Space]
+
     public bool updateText;
+
+
+
+    protected int textWidth;
 
 
     void Awake()
@@ -25,7 +39,7 @@ public class SpriteFontText : MonoBehaviour
 
     void Update()
     {
-        if(updateText == true)
+        if (updateText == true)
         {
             updateText = false;
 
@@ -36,9 +50,25 @@ public class SpriteFontText : MonoBehaviour
                 DestroyImmediate(images[i].gameObject);
             }
 
-            int positionX = spaceLeft * 2;
+            int positionX = 0;
 
-            foreach(char c in text)
+            if (alignRight)
+            {
+                positionX = -spaceLeft * 2;
+            }
+            if (alignLeft)
+            {
+                positionX = spaceLeft * 2;
+            }
+
+            textWidth = 0;
+
+            foreach (char c in text)
+            {
+                textWidth += spriteFont.GetWidth(c) * 2;
+            }
+
+            foreach (char c in text)
             {
                 GameObject newGO = new GameObject();
                 newGO.name = spriteFont.name + "_" + c;
@@ -47,17 +77,40 @@ public class SpriteFontText : MonoBehaviour
                 Image newImage = newGO.AddComponent<Image>();
                 newImage.sprite = spriteFont.GetSprite(c);
                 newImage.SetNativeSize();
+                newImage.color = color;
 
-                newGO.transform.localPosition = new Vector3(positionX, 0, 0);
                 newGO.transform.localScale = new Vector3(1, 1, 1);
-                positionX += spriteFont.GetWidth(c) * 2;
 
                 RectTransform rectTransform = newImage.GetComponent<RectTransform>();
 
-                rectTransform.anchorMin = new Vector2(0, 1);
-                rectTransform.anchorMax = new Vector2(0, 1);
-                rectTransform.pivot = new Vector2(0, 1);
-            }        
+                if (alignRight)
+                {
+                    newGO.transform.localPosition = new Vector3(positionX - textWidth, -1, 0);
+                    rectTransform.anchorMin = new Vector2(1, 0.5f);
+                    rectTransform.anchorMax = new Vector2(1, 0.5f);
+                }
+                if (alignLeft)
+                {
+                    newGO.transform.localPosition = new Vector3(positionX, -1, 0);
+                    rectTransform.anchorMin = new Vector2(0, 0.5f);
+                    rectTransform.anchorMax = new Vector2(0, 0.5f);
+                }
+
+                positionX += spriteFont.GetWidth(c) * 2;
+
+                rectTransform.pivot = new Vector2(0, 0.5f);
+            }
         }
+
+        if (alignRight)
+        {
+
+        }
+    }
+
+    public void SetText(string text)
+    {
+        this.text = text;
+        updateText = true;
     }
 }

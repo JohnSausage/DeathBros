@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,17 +13,23 @@ public class ButtonSetInput : MonoBehaviour
     [Space]
 
     [SerializeField]
-    protected TextMeshProUGUI currentInputText;
+    protected SpriteFontText currentInputText;
 
     [SerializeField]
-    protected TextMeshProUGUI setInputText;
+    protected SpriteFontText setInputText;
+
+    //[SerializeField]
+    //protected TextMeshProUGUI currentInputText;
+
+    //[SerializeField]
+    //protected TextMeshProUGUI setInputText;
 
     protected Button button;
     protected string currentButton;
 
     protected void Start()
     {
-        setInputText.text = "Set " + inputName;
+        setInputText.SetText("SET " + inputName.ToUpper());
 
         button = GetComponent<Button>();
         button.onClick.AddListener(ClickButton);
@@ -38,7 +44,7 @@ public class ButtonSetInput : MonoBehaviour
         if (InputManager.Instance != null)
         {
             currentButton = InputManager.Instance.GetInput(inputName).GetButtonName();
-            currentInputText.text = currentButton;
+            currentInputText.SetText(currentButton.ToUpper());
         }
     }
 

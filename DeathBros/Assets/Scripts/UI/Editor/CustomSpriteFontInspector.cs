@@ -74,7 +74,8 @@ public class CustomSpriteFontInspector : Editor
         {
             spriteFont.chars.Clear();
         }
-        
+
+        EditorUtility.SetDirty(target);
 
         base.OnInspectorGUI();
     }

@@ -106,8 +106,13 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator IHitFreezeThenShake(Damage damage, Character chr)
     {
-        Time.timeScale = 0.1f;
-        yield return new WaitForSecondsRealtime(damage.damageNumber / 100);
+        Time.timeScale = 0.05f;
+
+        float freezeTime = Mathf.Clamp(damage.damageNumber, 1f, 10f);
+        freezeTime = freezeTime / 60f;
+
+        yield return new WaitForSecondsRealtime(freezeTime);
+
         Time.timeScale = 1f;
 
         ShakeCameraOnDamage(damage, chr);
