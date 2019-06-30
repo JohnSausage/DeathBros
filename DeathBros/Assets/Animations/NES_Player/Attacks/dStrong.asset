@@ -46,14 +46,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
-        hitStunFrames: 0
+        hitStunFrames: 8
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 55803
+      ID: 96918
       getNewID: 0
     soundName: 
   - duration: 3
@@ -76,14 +76,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
-        hitStunFrames: 0
+        hitStunFrames: 8
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 55803
+      ID: 96918
       getNewID: 0
     - position: {x: -0.203125, y: -0.5625}
       radius: 0.5
@@ -92,14 +92,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
-        hitStunFrames: 0
+        hitStunFrames: 8
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 55803
+      ID: 96918
       getNewID: 0
     soundName: 
   - duration: 3
@@ -122,14 +122,14 @@ MonoBehaviour:
         knockBackDirection: {x: 0, y: 1}
         baseKnockback: 5
         knockbackGrowth: 2
-        hitStunFrames: 0
+        hitStunFrames: 8
         damageType: 2
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 55803
+      ID: 96918
       getNewID: 0
     soundName: 
   - duration: 10
@@ -166,14 +166,14 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
-        hitStunFrames: 0
+        hitStunFrames: 20
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 3473
+      ID: 19692
       getNewID: 0
     soundName: 
   - duration: 3
@@ -196,14 +196,14 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
-        hitStunFrames: 0
+        hitStunFrames: 20
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 3473
+      ID: 19692
       getNewID: 0
     - position: {x: -0.359375, y: 0.15625}
       radius: 0.6
@@ -212,14 +212,14 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
-        hitStunFrames: 0
+        hitStunFrames: 20
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 3473
+      ID: 19692
       getNewID: 0
     soundName: 
   - duration: 3
@@ -242,14 +242,14 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 15
         knockbackGrowth: 10
-        hitStunFrames: 0
+        hitStunFrames: 20
         damageType: 1
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 3473
+      ID: 19692
       getNewID: 0
     soundName: 
   - duration: 20
@@ -271,7 +271,7 @@ MonoBehaviour:
     knockBackDirection: {x: 0, y: 1}
     baseKnockback: 5
     knockbackGrowth: 2
-    hitStunFrames: 0
+    hitStunFrames: 8
     damageType: 2
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -282,10 +282,10 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: 2}
     baseKnockback: 15
     knockbackGrowth: 10
-    hitStunFrames: 0
+    hitStunFrames: 20
     damageType: 1
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: 0.3, y: 0}
     position: {x: 0, y: 0}
     StatusEffect: {fileID: 0}

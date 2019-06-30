@@ -6,6 +6,15 @@ using UnityEngine.EventSystems;
 
 public class ScrollRectAutoScroll : MonoBehaviour
 {
+    [SerializeField]
+    protected float buttonHeight;
+
+    [SerializeField]
+    protected float scrollRectHeight;
+
+    [SerializeField]
+    protected float spacing;
+
     protected ScrollRect scrollRect;
 
     public List<Selectable> selectables;
@@ -18,6 +27,9 @@ public class ScrollRectAutoScroll : MonoBehaviour
         {
             selectables.Add(s);
         }
+
+        buttonHeight = selectables[0].GetComponent<RectTransform>().rect.height + spacing;
+        scrollRectHeight = GetComponent<RectTransform>().rect.height;
     }
 
     void Update()
@@ -26,7 +38,9 @@ public class ScrollRectAutoScroll : MonoBehaviour
         {
             if (selectables[i].gameObject == EventSystem.current.currentSelectedGameObject)
             {
-                scrollRect.verticalNormalizedPosition = 1f - (float)((float)i / (float)(selectables.Count - 1f));
+                float relPos = (float)((float)i / (float)(selectables.Count - 1f));
+
+                scrollRect.verticalNormalizedPosition = 1f - relPos;
             }
         }
     }

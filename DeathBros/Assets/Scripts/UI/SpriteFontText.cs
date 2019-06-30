@@ -50,6 +50,15 @@ public class SpriteFontText : MonoBehaviour
                 DestroyImmediate(images[i].gameObject);
             }
 
+
+            textWidth = 0;
+
+            foreach (char c in text)
+            {
+                textWidth += spriteFont.GetWidth(c) * 2;
+            }
+
+
             int positionX = 0;
 
             if (alignRight)
@@ -60,13 +69,12 @@ public class SpriteFontText : MonoBehaviour
             {
                 positionX = spaceLeft * 2;
             }
-
-            textWidth = 0;
-
-            foreach (char c in text)
+            if(alignCenter)
             {
-                textWidth += spriteFont.GetWidth(c) * 2;
+                positionX = (int)( - textWidth / 2f);
             }
+
+            
 
             foreach (char c in text)
             {
@@ -94,6 +102,12 @@ public class SpriteFontText : MonoBehaviour
                     newGO.transform.localPosition = new Vector3(positionX, -1, 0);
                     rectTransform.anchorMin = new Vector2(0, 0.5f);
                     rectTransform.anchorMax = new Vector2(0, 0.5f);
+                }
+                if (alignCenter)
+                {
+                    newGO.transform.localPosition = new Vector3(positionX, -1, 0);
+                    rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
                 }
 
                 positionX += spriteFont.GetWidth(c) * 2;
