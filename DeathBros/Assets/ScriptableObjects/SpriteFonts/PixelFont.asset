@@ -233,19 +233,19 @@ MonoBehaviour:
     width: 4
   - character: 105
     sprite: {fileID: 21300146, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 2
   - character: 106
     sprite: {fileID: 21300148, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 3
   - character: 107
     sprite: {fileID: 21300150, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4
   - character: 108
     sprite: {fileID: 21300152, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 2
   - character: 109
     sprite: {fileID: 21300154, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 6
   - character: 110
     sprite: {fileID: 21300156, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4
@@ -275,7 +275,7 @@ MonoBehaviour:
     width: 4
   - character: 119
     sprite: {fileID: 21300174, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 6
   - character: 120
     sprite: {fileID: 21300176, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4

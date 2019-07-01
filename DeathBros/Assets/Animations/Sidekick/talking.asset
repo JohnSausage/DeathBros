@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: talking
   m_EditorClassIdentifier: 
   frames:
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300006, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -23,8 +23,8 @@ MonoBehaviour:
     spawnHoldItem: {fileID: 0}
     hurtboxes: []
     hitboxes: []
-    soundName: 
-  - duration: 4
+    soundName: SideKick_Talk
+  - duration: 5
     sprite: {fileID: 21300008, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300010, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300012, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -60,7 +60,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300014, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 4
+  - duration: 5
     sprite: {fileID: 21300016, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0
     applyGravity: 1

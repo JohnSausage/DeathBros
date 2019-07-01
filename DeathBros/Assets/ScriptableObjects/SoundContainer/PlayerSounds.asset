@@ -33,3 +33,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ea13b90cd328ced439a78609380a6d47, type: 3}
     volume: 0.9
     loop: 0
+  - name: SideKick_Talk
+    clip: {fileID: 8300000, guid: 98cf12d08b2262f46be16d76f12f39de, type: 3}
+    volume: 0.8
+    loop: 0
