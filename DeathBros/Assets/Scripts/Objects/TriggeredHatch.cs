@@ -5,19 +5,36 @@ using UnityEngine;
 public class TriggeredHatch : MonoBehaviour
 {
     [SerializeField]
+    protected float movespeed = 5f;
+    [SerializeField]
+    protected Vector2 localPositionOpen = new Vector2(1.6f, 0f);
+
+    [SerializeField]
     protected List<GameObject> triggerGOs;
 
+    [SerializeField]
+    protected string triggerdSound = "NES_pickUp";
 
     [Space]
 
     [SerializeField]
     protected GameObject door;
 
+    protected BoxCollider2D doorCol;
+
     protected List<ITrigger> triggers;
+
     protected bool isOpen = false;
+
+    protected bool moveDoor = false;
+
+    protected Vector2 targetPosition;
+
 
     void Start()
     {
+        doorCol = door.GetComponent<BoxCollider2D>();
+
         triggers = new List<ITrigger>();
 
         foreach (GameObject go in triggerGOs)
@@ -45,50 +62,63 @@ public class TriggeredHatch : MonoBehaviour
                 triggered = false;
             }
         }
-
-        if (triggered == true)
+        if (isOpen == false)
         {
-            OpenDoor();
+            if (triggered == true)
+            {
+                OpenDoor();
+            }
         }
         else
         {
-            CloseDoor();
+            if (triggered == false)
+            {
+                CloseDoor();
+            }
         }
+    }
+
+    protected void FixedUpdate()
+    {
+        MoveDoor();
     }
 
     protected void OpenDoor()
     {
         isOpen = true;
-        StartCoroutine(MoveDoor(1.6f));
-        //door.transform.localPosition = new Vector3(1.6f, 0, 0);
+        targetPosition = localPositionOpen;
+        moveDoor = true;
+
+        doorCol.enabled = false;
+
+        GameManager.MainCamera.Shake(20);
+        AudioManager.PlaySound(triggerdSound);
     }
 
     protected void CloseDoor()
     {
         isOpen = false;
-        StartCoroutine(MoveDoor(0f));
-        //door.transform.localPosition = new Vector3(0, 0, 0);
+        targetPosition = Vector2.zero;
+        moveDoor = true;
+
+        GameManager.MainCamera.Shake(20);
     }
 
-    protected IEnumerator MoveDoor(float posX)
+    protected void MoveDoor()
     {
-        if(isOpen == true)
+        if (moveDoor == true)
         {
-            while (door.transform.localPosition.x < posX)
-            {
-                door.transform.Translate(Vector2.right  / 60f);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        else
-        {
-            while (door.transform.localPosition.x > 0)
-            {
-                door.transform.Translate(Vector2.left / 60f);
-                yield return new WaitForEndOfFrame();
-            }
-        }
+            door.transform.localPosition = Vector3.MoveTowards(door.transform.localPosition, targetPosition, movespeed / 60f);
 
-        
+            if ((Vector2)door.transform.localPosition == targetPosition)
+            {
+                moveDoor = false;
+
+                if (isOpen == false)
+                {
+                    doorCol.enabled = true;
+                }
+            }
+        }
     }
 }

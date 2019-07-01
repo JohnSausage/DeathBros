@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
     protected BoxCollider2D activateGoCollider;
 
     public static Vector2 Position { get { return Camera.main.transform.position; } }
-    public Bounds ActivateionBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
+    public Bounds ActivationBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
 
     void Start()
     {
@@ -76,6 +76,13 @@ public class CameraController : MonoBehaviour
         }
 
         MoveCamera();
+    }
+
+    public void Shake(int timeF, float speed = 1, float strength = 10)
+    {
+        shakeTimer += timeF;
+        shakeSpeed = speed;
+        shakeStrength = strength;
     }
 
     private void ShakeCamera()
