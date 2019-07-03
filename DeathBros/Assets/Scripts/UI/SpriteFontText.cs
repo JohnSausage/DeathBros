@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SpriteFontText : MonoBehaviour
 {
     [SerializeField]
+    [TextArea(3,10)]
     protected string text;
 
     public Color color = Color.black;
@@ -17,7 +18,10 @@ public class SpriteFontText : MonoBehaviour
 
     [Space]
 
-    public int spaceLeft;
+    public int spacingX;
+    public int spacingY = 8;
+    public int lineWidth = 256;
+
     public bool alignLeft;
     public bool alignCenter;
     public bool alignRight;
@@ -63,18 +67,18 @@ public class SpriteFontText : MonoBehaviour
 
             if (alignRight)
             {
-                positionX = -spaceLeft * 2;
+                positionX = -spacingX * 2;
             }
             if (alignLeft)
             {
-                positionX = spaceLeft * 2;
+                positionX = spacingX * 2;
             }
-            if(alignCenter)
+            if (alignCenter)
             {
-                positionX = (int)( - textWidth / 2f);
+                positionX = (int)(-textWidth / 2f);
             }
 
-            
+            int lineNumber = 0;
 
             foreach (char c in text)
             {
@@ -84,6 +88,10 @@ public class SpriteFontText : MonoBehaviour
 
                 Image newImage = newGO.AddComponent<Image>();
                 newImage.sprite = spriteFont.GetSprite(c);
+                if(newImage.sprite == null)
+                {
+                    newImage.enabled = false;
+                }
                 newImage.SetNativeSize();
                 newImage.color = color;
 
@@ -93,24 +101,45 @@ public class SpriteFontText : MonoBehaviour
 
                 if (alignRight)
                 {
-                    newGO.transform.localPosition = new Vector3(positionX - textWidth, -1, 0);
+                    newGO.transform.localPosition = new Vector3(positionX - textWidth, (lineNumber * -spacingY) - 1, 0);
                     rectTransform.anchorMin = new Vector2(1, 0.5f);
                     rectTransform.anchorMax = new Vector2(1, 0.5f);
                 }
                 if (alignLeft)
                 {
-                    newGO.transform.localPosition = new Vector3(positionX, -1, 0);
+                    newGO.transform.localPosition = new Vector3(positionX, (lineNumber * -spacingY) - 1, 0);
                     rectTransform.anchorMin = new Vector2(0, 0.5f);
                     rectTransform.anchorMax = new Vector2(0, 0.5f);
                 }
                 if (alignCenter)
                 {
-                    newGO.transform.localPosition = new Vector3(positionX, -1, 0);
+                    newGO.transform.localPosition = new Vector3(positionX, (lineNumber * -spacingY) - 1, 0);
                     rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
                     rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
                 }
 
                 positionX += spriteFont.GetWidth(c) * 2;
+
+                if (positionX >= lineWidth || c == 10)
+                {
+                    lineNumber++;
+
+                    positionX = 0;
+
+                    if (alignRight)
+                    {
+                        positionX = -spacingX * 2;
+                    }
+                    if (alignLeft)
+                    {
+                        positionX = spacingX * 2;
+                    }
+                    if (alignCenter)
+                    {
+                        positionX = (int)(-textWidth / 2f);
+                    }
+                }
+
 
                 rectTransform.pivot = new Vector2(0, 0.5f);
             }

@@ -17,6 +17,7 @@ public class InputManager : MonoBehaviour
     public static DualInput Attack;
     public static DualInput Special;
     public static DualInput Grab;
+    public static DualInput Interact;
 
     public static DualInput Pause;
 
@@ -71,6 +72,7 @@ public class InputManager : MonoBehaviour
         Attack = new DualInput("Attack");
         Special = new DualInput("Special");
         Grab = new DualInput("Grab");
+        Interact = new DualInput("Interact");
 
         Pause = new DualInput("Pause");
 
@@ -85,6 +87,8 @@ public class InputManager : MonoBehaviour
         Jump.SetDefault(KeyCode.Space);
         Shield.SetDefault(KeyCode.LeftShift);
         Special.SetDefault(KeyCode.LeftAlt);
+        Interact.SetDefault(KeyCode.Q);
+
         CUp.SetDefault(KeyCode.UpArrow);
         CDown.SetDefault(KeyCode.DownArrow);
         CLeft.SetDefault(KeyCode.LeftArrow);
@@ -107,6 +111,7 @@ public class InputManager : MonoBehaviour
         Inputs.Add(Attack);
         Inputs.Add(Special);
         Inputs.Add(Grab);
+        Inputs.Add(Interact);
 
         Inputs.Add(Pause);
     }
@@ -156,6 +161,7 @@ public class InputManager : MonoBehaviour
             CheckIfBuffered(Jump2);
             CheckIfBuffered(Attack);
             CheckIfBuffered(Special);
+            CheckIfBuffered(Interact);
         }
     }
 

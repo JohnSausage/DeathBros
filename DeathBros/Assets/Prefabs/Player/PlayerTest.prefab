@@ -344,6 +344,9 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 2048
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!114 &114949556021984404
 MonoBehaviour:
   m_ObjectHideFlags: 1

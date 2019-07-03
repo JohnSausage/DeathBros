@@ -54,8 +54,10 @@ public class Player : Character
     public float pickUpRadius = 1.5f;
 
     public LayerMask enemyMask;
+    public LayerMask interactionMask;
 
     public bool Grab { get; set; }
+    public bool Interact { get; protected set; }
 
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
@@ -216,6 +218,15 @@ public class Player : Character
         if (InputManager.BufferdDown("Grab")) Grab = true;
         else Grab = false;
 
+        if (InputManager.BufferdDown("Interact"))
+        {
+            InputManager.ClearBuffer();
+            Interact = true;
+        }
+        else
+        {
+            Interact = false;
+        }
     }
 
     protected override void FixedUpdate()
@@ -640,6 +651,27 @@ public class Player : Character
         {
             SCS_ChangeState(StaticStates.jumpsquat);
         }
+
+        if (Interact)
+        {
+            CheckForInteraction();
+        }
+    }
+
+
+    protected void CheckForInteraction()
+    {
+        RaycastHit2D interactionCheck = Physics2D.CircleCast(Position, pickUpRadius, Vector2.zero, 0, interactionMask);
+
+        if (interactionCheck)
+        {
+            ICanInteract canInteract = interactionCheck.transform.GetComponent<ICanInteract>();
+
+            if (canInteract != null)
+            {
+                canInteract.StartInteraction(this);
+            }
+        }
     }
 
     public override void SCS_CheckForWalkingOptions()
@@ -677,6 +709,11 @@ public class Player : Character
             {
                 SCS_ChangeState(StaticStates.running);
             }
+        }
+
+        if (Interact)
+        {
+            CheckForInteraction();
         }
     }
 

@@ -37,3 +37,23 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 98cf12d08b2262f46be16d76f12f39de, type: 3}
     volume: 0.8
     loop: 0
+  - name: SideKick_Laugh1
+    clip: {fileID: 8300000, guid: 39ac71603dd00ac4b8a2d438f63de864, type: 3}
+    volume: 1
+    loop: 0
+  - name: SideKick_Talk1
+    clip: {fileID: 8300000, guid: 9e3e0c549bbad774688182cd01278ead, type: 3}
+    volume: 1
+    loop: 0
+  - name: SideKick_Talk2
+    clip: {fileID: 8300000, guid: a7ca9983a1ac3d24fa842e4343e90db2, type: 3}
+    volume: 1
+    loop: 0
+  - name: SideKick_Talk3
+    clip: {fileID: 8300000, guid: e492553eb6e7ebe4c9ada91a36b43ec4, type: 3}
+    volume: 1
+    loop: 0
+  - name: SideKick_Talk4
+    clip: {fileID: 8300000, guid: f704b81ccea16154b88503338f20b1c1, type: 3}
+    volume: 1
+    loop: 0

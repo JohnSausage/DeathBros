@@ -23,7 +23,7 @@ MonoBehaviour:
     spawnHoldItem: {fileID: 0}
     hurtboxes: []
     hitboxes: []
-    soundName: SideKick_Talk
+    soundName: 
   - duration: 5
     sprite: {fileID: 21300008, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
     newHitID: 0

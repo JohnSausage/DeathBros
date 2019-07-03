@@ -25,6 +25,14 @@ public class SidekickController : MonoBehaviour
     protected const float collsisionCheckRange = 0.75f;
     protected const float collisionCheckDistance = 5f;
 
+    protected bool talking = false;
+    protected int talkTimerF = 0;
+    protected int talkTime = 30;
+
+    protected string[] talkBits = { "SideKick_Talk1"," SideKick_Talk2"," SideKick_Talk3", "SideKick_Talk4" };
+    protected string laugh = "SideKick_Laugh";
+
+    protected int textNumber = 0;
 
     protected void Start()
     {
@@ -39,6 +47,18 @@ public class SidekickController : MonoBehaviour
     protected void FixedUpdate()
     {
         MoveToPlayer();
+
+        if(talking == true)
+        {
+            talkTimerF++;
+
+            if(talkTimerF > talkTime)
+            {
+                talkTimerF = 0;
+
+                AudioManager.PlaySound("SideKick_Talk1");
+            }
+        }
     }
 
     protected void MoveToPlayer()
@@ -48,9 +68,10 @@ public class SidekickController : MonoBehaviour
         Vector2 targetPosition = player.Position + new Vector2(playerOffset.x * player.Direction, playerOffset.y);
         float targetDistance = ((Vector2)transform.position - targetPosition).magnitude;
 
-        if (targetDistance > collisionCheckDistance)
+        if ((talking == false) && (targetDistance > collisionCheckDistance))
         {
-            Talk("Hey, wait for me!", 0.9f);
+            string text = "Hey, wait for me!";
+            Talk(text, 0.9f);                 
         }
 
 
@@ -92,16 +113,25 @@ public class SidekickController : MonoBehaviour
 
     protected void Talk(string text, float durationS = 1f)
     {
-        DialogueManager.QueueDialogue(text);
+        textNumber = 0;
+
+        foreach (char c in text)
+        {
+            textNumber += c;
+        }
+
+        DialogueManager.DisplayComment(new Dialogue(text));
         StartCoroutine(TalkAnimationCoroutine(durationS));
     }
 
     protected IEnumerator TalkAnimationCoroutine(float durationS)
     {
+        talking = true;
         fanim.ChangeAnimation("talking");
 
         yield return new WaitForSeconds(durationS);
 
         fanim.ChangeAnimation("idle");
+        talking = false;
     }
 }

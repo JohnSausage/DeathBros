@@ -25,12 +25,26 @@ public class SpriteFont : ScriptableObject
 
     public Sprite GetSprite(char c)
     {
-        return chars.Find(x => x.character == c).sprite;
+        SpriteFontCharacter sfc = chars.Find(x => x.character == c);
+
+        if (sfc == null)
+        {
+            return null;
+        }
+
+        return sfc.sprite;
     }
 
     public int GetWidth(char c)
     {
-        return chars.Find(x => x.character == c).width;
+        SpriteFontCharacter sfc = chars.Find(x => x.character == c);
+
+        if(sfc == null)
+        {
+            return 0;
+        }
+
+        return sfc.width;
     }
 }
 
