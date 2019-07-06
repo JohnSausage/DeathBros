@@ -67,6 +67,7 @@ public class Player : Character
     public static event Action<Character, Damage> EnemyHit;
 
     public event Action<float> AChangeComboPower;
+    public event Action APlayerInteract;
 
     public override void ClearStrongInputs()
     {
@@ -220,6 +221,11 @@ public class Player : Character
 
         if (InputManager.BufferdDown("Interact"))
         {
+            if(APlayerInteract != null)
+            {
+                APlayerInteract();
+            }
+
             InputManager.ClearBuffer();
             Interact = true;
         }

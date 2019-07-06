@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SidekickController : MonoBehaviour
+public class SidekickController : MonoBehaviour, IDialogueStarter
 {
     [SerializeField]
     protected float movespeed = 4;
@@ -10,7 +10,8 @@ public class SidekickController : MonoBehaviour
     [SerializeField]
     protected LayerMask collisionMask;
 
-
+    [SerializeField]
+    protected Dialogue waitDialogue;
 
     public Vector2 playerOffset { get; protected set; }
     public FrameAnimator fanim { get; protected set; }
@@ -68,10 +69,9 @@ public class SidekickController : MonoBehaviour
         Vector2 targetPosition = player.Position + new Vector2(playerOffset.x * player.Direction, playerOffset.y);
         float targetDistance = ((Vector2)transform.position - targetPosition).magnitude;
 
-        if ((talking == false) && (targetDistance > collisionCheckDistance))
+        if ((talking == false) && (targetDistance > collisionCheckDistance + 1))
         {
-            string text = "Hey, wait for me!";
-            Talk(text, 0.9f);                 
+            Talk("", 0.9f);                 
         }
 
 
@@ -101,7 +101,7 @@ public class SidekickController : MonoBehaviour
 
             targetPosition += perlinNoise;
 
-            Vector2 targetVector = targetPosition - (Vector2)transform.position;
+            //Vector2 targetVector = targetPosition - (Vector2)transform.position;
 
             newPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
         }
@@ -120,17 +120,43 @@ public class SidekickController : MonoBehaviour
             textNumber += c;
         }
 
-        DialogueManager.DisplayComment(new Dialogue(text));
-        StartCoroutine(TalkAnimationCoroutine(durationS));
+        DialogueManager.DisplayComment(this, waitDialogue);
     }
 
-    protected IEnumerator TalkAnimationCoroutine(float durationS)
+
+    public FrameAnimator GetFanim()
+    {
+        return fanim;
+    }
+
+    public string GetEmotionAnim(EDialogueEmotion dialogueAction)
+    {
+        string retVal = "";
+        switch(dialogueAction)
+        {
+            case EDialogueEmotion.Talking:
+                {
+                    retVal = "talking";
+                    break;
+                }
+
+            default:
+                {
+                    break;
+                }
+        }
+
+        return retVal;
+    }
+
+    public void StartConversation()
     {
         talking = true;
         fanim.ChangeAnimation("talking");
+    }
 
-        yield return new WaitForSeconds(durationS);
-
+    public void EndConversation()
+    {
         fanim.ChangeAnimation("idle");
         talking = false;
     }

@@ -14,7 +14,7 @@ public class FrameAnimator : _MB
 
     public float animationSpeed = 1;
 
-    private SpriteRenderer spr;
+    public SpriteRenderer Spr { get; protected set; }
     private HurtboxManager hubM;
     private HitboxManager hibM;
     private NES_BasicController2D ctr;
@@ -33,10 +33,10 @@ public class FrameAnimator : _MB
     {
         base.Init();
 
-        spr = GetComponent<SpriteRenderer>();
-        if (spr == null)
+        Spr = GetComponent<SpriteRenderer>();
+        if (Spr == null)
         {
-            spr = GetComponentInChildren<SpriteRenderer>();
+            Spr = GetComponentInChildren<SpriteRenderer>();
         }
 
         hubM = GetComponent<HurtboxManager>();
@@ -68,7 +68,7 @@ public class FrameAnimator : _MB
     {
         if(stopAnimation == true)
         {
-            spr.sprite = null;
+            Spr.sprite = null;
             return;
         }
 
@@ -78,7 +78,7 @@ public class FrameAnimator : _MB
         {
             Frame currentFrame = currentAnimation.frames[animTimer];
 
-            spr.sprite = currentFrame.sprite;
+            Spr.sprite = currentFrame.sprite;
 
             // set Hurtboxes
             if (hubM != null)
@@ -98,7 +98,7 @@ public class FrameAnimator : _MB
                 Vector2 forceMovement = currentFrame.forceMovement;
                 Vector2 addMovement = currentFrame.addMovment;
 
-                if (spr.flipX)
+                if (Spr.flipX)
                 {
                     forceMovement.x *= -1;
                     addMovement.x *= -1;
@@ -153,7 +153,7 @@ public class FrameAnimator : _MB
             // set sound
             if (frameTimer == 0 && currentFrame.soundName != "")
             {
-                AudioManager.PlaySound(currentFrame.soundName, spr.transform.position);
+                AudioManager.PlaySound(currentFrame.soundName, Spr.transform.position);
             }
 
 

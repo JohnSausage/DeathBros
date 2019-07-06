@@ -330,7 +330,7 @@ public class SCS_Jumping : SCState
             }
         }
 
-        if ((chr.Ctr.OnWallTimed == true) && (chr.StrongInputs.x == -chr.Ctr.WallDirection))
+        if ((chr.Ctr.OnWallTimed == true) && (chr.StrongInputs == Vector2.up))
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 
@@ -714,7 +714,7 @@ public class SCS_Wallsliding : SCState
         chr.SCS_CheckForAerials();
 
         //if (chr.StrongInputs.x == -chr.Ctr.WallDirection)
-        if (chr.StrongInputs.y == 1)
+        if (chr.StrongInputs == Vector2.up)
         {
             //walljumpStart.walljumpDirection = -chr.Ctr.wallDirection;
 

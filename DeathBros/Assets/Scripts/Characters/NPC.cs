@@ -24,25 +24,25 @@ public class NPC : MonoBehaviour, IDialogueStarter, ICanInteract
         fanim = GetComponent<FrameAnimator>();
     }
 
-    public string GetActionAnim(EDialogueAction dialogueAction)
+    public string GetEmotionAnim(EDialogueEmotion dialogueAction)
     {
         string retVal = "";
 
         switch (dialogueAction)
         {
-            case EDialogueAction.Talking:
+            case EDialogueEmotion.Talking:
                 {
                     retVal = talkingAnim;
                     break;
                 }
 
-            case EDialogueAction.Agreeing:
+            case EDialogueEmotion.Agreeing:
                 {
                     retVal = agreeingAnim;
                     break;
                 }
 
-            case EDialogueAction.Disagreeing:
+            case EDialogueEmotion.Disagreeing:
                 {
                     retVal = disagreeingAnim;
                     break;
