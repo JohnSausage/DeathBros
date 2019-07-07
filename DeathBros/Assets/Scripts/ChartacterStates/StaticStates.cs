@@ -1,5 +1,6 @@
 ﻿public static class StaticStates
 {
+    public static SCS_Spawn spawn = new SCS_Spawn();
     public static SCS_Idle idle = new SCS_Idle();
     public static SCS_Walking walking = new SCS_Walking();
     public static SCS_Running running = new SCS_Running();

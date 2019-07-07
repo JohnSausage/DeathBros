@@ -17,8 +17,6 @@ public class ChrStateMachine
     {
         CurrentState = new SCState();
         previousState = new SCState();
-
-        //StaticStates.Instance.Init();
     }
 
     public void Update(Character chr)
@@ -1578,5 +1576,47 @@ public class SCS_GetGrabbed : SCState
         base.Exit(chr);
 
         chr.Ctr.InControl = true;
+    }
+}
+
+///-----------------------------------------------------------------
+/// SCS_Spawn
+///-----------------------------------------------------------------
+public class SCS_Spawn : SCState
+{
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.Ctr.InControl = false;
+
+        //chr.jumpsUsed = 0;
+
+        chr.Anim.ChangeAnimation(chr.StatesSO.idle_anim);
+        chr.Spr.color = Color.clear;
+    }
+
+    public override void Execute(Character chr)
+    {
+        base.Execute(chr);
+
+        chr.SetInputs(Vector2.zero);
+
+        if(chr.Ctr.IsGrounded == true)
+        {
+            chr.SCS_ChangeState(StaticStates.idle);
+        }
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.Ctr.InControl = true;
+
+        chr.FrozenInputX = 0f;
+        chr.Spr.color = Color.white;
+
+        chr.SCS_OnSpawn();
     }
 }

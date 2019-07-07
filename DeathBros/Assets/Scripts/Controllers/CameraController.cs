@@ -12,6 +12,9 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
+    [SerializeField]
+    protected Image loadScreen;
+
     //[SerializeField]
     //private int pixelsPerUnit = 16;
 
@@ -30,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     protected BoxCollider2D activateGoCollider;
 
-    public static Vector2 Position { get { return Camera.main.transform.position; } }
+    public static Vector2 Position { get { return Camera.main.transform.position; } set { Camera.main.transform.position = value; } }
     public Bounds ActivationBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
 
     void Start()
@@ -38,14 +41,7 @@ public class CameraController : MonoBehaviour
         cam = Camera.main;
         activateGoCollider = GetComponent<BoxCollider2D>();
 
-        //levelBounds = levelBoundsTransform.GetComponent<Renderer>().bounds;
-
-        //Character.ATakesDamageAll += ShakeCameraOnDamage;
-        //Character.ATakesDamageAll += FreezeCameraOnDamage;
         Character.ATakesDamageAll += FreezeThenShakeCameraOnDamage;
-
-        //cam.orthographicSize = 160 / pixelsPerUnit / 2;
-        //canvasScaler.referenceResolution = new Vector2(cam.pixelRect.width, cam.pixelRect.height);
     }
 
     private void MoveCamera()
@@ -56,14 +52,6 @@ public class CameraController : MonoBehaviour
         {
             ShakeCamera();
         }
-
-        //Vector3 newLocalPosition = Vector3.zero;
-
-        //newLocalPosition.x = (Mathf.Round(transform.position.x * pixelsPerUnit) / pixelsPerUnit);
-        //newLocalPosition.y = (Mathf.Round(transform.position.y * pixelsPerUnit) / pixelsPerUnit);
-        //newLocalPosition.z = transform.position.z;
-
-        //transform.position = newLocalPosition;
     }
 
     private void FixedUpdate()
@@ -224,6 +212,46 @@ public class CameraController : MonoBehaviour
     //        activatedObject.isActive = false;
     //    }
     //}
+
+    public static void LoadScreenOn()
+    {
+        GameManager.MainCamera.StartCoroutine(GameManager.MainCamera.CLoadScreenOn());
+    }
+
+    public static void LoadScreenOff()
+    {
+        GameManager.MainCamera.StartCoroutine(GameManager.MainCamera.CLoadScreenOff());
+    }
+
+    public static void Black()
+    {
+        GameManager.MainCamera.loadScreen.gameObject.SetActive(true);
+        GameManager.MainCamera.loadScreen.color = Color.white;
+    }
+
+    protected IEnumerator CLoadScreenOn()
+    {
+        loadScreen.gameObject.SetActive(true);
+        for (int i = 0; i < 10; i++)
+        {
+            loadScreen.color = new Color(1, 1, 1, i * 0.1f);
+            yield return null;
+        }
+
+        loadScreen.color = Color.white;
+    }
+
+    protected IEnumerator CLoadScreenOff()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            loadScreen.color = new Color(1, 1, 1, 1- i * 0.1f);
+            yield return null;
+        }
+
+        loadScreen.color = Color.clear;
+        loadScreen.gameObject.SetActive(false);
+    }
 }
 
 public static class CameraExtensions

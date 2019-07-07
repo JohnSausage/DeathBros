@@ -201,7 +201,7 @@ public class Character : _MB, ICanTakeDamage
         Ctr.Gravity = GetCurrentStatValue("Gravity");//stats.gravity.CurrentValue;
     }
 
-    public void Spawn(Vector2 position)
+    public virtual void SCS_OnSpawn()
     {
 
     }

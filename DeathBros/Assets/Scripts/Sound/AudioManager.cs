@@ -42,7 +42,7 @@ public class AudioManager : _MB
 
     public void FindAndLoadSounds()
     {
-        //RemoveAllAudioSources();
+        RemoveAllAudioSources();
 
         LoadSounds(generalSoundsSO);
         LoadSounds(backgroundMusicSO);
@@ -82,11 +82,9 @@ public class AudioManager : _MB
 
     protected void RemoveAllAudioSources()
     {
-        Transform[] gos = GetComponentsInChildren<Transform>();
-
-        for (int i = 0; i < gos.Length; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Destroy(gos[i].gameObject);
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 

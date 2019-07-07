@@ -80,7 +80,7 @@ public class EffectManager : _MB
 
     private void SpawnDamageNumber(Damage damage, Character chr)
     {
-        GameObject dmgNr = Instantiate(damageNumber, (Vector2)chr.transform.position + Vector2.up, Quaternion.identity);
+        GameObject dmgNr = Instantiate(damageNumber, chr.Position + Vector2.up, Quaternion.identity);
         dmgNr.GetComponent<DamageNumber>().damageNumber = damage.damageNumber.ToString();
 
     }

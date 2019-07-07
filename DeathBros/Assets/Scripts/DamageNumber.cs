@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using TMPro;
 
 public class DamageNumber : MonoBehaviour
 {
-    public string damageNumber { set { text.text = value; } }
+    public string damageNumber { set { text.SetText(value); } }
 
     [SerializeField]
-    private TextMeshProUGUI text;
+    private SpriteFontText text;
 
     [SerializeField]
     private int frameDuration = 60;
@@ -19,6 +18,7 @@ public class DamageNumber : MonoBehaviour
         if (timer > frameDuration / 120)
         {
             text.color = new Color(1, 1, 1, 1 - timer / (frameDuration / 60));
+            text.updateText = true;
         }
 
         if (timer > frameDuration / 60)

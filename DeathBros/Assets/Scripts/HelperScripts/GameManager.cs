@@ -52,8 +52,6 @@ public class GameManager : _MB
         //StartGame();
 
         SceneManager.sceneLoaded += OnSceneLoad;
-
-
     }
 
     //protected override void Start()
@@ -177,6 +175,7 @@ public class GameManager : _MB
         if (scene.name == "NES_GameStart")
         {
             StartGame();
+            Resume();
         }
     }
 

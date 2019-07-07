@@ -109,6 +109,20 @@ public class Player : Character
         walkSpeedReduction = 0.5f;
     }
 
+    protected override void Start()
+    {
+        base.Start();
+
+        SpawnPlayer();
+    }
+
+    public void SpawnPlayer()
+    {
+        CameraController.Black();
+        SCS_ChangeState(StaticStates.spawn);
+        CameraController.Position = Position;
+    }
+
     protected void OnEnemyHit(Character enemy, Damage damage)
     {
         //ModifiyComboPower(damage.damageNumber);
@@ -809,5 +823,12 @@ public class Player : Character
 
         }
 
+    }
+
+    public override void SCS_OnSpawn()
+    {
+        base.SCS_OnSpawn();
+
+        CameraController.LoadScreenOff();
     }
 }
