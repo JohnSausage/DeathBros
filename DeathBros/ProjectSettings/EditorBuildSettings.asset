@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/SNES_StartMenu.unity
+  - enabled: 1
+    path: Assets/Scenes/NES_StartMenu.unity
     guid: 33ea8cdd78318af42a94d7018c603415
   - enabled: 1
-    path: Assets/Scenes/SNES_GameStartTest.unity
+    path: Assets/Scenes/NES_GameStart.unity
     guid: 7aa31a0bcf576a047abcb86f8944f932
   m_configObjects: {}

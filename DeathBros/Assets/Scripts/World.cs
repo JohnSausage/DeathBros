@@ -8,6 +8,8 @@ public class World : _MB
     protected string worldName;
     public string WorldName { get { return worldName; } }
 
+    public Level startingLevel;
+
     public List<Level> Levels { get; protected set; }
 
     public override void Init()

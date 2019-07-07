@@ -151,6 +151,8 @@ public class Level : _MB, IState
 
     public void Exit()
     {
+        AudioManager.StopSound(backgroundMusic);
+
         if (enemiesTransform != null)
         {
             for (int i = 0; i < enemies.Count; i++)
@@ -159,6 +161,7 @@ public class Level : _MB, IState
                     enemies[i].SetParent(enemiesTransform);
             }
         }
+
         gameObject.SetActive(false);
     }
 

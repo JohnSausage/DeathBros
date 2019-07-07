@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : _MB
 {
+    public bool startGameHere = false;
     public bool gameHasStarted = false;
     [Space]
     public Level startingLevel;
@@ -18,13 +19,13 @@ public class GameManager : _MB
     public static Level CurrentLevel { get { return (Level)Instance.LevelSM.CurrentState; } }
     public static Vector2 PlayerLevelPosition { get { return Player.transform.position - CurrentLevel.transform.position; } }
 
+    public AudioManager audioManager { get; protected set; }
+    public DialogueManager dialogueManager { get; protected set; }
 
     protected List<PlayerSpawn> playerSpawns;
 
 
     public static GameManager Instance { get; private set; }
-
-    private bool levelStarted = false;
 
     public override void Init()
     {
@@ -49,35 +50,37 @@ public class GameManager : _MB
         //LevelSM = new StateMachine();
 
         //StartGame();
+
+        SceneManager.sceneLoaded += OnSceneLoad;
+
+
     }
 
+    //protected override void Start()
+    //{
+    //    base.Start();
 
-    public override void LateInit()
-    {
-        base.LateInit();
-
-        if (gameHasStarted == false)
-        {
-            PauseMenu.Open();
-        }
-    }
-
+    //    if (startGameHere == true)
+    //    {
+    //        StartGame();
+    //    }
+    //}
 
     void Update()
     {
-        if(gameHasStarted == false)
+        if (gameHasStarted == false)
         {
             return;
         }
 
-        if (levelStarted == false)
-        {
-            if (AudioManager.Instance.IsInitialized)
-            {
-                LevelSM.ChangeState(startingLevel);
-                levelStarted = true;
-            }
-        }
+        //if (levelStarted == false)
+        //{
+        //    if (AudioManager.Instance.IsInitialized)
+        //    {
+        //        LevelSM.ChangeState(startingLevel);
+        //        levelStarted = true;
+        //    }
+        //}
 
         LevelSM.Update();
 
@@ -116,10 +119,24 @@ public class GameManager : _MB
 
     public static void StartGame()
     {
-        Instance.gameHasStarted = true;
-        //Instance.Init();
-
         Instance.InitLevel();
+
+        Instance.UpdateManagers();
+
+        Instance.LevelSM.ChangeState(Instance.startingLevel);
+    }
+
+    protected void UpdateManagers()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager.IsInitialized == false)
+        {
+            audioManager.Init();
+        }
+        audioManager.FindAndLoadSounds();
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueManager.Setup();
     }
 
     protected void GetAllSpawnPoints()
@@ -129,6 +146,9 @@ public class GameManager : _MB
 
     protected void InitLevel()
     {
+        gameHasStarted = true;
+
+
         Player = FindObjectOfType<Player>();
         MainCamera = FindObjectOfType<CameraController>();
 
@@ -137,8 +157,35 @@ public class GameManager : _MB
 
         LevelSM = new StateMachine();
 
-        GetAllSpawnPoints();
+        if (startingLevel == null)
+        {
+            World world = FindObjectOfType<World>();
 
-        AudioManager.LoadAllAudioSources();
+            startingLevel = world.startingLevel;
+        }
+
+        GetAllSpawnPoints();
+    }
+
+    public void LoadScene(string sceneToLoad)
+    {
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+    }
+
+    protected void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.name == "NES_GameStart")
+        {
+            StartGame();
+        }
+    }
+
+    public void ExitToMainMenu()
+    {
+        LevelSM.ChangeState(new EmptyState());
+
+        gameHasStarted = false;
+
+        LoadScene("NES_StartMenu");
     }
 }

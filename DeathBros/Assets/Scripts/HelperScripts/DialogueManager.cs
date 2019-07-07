@@ -48,14 +48,16 @@ public class DialogueManager : _MB
         }
 
         base.Init();
+    }
 
+    public void Setup()
+    {
         dialoguePanel.SetActive(false);
 
         dialogueLineQueue = new Queue<DialogueLine>();
 
         GameManager.Player.APlayerInteract += OnPlayerConfirm;
     }
-
 
 
     /// <summary>

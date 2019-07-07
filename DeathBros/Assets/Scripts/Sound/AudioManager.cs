@@ -33,39 +33,17 @@ public class AudioManager : _MB
         }
 
         base.Init();
-
-
-        //foreach (Sound s in sounds)
-        //{
-        //    InitSound(s);
-        //}
-        //
-        //SoundContainer[] soundContainers = (SoundContainer[])Resources.FindObjectsOfTypeAll(typeof(SoundContainer));
-        //foreach (var sc in soundContainers)
-        //{
-        //    foreach (var s in sc.sounds)
-        //    {
-        //        AddSound(s);
-        //    }
-        //}
-
-        //soundsSOs = FindObjectsOfType<SoundContainer>();
-
-        //for (int i = 0; i < soundsSOs.Length; i++)
-        //{
-        //    soundsSOs[i].soundsSO.LoadSounds();
-        //}
-
-        //LoadAllAudioSources();
     }
 
-    public static void LoadAllAudioSources()
-    {
-        Instance.FindAndLoadSounds();
-    }
+    //public static void LoadAllAudioSources()
+    //{
+    //    Instance.FindAndLoadSounds();
+    //}
 
-    protected void FindAndLoadSounds()
+    public void FindAndLoadSounds()
     {
+        //RemoveAllAudioSources();
+
         LoadSounds(generalSoundsSO);
         LoadSounds(backgroundMusicSO);
 
@@ -104,7 +82,12 @@ public class AudioManager : _MB
 
     protected void RemoveAllAudioSources()
     {
+        Transform[] gos = GetComponentsInChildren<Transform>();
 
+        for (int i = 0; i < gos.Length; i++)
+        {
+            Destroy(gos[i].gameObject);
+        }
     }
 
     private void InitSound(Sound sound, GameObject parent)
@@ -125,7 +108,7 @@ public class AudioManager : _MB
         sound.Source.loop = sound.loop;
     }
 
-    public static void PlaySound(string name, bool retry = true)
+    public static void PlaySound(string name, bool retry = false)
     {
         Sound s = Instance.sounds.Find(x => x.name == name);
 
@@ -144,6 +127,18 @@ public class AudioManager : _MB
         {
             s.Source.Play();
         }
+    }
+
+    public static void StopSound(string name)
+    {
+        Sound s = Instance.sounds.Find(x => x.name == name);
+
+        if(s == null)
+        {
+            return;
+        }
+
+        s.Source.Stop();
     }
 
     public static void PlaySound(string name, Vector2 position)
@@ -168,12 +163,6 @@ public class AudioManager : _MB
             s.Source.Play();
         }
     }
-
-    //public static void AddSound(Sound sound)
-    //{
-    //    Instance.InitSound(sound);
-    //    Instance.sounds.Add(sound);
-    //}
 
     IEnumerator PlaySoundRetry(string name)
     {
