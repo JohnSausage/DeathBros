@@ -18,6 +18,10 @@ public class GameManager : _MB
     public static Level CurrentLevel { get { return (Level)Instance.LevelSM.CurrentState; } }
     public static Vector2 PlayerLevelPosition { get { return Player.transform.position - CurrentLevel.transform.position; } }
 
+
+    protected List<PlayerSpawn> playerSpawns;
+
+
     public static GameManager Instance { get; private set; }
 
     private bool levelStarted = false;
@@ -36,13 +40,15 @@ public class GameManager : _MB
             Destroy(gameObject);
         }
 
-        Player = FindObjectOfType<Player>();
-        MainCamera = FindObjectOfType<CameraController>();
+        //Player = FindObjectOfType<Player>();
+        //MainCamera = FindObjectOfType<CameraController>();
 
-        if (!Player)
-            Debug.Log("Player not found");
+        //if (!Player)
+        //    Debug.Log("Player not found");
 
-        LevelSM = new StateMachine();
+        //LevelSM = new StateMachine();
+
+        //StartGame();
     }
 
 
@@ -55,6 +61,7 @@ public class GameManager : _MB
             PauseMenu.Open();
         }
     }
+
 
     void Update()
     {
@@ -110,6 +117,28 @@ public class GameManager : _MB
     public static void StartGame()
     {
         Instance.gameHasStarted = true;
-        Instance.Init();
+        //Instance.Init();
+
+        Instance.InitLevel();
+    }
+
+    protected void GetAllSpawnPoints()
+    {
+        playerSpawns = new List<PlayerSpawn>(FindObjectsOfType<PlayerSpawn>());
+    }
+
+    protected void InitLevel()
+    {
+        Player = FindObjectOfType<Player>();
+        MainCamera = FindObjectOfType<CameraController>();
+
+        if (!Player)
+            Debug.Log("Player not found");
+
+        LevelSM = new StateMachine();
+
+        GetAllSpawnPoints();
+
+        AudioManager.LoadAllAudioSources();
     }
 }

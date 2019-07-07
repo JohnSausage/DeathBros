@@ -16,7 +16,8 @@ public class AudioManager : _MB
 
     public static AudioManager Instance { get; protected set; }
 
-    public SoundContainer[] soundsSOs;
+    public SoundContainer[] soundContainer;
+    public List<SoundsSO> UniqueSoundSOs;
 
     public override void Init()
     {
@@ -48,28 +49,71 @@ public class AudioManager : _MB
         //    }
         //}
 
-        soundsSOs = FindObjectsOfType<SoundContainer>();
+        //soundsSOs = FindObjectsOfType<SoundContainer>();
 
-        for (int i = 0; i < soundsSOs.Length; i++)
+        //for (int i = 0; i < soundsSOs.Length; i++)
+        //{
+        //    soundsSOs[i].soundsSO.LoadSounds();
+        //}
+
+        //LoadAllAudioSources();
+    }
+
+    public static void LoadAllAudioSources()
+    {
+        Instance.FindAndLoadSounds();
+    }
+
+    protected void FindAndLoadSounds()
+    {
+        LoadSounds(generalSoundsSO);
+        LoadSounds(backgroundMusicSO);
+
+
+        soundContainer = FindObjectsOfType<SoundContainer>();
+
+        UniqueSoundSOs = new List<SoundsSO>();
+
+        foreach (SoundContainer sc in soundContainer)
         {
-            soundsSOs[i].soundsSO.LoadSounds();
+            if (UniqueSoundSOs.Contains(sc.soundsSO) == false)
+            {
+                UniqueSoundSOs.Add(sc.soundsSO);
+            }
+        }
+
+        for (int i = 0; i < UniqueSoundSOs.Count; i++)
+        {
+            LoadSounds(UniqueSoundSOs[i]);
         }
     }
 
-    public override void LateInit()
+    protected void LoadSounds(SoundsSO soundsSO)
     {
-        base.LateInit();
+        GameObject parent = new GameObject(soundsSO.name);
+        parent.transform.SetParent(transform);
 
+        for (int i = 0; i < soundsSO.sounds.Count; i++)
+        {
 
-        //foreach (Sound s in sounds)
-        //{
-        //    InitSound(s);
-        //}
+            InitSound(soundsSO.sounds[i], parent);
 
-        generalSoundsSO.LoadSounds();
-        backgroundMusicSO.LoadSounds();
+            sounds.Add(soundsSO.sounds[i]);
+        }
+    }
 
+    protected void RemoveAllAudioSources()
+    {
 
+    }
+
+    private void InitSound(Sound sound, GameObject parent)
+    {
+        sound.Source = parent.AddComponent<AudioSource>();
+
+        sound.Source.clip = sound.clip;
+        sound.Source.volume = sound.volume;
+        sound.Source.loop = sound.loop;
     }
 
     private void InitSound(Sound sound)
@@ -125,15 +169,15 @@ public class AudioManager : _MB
         }
     }
 
-    public static void AddSound(Sound sound)
-    {
-        Instance.InitSound(sound);
-        Instance.sounds.Add(sound);
-    }
+    //public static void AddSound(Sound sound)
+    //{
+    //    Instance.InitSound(sound);
+    //    Instance.sounds.Add(sound);
+    //}
 
     IEnumerator PlaySoundRetry(string name)
     {
         yield return new WaitForSeconds(1);
-        PlaySound(name,false);
+        PlaySound(name, false);
     }
 }
