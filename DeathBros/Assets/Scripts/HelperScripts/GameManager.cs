@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : _MB
@@ -21,7 +22,8 @@ public class GameManager : _MB
 
     public AudioManager audioManager { get; protected set; }
     public DialogueManager dialogueManager { get; protected set; }
-
+    public Canvas canvas;
+    
     protected List<PlayerSpawn> playerSpawns;
 
 
@@ -127,11 +129,12 @@ public class GameManager : _MB
     protected void UpdateManagers()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        if (audioManager.IsInitialized == false)
+        if (AudioManager.Instance == null)
         {
-            audioManager.Init();
+            AudioManager.Instance.Init();
         }
-        audioManager.FindAndLoadSounds();
+
+        AudioManager.Instance.FindAndLoadSounds();
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueManager.Setup();
@@ -149,6 +152,8 @@ public class GameManager : _MB
 
         Player = FindObjectOfType<Player>();
         MainCamera = FindObjectOfType<CameraController>();
+
+        CameraController.Instance.target = Player.transform;
 
         if (!Player)
             Debug.Log("Player not found");
@@ -172,10 +177,14 @@ public class GameManager : _MB
 
     protected void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
     {
-        if (scene.name == "NES_GameStart")
+        if (scene.name != "NES_StartMenu")
         {
             StartGame();
             Resume();
+
+            canvas = FindObjectOfType<Canvas>();
+            canvas.worldCamera = MainCamera.GetComponent<Camera>();
+            MainCamera.loadScreen = GameObject.Find("LoadScreen").GetComponent<Image>();
         }
     }
 

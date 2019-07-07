@@ -65,6 +65,8 @@ public class HitboxManager : _MB
                     damage.hitID = currentID;
                     damage.Owner = Chr;
                     //damage.position = hitBoxPosition;
+                    damage.HitPosition = hitBoxPosition;
+
                     if (Chr != null)
                     {
                         damage.position = Chr.Position;

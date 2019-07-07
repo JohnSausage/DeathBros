@@ -18,13 +18,14 @@ GameObject:
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4605250315423042}
+  - component: {fileID: 224553626498054446}
   - component: {fileID: 20201799580395796}
   - component: {fileID: 124183799446021394}
   - component: {fileID: 81718665223386214}
   - component: {fileID: 114988804064942766}
   - component: {fileID: 61239590732850946}
   - component: {fileID: 114822387090447430}
+  - component: {fileID: 222382185525010688}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -32,19 +33,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4605250315423042
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1021484277177682}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80.26, y: -54.09, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20201799580395796
 Camera:
   m_ObjectHideFlags: 1
@@ -145,6 +133,7 @@ MonoBehaviour:
   target: {fileID: 0}
   levelBoundsTransform: {fileID: 0}
   smoothSpeed: 0.2
+  loadScreen: {fileID: 0}
   shakeSpeed: 1
   shakeStrength: 1
   shakeTimer: 0
@@ -158,3 +147,28 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021484277177682}
   m_Enabled: 1
+--- !u!222 &222382185525010688
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021484277177682}
+  m_CullTransparentMesh: 0
+--- !u!224 &224553626498054446
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021484277177682}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 80.26, y: -54.09}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}

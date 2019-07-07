@@ -12,8 +12,7 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
-    [SerializeField]
-    protected Image loadScreen;
+    public Image loadScreen;
 
     //[SerializeField]
     //private int pixelsPerUnit = 16;
@@ -36,6 +35,21 @@ public class CameraController : MonoBehaviour
     public static Vector2 Position { get { return Camera.main.transform.position; } set { Camera.main.transform.position = value; } }
     public Bounds ActivationBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
 
+    public static CameraController Instance { get; private set; }
+
+    protected void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         cam = Camera.main;
@@ -56,6 +70,11 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(target == null)
+        {
+            return;
+        }
+
         if (shakeTimer > 0)
         {
             shakeTimer--;

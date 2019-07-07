@@ -9,74 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1059350442431530}
+  m_RootGameObject: {fileID: 1197481983805910}
   m_IsPrefabAsset: 1
---- !u!1 &1059350442431530
+--- !u!1 &1197481983805910
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4175129100492852}
-  - component: {fileID: 114679019588036106}
-  - component: {fileID: 114355888504739568}
-  m_Layer: 14
-  m_Name: SoulBubble
+  - component: {fileID: 4349463609691740}
+  - component: {fileID: 212417459659716958}
+  - component: {fileID: 114493901937943758}
+  - component: {fileID: 114874418525843140}
+  m_Layer: 0
+  m_Name: Sidekick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1387913290804816
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4730099655806508}
-  - component: {fileID: 212603157250910692}
-  m_Layer: 14
-  m_Name: PixelPerfectSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4175129100492852
+--- !u!4 &4349463609691740
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1059350442431530}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 72.108, y: -25.665, z: 0}
+  m_GameObject: {fileID: 1197481983805910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75, y: -56.54, z: -0.032226562}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4730099655806508}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4730099655806508
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387913290804816}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4175129100492852}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114355888504739568
+--- !u!114 &114493901937943758
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1059350442431530}
+  m_GameObject: {fileID: 1197481983805910}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06590079d8fa926469b25a6478b60ced, type: 3}
@@ -84,32 +55,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateAutomatically: 1
   currentAnimation: {fileID: 0}
-  frameAnimationsSO: {fileID: 11400000, guid: d35393dc0b36cfd4fb0fe9c68c87eea3, type: 2}
+  frameAnimationsSO: {fileID: 11400000, guid: bd02e99d42dec41418ec04fcec15a93c, type: 2}
   animationSpeed: 1
---- !u!114 &114679019588036106
+--- !u!114 &114874418525843140
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1059350442431530}
+  m_GameObject: {fileID: 1197481983805910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955501e6f9cf27a4d9929ead55ee0766, type: 3}
+  m_Script: {fileID: 11500000, guid: c1a9856158c12704fa8a177ea3392adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  comboPower: 0.1
-  blinkTimeInFrames: 6
-  startVelocityMax: 5
-  acceleration: 0.5
-  moveStartVelocityTimer: 15
-  fadeOutTime: 60
---- !u!212 &212603157250910692
+  movespeed: 4
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  waitDialogue:
+    dialogueLines:
+    - line: Hey, wait for me!
+      color: {r: 0, g: 0, b: 0, a: 1}
+      dialogueEmotion: 1
+--- !u!212 &212417459659716958
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1387913290804816}
+  m_GameObject: {fileID: 1197481983805910}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -136,17 +109,17 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 184962683
-  m_SortingLayer: 1
-  m_SortingOrder: 10
-  m_Sprite: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 9
+  m_Sprite: {fileID: 21300000, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

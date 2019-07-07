@@ -9,8 +9,8 @@ public class SoulBubbleController : MonoBehaviour
 
     [Space]
 
-    public Sprite sprite1;
-    public Sprite sprite2;
+    //public Sprite sprite1;
+    //public Sprite sprite2;
 
     public int blinkTimeInFrames = 6;
 
@@ -23,7 +23,7 @@ public class SoulBubbleController : MonoBehaviour
     public int fadeOutTime = 60;
 
     private int moveTimer;
-    private int blinkTimer = 0;
+    //private int blinkTimer = 0;
     private int fadeTimer = 0;
 
     protected SpriteRenderer spr;
@@ -39,7 +39,7 @@ public class SoulBubbleController : MonoBehaviour
     protected void Start()
     {
         spr = GetComponentInChildren<SpriteRenderer>();
-        spr.sprite = sprite1;
+        //spr.sprite = sprite1;
 
         if (Random.Range(0f, 1f) >= 0.8f)
         {
@@ -74,30 +74,30 @@ public class SoulBubbleController : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        Blink();
+        //Blink();
         MoveToTarget();
         //FadeOut();
         CheckForDestruction();
     }
 
-    protected void Blink()
-    {
-        blinkTimer++;
+    //protected void Blink()
+    //{
+    //    blinkTimer++;
 
-        if (blinkTimer >= blinkTimeInFrames)
-        {
-            blinkTimer = 0;
+    //    if (blinkTimer >= blinkTimeInFrames)
+    //    {
+    //        blinkTimer = 0;
 
-            if (spr.sprite == sprite1)
-            {
-                spr.sprite = sprite2;
-            }
-            else
-            {
-                spr.sprite = sprite1;
-            }
-        }
-    }
+    //        if (spr.sprite == sprite1)
+    //        {
+    //            spr.sprite = sprite2;
+    //        }
+    //        else
+    //        {
+    //            spr.sprite = sprite1;
+    //        }
+    //    }
+    //}
 
     protected void FadeOut()
     {

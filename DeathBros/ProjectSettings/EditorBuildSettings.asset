@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NES_GameStart.unity
     guid: 7aa31a0bcf576a047abcb86f8944f932
+  - enabled: 1
+    path: Assets/Scenes/NES_Training.unity
+    guid: 2713331141930ae408820ab53ba50009
   m_configObjects: {}

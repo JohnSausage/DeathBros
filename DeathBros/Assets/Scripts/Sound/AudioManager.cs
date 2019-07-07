@@ -35,18 +35,14 @@ public class AudioManager : _MB
         base.Init();
     }
 
-    //public static void LoadAllAudioSources()
-    //{
-    //    Instance.FindAndLoadSounds();
-    //}
 
     public void FindAndLoadSounds()
     {
         RemoveAllAudioSources();
 
+
         LoadSounds(generalSoundsSO);
         LoadSounds(backgroundMusicSO);
-
 
         soundContainer = FindObjectsOfType<SoundContainer>();
 
@@ -64,6 +60,8 @@ public class AudioManager : _MB
         {
             LoadSounds(UniqueSoundSOs[i]);
         }
+
+
     }
 
     protected void LoadSounds(SoundsSO soundsSO)
@@ -73,7 +71,6 @@ public class AudioManager : _MB
 
         for (int i = 0; i < soundsSO.sounds.Count; i++)
         {
-
             InitSound(soundsSO.sounds[i], parent);
 
             sounds.Add(soundsSO.sounds[i]);
@@ -129,6 +126,11 @@ public class AudioManager : _MB
 
     public static void StopSound(string name)
     {
+        if(Instance.sounds == null)
+        {
+            return;
+        }
+
         Sound s = Instance.sounds.Find(x => x.name == name);
 
         if(s == null)
