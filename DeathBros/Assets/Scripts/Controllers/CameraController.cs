@@ -12,7 +12,8 @@ public class CameraController : MonoBehaviour
     public Transform levelBoundsTransform;
     public float smoothSpeed = 0.125f;
 
-    public Image loadScreen;
+
+    public Image loadscreen;
 
     //[SerializeField]
     //private int pixelsPerUnit = 16;
@@ -32,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     protected BoxCollider2D activateGoCollider;
 
-    public static Vector2 Position { get { return Camera.main.transform.position; } set { Camera.main.transform.position = value; } }
+    public static Vector2 Position { get { return Instance.transform.position; } set { Instance.transform.position = value; } }
     public Bounds ActivationBounds { get { return new Bounds(new Vector3(Position.x, Position.y, 0), activateGoCollider.bounds.size); } }
 
     public static CameraController Instance { get; private set; }
@@ -56,6 +57,18 @@ public class CameraController : MonoBehaviour
         activateGoCollider = GetComponent<BoxCollider2D>();
 
         Character.ATakesDamageAll += FreezeThenShakeCameraOnDamage;
+
+        Clear();
+    }
+
+    public Image GetLoadscreen()
+    {
+        if(loadscreen == null)
+        {
+            loadscreen = Instance.GetComponentInChildren<Image>();
+        }
+
+        return loadscreen;
     }
 
     private void MoveCamera()
@@ -234,42 +247,48 @@ public class CameraController : MonoBehaviour
 
     public static void LoadScreenOn()
     {
-        GameManager.MainCamera.StartCoroutine(GameManager.MainCamera.CLoadScreenOn());
+        Instance.StartCoroutine(GameManager.MainCamera.CLoadScreenOn());
     }
 
     public static void LoadScreenOff()
     {
-        GameManager.MainCamera.StartCoroutine(GameManager.MainCamera.CLoadScreenOff());
+        Instance.StartCoroutine(GameManager.MainCamera.CLoadScreenOff());
     }
 
     public static void Black()
     {
-        GameManager.MainCamera.loadScreen.gameObject.SetActive(true);
-        GameManager.MainCamera.loadScreen.color = Color.white;
+        Instance.GetLoadscreen().gameObject.SetActive(true);
+        Instance.GetLoadscreen().color = Color.white;
+    }
+
+    public static void Clear()
+    {
+        Instance.GetLoadscreen().gameObject.SetActive(false);
+        Instance.GetLoadscreen().color = Color.clear;
     }
 
     protected IEnumerator CLoadScreenOn()
     {
-        loadScreen.gameObject.SetActive(true);
+        GetLoadscreen().gameObject.SetActive(true);
         for (int i = 0; i < 10; i++)
         {
-            loadScreen.color = new Color(1, 1, 1, i * 0.1f);
+            GetLoadscreen().color = new Color(1, 1, 1, i * 0.1f);
             yield return null;
         }
 
-        loadScreen.color = Color.white;
+        GetLoadscreen().color = Color.white;
     }
 
     protected IEnumerator CLoadScreenOff()
     {
         for (int i = 0; i < 10; i++)
         {
-            loadScreen.color = new Color(1, 1, 1, 1- i * 0.1f);
+            GetLoadscreen().color = new Color(1, 1, 1, 1- i * 0.1f);
             yield return null;
         }
 
-        loadScreen.color = Color.clear;
-        loadScreen.gameObject.SetActive(false);
+        GetLoadscreen().color = Color.clear;
+        GetLoadscreen().gameObject.SetActive(false);
     }
 }
 

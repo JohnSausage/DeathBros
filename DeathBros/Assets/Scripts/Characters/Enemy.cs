@@ -54,7 +54,7 @@ public class Enemy : Character, IActivatedByCamera
         {
             base.FixedUpdate();
 
-            if (GameManager.MainCamera.ActivationBounds.Contains(transform.position) == false)
+            if (CameraController.Instance.ActivationBounds.Contains(transform.position) == false)
             {
                 isActive = false; ;
             }
@@ -71,7 +71,7 @@ public class Enemy : Character, IActivatedByCamera
         }
         else
         {
-            if (GameManager.MainCamera.ActivationBounds.Contains(transform.position) == true)
+            if (CameraController.Instance.ActivationBounds.Contains(transform.position) == true)
             {
                 isActive = true;
             }

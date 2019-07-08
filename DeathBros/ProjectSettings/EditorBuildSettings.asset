@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/NES_StartMenu.unity
     guid: 33ea8cdd78318af42a94d7018c603415
   - enabled: 1
-    path: Assets/Scenes/NES_GameStart.unity
+    path: Assets/Scenes/NES_Game.unity
     guid: 7aa31a0bcf576a047abcb86f8944f932
   - enabled: 1
     path: Assets/Scenes/NES_Training.unity

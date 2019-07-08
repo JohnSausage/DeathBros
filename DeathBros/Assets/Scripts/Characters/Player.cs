@@ -69,6 +69,8 @@ public class Player : Character
     public event Action<float> AChangeComboPower;
     public event Action APlayerInteract;
 
+    public event Action APlayerRespawn;
+
     public override void ClearStrongInputs()
     {
         base.ClearStrongInputs();
@@ -109,6 +111,13 @@ public class Player : Character
         walkSpeedReduction = 0.5f;
     }
 
+    public override void Restart()
+    {
+        base.Restart();
+
+        ComboPower = 50; //@@@ set to 0 later
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -118,9 +127,28 @@ public class Player : Character
 
     public void SpawnPlayer()
     {
+        Vector2 loadedSpawn = new Vector2(GameManager.Instance.saveData.spawnX, GameManager.Instance.saveData.spawnY);
+
+        if (loadedSpawn != Vector2.zero)
+        {
+            transform.position = loadedSpawn;
+        }
+
         CameraController.Black();
         SCS_ChangeState(StaticStates.spawn);
         CameraController.Position = Position;
+    }
+
+    public void Respawn()
+    {
+        Restart();
+        transform.position = new Vector2(GameManager.Instance.saveData.spawnX, GameManager.Instance.saveData.spawnY);
+        SpawnPlayer();
+
+        if(APlayerRespawn != null)
+        {
+            APlayerRespawn();
+        }
     }
 
     protected void OnEnemyHit(Character enemy, Damage damage)

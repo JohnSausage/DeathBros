@@ -23,8 +23,9 @@ public class GameManager : _MB
     public AudioManager audioManager { get; protected set; }
     public DialogueManager dialogueManager { get; protected set; }
     public Canvas canvas;
-    
-    protected List<PlayerSpawn> playerSpawns;
+
+    public SaveData saveData;// { get; protected set; }
+
 
 
     public static GameManager Instance { get; private set; }
@@ -73,15 +74,6 @@ public class GameManager : _MB
             return;
         }
 
-        //if (levelStarted == false)
-        //{
-        //    if (AudioManager.Instance.IsInitialized)
-        //    {
-        //        LevelSM.ChangeState(startingLevel);
-        //        levelStarted = true;
-        //    }
-        //}
-
         LevelSM.Update();
 
         if (Input.GetKeyDown(KeyCode.Escape) || InputManager.Pause.GetButtonDown())
@@ -92,6 +84,13 @@ public class GameManager : _MB
             else
                 Resume();
         }
+
+        //@@@ For Debugging
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Player.Respawn();
+        }
+
     }
 
     public void Pause()
@@ -99,7 +98,6 @@ public class GameManager : _MB
         Time.timeScale = 0;
         IsPaused = true;
 
-        //PauseMenu.Instance.gameObject.SetActive(true);
         PauseMenu.Open();
     }
 
@@ -119,6 +117,8 @@ public class GameManager : _MB
 
     public static void StartGame()
     {
+        Instance.saveData.gameStarted = true;
+
         Instance.InitLevel();
 
         Instance.UpdateManagers();
@@ -140,10 +140,6 @@ public class GameManager : _MB
         dialogueManager.Setup();
     }
 
-    protected void GetAllSpawnPoints()
-    {
-        playerSpawns = new List<PlayerSpawn>(FindObjectsOfType<PlayerSpawn>());
-    }
 
     protected void InitLevel()
     {
@@ -166,8 +162,6 @@ public class GameManager : _MB
 
             startingLevel = world.startingLevel;
         }
-
-        GetAllSpawnPoints();
     }
 
     public void LoadScene(string sceneToLoad)
@@ -183,8 +177,7 @@ public class GameManager : _MB
             Resume();
 
             canvas = FindObjectOfType<Canvas>();
-            canvas.worldCamera = MainCamera.GetComponent<Camera>();
-            MainCamera.loadScreen = GameObject.Find("LoadScreen").GetComponent<Image>();
+            canvas.worldCamera = CameraController.Instance.GetComponent<Camera>();
         }
     }
 
@@ -195,5 +188,15 @@ public class GameManager : _MB
         gameHasStarted = false;
 
         LoadScene("NES_StartMenu");
+    }
+
+    public void SaveGame()
+    {
+        saveData.Save();
+    }
+
+    public void LoadGame(string saveDataName)
+    {
+        saveData.Load(saveDataName);
     }
 }

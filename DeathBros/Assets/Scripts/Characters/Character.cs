@@ -126,8 +126,6 @@ public class Character : _MB, ICanTakeDamage
     {
         base.Init();
 
-        InitStats();
-
         Ctr = GetComponent<NES_BasicController2D>();
 
         if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
@@ -152,27 +150,17 @@ public class Character : _MB, ICanTakeDamage
         ChrSM = new ChrStateMachine();
         ChrSM.ChangeState(this, StaticStates.idle);
 
+        Restart();
+    }
+
+    public virtual void Restart()
+    {
+        InitStats();
+
         isInControl = true;
 
         walkSpeedReduction = 1;
-
-
-        //if (soundsSO != null)
-        //{
-        //    soundsSO.LoadSounds();
-        //}
     }
-
-    public override void LateInit()
-    {
-        base.LateInit();
-
-        //if (soundsSO != null)
-        //{
-        //    soundsSO.LoadSounds();
-        //}
-    }
-
 
     protected virtual void FixedUpdate()
     {

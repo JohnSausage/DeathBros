@@ -43,6 +43,10 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
         player = GameManager.Player;
 
         playerOffset = new Vector2(-1, 2);
+
+        SpawnCloseToPlayer();
+
+        player.APlayerRespawn += SpawnCloseToPlayer;
     }
 
     protected void FixedUpdate()
@@ -60,6 +64,11 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
                 AudioManager.PlaySound("SideKick_Talk1");
             }
         }
+    }
+
+    protected void SpawnCloseToPlayer()
+    {
+        transform.position = player.Position + Vector2.up;
     }
 
     protected void MoveToPlayer()
