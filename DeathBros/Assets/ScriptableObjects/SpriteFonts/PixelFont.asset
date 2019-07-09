@@ -300,4 +300,9 @@ MonoBehaviour:
   - character: 127
     sprite: {fileID: 21300190, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4
+  icons:
+  - {fileID: 21300000, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300002, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300004, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300006, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
   addSprites: []

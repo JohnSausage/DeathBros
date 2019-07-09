@@ -13,7 +13,7 @@ public class SaveData
     public float spawnY;
 
 
-    public void Save()
+    public virtual void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/savedata_" + saveDataName + ".save";
@@ -24,7 +24,7 @@ public class SaveData
         stream.Close();
     }
 
-    public void Load(string saveDataName)
+    public virtual void Load(string saveDataName)
     {
         string path = Application.persistentDataPath + "/savedata_" + saveDataName + ".save";
 
@@ -46,4 +46,10 @@ public class SaveData
             Debug.LogError(saveDataName + " not found");
         }
     }
+}
+
+[System.Serializable]
+public class SaveData2 : SaveData
+{
+
 }

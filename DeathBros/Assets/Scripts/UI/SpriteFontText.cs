@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SpriteFontText : MonoBehaviour
 {
     [SerializeField]
-    [TextArea(3,10)]
+    [TextArea(3, 10)]
     protected string text;
 
     public Color color = Color.black;
@@ -80,20 +80,40 @@ public class SpriteFontText : MonoBehaviour
 
             int lineNumber = 0;
 
+            bool iconMode = false;
+
             foreach (char c in text)
             {
+                if (c == 92)
+                {
+                    iconMode = true;
+                    continue;
+                }
+
                 GameObject newGO = new GameObject();
                 newGO.name = spriteFont.name + "_" + c;
                 newGO.transform.SetParent(transform);
-
                 Image newImage = newGO.AddComponent<Image>();
-                newImage.sprite = spriteFont.GetSprite(c);
-                if(newImage.sprite == null)
+
+                if (iconMode)
+                {
+                    newImage.sprite = spriteFont.GetIcon(c);
+                    iconMode = false;
+                }
+                else
+                {
+                    newImage.sprite = spriteFont.GetSprite(c);
+                    newImage.color = color;
+                }
+
+
+                if (newImage.sprite == null)
                 {
                     newImage.enabled = false;
                 }
+
                 newImage.SetNativeSize();
-                newImage.color = color;
+                
 
                 newGO.transform.localScale = new Vector3(1, 1, 1);
 

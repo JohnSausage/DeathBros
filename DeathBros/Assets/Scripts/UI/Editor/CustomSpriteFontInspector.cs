@@ -17,6 +17,26 @@ public class CustomSpriteFontInspector : Editor
     {
         spriteFont = (SpriteFont)target;
 
+        if(spriteFont.icons == null)
+        {
+            spriteFont.icons = new List<Sprite>();
+        }
+
+        for (int i = 0; i < spriteFont.icons.Count; i++)
+        {
+            spriteFont.icons[i] = (Sprite)EditorGUILayout.ObjectField("Icon:", spriteFont.icons[i], typeof(Sprite), false);
+        }
+
+        Sprite newSprite = null;
+        newSprite = (Sprite)EditorGUILayout.ObjectField("Icon:", newSprite, typeof(Sprite), false);
+
+        if(newSprite != null)
+        {
+            spriteFont.icons.Add(newSprite);
+        }
+
+        EditorGUILayout.Space();
+
         if (spriteFont.chars == null)
         {
             spriteFont.chars = new List<SpriteFontCharacter>();

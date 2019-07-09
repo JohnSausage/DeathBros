@@ -7,6 +7,8 @@ public class SpriteFont : ScriptableObject
 {
     public List<SpriteFontCharacter> chars;
 
+    public List<Sprite> icons;
+
     public List<Sprite> addSprites;
 
     public List<Sprite> Sprites(string text)
@@ -23,6 +25,18 @@ public class SpriteFont : ScriptableObject
         return sprites;
     }
 
+    public Sprite GetIcon(char c)
+    {
+        int iconIndex = (int)char.GetNumericValue(c);
+
+        if(iconIndex >= icons.Count)
+        {
+            return null;
+        }
+
+        return icons[iconIndex];
+    }
+
     public Sprite GetSprite(char c)
     {
         SpriteFontCharacter sfc = chars.Find(x => x.character == c);
@@ -34,6 +48,7 @@ public class SpriteFont : ScriptableObject
 
         return sfc.sprite;
     }
+
 
     public int GetWidth(char c)
     {
