@@ -17,7 +17,7 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
     public FrameAnimator fanim { get; protected set; }
     public SpriteRenderer spr { get; protected set; }
 
-    protected Player player;
+    protected Player player { get{return GameManager.Player; } }
 
     protected const float smoothSpeed = 0.02f;
     protected const float noiseSpeed = 0.02f;
@@ -40,7 +40,6 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
         fanim = GetComponent<FrameAnimator>();
         spr = GetComponent<SpriteRenderer>();
 
-        player = GameManager.Player;
 
         playerOffset = new Vector2(-1, 2);
 

@@ -22,8 +22,11 @@ public class MenuPanel : MonoBehaviour, IState
 
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
 
-        rectTransform.offsetMax = new Vector2(-16,-16);
-        rectTransform.offsetMin = new Vector2(16, 16);
+        //rectTransform.offsetMax = new Vector2(-16,-16);
+        //rectTransform.offsetMin = new Vector2(16, 16);
+
+        rectTransform.offsetMax = Vector2.zero;
+        rectTransform.offsetMin = Vector2.zero;
 
     }
 

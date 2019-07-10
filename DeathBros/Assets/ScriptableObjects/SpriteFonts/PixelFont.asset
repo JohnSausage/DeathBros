@@ -62,34 +62,34 @@ MonoBehaviour:
     width: 4
   - character: 48
     sprite: {fileID: 21300032, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 49
     sprite: {fileID: 21300034, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 3
   - character: 50
     sprite: {fileID: 21300036, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 51
     sprite: {fileID: 21300038, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 52
     sprite: {fileID: 21300040, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 53
     sprite: {fileID: 21300042, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 54
     sprite: {fileID: 21300044, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 55
     sprite: {fileID: 21300046, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 56
     sprite: {fileID: 21300048, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 57
     sprite: {fileID: 21300050, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 58
     sprite: {fileID: 21300052, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4
@@ -116,7 +116,7 @@ MonoBehaviour:
     width: 5
   - character: 66
     sprite: {fileID: 21300068, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 5
   - character: 67
     sprite: {fileID: 21300070, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 5
