@@ -12,6 +12,7 @@ public class SaveData
     public float spawnX;
     public float spawnY;
 
+    public bool[] skillAvailable;
 
     public virtual void Save()
     {
@@ -22,6 +23,8 @@ public class SaveData
 
         formatter.Serialize(stream, this);
         stream.Close();
+
+        Debug.Log(saveDataName + " saved.");
     }
 
     public virtual void Load(string saveDataName)
@@ -37,9 +40,18 @@ public class SaveData
             stream.Close();
 
             //Writing the loaded data
-            saveDataName = loaded.saveDataName;
-            spawnX = loaded.spawnX;
-            spawnY = loaded.spawnY;
+            this.saveDataName = loaded.saveDataName;
+            this.spawnX = loaded.spawnX;
+            this.spawnY = loaded.spawnY;
+
+            this.skillAvailable = new bool[loaded.skillAvailable.Length];
+
+            for (int i = 0; i < loaded.skillAvailable.Length; i++)
+            {
+                this.skillAvailable[i] = loaded.skillAvailable[i];
+            }
+
+            Debug.Log(saveDataName + " loaded.");
         }
         else
         {

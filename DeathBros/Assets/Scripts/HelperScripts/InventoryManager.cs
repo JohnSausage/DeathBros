@@ -39,16 +39,16 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 
-    public static List<CardData> cards;
+    public static List<CardData_old> cards;
 
-    public static CardData[] comboCards;
+    public static CardData_old[] comboCards;
 
     private System.Type[] cardEffectTypes;
 
     void Start()
     {
-        cards = new List<CardData>();
-        comboCards = new CardData[5];
+        cards = new List<CardData_old>();
+        comboCards = new CardData_old[5];
 
 
         cardEffectTypes = System.AppDomain.CurrentDomain.GetAllDerivedTypes(typeof(CardEffect));
@@ -68,9 +68,9 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public static CardData CreateRandomCard()
+    public static CardData_old CreateRandomCard()
     {
-        CardData cardData = new CardData();
+        CardData_old cardData = new CardData_old();
 
         cardData.color = GetRandomEnum<ECardColor>();
         cardData.colorLeft = cardData.color;

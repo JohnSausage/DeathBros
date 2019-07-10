@@ -189,14 +189,4 @@ public class GameManager : _MB
 
         LoadScene("NES_StartMenu");
     }
-
-    public void SaveGame()
-    {
-        saveData.Save();
-    }
-
-    public void LoadGame(string saveDataName)
-    {
-        saveData.Load(saveDataName);
-    }
 }

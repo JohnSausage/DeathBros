@@ -21,7 +21,7 @@ public class Card : MonoBehaviour
 }
 
 [System.Serializable]
-public class CardData
+public class CardData_old
 {
     public int level;
     public ECardColor color;
