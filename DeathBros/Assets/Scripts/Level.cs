@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tiled2Unity;
 
-public class Level : _MB, IState
+public class Level : MonoBehaviour, IState
 {
     //[SerializeField]
     //protected MapSquare mapSquare;
@@ -31,13 +31,11 @@ public class Level : _MB, IState
 
     public static event Action<Level> Entered;
 
-    public override void Init()
+    protected void Awake()
     {
-        base.Init();
-
         levelTransforms = GetComponentInChildren<TiledMap>().gameObject;
 
-        if(levelTransforms == null)
+        if (levelTransforms == null)
         {
             Debug.Log("Level transform not found!");
         }
@@ -63,7 +61,7 @@ public class Level : _MB, IState
     {
         gameObject.SetActive(true);
 
-        AudioManager.PlaySound(backgroundMusic);
+        AudioManager.PlaySound(backgroundMusic, true);
 
         backgroundForCamera = levelTransforms.transform.Find("Background");
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : _MB
+public class AudioManager : MonoBehaviour
 {
     [SerializeField]
     private SoundsSO generalSoundsSO;
@@ -19,22 +19,23 @@ public class AudioManager : _MB
     public SoundContainer[] soundContainer;
     public List<SoundsSO> UniqueSoundSOs;
 
-    public override void Init()
+    protected void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        base.Init();
     }
 
+    protected void Start()
+    {
+        FindAndLoadSounds();
+    }
 
     public void FindAndLoadSounds()
     {

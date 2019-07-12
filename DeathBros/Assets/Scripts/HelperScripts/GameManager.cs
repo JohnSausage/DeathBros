@@ -129,12 +129,8 @@ public class GameManager : _MB
     protected void UpdateManagers()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        if (AudioManager.Instance == null)
-        {
-            AudioManager.Instance.Init();
-        }
 
-        AudioManager.Instance.FindAndLoadSounds();
+        //AudioManager.Instance.FindAndLoadSounds();
 
         dialogueManager = FindObjectOfType<DialogueManager>();
         dialogueManager.Setup();

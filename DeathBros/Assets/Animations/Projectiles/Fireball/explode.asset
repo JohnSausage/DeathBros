@@ -24,7 +24,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 1
+  - duration: 2
     sprite: {fileID: 21300010, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 1
+  - duration: 2
     sprite: {fileID: 21300012, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     hurtboxes: []
     hitboxes: []
     soundName: 
-  - duration: 1
+  - duration: 2
     sprite: {fileID: 21300014, guid: 85cca07b1d127964fba846c3536bd678, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 34337
+      ID: 99125
       getNewID: 0
     soundName: 
   - duration: 2
@@ -101,7 +101,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 34337
+      ID: 99125
       getNewID: 0
     soundName: 
   - duration: 2
@@ -129,7 +129,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 34337
+      ID: 99125
       getNewID: 0
     soundName: 
   damages:

@@ -5,15 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/CardData")]
 public class CardDataSO : ScriptableObject
 {
+    public int indexNumber;
+
+    [Space]
+    [Space]
+
     public string title;
     public ECardColor cardColor;
     public Sprite picture;
 
     [Space]
 
-    public int level;
+    public int damage;
     public EStatusEffectType element;
+    public int cost;
 
     [Space]
+
     public string details;
+
+    [Space]
+
+    public StaticAttackStateSO attackStateSO;
 }

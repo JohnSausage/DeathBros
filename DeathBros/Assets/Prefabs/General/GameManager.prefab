@@ -43,22 +43,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1999466532303450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4851759806817804}
-  - component: {fileID: 114250651830175680}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &4277830588748200
 Transform:
   m_ObjectHideFlags: 1
@@ -69,7 +53,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4851759806817804}
   - {fileID: 4555624392195154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,19 +63,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494107097350592}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4277830588748200}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4851759806817804
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999466532303450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -116,22 +86,13 @@ MonoBehaviour:
   startingLevel: {fileID: 0}
   startWorld: {fileID: 0}
   knTestFactor: 1
---- !u!114 &114250651830175680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999466532303450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 872e94502a4741544973632c99c6a9c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generalSoundsSO: {fileID: 11400000, guid: cf0c6efcf4bfe434288721cc4c799591, type: 2}
-  backgroundMusicSO: {fileID: 11400000, guid: 08b1a8583459191498c451e9aa73c620, type: 2}
-  sounds: []
-  soundContainer: []
-  UniqueSoundSOs: []
+  canvas: {fileID: 0}
+  saveData:
+    saveDataName: 
+    gameStarted: 0
+    spawnX: 0
+    spawnY: 0
+    skillAvailable: 
 --- !u!114 &114357206055355150
 MonoBehaviour:
   m_ObjectHideFlags: 1

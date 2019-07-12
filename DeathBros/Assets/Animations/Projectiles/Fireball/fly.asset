@@ -37,7 +37,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 29214
+      ID: 37946
       getNewID: 0
     soundName: 
   - duration: 15

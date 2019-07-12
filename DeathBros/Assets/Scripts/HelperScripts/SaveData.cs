@@ -12,6 +12,11 @@ public class SaveData
     public float spawnX;
     public float spawnY;
 
+    public int skillIndexN;
+    public int skillIndexS;
+    public int skillIndexU;
+    public int skillIndexD;
+
     public bool[] skillAvailable;
 
     public virtual void Save()
@@ -43,6 +48,11 @@ public class SaveData
             this.saveDataName = loaded.saveDataName;
             this.spawnX = loaded.spawnX;
             this.spawnY = loaded.spawnY;
+
+            this.skillIndexN = loaded.skillIndexN;
+            this.skillIndexS = loaded.skillIndexS;
+            this.skillIndexU = loaded.skillIndexU;
+            this.skillIndexD = loaded.skillIndexD;
 
             this.skillAvailable = new bool[loaded.skillAvailable.Length];
 
