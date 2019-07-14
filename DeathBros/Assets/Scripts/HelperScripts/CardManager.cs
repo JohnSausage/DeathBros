@@ -30,6 +30,8 @@ public class CardManager : MonoBehaviour
 
     public List<CardDataSO> cardDataSOList;
 
+    public List<CardDataSO> currentSkillsCardData { get; set; }
+
     void Start()
     {
         Object[] objects = Resources.LoadAll("CardData/SkillCards");
@@ -41,6 +43,47 @@ public class CardManager : MonoBehaviour
         SortAscending sortAscending = new SortAscending();
 
         cardDataSOList.Sort(sortAscending);
+
+        currentSkillsCardData = new List<CardDataSO>();
+
+        if(GameManager.Instance.saveData.currentSkillIDs.Length < 4)
+        {
+            Debug.Log("Not enough current skills found!");
+            return;
+        }
+
+        for (int i = 0; i < GameManager.Instance.saveData.currentSkillIDs.Length; i++)
+        {
+            currentSkillsCardData.Add(GetLoadedCardData(GameManager.Instance.saveData.currentSkillIDs[i]));
+        }
+
+        Player player = FindObjectOfType<Player>();
+
+        if(player == null)
+        {
+            Debug.Log("Player not found!");
+            return;
+        }
+
+        if (currentSkillsCardData[0] != null)
+        {
+            player.SetSpecialAttack(currentSkillsCardData[0].attackStateSO, ESpecial.NEUTRAL);
+        }
+
+        if (currentSkillsCardData[1] != null)
+        {
+            player.SetSpecialAttack(currentSkillsCardData[1].attackStateSO, ESpecial.SIDE);
+        }
+
+        if (currentSkillsCardData[2] != null)
+        {
+            player.SetSpecialAttack(currentSkillsCardData[2].attackStateSO, ESpecial.UP);
+        }
+
+        if (currentSkillsCardData[3] != null)
+        {
+            player.SetSpecialAttack(currentSkillsCardData[3].attackStateSO, ESpecial.DOWN);
+        }
     }
 
     public static CardDataSO GetLoadedCardData(int cardID)

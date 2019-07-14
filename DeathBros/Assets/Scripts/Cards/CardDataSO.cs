@@ -26,5 +26,5 @@ public class CardDataSO : ScriptableObject
 
     [Space]
 
-    public StaticAttackStateSO attackStateSO;
+    public StaticAttackStateSpecial attackStateSO;
 }

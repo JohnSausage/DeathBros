@@ -24,4 +24,11 @@ public class Button_CardDataSO : MonoBehaviour
             text.SetText(cardDataSO.title);
         }
     }
+
+    public void ButtonPressed()
+    {
+        CardPanel cardPanel = FindObjectOfType<CardPanel>();
+
+        cardPanel.PressButtonCardData();
+    }
 }

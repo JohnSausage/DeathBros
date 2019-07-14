@@ -14,6 +14,7 @@ public class CardPanel : MenuPanel
 
     [SerializeField]
     protected List<Button_CardDataSO> buttons_CurrentSkills;
+    protected Button_CardDataSO button_selectedSkill;
 
     [SerializeField]
     protected GameObject availableSkillsGO;
@@ -26,6 +27,10 @@ public class CardPanel : MenuPanel
 
     protected List<Button_CardDataSO> buttons_AvlSkills;
 
+    protected bool displayingCurrentSkills;
+
+    protected enum ECardPanelState { Normal, SkillCardSelected, CurrentSkillSelected };
+    protected ECardPanelState cardPanelState;
 
     private void Awake()
     {
@@ -35,6 +40,8 @@ public class CardPanel : MenuPanel
     public override void Enter()
     {
         base.Enter();
+
+        cardPanelState = ECardPanelState.Normal;
 
         for (int i = 0; i < buttons_AvlSkills.Count; i++)
         {
@@ -51,11 +58,10 @@ public class CardPanel : MenuPanel
             buttons_AvlSkills.Add(newButton);
         }
 
-        for (int i = 0; i < GameManager.Instance.saveData.currentSkillIDs.Length; i++)
+        for (int i = 0; i < CardManager.Instance.currentSkillsCardData.Count; i++)
         {
-            CardDataSO cardDataSO = CardManager.GetLoadedCardData(GameManager.Instance.saveData.currentSkillIDs[i]);
 
-            buttons_CurrentSkills[i].SetCardData(cardDataSO);
+            buttons_CurrentSkills[i].SetCardData(CardManager.Instance.currentSkillsCardData[i]);
         }
 
 
@@ -66,21 +72,47 @@ public class CardPanel : MenuPanel
     {
         base.Execute();
 
-        foreach(Button_CardDataSO button in buttons_AvlSkills)
+        switch(cardPanelState)
         {
-            if (button.gameObject == EventSystem.current.currentSelectedGameObject)
-            {
-                cardDisplay.SetCardData(button.cardDataSO);
-            }
+            case ECardPanelState.Normal: //Display buttons and switch selected card in cardDisplay
+                {
+                    foreach (Button_CardDataSO button in buttons_AvlSkills)
+                    {
+                        if (button.gameObject == EventSystem.current.currentSelectedGameObject)
+                        {
+                            cardDisplay.SetCardData(button.cardDataSO);
+                        }
+                    }
+
+                    foreach (Button_CardDataSO button in buttons_CurrentSkills)
+                    {
+                        if (button.gameObject == EventSystem.current.currentSelectedGameObject)
+                        {
+                            cardDisplay.SetCardData(button.cardDataSO);
+                            button_selectedSkill = button;
+                        }
+                    }
+
+                    break;
+                }
+
+            case ECardPanelState.SkillCardSelected:
+                {
+                    break;
+                }
+
+
+            case ECardPanelState.CurrentSkillSelected:
+                {
+                    break;
+                }
+
+            default:
+                {
+                    break;
+                }
         }
 
-        foreach (Button_CardDataSO button in buttons_CurrentSkills)
-        {
-            if (button.gameObject == EventSystem.current.currentSelectedGameObject)
-            {
-                cardDisplay.SetCardData(button.cardDataSO);
-            }
-        }
     }
 
     public override void Exit()
@@ -93,11 +125,53 @@ public class CardPanel : MenuPanel
     {
         currentSkillsGO.SetActive(false);
         availableSkillsGO.SetActive(true);
+
+        displayingCurrentSkills = false;
     }
 
     public void SelectCurrentSkills()
     {
         currentSkillsGO.SetActive(true);
         availableSkillsGO.SetActive(false);
+
+        displayingCurrentSkills = true;
+    }
+
+    public void SetSkillButtonPressed()
+    {
+        if(displayingCurrentSkills)
+        {
+            cardPanelState = ECardPanelState.CurrentSkillSelected;
+
+            SelectAvailableSkills();
+        }
+        else
+        {
+            cardPanelState = ECardPanelState.SkillCardSelected;
+
+            SelectCurrentSkills();
+        }
+    }
+
+    public void PressButtonCardData()
+    {
+        Debug.Log(cardPanelState);
+
+        Button_CardDataSO pressedButtonCardDataButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button_CardDataSO>();
+
+        if(pressedButtonCardDataButton == null)
+        {
+            Debug.Log("pressedButtonCardDataButton == null");
+            return;
+        }
+
+
+        if (cardPanelState == ECardPanelState.CurrentSkillSelected)
+        {
+            button_selectedSkill.SetCardData(pressedButtonCardDataButton.cardDataSO);
+            cardPanelState = ECardPanelState.Normal;
+
+            SelectCurrentSkills();
+        }
     }
 }

@@ -111,6 +111,7 @@ public class Player : Character
         walkSpeedReduction = 0.5f;
     }
 
+  
     public override void Restart()
     {
         base.Restart();
@@ -859,4 +860,45 @@ public class Player : Character
 
         CameraController.LoadScreenOff();
     }
+
+    public void SetSpecialAttack(StaticAttackStateSpecial attackSO, ESpecial type)
+    {
+        if(attackSO == null)
+        {
+            return;
+        }
+
+        switch (type)
+        {
+            case ESpecial.NEUTRAL:
+                {
+                    nSpecAtk = attackSO.CreateAttackState(type);
+                    break;
+                }
+
+            case ESpecial.SIDE:
+                {
+                    sSpecAtk = attackSO.CreateAttackState(type);
+                    break;
+                }
+
+            case ESpecial.UP:
+                {
+                    uSpecAtk = attackSO.CreateAttackState(type);
+                    break;
+                }
+
+            case ESpecial.DOWN:
+                {
+                    dSpecAtk = attackSO.CreateAttackState(type);
+                    break;
+                }
+
+            default:
+                {
+                    break;
+                }
+        }
+    }
+
 }
