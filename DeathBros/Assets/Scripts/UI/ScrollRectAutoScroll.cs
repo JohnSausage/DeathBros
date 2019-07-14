@@ -28,8 +28,11 @@ public class ScrollRectAutoScroll : MonoBehaviour
             selectables.Add(s);
         }
 
-        buttonHeight = selectables[0].GetComponent<RectTransform>().rect.height + spacing;
-        scrollRectHeight = GetComponent<RectTransform>().rect.height;
+        if (selectables.Count > 0)
+        {
+            buttonHeight = selectables[0].GetComponent<RectTransform>().rect.height + spacing;
+            scrollRectHeight = GetComponent<RectTransform>().rect.height;
+        }
     }
 
     void Update()

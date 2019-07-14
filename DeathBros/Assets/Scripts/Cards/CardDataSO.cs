@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/CardData")]
 public class CardDataSO : ScriptableObject
 {
-    public int indexNumber;
+    public int cardID;
 
     [Space]
     [Space]

@@ -139,6 +139,11 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        if (s.Source == null)
+        {
+            return;
+        }
+
         s.Source.Stop();
     }
 

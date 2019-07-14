@@ -28,7 +28,7 @@ public class CardManager : MonoBehaviour
     }
     #endregion
 
-    public List<CardDataSO> cardData;
+    public List<CardDataSO> cardDataSOList;
 
     void Start()
     {
@@ -36,8 +36,20 @@ public class CardManager : MonoBehaviour
 
         foreach (Object obj in objects)
         {
-            cardData.Add((CardDataSO)obj);
+            cardDataSOList.Add((CardDataSO)obj);
         }
+        SortAscending sortAscending = new SortAscending();
+
+        cardDataSOList.Sort(sortAscending);
+    }
+
+    public static CardDataSO GetLoadedCardData(int cardID)
+    {
+        CardDataSO retVal = null;
+
+        retVal = Instance.cardDataSOList.Find(x => x.cardID == cardID);
+
+        return retVal;
     }
 
     public static Color GetColor(ECardColor cardColor)
@@ -101,9 +113,16 @@ public class CardManager : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class CardData
+class SortAscending : IComparer<CardDataSO>
 {
-    public string title;
+    public int Compare(CardDataSO x, CardDataSO y)
+    {
+        if(x.cardID == 0 || y.cardID == 0)
+        {
+            return 0;
+        }
 
+        // CompareTo() method 
+        return x.cardID.CompareTo(y.cardID);
+    }
 }

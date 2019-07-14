@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e6467302421f746829e6427f9a3edc, type: 3}
   m_Name: SpinAttack
   m_EditorClassIdentifier: 
-  indexNumber: 1
+  cardID: 2
   title: SPIN
   cardColor: 0
   picture: {fileID: 21300002, guid: 8bd210cb62d987c48a94725f64225447, type: 3}

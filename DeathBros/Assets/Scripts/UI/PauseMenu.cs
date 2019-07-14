@@ -29,6 +29,11 @@ public class PauseMenu : MonoBehaviour
         MenuSM.ChangeState(mainMenuPanel);
     }
 
+    private void Update()
+    {
+        MenuSM.Update();
+    }
+
     public static void Open()
     {
         Instance.gameObject.SetActive(true);

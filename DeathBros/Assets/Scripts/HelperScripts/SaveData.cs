@@ -12,10 +12,7 @@ public class SaveData
     public float spawnX;
     public float spawnY;
 
-    public int skillIndexN;
-    public int skillIndexS;
-    public int skillIndexU;
-    public int skillIndexD;
+    public int[] currentSkillIDs;
 
     public bool[] skillAvailable;
 
@@ -49,10 +46,12 @@ public class SaveData
             this.spawnX = loaded.spawnX;
             this.spawnY = loaded.spawnY;
 
-            this.skillIndexN = loaded.skillIndexN;
-            this.skillIndexS = loaded.skillIndexS;
-            this.skillIndexU = loaded.skillIndexU;
-            this.skillIndexD = loaded.skillIndexD;
+            this.currentSkillIDs = new int[loaded.currentSkillIDs.Length];
+
+            for (int i = 0; i < loaded.currentSkillIDs.Length; i++)
+            {
+                this.currentSkillIDs[i] = loaded.currentSkillIDs[i];
+            }
 
             this.skillAvailable = new bool[loaded.skillAvailable.Length];
 
