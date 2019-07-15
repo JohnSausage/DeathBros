@@ -40,6 +40,11 @@ public class PauseMenu : MonoBehaviour
         Instance.MenuSM.ChangeState(Instance.mainMenuPanel);
     }
 
+    public static void Close()
+    {
+        Instance.MenuSM.CurrentState.Exit();
+    }
+
     public void ChangeMenuPanel(MenuPanel newPanel)
     {
         MenuSM.ChangeState(newPanel);

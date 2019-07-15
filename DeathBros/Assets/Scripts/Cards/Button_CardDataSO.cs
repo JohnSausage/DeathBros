@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Button_CardDataSO : MonoBehaviour
 {
+    public int specialIndex;
     public CardDataSO cardDataSO { get; protected set; }
 
     protected SpriteFontText text;
@@ -25,10 +26,10 @@ public class Button_CardDataSO : MonoBehaviour
         }
     }
 
-    public void ButtonPressed()
+    public void ButtonPressed(int index)
     {
         CardPanel cardPanel = FindObjectOfType<CardPanel>();
 
-        cardPanel.PressButtonCardData();
+        cardPanel.PressButtonCardData(index);
     }
 }

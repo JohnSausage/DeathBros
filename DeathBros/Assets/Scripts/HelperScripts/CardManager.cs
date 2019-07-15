@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
 
         currentSkillsCardData = new List<CardDataSO>();
 
-        if(GameManager.Instance.saveData.currentSkillIDs.Length < 4)
+        if (GameManager.Instance.saveData.currentSkillIDs.Length < 4)
         {
             Debug.Log("Not enough current skills found!");
             return;
@@ -57,32 +57,45 @@ public class CardManager : MonoBehaviour
             currentSkillsCardData.Add(GetLoadedCardData(GameManager.Instance.saveData.currentSkillIDs[i]));
         }
 
+        SetPlayerSkills();
+    }
+
+    public static void SaveSkillIDs()
+    {
+        for (int i = 0; i < Instance.currentSkillsCardData.Count; i++)
+        {
+            GameManager.Instance.saveData.currentSkillIDs[i] = Instance.currentSkillsCardData[i].cardID;
+        }
+    }
+
+    public static void SetPlayerSkills()
+    {
         Player player = FindObjectOfType<Player>();
 
-        if(player == null)
+        if (player == null)
         {
             Debug.Log("Player not found!");
             return;
         }
 
-        if (currentSkillsCardData[0] != null)
+        if (Instance.currentSkillsCardData[0] != null)
         {
-            player.SetSpecialAttack(currentSkillsCardData[0].attackStateSO, ESpecial.NEUTRAL);
+            player.SetSpecialAttack(Instance.currentSkillsCardData[0].attackStateSO, ESpecial.NEUTRAL);
         }
 
-        if (currentSkillsCardData[1] != null)
+        if (Instance.currentSkillsCardData[1] != null)
         {
-            player.SetSpecialAttack(currentSkillsCardData[1].attackStateSO, ESpecial.SIDE);
+            player.SetSpecialAttack(Instance.currentSkillsCardData[1].attackStateSO, ESpecial.SIDE);
         }
 
-        if (currentSkillsCardData[2] != null)
+        if (Instance.currentSkillsCardData[2] != null)
         {
-            player.SetSpecialAttack(currentSkillsCardData[2].attackStateSO, ESpecial.UP);
+            player.SetSpecialAttack(Instance.currentSkillsCardData[2].attackStateSO, ESpecial.UP);
         }
 
-        if (currentSkillsCardData[3] != null)
+        if (Instance.currentSkillsCardData[3] != null)
         {
-            player.SetSpecialAttack(currentSkillsCardData[3].attackStateSO, ESpecial.DOWN);
+            player.SetSpecialAttack(Instance.currentSkillsCardData[3].attackStateSO, ESpecial.DOWN);
         }
     }
 
@@ -99,7 +112,7 @@ public class CardManager : MonoBehaviour
     {
         Color retVal = Color.white;
 
-        switch(cardColor)
+        switch (cardColor)
         {
             case ECardColor.Red:
                 {
@@ -132,7 +145,7 @@ public class CardManager : MonoBehaviour
     {
         string retVal = "";
 
-        switch(effectType)
+        switch (effectType)
         {
             case EStatusEffectType.Burning:
                 {
@@ -160,7 +173,7 @@ class SortAscending : IComparer<CardDataSO>
 {
     public int Compare(CardDataSO x, CardDataSO y)
     {
-        if(x.cardID == 0 || y.cardID == 0)
+        if (x.cardID == 0 || y.cardID == 0)
         {
             return 0;
         }
