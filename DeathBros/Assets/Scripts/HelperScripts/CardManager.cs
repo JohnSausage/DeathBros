@@ -13,6 +13,8 @@ public class CardManager : MonoBehaviour
     [SerializeField]
     protected Color cardColorGreen;
 
+    public static int setSpecialIndex;
+
     #region Singelton
     public static CardManager Instance { get; protected set; }
     void Awake()

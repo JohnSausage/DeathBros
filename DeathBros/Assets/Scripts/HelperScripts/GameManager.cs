@@ -26,7 +26,7 @@ public class GameManager : _MB
 
     public SaveData saveData;// { get; protected set; }
 
-
+    public static SaveData SaveData { get { return Instance.saveData; } }
 
     public static GameManager Instance { get; private set; }
 

@@ -900,4 +900,44 @@ public class Player : Character
                 }
         }
     }
+
+    public void SetSpecialAttack(int index, StaticAttackStateSpecial attackSO)
+    {
+        if (attackSO == null)
+        {
+            return;
+        }
+
+        switch (index)
+        {
+            case 0:
+                {
+                    nSpecAtk = attackSO.CreateAttackState(ESpecial.NEUTRAL);
+                    break;
+                }
+
+            case 1:
+                {
+                    sSpecAtk = attackSO.CreateAttackState(ESpecial.SIDE);
+                    break;
+                }
+
+            case 2:
+                {
+                    uSpecAtk = attackSO.CreateAttackState(ESpecial.UP);
+                    break;
+                }
+
+            case 3:
+                {
+                    dSpecAtk = attackSO.CreateAttackState(ESpecial.DOWN);
+                    break;
+                }
+
+            default:
+                {
+                    break;
+                }
+        }
+    }
 }

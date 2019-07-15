@@ -26,10 +26,16 @@ public class Button_CardDataSO : MonoBehaviour
         }
     }
 
-    public void ButtonPressed(int index)
+    public void ButtonPressed()
     {
-        CardPanel cardPanel = FindObjectOfType<CardPanel>();
+        Panel_AvlSkills panel_AvlSkills = FindObjectOfType<Panel_AvlSkills>();
 
-        cardPanel.PressButtonCardData(index);
+        if (panel_AvlSkills == null)
+        {
+            Debug.Log("panel_AvlSkills not found");
+            return;
+        }
+
+        panel_AvlSkills.Press_AvlSkillButton(this);
     }
 }

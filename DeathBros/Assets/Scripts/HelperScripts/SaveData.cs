@@ -67,6 +67,11 @@ public class SaveData
             Debug.LogError(saveDataName + " not found");
         }
     }
+
+    public void SetSpecialIDAtIndex(int specialIndex, int cardID)
+    {
+        currentSkillIDs[specialIndex] = cardID;
+    }
 }
 
 [System.Serializable]
