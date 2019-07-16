@@ -105,6 +105,8 @@ public class Panel_AvlSkills : MenuPanel
             button_AvlSKills.navigation = avlSkillsNav;
         }
 
+        Vector2 offset = Vector2.down;
+
         //set navigation for buttons in list
         for (int i = 1; i < buttons_AvlSkills.Count; i++)
         {
@@ -120,6 +122,16 @@ public class Panel_AvlSkills : MenuPanel
             }
 
             button.navigation = buttonNav;
+        }
+
+        //set position for buttons in list
+        for (int i = 0; i < buttons_AvlSkills.Count; i++)
+        {
+            RectTransform rt = buttons_AvlSkills[i].GetComponent<RectTransform>();
+            rt.anchorMax = new Vector2(1, 0.5f);
+            rt.anchorMin = new Vector2(0, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            buttons_AvlSkills[i].transform.localPosition += (Vector3)(offset * i * 32);
         }
     }
 

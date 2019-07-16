@@ -1,14 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Button_CardDataSO : MonoBehaviour
+public class Button_CardDataSO : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public int specialIndex;
     public CardDataSO cardDataSO { get; protected set; }
 
     protected SpriteFontText text;
 
+    protected Vector2 originalLocalPosition;
+
+    private void Awake()
+    {
+        originalLocalPosition = transform.localPosition;
+    }
+
+    private void OnEnable()
+    {
+        transform.localPosition = originalLocalPosition;
+    }
 
     public void SetCardData(CardDataSO cardDataSO)
     {
@@ -37,5 +49,15 @@ public class Button_CardDataSO : MonoBehaviour
         }
 
         panel_AvlSkills.Press_AvlSkillButton(this);
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        transform.localPosition += Vector3.right * 16;
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        transform.localPosition += Vector3.left * 16;
     }
 }

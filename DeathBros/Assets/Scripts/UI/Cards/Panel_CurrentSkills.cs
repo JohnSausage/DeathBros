@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Panel_CurrentSkills : MenuPanel
 {
     [SerializeField]
-    protected CardDisplay cardDisplay;
+    protected List<CardDisplay> cardDisplays;
 
     [SerializeField]
     protected List<Button_CardDataSO> buttons_CurrentSkills;
@@ -28,12 +28,25 @@ public class Panel_CurrentSkills : MenuPanel
     {
         base.Enter();
 
+        if (button_skillToSet != null)
+        {
+            button_skillToSet.GetComponent<Button>().Select();
+            button_skillToSet.OnSelect(eventData);
+
+            button_skillToSet = null;
+        }
+
         CardManager.setSpecialIndex = -1;
 
         for (int i = 0; i < CardManager.Instance.currentSkillsCardData.Count; i++)
         {
-
             buttons_CurrentSkills[i].SetCardData(CardManager.Instance.currentSkillsCardData[i]);
+        }
+
+        for (int i = 0; i < buttons_CurrentSkills.Count; i++)
+        {
+            cardDisplays[i].SetCardData(buttons_CurrentSkills[i].cardDataSO);
+            cardDisplays[i].SetOffsetOnSelect(Vector2.left * 3.5f);
         }
     }
 
@@ -41,11 +54,16 @@ public class Panel_CurrentSkills : MenuPanel
     {
         base.Execute();
 
-        foreach (Button_CardDataSO button in buttons_CurrentSkills)
+        for (int i = 0; i < buttons_CurrentSkills.Count; i++)
         {
-            if (button.gameObject == EventSystem.current.currentSelectedGameObject)
+            if ((buttons_CurrentSkills[i].gameObject == EventSystem.current.currentSelectedGameObject) ||
+                (buttons_CurrentSkills[i] == button_skillToSet))
             {
-                cardDisplay.SetCardData(button.cardDataSO);
+                cardDisplays[i].MoveToPositionOnSelect();
+            }
+            else
+            {
+                cardDisplays[i].Deselect();
             }
         }
     }
@@ -53,6 +71,13 @@ public class Panel_CurrentSkills : MenuPanel
     public void Press_SkillButton(int specialIndex)
     {
         CardManager.setSpecialIndex = specialIndex;
+
+        Button_CardDataSO pressedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button_CardDataSO>();
+
+        if(pressedButton != null)
+        {
+            button_skillToSet = pressedButton;
+        }
 
         button_setSkill.Select();
         button_setSkill.OnSelect(eventData);
