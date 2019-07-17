@@ -7,7 +7,19 @@ using UnityEngine.EventSystems;
 public class Panel_AvlSkills : MenuPanel
 {
     [SerializeField]
-    protected CardDisplay cardDisplay;
+    protected CardDisplay cardDisplay_main;
+
+    [SerializeField]
+    protected CardDisplay cardDisplay_up1;
+
+    [SerializeField]
+    protected CardDisplay cardDisplay_up2;
+
+    [SerializeField]
+    protected CardDisplay cardDisplay_down1;
+
+    [SerializeField]
+    protected CardDisplay cardDisplay_down2;
 
     [SerializeField]
     protected Button button_CurrentSKills;
@@ -36,6 +48,9 @@ public class Panel_AvlSkills : MenuPanel
 
     protected List<Button_CardDataSO> buttons_AvlSkills;
 
+    protected int currentScrollPosition;
+    protected const int scrollAtPosition = 3;
+
 
     private void Awake()
     {
@@ -46,8 +61,10 @@ public class Panel_AvlSkills : MenuPanel
     {
         base.Enter();
 
+        currentScrollPosition = 0;
+
         //check if in skill setting mode
-        if(CardManager.setSpecialIndex >= 0)
+        if (CardManager.setSpecialIndex >= 0)
         {
             button_setSkill.SetActive(true);
         }
@@ -74,7 +91,7 @@ public class Panel_AvlSkills : MenuPanel
 
         //set up navigation
         if (buttons_AvlSkills.Count > 0)
-        {        
+        {
             Button firstButtonInList = buttons_AvlSkills[0].GetComponent<Button>();
 
             //select first button
@@ -116,7 +133,7 @@ public class Panel_AvlSkills : MenuPanel
 
             buttonNav.selectOnUp = buttons_AvlSkills[i - 1].GetComponent<Button>();
 
-            if((i + 1) < buttons_AvlSkills.Count)
+            if ((i + 1) < buttons_AvlSkills.Count)
             {
                 buttonNav.selectOnDown = buttons_AvlSkills[i + 1].GetComponent<Button>();
             }
@@ -128,9 +145,10 @@ public class Panel_AvlSkills : MenuPanel
         for (int i = 0; i < buttons_AvlSkills.Count; i++)
         {
             RectTransform rt = buttons_AvlSkills[i].GetComponent<RectTransform>();
-            rt.anchorMax = new Vector2(1, 0.5f);
-            rt.anchorMin = new Vector2(0, 0.5f);
-            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0, 1f);
+            rt.anchorMin = new Vector2(0, 1f);
+            rt.pivot = new Vector2(0, 1f);
+            rt.sizeDelta = new Vector2(192, rt.sizeDelta.y);
             buttons_AvlSkills[i].transform.localPosition += (Vector3)(offset * i * 32);
         }
     }
@@ -139,11 +157,67 @@ public class Panel_AvlSkills : MenuPanel
     {
         base.Execute();
 
-        foreach (Button_CardDataSO button in buttons_AvlSkills)
+        int listCount = buttons_AvlSkills.Count;
+
+        for (int i = 0; i < listCount; i++)
         {
+            Button_CardDataSO button = buttons_AvlSkills[i];
+
             if (button.gameObject == EventSystem.current.currentSelectedGameObject)
             {
-                cardDisplay.SetCardData(button.cardDataSO);
+                if ((i - 2) > 0)
+                {
+                    cardDisplay_up2.SetCardData(buttons_AvlSkills[i - 2].cardDataSO);
+                }
+                else
+                {
+                    cardDisplay_up2.SetEmpty();
+                }
+
+                if ((i - 1) > 0)
+                {
+                    cardDisplay_up1.SetCardData(buttons_AvlSkills[i - 1].cardDataSO);
+                }
+                else
+                {
+                    cardDisplay_up1.SetEmpty();
+                }
+
+                cardDisplay_main.SetCardData(button.cardDataSO);
+
+                if ((i + 1) < listCount)
+                {
+                    cardDisplay_down1.SetCardData(buttons_AvlSkills[i + 1].cardDataSO);
+                }
+                else
+                {
+                    cardDisplay_down1.SetEmpty();
+                }
+
+                if ((i + 2) < listCount)
+                {
+                    cardDisplay_down2.SetCardData(buttons_AvlSkills[i + 2].cardDataSO);
+                }
+                else
+                {
+                    cardDisplay_down2.SetEmpty();
+                }
+
+
+
+                if ((i - scrollAtPosition) > currentScrollPosition && i < (listCount - scrollAtPosition))
+                {
+                    currentScrollPosition++;// = i - scrollAtPosition;
+
+                    MoveButtonsY(32);
+                }
+
+                if ((i - scrollAtPosition) < currentScrollPosition && (i >= scrollAtPosition))
+                {
+                    currentScrollPosition--;
+
+                    MoveButtonsY(-32);
+                }
             }
         }
     }
@@ -165,5 +239,32 @@ public class Panel_AvlSkills : MenuPanel
         GameManager.Player.SetSpecialAttack(CardManager.setSpecialIndex, button.cardDataSO.attackStateSO);
 
         PauseMenu.Instance.ChangeMenuPanel(panel_CurrentSkills);
+    }
+
+    public void MoveButtonsY(float units)
+    {
+        foreach (Button_CardDataSO button in buttons_AvlSkills)
+        {
+            //button.transform.localPosition += Vector3.up * y;
+            //button.transform.Translate(Vector3.up * units / 32f);
+            StartCoroutine(CMoveTransform(button.transform, units));
+        }
+    }
+
+    public void ResetLocalButtonPosition()
+    {
+        foreach (Button_CardDataSO button in buttons_AvlSkills)
+        {
+            button.transform.localPosition = button.OriginalLocalPosition;
+        }
+    }
+
+    protected IEnumerator CMoveTransform(Transform trf, float y)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            trf.Translate(Vector3.up * y / 32f / 10f);
+            yield return null;
+        }
     }
 }

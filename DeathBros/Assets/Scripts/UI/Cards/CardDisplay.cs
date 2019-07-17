@@ -47,7 +47,13 @@ public class CardDisplay : MonoBehaviour
     {
         if (cardDataSO == null)
         {
+            SetEmpty();
             return;
+        }
+
+        foreach (Transform tr in GetComponentsInChildren<Transform>(true))
+        {
+            tr.gameObject.SetActive(true);
         }
 
         this.cardDataSO = cardDataSO;
@@ -60,6 +66,14 @@ public class CardDisplay : MonoBehaviour
         damage.SetText(cardDataSO.damage.ToString() + CardManager.GetEffectIcon(cardDataSO.element));
         cost.SetText(cardDataSO.cost.ToString() + "\\4");
         details.SetText(cardDataSO.details);
+    }
+
+    public void SetEmpty()
+    {
+        foreach (Transform tr in GetComponentsInChildren<Transform>())
+        {
+            tr.gameObject.SetActive(false);
+        }
     }
 
     public void MoveToPositionOnSelect()

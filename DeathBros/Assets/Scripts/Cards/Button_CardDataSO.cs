@@ -10,16 +10,16 @@ public class Button_CardDataSO : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     protected SpriteFontText text;
 
-    protected Vector2 originalLocalPosition;
+    public Vector2 OriginalLocalPosition { get; protected set; }
 
     private void Awake()
     {
-        originalLocalPosition = transform.localPosition;
+        OriginalLocalPosition = transform.localPosition;
     }
 
     private void OnEnable()
     {
-        transform.localPosition = originalLocalPosition;
+        transform.localPosition = OriginalLocalPosition;
     }
 
     public void SetCardData(CardDataSO cardDataSO)
