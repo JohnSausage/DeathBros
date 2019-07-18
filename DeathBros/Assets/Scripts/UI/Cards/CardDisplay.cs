@@ -74,6 +74,7 @@ public class CardDisplay : MonoBehaviour
         {
             tr.gameObject.SetActive(false);
         }
+        gameObject.SetActive(true);
     }
 
     public void MoveToPositionOnSelect()

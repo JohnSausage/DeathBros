@@ -8,18 +8,23 @@ public class Panel_AvlSkills : MenuPanel
 {
     [SerializeField]
     protected CardDisplay cardDisplay_main;
+    protected Vector2 orgPosMain;
 
     [SerializeField]
     protected CardDisplay cardDisplay_up1;
+    protected Vector2 orgPosUp1;
 
     [SerializeField]
     protected CardDisplay cardDisplay_up2;
+    protected Vector2 orgPosUp2;
 
     [SerializeField]
     protected CardDisplay cardDisplay_down1;
+    protected Vector2 orgPosDown1;
 
     [SerializeField]
     protected CardDisplay cardDisplay_down2;
+    protected Vector2 orgPosDown2;
 
     [SerializeField]
     protected Button button_CurrentSKills;
@@ -47,14 +52,23 @@ public class Panel_AvlSkills : MenuPanel
 
 
     protected List<Button_CardDataSO> buttons_AvlSkills;
+    protected Button_CardDataSO button_selected;
 
     protected int currentScrollPosition;
     protected const int scrollAtPosition = 3;
-
+    protected int cardIndex;
+    protected int selectedCardIndex;
 
     private void Awake()
     {
         buttons_AvlSkills = new List<Button_CardDataSO>();
+
+        orgPosMain = cardDisplay_main.transform.localPosition;
+        orgPosUp1 = cardDisplay_up1.transform.localPosition;
+        orgPosUp2 = cardDisplay_up2.transform.localPosition;
+        orgPosDown1 = cardDisplay_down1.transform.localPosition;
+        orgPosDown2 = cardDisplay_down2.transform.localPosition;
+
     }
 
     public override void Enter()
@@ -151,6 +165,9 @@ public class Panel_AvlSkills : MenuPanel
             rt.sizeDelta = new Vector2(192, rt.sizeDelta.y);
             buttons_AvlSkills[i].transform.localPosition += (Vector3)(offset * i * 32);
         }
+
+        selectedCardIndex = 0;
+        SetCardsToIndex(selectedCardIndex);
     }
 
     public override void Execute()
@@ -159,60 +176,41 @@ public class Panel_AvlSkills : MenuPanel
 
         int listCount = buttons_AvlSkills.Count;
 
-        for (int i = 0; i < listCount; i++)
+
+        for (cardIndex = 0; cardIndex < listCount; cardIndex++)
         {
-            Button_CardDataSO button = buttons_AvlSkills[i];
+            Button_CardDataSO button = buttons_AvlSkills[cardIndex];
 
-            if (button.gameObject == EventSystem.current.currentSelectedGameObject)
+            if (button.gameObject == EventSystem.current.currentSelectedGameObject && button_selected != button)
             {
-                if ((i - 2) > 0)
+                button_selected = button;
+
+
+                if (selectedCardIndex > cardIndex)
                 {
-                    cardDisplay_up2.SetCardData(buttons_AvlSkills[i - 2].cardDataSO);
+                    StartCoroutine(CMoveAllCardsDown(cardIndex));
+                }
+                else if (selectedCardIndex < cardIndex)
+                {
+                    StartCoroutine(CMoveAllCardsUp(cardIndex));
                 }
                 else
                 {
-                    cardDisplay_up2.SetEmpty();
+                    SetCardsToIndex(cardIndex);
                 }
 
-                if ((i - 1) > 0)
-                {
-                    cardDisplay_up1.SetCardData(buttons_AvlSkills[i - 1].cardDataSO);
-                }
-                else
-                {
-                    cardDisplay_up1.SetEmpty();
-                }
+                selectedCardIndex = cardIndex;
 
-                cardDisplay_main.SetCardData(button.cardDataSO);
-
-                if ((i + 1) < listCount)
+                //move buttons up
+                if ((cardIndex - scrollAtPosition) > currentScrollPosition && cardIndex < (listCount - scrollAtPosition))
                 {
-                    cardDisplay_down1.SetCardData(buttons_AvlSkills[i + 1].cardDataSO);
-                }
-                else
-                {
-                    cardDisplay_down1.SetEmpty();
-                }
-
-                if ((i + 2) < listCount)
-                {
-                    cardDisplay_down2.SetCardData(buttons_AvlSkills[i + 2].cardDataSO);
-                }
-                else
-                {
-                    cardDisplay_down2.SetEmpty();
-                }
-
-
-
-                if ((i - scrollAtPosition) > currentScrollPosition && i < (listCount - scrollAtPosition))
-                {
-                    currentScrollPosition++;// = i - scrollAtPosition;
+                    currentScrollPosition++;
 
                     MoveButtonsY(32);
                 }
 
-                if ((i - scrollAtPosition) < currentScrollPosition && (i >= scrollAtPosition))
+                //move buttons down
+                if ((cardIndex - scrollAtPosition) < currentScrollPosition && (cardIndex >= scrollAtPosition))
                 {
                     currentScrollPosition--;
 
@@ -243,11 +241,9 @@ public class Panel_AvlSkills : MenuPanel
 
     public void MoveButtonsY(float units)
     {
-        foreach (Button_CardDataSO button in buttons_AvlSkills)
+        for (int i = 0; i < buttons_AvlSkills.Count; i++)
         {
-            //button.transform.localPosition += Vector3.up * y;
-            //button.transform.Translate(Vector3.up * units / 32f);
-            StartCoroutine(CMoveTransform(button.transform, units));
+            StartCoroutine(CMoveTransform(buttons_AvlSkills[i].transform, units));
         }
     }
 
@@ -259,12 +255,174 @@ public class Panel_AvlSkills : MenuPanel
         }
     }
 
-    protected IEnumerator CMoveTransform(Transform trf, float y)
+    protected IEnumerator CMoveTransform(Transform tr, float y)
     {
-        for (int i = 0; i < 10; i++)
+        int steps = 10;
+
+        for (int i = 0; i < steps; i++)
         {
-            trf.Translate(Vector3.up * y / 32f / 10f);
+            tr.Translate(Vector3.up * y / 32f / steps);
             yield return null;
+        }
+    }
+
+    protected IEnumerator CMoveAllCardsUp(int index)
+    {
+        int steps = 10;
+
+        for (int i = 0; i < steps; i++)
+        {
+            yield return null;
+
+            Vector2 offset;
+
+            offset = orgPosDown1 - orgPosDown2;
+            cardDisplay_down2.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosMain - orgPosDown1;
+            cardDisplay_down1.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosUp1 - orgPosMain;
+            cardDisplay_main.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosUp2 - orgPosUp1;
+            cardDisplay_up1.transform.Translate(offset / 32f / steps);
+        }
+
+
+        //CardDisplay tmp = cardDisplay_down2;
+        //cardDisplay_down2 = cardDisplay_down1;
+        //cardDisplay_down1 = cardDisplay_main;
+        //cardDisplay_main = cardDisplay_up1;
+        //cardDisplay_up1 = cardDisplay_up2;
+        //cardDisplay_up2 = tmp;
+
+
+        //SetCardsEmpty();
+        cardDisplay_down2.transform.localPosition = orgPosDown2;
+        cardDisplay_down1.transform.localPosition = orgPosDown1;
+        cardDisplay_main.transform.localPosition = orgPosMain;
+        cardDisplay_up1.transform.localPosition = orgPosUp1;
+        cardDisplay_up2.transform.localPosition = orgPosUp2;
+        SetCardsToIndex(index);
+    }
+
+    protected IEnumerator CMoveAllCardsDown(int index)
+    {
+        int steps = 10;
+
+        for (int i = 0; i < steps; i++)
+        {
+            yield return null;
+            Vector2 offset;
+
+            offset = orgPosUp2 - orgPosUp1;
+            cardDisplay_up2.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosMain - orgPosUp1;
+            cardDisplay_up1.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosDown1 - orgPosMain;
+            cardDisplay_main.transform.Translate(offset / 32f / steps);
+
+            offset = orgPosDown2 - orgPosDown1;
+            cardDisplay_down1.transform.Translate(offset / 32f / steps);        
+        }
+
+
+        //CardDisplay tmp = cardDisplay_up2;
+        //cardDisplay_up2   = cardDisplay_up1;
+        //cardDisplay_up1   = cardDisplay_main;
+        //cardDisplay_main  = cardDisplay_down1;
+        //cardDisplay_down1 = cardDisplay_down2;
+        //cardDisplay_down2 = tmp;
+
+        //SetCardsEmpty();
+        SetCardNumber(index, -2, cardDisplay_down2);
+        cardDisplay_down2.transform.localPosition = orgPosDown2;
+
+        SetCardNumber(index, -1, cardDisplay_down1);
+        cardDisplay_down1.transform.localPosition = orgPosDown1;
+
+        SetCardNumber(index, 0, cardDisplay_main);
+        cardDisplay_main.transform.localPosition = orgPosMain;
+
+        SetCardNumber(index, +1, cardDisplay_up1);
+        cardDisplay_up1.transform.localPosition = orgPosUp1;
+
+        SetCardNumber(index, +2, cardDisplay_up2);
+        cardDisplay_up2.transform.localPosition = orgPosUp2;
+
+
+        //SetCardsToIndex(index);
+    }
+
+    protected void SetCardsEmpty()
+    {
+        cardDisplay_up2.SetEmpty();
+        cardDisplay_up1.SetEmpty();
+        cardDisplay_main.SetEmpty();
+        cardDisplay_down1.SetEmpty();
+        cardDisplay_down2.SetEmpty();
+    }
+
+    protected void SetCardNumber(int index, int offset, CardDisplay cardDisplay)
+    {
+        if ((index + offset) >= 0 && (index + offset) < buttons_AvlSkills.Count)
+        {
+            cardDisplay.SetCardData(buttons_AvlSkills[index + offset].cardDataSO);
+        }
+        else
+        {
+            cardDisplay.SetEmpty();
+        }
+    }
+
+    protected void SetCardsToIndex(int index)
+    {
+        Debug.Log("setting cards to index " + index);
+        if (index >= buttons_AvlSkills.Count)
+        {
+            return;
+        }
+
+        if ((index - 2) >= 0)
+        {
+            cardDisplay_up2.SetCardData(buttons_AvlSkills[index - 2].cardDataSO);
+        }
+        else
+        {
+            cardDisplay_up2.SetEmpty();
+        }
+
+        if ((index - 1) >= 0)
+        {
+            cardDisplay_up1.SetCardData(buttons_AvlSkills[index - 1].cardDataSO);
+        }
+        else
+        {
+            cardDisplay_up1.SetEmpty();
+        }
+
+        cardDisplay_main.SetCardData(buttons_AvlSkills[index].cardDataSO);
+
+
+        if ((index + 1) < buttons_AvlSkills.Count)
+        {
+            cardDisplay_down1.SetCardData(buttons_AvlSkills[index + 1].cardDataSO);
+        }
+        else
+        {
+            cardDisplay_down1.SetEmpty();
+        }
+
+        if ((index + 2) < buttons_AvlSkills.Count)
+        {
+            cardDisplay_down2.SetCardData(buttons_AvlSkills[index + 2].cardDataSO);
+        }
+        else
+        {
+            cardDisplay_down2.SetEmpty();
         }
     }
 }
