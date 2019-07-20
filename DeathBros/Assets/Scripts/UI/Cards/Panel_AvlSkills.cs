@@ -53,6 +53,8 @@ public class Panel_AvlSkills : MenuPanel
 
     protected List<Button_CardDataSO> buttons_AvlSkills;
     protected Button_CardDataSO button_selected;
+    protected List<CardDisplay> cardDisplays;
+    protected int cardDisplayMainIndex;
 
     protected int currentScrollPosition;
     protected const int scrollAtPosition = 3;
@@ -69,6 +71,15 @@ public class Panel_AvlSkills : MenuPanel
         orgPosDown1 = cardDisplay_down1.transform.localPosition;
         orgPosDown2 = cardDisplay_down2.transform.localPosition;
 
+        cardDisplays = new List<CardDisplay>();
+
+        cardDisplays.Add(cardDisplay_up2);
+        cardDisplays.Add(cardDisplay_up1);
+        cardDisplays.Add(cardDisplay_main);
+        cardDisplays.Add(cardDisplay_down1);
+        cardDisplays.Add(cardDisplay_down2);
+
+        cardDisplayMainIndex = 2;
     }
 
     public override void Enter()
@@ -188,11 +199,13 @@ public class Panel_AvlSkills : MenuPanel
 
                 if (selectedCardIndex > cardIndex)
                 {
-                    StartCoroutine(CMoveAllCardsDown(cardIndex));
+                    //StartCoroutine(CMoveAllCardsDown(cardIndex));
+                    StartCoroutine(moveListCardsDown(cardIndex));
                 }
                 else if (selectedCardIndex < cardIndex)
                 {
-                    StartCoroutine(CMoveAllCardsUp(cardIndex));
+                    //StartCoroutine(CMoveAllCardsUp(cardIndex));
+                    StartCoroutine(moveListCardsUp(cardIndex));
                 }
                 else
                 {
@@ -305,54 +318,141 @@ public class Panel_AvlSkills : MenuPanel
         cardDisplay_up1.transform.localPosition = orgPosUp1;
         cardDisplay_up2.transform.localPosition = orgPosUp2;
         SetCardsToIndex(index);
+
+        cardDisplayMainIndex++;
+        if (cardDisplayMainIndex >= cardDisplays.Count)
+        {
+            cardDisplayMainIndex = 0;
+        }
+
+        Debug.Log(cardDisplayMainIndex);
     }
+
+    //protected IEnumerator CMoveAllCardsDown(int index)
+    //{
+    //    int steps = 10;
+
+    //    for (int i = 0; i < steps; i++)
+    //    {
+    //        yield return null;
+    //        Vector2 offset;
+
+    //        offset = orgPosUp2 - orgPosUp1;
+    //        cardDisplay_up2.transform.Translate(offset / 32f / steps);
+
+    //        offset = orgPosMain - orgPosUp1;
+    //        cardDisplay_up1.transform.Translate(offset / 32f / steps);
+
+    //        offset = orgPosDown1 - orgPosMain;
+    //        cardDisplay_main.transform.Translate(offset / 32f / steps);
+
+    //        offset = orgPosDown2 - orgPosDown1;
+    //        cardDisplay_down1.transform.Translate(offset / 32f / steps);        
+    //    }
+
+
+    //    //CardDisplay tmp = cardDisplay_up2;
+    //    //cardDisplay_up2   = cardDisplay_up1;
+    //    //cardDisplay_up1   = cardDisplay_main;
+    //    //cardDisplay_main  = cardDisplay_down1;
+    //    //cardDisplay_down1 = cardDisplay_down2;
+    //    //cardDisplay_down2 = tmp;
+
+    //    //SetCardsEmpty();
+    //    SetCardNumber(index, -2, cardDisplay_down2);
+    //    cardDisplay_down2.transform.localPosition = orgPosDown2;
+
+    //    SetCardNumber(index, -1, cardDisplay_down1);
+    //    cardDisplay_down1.transform.localPosition = orgPosDown1;
+
+    //    SetCardNumber(index, 0, cardDisplay_main);
+    //    cardDisplay_main.transform.localPosition = orgPosMain;
+
+    //    SetCardNumber(index, +1, cardDisplay_up1);
+    //    cardDisplay_up1.transform.localPosition = orgPosUp1;
+
+    //    SetCardNumber(index, +2, cardDisplay_up2);
+    //    cardDisplay_up2.transform.localPosition = orgPosUp2;
+
+
+    //    //SetCardsToIndex(index);
+    //}
 
     protected IEnumerator CMoveAllCardsDown(int index)
     {
         int steps = 10;
+
+        int indexUp1;
+        int indexUp2;
+        int indexDown1;
+        int indexDown2;
+
+        indexUp1 = cardDisplayMainIndex - 1;
+
+        if (indexUp1 < 0)
+        {
+            indexUp1 = cardDisplays.Count - 1;
+        }
+
+        indexUp2 = indexUp1 - 1;
+
+        if (indexUp2 < 0)
+        {
+            indexUp2 = cardDisplays.Count - 1;
+        }
+
+        indexDown1 = cardDisplayMainIndex + 1;
+
+        if (indexDown1 >= cardDisplays.Count)
+        {
+            indexDown1 = 0;
+        }
+
+        indexDown2 = indexDown1 + 1;
+        if (indexDown2 >= cardDisplays.Count)
+        {
+            indexDown2 = 0;
+        }
+
+        cardDisplays[indexDown1].transform.SetAsFirstSibling();
+        cardDisplays[indexDown2].transform.SetAsFirstSibling();
+        cardDisplays[indexUp1].transform.SetAsFirstSibling();
+        cardDisplays[indexUp2].transform.SetAsFirstSibling();
+
 
         for (int i = 0; i < steps; i++)
         {
             yield return null;
             Vector2 offset;
 
-            offset = orgPosUp2 - orgPosUp1;
-            cardDisplay_up2.transform.Translate(offset / 32f / steps);
+            offset = orgPosUp2 - (Vector2)cardDisplays[indexUp1].transform.localPosition;
+            cardDisplays[indexUp1].transform.Translate(offset / 32f / steps);
 
-            offset = orgPosMain - orgPosUp1;
-            cardDisplay_up1.transform.Translate(offset / 32f / steps);
+            offset = orgPosMain - (Vector2)cardDisplays[cardDisplayMainIndex].transform.localPosition;
+            cardDisplays[cardDisplayMainIndex].transform.Translate(offset / 32f / steps);
 
-            offset = orgPosDown1 - orgPosMain;
-            cardDisplay_main.transform.Translate(offset / 32f / steps);
+            offset = orgPosDown1 - (Vector2)cardDisplays[indexDown1].transform.localPosition;
+            cardDisplays[indexDown1].transform.Translate(offset / 32f / steps);
 
-            offset = orgPosDown2 - orgPosDown1;
-            cardDisplay_down1.transform.Translate(offset / 32f / steps);        
+            offset = orgPosDown2 - (Vector2)cardDisplays[indexDown2].transform.localPosition;
+            cardDisplays[indexDown2].transform.Translate(offset / 32f / steps);
         }
 
+        cardDisplays[indexDown2].transform.localPosition = orgPosDown1;
 
-        //CardDisplay tmp = cardDisplay_up2;
-        //cardDisplay_up2   = cardDisplay_up1;
-        //cardDisplay_up1   = cardDisplay_main;
-        //cardDisplay_main  = cardDisplay_down1;
-        //cardDisplay_down1 = cardDisplay_down2;
-        //cardDisplay_down2 = tmp;
+        cardDisplays[indexDown1].transform.localPosition = orgPosMain;
 
-        //SetCardsEmpty();
-        SetCardNumber(index, -2, cardDisplay_down2);
-        cardDisplay_down2.transform.localPosition = orgPosDown2;
+        cardDisplays[cardDisplayMainIndex].transform.localPosition = orgPosUp1;
 
-        SetCardNumber(index, -1, cardDisplay_down1);
-        cardDisplay_down1.transform.localPosition = orgPosDown1;
+        cardDisplays[indexUp1].transform.localPosition = orgPosUp2;
 
-        SetCardNumber(index, 0, cardDisplay_main);
-        cardDisplay_main.transform.localPosition = orgPosMain;
+        cardDisplays[indexUp2].transform.localPosition = orgPosDown2;
 
-        SetCardNumber(index, +1, cardDisplay_up1);
-        cardDisplay_up1.transform.localPosition = orgPosUp1;
-
-        SetCardNumber(index, +2, cardDisplay_up2);
-        cardDisplay_up2.transform.localPosition = orgPosUp2;
-
+        cardDisplayMainIndex--;
+        if (cardDisplayMainIndex < 0)
+        {
+            cardDisplayMainIndex = cardDisplays.Count - 1;
+        }
 
         //SetCardsToIndex(index);
     }
@@ -380,7 +480,6 @@ public class Panel_AvlSkills : MenuPanel
 
     protected void SetCardsToIndex(int index)
     {
-        Debug.Log("setting cards to index " + index);
         if (index >= buttons_AvlSkills.Count)
         {
             return;
@@ -424,5 +523,19 @@ public class Panel_AvlSkills : MenuPanel
         {
             cardDisplay_down2.SetEmpty();
         }
+    }
+
+    protected IEnumerator moveListCardsUp(int index)
+    {
+        SetCardsToIndex(index);
+
+        yield return null;
+    }
+
+    protected IEnumerator moveListCardsDown(int index)
+    {
+        SetCardsToIndex(index);
+
+        yield return null;
     }
 }
