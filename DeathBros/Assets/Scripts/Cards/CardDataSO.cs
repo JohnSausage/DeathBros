@@ -19,9 +19,11 @@ public class CardDataSO : ScriptableObject
     public int damage;
     public EStatusEffectType element;
     public int cost;
+    public string type;
 
     [Space]
 
+    [TextArea(3,5)]
     public string details;
 
     [Space]

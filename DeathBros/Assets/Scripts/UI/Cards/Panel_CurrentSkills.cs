@@ -46,7 +46,7 @@ public class Panel_CurrentSkills : MenuPanel
         for (int i = 0; i < buttons_CurrentSkills.Count; i++)
         {
             cardDisplays[i].SetCardData(buttons_CurrentSkills[i].cardDataSO);
-            cardDisplays[i].SetOffsetOnSelect(Vector2.left * 3.5f);
+            cardDisplays[i].SetOffsetOnSelect(Vector2.left * 9f);
         }
     }
 

@@ -26,6 +26,9 @@ public class CardDisplay : MonoBehaviour
     protected SpriteFontText cost;
 
     [SerializeField]
+    protected SpriteFontText type;
+
+    [SerializeField]
     protected SpriteFontText details;
 
     protected bool selected;
@@ -66,6 +69,10 @@ public class CardDisplay : MonoBehaviour
         damage.SetText(cardDataSO.damage.ToString() + CardManager.GetEffectIcon(cardDataSO.element));
         cost.SetText(cardDataSO.cost.ToString() + "\\4");
         details.SetText(cardDataSO.details);
+        if (type != null)
+        {
+            type.SetText(cardDataSO.type);
+        }
     }
 
     public void SetEmpty()
