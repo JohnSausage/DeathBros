@@ -37,7 +37,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 27808
+      ID: 67707
       getNewID: 0
     soundName: 
   - duration: 5
@@ -65,7 +65,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 92330
+      ID: 67707
       getNewID: 0
     soundName: 
   - duration: 5
@@ -93,7 +93,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 67200
+      ID: 27186
       getNewID: 0
     soundName: 
   damages:

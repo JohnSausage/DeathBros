@@ -87,9 +87,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fly_anim: fly
   explode_anim: explode
+  chasePlayer: 0
   Velocity: {x: 0, y: -0.1}
   gravity: -0.2
-  destroyAfterSeconds: 10
+  destroyAfterSeconds: 1000
   destroyOnCollision: 1
   collisionMask:
     serializedVersion: 2

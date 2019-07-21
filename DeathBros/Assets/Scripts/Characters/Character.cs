@@ -115,6 +115,7 @@ public class Character : _MB, ICanTakeDamage
     public event Action<Damage> AGetsHit;
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
+    public event Action AIsDead;
 
     public event Action<Character, Damage> ACharacterTakesDasmage;
 
@@ -402,6 +403,8 @@ public class Character : _MB, ICanTakeDamage
     public virtual void SCS_Dead()
     {
         dead = true;
+
+        if (AIsDead != null) AIsDead();
     }
 
     public virtual void UpdateInputs()
