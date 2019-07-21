@@ -5,6 +5,9 @@ using UnityEngine;
 public class TriggeredHatch : MonoBehaviour
 {
     [SerializeField]
+    protected bool openOnStart;
+
+    [SerializeField]
     protected float movespeed = 5f;
     [SerializeField]
     protected Vector2 localPositionOpen = new Vector2(1.6f, 0f);
@@ -48,6 +51,11 @@ public class TriggeredHatch : MonoBehaviour
                 t.ATriggered += CheckTriggers;
             }
         }
+
+        if(openOnStart == true)
+        {
+            OpenDoor(false);
+        }
     }
 
 
@@ -55,6 +63,7 @@ public class TriggeredHatch : MonoBehaviour
     {
         bool triggered = true;
 
+        //Check all triggers
         foreach (ITrigger t in triggers)
         {
             if (t.TriggerOn() == false)
@@ -62,6 +71,7 @@ public class TriggeredHatch : MonoBehaviour
                 triggered = false;
             }
         }
+
         if (isOpen == false)
         {
             if (triggered == true)
@@ -83,7 +93,7 @@ public class TriggeredHatch : MonoBehaviour
         MoveDoor();
     }
 
-    protected void OpenDoor()
+    protected void OpenDoor(bool playSound = true)
     {
         isOpen = true;
         targetPosition = localPositionOpen;
@@ -91,8 +101,11 @@ public class TriggeredHatch : MonoBehaviour
 
         doorCol.enabled = false;
 
-        GameManager.MainCamera.Shake(20);
-        AudioManager.PlaySound(triggerdSound);
+        if (playSound == true)
+        {
+            GameManager.MainCamera.Shake(20);
+            AudioManager.PlaySound(triggerdSound);
+        }
     }
 
     protected void CloseDoor()

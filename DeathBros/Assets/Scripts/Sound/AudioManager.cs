@@ -127,6 +127,11 @@ public class AudioManager : MonoBehaviour
 
     public static void StopSound(string name)
     {
+        if(Instance == null)
+        {
+            return;
+        }
+
         if(Instance.sounds == null)
         {
             return;
