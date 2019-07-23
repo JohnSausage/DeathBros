@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: fAir
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 8
     sprite: {fileID: 21300078, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -53,7 +54,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.2, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 31593
+      ID: 86668
       getNewID: 0
     soundName: 
   - duration: 2
@@ -83,7 +84,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.2, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 31593
+      ID: 86668
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 12

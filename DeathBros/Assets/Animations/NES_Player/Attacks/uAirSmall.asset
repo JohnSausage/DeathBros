@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: uAirSmall
   m_EditorClassIdentifier: 
+  loop: 0
   frames:
   - duration: 6
     sprite: {fileID: 21300000, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
@@ -53,7 +54,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     - position: {x: 0.34375, y: -0.59375}
       radius: 0.5
@@ -69,7 +70,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     soundName: 
   - duration: 1
@@ -99,7 +100,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     - position: {x: 0.40625, y: -0.3125}
       radius: 0.5
@@ -115,7 +116,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -145,7 +146,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     - position: {x: 0.34375, y: 0.3125}
       radius: 0.5
@@ -161,7 +162,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.1, y: -0.1}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 7697
+      ID: 76001
       getNewID: 0
     soundName: 
   - duration: 6

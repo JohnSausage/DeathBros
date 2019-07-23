@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: nAir
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 6
     sprite: {fileID: 21300040, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -39,8 +40,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.171875, y: -0.40625}
-      radius: 1
+    - position: {x: 0.65625, y: -0.375}
+      radius: 0.58000034
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 2}
@@ -53,7 +54,23 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 44387
+      ID: 16177
+      getNewID: 0
+    - position: {x: 0.265625, y: 0.140625}
+      radius: 0.4600004
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 6
+        knockbackGrowth: 4
+        hitStunFrames: 25
+        damageType: 7
+        attackType: 0
+        editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 16177
       getNewID: 0
     soundName: 
   - duration: 2
@@ -69,8 +86,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.140625, y: -0.375}
-      radius: 1
+    - position: {x: -0.375, y: -0.5}
+      radius: 0.5500004
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 2}
@@ -83,7 +100,23 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 44387
+      ID: 16177
+      getNewID: 0
+    - position: {x: 0.328125, y: -0.640625}
+      radius: 0.4900004
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 1, y: 2}
+        baseKnockback: 6
+        knockbackGrowth: 4
+        hitStunFrames: 25
+        damageType: 7
+        attackType: 0
+        editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 16177
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -127,8 +160,8 @@ MonoBehaviour:
     - position: {x: 0.03125, y: -0.0625}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.203125, y: -0.0625}
-      radius: 1
+    - position: {x: 0.5625, y: -0.25}
+      radius: 0.6100004
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
@@ -141,7 +174,23 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 40405
+      ID: 43824
+      getNewID: 0
+    - position: {x: -0.140625, y: -0.421875}
+      radius: 0.46000046
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 3, y: 2}
+        baseKnockback: 6
+        knockbackGrowth: 10
+        hitStunFrames: 10
+        damageType: 8
+        attackType: 0
+        editorColor: {r: 1, g: 0, b: 0, a: 1}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 43824
       getNewID: 0
     soundName: 
   - duration: 2
@@ -157,8 +206,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.046875, y: -0.1875}
-      radius: 1
+    - position: {x: -0.3125, y: 0.09375}
+      radius: 0.6100003
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
@@ -171,7 +220,23 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 40405
+      ID: 43824
+      getNewID: 0
+    - position: {x: 0.296875, y: 0.203125}
+      radius: 0.49000046
+      damage:
+        damageNumber: 10
+        knockBackDirection: {x: 3, y: 2}
+        baseKnockback: 6
+        knockbackGrowth: 10
+        hitStunFrames: 10
+        damageType: 8
+        attackType: 0
+        editorColor: {r: 1, g: 0, b: 0, a: 1}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 43824
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10

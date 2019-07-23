@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: jab
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 4
     sprite: {fileID: 21300094, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -44,7 +45,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 5
+        baseKnockback: 7
         knockbackGrowth: 8
         hitStunFrames: 15
         damageType: 0
@@ -53,7 +54,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 51425
+      ID: 56391
       getNewID: 0
     soundName: 
   - duration: 2
@@ -74,7 +75,7 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 5
+        baseKnockback: 7
         knockbackGrowth: 8
         hitStunFrames: 15
         damageType: 0
@@ -83,10 +84,10 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 51425
+      ID: 56391
       getNewID: 0
     soundName: NES_swoosh1
-  - duration: 15
+  - duration: 17
     sprite: {fileID: 21300100, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -103,7 +104,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 5
     knockBackDirection: {x: 1, y: 3}
-    baseKnockback: 5
+    baseKnockback: 7
     knockbackGrowth: 8
     hitStunFrames: 15
     damageType: 0

@@ -7,6 +7,7 @@ using UnityEngine;
 public class FrameAnimation : ScriptableObject
 {
     //public string animationName;
+    public bool loop = true;
 
     public List<Frame> frames;
 

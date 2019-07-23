@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: uTilt
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 10
     sprite: {fileID: 21300102, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -39,12 +40,12 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.734375, y: 0.09375}
-      radius: 0.65
+    - position: {x: 0.875, y: 0.15625}
+      radius: 0.43999997
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
-        baseKnockback: 6
+        baseKnockback: 7
         knockbackGrowth: 12
         hitStunFrames: 20
         damageType: 0
@@ -53,14 +54,14 @@ MonoBehaviour:
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 98866
+      ID: 54801
       getNewID: 0
-    - position: {x: 0.203125, y: 0.71875}
-      radius: 0.65
+    - position: {x: 0.3125, y: 0.875}
+      radius: 0.53000015
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
-        baseKnockback: 6
+        baseKnockback: 7
         knockbackGrowth: 12
         hitStunFrames: 20
         damageType: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 98866
+      ID: 54801
       getNewID: 0
     soundName: 
   - duration: 2
@@ -85,12 +86,12 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: -0.796875, y: 0.34375}
-      radius: 0.65
+    - position: {x: -0.90625, y: 0.125}
+      radius: 0.53000003
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
-        baseKnockback: 6
+        baseKnockback: 7
         knockbackGrowth: 12
         hitStunFrames: 20
         damageType: 0
@@ -99,14 +100,14 @@ MonoBehaviour:
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 98866
+      ID: 54801
       getNewID: 0
-    - position: {x: -0.046875, y: 0.75}
-      radius: 0.65
+    - position: {x: -0.5625, y: 0.75}
+      radius: 0.44000012
       damage:
         damageNumber: 10
         knockBackDirection: {x: 0, y: 5}
-        baseKnockback: 6
+        baseKnockback: 7
         knockbackGrowth: 12
         hitStunFrames: 20
         damageType: 0
@@ -115,10 +116,10 @@ MonoBehaviour:
         positionalInfluence: {x: 0.3, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 98866
+      ID: 54801
       getNewID: 0
     soundName: NES_swoosh1
-  - duration: 10
+  - duration: 13
     sprite: {fileID: 21300108, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -135,7 +136,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 10
     knockBackDirection: {x: 0, y: 5}
-    baseKnockback: 6
+    baseKnockback: 7
     knockbackGrowth: 12
     hitStunFrames: 20
     damageType: 0

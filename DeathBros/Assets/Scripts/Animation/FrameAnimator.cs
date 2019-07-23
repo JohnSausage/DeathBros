@@ -170,7 +170,15 @@ public class FrameAnimator : _MB
             {
                 lastAnimationName = currentAnimation.name;
 
-                animTimer = 0;
+                if (currentAnimation.loop == true)
+                {
+                    animTimer = 0;
+                }
+                else
+                {
+                    animTimer = currentAnimation.frames.Count - 1;
+                }
+
                 animationOver = true;
                 if (AnimationOver != null) AnimationOver(currentAnimation);
             }
