@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8822ee7ec2ccc3545bfa4e12f9d8cfc6, type: 3}
   m_Name: PlayerUAir
   m_EditorClassIdentifier: 
-  animationName: uAir
+  animationName: uAirSmall
   landingLag: 3
