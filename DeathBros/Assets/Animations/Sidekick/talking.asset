@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: talking
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 5
     sprite: {fileID: 21300006, guid: 961c62a476731b84599f8f35549cd4f7, type: 3}

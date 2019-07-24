@@ -54,7 +54,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 16177
+      ID: 81804
       getNewID: 0
     - position: {x: 0.265625, y: 0.140625}
       radius: 0.4600004
@@ -70,7 +70,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 16177
+      ID: 81804
       getNewID: 0
     soundName: 
   - duration: 2
@@ -100,7 +100,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 16177
+      ID: 81804
       getNewID: 0
     - position: {x: 0.328125, y: -0.640625}
       radius: 0.4900004
@@ -116,7 +116,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 16177
+      ID: 81804
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 43824
+      ID: 399
       getNewID: 0
     - position: {x: -0.140625, y: -0.421875}
       radius: 0.46000046
@@ -190,7 +190,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 43824
+      ID: 399
       getNewID: 0
     soundName: 
   - duration: 2
@@ -220,7 +220,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 43824
+      ID: 399
       getNewID: 0
     - position: {x: 0.296875, y: 0.203125}
       radius: 0.49000046
@@ -236,7 +236,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 43824
+      ID: 399
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 10

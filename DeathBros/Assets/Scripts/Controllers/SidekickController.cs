@@ -35,6 +35,9 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
 
     protected int textNumber = 0;
 
+    protected float waitForSecondsToWhineAgain = 30;
+    protected float whineTimer = 0;
+
     protected void Start()
     {
         fanim = GetComponent<FrameAnimator>();
@@ -50,6 +53,8 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
 
     protected void FixedUpdate()
     {
+        whineTimer += 1f / 60f;
+
         MoveToPlayer();
 
         if(talking == true)
@@ -79,7 +84,10 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
 
         if ((talking == false) && (targetDistance > collisionCheckDistance + 1))
         {
-            Talk("", 0.9f);                 
+            if (whineTimer >= waitForSecondsToWhineAgain)
+            {
+                WhineForWait("", 0.9f);
+            }
         }
 
 
@@ -119,8 +127,10 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
         spr.flipX = (player.transform.position.x < transform.position.x);
     }
 
-    protected void Talk(string text, float durationS = 1f)
+    protected void WhineForWait(string text, float durationS = 1f)
     {
+        whineTimer = 0;
+
         textNumber = 0;
 
         foreach (char c in text)
@@ -168,4 +178,5 @@ public class SidekickController : MonoBehaviour, IDialogueStarter
         fanim.ChangeAnimation("idle");
         talking = false;
     }
+
 }

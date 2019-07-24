@@ -54,7 +54,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 66150
+      ID: 32560
       getNewID: 0
     soundName: 
   - duration: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 66150
+      ID: 32560
       getNewID: 0
     - position: {x: 0.5625, y: 0.96875}
       radius: 0.47000012
@@ -100,7 +100,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 66150
+      ID: 32560
       getNewID: 0
     soundName: NES_swoosh1
   - duration: 20
