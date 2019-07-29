@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: fly
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 15
     sprite: {fileID: 21300000, guid: 85cca07b1d127964fba846c3536bd678, type: 3}

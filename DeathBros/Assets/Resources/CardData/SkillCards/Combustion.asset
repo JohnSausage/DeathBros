@@ -9,14 +9,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65e6467302421f746829e6427f9a3edc, type: 3}
-  m_Name: Fireball 1
+  m_Name: Combustion
   m_EditorClassIdentifier: 
   cardID: 3
-  title: FIREBALL
+  title: COMBUSTION
   cardColor: 0
   picture: {fileID: 21300000, guid: 8bd210cb62d987c48a94725f64225447, type: 3}
-  damage: 5
+  damage: 15
   element: 2
   cost: 5
-  details: Projectile
-  attackStateSO: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  type: 
+  details: Explosion
+  attackStateSO: {fileID: 11400000, guid: 71d3dd07638474e46abaaf1e41c0f5ce, type: 2}

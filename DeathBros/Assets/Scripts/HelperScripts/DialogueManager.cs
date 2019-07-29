@@ -25,7 +25,7 @@ public class DialogueManager : _MB
     protected bool isTypingLine;
     protected IEnumerator ILineTyper;
     protected IEnumerator IDialogueEnder;
-
+    protected IEnumerator IAutomaticNextLine;
     [SerializeField]
     protected FrameAnimatorUI fanimUI;
 
@@ -122,6 +122,19 @@ public class DialogueManager : _MB
         }
 
         isTypingLine = false;
+
+        IAutomaticNextLine = CAutomaticNextLine();
+        StartCoroutine(IAutomaticNextLine);
+    }
+
+    protected IEnumerator CAutomaticNextLine()
+    {
+        yield return new WaitForSeconds(3f);
+
+        if(InDialogue == true)
+        {
+            DisplayNextLine();
+        }
     }
 
     /// <summary>
@@ -179,6 +192,11 @@ public class DialogueManager : _MB
     /// </summary>
     protected void DisplayNextLine()
     {
+        if (IAutomaticNextLine != null)
+        {
+            StopCoroutine(IAutomaticNextLine);
+        }
+
         if (dialogueLineQueue.Count == 0)
         {
             IDialogueEnder = CTurnTextOffAfterTime(0.1f);
