@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114974291168452482}
   - component: {fileID: 114609069300868980}
   - component: {fileID: 114216191892096462}
+  - component: {fileID: 114557398729420428}
   - component: {fileID: 61189036597972946}
   - component: {fileID: 114593677525329788}
   - component: {fileID: 114692243710159598}
@@ -153,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.5, y: -27, z: 0}
+  m_LocalPosition: {x: 61.71, y: -57.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265405466552242}
@@ -279,8 +280,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateAutomatically: 0
   currentAnimation: {fileID: 0}
+  animations: []
   frameAnimationsSO: {fileID: 11400000, guid: 0e4c22a8fa0bcb54bac3a15322087311, type: 2}
   animationSpeed: 1
+  texture2Ds: []
+  coloredTexture2Ds: []
 --- !u!114 &114321440683160330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -306,8 +310,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateAutomatically: 1
   currentAnimation: {fileID: 0}
+  animations: []
   frameAnimationsSO: {fileID: 11400000, guid: 0ca1a96d50c32b64e8592e3c3c3aa6d6, type: 2}
   animationSpeed: 1
+  texture2Ds: []
+  coloredTexture2Ds: []
 --- !u!114 &114547657891015460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,6 +328,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapToParent: 1
   pixelsPerUnit: 16
+--- !u!114 &114557398729420428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196939669774506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9959ab81faf96c49951f0feda1e3083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 0.61960787, g: 0.4431373, b: 0.4431373, a: 1}
+  color2: {r: 0.3019608, g: 0.23137257, b: 0.22352943, a: 1}
+  randomR: 50
+  randomB: 50
+  randomG: 50
 --- !u!114 &114593677525329788
 MonoBehaviour:
   m_ObjectHideFlags: 1

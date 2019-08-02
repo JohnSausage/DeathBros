@@ -78,9 +78,6 @@ public class FrameAnimator : _MB
 
                 coloredTexture2Ds.Add(coloredTexture);
             }
-
-
-
         }
 
         frameTimer = 0;

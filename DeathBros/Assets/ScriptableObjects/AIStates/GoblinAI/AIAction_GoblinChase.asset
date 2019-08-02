@@ -16,3 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 55bdb2fb5ec37454eb86462b06a86aec, type: 2}
   targetOffset: {x: 0, y: 0}
   jumpOnWall: 1
+  keepDistanceToOthers: 0.5
+  keepDistanceMask:
+    serializedVersion: 2
+    m_Bits: 2048

@@ -25,6 +25,7 @@ public class AIController : MonoBehaviour
     public int Timer { get; set; }
     public int MovementTimer { get; set; }
     public float RandomTimerNumber { get; set; }
+    public float savedDirX { get; set; }
 
     private void Awake()
     {
