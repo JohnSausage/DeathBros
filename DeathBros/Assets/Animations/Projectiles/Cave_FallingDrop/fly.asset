@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: fly
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 20
     sprite: {fileID: 21300028, guid: 157c68c61e1c28a419bc07f9bc8f2810, type: 3}
@@ -65,7 +66,7 @@ MonoBehaviour:
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}
-      ID: 11547
+      ID: 19528
       getNewID: 0
     - position: {x: 0, y: 0}
       radius: 0
@@ -81,7 +82,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
-      ID: 11547
+      ID: 19528
       getNewID: 0
     soundName: 
   damages:

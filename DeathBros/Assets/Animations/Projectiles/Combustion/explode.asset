@@ -50,7 +50,7 @@ MonoBehaviour:
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 24420
+      ID: 60128
       getNewID: 0
     - position: {x: 0.42, y: -0.265625}
       radius: 1.8
@@ -66,7 +66,7 @@ MonoBehaviour:
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 24420
+      ID: 60128
       getNewID: 0
     soundName: 
   - duration: 2
@@ -94,7 +94,7 @@ MonoBehaviour:
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 24420
+      ID: 60128
       getNewID: 0
     - position: {x: 0.42, y: -0.265625}
       radius: 1.4600005
@@ -110,7 +110,7 @@ MonoBehaviour:
         positionalInfluence: {x: 1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: c10de92eb0b2d0043aef399b2c5058cd, type: 2}
-      ID: 24420
+      ID: 60128
       getNewID: 0
     soundName: NES_hit1
   - duration: 3

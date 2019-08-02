@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: explode
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 3
     sprite: {fileID: 21300022, guid: 157c68c61e1c28a419bc07f9bc8f2810, type: 3}

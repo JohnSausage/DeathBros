@@ -9,7 +9,7 @@ public class FrameAnimator : _MB
 
     public FrameAnimation currentAnimation;
 
-    public List<FrameAnimation> animations { get; protected set; }
+    public List<FrameAnimation> animations;// { get; protected set; }
     public FrameAnimationsSO frameAnimationsSO;
 
     public float animationSpeed = 1;
@@ -18,6 +18,12 @@ public class FrameAnimator : _MB
     private HurtboxManager hubM;
     private HitboxManager hibM;
     private NES_BasicController2D ctr;
+    private SpriteColorChanger sprCol;
+
+    [SerializeField]
+    protected List<Texture2D> texture2Ds;
+    [SerializeField]
+    protected List<Texture2D> coloredTexture2Ds;
 
     public event Action<Vector2, Vector2> SpawnProjectile;
     public event Action<FrameAnimation> AnimationOver;
@@ -33,6 +39,7 @@ public class FrameAnimator : _MB
     {
         base.Init();
 
+
         Spr = GetComponent<SpriteRenderer>();
         if (Spr == null)
         {
@@ -43,6 +50,39 @@ public class FrameAnimator : _MB
         hibM = GetComponent<HitboxManager>();
         ctr = GetComponent<NES_BasicController2D>();
 
+        sprCol = GetComponent<SpriteColorChanger>();
+
+        if (sprCol != null)
+        {
+            foreach (FrameAnimation anim in frameAnimationsSO.frameAnimations)
+            {
+                if (anim.frames.Count == 0)
+                {
+                    break;
+                }
+
+                if (anim.frames[0].sprite == null)
+                {
+                    break;
+                }
+
+                if (texture2Ds.Contains(anim.frames[0].sprite.texture) == false)
+                {
+                    texture2Ds.Add(anim.frames[0].sprite.texture);
+                }
+            }
+
+            foreach (Texture2D tex in texture2Ds)
+            {
+                Texture2D coloredTexture = sprCol.GetColoredSprite(tex);
+
+                coloredTexture2Ds.Add(coloredTexture);
+            }
+
+
+
+        }
+
         frameTimer = 0;
         animTimer = 0;
 
@@ -51,7 +91,29 @@ public class FrameAnimator : _MB
 
         if (frameAnimationsSO != null)
         {
-            animations = frameAnimationsSO.frameAnimations;
+            animations = new List<FrameAnimation>();
+
+            foreach (FrameAnimation anim in frameAnimationsSO.frameAnimations)
+            {
+                FrameAnimation frameAnimation = Instantiate(anim);
+
+                frameAnimation.name = anim.name;
+
+                if (sprCol != null)
+                {
+
+                    for (int i = 0; i < frameAnimation.frames.Count; i++)
+                    {
+                        string tempName = anim.frames[i].sprite.name;
+                        frameAnimation.frames[i].sprite = Sprite.Create(coloredTexture2Ds[0], anim.frames[i].sprite.rect, new Vector2(0.5f, 0.5f), 16);
+                        frameAnimation.frames[i].sprite.name = tempName;
+                    }
+
+                }
+
+                animations.Add(frameAnimation);
+            }
+
             ChangeAnimation(animations[0]);
         }
     }
@@ -66,7 +128,7 @@ public class FrameAnimator : _MB
 
     public void ManualUpdate()
     {
-        if(stopAnimation == true)
+        if (stopAnimation == true)
         {
             Spr.sprite = null;
             return;
@@ -79,6 +141,7 @@ public class FrameAnimator : _MB
             Frame currentFrame = currentAnimation.frames[animTimer];
 
             Spr.sprite = currentFrame.sprite;
+
 
             // set Hurtboxes
             if (hubM != null)
@@ -200,6 +263,7 @@ public class FrameAnimator : _MB
         ChangeAnimation(animation, restartIfAlreadyPlaying);
     }
 
+    
     public void ChangeAnimation(FrameAnimation animation, bool restartIfAlreadyPlaying = false)
     {
         if (animation != null)
@@ -217,4 +281,5 @@ public class FrameAnimator : _MB
             Debug.Log("Animation not found.");
         }
     }
+    
 }

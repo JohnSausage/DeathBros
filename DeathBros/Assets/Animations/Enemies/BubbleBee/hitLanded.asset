@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: hitLanded
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 30
     sprite: {fileID: 21300012, guid: 671dc273d6ed0d54cac442e1802ba08b, type: 3}

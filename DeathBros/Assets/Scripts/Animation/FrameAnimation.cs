@@ -15,10 +15,6 @@ public class FrameAnimation : ScriptableObject
 
     public List<Damage> damages;
 
-    void Start()
-    {
-        //frames = new List<Frame>();
-    }
 
     public int Length()
     {

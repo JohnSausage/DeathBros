@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: on
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 5
     sprite: {fileID: 21300002, guid: 317ac86219aec8c4c9b9a561bce967d3, type: 3}
@@ -37,7 +38,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 67707
+      ID: 96253
       getNewID: 0
     soundName: 
   - duration: 5
@@ -65,7 +66,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 67707
+      ID: 89130
       getNewID: 0
     soundName: 
   - duration: 5
@@ -93,7 +94,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0.5, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 27186
+      ID: 89130
       getNewID: 0
     soundName: 
   damages:

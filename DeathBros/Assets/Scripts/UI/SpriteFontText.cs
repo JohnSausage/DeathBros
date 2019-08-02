@@ -43,6 +43,11 @@ public class SpriteFontText : MonoBehaviour
 
     void Update()
     {
+        if(text == null)
+        {
+            return;
+        }
+
         if (updateText == true)
         {
             updateText = false;

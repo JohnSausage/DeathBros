@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
   m_Name: attack
   m_EditorClassIdentifier: 
+  loop: 1
   frames:
   - duration: 15
     sprite: {fileID: 21300016, guid: 48dd53da1d04bd44b801ed70a48524a8, type: 3}
@@ -67,7 +68,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 59034
+      ID: 63900
       getNewID: 0
     soundName: 
   - duration: 15
@@ -97,7 +98,7 @@ MonoBehaviour:
         positionalInfluence: {x: 0, y: 0.3}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 11400000, guid: 19ff13126486b5f4091b5c57a1743b31, type: 2}
-      ID: 59034
+      ID: 63900
       getNewID: 0
     soundName: 
   - duration: 15
