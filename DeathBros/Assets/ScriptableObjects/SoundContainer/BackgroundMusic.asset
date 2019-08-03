@@ -33,3 +33,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7bb41749924d7ed4aa47e8982c4ad70e, type: 3}
     volume: 0.2
     loop: 0
+  - name: frogCave_soft
+    clip: {fileID: 8300000, guid: 184114e2b6cee9c47ae7566e610beaab, type: 3}
+    volume: 0.2
+    loop: 0
