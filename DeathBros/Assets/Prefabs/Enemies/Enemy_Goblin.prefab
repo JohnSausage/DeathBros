@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 61189036597972946}
   - component: {fileID: 114593677525329788}
   - component: {fileID: 114692243710159598}
+  - component: {fileID: 114875616968434496}
   m_Layer: 14
   m_Name: Enemy_Goblin
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196939669774506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.71, y: -57.19, z: 0}
+  m_LocalPosition: {x: 82.73, y: -49.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4265405466552242}
@@ -341,9 +342,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color1: {r: 0.61960787, g: 0.4431373, b: 0.4431373, a: 1}
   color2: {r: 0.3019608, g: 0.23137257, b: 0.22352943, a: 1}
-  randomR: 50
-  randomB: 50
-  randomG: 50
+  randomR: 25
+  randomB: 25
+  randomG: 25
 --- !u!114 &114593677525329788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -452,6 +453,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hurtboxes: []
+--- !u!114 &114875616968434496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196939669774506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2b961ee30bea045b3f4c114e3d7b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loot: {fileID: 11400000, guid: 51b837968839e5d4c8f5fe5b52ed3a75, type: 2}
 --- !u!114 &114974291168452482
 MonoBehaviour:
   m_ObjectHideFlags: 1

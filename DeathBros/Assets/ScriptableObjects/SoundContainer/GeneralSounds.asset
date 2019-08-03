@@ -33,3 +33,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ee7b3170f5418224bb5730b7ef2d8de7, type: 3}
     volume: 1
     loop: 0
+  - name: goldCoin
+    clip: {fileID: 8300000, guid: 388e70d5b19c85f46bbdf57cc894e443, type: 3}
+    volume: 0.8
+    loop: 0

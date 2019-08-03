@@ -49,6 +49,8 @@ public class CameraController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
     }
 
     void Start()
@@ -59,6 +61,13 @@ public class CameraController : MonoBehaviour
         Character.ATakesDamageAll += FreezeThenShakeCameraOnDamage;
 
         Clear();
+
+        if (loadscreen == null)
+        {
+            loadscreen = Instance.GetComponentInChildren<Image>();
+        }
+
+        loadscreen.color = new Color(1, 1, 1, 1);
     }
 
     public Image GetLoadscreen()

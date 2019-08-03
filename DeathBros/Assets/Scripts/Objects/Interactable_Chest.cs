@@ -5,6 +5,9 @@ using UnityEngine;
 public class Interactable_Chest : MonoBehaviour, ICanInteract
 {
     [SerializeField]
+    protected LootSO loot;
+
+    [SerializeField]
     protected bool isOpen;
 
     [SerializeField]
@@ -22,6 +25,11 @@ public class Interactable_Chest : MonoBehaviour, ICanInteract
 
     public void StartInteraction(Character chr)
     {
+        if(isOpen)
+        {
+            return;
+        }
+
         StartCoroutine(COpenChest());
     }
 
@@ -45,6 +53,11 @@ public class Interactable_Chest : MonoBehaviour, ICanInteract
 
     protected void SpawnItems()
     {
+        if(loot == null)
+        {
+            return;
+        }
 
+        loot.SpawnLoot(transform.position);
     }
 }

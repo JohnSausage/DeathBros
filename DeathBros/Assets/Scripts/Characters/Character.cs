@@ -116,6 +116,7 @@ public class Character : _MB, ICanTakeDamage
     public static event Action<Damage, Character> ATakesDamageAll;
     public event Action<bool> AComboOver;
     public event Action AIsDead;
+    public event Action<Vector2> AIsDying;
 
     public event Action<Character, Damage> ACharacterTakesDasmage;
 
@@ -398,6 +399,8 @@ public class Character : _MB, ICanTakeDamage
     {
         dead = true;
         SCS_ChangeState(StaticStates.die);
+
+        if (AIsDying != null) AIsDying(transform.position);
     }
 
     public virtual void SCS_Dead()

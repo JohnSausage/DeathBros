@@ -48,6 +48,8 @@ public class Player : Character
     protected int uSpecCount;
     protected int dSpecCount;
 
+    public int Gold { get; protected set; }
+
     public float ComboPower { get; protected set; }
     protected bool[] cardPowerActivated = new bool[5];
 
@@ -55,6 +57,7 @@ public class Player : Character
 
     public LayerMask enemyMask;
     public LayerMask interactionMask;
+    public LayerMask pickUpMask;
 
     public bool Grab { get; set; }
     public bool Interact { get; protected set; }
@@ -68,6 +71,8 @@ public class Player : Character
 
     public event Action<float> AChangeComboPower;
     public event Action APlayerInteract;
+
+    public event Action<int> APlayerGoldUpdate;
 
     public event Action APlayerRespawn;
 
@@ -286,6 +291,8 @@ public class Player : Character
         ModHealth(+0.01f);
 
         ManageCardBuffs();
+
+        CheckForAutoPickUp();
     }
 
     public override void UpdateInputs()
@@ -939,5 +946,29 @@ public class Player : Character
                     break;
                 }
         }
+    }
+
+    protected void CheckForAutoPickUp()
+    {
+        RaycastHit2D pickUpCheck = Physics2D.CircleCast(Position, pickUpRadius, Vector2.zero, 0, pickUpMask);
+
+        if (pickUpCheck)
+        {
+            IAutoPickup autoPickUpItem = pickUpCheck.transform.GetComponent<IAutoPickup>();
+
+            if (autoPickUpItem != null)
+            {
+                autoPickUpItem.GetPickedUp(this);
+            }
+        }
+    }
+
+
+
+    public void AddGold(int amount)
+    {
+        Gold += amount;
+
+        if (APlayerGoldUpdate != null) APlayerGoldUpdate(Gold);
     }
 }
