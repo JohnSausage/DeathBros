@@ -77,14 +77,20 @@ public class HitboxManager : _MB
                     {
                         damage.attackType = damage.Owner.currentAttackType;
                         damage.position = damage.Owner.Position;
-
-                        //Apply damage buffs from comvo cards etc.
-                        damage = damage.Owner.GetModifiedDamage(damage);
+                     
 
                         if (damage.Owner.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
                         {
                             damage.damageNumber += damage.Owner.CurrentAttackBuff.damageAdd;
                             damage.damageNumber *= damage.Owner.CurrentAttackBuff.damageMulti;
+                        }
+
+                        //Apply damage buffs from combo cards etc.
+                        if (damage.Owner is Player)
+                        {
+                            Player playerOnwer = (Player)damage.Owner;
+
+                            damage = playerOnwer.cardEffectMng.GetModifiedDamage(damage);
                         }
                     }
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);

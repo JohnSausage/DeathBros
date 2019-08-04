@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114941361038313446}
   - component: {fileID: 114313263792103930}
   - component: {fileID: 61542803858809420}
+  - component: {fileID: 114167889149203550}
   m_Layer: 14
   m_Name: PlayerTest
   m_TagString: Player
@@ -118,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036813610648658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.19999, y: -57.27, z: 0}
+  m_LocalPosition: {x: 115.96, y: -89.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4988473889698574}
@@ -207,6 +208,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   currentID: 0
+--- !u!114 &114167889149203550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036813610648658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62db2f31c85712409b6666951e6645b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboCards:
+  - {fileID: 11400000, guid: dc350b7c7592f2e4a84717c32ad9cde7, type: 2}
+  - {fileID: 11400000, guid: f72a2628737dafd43ba96db55bc6a79e, type: 2}
+  - {fileID: 11400000, guid: 3f420355417959449a9b8161c9bbd8e3, type: 2}
+  - {fileID: 11400000, guid: 592467fd47d593d41ba0361bc781bfe0, type: 2}
+  - {fileID: 11400000, guid: ff89a7a194252024d8724e0f65a8761c, type: 2}
+  cardEnabled: 0000000000
 --- !u!114 &114247830038948058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,8 +301,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateAutomatically: 0
   currentAnimation: {fileID: 0}
+  animations: []
   frameAnimationsSO: {fileID: 11400000, guid: e857fbccfd0ac864999545c3a83be2d2, type: 2}
   animationSpeed: 1
+  texture2Ds: []
+  coloredTexture2Ds: []
 --- !u!114 &114926630485299346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +358,7 @@ MonoBehaviour:
   bAir: {fileID: 11400000, guid: 03d18d9223e5c244bb941cd3071c2f6b, type: 2}
   dAir: {fileID: 11400000, guid: 819a2609c410e7d43a3b4c25cd5dc6c7, type: 2}
   uAir: {fileID: 11400000, guid: 9eedbbd7aad4fb2499396aa2c4f5375a, type: 2}
-  nSpec: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}
+  nSpec: {fileID: 11400000, guid: 71d3dd07638474e46abaaf1e41c0f5ce, type: 2}
   sSpec: {fileID: 11400000, guid: 9d6643c9b367cd542b3717fee813e531, type: 2}
   uSpec: {fileID: 11400000, guid: ab6381f80f6fd64488dc658e562109d1, type: 2}
   dSpec: {fileID: 11400000, guid: 3dc1b44f422b38040b7f99cadc85499b, type: 2}
@@ -347,6 +369,9 @@ MonoBehaviour:
   interactionMask:
     serializedVersion: 2
     m_Bits: 32768
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 65536
 --- !u!114 &114949556021984404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,8 +397,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateAutomatically: 1
   currentAnimation: {fileID: 0}
+  animations: []
   frameAnimationsSO: {fileID: 11400000, guid: 0ca1a96d50c32b64e8592e3c3c3aa6d6, type: 2}
   animationSpeed: 1
+  texture2Ds: []
+  coloredTexture2Ds: []
 --- !u!212 &212115463973286664
 SpriteRenderer:
   m_ObjectHideFlags: 1

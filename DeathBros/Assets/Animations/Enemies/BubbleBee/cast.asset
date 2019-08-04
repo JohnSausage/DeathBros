@@ -36,7 +36,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 1, y: -1}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.40999997
     hitboxes: []
     soundName: 
   - duration: 20
@@ -48,7 +50,9 @@ MonoBehaviour:
     addMovment: {x: 0, y: 0}
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
-    hurtboxes: []
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.03125}
+      radius: 0.40999997
     hitboxes: []
     soundName: 
   damages: []

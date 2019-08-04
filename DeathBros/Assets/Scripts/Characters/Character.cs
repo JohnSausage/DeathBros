@@ -698,11 +698,6 @@ public class Character : _MB, ICanTakeDamage
     {
 
     }
-
-    public virtual Damage GetModifiedDamage(Damage damage)
-    {
-        return damage;
-    }
 }
 
 public interface ICanTakeDamage

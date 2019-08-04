@@ -65,8 +65,8 @@ public class Player : Character
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
-    [SerializeField]
-    protected List<ComboCardDataSO> comboCards;
+
+    public CardEffectManager cardEffectMng { get; protected set; }
 
 
     //public static event Action<float> PlayerHealthChanged;
@@ -117,6 +117,8 @@ public class Player : Character
         ComboPower = 50; //@@@ set to 0 later
 
         walkSpeedReduction = 0.5f;
+
+        cardEffectMng = GetComponent<CardEffectManager>();
     }
 
 
@@ -170,34 +172,10 @@ public class Player : Character
         ComboPower += value;
         ComboPower = Mathf.Clamp(ComboPower, 0, 110);
 
-        for (int i = 0; i < cardPowerActivated.Length; i++)
-        {
-            cardPowerActivated[i] = false;
-        }
-
-        if (ComboPower >= 20)
-        {
-            cardPowerActivated[0] = true;
-        }
-        if (ComboPower >= 40)
-        {
-            cardPowerActivated[1] = true;
-        }
-        if (ComboPower >= 60)
-        {
-            cardPowerActivated[2] = true;
-        }
-        if (ComboPower >= 80)
-        {
-            cardPowerActivated[3] = true;
-        }
-        if (ComboPower >= 100)
-        {
-            cardPowerActivated[4] = true;
-        }
-
         if (AChangeComboPower != null) AChangeComboPower(ComboPower);
     }
+
+    
 
     void Update()
     {
@@ -1008,17 +986,5 @@ public class Player : Character
         }
 
         GameManager.SaveData.skillAvailable[cardIndex] = true;
-    }
-
-    public override Damage GetModifiedDamage(Damage damage)
-    {
-        Damage returnDamage = damage;
-
-        foreach (ComboCardDataSO card in comboCards)
-        {
-            returnDamage = card.ModifyDamage(returnDamage);
-        }
-
-        return returnDamage;
     }
 }
