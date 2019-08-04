@@ -48,7 +48,7 @@ public class Player : Character
     protected int uSpecCount;
     protected int dSpecCount;
 
-    public int Gold { get; protected set; }
+    public int Gold { get { return GameManager.SaveData.goldAmount; } protected set { GameManager.SaveData.goldAmount = value; } }
 
     public float ComboPower { get; protected set; }
     protected bool[] cardPowerActivated = new bool[5];
@@ -116,7 +116,7 @@ public class Player : Character
         walkSpeedReduction = 0.5f;
     }
 
-  
+
     public override void Restart()
     {
         base.Restart();
@@ -151,7 +151,7 @@ public class Player : Character
         transform.position = new Vector2(GameManager.Instance.saveData.spawnX, GameManager.Instance.saveData.spawnY);
         SpawnPlayer();
 
-        if(APlayerRespawn != null)
+        if (APlayerRespawn != null)
         {
             APlayerRespawn();
         }
@@ -269,7 +269,7 @@ public class Player : Character
 
         if (InputManager.BufferdDown("Interact"))
         {
-            if(APlayerInteract != null)
+            if (APlayerInteract != null)
             {
                 APlayerInteract();
             }
@@ -870,7 +870,7 @@ public class Player : Character
 
     public void SetSpecialAttack(StaticAttackStateSpecial attackSO, ESpecial type)
     {
-        if(attackSO == null)
+        if (attackSO == null)
         {
             return;
         }
@@ -950,7 +950,7 @@ public class Player : Character
 
     protected void CheckForAutoPickUp()
     {
-        RaycastHit2D pickUpCheck = Physics2D.CircleCast(Position, pickUpRadius, Vector2.zero, 0, pickUpMask);
+        RaycastHit2D pickUpCheck = Physics2D.CircleCast(Position, pickUpRadius / 2f, Vector2.zero, 0, pickUpMask);
 
         if (pickUpCheck)
         {
@@ -970,5 +970,15 @@ public class Player : Character
         Gold += amount;
 
         if (APlayerGoldUpdate != null) APlayerGoldUpdate(Gold);
+    }
+
+    public void AddSkillCard(int cardIndex)
+    {
+        if (cardIndex >= GameManager.SaveData.skillAvailable.Length)
+        {
+            return;
+        }
+
+        GameManager.SaveData.skillAvailable[cardIndex] = true;
     }
 }

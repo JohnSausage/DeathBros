@@ -16,6 +16,9 @@ public class SaveData
 
     public bool[] skillAvailable;
 
+    public int goldAmount;
+
+
     public virtual void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();

@@ -11,7 +11,7 @@ public class GameManager : _MB
     public Level startingLevel;
     public World startWorld;
 
-    public float knTestFactor = 1;
+    //public float knTestFactor = 1;
     public static bool IsPaused { get; private set; }
 
     public static Player Player { get; private set; }
@@ -158,6 +158,15 @@ public class GameManager : _MB
 
             startingLevel = world.startingLevel;
         }
+
+        //LevelManager levelManager = FindObjectOfType<LevelManager>();
+
+        //if(levelManager == null)
+        //{
+        //    return;
+        //}
+
+        //startingLevel = levelManager.startingLevel;
     }
 
     public void LoadScene(string sceneToLoad)

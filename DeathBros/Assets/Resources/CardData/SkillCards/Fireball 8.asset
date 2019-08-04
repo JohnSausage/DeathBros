@@ -18,5 +18,6 @@ MonoBehaviour:
   damage: 5
   element: 2
   cost: 5
+  type: Projectile
   details: Projectile
   attackStateSO: {fileID: 11400000, guid: ac570a60fc8a79e4da42cfe3622bc6ad, type: 2}

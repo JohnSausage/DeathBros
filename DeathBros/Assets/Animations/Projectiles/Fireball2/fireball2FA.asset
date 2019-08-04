@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122d3b7926ad24f4ab1beb873bd8bdac, type: 3}
+  m_Name: fireball2FA
+  m_EditorClassIdentifier: 
+  frameAnimations:
+  - {fileID: 11400000, guid: 7bde31ca2c0622f48a13d2ecd3e04b44, type: 2}
+  - {fileID: 11400000, guid: e9302f994c627cc44bb0d550915285ed, type: 2}

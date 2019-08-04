@@ -72,10 +72,24 @@ public class Panel_AvlSkills : MenuPanel
             Destroy(buttons_AvlSkills[i].gameObject);
         }
 
+
+        //add all skill cards as buttons
         buttons_AvlSkills.Clear();
 
         foreach (CardDataSO cardData in CardManager.Instance.cardDataSOList)
         {
+            //only add skill as button if the save data says it is available
+            if (cardData.cardID >= GameManager.SaveData.skillAvailable.Length)
+            {
+                continue;
+            }
+
+            if (GameManager.SaveData.skillAvailable[cardData.cardID] == false)
+            {
+                continue;
+            }
+
+
             Button_CardDataSO newButton = Instantiate(cardButtonPrefab, content_AvlSkills.transform);
             newButton.SetCardData(cardData);
 
@@ -146,6 +160,13 @@ public class Panel_AvlSkills : MenuPanel
         }
 
         selectedCardIndex = 0;
+
+        //do not select a card button, if there are no card buttons
+        if(buttons_AvlSkills.Count == 0)
+        {
+            return;
+        }
+
         SetCardsToIndex(selectedCardIndex);
     }
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   animationNameAerial: 
   aerialLimit: 0
   comboPowerCost: 5
-  projectile: {fileID: 114121695611491556, guid: 2bcfda0a08cf74c4d9cc99655b34e28c,
+  projectile: {fileID: 114806102160082008, guid: e44b534c6cef83347aa2e0435d2eba0a,
     type: 2}
   projectileVelocity: {x: 1, y: 0}
   spawnOffset: {x: 0, y: 0}

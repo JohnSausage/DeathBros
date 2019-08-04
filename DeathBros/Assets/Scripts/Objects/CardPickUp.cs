@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldPickUp : AutoPickUpItem
+public class CardPickUp : AutoPickUpItem
 {
     [SerializeField]
-    protected int goldAmount = 1;
-
+    protected int skillCardIndex = 0;
 
     protected override void OnPickUp(Player player)
     {
-        player.AddGold(1);
+        base.OnPickUp(player);
+
+        player.AddSkillCard(skillCardIndex);
     }
 }

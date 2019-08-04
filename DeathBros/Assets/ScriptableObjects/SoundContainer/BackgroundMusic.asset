@@ -16,11 +16,11 @@ MonoBehaviour:
   - name: ambient3
     clip: {fileID: 8300000, guid: 141e4e19be3a6654a901f261129221b9, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1
   - name: cave2
     clip: {fileID: 8300000, guid: b2d19bed3721d8849adf98b22275cb39, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1
   - name: cave_bells_and_droplets
     clip: {fileID: 8300000, guid: b26a3e4b886bd3144a6c4e4d794cbf0d, type: 3}
     volume: 0.2
@@ -28,12 +28,12 @@ MonoBehaviour:
   - name: mystical_1
     clip: {fileID: 8300000, guid: ed3dcb1f5ef1f4d438ce3571bf463a89, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1
   - name: ruins_theme_1
     clip: {fileID: 8300000, guid: 7bb41749924d7ed4aa47e8982c4ad70e, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1
   - name: frogCave_soft
     clip: {fileID: 8300000, guid: 184114e2b6cee9c47ae7566e610beaab, type: 3}
     volume: 0.2
-    loop: 0
+    loop: 1

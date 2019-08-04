@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Name: SpinAttack
   m_EditorClassIdentifier: 
   cardID: 2
-  title: SPIN
-  cardColor: 0
-  picture: {fileID: 21300002, guid: 8bd210cb62d987c48a94725f64225447, type: 3}
+  title: RISING BLADE
+  cardColor: 1
+  picture: {fileID: 21300004, guid: 8bd210cb62d987c48a94725f64225447, type: 3}
   damage: 10
   element: 0
   cost: 20
-  details: FLY UP
+  type: JUMP
+  details: 'Used by legendary
+
+    heros.'
   attackStateSO: {fileID: 11400000, guid: ab6381f80f6fd64488dc658e562109d1, type: 2}
