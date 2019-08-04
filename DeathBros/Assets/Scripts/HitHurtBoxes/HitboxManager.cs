@@ -21,6 +21,7 @@ public class HitboxManager : _MB
         base.Awake();
 
         spr = GetComponent<SpriteRenderer>();
+
         if (spr == null)
         {
             spr = GetComponentInChildren<SpriteRenderer>();
@@ -63,19 +64,27 @@ public class HitboxManager : _MB
                     //damage.attackType = Chr.currentAttackType;
 
                     damage.hitID = currentID;
-                    damage.Owner = Chr;
+
+                    if (damage.Owner == null)
+                    {
+                        damage.Owner = Chr;
+                    }
+
                     //damage.position = hitBoxPosition;
                     damage.HitPosition = hitBoxPosition;
 
-                    if (Chr != null)
+                    if (damage.Owner != null)
                     {
-                        damage.position = Chr.Position;
+                        damage.attackType = damage.Owner.currentAttackType;
+                        damage.position = damage.Owner.Position;
 
+                        //Apply damage buffs from comvo cards etc.
+                        damage = damage.Owner.GetModifiedDamage(damage);
 
-                        if (Chr.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
+                        if (damage.Owner.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
                         {
-                            damage.damageNumber += Chr.CurrentAttackBuff.damageAdd;
-                            damage.damageNumber *= Chr.CurrentAttackBuff.damageMulti;
+                            damage.damageNumber += damage.Owner.CurrentAttackBuff.damageAdd;
+                            damage.damageNumber *= damage.Owner.CurrentAttackBuff.damageMulti;
                         }
                     }
                     //damage.damageNumber *= Chr.GetCardEffect_DamageMultiplier(damage.attackType);

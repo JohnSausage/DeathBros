@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Cards/CardData")]
+[CreateAssetMenu(menuName = "Cards/SkillCardData")]
 public class CardDataSO : ScriptableObject
 {
     public int cardID;

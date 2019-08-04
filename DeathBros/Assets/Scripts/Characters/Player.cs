@@ -65,6 +65,9 @@ public class Player : Character
     public Item holdItem { get; protected set; }
     public bool hasItem { get { return holdItem != null; } }
 
+    [SerializeField]
+    protected List<ComboCardDataSO> comboCards;
+
 
     //public static event Action<float> PlayerHealthChanged;
     public static event Action<Character, Damage> EnemyHit;
@@ -441,28 +444,32 @@ public class Player : Character
 
     public override void SCS_CheckForGroundAttacks()
     {
-
         if (Attack)
         {
             if (isRunning)
             {
                 ChrSM.ChangeState(this, dashAtk);
+                currentAttackType = EAttackType.DashAtk;
             }
             else if (DirectionalInput == Vector2.zero)
             {
                 ChrSM.ChangeState(this, jabAtk);
+                currentAttackType = EAttackType.Jab1;
             }
             else if (Mathf.Abs(DirectionalInput.x) >= 0.1f)
             {
                 ChrSM.ChangeState(this, fTiltAtk);
+                currentAttackType = EAttackType.FTilt;
             }
             else if (DirectionalInput.y > 0.5f)
             {
                 ChrSM.ChangeState(this, uTiltAtk);
+                currentAttackType = EAttackType.UTilt;
             }
             else if (DirectionalInput.y < -0.5f)
             {
                 ChrSM.ChangeState(this, dTiltAtk);
+                currentAttackType = EAttackType.DTilt;
             }
         }
         else if (TiltInput != Vector2.zero)
@@ -470,20 +477,24 @@ public class Player : Character
             if (isRunning)
             {
                 ChrSM.ChangeState(this, dashAtk);
+                currentAttackType = EAttackType.DashAtk;
             }
             else if (Mathf.Abs(TiltInput.x) > 0.5f)
             {
                 Direction = TiltInput.x;
 
                 ChrSM.ChangeState(this, fTiltAtk);
+                currentAttackType = EAttackType.FTilt;
             }
             else if (TiltInput.y > 0.5f)
             {
                 ChrSM.ChangeState(this, uTiltAtk);
+                currentAttackType = EAttackType.UTilt;
             }
             else if (TiltInput.y < -0.5f)
             {
                 ChrSM.ChangeState(this, dTiltAtk);
+                currentAttackType = EAttackType.DTilt;
             }
         }
 
@@ -491,6 +502,7 @@ public class Player : Character
 
         if (Grab)
         {
+            currentAttackType = EAttackType.Grab;
             ChrSM.ChangeState(this, grabAtk);
         }
     }
@@ -503,22 +515,27 @@ public class Player : Character
             if (DirectionalInput == Vector2.zero)
             {
                 ChrSM.ChangeState(this, nAirAtk);
+                currentAttackType = EAttackType.NAir;
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) == Direction)
             {
                 ChrSM.ChangeState(this, fAirAtk);
+                currentAttackType = EAttackType.FAir;
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f && Mathf.Sign(DirectionalInput.x) != Direction)
             {
                 ChrSM.ChangeState(this, bAirAtk);
+                currentAttackType = EAttackType.BAir;
             }
             else if (DirectionalInput.y > 0.5f)
             {
                 ChrSM.ChangeState(this, uAirAtk);
+                currentAttackType = EAttackType.UAir;
             }
             else if (DirectionalInput.y < -0.5f)
             {
                 ChrSM.ChangeState(this, dAirAtk);
+                currentAttackType = EAttackType.DAir;
             }
         }
 
@@ -527,18 +544,22 @@ public class Player : Character
             if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) == Direction)
             {
                 ChrSM.ChangeState(this, fAirAtk);
+                currentAttackType = EAttackType.FAir;
             }
             else if (Mathf.Abs(TiltInput.x) > 0.5f && Mathf.Sign(TiltInput.x) != Direction)
             {
                 ChrSM.ChangeState(this, bAirAtk);
+                currentAttackType = EAttackType.BAir;
             }
             else if (TiltInput.y > 0.5f)
             {
                 ChrSM.ChangeState(this, uAirAtk);
+                currentAttackType = EAttackType.UAir;
             }
             else if (TiltInput.y < -0.5f)
             {
                 ChrSM.ChangeState(this, dAirAtk);
+                currentAttackType = EAttackType.DAir;
             }
         }
 
@@ -564,18 +585,22 @@ public class Player : Character
             if (DirectionalInput == Vector2.zero)
             {
                 CheckForSpecialAttack(nSpecAtk, nSpecCount);
+                currentAttackType = EAttackType.NSpec;
             }
             else if (DirectionalInput.y >= 0.5f)
             {
                 CheckForSpecialAttack(uSpecAtk, uSpecCount);
+                currentAttackType = EAttackType.USpec;
             }
             else if (DirectionalInput.y <= -0.5f)
             {
                 CheckForSpecialAttack(dSpecAtk, dSpecCount);
+                currentAttackType = EAttackType.DSpec;
             }
             else if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
                 CheckForSpecialAttack(sSpecAtk, sSpecCount);
+                currentAttackType = EAttackType.FSpec;
             }
         }
     }
@@ -590,14 +615,17 @@ public class Player : Character
                 Direction = DirectionalInput.x;
 
                 ChrSM.ChangeState(this, fTiltAtk);
+                currentAttackType = EAttackType.None;
             }
             else if (DirectionalInput.y > 0.5f)
             {
                 ChrSM.ChangeState(this, uTiltAtk);
+                currentAttackType = EAttackType.None;
             }
             else if (DirectionalInput.y < -0.5f)
             {
                 ChrSM.ChangeState(this, dTiltAtk);
+                currentAttackType = EAttackType.None;
             }
 
             return true;
@@ -980,5 +1008,17 @@ public class Player : Character
         }
 
         GameManager.SaveData.skillAvailable[cardIndex] = true;
+    }
+
+    public override Damage GetModifiedDamage(Damage damage)
+    {
+        Damage returnDamage = damage;
+
+        foreach (ComboCardDataSO card in comboCards)
+        {
+            returnDamage = card.ModifyDamage(returnDamage);
+        }
+
+        return returnDamage;
     }
 }

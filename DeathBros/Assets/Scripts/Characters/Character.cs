@@ -123,7 +123,6 @@ public class Character : _MB, ICanTakeDamage
     public event Action<Character, Vector2> ASpawnProjectile;
     public event Action AIsLanding;
 
-
     public override void Init()
     {
         base.Init();
@@ -698,6 +697,11 @@ public class Character : _MB, ICanTakeDamage
     public virtual void SCS_CountSpecial(ESpecial type)
     {
 
+    }
+
+    public virtual Damage GetModifiedDamage(Damage damage)
+    {
+        return damage;
     }
 }
 
