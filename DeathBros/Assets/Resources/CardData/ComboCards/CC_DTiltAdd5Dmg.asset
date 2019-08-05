@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: CC_DTiltAdd5Dmg
   m_EditorClassIdentifier: 
   cardName: DTilt damage plus
+  buffText: \8\9+
   attackType: 2
   addToDamage: 5

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: CC_UTiltAdd5Dmg
   m_EditorClassIdentifier: 
   cardName: UTilt damage plus
+  buffText: \7\9+
   attackType: 3
   addToDamage: 5

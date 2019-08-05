@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: CC_JumpPlus
   m_EditorClassIdentifier: 
   cardName: Add JumpStrength
+  buffText: Jump
   statName: JumpStrength
   addAmount: 2

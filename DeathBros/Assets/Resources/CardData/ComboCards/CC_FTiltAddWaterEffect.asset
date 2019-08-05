@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: CC_FTiltAddWaterEffect
   m_EditorClassIdentifier: 
   cardName: Wet FTilt
+  buffText: \6\9\0
   attackType: 1
   effect: {fileID: 11400000, guid: 024e830c76adaf2419857c16e82fbc9e, type: 2}

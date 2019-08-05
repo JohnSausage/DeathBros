@@ -7,6 +7,8 @@ public class ComboCardDataSO : ScriptableObject
 {
     public string cardName;
 
+    public string buffText;
+
     public virtual void ApplyEffect(Player player)
     {
         

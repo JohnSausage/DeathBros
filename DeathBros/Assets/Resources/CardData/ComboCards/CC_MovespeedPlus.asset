@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: CC_MovespeedPlus
   m_EditorClassIdentifier: 
   cardName: Add Movespeed
+  buffText: Move
   statName: Movespeed
   addAmount: 2

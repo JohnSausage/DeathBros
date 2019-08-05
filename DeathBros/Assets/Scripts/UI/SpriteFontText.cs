@@ -29,21 +29,25 @@ public class SpriteFontText : MonoBehaviour
 
     [Space]
 
+    public bool enableIconColor = false;
+
+    [Space]
     public bool updateText;
 
 
 
     protected int textWidth;
 
+    protected const int iconWidth = 6;
 
-    void Awake()
+    private void Awake()
     {
 
     }
 
-    void Update()
+    private void Update()
     {
-        if(text == null)
+        if (text == null)
         {
             return;
         }
@@ -62,9 +66,24 @@ public class SpriteFontText : MonoBehaviour
 
             textWidth = 0;
 
+            bool skipIconWidth = false;
+
             foreach (char c in text)
             {
-                textWidth += spriteFont.GetWidth(c) * 2;
+                if (skipIconWidth == true)
+                {
+                    skipIconWidth = false;
+                }
+                else
+                {
+                    textWidth += spriteFont.GetWidth(c) * 2;
+                }
+
+                if (c == 92)
+                {
+                    textWidth += iconWidth * 2;
+                    skipIconWidth = true;
+                }
             }
 
 
@@ -99,16 +118,24 @@ public class SpriteFontText : MonoBehaviour
                 newGO.name = spriteFont.name + "_" + c;
                 newGO.transform.SetParent(transform);
                 Image newImage = newGO.AddComponent<Image>();
+                int letterWidth = 0;
 
                 if (iconMode)
                 {
                     newImage.sprite = spriteFont.GetIcon(c);
                     iconMode = false;
+                    letterWidth = iconWidth;
+
+                    if(enableIconColor == true)
+                    {
+                        newImage.color = color;
+                    }
                 }
                 else
                 {
                     newImage.sprite = spriteFont.GetSprite(c);
                     newImage.color = color;
+                    letterWidth = spriteFont.GetWidth(c);
                 }
 
 
@@ -118,7 +145,7 @@ public class SpriteFontText : MonoBehaviour
                 }
 
                 newImage.SetNativeSize();
-                
+
 
                 newGO.transform.localScale = new Vector3(1, 1, 1);
 
@@ -143,7 +170,7 @@ public class SpriteFontText : MonoBehaviour
                     rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
                 }
 
-                positionX += spriteFont.GetWidth(c) * 2;
+                positionX += letterWidth * 2;
 
                 if (positionX >= lineWidth || c == 10)
                 {
@@ -179,6 +206,12 @@ public class SpriteFontText : MonoBehaviour
     public void SetText(string text)
     {
         this.text = text;
+        updateText = true;
+    }
+
+    public void SetColor(Color color)
+    {
+        this.color = color;
         updateText = true;
     }
 }

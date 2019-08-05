@@ -9,7 +9,26 @@ public class CardComboStrip : MonoBehaviour
     public Color sliderColor;
     public Color sliderColorBlink;
 
+    [SerializeField]
+    protected SpriteFontText[] comboBuffTexts;
+
     private int counter = 0;
+
+    private CardEffectManager cardEffectMng;
+
+    private void Awake()
+    {
+        cardEffectMng = FindObjectOfType<CardEffectManager>();
+
+        if(cardEffectMng == null)
+        {
+            Debug.Log("CardEffectManager not found!");
+            return;
+        }
+
+        cardEffectMng.AUpdateComboCard += UpdateComboCardText;
+        cardEffectMng.AUpdateComboCardStatus += UpdateComboCardStatus;
+    }
 
     private void Start()
     {
@@ -50,5 +69,25 @@ public class CardComboStrip : MonoBehaviour
     {
         sliderImage.fillAmount = value / 110f;
         //sliderImage.sizeDelta = new Vector2(value / 110 * 352, sliderImage.sizeDelta.y);
+    }
+
+    private void UpdateComboCardText(int index, ComboCardDataSO comboCardData)
+    {
+        comboBuffTexts[index].SetText(comboCardData.buffText);
+    }
+
+    private void UpdateComboCardStatus(int index, bool enabled)
+    {
+        Color newColor;
+        if(enabled == true)
+        {
+            newColor = Color.white;
+        }
+        else
+        {
+            newColor = Color.black;
+        }
+
+        comboBuffTexts[index].SetColor(newColor);
     }
 }

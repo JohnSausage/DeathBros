@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,8 @@ public class CardEffectManager : MonoBehaviour
     protected float oldComboPower;
     protected float[] comboPowerLimits = { 20f, 40f, 60f, 80f, 100f };
 
-
+    public event Action<int,ComboCardDataSO> AUpdateComboCard;
+    public event Action<int, bool> AUpdateComboCardStatus;
 
     private void Start()
     {
@@ -24,6 +25,23 @@ public class CardEffectManager : MonoBehaviour
         player = GetComponent<Player>();
 
         player.AChangeComboPower += UpdateComboCards;
+
+        //@@@ maybe remove later
+        //triggers all update card events to trigger updates
+        for (int i = 0; i < 5; i++)
+        {
+            if(i >= comboCards.Length)
+            {
+                break;
+            }
+
+            if(comboCards[i] == null)
+            {
+                continue;
+            }
+
+            if (AUpdateComboCard != null) AUpdateComboCard(i, comboCards[i]);
+        }
     }
 
 
@@ -81,11 +99,13 @@ public class CardEffectManager : MonoBehaviour
         {
             comboCards[index].ApplyEffect(player);
             cardEnabled[index] = true;
+            if (AUpdateComboCardStatus != null) AUpdateComboCardStatus(index, true);
         }
         else if (oldComboPower >= comboPowerLimit && comboPower < comboPowerLimit)
         {
             comboCards[index].RemoveEffect(player);
             cardEnabled[index] = false;
+            if (AUpdateComboCardStatus != null) AUpdateComboCardStatus(index, false);
         }
     }
 }

@@ -194,7 +194,7 @@ MonoBehaviour:
     width: 4
   - character: 92
     sprite: {fileID: 21300120, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 4
+    width: 0
   - character: 93
     sprite: {fileID: 21300122, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 4
@@ -306,4 +306,11 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
   - {fileID: 21300006, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
   - {fileID: 21300022, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300024, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300026, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300028, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300030, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300010, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300012, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
+  - {fileID: 21300014, guid: 6f905a05aa3cbc144a46fe688ce9c3cd, type: 3}
   addSprites: []
