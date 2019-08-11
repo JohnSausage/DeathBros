@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: MaggotInRange
   m_EditorClassIdentifier: 
   exitState: attack
-  targetRange: 1
+  targetRangeRadius: 4
+  targetOffset: {x: 3, y: 0}

@@ -8,8 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d127776a7379d6e40825f0574593279a, type: 3}
-  m_Name: MaggotReturn
+  m_Script: {fileID: 11500000, guid: 43d4e59cdb9b4c9439209c19a592197f, type: 3}
+  m_Name: MaggotAI
   m_EditorClassIdentifier: 
-  exitState: walk
-  targetRange: 2
+  aiActions:
+  - {fileID: 11400000, guid: 04099e11c8f33774e8c8cce92edccb5b, type: 2}
+  - {fileID: 11400000, guid: c51fefe787efcc64fad0e5042d0947d0, type: 2}

@@ -27,8 +27,6 @@ public class Trigger_EnemiesDead : MonoBehaviour, ITrigger
     /// </summary>
     protected void CheckIfEnemiesDead()
     {
-        Debug.Log(enemies);
-
         bool allDeadCheck = true;
 
         for (int i = 0; i < enemies.Count; i++)

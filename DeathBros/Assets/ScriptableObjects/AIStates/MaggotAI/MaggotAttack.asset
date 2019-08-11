@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Name: MaggotAttack
   m_EditorClassIdentifier: 
   actionName: attack
-  normalAttack: 1
-  specialAttack: 0
+  aiExitConditions:
+  - {fileID: 11400000, guid: f930b511bab79314488f2ba43518bff9, type: 2}
+  normalAttack: 0
+  specialAttack: 1
+  targetOffset: {x: 0, y: 0}
+  moveToEnemy: 1

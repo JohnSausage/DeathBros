@@ -215,7 +215,7 @@ public class FrameAnimatorEditor : EditorWindow
         whiteTexture.Apply();
 
         specialFrameInfoTexture = new Texture2D(1, 1);
-        specialFrameInfoTexture.SetPixel(0, 0, Color.black);
+        specialFrameInfoTexture.SetPixel(0, 0, Color.gray);
         specialFrameInfoTexture.Apply();
 
         hurtboxTexture = Resources.Load<Texture2D>("Editor/green_circle");
@@ -512,7 +512,7 @@ public class FrameAnimatorEditor : EditorWindow
 
                 Vector2 previewPosition = new Vector2(35, 40);
 
-                previewRect = DrawSpriteRect(previewPosition, currentFrame.sprite, scale, blackTexture);
+                previewRect = DrawSpriteRect(previewPosition, currentFrame.sprite, scale, grayTexture);
 
                 GUILayout.Space(previewRect.height + 10);
 

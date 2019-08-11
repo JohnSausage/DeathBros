@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum EStatusEffectType { None, Wet, Burning }
+public enum EStatusEffectType { None, Wet, Burning, Poisoned }
 
 public class StatusEffect : ScriptableObject
 {

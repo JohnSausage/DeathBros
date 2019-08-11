@@ -38,7 +38,7 @@ public class StatusEffect_Burning : StatusEffect
         if(effectManager.currentEffectTimer%tickTimeF == 0)
         {
 
-            effectManager.Chr.TakeDamage(burnDamage);
+            effectManager.Chr.TakeDamage(burnDamage.Clone());
         }
     }
 

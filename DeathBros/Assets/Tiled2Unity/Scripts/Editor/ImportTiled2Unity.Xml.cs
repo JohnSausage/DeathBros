@@ -150,6 +150,9 @@ namespace Tiled2Unity
             material.enableInstancing = true;
 #endif
 
+            // Force pixel snap to be always on
+            material.SetFloat("PixelSnap", 1.0f);
+
             return material;
         }
     }

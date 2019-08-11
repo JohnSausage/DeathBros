@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Name: MaggotWalk
   m_EditorClassIdentifier: 
   actionName: walk
+  aiExitConditions:
+  - {fileID: 11400000, guid: 7dcf79eb65dbd0944aaedca3438ac40b, type: 2}
   turnOnLedge: 1
   turnOnWall: 1

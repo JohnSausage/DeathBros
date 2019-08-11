@@ -319,11 +319,15 @@ public class Character : _MB, ICanTakeDamage
         }
         else
         {
+            if(damage.damageType != EDamageType.Silent)
+            {
+                AudioManager.PlaySound("NES_hit1");
+                Flash(EffectManager.ColorHit, 3);
+            }
+
             if (shielding)
             {
                 damage.damageNumber *= 0.25f;
-
-                AudioManager.PlaySound("NES_hit1");
 
                 currentDamage = damage;
 
@@ -337,10 +341,7 @@ public class Character : _MB, ICanTakeDamage
                 RaiseTakeDamageEvents(damage);
             }
             else
-            {
-                AudioManager.PlaySound("NES_hit1");
-                Flash(EffectManager.ColorHit, 3);
-
+            {              
                 currentDamage = damage;
 
                 if (damage.Owner != null)
