@@ -16,11 +16,11 @@ public class AIExitStatusCheck : AIExitConditionSO
     public bool isInTumble;
     
 
-    public override void CheckForExit(AIController aiCtr)
+    public override bool CheckForExit(AIController aiCtr)
     {
         if(aiCtr.Timer < waitFramesBeforeChecking)
         {
-            return;
+            return false; ;
         }
 
         if (isGrounded)
@@ -28,6 +28,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.Ctr.IsGrounded == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -36,6 +37,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.Ctr.HasCollided == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -44,6 +46,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.Ctr.OnWall == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -52,6 +55,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.Ctr.OnLedge == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -60,6 +64,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.isTakingDamage == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -68,6 +73,7 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.isInControl == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
 
@@ -76,7 +82,10 @@ public class AIExitStatusCheck : AIExitConditionSO
             if (aiCtr.Enemy.Ctr.IsInTumble == true)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
+
+        return false;
     }
 }

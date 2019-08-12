@@ -8,7 +8,7 @@ public class AIExitTargetInRange : AIExitConditionSO
 
     protected Vector2 directionalTargetOffset;
 
-    public override void CheckForExit(AIController aiCtr)
+    public override bool CheckForExit(AIController aiCtr)
     {
         directionalTargetOffset.x = targetOffset.x * aiCtr.Enemy.Direction;
         directionalTargetOffset.y = targetOffset.y;
@@ -16,6 +16,9 @@ public class AIExitTargetInRange : AIExitConditionSO
         if ((aiCtr.TargetVector - directionalTargetOffset).magnitude <= targetRangeRadius)
         {
             aiCtr.ChangeState(exitState);
+            return true;
         }
+
+        return false;
     }
 }

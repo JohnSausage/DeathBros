@@ -5,7 +5,7 @@ public class AIExitAfterAnimation : AIExitConditionSO
 {
     public string animationName = "";
 
-    public override void CheckForExit(AIController aiCtr)
+    public override bool CheckForExit(AIController aiCtr)
     {
         if (animationName == "")
         {
@@ -13,6 +13,7 @@ public class AIExitAfterAnimation : AIExitConditionSO
             if (aiCtr.Enemy.Anim.animationOver)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
         else
@@ -20,7 +21,10 @@ public class AIExitAfterAnimation : AIExitConditionSO
             if (aiCtr.Enemy.Anim.currentAnimation.name == animationName)
             {
                 aiCtr.ChangeState(exitState);
+                return true;
             }
         }
+
+        return false;
     }
 }

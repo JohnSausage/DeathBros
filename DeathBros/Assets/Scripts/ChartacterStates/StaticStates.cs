@@ -36,4 +36,6 @@
     public static SCS_ShieldHit shieldHit = new SCS_ShieldHit();
     public static SCS_Grab grab = new SCS_Grab();
     public static SCS_GetGrabbed getGrabbed = new SCS_GetGrabbed();
+
+    public static SCS_Animate animate = new SCS_Animate();
 }

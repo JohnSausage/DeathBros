@@ -2,9 +2,12 @@
 
 public class AIExitConditionSO : ScriptableObjectWithDrawer
 {
+    public int priority;
+
     public string exitState;
 
-    public virtual void CheckForExit(AIController aiCtr)
+    public virtual bool CheckForExit(AIController aiCtr)
     {
+        return false;
     }
 }

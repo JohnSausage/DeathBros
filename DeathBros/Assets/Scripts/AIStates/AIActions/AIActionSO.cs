@@ -10,6 +10,12 @@ public class AIActionSO : ScriptableObjectWithDrawer
     public virtual void Enter(AIController aiCtr)
     {
         aiCtr.Timer = 0;
+
+        aiExitConditions.Sort(delegate (AIExitConditionSO a, AIExitConditionSO b)
+        {
+            return (a.priority.CompareTo(b.priority));
+        }
+        );
     }
 
     public virtual void Execute(AIController aiCtr)
@@ -18,7 +24,10 @@ public class AIActionSO : ScriptableObjectWithDrawer
 
         for (int i = 0; i < aiExitConditions.Count; i++)
         {
-            aiExitConditions[i].CheckForExit(aiCtr);
+            if (aiExitConditions[i].CheckForExit(aiCtr) == true)
+            {
+                break;
+            }
         }
     }
 

@@ -5,8 +5,14 @@ public class AIExitTargetOutOfRange : AIExitConditionSO
 {
     public float targetRange;
 
-    public override void CheckForExit(AIController aiCtr)
+    public override bool CheckForExit(AIController aiCtr)
     {
-        if (aiCtr.DistanceToTarget > targetRange) aiCtr.ChangeState(exitState);
+        if (aiCtr.DistanceToTarget > targetRange)
+        {
+            aiCtr.ChangeState(exitState);
+            return true;
+        }
+
+        return false;
     }
 }

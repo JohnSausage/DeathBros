@@ -73,6 +73,8 @@ public class Character : _MB, ICanTakeDamage
     public int AirdodgeCounter { get; set; }
     public float walkSpeedReduction { get; protected set; }
     public Vector2 GetGrabbedPosition { get; protected set; }
+    public string queuedAnimation { get; set; }
+    
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -126,6 +128,8 @@ public class Character : _MB, ICanTakeDamage
     public override void Init()
     {
         base.Init();
+
+        queuedAnimation = "";
 
         Ctr = GetComponent<NES_BasicController2D>();
 
@@ -698,6 +702,26 @@ public class Character : _MB, ICanTakeDamage
     public virtual void SCS_CountSpecial(ESpecial type)
     {
 
+    }
+
+    public void SCS_ForceAnimation()
+    {
+        if(dead)
+        {
+            return;
+        }
+
+        if(queuedAnimation == "")
+        {
+            return;
+        }
+
+        if(Anim.currentAnimation.name == queuedAnimation)
+        {
+            return;
+        }
+
+        SCS_ChangeState(StaticStates.animate);
     }
 }
 

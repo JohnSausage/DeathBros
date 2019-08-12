@@ -69,6 +69,8 @@ public class SCState
         if (chr == null) return;
 
         chr.Timer++;
+
+        chr.SCS_ForceAnimation();
     }
 
     public virtual void UpdateCtr(Character chr)
@@ -1618,5 +1620,45 @@ public class SCS_Spawn : SCState
         chr.Spr.color = Color.white;
 
         chr.SCS_OnSpawn();
+    }
+}
+
+///-----------------------------------------------------------------
+/// SCS_Animate
+///-----------------------------------------------------------------
+public class SCS_Animate : SCState
+{
+    public override void Enter(Character chr)
+    {
+        base.Enter(chr);
+
+        chr.SetInputs(Vector2.zero);
+        chr.Ctr.InControl = false;
+
+        chr.Anim.ChangeAnimation(chr.queuedAnimation);
+    }
+
+    public override void Execute(Character chr)
+    {
+        base.Execute(chr);
+
+        chr.SetInputs(Vector2.zero);
+
+        if (chr.Anim.animationOver == true)
+        {
+            if (chr.Anim.currentAnimation.name == chr.queuedAnimation)
+            {
+                chr.SCS_ChangeState(StaticStates.idle);
+                chr.queuedAnimation = "";
+            }
+        }
+    }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+
+        chr.FrozenInputX = 0f;
+        chr.Ctr.InControl = true;
     }
 }
