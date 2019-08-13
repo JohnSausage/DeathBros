@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114313263792103930}
   - component: {fileID: 61542803858809420}
   - component: {fileID: 114167889149203550}
+  - component: {fileID: 114351462520975210}
   m_Layer: 14
   m_Name: PlayerTest
   m_TagString: Player
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1036813610648658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.96, y: -89.1, z: 0}
+  m_LocalPosition: {x: 182.36, y: -70.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4988473889698574}
@@ -219,6 +220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62db2f31c85712409b6666951e6645b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffEffectName: Effect_Buff
+  debuffEffectName: 
+  buffAudioName: NES_pickUp
+  debuffAudioName: NES_bubble
   comboCards:
   - {fileID: 11400000, guid: dc350b7c7592f2e4a84717c32ad9cde7, type: 2}
   - {fileID: 11400000, guid: f72a2628737dafd43ba96db55bc6a79e, type: 2}
@@ -288,6 +293,22 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &114351462520975210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1036813610648658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9959ab81faf96c49951f0feda1e3083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color1: {r: 1, g: 0, b: 0, a: 1}
+  color2: {r: 0, g: 0, b: 0, a: 1}
+  randomR: 0
+  randomB: 0
+  randomG: 0
 --- !u!114 &114719340606539506
 MonoBehaviour:
   m_ObjectHideFlags: 1

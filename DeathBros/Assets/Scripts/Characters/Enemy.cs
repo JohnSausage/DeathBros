@@ -13,12 +13,13 @@ public class Enemy : Character, IActivatedByCamera
     //protected float comboMultiplier = 1;
     //public float ComboMultiplier { get { return comboMultiplier; } }
 
-    public bool isActive { get; set; }
+    public bool IsActive { get; set; }
 
     //[SerializeField]
     //protected GameObject projectile;
 
     public int ComboHitCounter { get; protected set; }
+    public float ComboDamageCounter { get; protected set; }
 
     public override void Init()
     {
@@ -45,23 +46,24 @@ public class Enemy : Character, IActivatedByCamera
             specialAttack_SCS = specialAttack.CreateAttackState();
         }
 
-        isActive = false;
+        IsActive = false;
     }
 
     protected override void FixedUpdate()
     {
-        if (isActive)
+        if (IsActive)
         {
             base.FixedUpdate();
 
             if (CameraController.Instance.ActivationBounds.Contains(transform.position) == false)
             {
-                isActive = false; ;
+                IsActive = false; ;
             }
 
             if(HitStunDuration <= 0)
             {
                 ComboHitCounter = 0;
+                ComboDamageCounter = 0;
             }
 
             HoldShield = false;
@@ -73,7 +75,7 @@ public class Enemy : Character, IActivatedByCamera
         {
             if (CameraController.Instance.ActivationBounds.Contains(transform.position) == true)
             {
-                isActive = true;
+                IsActive = true;
             }
         }
     }
@@ -127,8 +129,11 @@ public class Enemy : Character, IActivatedByCamera
             {
                 ComboHitCounter++;
             }
+
+            ComboDamageCounter += damage.damageNumber;
         }
 
+        //EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 8 * ComboHitCounter), transform.position);
         EffectManager.SpawnSoulBubbles(Mathf.RoundToInt(currentDamage.damageNumber / 8 * ComboHitCounter), transform.position);
     }
 
@@ -181,5 +186,5 @@ public class Enemy : Character, IActivatedByCamera
 
 public interface IActivatedByCamera
 {
-    bool isActive { get; set; }
+    bool IsActive { get; set; }
 }

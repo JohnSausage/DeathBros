@@ -5,7 +5,7 @@ public class AIExitInControl : AIExitConditionSO
 {
     public override bool CheckForExit(AIController aiCtr)
     {
-        if (aiCtr.Enemy.isInControl == true)
+        if (aiCtr.Enemy.IsInControl == true)
         {
             aiCtr.ChangeState(exitState);
             return true;

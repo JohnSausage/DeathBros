@@ -13,7 +13,6 @@ public class AIActionIdle : AIActionSO
     public override void Enter(AIController aiCtr)
     {
         base.Enter(aiCtr);
-
         
         aiCtr.RandomTimerNumber = Random.Range(minTimeInSec * 60, maxTimeInSec * 60);
     }

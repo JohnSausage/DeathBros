@@ -45,9 +45,9 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 7
+        baseKnockback: 8
         knockbackGrowth: 8
-        hitStunFrames: 15
+        hitStunFrames: 12
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -75,9 +75,9 @@ MonoBehaviour:
       damage:
         damageNumber: 5
         knockBackDirection: {x: 1, y: 3}
-        baseKnockback: 7
+        baseKnockback: 8
         knockbackGrowth: 8
-        hitStunFrames: 15
+        hitStunFrames: 12
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -104,9 +104,9 @@ MonoBehaviour:
   damages:
   - damageNumber: 5
     knockBackDirection: {x: 1, y: 3}
-    baseKnockback: 7
+    baseKnockback: 8
     knockbackGrowth: 8
-    hitStunFrames: 15
+    hitStunFrames: 12
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

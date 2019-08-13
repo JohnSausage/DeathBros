@@ -9,12 +9,21 @@ public class AIActionWalk : AIActionSO
     protected Vector2 right = Vector2.right;
     protected Vector2 left = Vector2.left;
 
+    public string nextState = "";
+
+    public float minTimeInSec = 1;
+    public float maxTimeInSec = 2;
+
     public override void Enter(AIController aiCtr)
     {
         base.Enter(aiCtr);
 
         if (aiCtr.inputDirection != Vector2.right && aiCtr.inputDirection != Vector2.left)
+        {
             aiCtr.inputDirection = right;
+        }
+
+        aiCtr.RandomTimerNumber = Random.Range(minTimeInSec * 60, maxTimeInSec * 60);
     }
 
     public override void Execute(AIController aiCtr)
@@ -41,5 +50,13 @@ public class AIActionWalk : AIActionSO
         }
 
         aiCtr.Enemy.SetInputs(aiCtr.inputDirection);
+
+        if (nextState != "")
+        {
+            if (aiCtr.Timer > aiCtr.RandomTimerNumber)
+            {
+                aiCtr.ChangeState(nextState);
+            }
+        }
     }
 }

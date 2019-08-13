@@ -144,7 +144,7 @@ public class CameraController : MonoBehaviour
     {
         Time.timeScale = 0.05f;
 
-        float freezeTime = Mathf.Clamp(damage.damageNumber, 1f, 10f);
+        float freezeTime = Mathf.Clamp(damage.damageNumber, 1f, 15f);
         freezeTime = freezeTime / 60f;
 
         yield return new WaitForSecondsRealtime(freezeTime);

@@ -8,15 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 406b9097c17d8f345b50726faca41423, type: 3}
-  m_Name: MaggotWalk
+  m_Script: {fileID: 11500000, guid: 01887aa408015a848a9c8d8cbdb4ee2d, type: 3}
+  m_Name: MaggotIdle
   m_EditorClassIdentifier: 
-  actionName: walk
+  actionName: idle
   aiExitConditions:
   - {fileID: 11400000, guid: 7dcf79eb65dbd0944aaedca3438ac40b, type: 2}
   - {fileID: 11400000, guid: 52aaf3c5bdccbe64099777d21eea0dca, type: 2}
-  turnOnLedge: 1
-  turnOnWall: 1
-  nextState: idle
-  minTimeInSec: 2
-  maxTimeInSec: 3
+  faceTarget: 0
+  nextState: walk
+  minTimeInSec: 1
+  maxTimeInSec: 2

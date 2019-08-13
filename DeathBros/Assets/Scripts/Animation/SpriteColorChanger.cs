@@ -21,7 +21,7 @@ public class SpriteColorChanger : MonoBehaviour
     [SerializeField]
     protected int randomG = 0;
 
-
+    public Color Color1 { set { color1 = value; } }
 
 
     protected static Color repColor1 = Color.green;

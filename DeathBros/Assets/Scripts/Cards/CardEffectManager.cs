@@ -5,6 +5,14 @@ using UnityEngine;
 public class CardEffectManager : MonoBehaviour
 {
     [SerializeField]
+    protected string buffEffectName, debuffEffectName;
+
+    [SerializeField]
+
+    protected string buffAudioName, debuffAudioName;
+
+
+    [SerializeField]
     protected ComboCardDataSO[] comboCards;
 
     [SerializeField]
@@ -99,12 +107,18 @@ public class CardEffectManager : MonoBehaviour
         {
             comboCards[index].ApplyEffect(player);
             cardEnabled[index] = true;
+            EffectManager.SpawnEffect(buffEffectName, transform);
+            AudioManager.PlaySound(buffAudioName);
+
             if (AUpdateComboCardStatus != null) AUpdateComboCardStatus(index, true);
         }
         else if (oldComboPower >= comboPowerLimit && comboPower < comboPowerLimit)
         {
             comboCards[index].RemoveEffect(player);
             cardEnabled[index] = false;
+            EffectManager.SpawnEffect(debuffEffectName, transform);
+            AudioManager.PlaySound(debuffAudioName);
+
             if (AUpdateComboCardStatus != null) AUpdateComboCardStatus(index, false);
         }
     }

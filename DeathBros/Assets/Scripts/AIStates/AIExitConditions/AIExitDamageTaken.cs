@@ -5,7 +5,7 @@ public class AIExitDamageTaken : AIExitConditionSO
 {
     public override bool CheckForExit(AIController aiCtr)
     {
-        if (aiCtr.Enemy.isTakingDamage == true)
+        if (aiCtr.Enemy.IsTakingDamage == true)
         {
             aiCtr.ChangeState(exitState);
             return true;

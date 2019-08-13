@@ -131,7 +131,7 @@ public class SCS_SpecialAttack : SCS_Attack
         {
             if (chr.Ctr.IsGrounded)
             {
-                chr.jumpsUsed = 0;
+                chr.JumpsUsed = 0;
             }
             chr.SCS_Idle();
         }

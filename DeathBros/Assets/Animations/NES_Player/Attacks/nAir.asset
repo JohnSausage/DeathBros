@@ -47,7 +47,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 6
         knockbackGrowth: 4
-        hitStunFrames: 25
+        hitStunFrames: 10
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
@@ -63,7 +63,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 6
         knockbackGrowth: 4
-        hitStunFrames: 25
+        hitStunFrames: 10
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
@@ -93,7 +93,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 6
         knockbackGrowth: 4
-        hitStunFrames: 25
+        hitStunFrames: 10
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
@@ -109,7 +109,7 @@ MonoBehaviour:
         knockBackDirection: {x: 1, y: 2}
         baseKnockback: 6
         knockbackGrowth: 4
-        hitStunFrames: 25
+        hitStunFrames: 10
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
@@ -165,8 +165,8 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
-        baseKnockback: 6
-        knockbackGrowth: 10
+        baseKnockback: 20
+        knockbackGrowth: 4
         hitStunFrames: 10
         damageType: 8
         attackType: 0
@@ -181,8 +181,8 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
-        baseKnockback: 6
-        knockbackGrowth: 10
+        baseKnockback: 20
+        knockbackGrowth: 4
         hitStunFrames: 10
         damageType: 8
         attackType: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
-        baseKnockback: 6
-        knockbackGrowth: 10
+        baseKnockback: 20
+        knockbackGrowth: 4
         hitStunFrames: 10
         damageType: 8
         attackType: 0
@@ -227,8 +227,8 @@ MonoBehaviour:
       damage:
         damageNumber: 10
         knockBackDirection: {x: 3, y: 2}
-        baseKnockback: 6
-        knockbackGrowth: 10
+        baseKnockback: 20
+        knockbackGrowth: 4
         hitStunFrames: 10
         damageType: 8
         attackType: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
     knockBackDirection: {x: 1, y: 2}
     baseKnockback: 6
     knockbackGrowth: 4
-    hitStunFrames: 25
+    hitStunFrames: 10
     damageType: 7
     attackType: 0
     editorColor: {r: 0, g: 0.13172174, b: 1, a: 1}
@@ -267,8 +267,8 @@ MonoBehaviour:
     StatusEffect: {fileID: 0}
   - damageNumber: 10
     knockBackDirection: {x: 3, y: 2}
-    baseKnockback: 6
-    knockbackGrowth: 10
+    baseKnockback: 20
+    knockbackGrowth: 4
     hitStunFrames: 10
     damageType: 8
     attackType: 0

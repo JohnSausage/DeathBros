@@ -50,11 +50,11 @@ public class Character : _MB, ICanTakeDamage
     public bool Shield;// { get; set; }
     public bool HoldShield;// { get; set; }
 
-    public int jumpsUsed { get; set; }
-    public bool canChangeDirctionInAir { get; set; }
-    public bool isRunning { get; set; }
-    public bool isTakingDamage { get; set; }
-    public bool isInControl { get; set; }
+    public int JumpsUsed { get; set; }
+    public bool CanChangeDirctionInAir { get; set; }
+    public bool IsRunning { get; set; }
+    public bool IsTakingDamage { get; set; }
+    public bool IsInControl { get; set; }
 
     [Space]
 
@@ -71,9 +71,9 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 AirDodgeVector { get; set; }
     public Vector2 LaunchVector { get; set; }
     public int AirdodgeCounter { get; set; }
-    public float walkSpeedReduction { get; protected set; }
+    public float WalkSpeedReduction { get; protected set; }
     public Vector2 GetGrabbedPosition { get; protected set; }
-    public string queuedAnimation { get; set; }
+    public string QueuedAnimation { get; set; }
     
 
     public FrameAnimator Anim { get; protected set; }
@@ -129,11 +129,11 @@ public class Character : _MB, ICanTakeDamage
     {
         base.Init();
 
-        queuedAnimation = "";
+        QueuedAnimation = "";
 
         Ctr = GetComponent<NES_BasicController2D>();
 
-        if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) canChangeDirctionInAir = true;
+        if (GetCurrentStatValue("CanChangeDirectionInAir", false) != 0) CanChangeDirctionInAir = true;
 
         Anim = GetComponent<FrameAnimator>();
         Anim.Init();
@@ -162,9 +162,9 @@ public class Character : _MB, ICanTakeDamage
     {
         InitStats();
 
-        isInControl = true;
+        IsInControl = true;
 
-        walkSpeedReduction = 1;
+        WalkSpeedReduction = 1;
     }
 
     protected virtual void FixedUpdate()
@@ -376,7 +376,7 @@ public class Character : _MB, ICanTakeDamage
     protected virtual void OnTakeDamage(Damage damage)
     {
         HitFreezeDuration = (int)(damage.damageNumber * 0.25f);
-        HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 5, 30);
+        HitFreezeDuration = Mathf.Clamp(HitFreezeDuration, 3, 10);
 
         HitStunDuration += damage.HitStunFrames(HealthPercent);
     }
@@ -706,17 +706,12 @@ public class Character : _MB, ICanTakeDamage
 
     public void SCS_ForceAnimation()
     {
-        if(dead)
+        if(QueuedAnimation == "")
         {
             return;
         }
 
-        if(queuedAnimation == "")
-        {
-            return;
-        }
-
-        if(Anim.currentAnimation.name == queuedAnimation)
+        if(Anim.currentAnimation.name == QueuedAnimation)
         {
             return;
         }

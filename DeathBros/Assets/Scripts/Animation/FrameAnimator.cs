@@ -90,19 +90,26 @@ public class FrameAnimator : _MB
         {
             animations = new List<FrameAnimation>();
 
-            foreach (FrameAnimation anim in frameAnimationsSO.frameAnimations)
+            foreach (FrameAnimation originalAnim in frameAnimationsSO.frameAnimations)
             {
-                FrameAnimation frameAnimation = Instantiate(anim);
+                int textureIndex = 0;
+                //looks thorugh the original textures to get the index of the coloredTextures
+                if (texture2Ds.Contains(originalAnim.frames[0].sprite.texture))
+                {
+                    textureIndex = texture2Ds.IndexOf(originalAnim.frames[0].sprite.texture);
+                }
 
-                frameAnimation.name = anim.name;
+                FrameAnimation frameAnimation = Instantiate(originalAnim);
+
+                frameAnimation.name = originalAnim.name;
 
                 if (sprCol != null)
                 {
 
                     for (int i = 0; i < frameAnimation.frames.Count; i++)
                     {
-                        string tempName = anim.frames[i].sprite.name;
-                        frameAnimation.frames[i].sprite = Sprite.Create(coloredTexture2Ds[0], anim.frames[i].sprite.rect, new Vector2(0.5f, 0.5f), 16);
+                        string tempName = originalAnim.frames[i].sprite.name;
+                        frameAnimation.frames[i].sprite = Sprite.Create(coloredTexture2Ds[textureIndex], originalAnim.frames[i].sprite.rect, new Vector2(0.5f, 0.5f), 16);
                         frameAnimation.frames[i].sprite.name = tempName;
                     }
 
@@ -111,8 +118,57 @@ public class FrameAnimator : _MB
                 animations.Add(frameAnimation);
             }
 
+
+            //load first animation
             ChangeAnimation(animations[0]);
         }
+    }
+
+    public void ChangeFrameAnimationColor(string animationName, Color color)
+    {
+
+        if (sprCol == null)
+        {
+            return;
+        }
+
+        sprCol.Color1 = color;
+
+        
+
+
+        FrameAnimation frameAnimation = animations.Find(x => x.name == animationName);
+
+        if (frameAnimation == null)
+        {
+            return;
+        }
+
+        FrameAnimation originalAnim = frameAnimationsSO.frameAnimations.Find(x => x.name == frameAnimation.name);
+
+        if(originalAnim == null)
+        {
+            return;
+        }
+
+        int textureIndex = 0;
+
+        //looks thorugh the original textures to get the index of the coloredTextures
+        if (texture2Ds.Contains(originalAnim.frames[0].sprite.texture))
+        {
+            textureIndex = texture2Ds.IndexOf(originalAnim.frames[0].sprite.texture);
+        }
+
+        coloredTexture2Ds[textureIndex] = sprCol.GetColoredSprite(texture2Ds[textureIndex]);
+
+        //frameAnimation.frames.Clear();
+
+        for (int i = 0; i < originalAnim.frames.Count; i++)
+            {
+                string tempName = originalAnim.frames[i].sprite.name;
+                frameAnimation.frames[i].sprite = Sprite.Create(coloredTexture2Ds[textureIndex], originalAnim.frames[i].sprite.rect, new Vector2(0.5f, 0.5f), 16);
+                frameAnimation.frames[i].sprite.name = tempName;
+            }
     }
 
     void FixedUpdate()
@@ -260,7 +316,7 @@ public class FrameAnimator : _MB
         ChangeAnimation(animation, restartIfAlreadyPlaying);
     }
 
-    
+
     public void ChangeAnimation(FrameAnimation animation, bool restartIfAlreadyPlaying = false)
     {
         if (animation != null)
@@ -278,5 +334,5 @@ public class FrameAnimator : _MB
             Debug.Log("Animation not found.");
         }
     }
-    
+
 }

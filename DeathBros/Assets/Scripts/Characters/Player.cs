@@ -116,7 +116,7 @@ public class Player : Character
         AEnemyHit += OnEnemyHit;
         ComboPower = 50; //@@@ set to 0 later
 
-        walkSpeedReduction = 0.5f;
+        WalkSpeedReduction = 0.5f;
 
         cardEffectMng = GetComponent<CardEffectManager>();
     }
@@ -134,6 +134,11 @@ public class Player : Character
         base.Start();
 
         SpawnPlayer();
+
+        Anim.ChangeFrameAnimationColor("nAir", Color.blue);
+        Anim.ChangeFrameAnimationColor("uTilt", Color.yellow);
+        Anim.ChangeFrameAnimationColor("dTilt", Color.magenta);
+        Anim.ChangeFrameAnimationColor("dashA", Color.green);
     }
 
     public void SpawnPlayer()
@@ -424,7 +429,7 @@ public class Player : Character
     {
         if (Attack)
         {
-            if (isRunning)
+            if (IsRunning)
             {
                 ChrSM.ChangeState(this, dashAtk);
                 currentAttackType = EAttackType.DashAtk;
@@ -452,7 +457,7 @@ public class Player : Character
         }
         else if (TiltInput != Vector2.zero)
         {
-            if (isRunning)
+            if (IsRunning)
             {
                 ChrSM.ChangeState(this, dashAtk);
                 currentAttackType = EAttackType.DashAtk;
@@ -740,7 +745,7 @@ public class Player : Character
     {
         if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
         {
-            if (isRunning)
+            if (IsRunning)
             {
                 SCS_ChangeState(StaticStates.skid);
             }

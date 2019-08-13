@@ -15,6 +15,6 @@ public class AIActionAnimate : AIActionSO
         {
             aiCtr.Enemy.Direction = Mathf.Sign(aiCtr.TargetDirection().x);
         }
-        aiCtr.Enemy.queuedAnimation = animationName;
+        aiCtr.Enemy.QueuedAnimation = animationName;
     }
 }

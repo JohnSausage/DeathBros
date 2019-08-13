@@ -61,7 +61,7 @@ public class AIExitStatusCheck : AIExitConditionSO
 
         if (isTakingDamage)
         {
-            if (aiCtr.Enemy.isTakingDamage == true)
+            if (aiCtr.Enemy.IsTakingDamage == true)
             {
                 aiCtr.ChangeState(exitState);
                 return true;
@@ -70,7 +70,7 @@ public class AIExitStatusCheck : AIExitConditionSO
 
         if (isInControl)
         {
-            if (aiCtr.Enemy.isInControl == true)
+            if (aiCtr.Enemy.IsInControl == true)
             {
                 aiCtr.ChangeState(exitState);
                 return true;

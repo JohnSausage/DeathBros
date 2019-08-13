@@ -69,8 +69,6 @@ public class SCState
         if (chr == null) return;
 
         chr.Timer++;
-
-        chr.SCS_ForceAnimation();
     }
 
     public virtual void UpdateCtr(Character chr)
@@ -149,6 +147,7 @@ public class SCS_Idle : SCState
     {
         base.Execute(chr);
 
+
         chr.GetInputs();
 
         chr.SCS_CheckForIdleOptions();
@@ -156,6 +155,9 @@ public class SCS_Idle : SCState
         chr.SCS_CheckIfGrounded();
 
         chr.SCS_CheckForGroundAttacks();
+
+        chr.SCS_ForceAnimation();
+
     }
 
     public override void Exit(Character chr)
@@ -192,20 +194,20 @@ public class SCS_Walking : SCState
         base.Execute(chr);
 
         chr.GetInputs();
-        chr.SetInputs(new Vector2(chr.DirectionalInput.x * chr.walkSpeedReduction, chr.DirectionalInput.y));
+        chr.SetInputs(new Vector2(chr.DirectionalInput.x * chr.WalkSpeedReduction, chr.DirectionalInput.y));
 
         chr.Anim.animationSpeed = Mathf.Abs(chr.DirectionalInput.x);
 
         if (Mathf.Abs(chr.DirectionalInput.x) <= 0.5f)
         {
             chr.Anim.ChangeAnimation(chr.StatesSO.walking_anim);
-            chr.isRunning = false;
+            chr.IsRunning = false;
         }
 
         if (Mathf.Abs(chr.DirectionalInput.x) >= 0.7f)
         {
             chr.Anim.ChangeAnimation(chr.StatesSO.running_anim);
-            chr.isRunning = true;
+            chr.IsRunning = true;
         }
 
 
@@ -217,13 +219,15 @@ public class SCS_Walking : SCState
 
         chr.SCS_CheckIfGrounded();
 
+        chr.SCS_ForceAnimation();
+
     }
 
     public override void Exit(Character chr)
     {
         base.Exit(chr);
 
-        chr.isRunning = false;
+        chr.IsRunning = false;
     }
 }
 
@@ -249,7 +253,7 @@ public class SCS_Running : SCState
 
         chr.Anim.ChangeAnimation(chr.StatesSO.running_anim);
 
-        chr.isRunning = true;
+        chr.IsRunning = true;
     }
 
     public override void Execute(Character chr)
@@ -266,13 +270,16 @@ public class SCS_Running : SCState
 
         chr.SCS_CheckIfGrounded();
 
+        chr.SCS_ForceAnimation();
+
+
     }
 
     public override void Exit(Character chr)
     {
         base.Exit(chr);
 
-        chr.isRunning = false;
+        chr.IsRunning = false;
     }
 }
 
@@ -324,7 +331,7 @@ public class SCS_Jumping : SCState
         if (chr.Jump)
         {
 
-            if (chr.jumpsUsed < chr.GetCurrentStatValue("Jumps"))
+            if (chr.JumpsUsed < chr.GetCurrentStatValue("Jumps"))
             {
                 chr.SCS_ChangeState(StaticStates.doubleJumpsquat);
             }
@@ -389,6 +396,9 @@ public class SCS_Crouch : SCState
         {
             chr.SCS_ChangeState(StaticStates.jumpsquat);
         }
+
+        chr.SCS_ForceAnimation();
+
     }
 }
 
@@ -457,7 +467,7 @@ public class SCS_Jumpsquat : SCState
     {
         base.Exit(chr);
 
-        chr.jumpsUsed++;
+        chr.JumpsUsed++;
     }
 }
 
@@ -490,7 +500,7 @@ public class SCS_DoubleJumpsquat : SCState
     {
         base.Exit(chr);
 
-        chr.jumpsUsed++;
+        chr.JumpsUsed++;
 
         chr.Ctr.fastFall = false;
     }
@@ -505,7 +515,7 @@ public class SCS_Landing : SCState
     {
         base.Enter(chr);
 
-        chr.jumpsUsed = 0;
+        chr.JumpsUsed = 0;
 
         chr.Anim.ChangeAnimation(chr.StatesSO.landing_anim);
         chr.SCS_RaiseLandingEvent();
@@ -550,7 +560,7 @@ public class SCS_Dash : SCState
 
         chr.Anim.ChangeAnimation(chr.StatesSO.dash_anim);
 
-        chr.isRunning = true;
+        chr.IsRunning = true;
     }
 
     public override void Execute(Character chr)
@@ -600,13 +610,16 @@ public class SCS_Dash : SCState
         }
 
         chr.SCS_CheckForGroundAttacks();
+
+        chr.SCS_ForceAnimation();
+
     }
 
     public override void Exit(Character chr)
     {
         base.Exit(chr);
 
-        chr.isRunning = false;
+        chr.IsRunning = false;
     }
 }
 
@@ -724,7 +737,7 @@ public class SCS_Wallsliding : SCState
         if (chr.Jump)
         {
 
-            if (chr.jumpsUsed < chr.GetCurrentStatValue("Jumps"))
+            if (chr.JumpsUsed < chr.GetCurrentStatValue("Jumps"))
             {
                 chr.SCS_ChangeState(StaticStates.doubleJumpsquat);
             }
@@ -818,9 +831,11 @@ public class SCS_Launch : SCState
     {
         base.Enter(chr);
 
-        chr.isInControl = false;
+        chr.IsInControl = false;
         chr.Ctr.IsInTumble = true;
         chr.Ctr.ForceMovement = chr.LaunchVector;
+
+        //chr.transform.Translate(Vector2.up * 1f / 16f);
     }
 
     public override void Execute(Character chr)
@@ -881,7 +896,7 @@ public class SCS_Launch : SCState
     {
         base.Exit(chr);
 
-        chr.isInControl = true;
+        chr.IsInControl = true;
         chr.Ctr.IsInTumble = false;
     }
 }
@@ -900,7 +915,7 @@ public class SCS_Tumble : SCState
 
         //chr.Flash(Color.blue, 2);
 
-        chr.isInControl = false;
+        chr.IsInControl = false;
         chr.Ctr.IsInTumble = true;
     }
 
@@ -958,7 +973,7 @@ public class SCS_Tumble : SCState
         base.Exit(chr);
 
         chr.Ctr.IsInTumble = false;
-        chr.isInControl = true;
+        chr.IsInControl = true;
     }
 }
 
@@ -1064,8 +1079,8 @@ public class SCS_Hitfreeze : SCState
     {
         base.Enter(chr);
 
-        chr.isInControl = false;
-        chr.isTakingDamage = true;
+        chr.IsInControl = false;
+        chr.IsTakingDamage = true;
         chr.Ctr.Frozen = true;
         chr.Anim.ChangeAnimation(chr.StatesSO.hitfreeze_anim);
     }
@@ -1084,7 +1099,7 @@ public class SCS_Hitfreeze : SCState
     {
         base.Exit(chr);
 
-        chr.isTakingDamage = false;
+        chr.IsTakingDamage = false;
         chr.Ctr.Frozen = false;
         chr.Ctr.IsInTumble = true;
 
@@ -1180,11 +1195,11 @@ public class SCS_HitLand : SCState
     {
         base.Enter(chr);
 
-        chr.jumpsUsed = 0;
+        chr.JumpsUsed = 0;
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
-        chr.isInControl = false;
+        chr.IsInControl = false;
 
         chr.Flash(Color.white, 5);
         chr.Anim.ChangeAnimation(chr.StatesSO.hitland_anim);
@@ -1232,7 +1247,7 @@ public class SCS_HitLand : SCState
     {
         base.Exit(chr);
         chr.Ctr.Frozen = false;
-        chr.isInControl = true;
+        chr.IsInControl = true;
     }
 }
 
@@ -1248,7 +1263,7 @@ public class SCS_HitLandWall : SCState
         chr.SCS_RaiseLandingEvent();
 
         chr.Ctr.Frozen = true;
-        chr.isInControl = false;
+        chr.IsInControl = false;
 
         chr.Flash(Color.green, 5);
 
@@ -1276,7 +1291,7 @@ public class SCS_HitLandWall : SCState
     {
         base.Exit(chr);
         chr.Ctr.Frozen = false;
-        chr.isInControl = true;
+        chr.IsInControl = true;
     }
 }
 
@@ -1633,9 +1648,8 @@ public class SCS_Animate : SCState
         base.Enter(chr);
 
         chr.SetInputs(Vector2.zero);
-        chr.Ctr.InControl = false;
 
-        chr.Anim.ChangeAnimation(chr.queuedAnimation);
+        chr.Anim.ChangeAnimation(chr.QueuedAnimation);
     }
 
     public override void Execute(Character chr)
@@ -1646,10 +1660,10 @@ public class SCS_Animate : SCState
 
         if (chr.Anim.animationOver == true)
         {
-            if (chr.Anim.currentAnimation.name == chr.queuedAnimation)
+            if (chr.Anim.currentAnimation.name == chr.QueuedAnimation)
             {
                 chr.SCS_ChangeState(StaticStates.idle);
-                chr.queuedAnimation = "";
+                chr.QueuedAnimation = "";
             }
         }
     }
@@ -1657,8 +1671,5 @@ public class SCS_Animate : SCState
     public override void Exit(Character chr)
     {
         base.Exit(chr);
-
-        chr.FrozenInputX = 0f;
-        chr.Ctr.InControl = true;
     }
 }

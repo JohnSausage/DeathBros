@@ -558,7 +558,13 @@ public class NES_BasicController2D : MonoBehaviour
 
     public bool CheckForCollision()
     {
-        RaycastHit2D collisionCheck = RayCastXY(velocity, velocity.magnitude + skin, collisionMask);
+        LayerMask checkCollisionsLayer = collisionMask;
+        if(IsInTumble == true && velocity.y < 0)
+        {
+            checkCollisionsLayer += platformMask;
+        }
+
+        RaycastHit2D collisionCheck = RayCastXY(velocity, velocity.magnitude + skin, checkCollisionsLayer);
 
         if (collisionCheck)
         {

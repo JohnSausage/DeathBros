@@ -72,10 +72,15 @@ public class EffectManager : _MB
 
     private void SpawnHitEffect(Damage damage, Character chr)
     {
-        Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
+        //Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
 
-        //GameObject effect = Instantiate(hitEffect1, position, Quaternion.identity);
+        GameObject effect = Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
         //effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+
+        if (chr.IsInControl == false)
+        {
+            effect.GetComponent<Effect>().color = Color.red;
+        }
     }
 
     private void SpawnDamageNumber(Damage damage, Character chr)
@@ -83,6 +88,20 @@ public class EffectManager : _MB
         GameObject dmgNr = Instantiate(damageNumber, chr.Position + Vector2.up, Quaternion.identity);
         dmgNr.GetComponent<DamageNumber>().damageNumber = damage.damageNumber.ToString();
 
+        if (chr.IsInControl == false)
+        {
+            dmgNr.GetComponent<DamageNumber>().color = Color.red;
+        }
+
+        if (chr is Enemy)
+        {
+            Enemy enemy = (Enemy)chr;
+
+            if (enemy.ComboHitCounter > 1)
+            {
+                dmgNr.GetComponent<DamageNumber>().damageNumber = enemy.ComboDamageCounter.ToString() + "/" + enemy.ComboHitCounter.ToString();
+            }
+        }
     }
 
     /*
@@ -94,12 +113,43 @@ public class EffectManager : _MB
 
     public static void SpawnEffect(string effectName, Vector2 position)
     {
+        if (effectName == "")
+        {
+            return;
+        }
+
         GameObject spawnGO = Instance.effectGOs.Find(x => x.name == effectName).gameObject;
 
         if (spawnGO != null)
             Instantiate(spawnGO, position, Quaternion.identity);
         else
             Debug.Log(spawnGO);
+    }
+
+    public static void SpawnEffect(string effectName, Transform transform, bool followTransform = false)
+    {
+        if (effectName == "")
+        {
+            return;
+        }
+
+        if (followTransform == false)
+        {
+            SpawnEffect(effectName, transform.position);
+        }
+        else
+        {
+            GameObject spawnGO = Instance.effectGOs.Find(x => x.name == effectName).gameObject;
+
+            if (spawnGO != null)
+            {
+                Instantiate(spawnGO, transform);
+            }
+            else
+            {
+                Debug.Log(spawnGO);
+            }
+        }
     }
 
     public static void SpawnSoulBubbles(int amount, Vector2 position)

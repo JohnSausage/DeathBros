@@ -23,7 +23,7 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.078125, y: -0.03125}
+    - position: {x: 0.06250005, y: -0.07894742}
       radius: 0.3
     hitboxes: []
     soundName: 
@@ -37,17 +37,17 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.140625, y: -0.0625}
+    - position: {x: 0.111842155, y: -0.06250005}
       radius: 0.3
     hitboxes:
-    - position: {x: -0.515625, y: 0.40625}
-      radius: 0.5
+    - position: {x: -0.62828946, y: 0.34868416}
+      radius: 0.40999997
       damage:
         damageNumber: 10
         knockBackDirection: {x: 2, y: 4}
         baseKnockback: 10
         knockbackGrowth: 8
-        hitStunFrames: 23
+        hitStunFrames: 21
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -67,17 +67,17 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.171875, y: -0.0625}
+    - position: {x: 0.17763163, y: -0.09539479}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.640625, y: -0.125}
-      radius: 0.8
+    - position: {x: 0.9671053, y: -0.44078952}
+      radius: 0.4400003
       damage:
         damageNumber: 10
         knockBackDirection: {x: 2, y: 4}
         baseKnockback: 10
         knockbackGrowth: 8
-        hitStunFrames: 23
+        hitStunFrames: 21
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.171875, y: -0.0625}
+    - position: {x: 0.16118427, y: -0.029605314}
       radius: 0.3
     hitboxes: []
     soundName: 
@@ -106,7 +106,7 @@ MonoBehaviour:
     knockBackDirection: {x: 2, y: 4}
     baseKnockback: 10
     knockbackGrowth: 8
-    hitStunFrames: 23
+    hitStunFrames: 21
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
