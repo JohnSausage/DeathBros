@@ -74,7 +74,7 @@ public class Character : _MB, ICanTakeDamage
     public float WalkSpeedReduction { get; protected set; }
     public Vector2 GetGrabbedPosition { get; protected set; }
     public string QueuedAnimation { get; set; }
-    
+
 
     public FrameAnimator Anim { get; protected set; }
     public SpriteRenderer Spr { get; protected set; }
@@ -273,7 +273,7 @@ public class Character : _MB, ICanTakeDamage
     {
         if (AEnemyHit != null) AEnemyHit(enemy, damage);
 
-        if(damage.damageType == EDamageType.Grab)
+        if (damage.damageType == EDamageType.Grab)
         {
             GrabEnemy(enemy);
             enemy.GetGrabbed(this, damage.position + Vector2.right * Direction);
@@ -323,7 +323,7 @@ public class Character : _MB, ICanTakeDamage
         }
         else
         {
-            if(damage.damageType != EDamageType.Silent)
+            if (damage.damageType != EDamageType.Silent)
             {
                 AudioManager.PlaySound("NES_hit1");
                 Flash(EffectManager.ColorHit, 3);
@@ -345,7 +345,7 @@ public class Character : _MB, ICanTakeDamage
                 RaiseTakeDamageEvents(damage);
             }
             else
-            {              
+            {
                 currentDamage = damage;
 
                 if (damage.Owner != null)
@@ -706,12 +706,12 @@ public class Character : _MB, ICanTakeDamage
 
     public void SCS_ForceAnimation()
     {
-        if(QueuedAnimation == "")
+        if (QueuedAnimation == "")
         {
             return;
         }
 
-        if(Anim.currentAnimation.name == QueuedAnimation)
+        if (Anim.currentAnimation.name == QueuedAnimation)
         {
             return;
         }
@@ -725,4 +725,12 @@ public interface ICanTakeDamage
     void GetHit(Damage damage);
 }
 
-public enum EAttackType { Jab1, FTilt, DTilt, UTilt, DashAtk, NAir, FAir, DAir, UAir, BAir, FSoul, DSoul, USoul, Jab2, NSpec, DSpec, USpec, FSpec, None, Item, Hazard, Grab }
+public enum EAttackType
+{
+    Jab1, FTilt, DTilt, UTilt, DashAtk,
+    NAir, FAir, DAir, UAir, BAir,
+    FSoul, DSoul, USoul, Jab2,
+    NSpec, DSpec, USpec, FSpec,
+    None, Item, Hazard,
+    Grab, DThrow, UThrow, FThrow, BThrow
+}

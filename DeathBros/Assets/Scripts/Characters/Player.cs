@@ -11,6 +11,7 @@ public class Player : Character
     public StaticAttackStateSO dash;
 
     public StaticAttackStateSO grab;
+    public StaticAttackStateSO dThrow;
 
     public StaticAttackStateSO nAir;
     public StaticAttackStateSO fAir;
@@ -31,6 +32,7 @@ public class Player : Character
     public SCS_Attack dashAtk;
 
     public SCS_Attack grabAtk;
+    public SCS_Attack dThrowAtk;
 
     public SCS_Attack nAirAtk;
     public SCS_Attack fAirAtk;
@@ -42,6 +44,7 @@ public class Player : Character
     public SCS_SpecialAttack sSpecAtk;
     public SCS_SpecialAttack uSpecAtk;
     public SCS_SpecialAttack dSpecAtk;
+
 
     protected int nSpecCount;
     protected int sSpecCount;
@@ -99,7 +102,7 @@ public class Player : Character
         dashAtk = dash.CreateAttackState();
 
         grabAtk = grab.CreateAttackState();
-
+        dThrowAtk = dThrow.CreateAttackState();
 
         nAirAtk = nAir.CreateAttackState();
         fAirAtk = fAir.CreateAttackState();
@@ -276,7 +279,7 @@ public class Player : Character
         ModifiyComboPower(-0.01f);
         ModHealth(+0.01f);
 
-        ManageCardBuffs();
+        //ManageCardBuffs();
 
         CheckForAutoPickUp();
     }
@@ -607,8 +610,8 @@ public class Player : Character
             }
             else if (DirectionalInput.y < -0.5f)
             {
-                ChrSM.ChangeState(this, dTiltAtk);
-                currentAttackType = EAttackType.None;
+                ChrSM.ChangeState(this, dThrowAtk);
+                currentAttackType = EAttackType.DThrow;
             }
 
             return true;
@@ -850,27 +853,27 @@ public class Player : Character
         dSpecCount = 0;
     }
 
-    protected void ManageCardBuffs()
-    {
-        if (cardPowerActivated[0])
-        {
-            dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
-        }
-        else
-        {
-            dTiltAtk.attackBuff.damageMulti = 1;
-        }
+    //protected void ManageCardBuffs()
+    //{
+    //    if (cardPowerActivated[0])
+    //    {
+    //        dTiltAtk.attackBuff.damageMulti = 2;//@@@ remove after testing
+    //    }
+    //    else
+    //    {
+    //        dTiltAtk.attackBuff.damageMulti = 1;
+    //    }
 
-        if (cardPowerActivated[1])
-        {
+    //    if (cardPowerActivated[1])
+    //    {
 
-        }
-        else
-        {
+    //    }
+    //    else
+    //    {
 
-        }
+    //    }
 
-    }
+    //}
 
     public override void SCS_OnSpawn()
     {

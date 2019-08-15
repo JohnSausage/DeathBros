@@ -40,8 +40,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.171875, y: -0.40625}
-      radius: 1
+    - position: {x: 0.6875, y: -0.03125}
+      radius: 0.6100004
       damage:
         damageNumber: 5
         knockBackDirection: {x: 0, y: 1}
@@ -51,7 +51,7 @@ MonoBehaviour:
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: -1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
       ID: 86819
@@ -59,7 +59,7 @@ MonoBehaviour:
     soundName: 
   - duration: 2
     sprite: {fileID: 21300044, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -70,8 +70,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.140625, y: -0.375}
-      radius: 1
+    - position: {x: -0.53125, y: -0.28125}
+      radius: 0.5800004
       damage:
         damageNumber: 5
         knockBackDirection: {x: 0, y: 1}
@@ -81,7 +81,7 @@ MonoBehaviour:
         damageType: 7
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
-        positionalInfluence: {x: 0, y: 0}
+        positionalInfluence: {x: -1, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
       ID: 86819
@@ -89,7 +89,7 @@ MonoBehaviour:
     soundName: NES_swoosh1
   - duration: 2
     sprite: {fileID: 21300046, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -99,7 +99,23 @@ MonoBehaviour:
     hurtboxes:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
-    hitboxes: []
+    hitboxes:
+    - position: {x: -0.71875, y: -0.109375}
+      radius: 0.5800004
+      damage:
+        damageNumber: 5
+        knockBackDirection: {x: 0, y: 1}
+        baseKnockback: 3
+        knockbackGrowth: 0
+        hitStunFrames: 10
+        damageType: 7
+        attackType: 0
+        editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: -1, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 0
+      getNewID: 0
     soundName: 
   - duration: 5
     sprite: {fileID: 21300048, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
@@ -128,8 +144,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.203125, y: -0.0625}
-      radius: 1
+    - position: {x: 0.625, y: -0.328125}
+      radius: 0.5800004
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: 4}
@@ -147,7 +163,7 @@ MonoBehaviour:
     soundName: 
   - duration: 2
     sprite: {fileID: 21300052, guid: 036ccc323785d9f4daa35594b7e7112d, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -158,8 +174,8 @@ MonoBehaviour:
     - position: {x: -0.03125, y: -0.03125}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.046875, y: -0.1875}
-      radius: 1
+    - position: {x: -0.25, y: 0.109375}
+      radius: 0.67000026
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: 4}
@@ -198,7 +214,7 @@ MonoBehaviour:
     damageType: 7
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
-    positionalInfluence: {x: 0, y: 0}
+    positionalInfluence: {x: -1, y: 0}
     position: {x: 0, y: 0}
     StatusEffect: {fileID: 0}
   - damageNumber: 10

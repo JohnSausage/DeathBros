@@ -22,9 +22,9 @@ public class CardEffectManager : MonoBehaviour
 
     protected Player player;
     protected float oldComboPower;
-    protected float[] comboPowerLimits = { 20f, 40f, 60f, 80f, 100f };
+    protected float[] comboPowerLimits = { 0f, 20f, 40f, 60f, 80f, 100f };
 
-    public event Action<int,ComboCardDataSO> AUpdateComboCard;
+    public event Action<int, ComboCardDataSO> AUpdateComboCard;
     public event Action<int, bool> AUpdateComboCardStatus;
 
     private void Start()
@@ -38,12 +38,12 @@ public class CardEffectManager : MonoBehaviour
         //triggers all update card events to trigger updates
         for (int i = 0; i < 5; i++)
         {
-            if(i >= comboCards.Length)
+            if (i >= comboCards.Length)
             {
                 break;
             }
 
-            if(comboCards[i] == null)
+            if (comboCards[i] == null)
             {
                 continue;
             }
@@ -60,7 +60,7 @@ public class CardEffectManager : MonoBehaviour
 
         for (int i = 0; i < comboCards.Length; i++)
         {
-            if(cardEnabled[i] == false)
+            if (cardEnabled[i] == false)
             {
                 continue;
             }
@@ -82,7 +82,7 @@ public class CardEffectManager : MonoBehaviour
     {
         for (int i = 0; i < comboCards.Length; i++)
         {
-            UpdateComboCard(i, comboPower, comboPowerLimits[i]);
+            UpdateComboCard(i, comboPower, comboPowerLimits[i], comboPowerLimits[i + 1]);
         }
 
 
@@ -91,19 +91,19 @@ public class CardEffectManager : MonoBehaviour
 
 
 
-    private void UpdateComboCard(int index, float comboPower, float comboPowerLimit)
+    private void UpdateComboCard(int index, float comboPower, float lowerComboPowerLimit, float upperComboPowerLimit)
     {
         if (index >= comboCards.Length)
         {
             return;
         }
 
-        if(comboCards[index] == null)
+        if (comboCards[index] == null)
         {
             return;
         }
 
-        if (oldComboPower < comboPowerLimit && comboPower >= comboPowerLimit)
+        if (oldComboPower < upperComboPowerLimit && comboPower >= upperComboPowerLimit && cardEnabled[index] == false)
         {
             comboCards[index].ApplyEffect(player);
             cardEnabled[index] = true;
@@ -112,7 +112,7 @@ public class CardEffectManager : MonoBehaviour
 
             if (AUpdateComboCardStatus != null) AUpdateComboCardStatus(index, true);
         }
-        else if (oldComboPower >= comboPowerLimit && comboPower < comboPowerLimit)
+        else if (oldComboPower >= lowerComboPowerLimit && comboPower < lowerComboPowerLimit)
         {
             comboCards[index].RemoveEffect(player);
             cardEnabled[index] = false;
