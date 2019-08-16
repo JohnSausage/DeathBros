@@ -118,7 +118,7 @@ MonoBehaviour:
   damages:
   - damageNumber: 20
     knockBackDirection: {x: 1, y: -5}
-    baseKnockback: 30
+    baseKnockback: 40
     knockbackGrowth: 25
     hitStunFrames: 20
     damageType: 0

@@ -74,7 +74,7 @@ public class EffectManager : _MB
     {
         //Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
 
-        GameObject effect = Instantiate(hitEffect1, damage.HitPosition, Quaternion.identity);
+        GameObject effect = Instantiate(hitEffect1, damage.HitboxWorldPos, Quaternion.identity);
         //effect.GetComponent<Effect>().color = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
 
         if (chr.IsInControl == false)

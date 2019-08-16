@@ -26,7 +26,7 @@ MonoBehaviour:
     - position: {x: 0.078125, y: -0.03125}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.46875, y: -0.03125}
+    - position: {x: 1.0243309, y: 0.5571776}
       radius: 0.2
       damage:
         damageNumber: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
     - position: {x: 0.078125, y: -0.03125}
       radius: 0.3
     hitboxes:
-    - position: {x: 0.375, y: 0.015625}
+    - position: {x: 0.50729924, y: -0.020681273}
       radius: 0.5
       damage:
         damageNumber: 0

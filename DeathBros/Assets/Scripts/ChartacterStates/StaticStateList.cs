@@ -1585,7 +1585,13 @@ public class SCS_GetGrabbed : SCState
     {
         base.Execute(chr);
 
-        chr.Ctr.ForceMovement = ((chr.GetGrabbedPosition - chr.Position)) * 20f + Vector2.up;
+        if(chr.GrabbedBy == null)
+        {
+            chr.SCS_ChangeState(StaticStates.idle);
+            return;
+        }
+
+        chr.Ctr.ForceMovement = ((chr.GrabbedBy.CurrentGrabPosition - chr.Position)) * 20f + Vector2.up;
     }
 
     public override void Exit(Character chr)

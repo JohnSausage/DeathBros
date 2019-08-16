@@ -48,9 +48,16 @@ public class HitboxManager : _MB
         for (int i = 0; i < currentFrame.hitboxes.Count; i++)
         {
             currentFrame.hitboxes[i].ID = currentID;
+            Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
 
             Vector2 hitBoxPosition = position + new Vector2(currentFrame.hitboxes[i].position.x * dirX,
                 currentFrame.hitboxes[i].position.y);
+
+            if (damage.damageType == EDamageType.Grab || damage.damageType == EDamageType.GrabAtk)
+            {
+                Chr.CurrentGrabPosition = hitBoxPosition;// + damage.Owner.Position; ;
+            }
+
 
             int number = Physics2D.OverlapCircleNonAlloc(hitBoxPosition, currentFrame.hitboxes[i].radius, hit, hitLayer);
 
@@ -60,7 +67,7 @@ public class HitboxManager : _MB
                 {
                     ICanTakeDamage hitObject = (ICanTakeDamage)hit[j].GetComponentInParent(typeof(ICanTakeDamage));
 
-                    Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
+                   // Damage damage = currentFrame.hitboxes[i].GetDamage(spr.flipX).Clone();
                     //damage.attackType = Chr.currentAttackType;
 
                     damage.hitID = currentID;
@@ -70,14 +77,18 @@ public class HitboxManager : _MB
                         damage.Owner = Chr;
                     }
 
-                    //damage.position = hitBoxPosition;
-                    damage.HitPosition = hitBoxPosition;
+                    damage.position = hitBoxPosition;
+                    damage.HitboxWorldPos = hitBoxPosition;
+                    
 
                     if (damage.Owner != null)
                     {
+
+
+
                         damage.attackType = damage.Owner.currentAttackType;
                         damage.position = damage.Owner.Position;
-                     
+
 
                         if (damage.Owner.CurrentAttackBuff != null) //@@@ is null if a projectile hits. Must be changed, since projectile get a buff if an attack is performed while the projectile hits
                         {
@@ -189,7 +200,7 @@ public class Hitbox
     }
 }
 
-public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab, Trigger, Multi1, Multi2, Multi3, Multi4, Multi5, Silent }
+public enum EDamageType { Normal, SweetSpot, SourSpot, LateHit, Explosion, Grab, Trigger, Multi1, Multi2, Multi3, Multi4, Multi5, Silent, GrabAtk }
 
 [System.Serializable]
 public class Damage
@@ -208,7 +219,7 @@ public class Damage
 
     public int hitID { get; set; }
     public Character Owner { get; set; }
-    public Vector2 HitPosition { get; set; }
+    public Vector2 HitboxWorldPos { get; set; }
 
     public StatMod ApplyStatMod { get; set; }
 
@@ -277,7 +288,7 @@ public class Damage
 
     public int HitStunFrames(float percentHealth)
     {
-        if(hitStunFrames == 0)
+        if (hitStunFrames == 0)
         {
             return 0;
         }

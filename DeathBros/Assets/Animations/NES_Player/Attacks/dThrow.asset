@@ -26,7 +26,7 @@ MonoBehaviour:
     - position: {x: -0.09375, y: 0.171875}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.5, y: 0.640625}
+    - position: {x: 0.75060827, y: 0.7396593}
       radius: 0.2
       damage:
         damageNumber: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
         baseKnockback: 0
         knockbackGrowth: 0
         hitStunFrames: 0
-        damageType: 5
+        damageType: 13
         attackType: 0
         editorColor: {r: 0, g: 0, b: 1, a: 1}
         positionalInfluence: {x: 0, y: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
     soundName: 
   - duration: 12
     sprite: {fileID: 21300036, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
-    newHitID: 0
+    newHitID: 1
     applyGravity: 1
     resetVelocity: 0
     forceMovement: {x: 0, y: 0}
@@ -56,7 +56,7 @@ MonoBehaviour:
     - position: {x: -0.1875, y: 0.296875}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.09375, y: 1.078125}
+    - position: {x: 0.29440388, y: 1.3175182}
       radius: 0.2
       damage:
         damageNumber: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
         baseKnockback: 0
         knockbackGrowth: 0
         hitStunFrames: 0
-        damageType: 5
+        damageType: 13
         attackType: 0
         editorColor: {r: 0, g: 0, b: 1, a: 1}
         positionalInfluence: {x: 0, y: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
       ID: 0
       getNewID: 0
     soundName: 
-  - duration: 12
+  - duration: 20
     sprite: {fileID: 21300038, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
     newHitID: 1
     applyGravity: 1
@@ -86,14 +86,14 @@ MonoBehaviour:
     - position: {x: 0.0625, y: -0.140625}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.3125, y: 0.8125}
+    - position: {x: 0.5681265, y: 1.1350365}
       radius: 0.5
       damage:
         damageNumber: 10
         knockBackDirection: {x: 1, y: -2}
-        baseKnockback: 15
+        baseKnockback: 40
         knockbackGrowth: 10
-        hitStunFrames: 19
+        hitStunFrames: 18
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
     baseKnockback: 0
     knockbackGrowth: 0
     hitStunFrames: 0
-    damageType: 5
+    damageType: 13
     attackType: 0
     editorColor: {r: 0, g: 0, b: 1, a: 1}
     positionalInfluence: {x: 0, y: 0}
@@ -117,9 +117,9 @@ MonoBehaviour:
     StatusEffect: {fileID: 0}
   - damageNumber: 10
     knockBackDirection: {x: 1, y: -2}
-    baseKnockback: 15
+    baseKnockback: 40
     knockbackGrowth: 10
-    hitStunFrames: 19
+    hitStunFrames: 18
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}

@@ -73,6 +73,8 @@ public class Character : _MB, ICanTakeDamage
     public int AirdodgeCounter { get; set; }
     public float WalkSpeedReduction { get; protected set; }
     public Vector2 GetGrabbedPosition { get; protected set; }
+    public Vector2 CurrentGrabPosition { get; set; }
+    public Character GrabbedBy { get; protected set; }
     public string QueuedAnimation { get; set; }
 
 
@@ -276,7 +278,16 @@ public class Character : _MB, ICanTakeDamage
         if (damage.damageType == EDamageType.Grab)
         {
             GrabEnemy(enemy);
-            enemy.GetGrabbed(this, damage.position + Vector2.right * Direction);
+            //CurrentGrabPosition = damage.position;
+            //enemy.GetGrabbed(this, damage.position + Vector2.right * Direction);
+            enemy.GetGrabbedBy(this);
+        }
+
+        if (damage.damageType == EDamageType.GrabAtk)
+        {
+            //CurrentGrabPosition = damage.position;
+            //enemy.GetGrabbed(this, damage.position + Vector2.right * Direction);
+            enemy.GetGrabbedBy(this);
         }
     }
 
@@ -397,6 +408,13 @@ public class Character : _MB, ICanTakeDamage
     {
         SCS_ChangeState(StaticStates.getGrabbed);
         GetGrabbedPosition = getGrabbedPosition;
+    }
+
+    public virtual void GetGrabbedBy(Character grabbedByChr)
+    {
+        GrabbedBy = grabbedByChr;
+        SCS_ChangeState(StaticStates.getGrabbed);
+
     }
 
     public virtual void Die()
