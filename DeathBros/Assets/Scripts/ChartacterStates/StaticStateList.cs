@@ -1549,6 +1549,7 @@ public class SCS_Grab : SCState
 
         chr.Anim.ChangeAnimation(chr.StatesSO.grab_anim);
     }
+
     public override void Execute(Character chr)
     {
         base.Execute(chr);
@@ -1565,6 +1566,11 @@ public class SCS_Grab : SCState
             chr.SetInputs(Vector2.zero);
         }
     }
+
+    public override void Exit(Character chr)
+    {
+        base.Exit(chr);
+    }
 }
 
 ///-----------------------------------------------------------------
@@ -1578,20 +1584,28 @@ public class SCS_GetGrabbed : SCState
 
         chr.Ctr.InControl = false;
         chr.Anim.ChangeAnimation(chr.StatesSO.getGrabbed_anim);
-
     }
 
     public override void Execute(Character chr)
     {
         base.Execute(chr);
 
-        if(chr.GrabbedBy == null)
+        chr.GrabbedTimer++;
+
+        if (chr.GrabbedBy == null)
         {
             chr.SCS_ChangeState(StaticStates.idle);
             return;
         }
 
+        chr.Direction = -chr.GrabbedBy.Direction;
         chr.Ctr.ForceMovement = ((chr.GrabbedBy.CurrentGrabPosition - chr.Position)) * 20f + Vector2.up;
+
+        if(chr.GrabbedTimer >= 120)
+        {
+            chr.GetGrabReleased();
+        }
+
     }
 
     public override void Exit(Character chr)
@@ -1601,6 +1615,7 @@ public class SCS_GetGrabbed : SCState
         chr.Ctr.InControl = true;
     }
 }
+
 
 ///-----------------------------------------------------------------
 /// SCS_Spawn
@@ -1625,7 +1640,7 @@ public class SCS_Spawn : SCState
 
         chr.SetInputs(Vector2.zero);
 
-        if(chr.Ctr.IsGrounded == true)
+        if (chr.Ctr.IsGrounded == true)
         {
             chr.SCS_ChangeState(StaticStates.idle);
         }

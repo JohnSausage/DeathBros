@@ -65,7 +65,7 @@ MonoBehaviour:
     width: 5
   - character: 49
     sprite: {fileID: 21300034, guid: 6f5560b905e3cec47944785290878330, type: 3}
-    width: 3
+    width: 4
   - character: 50
     sprite: {fileID: 21300036, guid: 6f5560b905e3cec47944785290878330, type: 3}
     width: 5

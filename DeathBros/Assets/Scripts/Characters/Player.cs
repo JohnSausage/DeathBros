@@ -12,6 +12,10 @@ public class Player : Character
 
     public StaticAttackStateSO grab;
     public StaticAttackStateSO dThrow;
+    public StaticAttackStateSO uThrow;
+    public StaticAttackStateSO fThrow;
+    public StaticAttackStateSO bThrow;
+    public StaticAttackStateSO pummel;
 
     public StaticAttackStateSO nAir;
     public StaticAttackStateSO fAir;
@@ -33,6 +37,10 @@ public class Player : Character
 
     public SCS_Attack grabAtk;
     public SCS_Attack dThrowAtk;
+    public SCS_Attack uThrowAtk;
+    public SCS_Attack fThrowAtk;
+    public SCS_Attack bThrowAtk;
+    public SCS_Attack pummelAtk;
 
     public SCS_Attack nAirAtk;
     public SCS_Attack fAirAtk;
@@ -103,6 +111,10 @@ public class Player : Character
 
         grabAtk = grab.CreateAttackState();
         dThrowAtk = dThrow.CreateAttackState();
+        uThrowAtk = uThrow.CreateAttackState();
+        fThrowAtk = fThrow.CreateAttackState();
+        bThrowAtk = bThrow.CreateAttackState();
+        pummelAtk = pummel.CreateAttackState();
 
         nAirAtk = nAir.CreateAttackState();
         fAirAtk = fAir.CreateAttackState();
@@ -183,7 +195,7 @@ public class Player : Character
         if (AChangeComboPower != null) AChangeComboPower(ComboPower);
     }
 
-    
+
 
     void Update()
     {
@@ -593,20 +605,32 @@ public class Player : Character
 
     public override bool SCS_CheckForThrowAttacks()
     {
+        if (Attack == true)
+        {
+            ChrSM.ChangeState(this, pummelAtk);
+            currentAttackType = EAttackType.Pummel;
 
-        if (DirectionalInput != Vector2.zero)
+            return true;
+        }
+        else if (DirectionalInput != Vector2.zero)
         {
             if (Mathf.Abs(DirectionalInput.x) > 0.5f)
             {
-                Direction = DirectionalInput.x;
-
-                ChrSM.ChangeState(this, fTiltAtk);
-                currentAttackType = EAttackType.None;
+                if (Mathf.Sign(DirectionalInput.x) == Direction)
+                {
+                    ChrSM.ChangeState(this, fThrowAtk);
+                    currentAttackType = EAttackType.FThrow;
+                }
+                else
+                {
+                    ChrSM.ChangeState(this, bThrowAtk);
+                    currentAttackType = EAttackType.BThrow;
+                }
             }
             else if (DirectionalInput.y > 0.5f)
             {
-                ChrSM.ChangeState(this, uTiltAtk);
-                currentAttackType = EAttackType.None;
+                ChrSM.ChangeState(this, uThrowAtk);
+                currentAttackType = EAttackType.UThrow;
             }
             else if (DirectionalInput.y < -0.5f)
             {

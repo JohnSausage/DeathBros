@@ -374,6 +374,11 @@ MonoBehaviour:
   fTilt: {fileID: 11400000, guid: d371895bafd9be54d900d0614c8d3a7c, type: 2}
   dash: {fileID: 11400000, guid: 6e9d7e7efecf7ca4b8c3bcca3ca317aa, type: 2}
   grab: {fileID: 11400000, guid: b7f1607c191751642b6a245167678c8c, type: 2}
+  dThrow: {fileID: 11400000, guid: a8b5aa01a5f583c40bfd5f205922d947, type: 2}
+  uThrow: {fileID: 11400000, guid: 93f6f998d79a52148a0b6bbe965f9cb6, type: 2}
+  fThrow: {fileID: 11400000, guid: b38ab983f5c81e64491e29de59b9152c, type: 2}
+  bThrow: {fileID: 11400000, guid: fe5306e4bd757c549a477f366a23bd08, type: 2}
+  pummel: {fileID: 11400000, guid: 0bcd93230aeda4447ace8eb5a08cdef5, type: 2}
   nAir: {fileID: 11400000, guid: 790d5fb0c0098204790dc458ab14130d, type: 2}
   fAir: {fileID: 11400000, guid: 9e1eea5d175c38946ba3ca0645bce7dd, type: 2}
   bAir: {fileID: 11400000, guid: 03d18d9223e5c244bb941cd3071c2f6b, type: 2}

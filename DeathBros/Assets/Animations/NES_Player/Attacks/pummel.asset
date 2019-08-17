@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f74be309f7270ba4daa947e094000680, type: 3}
-  m_Name: dThrow
+  m_Name: pummel
   m_EditorClassIdentifier: 
   loop: 0
   frames:
-  - duration: 10
-    sprite: {fileID: 21300034, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
+  - duration: 5
+    sprite: {fileID: 21300060, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -23,10 +23,10 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.09375, y: 0.171875}
+    - position: {x: 0, y: -0.0625}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.75060827, y: 0.7396593}
+    - position: {x: 1.125, y: -0.21875}
       radius: 0.2
       damage:
         damageNumber: 0
@@ -43,8 +43,8 @@ MonoBehaviour:
       ID: 0
       getNewID: 0
     soundName: 
-  - duration: 12
-    sprite: {fileID: 21300036, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
+  - duration: 3
+    sprite: {fileID: 21300062, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -53,10 +53,10 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: -0.1875, y: 0.296875}
+    - position: {x: 0.09375, y: -0.0625}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.29440388, y: 1.3175182}
+    - position: {x: 0.8125, y: 0.1875}
       radius: 0.2
       damage:
         damageNumber: 0
@@ -73,8 +73,8 @@ MonoBehaviour:
       ID: 0
       getNewID: 0
     soundName: 
-  - duration: 20
-    sprite: {fileID: 21300038, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
+  - duration: 1
+    sprite: {fileID: 21300062, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
     newHitID: 1
     applyGravity: 1
     resetVelocity: 0
@@ -83,20 +83,50 @@ MonoBehaviour:
     spawnProjectile: {x: 0, y: 0}
     spawnHoldItem: {fileID: 0}
     hurtboxes:
-    - position: {x: 0.0625, y: -0.140625}
+    - position: {x: 0.09375, y: -0.0625}
       radius: 0.4
     hitboxes:
-    - position: {x: 0.5681265, y: 1.1350365}
-      radius: 0.5
+    - position: {x: 0.875, y: 0.15625}
+      radius: 0.2
       damage:
-        damageNumber: 5
-        knockBackDirection: {x: 1, y: -2}
-        baseKnockback: 40
-        knockbackGrowth: 10
-        hitStunFrames: 20
+        damageNumber: 3
+        knockBackDirection: {x: 0, y: -1}
+        baseKnockback: 5
+        knockbackGrowth: 0
+        hitStunFrames: 3
         damageType: 0
         attackType: 0
         editorColor: {r: 0, g: 0, b: 0, a: 0}
+        positionalInfluence: {x: 0, y: 0}
+        position: {x: 0, y: 0}
+        StatusEffect: {fileID: 0}
+      ID: 0
+      getNewID: 0
+    soundName: 
+  - duration: 5
+    sprite: {fileID: 21300064, guid: 2ac5957d34a8c674f94a0184913e602c, type: 3}
+    newHitID: 1
+    applyGravity: 1
+    resetVelocity: 0
+    forceMovement: {x: 0, y: 0}
+    addMovment: {x: 0, y: 0}
+    spawnProjectile: {x: 0, y: 0}
+    spawnHoldItem: {fileID: 0}
+    hurtboxes:
+    - position: {x: -0.03125, y: -0.09375}
+      radius: 0.4
+    hitboxes:
+    - position: {x: 0.71875, y: -0.09375}
+      radius: 0.4
+      damage:
+        damageNumber: 0
+        knockBackDirection: {x: 0, y: 0}
+        baseKnockback: 0
+        knockbackGrowth: 0
+        hitStunFrames: 0
+        damageType: 5
+        attackType: 0
+        editorColor: {r: 0, g: 1, b: 0, a: 1}
         positionalInfluence: {x: 0, y: 0}
         position: {x: 0, y: 0}
         StatusEffect: {fileID: 0}
@@ -115,14 +145,25 @@ MonoBehaviour:
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
     StatusEffect: {fileID: 0}
-  - damageNumber: 5
-    knockBackDirection: {x: 1, y: -2}
-    baseKnockback: 40
-    knockbackGrowth: 10
-    hitStunFrames: 20
+  - damageNumber: 3
+    knockBackDirection: {x: 0, y: -1}
+    baseKnockback: 5
+    knockbackGrowth: 0
+    hitStunFrames: 3
     damageType: 0
     attackType: 0
     editorColor: {r: 0, g: 0, b: 0, a: 0}
+    positionalInfluence: {x: 0, y: 0}
+    position: {x: 0, y: 0}
+    StatusEffect: {fileID: 0}
+  - damageNumber: 0
+    knockBackDirection: {x: 0, y: 0}
+    baseKnockback: 0
+    knockbackGrowth: 0
+    hitStunFrames: 0
+    damageType: 5
+    attackType: 0
+    editorColor: {r: 0, g: 1, b: 0, a: 1}
     positionalInfluence: {x: 0, y: 0}
     position: {x: 0, y: 0}
     StatusEffect: {fileID: 0}

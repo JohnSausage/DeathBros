@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class HealthPanel : MonoBehaviour
 {
+    [SerializeField]
+    protected RectTransform sliderImage;
 
-    public RectTransform sliderImage;
+    [SerializeField]
+    protected SpriteFontText hpText;
 
     protected float healthPercent;
     protected float sizeY;
@@ -21,5 +24,7 @@ public class HealthPanel : MonoBehaviour
         healthPercent = GameManager.Player.HealthPercent;
 
         sliderImage.sizeDelta = new Vector2(sliderImage.sizeDelta.x, sizeY * healthPercent);
+
+        hpText.SetText(((int)GameManager.Player.currentHealth).ToString());
     }
 }

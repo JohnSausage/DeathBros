@@ -75,6 +75,8 @@ public class Character : _MB, ICanTakeDamage
     public Vector2 GetGrabbedPosition { get; protected set; }
     public Vector2 CurrentGrabPosition { get; set; }
     public Character GrabbedBy { get; protected set; }
+    public Character HasGrabbed { get; set; }
+    public int GrabbedTimer { get; set; }
     public string QueuedAnimation { get; set; }
 
 
@@ -401,13 +403,8 @@ public class Character : _MB, ICanTakeDamage
 
     protected virtual void GrabEnemy(Character enemy)
     {
+        HasGrabbed = enemy;
         SCS_ChangeState(StaticStates.grab);
-    }
-
-    public virtual void GetGrabbed(Character enemy, Vector2 getGrabbedPosition)
-    {
-        SCS_ChangeState(StaticStates.getGrabbed);
-        GetGrabbedPosition = getGrabbedPosition;
     }
 
     public virtual void GetGrabbedBy(Character grabbedByChr)
@@ -652,6 +649,8 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void SCS_CheckForIdleOptions()
     {
+        GrabbedTimer = 0;
+
         if (Mathf.Abs(DirectionalInput.x) != 0)
         {
             SCS_ChangeState(StaticStates.walking);
@@ -665,6 +664,8 @@ public class Character : _MB, ICanTakeDamage
 
     public virtual void SCS_CheckForWalkingOptions()
     {
+        GrabbedTimer = 0;
+
         if (Mathf.Abs(DirectionalInput.x) == 0f || Mathf.Sign(DirectionalInput.x) != Direction)
         {
             SCS_ChangeState(StaticStates.idle);
@@ -736,6 +737,21 @@ public class Character : _MB, ICanTakeDamage
 
         SCS_ChangeState(StaticStates.animate);
     }
+
+    public void GetGrabReleased()
+    {
+        GrabbedTimer = 0;
+
+        if (GrabbedBy != null)
+        {
+            GrabbedBy.SCS_ChangeState(StaticStates.idle);
+            GrabbedBy.HasGrabbed = null;
+            GrabbedBy = null;
+        }
+
+        Ctr.ForceMovement = new Vector2(-Direction, 1f) * 10f;
+        SCS_ChangeState(StaticStates.jumping);
+    }
 }
 
 public interface ICanTakeDamage
@@ -750,5 +766,5 @@ public enum EAttackType
     FSoul, DSoul, USoul, Jab2,
     NSpec, DSpec, USpec, FSpec,
     None, Item, Hazard,
-    Grab, DThrow, UThrow, FThrow, BThrow
+    Grab, DThrow, UThrow, FThrow, BThrow, Pummel
 }

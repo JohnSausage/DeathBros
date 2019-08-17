@@ -16,6 +16,11 @@ public class HurtboxManager : _MB
         hurtboxes = new List<CircleCollider2D>();
         spr = GetComponent<SpriteRenderer>();
 
+        if(spr == null)
+        {
+            spr = GetComponentInChildren<SpriteRenderer>();
+        }
+
         parent = transform.Find("Hurtboxes");
     }
 

@@ -167,7 +167,7 @@ MonoBehaviour:
         knockBackDirection: {x: 3, y: 2}
         baseKnockback: 20
         knockbackGrowth: 4
-        hitStunFrames: 10
+        hitStunFrames: 12
         damageType: 8
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 1}
@@ -183,7 +183,7 @@ MonoBehaviour:
         knockBackDirection: {x: 3, y: 2}
         baseKnockback: 20
         knockbackGrowth: 4
-        hitStunFrames: 10
+        hitStunFrames: 12
         damageType: 8
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 1}
@@ -213,7 +213,7 @@ MonoBehaviour:
         knockBackDirection: {x: 3, y: 2}
         baseKnockback: 20
         knockbackGrowth: 4
-        hitStunFrames: 10
+        hitStunFrames: 12
         damageType: 8
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 1}
@@ -229,7 +229,7 @@ MonoBehaviour:
         knockBackDirection: {x: 3, y: 2}
         baseKnockback: 20
         knockbackGrowth: 4
-        hitStunFrames: 10
+        hitStunFrames: 12
         damageType: 8
         attackType: 0
         editorColor: {r: 1, g: 0, b: 0, a: 1}
@@ -269,7 +269,7 @@ MonoBehaviour:
     knockBackDirection: {x: 3, y: 2}
     baseKnockback: 20
     knockbackGrowth: 4
-    hitStunFrames: 10
+    hitStunFrames: 12
     damageType: 8
     attackType: 0
     editorColor: {r: 1, g: 0, b: 0, a: 1}
