@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loop: 1
   frames:
-  - duration: 12
+  - duration: 6
     sprite: {fileID: 21300004, guid: 0f591b1899acb544fbdee6be9ff8d9c7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -29,7 +29,7 @@ MonoBehaviour:
       radius: 0.5
     hitboxes: []
     soundName: 
-  - duration: 12
+  - duration: 6
     sprite: {fileID: 21300006, guid: 0f591b1899acb544fbdee6be9ff8d9c7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
       radius: 0.5
     hitboxes: []
     soundName: 
-  - duration: 12
+  - duration: 6
     sprite: {fileID: 21300008, guid: 0f591b1899acb544fbdee6be9ff8d9c7, type: 3}
     newHitID: 0
     applyGravity: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
       radius: 0.5
     hitboxes: []
     soundName: 
-  - duration: 12
+  - duration: 6
     sprite: {fileID: 21300010, guid: 0f591b1899acb544fbdee6be9ff8d9c7, type: 3}
     newHitID: 0
     applyGravity: 1
