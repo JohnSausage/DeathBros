@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: PlayerStates
   m_EditorClassIdentifier: 
   idle_anim: idle
-  walking_anim: run
+  walking_anim: walk
   running_anim: run
   jumpsquat_anim: crouch
   jumpsquat_duration: 4

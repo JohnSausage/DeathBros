@@ -18,7 +18,7 @@ MonoBehaviour:
   - statName: Weight
     baseValue: 100
   - statName: Movespeed
-    baseValue: 9
+    baseValue: 12
   - statName: Gravity
     baseValue: -1
   - statName: JumpStrength
@@ -30,4 +30,4 @@ MonoBehaviour:
   - statName: WallslideSpeed
     baseValue: 5
   - statName: Airspeed
-    baseValue: 8
+    baseValue: 11
